@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Introduction to Bayesian Networks — DAG representation, CPTs, compact joint distributions, alarm &amp; student network examples for GATE DA preparation.">
+  <title>Bayesian Networks — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link active"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo;
+          <span class="current">Bayesian Networks</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch07-bayesian-networks-intro">
+
+            <h1>Introduction to Bayesian Networks</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: Very High</span>
+              <button class="bookmark-btn" data-page="ch07-bayesian-networks-intro" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="conditional-probability.html">Conditional Probability</a> &mdash; Chain rule</li>
+              <li><a href="independence.html">Independence</a> &mdash; Conditional independence</li>
+              <li><a href="joint-distributions.html">Joint Distributions</a></li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Describe the DAG structure of a Bayesian network</li>
+              <li>Explain conditional probability tables (CPTs)</li>
+              <li>Write the compact factored representation of a joint distribution</li>
+              <li>Build Bayesian networks from domain knowledge</li>
+              <li>Work through classic examples: alarm network, student network</li>
+            </ul></div>
+
+            <div class="content-body">
+
+              <section id="dag-representation">
+                <h2>1. DAG Representation</h2>
+                <div class="definition-box">
+                  <h4>Bayesian Network</h4>
+                  <p>A <strong>Bayesian network</strong> (also: belief network, Bayes net) is a <strong>directed acyclic graph (DAG)</strong> where:</p>
+                  <ul>
+                    <li>Each <strong>node</strong> represents a random variable</li>
+                    <li>Each <strong>directed edge</strong> from parent to child represents a direct probabilistic dependency</li>
+                    <li>Each node has an associated <strong>conditional probability table (CPT)</strong></li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <h4>Semantics</h4>
+                  <p>Each node is conditionally independent of its non-descendants given its parents. This is the <strong>local Markov property</strong>.</p>
+                </div>
+              </section>
+
+              <section id="cpts">
+                <h2>2. Conditional Probability Tables (CPTs)</h2>
+                <p>Each node X<sub>i</sub> with parents Pa(X<sub>i</sub>) has a CPT specifying P(X<sub>i</sub> | Pa(X<sub>i</sub>)) for every combination of parent values.</p>
+
+                <div class="example-box">
+                  <h4>Example &mdash; Simple Weather Network</h4>
+                  <p>Variables: Cloudy (C), Sprinkler (S), Rain (R), WetGrass (W)</p>
+                  <p>Edges: C &rarr; S, C &rarr; R, S &rarr; W, R &rarr; W</p>
+                  <p><strong>CPT for Cloudy (no parents):</strong> P(C = T) = 0.5</p>
+                  <p><strong>CPT for Sprinkler (parent: C):</strong></p>
+                  <table style="border-collapse:collapse; margin:var(--spacing-sm) 0; text-align:center;">
+                    <tr><th style="padding:6px; border:1px solid var(--border-color);">C</th><th style="padding:6px; border:1px solid var(--border-color);">P(S=T)</th></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">T</td><td style="padding:6px; border:1px solid var(--border-color);">0.10</td></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">F</td><td style="padding:6px; border:1px solid var(--border-color);">0.50</td></tr>
+                  </table>
+                  <p><strong>CPT for Rain (parent: C):</strong> P(R=T|C=T) = 0.8, P(R=T|C=F) = 0.2</p>
+                  <p><strong>CPT for WetGrass (parents: S, R):</strong></p>
+                  <table style="border-collapse:collapse; margin:var(--spacing-sm) 0; text-align:center;">
+                    <tr><th style="padding:6px; border:1px solid var(--border-color);">S</th><th style="padding:6px; border:1px solid var(--border-color);">R</th><th style="padding:6px; border:1px solid var(--border-color);">P(W=T)</th></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">T</td><td style="padding:6px; border:1px solid var(--border-color);">T</td><td style="padding:6px; border:1px solid var(--border-color);">0.99</td></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">T</td><td style="padding:6px; border:1px solid var(--border-color);">F</td><td style="padding:6px; border:1px solid var(--border-color);">0.90</td></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">F</td><td style="padding:6px; border:1px solid var(--border-color);">T</td><td style="padding:6px; border:1px solid var(--border-color);">0.90</td></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">F</td><td style="padding:6px; border:1px solid var(--border-color);">F</td><td style="padding:6px; border:1px solid var(--border-color);">0.00</td></tr>
+                  </table>
+                </div>
+              </section>
+
+              <section id="factored-joint">
+                <h2>3. Compact Representation of Joint Distribution</h2>
+                <div class="theorem-box">
+                  <h4>Chain Rule for Bayesian Networks</h4>
+                  <div class="formula">P(X<sub>1</sub>, X<sub>2</sub>, &hellip;, X<sub>n</sub>) = &prod;<sub>i=1</sub><sup>n</sup> P(X<sub>i</sub> | Parents(X<sub>i</sub>))</div>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example &mdash; Full Joint for Weather Network</h4>
+                  <p>P(C, S, R, W) = P(C) &times; P(S|C) &times; P(R|C) &times; P(W|S, R)</p>
+                  <p><strong>Parameter count:</strong> 1 + 2 + 2 + 4 = 9 parameters (vs 2<sup>4</sup> &minus; 1 = 15 without BN).</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>Parameter Savings for n Binary Variables</h4>
+                  <p>Full joint: 2<sup>n</sup> &minus; 1 parameters. BN with max k parents per node: n &middot; 2<sup>k</sup> parameters. For large n and small k, this is an <strong>exponential reduction</strong>.</p>
+                </div>
+              </section>
+
+              <section id="building-bn">
+                <h2>4. Building a Bayesian Network</h2>
+                <ol>
+                  <li><strong>Identify variables</strong> relevant to the domain</li>
+                  <li><strong>Determine causal ordering:</strong> order variables so causes come before effects</li>
+                  <li><strong>Add edges:</strong> for each variable, identify which preceding variables directly influence it</li>
+                  <li><strong>Specify CPTs</strong> using domain knowledge, data, or expert elicitation</li>
+                </ol>
+
+                <div class="warning-box">
+                  <h4>Caution</h4>
+                  <p>A Bayesian network need not represent causality; it encodes conditional independence. However, using causal ordering typically produces the most compact network.</p>
+                </div>
+              </section>
+
+              <section id="classic-examples">
+                <h2>5. Classic Examples</h2>
+
+                <h3>Alarm Network (Burglary Example)</h3>
+                <div class="example-box">
+                  <p><strong>Nodes:</strong> Burglary (B), Earthquake (E), Alarm (A), JohnCalls (J), MaryCalls (M)</p>
+                  <p><strong>Edges:</strong> B &rarr; A, E &rarr; A, A &rarr; J, A &rarr; M</p>
+                  <p><strong>Joint:</strong> P(B,E,A,J,M) = P(B)P(E)P(A|B,E)P(J|A)P(M|A)</p>
+                  <p>Parameters: 1 + 1 + 4 + 2 + 2 = <strong>10</strong> (vs 2<sup>5</sup> &minus; 1 = 31)</p>
+                </div>
+
+                <h3>Student Network</h3>
+                <div class="example-box">
+                  <p><strong>Nodes:</strong> Difficulty (D), Intelligence (I), Grade (G), SAT (S), Letter (L)</p>
+                  <p><strong>Edges:</strong> D &rarr; G, I &rarr; G, I &rarr; S, G &rarr; L</p>
+                  <p>This network models how course difficulty and student intelligence affect the grade, which in turn affects the recommendation letter, while SAT score depends directly on intelligence.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li>A Bayesian network is a DAG + CPTs encoding a joint distribution</li>
+                    <li>The chain rule: P(X<sub>1</sub>,...,X<sub>n</sub>) = &prod; P(X<sub>i</sub>|Parents(X<sub>i</sub>))</li>
+                    <li>Exploits conditional independence for exponential parameter savings</li>
+                    <li>The alarm and student networks are classic GATE examples</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-bayesian-networks-intro">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="joint-distributions.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Joint Distributions</span>
+              </a>
+              <a href="bayesian-network-inference.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">BN Inference</span>
+              </a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#dag-representation">1. DAG Representation</a></li>
+              <li><a href="#cpts">2. CPTs</a></li>
+              <li><a href="#factored-joint">3. Factored Joint</a></li>
+              <li><a href="#building-bn">4. Building a BN</a></li>
+              <li><a href="#classic-examples">5. Classic Examples</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

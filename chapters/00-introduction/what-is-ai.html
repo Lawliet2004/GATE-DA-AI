@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="What is Artificial Intelligence? Comprehensive introduction covering definitions, the Turing Test, types of AI tasks, and worked examples for GATE DA preparation.">
+  <title>What is Artificial Intelligence? — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="what-is-ai.html" class="sidebar-link active"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="what-is-ai.html">Chapter 0: Introduction</a> &raquo;
+          <span class="current">What is AI?</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch00-what-is-ai">
+
+            <!-- Page Header -->
+            <h1>What is Artificial Intelligence?</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch00-what-is-ai" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <p>None &mdash; this is the very first topic. No prior knowledge of AI is assumed.</p>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Define Artificial Intelligence from multiple perspectives</li>
+                <li>Understand the four schools of thought: Thinking Humanly, Acting Humanly, Thinking Rationally, Acting Rationally</li>
+                <li>Explain the Turing Test and its significance</li>
+                <li>Identify and classify different types of AI tasks</li>
+                <li>Distinguish between intelligence, autonomy, and automation</li>
+                <li>Solve introductory conceptual questions relevant to GATE DA</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: Introduction -->
+              <section id="intuitive-introduction">
+                <h2>1. An Intuitive Introduction</h2>
+                <p>Imagine you wake up in the morning and your phone&rsquo;s alarm goes off at precisely the right time&mdash;not because you set it manually, but because the phone learned your sleep patterns and determined the optimal moment to wake you. Then you ask a voice assistant, &ldquo;What&rsquo;s the weather today?&rdquo; and it instantly responds with an accurate forecast. On your drive to work, your car&rsquo;s navigation system reroutes you around a traffic jam it predicted would happen. At work, your email inbox has automatically sorted important messages to the top and flagged spam.</p>
+
+                <p>Each of these everyday scenarios involves <strong>Artificial Intelligence (AI)</strong>. But what exactly <em>is</em> AI? How do we define a field that spans everything from chess-playing computers to self-driving cars, from language translation to medical diagnosis?</p>
+
+                <p>The answer depends on whom you ask. AI means different things to different people. To a computer scientist, it might mean writing algorithms that can solve complex problems. To a cognitive scientist, it might mean creating machines that think the way humans do. To an engineer, it might mean building systems that behave intelligently in the real world. Let us explore these perspectives systematically.</p>
+
+                <div class="note-box">
+                  <div class="box-title">Why This Matters for GATE DA</div>
+                  <p>While GATE DA focuses more heavily on algorithms and problem-solving, conceptual questions about AI definitions, the Turing Test, and classifications of AI appear regularly. Understanding these foundations ensures you can quickly answer 1&ndash;2 mark MCQs and also provides the framework for understanding agent design, search, and learning&mdash;which form the core of the GATE DA AI syllabus.</p>
+                </div>
+              </section>
+
+              <!-- Section 2: Real-World Examples -->
+              <section id="real-world-examples">
+                <h2>2. AI in the Real World</h2>
+                <p>Before we attempt formal definitions, let us survey the landscape of AI applications. This builds intuition about the breadth and depth of the field.</p>
+
+                <ul>
+                  <li><strong>Healthcare:</strong> AI systems can analyze medical images (X-rays, MRIs) to detect cancers with accuracy comparable to radiologists. IBM Watson for Oncology suggests treatment plans by parsing millions of medical papers.</li>
+                  <li><strong>Finance:</strong> Algorithmic trading systems make buy/sell decisions in milliseconds. Fraud detection systems flag suspicious transactions in real-time.</li>
+                  <li><strong>Transportation:</strong> Self-driving cars (e.g., Waymo, Tesla Autopilot) use computer vision, sensor fusion, and planning algorithms to navigate roads autonomously.</li>
+                  <li><strong>Natural Language Processing:</strong> Chatbots, virtual assistants (Siri, Alexa, Google Assistant), machine translation (Google Translate), and text summarization.</li>
+                  <li><strong>Gaming:</strong> DeepMind&rsquo;s AlphaGo defeated the world champion in Go (2016), and OpenAI Five competed at professional level in Dota 2.</li>
+                  <li><strong>Robotics:</strong> Industrial robots assemble cars, warehouse robots sort packages (Amazon Robotics), and surgical robots assist in minimally invasive procedures.</li>
+                </ul>
+
+                <p>What do all these systems have in common? They perceive their environment, process information, make decisions, and take actions to achieve goals&mdash;all without explicit step-by-step human instructions for every possible situation.</p>
+              </section>
+
+              <!-- Section 3: Formal Definitions -->
+              <section id="formal-definitions">
+                <h2>3. Formal Definitions of AI</h2>
+                <p>Russell and Norvig, in their seminal textbook <em>&ldquo;Artificial Intelligence: A Modern Approach&rdquo;</em> (AIMA), organize definitions of AI along two dimensions:</p>
+
+                <ul>
+                  <li><strong>Human-centered vs. Rationalist:</strong> Do we measure success relative to how humans behave/think, or relative to an ideal standard of rationality?</li>
+                  <li><strong>Thought processes vs. Behavior:</strong> Do we care about the internal reasoning process, or only the external actions/outputs?</li>
+                </ul>
+
+                <p>This gives us four quadrants:</p>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Human-Centered</th>
+                        <th>Rationalist</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Thought / Reasoning</strong></td>
+                        <td>Thinking Humanly</td>
+                        <td>Thinking Rationally</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Behavior / Action</strong></td>
+                        <td>Acting Humanly</td>
+                        <td>Acting Rationally</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- 3.1 Thinking Humanly -->
+                <h3 id="thinking-humanly">3.1 Thinking Humanly &mdash; The Cognitive Modeling Approach</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Thinking Humanly</div>
+                  <p>AI is the effort to make computers think in the way that humans think. This approach requires understanding <em>how humans think</em> first (through cognitive science and psychology), and then implementing those thought processes computationally.</p>
+                </div>
+
+                <p><strong>Key idea:</strong> If we want to say a program thinks like a human, we need a theory of how humans think. This comes from introspection (reflecting on our own thoughts), psychological experiments, and brain imaging (neuroscience). Once we have a theory, we can express it as a computer program. If the program&rsquo;s input&ndash;output behavior matches human behavior, we have evidence the program &ldquo;thinks humanly.&rdquo;</p>
+
+                <p><strong>Example field:</strong> Cognitive science and computational cognitive modeling. Allen Newell and Herbert Simon&rsquo;s <em>General Problem Solver (GPS)</em> (1961) was designed not just to solve problems correctly, but to solve them in the same order and with the same reasoning steps as humans.</p>
+
+                <p><strong>Limitation:</strong> Humans are not perfectly rational&mdash;we have biases, make errors, and use heuristics. A system that &ldquo;thinks humanly&rdquo; might replicate these imperfections. For many engineering applications, we want systems that are <em>better</em> than human thinking, not merely equivalent to it.</p>
+
+                <!-- 3.2 Acting Humanly -->
+                <h3 id="acting-humanly">3.2 Acting Humanly &mdash; The Turing Test Approach</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Acting Humanly</div>
+                  <p>AI is the study of how to make computers do things at which, at the moment, people are better. A machine &ldquo;acts humanly&rdquo; if its behavior is indistinguishable from that of a human. The benchmark for this is the <strong>Turing Test</strong>.</p>
+                </div>
+
+                <p>This approach does not care <em>how</em> the machine arrives at its answers. It only cares whether the machine&rsquo;s external behavior is human-like. It&rsquo;s a behaviorist or black-box view of intelligence.</p>
+
+                <p><strong>Capabilities required:</strong> To pass a comprehensive Turing Test, a machine needs:</p>
+                <ul>
+                  <li><strong>Natural Language Processing</strong> &mdash; to communicate in English (or any human language)</li>
+                  <li><strong>Knowledge Representation</strong> &mdash; to store and retrieve information about the world</li>
+                  <li><strong>Automated Reasoning</strong> &mdash; to draw conclusions from stored knowledge</li>
+                  <li><strong>Machine Learning</strong> &mdash; to adapt to new situations and detect patterns</li>
+                  <li><strong>Computer Vision</strong> &mdash; to perceive objects (for the Total Turing Test)</li>
+                  <li><strong>Robotics</strong> &mdash; to manipulate objects and navigate (for the Total Turing Test)</li>
+                </ul>
+
+                <!-- 3.3 Thinking Rationally -->
+                <h3 id="thinking-rationally">3.3 Thinking Rationally &mdash; The &ldquo;Laws of Thought&rdquo; Approach</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Thinking Rationally</div>
+                  <p>AI is the study of the computations that make it possible to perceive, reason, and act. This approach uses formal logic as the foundation: if we can encode knowledge in logical statements and apply correct inference rules, the system &ldquo;thinks rationally.&rdquo;</p>
+                </div>
+
+                <p><strong>Roots:</strong> This approach traces back to Aristotle&rsquo;s syllogisms (circa 350 BCE). For example: &ldquo;All men are mortal. Socrates is a man. Therefore, Socrates is mortal.&rdquo; Formal logic provides an unambiguous language for expressing statements and precise inference rules for deriving conclusions.</p>
+
+                <p><strong>Challenges:</strong></p>
+                <ul>
+                  <li>It&rsquo;s difficult (sometimes impossible) to express all real-world knowledge in formal logical notation.</li>
+                  <li>Even when knowledge can be formalized, the computational complexity of logical inference can be intractable for large problem sizes.</li>
+                  <li>Handling uncertainty (partial or probabilistic information) is not natural in classical logic.</li>
+                </ul>
+
+                <!-- 3.4 Acting Rationally -->
+                <h3 id="acting-rationally">3.4 Acting Rationally &mdash; The Rational Agent Approach</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Acting Rationally</div>
+                  <p>AI is the science and engineering of building <strong>rational agents</strong>. A rational agent is one that acts so as to achieve the best expected outcome given its knowledge and goals. This is the approach adopted by Russell and Norvig and is the dominant view in modern AI.</p>
+                </div>
+
+                <p><strong>Key advantages:</strong></p>
+                <ul>
+                  <li>It is more general than the &ldquo;laws of thought&rdquo; approach because rational behavior does not always require correct inference&mdash;sometimes there is no provably correct action, yet the agent must still decide.</li>
+                  <li>It accommodates actions taken under uncertainty, where probabilistic reasoning replaces strict logical deduction.</li>
+                  <li>It provides a clear engineering-oriented framework: define the agent, define the environment, define the performance measure, and build the agent to maximize that measure.</li>
+                </ul>
+
+                <div class="note-box">
+                  <div class="box-title">GATE Tip</div>
+                  <p>The <strong>Rational Agent</strong> approach is the foundation of modern AI and the GATE DA syllabus. Questions about agent types (Chapter 1), search algorithms (Chapters 2&ndash;4), logical reasoning (Chapters 5&ndash;6), and machine learning (Chapters 8&ndash;9) all build on this idea. Expect questions asking you to identify which approach a given definition belongs to.</p>
+                </div>
+              </section>
+
+              <!-- Section 4: The Turing Test -->
+              <section id="turing-test">
+                <h2>4. The Turing Test</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">The Turing Test (1950)</div>
+                  <p>Proposed by Alan Turing in his paper <em>&ldquo;Computing Machinery and Intelligence,&rdquo;</em> the Turing Test provides an operational definition of intelligence. A machine passes the test if a human interrogator, after posing written questions, cannot reliably distinguish the machine&rsquo;s responses from those of a human.</p>
+                </div>
+
+                <p><strong>How it works:</strong></p>
+                <ol>
+                  <li>A human <strong>interrogator (C)</strong> sits in a room and communicates via text with two entities in other rooms.</li>
+                  <li>One entity is a <strong>human (B)</strong>, and the other is a <strong>machine (A)</strong>.</li>
+                  <li>The interrogator asks questions to both entities and receives text responses.</li>
+                  <li>After a period of questioning, the interrogator must decide which entity is the machine.</li>
+                  <li>If the interrogator cannot reliably tell them apart, the machine is said to have passed the Turing Test.</li>
+                </ol>
+
+                <h3>The Total Turing Test</h3>
+                <p>The standard Turing Test only involves text-based communication. The <strong>Total Turing Test</strong> extends this to include:</p>
+                <ul>
+                  <li><strong>Computer Vision:</strong> The interrogator can pass physical objects through a hatch, and the machine must describe or identify them.</li>
+                  <li><strong>Robotics:</strong> The machine can manipulate physical objects.</li>
+                </ul>
+
+                <h3>Criticisms of the Turing Test</h3>
+                <ul>
+                  <li><strong>Not reproducible:</strong> Results depend on the interrogator&rsquo;s skill and the questions asked.</li>
+                  <li><strong>Deception &ne; Intelligence:</strong> A machine that is good at deception (e.g., deliberately making spelling mistakes or pretending to be slow at math) is not necessarily intelligent.</li>
+                  <li><strong>Not constructive:</strong> The test tells us <em>if</em> a machine is intelligent but gives no guidance on <em>how</em> to build one.</li>
+                  <li><strong>Human-centric:</strong> It measures only human-like intelligence; an alien intelligence or a superintelligent system might fail the test because it doesn&rsquo;t behave like a human.</li>
+                </ul>
+
+                <div class="warning-box">
+                  <div class="box-title">Common Mistake</div>
+                  <p>Students often confuse the Turing Test with the Chinese Room argument. The <strong>Turing Test</strong> is Alan Turing&rsquo;s (1950) test for machine intelligence. The <strong>Chinese Room</strong> is John Searle&rsquo;s (1980) thought experiment arguing that passing the Turing Test does not imply <em>understanding</em>&mdash;a system can manipulate symbols without comprehending their meaning. These are different concepts!</p>
+                </div>
+              </section>
+
+              <!-- Section 5: Types of AI Tasks -->
+              <section id="types-of-ai-tasks">
+                <h2>5. Types of AI Tasks</h2>
+                <p>AI tasks can be broadly categorized by the type of problem they solve. Understanding this taxonomy helps you connect topics across the GATE DA syllabus.</p>
+
+                <h3>5.1 Perception Tasks</h3>
+                <p>These involve interpreting sensory input (images, audio, text). Examples include image classification, speech recognition, and optical character recognition (OCR). These are addressed in <strong>Computer Vision</strong> (Chapter 11) and <strong>NLP</strong> (Chapter 10).</p>
+
+                <h3>5.2 Reasoning and Knowledge Representation Tasks</h3>
+                <p>These involve drawing conclusions from facts and rules. Examples include theorem proving, diagnostic systems, and knowledge graphs. These are addressed in <strong>Propositional Logic</strong> (Chapter 5), <strong>Predicate Logic</strong> (Chapter 6), and <strong>Reasoning Under Uncertainty</strong> (Chapter 7).</p>
+
+                <h3>5.3 Planning and Decision-Making Tasks</h3>
+                <p>These involve choosing a sequence of actions to achieve a goal. Examples include route planning, game playing, and scheduling. These are addressed in <strong>Search</strong> (Chapters 2&ndash;4) and <strong>Planning</strong> (Chapter 13).</p>
+
+                <h3>5.4 Learning Tasks</h3>
+                <p>These involve improving performance from experience. Examples include spam filtering, recommendation systems, and predictive analytics. These are the focus of <strong>Machine Learning</strong> (Chapter 8), <strong>Neural Networks</strong> (Chapter 9), and <strong>Reinforcement Learning</strong> (Chapter 12).</p>
+
+                <h3>5.5 Communication and Interaction Tasks</h3>
+                <p>These involve natural interaction with humans. Examples include chatbots, machine translation, and question-answering systems. These fall primarily under <strong>NLP</strong> (Chapter 10).</p>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Task Category</th>
+                        <th>Examples</th>
+                        <th>Key Techniques</th>
+                        <th>GATE DA Chapter</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Perception</td>
+                        <td>Image recognition, Speech-to-text</td>
+                        <td>CNNs, RNNs, Feature extraction</td>
+                        <td>Ch 9, 10, 11</td>
+                      </tr>
+                      <tr>
+                        <td>Reasoning</td>
+                        <td>Theorem proving, Diagnosis</td>
+                        <td>Logic, Inference, Bayes nets</td>
+                        <td>Ch 5, 6, 7</td>
+                      </tr>
+                      <tr>
+                        <td>Planning</td>
+                        <td>Route finding, Game playing</td>
+                        <td>Search, Minimax, CSPs</td>
+                        <td>Ch 2, 3, 4, 13, 14</td>
+                      </tr>
+                      <tr>
+                        <td>Learning</td>
+                        <td>Classification, Regression</td>
+                        <td>Decision Trees, SVMs, NNs</td>
+                        <td>Ch 8, 9, 12</td>
+                      </tr>
+                      <tr>
+                        <td>Communication</td>
+                        <td>Chatbots, Translation</td>
+                        <td>Transformers, Seq2Seq, Attention</td>
+                        <td>Ch 10</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 6: Worked Examples -->
+              <section id="worked-examples">
+                <h2>6. Worked Examples</h2>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 1: Classifying AI Definitions</div>
+                  <p><strong>Question:</strong> Classify the following statement into one of the four AI definition quadrants: <em>&ldquo;The exciting new effort to make computers think &hellip; machines with minds, in the full and literal sense.&rdquo;</em> (Haugeland, 1985)</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li>The phrase &ldquo;make computers think&rdquo; refers to internal mental processes (thought), not external behavior.</li>
+                    <li>The phrase &ldquo;machines with minds, in the full and literal sense&rdquo; compares the machine to <em>human</em> cognition, not to an ideal rational standard.</li>
+                    <li>Therefore, this falls in the <strong>Thinking Humanly</strong> quadrant (Cognitive Modeling approach).</li>
+                  </ol>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 2: Turing Test Analysis</div>
+                  <p><strong>Question:</strong> A chatbot responds to the interrogator&rsquo;s question &ldquo;What is 17 &times; 24?&rdquo; with &ldquo;Hmm, let me think... 408.&rdquo; Has the chatbot demonstrated intelligence according to the Turing Test?</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li>The correct answer to 17 &times; 24 = 408. The chatbot gave the correct answer.</li>
+                    <li>The chatbot added &ldquo;Hmm, let me think...&rdquo; to simulate human-like hesitation.</li>
+                    <li>A human would likely not compute 17 &times; 24 instantly, so the delay makes the response more human-like.</li>
+                    <li>From the Turing Test perspective, this single response is consistent with human behavior. However, one question is insufficient to determine intelligence. The Turing Test requires <em>sustained</em> interaction where the interrogator cannot reliably distinguish the machine from a human across <em>many</em> questions.</li>
+                  </ol>
+                  <p><strong>Answer:</strong> A single response cannot determine whether the chatbot &ldquo;passes&rdquo; the Turing Test. The test requires extended interrogation across diverse topics.</p>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 3: Identifying AI Task Types</div>
+                  <p><strong>Question:</strong> An e-commerce website recommends products based on a customer&rsquo;s browsing history. What type of AI task is this? Which AI approach does it correspond to?</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li>The system observes the user&rsquo;s behavior (browsing history) and predicts their preferences to recommend products. This is a <strong>Learning Task</strong> (specifically, collaborative filtering or content-based recommendation).</li>
+                    <li>The system acts to maximize a performance measure (e.g., click-through rate, purchase conversion). It does not need to &ldquo;think like a human&rdquo; or pass a Turing Test.</li>
+                    <li>This best fits the <strong>Acting Rationally</strong> approach&mdash;the system is a rational agent that takes the action (recommendation) expected to yield the best outcome (user satisfaction / revenue).</li>
+                  </ol>
+                </div>
+              </section>
+
+              <!-- Section 7: Common Mistakes -->
+              <section id="common-mistakes">
+                <h2>7. Common Mistakes &amp; Misconceptions</h2>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 1: AI = Machine Learning</div>
+                  <p>AI is a <em>broader</em> field that includes ML as one of its subfields. AI also encompasses search, planning, logic, knowledge representation, robotics, and NLP. Machine Learning is one <em>technique</em> used to build AI systems, not a synonym for AI.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 2: Confusing Rational with Omniscient</div>
+                  <p>A rational agent makes the best decision <em>given the information available to it</em>. It is not omniscient&mdash;it does not know everything. If an agent lacks sensors or has incomplete data, it can still be rational as long as it acts optimally given what it knows.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 3: The Turing Test is the Definition of AI</div>
+                  <p>The Turing Test is <em>one</em> operational test for a specific notion of intelligence (Acting Humanly). It is not the universally accepted definition of AI. The dominant modern approach is the Rational Agent framework.</p>
+                </div>
+              </section>
+
+              <!-- Section 8: Summary -->
+              <section id="summary" class="summary-section">
+                <h2>&#128218; Summary</h2>
+                <ul>
+                  <li>AI is a broad field that can be defined from four perspectives: Thinking Humanly, Acting Humanly, Thinking Rationally, and Acting Rationally.</li>
+                  <li>The <strong>Thinking Humanly</strong> approach models human cognition (cognitive science).</li>
+                  <li>The <strong>Acting Humanly</strong> approach uses the Turing Test as the benchmark.</li>
+                  <li>The <strong>Thinking Rationally</strong> approach uses formal logic as the foundation.</li>
+                  <li>The <strong>Acting Rationally</strong> approach builds rational agents that maximize expected performance&mdash;this is the modern standard.</li>
+                  <li>The <strong>Turing Test</strong> (1950) tests whether a machine can exhibit human-like behavior; the Total Turing Test adds vision and robotics.</li>
+                  <li>AI tasks include perception, reasoning, planning, learning, and communication.</li>
+                  <li>AI &ne; ML; machine learning is a subfield of AI.</li>
+                </ul>
+              </section>
+
+              <!-- Section 9: References -->
+              <section id="references" class="references-section">
+                <h2>References</h2>
+                <ol>
+                  <li>Russell, S. &amp; Norvig, P. (2020). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson. &mdash; Chapter 1.</li>
+                  <li>Turing, A. M. (1950). &ldquo;Computing Machinery and Intelligence.&rdquo; <em>Mind</em>, 59(236), 433&ndash;460.</li>
+                  <li>Newell, A. &amp; Simon, H. (1976). &ldquo;Computer Science as Empirical Inquiry: Symbols and Search.&rdquo; <em>Communications of the ACM</em>, 19(3), 113&ndash;126.</li>
+                  <li>McCarthy, J. et al. (1955). &ldquo;A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence.&rdquo;</li>
+                  <li>Searle, J. (1980). &ldquo;Minds, Brains, and Programs.&rdquo; <em>Behavioral and Brain Sciences</em>, 3(3), 417&ndash;424.</li>
+                </ol>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch00-what-is-ai">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <span></span>
+              <a href="history-of-ai.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">History of AI</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#intuitive-introduction">1. An Intuitive Introduction</a></li>
+              <li><a href="#real-world-examples">2. AI in the Real World</a></li>
+              <li><a href="#formal-definitions">3. Formal Definitions of AI</a>
+                <ul>
+                  <li><a href="#thinking-humanly">3.1 Thinking Humanly</a></li>
+                  <li><a href="#acting-humanly">3.2 Acting Humanly</a></li>
+                  <li><a href="#thinking-rationally">3.3 Thinking Rationally</a></li>
+                  <li><a href="#acting-rationally">3.4 Acting Rationally</a></li>
+                </ul>
+              </li>
+              <li><a href="#turing-test">4. The Turing Test</a></li>
+              <li><a href="#types-of-ai-tasks">5. Types of AI Tasks</a></li>
+              <li><a href="#worked-examples">6. Worked Examples</a></li>
+              <li><a href="#common-mistakes">7. Common Mistakes</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

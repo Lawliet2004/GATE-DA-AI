@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quick-revision notes for Informed Search — compact summary of A*, Greedy BFS, IDA*, RBFS, SMA*, Hill Climbing, Simulated Annealing, Genetic Algorithms with formulas, comparison table, mnemonics, and GATE tips.">
+  <title>Chapter Notes: Informed Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA*<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="sma-star.html" class="sidebar-link"><span class="link-check"></span> SMA*<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded<span class="link-type theory">Theory</span></a>
+            <a href="local-search-hill-climbing.html" class="sidebar-link"><span class="link-check"></span> Hill Climbing<span class="link-type theory">Theory</span></a>
+            <a href="simulated-annealing.html" class="sidebar-link"><span class="link-check"></span> Simulated Annealing<span class="link-type theory">Theory</span></a>
+            <a href="genetic-algorithms.html" class="sidebar-link"><span class="link-check"></span> Genetic Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> A* Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link active"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="heuristic-functions.html">Chapter 3: Informed Search</a> &raquo; <span class="current">Chapter Notes</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch03-notes">
+
+            <h1>Informed Search &mdash; Quick Revision Notes</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch03-notes" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <p style="font-style:italic; color:var(--text-secondary);">Condensed revision notes for the entire Informed Search chapter. Designed for quick review before exams &mdash; print-friendly and scannable.</p>
+
+            <div class="notes-content">
+
+              <!-- Section 1: Formula Reference -->
+              <section id="formula-reference">
+                <h2>1. Formula Reference</h2>
+                <div class="quick-facts">
+                  <ul>
+                    <li><strong>A* evaluation:</strong> f(n) = g(n) + h(n)</li>
+                    <li><strong>Greedy BFS evaluation:</strong> f(n) = h(n)</li>
+                    <li><strong>Admissibility condition:</strong> h(n) &le; h*(n) for all n (never overestimates)</li>
+                    <li><strong>Consistency (monotonicity):</strong> h(n) &le; c(n, n&prime;) + h(n&prime;) for every successor n&prime; of n</li>
+                    <li><strong>Consistency &rArr; Admissibility</strong> (but NOT vice versa)</li>
+                    <li><strong>SA acceptance probability:</strong> P(accept) = e<sup>&minus;&Delta;E/T</sup> where &Delta;E = new_cost &minus; current_cost &gt; 0</li>
+                    <li><strong>IDA* next threshold:</strong> min{f(n) : f(n) &gt; current threshold}</li>
+                    <li><strong>Dominance:</strong> h<sub>2</sub> dominates h<sub>1</sub> iff h<sub>2</sub>(n) &ge; h<sub>1</sub>(n) &forall;n and both are admissible</li>
+                    <li><strong>Max heuristic:</strong> h(n) = max(h<sub>1</sub>(n), h<sub>2</sub>(n)) is admissible if both are admissible</li>
+                    <li><strong>GA fitness proportional selection:</strong> P(i) = fitness(i) / &Sigma; fitness(j)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 2: Algorithm Summaries -->
+              <section id="algorithm-summaries">
+                <h2>2. Algorithm Quick Summaries</h2>
+
+                <h3>A* Search</h3>
+                <div class="quick-facts"><ul>
+                  <li><strong>Idea:</strong> Best-first search with f(n)=g(n)+h(n). Expands node with lowest f.</li>
+                  <li><strong>Data structure:</strong> Priority queue (min-heap) ordered by f.</li>
+                  <li><strong>Complete:</strong> Yes (finite branching factor, step cost &ge; &epsilon; &gt; 0).</li>
+                  <li><strong>Optimal:</strong> Tree search with admissible h. Graph search with consistent h.</li>
+                  <li><strong>Time:</strong> O(b<sup>d</sup>) worst case. Exponential in [h*(n) &minus; h(n)].</li>
+                  <li><strong>Space:</strong> O(b<sup>d</sup>) &mdash; stores all generated nodes.</li>
+                  <li><strong>Key property:</strong> Never expands a node with f(n) &gt; C*.</li>
+                </ul></div>
+
+                <h3>Greedy Best-First Search</h3>
+                <div class="quick-facts"><ul>
+                  <li><strong>Idea:</strong> Expands node closest to goal: f(n)=h(n). Ignores path cost.</li>
+                  <li><strong>Complete:</strong> No in general (loops in tree search). Yes in finite spaces with graph search.</li>
+                  <li><strong>Optimal:</strong> No.</li>
+                  <li><strong>Time:</strong> O(b<sup>m</sup>) worst case. Good heuristic helps greatly.</li>
+                  <li><strong>Space:</strong> O(b<sup>m</sup>).</li>
+                </ul></div>
+
+                <h3>IDA* (Iterative Deepening A*)</h3>
+                <div class="quick-facts"><ul>
+                  <li><strong>Idea:</strong> DFS with f-cost cutoff. Iterate with increasing thresholds.</li>
+                  <li><strong>Space:</strong> O(b&middot;d) &mdash; linear! Same as DFS.</li>
+                  <li><strong>Complete &amp; Optimal:</strong> Yes (same conditions as A*).</li>
+                  <li><strong>Threshold update:</strong> Next = min f-value that exceeded current threshold.</li>
+                  <li><strong>Best for:</strong> Problems where memory is the bottleneck.</li>
+                </ul></div>
+
+                <h3>RBFS (Recursive Best-First Search)</h3>
+                <div class="quick-facts"><ul>
+                  <li><strong>Idea:</strong> Simulates best-first search using O(b&middot;d) space. Backtracks when current path&rsquo;s f exceeds the best alternative.</li>
+                  <li><strong>Space:</strong> O(b&middot;d).</li>
+                  <li><strong>Complete &amp; Optimal:</strong> Yes (with admissible h).</li>
+                  <li><strong>Drawback:</strong> Excessive re-generation of nodes (thrashing).</li>
+                </ul></div>
+
+                <h3>SMA* (Simplified Memory-Bounded A*)</h3>
+                <div class="quick-facts"><ul>
+                  <li><strong>Idea:</strong> A* that drops the worst leaf when memory is full. Backs up forgotten node&rsquo;s f-value to parent.</li>
+                  <li><strong>Space:</strong> Uses all available memory.</li>
+                  <li><strong>Complete &amp; Optimal:</strong> Yes, if the solution fits in memory.</li>
+                  <li><strong>Drawback:</strong> Can thrash if many nodes have similar f-values.</li>
+                </ul></div>
+
+                <h3>Hill Climbing</h3>
+                <div class="quick-facts"><ul>
+                  <li><strong>Idea:</strong> Always move to the best neighbour. No backtracking. &ldquo;Like climbing Everest in fog with amnesia.&rdquo;</li>
+                  <li><strong>Complete:</strong> No (local maxima, plateaux, ridges).</li>
+                  <li><strong>Optimal:</strong> No.</li>
+                  <li><strong>Variants:</strong> Steepest-ascent, stochastic, first-choice, random-restart.</li>
+                  <li><strong>Random-restart:</strong> Complete with probability approaching 1.</li>
+                </ul></div>
+
+                <h3>Simulated Annealing (SA)</h3>
+                <div class="quick-facts"><ul>
+                  <li><strong>Idea:</strong> Hill climbing + random downhill moves controlled by temperature T.</li>
+                  <li><strong>Accept worse move:</strong> P = e<sup>&minus;&Delta;E/T</sup>. High T &rArr; random walk. T&rarr;0 &rArr; hill climbing.</li>
+                  <li><strong>Cooling schedule:</strong> T decreases over time (e.g., T &times; 0.95 each step).</li>
+                  <li><strong>Theoretical guarantee:</strong> Finds global optimum if T decreases slowly enough (but may take infinite time).</li>
+                </ul></div>
+
+                <h3>Genetic Algorithms (GA)</h3>
+                <div class="quick-facts"><ul>
+                  <li><strong>Idea:</strong> Population-based search inspired by natural selection.</li>
+                  <li><strong>Operators:</strong> Selection, crossover (recombination), mutation.</li>
+                  <li><strong>Selection:</strong> Fitness-proportional (roulette wheel), tournament, rank-based.</li>
+                  <li><strong>Crossover:</strong> Single-point, two-point, uniform.</li>
+                  <li><strong>Mutation:</strong> Random perturbation with small probability.</li>
+                  <li><strong>Properties:</strong> Stochastic, can escape local optima, good for large search spaces.</li>
+                </ul></div>
+              </section>
+
+              <!-- Section 3: Comparison Table -->
+              <section id="comparison-table">
+                <h2>3. Algorithm Comparison Table</h2>
+                <div style="overflow-x:auto;">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Algorithm</th>
+                        <th>f(n)</th>
+                        <th>Complete?</th>
+                        <th>Optimal?</th>
+                        <th>Time</th>
+                        <th>Space</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Greedy BFS</strong></td>
+                        <td>h(n)</td>
+                        <td>No<sup>*</sup></td>
+                        <td>No</td>
+                        <td>O(b<sup>m</sup>)</td>
+                        <td>O(b<sup>m</sup>)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>A*</strong></td>
+                        <td>g(n)+h(n)</td>
+                        <td>Yes</td>
+                        <td>Yes<sup>&dagger;</sup></td>
+                        <td>O(b<sup>d</sup>)</td>
+                        <td>O(b<sup>d</sup>)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>IDA*</strong></td>
+                        <td>g(n)+h(n)</td>
+                        <td>Yes</td>
+                        <td>Yes<sup>&dagger;</sup></td>
+                        <td>O(b<sup>d</sup>)</td>
+                        <td>O(b&middot;d)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>RBFS</strong></td>
+                        <td>g(n)+h(n)</td>
+                        <td>Yes</td>
+                        <td>Yes<sup>&dagger;</sup></td>
+                        <td>Exponential</td>
+                        <td>O(b&middot;d)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>SMA*</strong></td>
+                        <td>g(n)+h(n)</td>
+                        <td>Yes<sup>&Dagger;</sup></td>
+                        <td>Yes<sup>&Dagger;</sup></td>
+                        <td>Depends</td>
+                        <td>Set by user</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Hill Climbing</strong></td>
+                        <td>h(n) only</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>O(&#8734;)</td>
+                        <td>O(1)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Simulated Annealing</strong></td>
+                        <td>h(n) + random</td>
+                        <td>Probabilistic</td>
+                        <td>Probabilistic</td>
+                        <td>Depends</td>
+                        <td>O(1)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Genetic Alg.</strong></td>
+                        <td>Fitness</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>Depends</td>
+                        <td>O(pop &times; n)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary);">
+                  <sup>*</sup> Complete in finite spaces with graph search. &ensp;
+                  <sup>&dagger;</sup> With admissible h (tree search) or consistent h (graph search). &ensp;
+                  <sup>&Dagger;</sup> If the solution fits in memory.
+                </p>
+              </section>
+
+              <!-- Section 4: Key Definitions -->
+              <section id="key-definitions">
+                <h2>4. Key Definitions</h2>
+                <div class="quick-facts"><ul>
+                  <li><strong>Heuristic h(n):</strong> Estimate of cost from n to the nearest goal. h(goal) = 0.</li>
+                  <li><strong>Admissible:</strong> h(n) &le; h*(n). Never overestimates. Required for A* tree search optimality.</li>
+                  <li><strong>Consistent (Monotone):</strong> h(n) &le; c(n,n&prime;) + h(n&prime;). Triangle inequality. Required for A* graph search optimality.</li>
+                  <li><strong>Dominance:</strong> h<sub>2</sub> dominates h<sub>1</sub> if h<sub>2</sub>(n) &ge; h<sub>1</sub>(n) for all n. More informed &rArr; fewer expansions.</li>
+                  <li><strong>Relaxed problem:</strong> Fewer constraints than original. The optimal cost of a relaxed problem provides an admissible heuristic.</li>
+                  <li><strong>Pattern database:</strong> Precomputed lookup table of exact costs for subproblems. Provides admissible heuristics.</li>
+                  <li><strong>Local search:</strong> Operates on a single current state. No systematic exploration. Suitable for optimisation problems.</li>
+                </ul></div>
+              </section>
+
+              <!-- Section 5: Heuristic Design Tips -->
+              <section id="heuristic-design">
+                <h2>5. Heuristic Design Tips</h2>
+                <div class="quick-facts"><ul>
+                  <li><strong>Relaxation method:</strong> Remove constraints from the problem &rarr; solve relaxed version &rarr; cost = admissible heuristic.</li>
+                  <li><strong>8-puzzle example:</strong> Remove &ldquo;can only slide into blank&rdquo; &rarr; misplaced tiles. Remove &ldquo;must slide&rdquo; &rarr; Manhattan distance.</li>
+                  <li><strong>Max of heuristics:</strong> max(h<sub>1</sub>, h<sub>2</sub>, &hellip;, h<sub>k</sub>) is admissible if all are admissible. Always use this!</li>
+                  <li><strong>Pattern databases:</strong> Precompute exact solutions for subsets of the problem (e.g., corner tiles in 15-puzzle).</li>
+                  <li><strong>Linear combination:</strong> &alpha;&middot;h<sub>1</sub> + &beta;&middot;h<sub>2</sub> is admissible if &alpha;+&beta; &le; 1 and both are admissible (but this is usually weaker than max).</li>
+                  <li><strong>Learning heuristics:</strong> Train on solved instances to learn h(n) that approximates h*(n).</li>
+                </ul></div>
+              </section>
+
+              <!-- Section 6: Mnemonics -->
+              <section id="mnemonics">
+                <h2>6. Mnemonics &amp; Memory Aids</h2>
+                <div class="quick-facts"><ul>
+                  <li><strong>&ldquo;A* = g + h, Greedy = just h&rdquo;</strong> &mdash; The g(n) term is what makes A* optimal.</li>
+                  <li><strong>&ldquo;Consistency &rArr; Admissibility, not the other way&rdquo;</strong> &mdash; Think &ldquo;ConAd&rdquo; (consistency is the stronger condition).</li>
+                  <li><strong>&ldquo;CAG&rdquo;</strong> = Consistency for A* Graph search. &ldquo;AAT&rdquo; = Admissibility for A* Tree search.</li>
+                  <li><strong>&ldquo;Higher h &rArr; fewer nodes&rdquo;</strong> &mdash; More informed heuristic = more pruning. But never exceed h*(n)!</li>
+                  <li><strong>&ldquo;Hill Climbing = 3 Problems: LPR&rdquo;</strong> &mdash; Local maxima, Plateaux, Ridges.</li>
+                  <li><strong>&ldquo;SA = HC + Randomness&rdquo;</strong> &mdash; SA is hill climbing that sometimes goes downhill, controlled by temperature.</li>
+                  <li><strong>&ldquo;IDA* = DFS + f-cutoff&rdquo;</strong> &mdash; Iterative deepening but with f-value thresholds instead of depth limits.</li>
+                  <li><strong>&ldquo;e<sup>&minus;1</sup> &asymp; 0.37&rdquo;</strong> &mdash; Quick reference for SA probability calculations. e<sup>&minus;0.5</sup> &asymp; 0.61, e<sup>&minus;2</sup> &asymp; 0.14.</li>
+                </ul></div>
+              </section>
+
+              <!-- Section 7: Common GATE Traps -->
+              <section id="gate-traps">
+                <h2>7. Common GATE Traps</h2>
+                <div class="quick-facts"><ul>
+                  <li><strong>Trap 1:</strong> &ldquo;A* is always optimal&rdquo; &mdash; Only with admissible h (tree search) or consistent h (graph search). Without these conditions, A* may return suboptimal paths.</li>
+                  <li><strong>Trap 2:</strong> &ldquo;Admissible = Consistent&rdquo; &mdash; False. Consistency is strictly stronger. GATE loves to test this.</li>
+                  <li><strong>Trap 3:</strong> Confusing tree search vs graph search. In graph search with an admissible (but not consistent) heuristic, A* may not be optimal without re-opening nodes.</li>
+                  <li><strong>Trap 4:</strong> &ldquo;Greedy BFS is complete&rdquo; &mdash; Only with graph search in finite spaces. Tree search Greedy can cycle forever.</li>
+                  <li><strong>Trap 5:</strong> Multiplying an admissible heuristic by a constant &gt; 1 usually destroys admissibility (creates weighted A*, which is not standard optimal).</li>
+                  <li><strong>Trap 6:</strong> IDA* threshold is the <em>minimum</em> exceeded f-value, not the average or maximum.</li>
+                  <li><strong>Trap 7:</strong> Hill climbing problems &mdash; don&rsquo;t list &ldquo;exponential time&rdquo;; that&rsquo;s a feature (it&rsquo;s fast), not a bug. The problems are local maxima, plateaux, and ridges.</li>
+                  <li><strong>Trap 8:</strong> SA &ldquo;guarantees optimal&rdquo; &mdash; only theoretically with an infinitely slow cooling schedule. In practice, no guarantee.</li>
+                </ul></div>
+              </section>
+
+              <!-- Section 8: When to Use Each Algorithm -->
+              <section id="when-to-use">
+                <h2>8. When to Use Each Algorithm</h2>
+                <div class="quick-facts"><ul>
+                  <li><strong>A*:</strong> Default choice when optimality is required and memory is available. Good heuristic is key.</li>
+                  <li><strong>IDA*:</strong> When memory is limited but you still need optimality (e.g., 15-puzzle).</li>
+                  <li><strong>RBFS:</strong> Similar to IDA* but avoids some re-exploration. Use when each iteration of IDA* wastes too much work.</li>
+                  <li><strong>SMA*:</strong> When you have a fixed memory budget and want the best possible search within it.</li>
+                  <li><strong>Greedy BFS:</strong> When you need a quick (possibly suboptimal) answer and the heuristic is reliable.</li>
+                  <li><strong>Hill Climbing:</strong> Optimisation problems where you need a good (not necessarily optimal) solution quickly.</li>
+                  <li><strong>SA:</strong> Optimisation with many local optima. Willing to spend time for a better solution than HC.</li>
+                  <li><strong>GA:</strong> Large, complex search spaces. No gradient information. Multiple good solutions needed.</li>
+                </ul></div>
+              </section>
+
+              <!-- Section 9: GATE Quick Tips -->
+              <section id="gate-tips">
+                <h2>9. GATE Quick Tips</h2>
+                <div class="quick-facts"><ul>
+                  <li><strong>A* trace questions:</strong> Always maintain an explicit open list table with columns: Node, g, h, f. Sort by f at each step.</li>
+                  <li><strong>Heuristic admissibility:</strong> To prove &mdash; show it&rsquo;s a relaxed problem cost. To disprove &mdash; find ONE counter-example.</li>
+                  <li><strong>SA calculations:</strong> Memorise e<sup>&minus;0.5</sup>&asymp;0.61, e<sup>&minus;1</sup>&asymp;0.37, e<sup>&minus;2</sup>&asymp;0.14. GATE won&rsquo;t ask for harder exponentials.</li>
+                  <li><strong>Dominance shortcut:</strong> If h<sub>2</sub> &ge; h<sub>1</sub> for all nodes and both are admissible, A*(h<sub>2</sub>) expands &le; nodes of A*(h<sub>1</sub>).</li>
+                  <li><strong>Check the question:</strong> &ldquo;Tree search&rdquo; vs &ldquo;Graph search&rdquo; changes the answer for optimality conditions. Read carefully!</li>
+                </ul></div>
+              </section>
+
+              <!-- Section 10: One-Page Summary -->
+              <section id="one-page-summary">
+                <h2>10. One-Page Summary</h2>
+                <div class="summary-section"><ul>
+                  <li><strong>Informed search</strong> uses heuristic functions to guide exploration toward the goal.</li>
+                  <li><strong>A*</strong> is the gold standard: complete, optimal (with admissible/consistent h), but memory-hungry.</li>
+                  <li><strong>IDA*, RBFS, SMA*</strong> are memory-efficient alternatives that preserve A*&rsquo;s guarantees.</li>
+                  <li><strong>Greedy BFS</strong> is fast but provides no guarantees &mdash; incomplete and suboptimal in general.</li>
+                  <li><strong>Admissibility</strong> = never overestimate. <strong>Consistency</strong> = triangle inequality. Consistency &rArr; admissibility.</li>
+                  <li><strong>Heuristic quality matters:</strong> higher (but still admissible) h &rArr; fewer node expansions. Use max of multiple heuristics.</li>
+                  <li><strong>Local search</strong> (Hill Climbing, SA, GA) for optimisation: fast, low memory, but generally no completeness or optimality guarantees.</li>
+                  <li><strong>SA</strong> escapes local optima using temperature-controlled random moves: P = e<sup>&minus;&Delta;E/T</sup>.</li>
+                  <li>For GATE: <strong>memorise the comparison table</strong>, understand admissibility vs consistency, and practice A* trace questions.</li>
+                </ul></div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell &amp; Norvig, <em>Artificial Intelligence: A Modern Approach</em>, Chapter 3 (Sections 3.5&ndash;3.6) &amp; Chapter 4 (Sections 4.1&ndash;4.2).</li>
+                  <li>Hart, Nilsson &amp; Raphael (1968). &ldquo;A Formal Basis for the Heuristic Determination of Minimum Cost Paths.&rdquo;</li>
+                  <li>Korf, R. E. (1985). &ldquo;Depth-First Iterative-Deepening.&rdquo; <em>Artificial Intelligence</em>, 27(1).</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch03-notes">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="gate-previous-year-informed.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">GATE PYQs</span></a>
+              <a href="quiz-informed-search.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Quiz</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#formula-reference">1. Formula Reference</a></li>
+            <li><a href="#algorithm-summaries">2. Algorithm Summaries</a></li>
+            <li><a href="#comparison-table">3. Comparison Table</a></li>
+            <li><a href="#key-definitions">4. Key Definitions</a></li>
+            <li><a href="#heuristic-design">5. Heuristic Design</a></li>
+            <li><a href="#mnemonics">6. Mnemonics</a></li>
+            <li><a href="#gate-traps">7. GATE Traps</a></li>
+            <li><a href="#when-to-use">8. When to Use Each</a></li>
+            <li><a href="#gate-tips">9. GATE Tips</a></li>
+            <li><a href="#one-page-summary">10. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

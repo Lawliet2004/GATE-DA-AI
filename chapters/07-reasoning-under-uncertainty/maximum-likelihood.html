@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maximum Likelihood Estimation and MAP — MLE derivation, log-likelihood, MAP estimation, Bayesian inference overview for GATE DA preparation.">
+  <title>MLE &amp; MAP Estimation — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link active"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo; <span class="current">MLE &amp; MAP</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch07-mle-map">
+
+            <h1>Maximum Likelihood &amp; MAP Estimation</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: Very High</span>
+              <button class="bookmark-btn" data-page="ch07-mle-map" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="probability-basics.html">Probability Basics</a></li>
+              <li><a href="bayes-theorem.html">Bayes' Theorem</a></li>
+              <li><a href="random-variables.html">Random Variables &amp; Distributions</a></li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Formulate the likelihood function for common distributions</li>
+              <li>Derive MLE for Bernoulli, Gaussian, and Poisson distributions</li>
+              <li>Use the log-likelihood trick to simplify optimization</li>
+              <li>State MAP estimation and its relationship to MLE and priors</li>
+              <li>Compare MLE vs MAP vs full Bayesian inference</li>
+            </ul></div>
+
+            <div class="content-body">
+
+              <section id="mle-concept">
+                <h2>1. Maximum Likelihood Estimation</h2>
+                <div class="definition-box">
+                  <h4>Likelihood Function</h4>
+                  <p>Given data D = {x<sub>1</sub>, &hellip;, x<sub>n</sub>} assumed i.i.d. from a distribution with parameter &theta;:</p>
+                  <div class="formula">L(&theta;) = P(D | &theta;) = &prod;<sub>i=1</sub><sup>n</sup> P(x<sub>i</sub> | &theta;)</div>
+                  <p>The MLE is: &theta;&#770;<sub>MLE</sub> = argmax<sub>&theta;</sub> L(&theta;)</p>
+                </div>
+
+                <div class="theorem-box">
+                  <h4>Log-Likelihood <span class="gate-tag">Essential Trick</span></h4>
+                  <div class="formula">&ell;(&theta;) = log L(&theta;) = &sum;<sub>i=1</sub><sup>n</sup> log P(x<sub>i</sub> | &theta;)</div>
+                  <p>Since log is monotonically increasing, maximizing log-likelihood gives the same &theta;&#770; as maximizing likelihood, but products become sums — much easier to differentiate.</p>
+                </div>
+              </section>
+
+              <section id="mle-examples">
+                <h2>2. MLE for Common Distributions</h2>
+
+                <h3>Bernoulli Distribution</h3>
+                <div class="example-box">
+                  <h4>Example <span class="gate-tag">GATE Favorite</span></h4>
+                  <p>Data: n coin flips with k heads. P(x<sub>i</sub> | p) = p<sup>x<sub>i</sub></sup>(1&minus;p)<sup>1&minus;x<sub>i</sub></sup></p>
+                  <p>&ell;(p) = k log p + (n&minus;k) log(1&minus;p)</p>
+                  <p>Setting d&ell;/dp = k/p &minus; (n&minus;k)/(1&minus;p) = 0:</p>
+                  <div class="formula">p&#770;<sub>MLE</sub> = k/n</div>
+                  <p>10 flips, 7 heads &rArr; p&#770; = 7/10 = 0.7</p>
+                </div>
+
+                <h3>Normal (Gaussian) Distribution</h3>
+                <div class="example-box">
+                  <h4>MLE for Normal</h4>
+                  <p>Data: x<sub>1</sub>, &hellip;, x<sub>n</sub> ~ N(&mu;, &sigma;<sup>2</sup>)</p>
+                  <div class="formula">&mu;&#770;<sub>MLE</sub> = (1/n) &sum; x<sub>i</sub> = x&#772; (sample mean)</div>
+                  <div class="formula">&sigma;&#770;<sup>2</sup><sub>MLE</sub> = (1/n) &sum; (x<sub>i</sub> &minus; x&#772;)<sup>2</sup></div>
+                  <p>Note: MLE for variance divides by n (biased), not n&minus;1.</p>
+                </div>
+
+                <h3>Poisson Distribution</h3>
+                <div class="example-box">
+                  <h4>MLE for Poisson <span class="gate-tag">GATE Style</span></h4>
+                  <p>P(x|&lambda;) = e<sup>&minus;&lambda;</sup>&lambda;<sup>x</sup>/x!. &ell;(&lambda;) = &minus;n&lambda; + (&sum; x<sub>i</sub>) log &lambda; &minus; &sum; log(x<sub>i</sub>!)</p>
+                  <div class="formula">&lambda;&#770;<sub>MLE</sub> = (1/n) &sum; x<sub>i</sub> = x&#772;</div>
+                  <p>Data: {2, 3, 1, 4, 2} &rArr; &lambda;&#770; = 12/5 = 2.4</p>
+                </div>
+              </section>
+
+              <section id="map-estimation">
+                <h2>3. MAP Estimation</h2>
+                <div class="definition-box">
+                  <h4>Maximum A Posteriori Estimation</h4>
+                  <div class="formula">&theta;&#770;<sub>MAP</sub> = argmax<sub>&theta;</sub> P(&theta; | D) = argmax<sub>&theta;</sub> P(D | &theta;) P(&theta;)</div>
+                  <p>MAP incorporates a <strong>prior</strong> P(&theta;) over the parameter. In log form:</p>
+                  <div class="formula">&theta;&#770;<sub>MAP</sub> = argmax<sub>&theta;</sub> [log P(D|&theta;) + log P(&theta;)]</div>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example &mdash; Bernoulli with Beta Prior</h4>
+                  <p>Prior: Beta(&alpha;, &beta;). Data: k heads in n flips.</p>
+                  <div class="formula">p&#770;<sub>MAP</sub> = (k + &alpha; &minus; 1) / (n + &alpha; + &beta; &minus; 2)</div>
+                  <p>With Beta(2,2) prior and 7 heads in 10 flips: p&#770;<sub>MAP</sub> = (7+1)/(10+2) = 8/12 &asymp; 0.667</p>
+                  <p>Compare with MLE = 0.7. The prior "pulls" the estimate toward 0.5.</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>MLE vs MAP vs Full Bayesian</h4>
+                  <table style="border-collapse:collapse; width:100%;">
+                    <tr><th style="padding:8px; border:1px solid var(--border-color);">Method</th><th style="padding:8px; border:1px solid var(--border-color);">Formula</th><th style="padding:8px; border:1px solid var(--border-color);">Uses Prior?</th></tr>
+                    <tr><td style="padding:8px; border:1px solid var(--border-color);">MLE</td><td style="padding:8px; border:1px solid var(--border-color);">argmax P(D|&theta;)</td><td style="padding:8px; border:1px solid var(--border-color);">No</td></tr>
+                    <tr><td style="padding:8px; border:1px solid var(--border-color);">MAP</td><td style="padding:8px; border:1px solid var(--border-color);">argmax P(&theta;|D)</td><td style="padding:8px; border:1px solid var(--border-color);">Yes (point estimate)</td></tr>
+                    <tr><td style="padding:8px; border:1px solid var(--border-color);">Full Bayesian</td><td style="padding:8px; border:1px solid var(--border-color);">P(&theta;|D) entire posterior</td><td style="padding:8px; border:1px solid var(--border-color);">Yes (full distribution)</td></tr>
+                  </table>
+                </div>
+
+                <div class="warning-box">
+                  <h4>MLE with Uniform Prior = MAP</h4>
+                  <p>If the prior is uniform (flat), then MAP reduces to MLE since log P(&theta;) is constant.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>MLE:</strong> maximize likelihood (or log-likelihood) — no prior needed</li>
+                    <li>MLE for Bernoulli = sample proportion, for Gaussian = sample mean and (biased) variance</li>
+                    <li><strong>MAP:</strong> maximize posterior = likelihood &times; prior — acts as regularization</li>
+                    <li>MAP with uniform prior = MLE</li>
+                    <li>Log-likelihood converts products to sums — a key computational trick</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-mle-map">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="information-theory.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Information Theory</span></a>
+              <a href="practical-uncertainty.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Interactive Demos</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#mle-concept">1. MLE Concept</a></li>
+            <li><a href="#mle-examples">2. MLE Examples</a></li>
+            <li><a href="#map-estimation">3. MAP Estimation</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

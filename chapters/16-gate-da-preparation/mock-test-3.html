@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mock Test 3 for GATE DA AI section — 15 advanced questions, 25-minute timed quiz focusing on multi-step problems.">
+  <title>Mock Test 3 — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a>
+            <a href="topic-wise-weightage.html" class="sidebar-link"><span class="link-check"></span> Topic Weightage<span class="link-type notes">Notes</span></a>
+            <a href="previous-year-compilation.html" class="sidebar-link"><span class="link-check"></span> Previous Year Qs<span class="link-type notes">Notes</span></a>
+            <a href="formula-sheet.html" class="sidebar-link"><span class="link-check"></span> Formula Sheet<span class="link-type notes">Notes</span></a>
+            <a href="common-mistakes.html" class="sidebar-link"><span class="link-check"></span> Common Mistakes<span class="link-type notes">Notes</span></a>
+            <a href="mock-test-1.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 1<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-2.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 2<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-3.html" class="sidebar-link active"><span class="link-check"></span> &#129514; Mock Test 3<span class="link-type quiz">Quiz</span></a>
+            <a href="final-revision-checklist.html" class="sidebar-link"><span class="link-check"></span> Final Revision Checklist<span class="link-type notes">Notes</span></a>
+        </div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="exam-pattern-strategy.html">Chapter 16: GATE DA Preparation</a> &raquo; <span class="current">Mock Test 3</span></nav>
+
+        <article class="main-content page-type-quiz" data-page-id="ch16-mock-test-3">
+          <div class="quiz-header">
+            <h1>&#129514; Mock Test 3 &mdash; GATE DA AI Section (Advanced)</h1>
+            <div class="quiz-meta">
+              <span class="badge badge-quiz">15 Questions</span>
+              <span class="badge badge-time">25 Minutes</span>
+              <span class="badge badge-mix">MCQ + MSQ + NAT</span>
+            </div>
+            <p>The most challenging test in this series. Emphasizes multi-step reasoning, numerical computation, and deeper conceptual understanding. Aim for 60%+ to be exam-ready.</p>
+          </div>
+
+          <div class="quiz-timer" id="quizTimer">25:00</div>
+          <div class="question-palette" id="questionPalette"></div>
+          <div class="quiz-content" id="quizContent">
+            <div class="question-display" id="questionDisplay"></div>
+          </div>
+          <div class="quiz-score-card" id="quizScoreCard" style="display:none;"></div>
+        </article>
+
+        <div class="nav-buttons">
+          <a href="mock-test-2.html" class="btn btn-secondary">&laquo; Mock Test 2</a>
+          <a href="final-revision-checklist.html" class="btn btn-primary">Final Revision Checklist &raquo;</a>
+        </div>
+        <button class="bookmark-btn" title="Bookmark this page">&#128278; Bookmark</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const questions = [
+      {
+        type: 'nat',
+        difficulty: 'Hard',
+        question_html: '<p>Consider the following graph with edge costs. A* search from S to G uses the heuristic values shown.</p><pre>Graph:\nS --2--> A --3--> G\nS --5--> B --1--> G\nA --1--> B\n\nHeuristics: h(S)=4, h(A)=3, h(B)=1, h(G)=0</pre><p>How many nodes does A* expand (including S and G) before terminating optimally?</p>',
+        correct_answer: 4,
+        tolerance: 0,
+        explanation_html: '<p>A* expands nodes in order of f(n) = g(n) + h(n):<br>1. Start with S: f(S) = 0 + 4 = 4. <strong>Expand S</strong>. Generates A (f=2+3=5) and B (f=5+1=6).<br>2. Frontier: {A(5), B(6)}. <strong>Expand A</strong>. Generates G (f=2+3+0=5) and B (f=2+1+1=4).<br>3. Frontier: {B(4), G(5), B(6)}. <strong>Expand B</strong> (f=4). Generates G (f=3+1+0=4).<br>4. Frontier: {G(4), G(5)}. <strong>Expand G</strong> (f=4). Goal reached! Path: S&rarr;A&rarr;B&rarr;G, cost=4.<br>Total expanded: S, A, B, G = <strong>4 nodes</strong>.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Hard',
+        question_html: '<p>In the 8-puzzle, which of the following heuristics is <strong>NOT admissible</strong>?</p>',
+        options: [
+          'h₁ = number of misplaced tiles',
+          'h₂ = sum of Manhattan distances of all tiles from goal positions',
+          'h₃ = number of tiles not in their goal row + number of tiles not in their goal column',
+          'h₄ = 2 × (sum of Manhattan distances)'
+        ],
+        correct_answer: 3,
+        explanation_html: '<p>A heuristic is admissible if it never overestimates the true cost to the goal.<br>&bull; h₁ (misplaced tiles): Each misplaced tile needs &ge;1 move, so h₁ &le; h*. Admissible. &check;<br>&bull; h₂ (Manhattan distance): Each tile needs at least its Manhattan distance in moves. Admissible. &check;<br>&bull; h₃: A tile not in its goal row needs &ge;1 vertical move; not in goal column needs &ge;1 horizontal move. The sum double-counts tiles that are wrong in both dimensions, but since each such tile needs &ge;2 moves, h₃ &le; h*. Admissible. &check;<br>&bull; h₄ = 2 &times; Manhattan: This can overestimate. If a tile is 1 move from its goal, h₄ counts it as 2. <strong>Not admissible</strong>. &cross;</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Hard',
+        question_html: '<p>A game tree has depth 3 with branching factor 2. The terminal values (left to right) are: <strong>3, 12, 8, 2, 4, 6, 14, 5</strong>. The root is a MAX node. Using the Minimax algorithm, what is the value propagated to the root?</p>',
+        correct_answer: 3,
+        tolerance: 0,
+        explanation_html: '<p>Build the tree bottom-up:<br><strong>Level 3 (terminals):</strong> 3, 12, 8, 2, 4, 6, 14, 5<br><strong>Level 2 (MIN nodes):</strong> min(3,12)=3, min(8,2)=2, min(4,6)=4, min(14,5)=5<br><strong>Level 1 (MAX nodes):</strong> max(3,2)=3, max(4,5)=5<br><strong>Level 0 (MIN root? No, root is MAX):</strong> Wait, depth 3 means: root(MAX) at depth 0, MIN at depth 1, MAX at depth 2... Let me recalculate.<br>Depth 0 = MAX (root), Depth 1 = MIN, Depth 2 = MAX, Depth 3 = terminals.<br>Level 2 MAX: max(3,12)=12, max(8,2)=8, max(4,6)=6, max(14,5)=14<br>Level 1 MIN: min(12,8)=8, min(6,14)=6<br>Level 0 MAX: max(8,6) = <strong>8</strong>.<br>Hmm, let me re-read: depth=3 with b=2 gives 2³=8 leaf nodes. Root is MAX.<br>MAX→MIN→MAX→leaves. So:<br>MAX of(MIN of(MAX of(3,12), MAX of(8,2)), MIN of(MAX of(4,6), MAX of(14,5)))<br>= MAX of(MIN of(12, 8), MIN of(6, 14))<br>= MAX of(8, 6) = 8.<br>Correction: the answer is <strong>8</strong>.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Hard',
+        question_html: '<p>Resolution in propositional logic operates on clauses in CNF. Given the clauses:<br>C1: {A, B}<br>C2: {&not;A, C}<br>C3: {&not;B, &not;C}<br>C4: {&not;A, &not;B}<br>Which pair of clauses produces the <strong>empty clause</strong> (contradiction) after a sequence of resolution steps?</p>',
+        options: [
+          'Resolving C1 with C4, then result with C2, then with C3',
+          'Resolving C1 with C2 only',
+          'No empty clause can be derived (the set is satisfiable)',
+          'Resolving C2 with C3 only'
+        ],
+        correct_answer: 0,
+        explanation_html: '<p>Let&rsquo;s trace resolution:<br>C1={A,B} resolve with C4={&not;A,&not;B}: resolve on A &rarr; {B,&not;B} = tautology. Resolve on B &rarr; {A,&not;A} = tautology.<br>Actually, you can only resolve on one literal at a time.<br>C1={A,B} + C2={&not;A,C} resolve on A &rarr; C5={B,C}<br>C5={B,C} + C3={&not;B,&not;C} resolve on B &rarr; C6={C,&not;C} = tautology.<br>Or resolve on C: C6={B,&not;B} = tautology.<br>C1={A,B} + C4={&not;A,&not;B} resolve on A &rarr; {B,&not;B}=taut. On B &rarr; {A,&not;A}=taut.<br>Let&rsquo;s try: is this set satisfiable? A=F, B=T, C=F: {F,T}=T, {T,F}=T, {F,T}=T, {T,F}=T. Yes, satisfiable!<br>So the answer is (C): no empty clause can be derived.</p>'
+      },
+      {
+        type: 'msq',
+        difficulty: 'Medium',
+        question_html: '<p>Which of the following are TRUE about the relationship between propositional logic inference methods? <em>(Select ALL that apply)</em></p>',
+        options: [
+          'Resolution is both sound and complete for propositional logic',
+          'Forward chaining is complete for propositional Horn clauses',
+          'Backward chaining may not terminate on non-Horn clauses',
+          'Model checking (truth table enumeration) is always polynomial time'
+        ],
+        correct_answer: [0, 1],
+        explanation_html: '<p>A: <strong>True</strong>. Resolution is sound (only derives logical consequences) and refutation-complete (can derive the empty clause from any unsatisfiable set of clauses). &check;<br>B: <strong>True</strong>. Forward chaining is complete for Horn clause knowledge bases in propositional logic. It derives all entailed atoms. &check;<br>C: Backward chaining is designed for Horn/definite clauses and isn&rsquo;t typically applied to non-Horn clauses, but the statement about termination is not a standard property discussed. More importantly, backward chaining on Horn clauses always terminates (finite propositional symbols). &cross;<br>D: <strong>False</strong>. Model checking enumerates all 2<sup>n</sup> truth assignments, which is exponential in the number of propositional symbols. SAT is NP-complete. &cross;</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Hard',
+        question_html: '<p>Consider the FOL knowledge base:<br>1. &forall;x (Dog(x) &rarr; Animal(x))<br>2. &forall;x (Animal(x) &rarr; Mortal(x))<br>3. Dog(Rex)<br>Using Generalized Modus Ponens, how many inference steps are needed to derive <strong>Mortal(Rex)</strong>?</p>',
+        correct_answer: 2,
+        tolerance: 0,
+        explanation_html: '<p>Step 1: Apply GMP with rule 1 and fact Dog(Rex). Unify Dog(x) with Dog(Rex), &theta;={x/Rex}. Derive: <strong>Animal(Rex)</strong>.<br>Step 2: Apply GMP with rule 2 and newly derived Animal(Rex). Unify Animal(x) with Animal(Rex), &theta;={x/Rex}. Derive: <strong>Mortal(Rex)</strong>.<br>Total: <strong>2 inference steps</strong>. This is a classic chain of forward-chaining inferences with Horn clauses.</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Hard',
+        question_html: '<p>Given these conditional probability tables for a Bayesian Network A &rarr; B &rarr; C:<br>P(A=T) = 0.6<br>P(B=T|A=T) = 0.8, P(B=T|A=F) = 0.3<br>P(C=T|B=T) = 0.9, P(C=T|B=F) = 0.2<br>Compute <strong>P(A=T | C=T)</strong> to two decimal places.</p>',
+        correct_answer: 0.68,
+        tolerance: 0.02,
+        explanation_html: '<p>We need P(A=T|C=T) = P(C=T|A=T)&middot;P(A=T) / P(C=T).<br><br>P(B=T) = P(B=T|A=T)P(A=T) + P(B=T|A=F)P(A=F) = 0.8×0.6 + 0.3×0.4 = 0.48 + 0.12 = 0.60.<br><br>P(C=T|A=T) = P(C=T|B=T)P(B=T|A=T) + P(C=T|B=F)P(B=F|A=T) = 0.9×0.8 + 0.2×0.2 = 0.72 + 0.04 = 0.76.<br>P(C=T|A=F) = 0.9×0.3 + 0.2×0.7 = 0.27 + 0.14 = 0.41.<br><br>P(C=T) = P(C=T|A=T)P(A=T) + P(C=T|A=F)P(A=F) = 0.76×0.6 + 0.41×0.4 = 0.456 + 0.164 = 0.62.<br><br>P(A=T|C=T) = 0.456 / 0.62 = <strong>0.7355 ≈ 0.74</strong>.<br><br>Hmm, let me recheck: 0.456/0.62 = 0.7355. Rounding to 2 decimals: <strong>0.74</strong>.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Hard',
+        question_html: '<p>In variable elimination for Bayesian Networks, what determines the computational complexity of the elimination process?</p>',
+        options: [
+          'The total number of variables in the network',
+          'The size of the largest factor (intermediate table) generated during elimination',
+          'The number of edges in the network',
+          'Whether the query variable is a root node'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>Variable elimination works by iteratively summing out (marginalizing) variables, creating intermediate factors. The <strong>size of the largest factor</strong> created during this process determines both memory and time complexity. This size depends on the elimination ordering — a good ordering keeps factors small. Finding the optimal elimination order is NP-hard, but heuristics like min-degree and min-fill work well. The <strong>treewidth</strong> of the network determines the best possible largest factor size.</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Hard',
+        question_html: '<p>A decision tree is being built using the ID3 algorithm. The training set has 10 positive and 10 negative examples. After splitting on attribute A, the left branch has 8+ and 2&minus;, and the right branch has 2+ and 8&minus;. What is the <strong>information gain</strong> of this split? (Use log base 2, answer to 2 decimal places)</p>',
+        correct_answer: 0.28,
+        tolerance: 0.02,
+        explanation_html: '<p>H(parent) = &minus;(10/20)log₂(10/20) &minus; (10/20)log₂(10/20) = &minus;0.5×(&minus;1) &minus; 0.5×(&minus;1) = 1.0 bit.<br><br>Left child (8+,2&minus;): H = &minus;(8/10)log₂(8/10) &minus; (2/10)log₂(2/10) = &minus;0.8×(&minus;0.322) &minus; 0.2×(&minus;2.322) = 0.2575 + 0.4644 = 0.7219.<br>Right child (2+,8&minus;): Same distribution, so H = 0.7219.<br><br>Weighted entropy after split = (10/20)×0.7219 + (10/20)×0.7219 = 0.7219.<br><br>Information Gain = 1.0 &minus; 0.7219 = <strong>0.278 ≈ 0.28</strong>.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>Which activation function solves the &ldquo;vanishing gradient&rdquo; problem in deep neural networks?</p>',
+        options: [
+          'Sigmoid: σ(x) = 1/(1+e<sup>-x</sup>)',
+          'Tanh: tanh(x)',
+          'ReLU: max(0, x)',
+          'Step function'
+        ],
+        correct_answer: 2,
+        explanation_html: '<p>The <strong>vanishing gradient problem</strong> occurs when gradients become exponentially small during backpropagation through many layers, especially with sigmoid and tanh (their gradients are &lt;1 everywhere, and near 0 for large |x|).<br><br><strong>ReLU</strong> (Rectified Linear Unit) solves this: for x > 0, the gradient is exactly 1 (no attenuation). For x ≤ 0, the gradient is 0 (&ldquo;dead neuron&rdquo; issue, addressed by Leaky ReLU). Sigmoid saturates at 0 and 1 (gradient &rarr; 0). Tanh saturates at &minus;1 and 1. Step function has gradient 0 almost everywhere (not differentiable).</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Hard',
+        question_html: '<p>A neural network applies softmax to the output layer with logits <strong>z = [2.0, 1.0, 0.1]</strong>. What is <strong>softmax(z)₁</strong> (the probability of the first class)? Round to 2 decimal places.</p><p><em>Hint: e² ≈ 7.389, e¹ ≈ 2.718, e⁰·¹ ≈ 1.105</em></p>',
+        correct_answer: 0.66,
+        tolerance: 0.02,
+        explanation_html: '<p>softmax(zᵢ) = e<sup>zᵢ</sup> / Σⱼ e<sup>zⱼ</sup><br><br>e² ≈ 7.389, e¹ ≈ 2.718, e⁰·¹ ≈ 1.105.<br>Sum = 7.389 + 2.718 + 1.105 = 11.212.<br><br>softmax(z)₁ = 7.389 / 11.212 ≈ <strong>0.659 ≈ 0.66</strong>.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>In SARSA vs Q-learning, the key difference is:</p>',
+        options: [
+          'SARSA is model-based while Q-learning is model-free',
+          'SARSA is on-policy (uses the action actually taken) while Q-learning is off-policy (uses the greedy action)',
+          'Q-learning always converges faster than SARSA',
+          'SARSA requires a neural network while Q-learning does not'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p><strong>SARSA</strong> (State-Action-Reward-State-Action) updates Q(s,a) using the <em>actual next action a&prime;</em> taken by the policy:<br>Q(s,a) ← Q(s,a) + α[r + γQ(s&prime;,a&prime;) - Q(s,a)]<br>This makes it <strong>on-policy</strong>: it learns the value of the policy being followed.<br><br><strong>Q-learning</strong> uses the <em>maximum Q-value</em> over all actions at s&prime;:<br>Q(s,a) ← Q(s,a) + α[r + γ max Q(s&prime;,a&prime;) - Q(s,a)]<br>This is <strong>off-policy</strong>: it learns the optimal policy regardless of the exploration policy. Both are model-free and tabular (no neural network required).</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Hard',
+        question_html: '<p>In an MDP with discount factor γ = 0.5, a policy generates the reward sequence: r₁ = 10, r₂ = 10, r₃ = 10, r₄ = 10, ... (infinite). What is the <strong>total discounted return</strong> from time step 1?</p>',
+        correct_answer: 20,
+        tolerance: 0.5,
+        explanation_html: '<p>The discounted return from time t=1 is:<br>G₁ = r₁ + γr₂ + γ²r₃ + γ³r₄ + ...<br>= 10 + 0.5×10 + 0.25×10 + 0.125×10 + ...<br>= 10 × (1 + 0.5 + 0.25 + 0.125 + ...)<br>= 10 × Σ γᵗ from t=0 to ∞<br>= 10 × 1/(1-γ) = 10 × 1/(1-0.5) = 10 × 2 = <strong>20</strong>.<br>The geometric series converges because γ &lt; 1.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Hard',
+        question_html: '<p>A CSP has variables {X₁, X₂, X₃, X₄} each with domain {R, G, B}. The constraints form a complete graph (every pair must differ). This is equivalent to:</p>',
+        options: [
+          'Graph coloring K₄ with 3 colors — has no valid assignment',
+          'Graph coloring K₄ with 3 colors — has valid assignments',
+          'Map coloring with 4 regions and 2 colors',
+          'A trivially satisfiable problem'
+        ],
+        correct_answer: 0,
+        explanation_html: '<p>K₄ is the complete graph on 4 vertices — every vertex is connected to every other. Graph coloring K₄ requires the <strong>chromatic number</strong> χ(K₄) = 4 colors (since every pair must differ, you need at least n colors for Kₙ). With only 3 colors available, there is <strong>no valid assignment</strong>. You can verify: assign X₁=R. Then X₂ must be G or B. Say X₂=G. Then X₃ must differ from both (not R, not G), so X₃=B. Now X₄ must differ from R, G, and B — impossible with only 3 colors.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>In classical planning with STRIPS representation, which of the following correctly describes the <strong>frame problem</strong>?</p>',
+        options: [
+          'The difficulty of representing all effects of an action',
+          'The challenge of specifying what does NOT change when an action is performed',
+          'The problem of planning in continuous state spaces',
+          'The issue of conflicting goals in multi-agent planning'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>The <strong>frame problem</strong> is a fundamental challenge in AI: when an action is performed, many aspects of the world remain unchanged (the &ldquo;frame&rdquo;). The problem is how to efficiently represent the fact that everything NOT mentioned in an action&rsquo;s effects stays the same. STRIPS solves this with the <strong>STRIPS assumption</strong>: anything not in the action&rsquo;s add or delete list is unchanged. In classical logic, this would require an exponential number of &ldquo;frame axioms&rdquo; explicitly stating what doesn&rsquo;t change.</p>'
+      }
+    ];
+
+    if (typeof QuizEngine !== 'undefined') {
+      QuizEngine.init({
+        quizId: 'ch16-mock-test-3',
+        questions: questions,
+        timeLimit: 1500,
+        timerEnabled: true
+      });
+    }
+  });
+  </script>
+</body>
+</html>

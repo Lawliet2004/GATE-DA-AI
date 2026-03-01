@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propositional Inference - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li class="active"><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>Propositional Inference</span>
+        </div>
+
+        <article class="theory-content">
+            <h1>Inference Rules in Propositional Logic</h1>
+
+            <div class="gate-badge">GATE DA — Very High Importance</div>
+
+            <div class="learning-objectives">
+                <h3>🎯 Learning Objectives</h3>
+                <ul>
+                    <li>State and apply fundamental inference rules: Modus Ponens, Modus Tollens, etc.</li>
+                    <li>Understand the Resolution rule and its significance</li>
+                    <li>Construct formal proofs using inference rules</li>
+                    <li>Understand soundness and completeness of inference systems</li>
+                </ul>
+            </div>
+
+            <!-- Section 1: Introduction -->
+            <section>
+                <h2>1. What is Inference?</h2>
+                <p><strong>Inference</strong> (or <em>logical deduction</em>) is the process of deriving new conclusions from known premises using valid rules. An inference rule has the form:</p>
+                <div class="formula" style="text-align:center;">
+                    Premise₁, Premise₂, ..., Premiseₖ &nbsp;⊢&nbsp; Conclusion
+                </div>
+                <p>The symbol ⊢ means "derives" or "proves". If all premises are true, the conclusion must also be true.</p>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Sound Inference Rule</div>
+                    <p>An inference rule is <strong>sound</strong> if whenever all premises are true in an interpretation, the conclusion is also true in that interpretation. Sound rules never produce false conclusions from true premises.</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Fundamental Rules -->
+            <section>
+                <h2>2. Fundamental Inference Rules</h2>
+
+                <h3>2.1 Modus Ponens (MP)</h3>
+                <div class="theorem-box">
+                    <h4>Modus Ponens</h4>
+                    <div class="formula">
+                        P → Q<br>
+                        P<br>
+                        ───────<br>
+                        ∴ Q
+                    </div>
+                    <p>"If P implies Q, and P is true, then Q is true."</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Modus Ponens</h4>
+                    <p>Premise 1: "If it rains, the ground is wet." (R → W)</p>
+                    <p>Premise 2: "It is raining." (R)</p>
+                    <p>Conclusion: "The ground is wet." (W) ✅</p>
+                </div>
+
+                <h3>2.2 Modus Tollens (MT)</h3>
+                <div class="theorem-box">
+                    <h4>Modus Tollens</h4>
+                    <div class="formula">
+                        P → Q<br>
+                        ¬Q<br>
+                        ───────<br>
+                        ∴ ¬P
+                    </div>
+                    <p>"If P implies Q, and Q is false, then P must be false."</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Modus Tollens</h4>
+                    <p>Premise 1: "If it rains, the ground is wet." (R → W)</p>
+                    <p>Premise 2: "The ground is NOT wet." (¬W)</p>
+                    <p>Conclusion: "It is NOT raining." (¬R) ✅</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Common Fallacies — DO NOT Confuse!</h4>
+                    <ul>
+                        <li><strong>Affirming the Consequent (INVALID):</strong> P → Q, Q ⊢ P — This is <strong>wrong</strong>! The ground being wet doesn't mean it rained (could be a sprinkler).</li>
+                        <li><strong>Denying the Antecedent (INVALID):</strong> P → Q, ¬P ⊢ ¬Q — Also <strong>wrong</strong>! Not raining doesn't mean ground is dry.</li>
+                    </ul>
+                </div>
+
+                <h3>2.3 Hypothetical Syllogism (HS)</h3>
+                <div class="theorem-box">
+                    <h4>Hypothetical Syllogism (Transitivity of Implication)</h4>
+                    <div class="formula">
+                        P → Q<br>
+                        Q → R<br>
+                        ───────<br>
+                        ∴ P → R
+                    </div>
+                </div>
+
+                <h3>2.4 Disjunctive Syllogism (DS)</h3>
+                <div class="theorem-box">
+                    <h4>Disjunctive Syllogism</h4>
+                    <div class="formula">
+                        P ∨ Q<br>
+                        ¬P<br>
+                        ───────<br>
+                        ∴ Q
+                    </div>
+                    <p>"If at least one of P or Q is true, and P is false, then Q must be true."</p>
+                </div>
+
+                <h3>2.5 Addition</h3>
+                <div class="theorem-box">
+                    <div class="formula">
+                        P<br>
+                        ───────<br>
+                        ∴ P ∨ Q
+                    </div>
+                    <p>"If P is true, then P ∨ Q is true for any Q."</p>
+                </div>
+
+                <h3>2.6 Simplification</h3>
+                <div class="theorem-box">
+                    <div class="formula">
+                        P ∧ Q<br>
+                        ───────<br>
+                        ∴ P
+                    </div>
+                </div>
+
+                <h3>2.7 Conjunction</h3>
+                <div class="theorem-box">
+                    <div class="formula">
+                        P<br>
+                        Q<br>
+                        ───────<br>
+                        ∴ P ∧ Q
+                    </div>
+                </div>
+
+                <h3>2.8 Constructive Dilemma</h3>
+                <div class="theorem-box">
+                    <div class="formula">
+                        (P → Q) ∧ (R → S)<br>
+                        P ∨ R<br>
+                        ───────<br>
+                        ∴ Q ∨ S
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Resolution -->
+            <section>
+                <h2>3. The Resolution Rule</h2>
+
+                <div class="theorem-box">
+                    <h4>Resolution (The Most Important Inference Rule for AI)</h4>
+                    <div class="formula">
+                        P ∨ α<br>
+                        ¬P ∨ β<br>
+                        ───────<br>
+                        ∴ α ∨ β
+                    </div>
+                    <p>Where α and β are disjunctions of literals. The variable P is called the <strong>resolved variable</strong>, and the result (α ∨ β) is the <strong>resolvent</strong>.</p>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 Resolution Subsumes Other Rules</h4>
+                    <ul>
+                        <li><strong>Modus Ponens</strong> is a special case: P and ¬P ∨ Q resolve to give Q.</li>
+                        <li><strong>Disjunctive Syllogism</strong> is a special case: P ∨ Q and ¬P resolve to give Q.</li>
+                        <li>Resolution on clauses is the basis of automated theorem proving.</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Resolution in Action</h4>
+                    <p>Clauses: {P ∨ Q, ¬P ∨ R, ¬Q ∨ S}</p>
+                    <ol>
+                        <li>Resolve (P ∨ Q) with (¬P ∨ R) on P: gives <strong>Q ∨ R</strong></li>
+                        <li>Resolve (Q ∨ R) with (¬Q ∨ S) on Q: gives <strong>R ∨ S</strong></li>
+                    </ol>
+                    <p>We derived R ∨ S from the original clauses.</p>
+                </div>
+            </section>
+
+            <!-- Section 4: Formal Proofs -->
+            <section>
+                <h2>4. Constructing Formal Proofs</h2>
+
+                <div class="example-box">
+                    <h4>Example: Prove R from premises {P, P → Q, Q → R}</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>Step</th><th>Statement</th><th>Justification</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>P</td><td>Premise</td></tr>
+                            <tr><td>2</td><td>P → Q</td><td>Premise</td></tr>
+                            <tr><td>3</td><td>Q → R</td><td>Premise</td></tr>
+                            <tr><td>4</td><td>Q</td><td>Modus Ponens (1, 2)</td></tr>
+                            <tr><td>5</td><td><strong>R</strong></td><td>Modus Ponens (4, 3)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Prove ¬P from {P → Q, Q → R, ¬R}</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>Step</th><th>Statement</th><th>Justification</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>P → Q</td><td>Premise</td></tr>
+                            <tr><td>2</td><td>Q → R</td><td>Premise</td></tr>
+                            <tr><td>3</td><td>¬R</td><td>Premise</td></tr>
+                            <tr><td>4</td><td>¬Q</td><td>Modus Tollens (2, 3)</td></tr>
+                            <tr><td>5</td><td><strong>¬P</strong></td><td>Modus Tollens (1, 4)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Prove S from {P ∨ Q, P → R, Q → S, ¬R}</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>Step</th><th>Statement</th><th>Justification</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>P ∨ Q</td><td>Premise</td></tr>
+                            <tr><td>2</td><td>P → R</td><td>Premise</td></tr>
+                            <tr><td>3</td><td>Q → S</td><td>Premise</td></tr>
+                            <tr><td>4</td><td>¬R</td><td>Premise</td></tr>
+                            <tr><td>5</td><td>¬P</td><td>Modus Tollens (2, 4)</td></tr>
+                            <tr><td>6</td><td>Q</td><td>Disjunctive Syllogism (1, 5)</td></tr>
+                            <tr><td>7</td><td><strong>S</strong></td><td>Modus Ponens (6, 3)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 5: Soundness and Completeness -->
+            <section>
+                <h2>5. Soundness and Completeness</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Soundness</div>
+                    <p>An inference system is <strong>sound</strong> if every statement that can be derived (⊢) is actually a semantic consequence (⊨).</p>
+                    <p class="formula">If Γ ⊢ α then Γ ⊨ α</p>
+                    <p>Sound systems never prove false things from true premises.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Completeness</div>
+                    <p>An inference system is <strong>complete</strong> if every semantic consequence can be derived.</p>
+                    <p class="formula">If Γ ⊨ α then Γ ⊢ α</p>
+                    <p>Complete systems can prove everything that is true.</p>
+                </div>
+
+                <div class="theorem-box">
+                    <h4>Key Result</h4>
+                    <p>Resolution is <strong>sound and refutation-complete</strong> for propositional logic. This means: if a set of clauses is unsatisfiable, resolution will derive the empty clause (⊥). This is the theoretical basis for automated theorem proving.</p>
+                </div>
+            </section>
+
+            <!-- GATE -->
+            <section>
+                <h2>6. GATE Exam Tips</h2>
+                <div class="warning-box">
+                    <h4>🎯 Frequently Asked</h4>
+                    <ul>
+                        <li><strong>Identifying which inference rule was used</strong> in a given proof step.</li>
+                        <li><strong>Spotting logical fallacies</strong> — especially affirming the consequent and denying the antecedent.</li>
+                        <li><strong>Constructing a proof</strong> from given premises to a conclusion.</li>
+                        <li><strong>Resolution</strong> is the most important rule for AI/logic questions.</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="normal-forms.html" class="nav-btn prev-btn">← Previous: Normal Forms (CNF/DNF)</a>
+            <a href="resolution-method.html" class="nav-btn next-btn">Next: Resolution Method →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-propositional-inference">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-propositional-inference">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

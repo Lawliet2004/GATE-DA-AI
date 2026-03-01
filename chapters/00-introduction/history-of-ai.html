@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="History of Artificial Intelligence — from McCulloch-Pitts neurons to GPT. A comprehensive timeline of AI milestones for GATE DA preparation.">
+  <title>History of AI — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="history-of-ai.html" class="sidebar-link active"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="what-is-ai.html">Chapter 0: Introduction</a> &raquo;
+          <span class="current">History of AI</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch00-history-of-ai">
+
+            <!-- Page Header -->
+            <h1>History of Artificial Intelligence</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge low">GATE Relevance: Low</span>
+              <button class="bookmark-btn" data-page="ch00-history-of-ai" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="what-is-ai.html">What is Artificial Intelligence?</a></li>
+              </ul>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Trace the major milestones in AI history from 1943 to the present</li>
+                <li>Understand the significance of the Dartmouth Conference (1956)</li>
+                <li>Explain the concept of &ldquo;AI Winters&rdquo; and their causes</li>
+                <li>Identify key breakthroughs: Deep Blue, Watson, AlphaGo, GPT</li>
+                <li>Relate historical developments to modern AI techniques studied in GATE DA</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: The Foundations Period -->
+              <section id="foundations">
+                <h2>1. The Foundations (1943&ndash;1955)</h2>
+
+                <p>The intellectual roots of AI draw from philosophy (Can machines think?), mathematics (formal logic, computation, probability), economics (decision theory), neuroscience (how does the brain work?), psychology (how do humans think?), and computer engineering (how to build the hardware?).</p>
+
+                <h3 id="mcculloch-pitts">1943: McCulloch-Pitts Neuron Model</h3>
+                <p>Warren McCulloch and Walter Pitts proposed the first mathematical model of an artificial neuron. Their model showed that any computable function could be computed by some network of connected neurons, and that logical connectives (AND, OR, NOT) could be implemented by simple neuron structures. This was the conceptual seed for neural networks.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">McCulloch-Pitts Neuron</div>
+                  <p>A binary threshold unit that receives binary inputs, computes a weighted sum, and outputs 1 if the sum exceeds a threshold, 0 otherwise. Formally: <code>y = 1 if &sum;(w<sub>i</sub> &middot; x<sub>i</sub>) &ge; &theta;, else y = 0</code>.</p>
+                </div>
+
+                <h3 id="hebb-learning">1949: Hebb&rsquo;s Learning Rule</h3>
+                <p>Donald Hebb proposed that the connection between two neurons should be strengthened when they fire simultaneously: &ldquo;Neurons that fire together, wire together.&rdquo; This principle became the basis for learning rules in neural networks and is a precursor to modern weight-update algorithms like backpropagation.</p>
+
+                <h3 id="turing-1950">1950: Turing&rsquo;s &ldquo;Computing Machinery and Intelligence&rdquo;</h3>
+                <p>Alan Turing published his landmark paper proposing what we now call the <strong>Turing Test</strong> (originally called the &ldquo;Imitation Game&rdquo;). He addressed the question &ldquo;Can machines think?&rdquo; and argued that if a machine&rsquo;s responses are indistinguishable from a human&rsquo;s, we should consider it intelligent. Turing also discussed machine learning, genetic algorithms, and reinforcement learning&mdash;decades before they became practical research areas.</p>
+
+                <h3 id="first-nn-program">1951: First Neural Network Program</h3>
+                <p>Marvin Minsky and Dean Edmonds built SNARC (Stochastic Neural Analog Reinforcement Calculator), the first hardware implementation of a neural network. It simulated 40 neurons using 3000 vacuum tubes and could learn to navigate a maze.</p>
+              </section>
+
+              <!-- Section 2: The Birth of AI -->
+              <section id="birth-of-ai">
+                <h2>2. The Birth of AI (1956)</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">The Dartmouth Conference (1956)</div>
+                  <p>John McCarthy, Marvin Minsky, Nathaniel Rochester, and Claude Shannon organized a summer workshop at Dartmouth College. This is widely regarded as the <strong>birth of AI as a field</strong>. The proposal stated: &ldquo;Every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it.&rdquo; The term <strong>&ldquo;Artificial Intelligence&rdquo;</strong> was coined at this conference.</p>
+                </div>
+
+                <p>Key attendees and their later contributions:</p>
+                <ul>
+                  <li><strong>John McCarthy</strong> &mdash; Invented LISP (1958), the dominant AI programming language for decades; proposed time-sharing; coined the term &ldquo;AI.&rdquo;</li>
+                  <li><strong>Marvin Minsky</strong> &mdash; Co-founded the MIT AI Lab; worked on frames (knowledge representation), perception, and robotics.</li>
+                  <li><strong>Allen Newell &amp; Herbert Simon</strong> &mdash; Created the Logic Theorist (1956) and the General Problem Solver (1957), demonstrating that computers could perform symbolic reasoning.</li>
+                  <li><strong>Claude Shannon</strong> &mdash; Founded information theory; analyzed chess-playing as an AI problem.</li>
+                </ul>
+
+                <div class="note-box">
+                  <div class="box-title">GATE Tip</div>
+                  <p>If a question asks &ldquo;When was the term &lsquo;Artificial Intelligence&rsquo; coined?&rdquo; or &ldquo;What event marks the birth of AI as a discipline?&rdquo; the answer is the <strong>Dartmouth Conference, 1956</strong>, organized by <strong>John McCarthy</strong>.</p>
+                </div>
+              </section>
+
+              <!-- Section 3: Early Enthusiasm -->
+              <section id="early-enthusiasm">
+                <h2>3. Early Enthusiasm &amp; Great Expectations (1952&ndash;1969)</h2>
+
+                <p>This period was characterized by remarkable early successes that led to immense optimism about AI&rsquo;s future.</p>
+
+                <h3>Key Achievements</h3>
+                <ul>
+                  <li><strong>1952:</strong> Arthur Samuel wrote a checkers-playing program that learned from experience&mdash;one of the first self-learning programs. Samuel coined the term <strong>&ldquo;Machine Learning&rdquo;</strong>.</li>
+                  <li><strong>1956:</strong> Newell &amp; Simon&rsquo;s <strong>Logic Theorist</strong> proved 38 of the first 52 theorems in Russell &amp; Whitehead&rsquo;s <em>Principia Mathematica</em>.</li>
+                  <li><strong>1958:</strong> McCarthy developed <strong>LISP</strong>, which became the lingua franca of AI research.</li>
+                  <li><strong>1958:</strong> Frank Rosenblatt invented the <strong>Perceptron</strong>, a single-layer neural network capable of learning linearly separable classifications.</li>
+                  <li><strong>1961:</strong> Newell &amp; Simon&rsquo;s <strong>General Problem Solver (GPS)</strong> could solve simple problems using means-ends analysis.</li>
+                  <li><strong>1964&ndash;66:</strong> Joseph Weizenbaum created <strong>ELIZA</strong>, a program that simulated a Rogerian psychotherapist by using pattern matching. Many users were convinced they were talking to a real person.</li>
+                  <li><strong>1966:</strong> The <strong>ALPAC Report</strong> concluded that machine translation had failed to meet expectations, reducing funding for NLP research.</li>
+                  <li><strong>1969:</strong> Minsky &amp; Papert published <em>Perceptrons</em>, demonstrating the mathematical limitations of single-layer perceptrons (e.g., inability to learn XOR). This significantly dampened interest in neural networks for over a decade.</li>
+                </ul>
+
+                <div class="warning-box">
+                  <div class="box-title">Important Distinction</div>
+                  <p>The Perceptron&rsquo;s limitation was specifically about <em>single-layer</em> networks. Multi-layer networks <em>can</em> learn XOR and other non-linearly separable functions. The backpropagation algorithm for training multi-layer networks was not widely applied until the 1980s.</p>
+                </div>
+              </section>
+
+              <!-- Section 4: Knowledge-Based Systems -->
+              <section id="knowledge-based-era">
+                <h2>4. Knowledge-Based Systems &amp; Expert Systems (1969&ndash;1979)</h2>
+
+                <p>When general-purpose reasoning methods proved insufficient, researchers shifted toward encoding domain-specific knowledge.</p>
+
+                <ul>
+                  <li><strong>1969:</strong> <strong>DENDRAL</strong> (Stanford) &mdash; the first successful expert system, designed to determine molecular structures from mass spectrometry data.</li>
+                  <li><strong>1972:</strong> <strong>MYCIN</strong> (Stanford) &mdash; an expert system for diagnosing bacterial infections and recommending antibiotics. It used about 600 if-then rules and performed at the level of human experts.</li>
+                  <li><strong>1975:</strong> Minsky introduced <strong>frames</strong> as a knowledge representation scheme&mdash;a precursor to object-oriented programming concepts.</li>
+                  <li><strong>1976:</strong> <strong>PROSPECTOR</strong> &mdash; an expert system for mineral exploration that made a famous discovery of a molybdenum deposit.</li>
+                </ul>
+
+                <div class="definition-box">
+                  <div class="box-title">Expert System</div>
+                  <p>A computer program that emulates the decision-making ability of a human expert in a specific domain. It consists of a <strong>knowledge base</strong> (facts and rules) and an <strong>inference engine</strong> (applies rules to known facts to derive new facts or conclusions).</p>
+                </div>
+              </section>
+
+              <!-- Section 5: The AI Winters -->
+              <section id="ai-winters">
+                <h2>5. The AI Winters</h2>
+
+                <h3 id="first-ai-winter">5.1 First AI Winter (1974&ndash;1980)</h3>
+                <p>The early optimism was followed by a period of disillusionment. Key causes:</p>
+                <ul>
+                  <li><strong>Over-promising:</strong> Researchers had predicted human-level AI within 20 years. Progress fell short.</li>
+                  <li><strong>Computational limitations:</strong> Computers of the time lacked the processing power needed for complex AI tasks.</li>
+                  <li><strong>Combinatorial explosion:</strong> Methods that worked on toy problems failed to scale to real-world problems.</li>
+                  <li><strong>Perceptron limitations:</strong> Minsky &amp; Papert&rsquo;s critique of perceptrons discouraged neural network research.</li>
+                  <li><strong>Funding cuts:</strong> The British Lighthill Report (1973) was highly critical of AI, leading to reduced funding in the UK. Similar cuts followed in the US.</li>
+                </ul>
+
+                <h3 id="second-ai-winter">5.2 Second AI Winter (1987&ndash;1993)</h3>
+                <p>After a boom in expert systems during the early 1980s, another winter set in:</p>
+                <ul>
+                  <li><strong>Expert system limitations:</strong> They were brittle (failed outside their narrow domain), expensive to maintain, and could not learn from experience.</li>
+                  <li><strong>Hardware crash:</strong> The specialized LISP machine market collapsed when general-purpose computers became powerful enough.</li>
+                  <li><strong>Japanese Fifth Generation failure:</strong> Japan&rsquo;s ambitious project to build intelligent computers based on logic programming did not meet its goals.</li>
+                  <li><strong>Strategic Computing Initiative:</strong> DARPA&rsquo;s large-scale AI program wound down after failing to meet military AI goals.</li>
+                </ul>
+
+                <div class="note-box">
+                  <div class="box-title">Lesson from History</div>
+                  <p>AI winters teach us a recurring pattern: over-hyping leads to unrealistic expectations, which leads to disappointment when those expectations are not met, which leads to funding cuts. This pattern is relevant to understanding the current AI boom and assessing where we might be in the cycle.</p>
+                </div>
+              </section>
+
+              <!-- Section 6: The Revival and Modern AI -->
+              <section id="modern-ai">
+                <h2>6. Revival &amp; The Rise of Modern AI (1993&ndash;Present)</h2>
+
+                <p>Starting in the mid-1990s, AI experienced a sustained resurgence driven by increasing computational power, the availability of large datasets, and methodological advances.</p>
+
+                <h3>Key Milestones</h3>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Year</th>
+                        <th>Milestone</th>
+                        <th>Significance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>1997</strong></td>
+                        <td>IBM Deep Blue defeats Garry Kasparov</td>
+                        <td>First time a computer defeated a reigning world chess champion under tournament conditions. Used brute-force search with alpha-beta pruning and custom hardware evaluating 200 million positions/second.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2002</strong></td>
+                        <td>iRobot Roomba released</td>
+                        <td>First commercially successful autonomous home robot, demonstrating practical AI and robotics for consumers.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2006</strong></td>
+                        <td>Geoffrey Hinton&rsquo;s Deep Belief Networks</td>
+                        <td>Hinton showed how to efficiently train deep neural networks, sparking the &ldquo;Deep Learning Revolution.&rdquo;</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2011</strong></td>
+                        <td>IBM Watson wins Jeopardy!</td>
+                        <td>Demonstrated advanced NLP, information retrieval, and reasoning by defeating the two greatest Jeopardy! champions.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2012</strong></td>
+                        <td>AlexNet wins ImageNet</td>
+                        <td>A deep convolutional neural network (CNN) dramatically outperformed all other methods in image classification, igniting the deep learning era.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2014</strong></td>
+                        <td>Generative Adversarial Networks (GANs)</td>
+                        <td>Ian Goodfellow introduced GANs, enabling generation of realistic images, video, and audio.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2016</strong></td>
+                        <td>DeepMind AlphaGo defeats Lee Sedol</td>
+                        <td>Go has ~10<sup>170</sup> possible positions (vastly more than chess). AlphaGo combined deep neural networks with Monte Carlo tree search, a landmark in AI.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2017</strong></td>
+                        <td>Transformer architecture (&ldquo;Attention Is All You Need&rdquo;)</td>
+                        <td>Google researchers introduced the Transformer, which became the foundation for BERT, GPT, and virtually all modern NLP models.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2018</strong></td>
+                        <td>BERT (Google)</td>
+                        <td>Bidirectional pre-training for language understanding; set new benchmarks on 11 NLP tasks.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2020</strong></td>
+                        <td>GPT-3 (OpenAI)</td>
+                        <td>175 billion parameter language model demonstrated remarkable few-shot learning across diverse tasks.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2020</strong></td>
+                        <td>AlphaFold 2 (DeepMind)</td>
+                        <td>Solved the protein folding problem to near-experimental accuracy, a 50-year grand challenge in biology.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2022</strong></td>
+                        <td>ChatGPT (OpenAI)</td>
+                        <td>Made large language models accessible to the general public, reaching 100 million users in two months.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>2023&ndash;25</strong></td>
+                        <td>GPT-4, Gemini, Claude, Open-source LLMs</td>
+                        <td>Multimodal AI, reasoning capabilities, and widespread deployment across industries. AI becomes a mainstream technology.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 7: Patterns in AI History -->
+              <section id="patterns">
+                <h2>7. Patterns &amp; Takeaways from AI History</h2>
+
+                <div class="theorem-box">
+                  <div class="box-title">Key Pattern: The Pendulum of AI</div>
+                  <p>AI history shows a recurring cycle of <strong>hype &rarr; unrealistic expectations &rarr; failure to deliver &rarr; funding cuts &rarr; winter</strong>. Eventually, quiet foundational work during winters leads to breakthroughs that restart the cycle. Understanding this pattern helps contextualize modern AI developments.</p>
+                </div>
+
+                <ul>
+                  <li><strong>Data matters:</strong> The deep learning revolution was enabled as much by large datasets (ImageNet, Wikipedia, web crawl data) as by algorithmic advances.</li>
+                  <li><strong>Compute matters:</strong> GPUs, TPUs, and cloud computing made training billion-parameter models feasible.</li>
+                  <li><strong>Paradigm shifts:</strong> The field has shifted from symbolic AI (1950s&ndash;80s) to statistical/probabilistic AI (1990s&ndash;2000s) to deep learning (2010s&ndash;present).</li>
+                  <li><strong>Integration:</strong> Modern AI systems often combine multiple approaches: search + learning (AlphaGo), logic + probability (probabilistic programming), perception + planning (self-driving cars).</li>
+                </ul>
+              </section>
+
+              <!-- Section 8: Worked Examples -->
+              <section id="worked-examples">
+                <h2>8. Practice Questions</h2>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Example 1: Identifying Milestones</div>
+                  <p><strong>Question:</strong> Match each AI system to its year and primary contribution:</p>
+                  <ol type="a">
+                    <li>MYCIN</li>
+                    <li>Deep Blue</li>
+                    <li>AlphaGo</li>
+                  </ol>
+                  <p><strong>Solution:</strong></p>
+                  <ol type="a">
+                    <li><strong>MYCIN (1972)</strong> &mdash; First major expert system for medical diagnosis; demonstrated that domain-specific knowledge could enable expert-level performance.</li>
+                    <li><strong>Deep Blue (1997)</strong> &mdash; Defeated world chess champion Kasparov; demonstrated the power of brute-force search with evaluation functions and specialized hardware.</li>
+                    <li><strong>AlphaGo (2016)</strong> &mdash; Defeated Go champion Lee Sedol; demonstrated deep neural networks combined with Monte Carlo tree search on a problem too complex for brute-force methods.</li>
+                  </ol>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Example 2: AI Winter Causes</div>
+                  <p><strong>Question:</strong> What were the primary causes of the second AI Winter (1987&ndash;1993)?</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li>Expert systems were <strong>brittle</strong>&mdash;they performed well in narrow, well-defined domains but failed catastrophically outside those domains because they could not generalize or learn.</li>
+                    <li>The collapse of the <strong>LISP machine market</strong> as general-purpose hardware became fast enough to run AI software without specialized processors.</li>
+                    <li>The failure of Japan&rsquo;s <strong>Fifth Generation Computer Project</strong> to achieve its ambitious goals of building intelligent computers based on logic programming.</li>
+                    <li>Reduced government funding, particularly from <strong>DARPA</strong>, as the Strategic Computing Initiative wound down without meeting its military AI objectives.</li>
+                  </ol>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Example 3: Conceptual Question</div>
+                  <p><strong>Question:</strong> Why is Deep Blue NOT considered a demonstration of general AI, even though it defeated the world chess champion?</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li>Deep Blue was designed exclusively to play chess. It could not perform <em>any</em> other task&mdash;not even a simpler board game like checkers&mdash;without being redesigned.</li>
+                    <li>It relied on <strong>brute-force search</strong> (evaluating ~200 million positions per second) combined with a hand-crafted evaluation function, not on understanding or learning.</li>
+                    <li>General AI (also called Artificial General Intelligence or AGI) requires the ability to learn and perform <em>any</em> intellectual task that a human can. Deep Blue had <strong>no learning ability</strong>, <strong>no language understanding</strong>, <strong>no perception</strong>, and <strong>no transfer</strong> of skills to new domains.</li>
+                    <li>Therefore, Deep Blue is a text book example of <strong>Narrow AI</strong> (or Weak AI)&mdash;exceptional at one specific task, incapable of generalizing.</li>
+                  </ol>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary" class="summary-section">
+                <h2>&#128218; Summary</h2>
+                <ul>
+                  <li>AI&rsquo;s roots trace to the 1940s with McCulloch-Pitts neurons and Turing&rsquo;s foundational paper.</li>
+                  <li>The <strong>Dartmouth Conference (1956)</strong> formally established AI as a field; the term &ldquo;AI&rdquo; was coined by John McCarthy.</li>
+                  <li>The 1950s&ndash;60s saw early successes (Logic Theorist, Perceptron, ELIZA) but also over-optimism.</li>
+                  <li>AI experienced two <strong>winters</strong> (1974&ndash;80, 1987&ndash;93) caused by over-promising, computational limits, and brittle expert systems.</li>
+                  <li><strong>Deep Blue (1997)</strong> showed AI could match humans in chess; <strong>Watson (2011)</strong> in question-answering; <strong>AlphaGo (2016)</strong> in Go.</li>
+                  <li>The <strong>deep learning revolution</strong> (2012&ndash;present), driven by data, compute, and algorithms, has transformed the field.</li>
+                  <li><strong>Large Language Models</strong> (GPT, BERT, Transformers) represent the current frontier of AI.</li>
+                </ul>
+              </section>
+
+              <!-- References -->
+              <section id="references" class="references-section">
+                <h2>References</h2>
+                <ol>
+                  <li>Russell, S. &amp; Norvig, P. (2020). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson. &mdash; Chapter 1.</li>
+                  <li>McCulloch, W. S. &amp; Pitts, W. (1943). &ldquo;A Logical Calculus of the Ideas Immanent in Nervous Activity.&rdquo; <em>Bulletin of Mathematical Biophysics</em>, 5, 115&ndash;133.</li>
+                  <li>McCarthy, J. et al. (1955). &ldquo;A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence.&rdquo;</li>
+                  <li>Minsky, M. &amp; Papert, S. (1969). <em>Perceptrons</em>. MIT Press.</li>
+                  <li>Silver, D. et al. (2016). &ldquo;Mastering the Game of Go with Deep Neural Networks and Tree Search.&rdquo; <em>Nature</em>, 529, 484&ndash;489.</li>
+                </ol>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch00-history-of-ai">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="what-is-ai.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">What is AI?</span>
+              </a>
+              <a href="types-of-ai.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Types of AI</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#foundations">1. Foundations (1943&ndash;55)</a></li>
+              <li><a href="#birth-of-ai">2. Birth of AI (1956)</a></li>
+              <li><a href="#early-enthusiasm">3. Early Enthusiasm (1952&ndash;69)</a></li>
+              <li><a href="#knowledge-based-era">4. Knowledge-Based Systems</a></li>
+              <li><a href="#ai-winters">5. AI Winters</a>
+                <ul>
+                  <li><a href="#first-ai-winter">5.1 First Winter</a></li>
+                  <li><a href="#second-ai-winter">5.2 Second Winter</a></li>
+                </ul>
+              </li>
+              <li><a href="#modern-ai">6. Modern AI (1993&ndash;now)</a></li>
+              <li><a href="#patterns">7. Patterns &amp; Takeaways</a></li>
+              <li><a href="#worked-examples">8. Practice Questions</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

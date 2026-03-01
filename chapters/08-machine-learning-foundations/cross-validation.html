@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cross-Validation — K-Fold, Stratified, LOOCV, Bootstrap, Hold-out validation methods with GATE DA numerical examples and when to use each.">
+  <title>Cross-Validation — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="supervised-learning.html" class="sidebar-link"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="unsupervised-learning.html" class="sidebar-link"><span class="link-check"></span> Unsupervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="bias-variance-tradeoff.html" class="sidebar-link"><span class="link-check"></span> Bias-Variance Tradeoff<span class="link-type theory">Theory</span></a>
+            <a href="overfitting-underfitting.html" class="sidebar-link"><span class="link-check"></span> Overfitting &amp; Underfitting<span class="link-type theory">Theory</span></a>
+            <a href="cross-validation.html" class="sidebar-link active"><span class="link-check"></span> Cross-Validation<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-metrics.html" class="sidebar-link"><span class="link-check"></span> Evaluation Metrics<span class="link-type theory">Theory</span></a>
+            <a href="feature-engineering.html" class="sidebar-link"><span class="link-check"></span> Feature Engineering<span class="link-type theory">Theory</span></a>
+            <a href="ml-math-essentials.html" class="sidebar-link"><span class="link-check"></span> ML Math Essentials<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="ml-fundamentals.html">Chapter 8: ML Foundations</a> &raquo; <span class="current">Cross-Validation</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch08-cross-validation">
+
+            <h1>Cross-Validation</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch08-cross-validation" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Understand hold-out validation and its limitations</li>
+              <li>Apply K-Fold and Stratified K-Fold Cross-Validation</li>
+              <li>Know when to use LOOCV, Repeated CV, and Bootstrap</li>
+              <li>Compute cross-validation metrics for GATE numerical problems</li>
+            </ul></div>
+
+            <!-- Section 1 -->
+            <section id="holdout">
+              <h2>1. Hold-Out Validation</h2>
+              <p>The simplest approach: split the dataset into a training set and a test set (e.g., 70/30 or 80/20). Train on the training set, evaluate on the test set.</p>
+
+              <div class="definition-box">
+                <div class="box-title">Three-Way Split</div>
+                <p>For hyperparameter tuning, a three-way split is used:</p>
+                <ul>
+                  <li><strong>Training set (60%):</strong> Fit model parameters</li>
+                  <li><strong>Validation set (20%):</strong> Tune hyperparameters, select model</li>
+                  <li><strong>Test set (20%):</strong> Final unbiased performance estimate</li>
+                </ul>
+              </div>
+
+              <div class="warning-box">
+                <div class="box-title">Limitations of Hold-Out</div>
+                <ul>
+                  <li>Performance estimate depends on which data ends up in which split (high variance)</li>
+                  <li>Wastes data &mdash; not all data is used for training</li>
+                  <li>Unreliable for small datasets</li>
+                  <li>A &ldquo;lucky&rdquo; or &ldquo;unlucky&rdquo; split can give misleading results</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="k-fold">
+              <h2>2. K-Fold Cross-Validation</h2>
+              <p>K-Fold CV provides a more reliable performance estimate by training and evaluating K times, each time using a different fold as the validation set.</p>
+
+              <div class="algorithm-block">
+                <div class="box-title">K-Fold Cross-Validation</div>
+                <pre>Input: Dataset D with n samples, number of folds K
+
+1. SHUFFLE: Randomly shuffle the dataset
+2. SPLIT: Divide data into K roughly equal-sized folds: F_1, F_2, ..., F_K
+3. FOR i = 1 to K:
+   a. Use F_i as the validation set
+   b. Use the remaining K-1 folds as the training set
+   c. Train the model on the training set
+   d. Evaluate on F_i, record score_i
+4. RESULT: CV score = (1/K) &sum; score_i
+   Optionally compute standard deviation for confidence</pre>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: 5-Fold CV</div>
+                <p><strong>Q:</strong> A dataset has 100 samples. You perform 5-Fold CV. In each fold, you train on ___ samples and validate on ___ samples. How many total models are trained?</p>
+                <p><strong>A:</strong> Each fold: train on 80 samples, validate on 20 samples. Total models trained: <strong>5</strong>. Each sample appears exactly once as a validation sample and K&minus;1 = 4 times as a training sample.</p>
+              </div>
+
+              <p><strong>Typical K values:</strong></p>
+              <ul>
+                <li><strong>K = 5:</strong> Good balance between bias and computational cost. Most common in practice.</li>
+                <li><strong>K = 10:</strong> Slightly less biased estimate. Standard recommendation.</li>
+                <li><strong>K = n (LOOCV):</strong> Least biased but highest variance and computation.</li>
+              </ul>
+
+              <h3 id="stratified">2.1 Stratified K-Fold</h3>
+              <p>In stratified K-Fold, each fold preserves the <strong>class distribution</strong> of the original dataset. Essential for imbalanced datasets.</p>
+              <div class="example-box">
+                <div class="box-title">Example</div>
+                <p>Dataset: 90% Class A, 10% Class B (100 samples total). Regular 5-fold might create a fold with 0 Class B samples. Stratified 5-fold ensures each fold has 18 Class A and 2 Class B samples, maintaining the 90/10 ratio.</p>
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="loocv">
+              <h2>3. Leave-One-Out Cross-Validation (LOOCV)</h2>
+              <p>LOOCV is K-Fold CV with K = n (number of samples). Each iteration uses exactly one sample as the validation set and the remaining n&minus;1 as training.</p>
+
+              <div class="theorem-box">
+                <div class="box-title">Properties of LOOCV</div>
+                <ul>
+                  <li><strong>Nearly unbiased:</strong> Each model is trained on n&minus;1 samples (almost all data)</li>
+                  <li><strong>High variance:</strong> The n training sets overlap heavily (differ by only 1 sample), so the n models are highly correlated, and their average has high variance</li>
+                  <li><strong>Computational cost:</strong> Requires training n separate models. Expensive for large datasets.</li>
+                  <li><strong>Deterministic:</strong> No randomness in the split (unlike K-Fold with shuffling)</li>
+                </ul>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: LOOCV</div>
+                <p><strong>Q:</strong> Using LOOCV on a dataset of 5 points with a 1-NN classifier: Points (1,+), (2,&minus;), (3,+), (4,&minus;), (5,+). Compute LOOCV accuracy.</p>
+                <p><strong>Solution:</strong> For 1-NN, the nearest neighbour of the left-out point determines the prediction:</p>
+                <ul>
+                  <li>Leave out (1,+): nearest is (2,&minus;) &rarr; predict &minus;, actual + &rarr; <strong>Wrong</strong></li>
+                  <li>Leave out (2,&minus;): nearest is (1,+) or (3,+) (both distance 1) &rarr; predict + &rarr; actual &minus; &rarr; <strong>Wrong</strong></li>
+                  <li>Leave out (3,+): nearest is (2,&minus;) or (4,&minus;) &rarr; predict &minus;, actual + &rarr; <strong>Wrong</strong></li>
+                  <li>Leave out (4,&minus;): nearest is (3,+) or (5,+) &rarr; predict +, actual &minus; &rarr; <strong>Wrong</strong></li>
+                  <li>Leave out (5,+): nearest is (4,&minus;) &rarr; predict &minus;, actual + &rarr; <strong>Wrong</strong></li>
+                </ul>
+                <p>LOOCV accuracy = 0/5 = <strong>0% (0.0)</strong>. This alternating pattern is the worst case for 1-NN with LOOCV!</p>
+              </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="repeated-cv">
+              <h2>4. Repeated Cross-Validation</h2>
+              <p>Perform K-Fold CV multiple times with different random shuffles, then average all results. This reduces the variance of the CV estimate.</p>
+              <div class="definition-box">
+                <div class="box-title">Repeated K-Fold</div>
+                <p>Repeat K-Fold CV r times with different random splits. Total models trained: r &times; K. Final score is the average of all r &times; K evaluations.</p>
+                <p><strong>Common choice:</strong> 10-fold CV repeated 3 times (30 total evaluations).</p>
+              </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="bootstrap">
+              <h2>5. Bootstrap Method</h2>
+              <p>The bootstrap creates training sets by sampling <strong>with replacement</strong> from the original dataset. Some samples appear multiple times, others not at all.</p>
+
+              <div class="algorithm-block">
+                <div class="box-title">Bootstrap Validation (.632 Bootstrap)</div>
+                <pre>For b = 1 to B:
+  1. Draw n samples WITH REPLACEMENT from D (some will be duplicates)
+  2. Train model on the bootstrap sample
+  3. Evaluate on the OUT-OF-BAG (OOB) samples: 
+     those not selected in this bootstrap
+  4. Record the OOB error
+
+Final estimate: Average of B OOB errors</pre>
+              </div>
+
+              <div class="theorem-box">
+                <div class="box-title">Probability of Being Out-of-Bag</div>
+                <p>For a dataset of size n, the probability that a specific sample is NOT selected in any of the n draws is:</p>
+                <p><strong>P(OOB) = (1 &minus; 1/n)&#8319; &asymp; e&#8315;&sup1; &asymp; 0.368</strong></p>
+                <p>So about <strong>36.8%</strong> of the data ends up as OOB (test set) in each bootstrap sample. The training set uses about 63.2% unique samples.</p>
+              </div>
+
+              <div class="note-box">
+                <div class="box-title">The .632 Bootstrap Estimate</div>
+                <p><strong>Error&#8326;&#8323;&#8322; = 0.368 &times; (training error) + 0.632 &times; (OOB error)</strong></p>
+                <p>This corrects for the upward bias of the OOB error estimate (because training sets are smaller than the full dataset).</p>
+              </div>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="when-to-use">
+              <h2>6. When to Use Which Method</h2>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Method</th><th>Dataset Size</th><th>Bias</th><th>Variance</th><th>Computation</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Hold-out</strong></td><td>Large (&gt;10K)</td><td>High (wastes data)</td><td>High</td><td>Low (1 model)</td></tr>
+                    <tr><td><strong>5-Fold CV</strong></td><td>Medium</td><td>Moderate</td><td>Moderate</td><td>Moderate (5 models)</td></tr>
+                    <tr><td><strong>10-Fold CV</strong></td><td>Medium</td><td>Lower</td><td>Moderate</td><td>Moderate (10 models)</td></tr>
+                    <tr><td><strong>LOOCV</strong></td><td>Small (&lt;100)</td><td>Very low</td><td>High</td><td>High (n models)</td></tr>
+                    <tr><td><strong>Repeated CV</strong></td><td>Medium-Small</td><td>Low</td><td>Low</td><td>High (r&times;K models)</td></tr>
+                    <tr><td><strong>Bootstrap</strong></td><td>Small</td><td>Low (.632)</td><td>Low</td><td>High (B models)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="gate-practice">
+              <h2>7. GATE-Style Practice</h2>
+              <div class="example-box">
+                <div class="box-title">GATE Example: Training Set Size</div>
+                <p><strong>Q:</strong> In 10-fold CV with 1000 samples, how many samples are used for training in each fold?</p>
+                <p><strong>A:</strong> Each fold has 1000/10 = 100 samples for validation, 900 for training. Answer: <strong>900</strong>.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example: CV Average</div>
+                <p><strong>Q:</strong> 5-Fold CV yields accuracies: 85%, 88%, 82%, 90%, 85%. What is the CV score?</p>
+                <p><strong>A:</strong> CV score = (85+88+82+90+85)/5 = 430/5 = <strong>86%</strong>. Standard deviation = &radic;(((85-86)&sup2;+(88-86)&sup2;+(82-86)&sup2;+(90-86)&sup2;+(85-86)&sup2;)/5) = &radic;(1+4+16+16+1)/5 = &radic;7.6 &asymp; <strong>2.76%</strong>.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example: Bootstrap OOB</div>
+                <p><strong>Q:</strong> In bootstrap sampling of a dataset with 50 samples, approximately how many unique samples appear in each bootstrap sample?</p>
+                <p><strong>A:</strong> Approximately 50 &times; (1 &minus; e&#8315;&sup1;) &asymp; 50 &times; 0.632 &asymp; <strong>31.6 &asymp; 32 unique samples</strong>. The remaining ~18 are out-of-bag.</p>
+              </div>
+            </section>
+
+          </article>
+
+          <aside class="on-this-page"><h4>On This Page</h4><ul>
+            <li><a href="#holdout">1. Hold-Out Validation</a></li>
+            <li><a href="#k-fold">2. K-Fold CV</a></li>
+            <li><a href="#loocv">3. LOOCV</a></li>
+            <li><a href="#repeated-cv">4. Repeated CV</a></li>
+            <li><a href="#bootstrap">5. Bootstrap</a></li>
+            <li><a href="#when-to-use">6. When to Use Which</a></li>
+            <li><a href="#gate-practice">7. GATE Practice</a></li>
+          </ul></aside>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="overfitting-underfitting.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Overfitting &amp; Underfitting</span></a>
+          <a href="evaluation-metrics.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Evaluation Metrics</span></a>
+        </div>
+        <button class="complete-btn" data-page="ch08-cross-validation">&#10003; Mark as Complete</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

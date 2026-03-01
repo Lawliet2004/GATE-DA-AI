@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Supervised Learning Fundamentals — Classification vs Regression, hypothesis space, inductive bias, loss functions, Empirical Risk Minimization for GATE DA preparation.">
+  <title>Supervised Learning Overview — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="supervised-learning-overview.html" class="sidebar-link active"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="linear-regression.html" class="sidebar-link"><span class="link-check"></span> Linear Regression<span class="link-type theory">Theory</span></a>
+            <a href="logistic-regression.html" class="sidebar-link"><span class="link-check"></span> Logistic Regression<span class="link-type theory">Theory</span></a>
+            <a href="decision-trees.html" class="sidebar-link"><span class="link-check"></span> Decision Trees<span class="link-type theory">Theory</span></a>
+            <a href="model-evaluation.html" class="sidebar-link"><span class="link-check"></span> Model Evaluation<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link"><span class="link-check"></span> ML Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-ml.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-ml.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="supervised-learning-overview.html">Chapter 8: ML Foundations</a> &raquo;
+          <span class="current">Supervised Learning Overview</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch08-supervised-overview">
+
+            <h1>Supervised Learning &mdash; Fundamentals</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch08-supervised-overview" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="../07-reasoning-under-uncertainty/probability-basics.html">Probability Basics</a> &mdash; conditional probability, Bayes&rsquo; theorem</li>
+                <li>Basic linear algebra &mdash; vectors, matrices, matrix multiplication</li>
+                <li>Calculus &mdash; derivatives, partial derivatives, chain rule</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Distinguish between classification and regression tasks</li>
+                <li>Understand training, validation, and test set splits</li>
+                <li>Define hypothesis space and inductive bias</li>
+                <li>Derive and compare common loss functions</li>
+                <li>Formulate the Empirical Risk Minimization (ERM) framework</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="what-is-supervised">
+              <h2>1. What is Supervised Learning?</h2>
+              <div class="definition-box">
+                <h4>Definition &mdash; Supervised Learning</h4>
+                <p>Given a training set D = {(x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), &hellip;, (x<sub>n</sub>, y<sub>n</sub>)} where each x<sub>i</sub> &isin; &real;<sup>d</sup> is a feature vector and y<sub>i</sub> is the corresponding label, the goal is to learn a function h: X &rarr; Y that generalises well to unseen data.</p>
+              </div>
+              <p>In supervised learning the &ldquo;supervisor&rdquo; provides the correct answer (label) for every training example. The learner&rsquo;s job is to find a mapping from inputs to outputs that works well on new, unseen examples drawn from the same distribution.</p>
+              <div class="note-box">
+                <h4>&#128221; Key Terminology</h4>
+                <ul>
+                  <li><strong>Feature vector (x):</strong> A numerical representation of the input, e.g., [height, weight, age].</li>
+                  <li><strong>Label (y):</strong> The output we want to predict &mdash; a class label (classification) or a real number (regression).</li>
+                  <li><strong>Training example:</strong> A single (x, y) pair used to train the model.</li>
+                  <li><strong>Instance space (X):</strong> The set of all possible input vectors.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="classification-vs-regression">
+              <h2>2. Classification vs Regression</h2>
+
+              <table class="styled-table">
+                <thead>
+                  <tr><th>Aspect</th><th>Classification</th><th>Regression</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Output type</td><td>Discrete class label (e.g., {0,1}, {cat, dog})</td><td>Continuous real value (e.g., price, temperature)</td></tr>
+                  <tr><td>Examples</td><td>Spam detection, image recognition, disease diagnosis</td><td>House price prediction, stock forecasting, age estimation</td></tr>
+                  <tr><td>Loss functions</td><td>0-1 loss, cross-entropy, hinge loss</td><td>Squared error, absolute error, Huber loss</td></tr>
+                  <tr><td>Evaluation</td><td>Accuracy, Precision, Recall, F1, AUC</td><td>MSE, RMSE, MAE, R&sup2;</td></tr>
+                  <tr><td>Decision boundary</td><td>Separates classes in feature space</td><td>Fits a curve/surface through data points</td></tr>
+                </tbody>
+              </table>
+
+              <div class="example-box">
+                <h4>&#128161; Example &mdash; Classification vs Regression</h4>
+                <p><strong>Classification:</strong> Given patient data (age=55, cholesterol=240, BP=150), predict whether the patient has heart disease: y &isin; {Yes, No}.</p>
+                <p><strong>Regression:</strong> Given the same patient data, predict the patient&rsquo;s expected medical cost: y &isin; &real; (e.g., &#8377;45,000).</p>
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="data-splits">
+              <h2>3. Training, Validation, and Test Sets</h2>
+              <p>Proper data splitting is essential to estimate how well a model will generalise to unseen data.</p>
+
+              <div class="definition-box">
+                <h4>Standard Split Strategy</h4>
+                <ul>
+                  <li><strong>Training set (60&ndash;80%):</strong> Used to fit model parameters (learn weights).</li>
+                  <li><strong>Validation set (10&ndash;20%):</strong> Used for hyperparameter tuning and model selection. <em>Not</em> used for training.</li>
+                  <li><strong>Test set (10&ndash;20%):</strong> Used <em>only once</em> at the very end for final performance evaluation.</li>
+                </ul>
+              </div>
+
+              <div class="warning-box">
+                <h4>&#9888; Common GATE Trap</h4>
+                <p>The test set must <strong>never</strong> be used during training or model selection. Using test data for hyperparameter tuning leads to <em>data leakage</em> and over-optimistic performance estimates. GATE questions sometimes test whether candidates understand this distinction.</p>
+              </div>
+
+              <div class="example-box">
+                <h4>&#128161; Example &mdash; Data Split</h4>
+                <p>Dataset of 1000 samples: Training = 700, Validation = 150, Test = 150.</p>
+                <p>We train multiple models (e.g., different polynomial degrees) on the 700 samples, evaluate each on the 150 validation samples, pick the best, then report its score on the 150 test samples.</p>
+              </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="hypothesis-space">
+              <h2>4. Hypothesis Space and Inductive Bias</h2>
+
+              <div class="definition-box">
+                <h4>Definition &mdash; Hypothesis Space (H)</h4>
+                <p>The hypothesis space H is the set of all possible functions h: X &rarr; Y that the learning algorithm considers. For example, if we use linear models in 2D, then H = {h(x) = w<sub>0</sub> + w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> | w<sub>i</sub> &isin; &real;}.</p>
+              </div>
+
+              <div class="definition-box">
+                <h4>Definition &mdash; Inductive Bias</h4>
+                <p>The set of assumptions a learning algorithm makes to generalise beyond the training data. Without inductive bias, a learner cannot generalise at all (No Free Lunch Theorem).</p>
+              </div>
+
+              <table class="styled-table">
+                <thead>
+                  <tr><th>Algorithm</th><th>Inductive Bias</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Linear Regression</td><td>The target function is linear in the features</td></tr>
+                  <tr><td>k-NN (k=1)</td><td>Similar inputs have similar outputs; locality</td></tr>
+                  <tr><td>Decision Trees</td><td>Short trees are preferred (Occam&rsquo;s Razor)</td></tr>
+                  <tr><td>Na&iuml;ve Bayes</td><td>Features are conditionally independent given class</td></tr>
+                  <tr><td>SVM</td><td>Maximum margin classifier; large margin implies better generalisation</td></tr>
+                </tbody>
+              </table>
+
+              <div class="theorem-box">
+                <h4>No Free Lunch Theorem (Wolpert, 1996)</h4>
+                <p>There is no single learning algorithm that works best for every problem. Averaged over all possible data distributions, every learner has the same expected performance. Therefore, inductive bias (assumptions) is <strong>necessary</strong> to achieve good generalisation on a specific problem class.</p>
+              </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="loss-functions">
+              <h2>5. Loss Functions</h2>
+              <p>A <strong>loss function</strong> L(y, h(x)) measures the discrepancy between the predicted value h(x) and the true label y.</p>
+
+              <h3>5.1 0-1 Loss (Classification)</h3>
+              <div class="formula">
+                L<sub>0-1</sub>(y, h(x)) = 𝟙[h(x) &ne; y] = { 0 if h(x)=y, 1 if h(x)&ne;y }
+              </div>
+              <p>Simply counts misclassifications. Non-differentiable, so not directly used in gradient-based optimisation.</p>
+
+              <h3>5.2 Squared Error Loss (Regression)</h3>
+              <div class="formula">
+                L<sub>SE</sub>(y, h(x)) = (y &minus; h(x))&sup2;
+              </div>
+              <p>Penalises large errors quadratically. Differentiable and convex. Mean form (MSE):</p>
+              <div class="formula">
+                MSE = (1/n) &sum;<sub>i=1</sub><sup>n</sup> (y<sub>i</sub> &minus; h(x<sub>i</sub>))&sup2;
+              </div>
+
+              <div class="example-box">
+                <h4>&#128161; Worked Example &mdash; MSE Calculation</h4>
+                <p>Given predictions and actuals:</p>
+                <table class="styled-table">
+                  <thead><tr><th>i</th><th>y<sub>i</sub></th><th>&#375;<sub>i</sub></th><th>(y<sub>i</sub> &minus; &#375;<sub>i</sub>)&sup2;</th></tr></thead>
+                  <tbody>
+                    <tr><td>1</td><td>3</td><td>2.5</td><td>0.25</td></tr>
+                    <tr><td>2</td><td>5</td><td>4.8</td><td>0.04</td></tr>
+                    <tr><td>3</td><td>7</td><td>7.3</td><td>0.09</td></tr>
+                    <tr><td>4</td><td>2</td><td>2.1</td><td>0.01</td></tr>
+                  </tbody>
+                </table>
+                <p>MSE = (0.25 + 0.04 + 0.09 + 0.01) / 4 = 0.39 / 4 = <strong>0.0975</strong></p>
+              </div>
+
+              <h3>5.3 Absolute Error Loss (Regression)</h3>
+              <div class="formula">
+                L<sub>AE</sub>(y, h(x)) = |y &minus; h(x)|
+              </div>
+              <p>More robust to outliers than squared error. Mean form: MAE = (1/n) &sum; |y<sub>i</sub> &minus; h(x<sub>i</sub>)|</p>
+
+              <h3>5.4 Cross-Entropy Loss (Classification)</h3>
+              <div class="formula">
+                L<sub>CE</sub>(y, p) = &minus;[y&middot;log(p) + (1&minus;y)&middot;log(1&minus;p)]
+              </div>
+              <p>Where y &isin; {0, 1} is the true label and p = P(y=1|x) is the predicted probability. This is the standard loss for logistic regression and neural network classifiers.</p>
+
+              <div class="example-box">
+                <h4>&#128161; Worked Example &mdash; Cross-Entropy</h4>
+                <p>True label: y=1, Predicted: p=0.9</p>
+                <p>L = &minus;[1&middot;log(0.9) + 0&middot;log(0.1)] = &minus;log(0.9) = &minus;(&minus;0.1054) = <strong>0.1054</strong></p>
+                <p>True label: y=1, Predicted: p=0.1 (bad prediction)</p>
+                <p>L = &minus;log(0.1) = <strong>2.3026</strong> (much larger penalty!)</p>
+              </div>
+
+              <h3>5.5 Loss Function Comparison</h3>
+              <table class="styled-table">
+                <thead><tr><th>Loss Function</th><th>Task</th><th>Differentiable</th><th>Convex</th><th>Robust to Outliers</th></tr></thead>
+                <tbody>
+                  <tr><td>0-1 Loss</td><td>Classification</td><td>No</td><td>No</td><td>Yes</td></tr>
+                  <tr><td>Squared Error</td><td>Regression</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+                  <tr><td>Absolute Error</td><td>Regression</td><td>No (at 0)</td><td>Yes</td><td>Yes</td></tr>
+                  <tr><td>Cross-Entropy</td><td>Classification</td><td>Yes</td><td>Yes</td><td>Moderate</td></tr>
+                  <tr><td>Hinge Loss</td><td>Classification</td><td>No (at 1)</td><td>Yes</td><td>Moderate</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="erm">
+              <h2>6. Empirical Risk Minimization (ERM)</h2>
+
+              <div class="definition-box">
+                <h4>Definition &mdash; True Risk (Expected Risk)</h4>
+                <p>R(h) = E<sub>(x,y)~P</sub>[L(y, h(x))] &mdash; the expected loss over the true (unknown) data distribution P.</p>
+              </div>
+
+              <div class="definition-box">
+                <h4>Definition &mdash; Empirical Risk</h4>
+                <p>R&#770;<sub>n</sub>(h) = (1/n) &sum;<sub>i=1</sub><sup>n</sup> L(y<sub>i</sub>, h(x<sub>i</sub>)) &mdash; the average loss over the training set as a proxy for R(h).</p>
+              </div>
+
+              <div class="theorem-box">
+                <h4>ERM Principle</h4>
+                <p>Choose the hypothesis h* &isin; H that minimises the empirical risk:</p>
+                <div class="formula">
+                  h* = argmin<sub>h&isin;H</sub> (1/n) &sum;<sub>i=1</sub><sup>n</sup> L(y<sub>i</sub>, h(x<sub>i</sub>))
+                </div>
+                <p>Under regularity conditions (finite H, i.i.d. samples), by the law of large numbers, R&#770;<sub>n</sub>(h) &rarr; R(h) as n &rarr; &infin;.</p>
+              </div>
+
+              <div class="warning-box">
+                <h4>&#9888; ERM Pitfall &mdash; Overfitting</h4>
+                <p>Minimising the empirical risk alone can lead to <strong>overfitting</strong> &mdash; the model memorises training data but fails on unseen data. Solutions include:</p>
+                <ul>
+                  <li><strong>Regularisation:</strong> Add a penalty term &lambda;&middot;||w||&sup2; to prevent large weights</li>
+                  <li><strong>Structural Risk Minimization (SRM):</strong> Balance empirical risk with model complexity</li>
+                  <li><strong>Cross-validation:</strong> Estimate generalisation error using data splits</li>
+                </ul>
+              </div>
+
+              <div class="example-box">
+                <h4>&#128161; Example &mdash; ERM with Squared Loss</h4>
+                <p>For linear regression with squared loss, the ERM objective becomes:</p>
+                <div class="formula">
+                  h* = argmin<sub>w</sub> (1/n) &sum;<sub>i=1</sub><sup>n</sup> (y<sub>i</sub> &minus; w<sup>T</sup>x<sub>i</sub>)&sup2;
+                </div>
+                <p>This has the closed-form solution: w* = (X<sup>T</sup>X)<sup>&minus;1</sup>X<sup>T</sup>y (the Normal Equation, covered in detail in the next section).</p>
+              </div>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="ml-taxonomy">
+              <h2>7. Machine Learning Taxonomy</h2>
+              <table class="styled-table">
+                <thead><tr><th>Paradigm</th><th>Data</th><th>Goal</th><th>Examples</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Supervised</strong></td><td>Labelled (x,y) pairs</td><td>Predict y from x</td><td>Classification, Regression</td></tr>
+                  <tr><td><strong>Unsupervised</strong></td><td>Unlabelled (x only)</td><td>Discover structure</td><td>Clustering, Dimensionality Reduction, Density Estimation</td></tr>
+                  <tr><td><strong>Semi-supervised</strong></td><td>Some labelled, mostly unlabelled</td><td>Leverage both</td><td>Self-training, Label Propagation</td></tr>
+                  <tr><td><strong>Reinforcement</strong></td><td>State-action-reward sequences</td><td>Maximise cumulative reward</td><td>Game playing, Robotics</td></tr>
+                </tbody>
+              </table>
+
+              <div class="note-box">
+                <h4>&#128221; GATE Note</h4>
+                <p>GATE DA focuses primarily on <strong>supervised learning</strong> (regression, classification, decision trees) and <strong>model evaluation</strong>. Unsupervised and reinforcement learning appear less frequently but are still fair game.</p>
+              </div>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="generalization">
+              <h2>8. Generalisation and Overfitting</h2>
+              <div class="definition-box">
+                <h4>Definition &mdash; Generalisation</h4>
+                <p>A model <strong>generalises</strong> well if its performance on unseen test data is close to its performance on training data. The <strong>generalisation gap</strong> = Test Error &minus; Training Error.</p>
+              </div>
+
+              <p>Key factors affecting generalisation:</p>
+              <ul>
+                <li><strong>Model complexity:</strong> More complex models (higher degree polynomials, deeper trees) can fit training data better but may overfit.</li>
+                <li><strong>Training set size:</strong> More data &rarr; better generalisation (up to a point).</li>
+                <li><strong>Noise in data:</strong> Noisy labels make overfitting worse.</li>
+                <li><strong>Regularisation:</strong> Constraining model complexity helps generalisation.</li>
+              </ul>
+
+              <div class="example-box">
+                <h4>&#128161; Example &mdash; Polynomial Degree Effect</h4>
+                <p>Fitting y = sin(x) + &epsilon; with polynomials of degree d:</p>
+                <table class="styled-table">
+                  <thead><tr><th>Degree d</th><th>Training MSE</th><th>Test MSE</th><th>Diagnosis</th></tr></thead>
+                  <tbody>
+                    <tr><td>1 (linear)</td><td>0.42</td><td>0.45</td><td>Underfitting (high bias)</td></tr>
+                    <tr><td>3 (cubic)</td><td>0.08</td><td>0.10</td><td>Good fit</td></tr>
+                    <tr><td>15</td><td>0.001</td><td>2.50</td><td>Overfitting (high variance)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 9 -->
+            <section id="summary">
+              <h2>Summary</h2>
+              <div class="note-box">
+                <h4>&#128218; Key Takeaways</h4>
+                <ul>
+                  <li>Supervised learning learns from labelled (x, y) pairs to predict labels for new inputs.</li>
+                  <li>Classification &rarr; discrete output; Regression &rarr; continuous output.</li>
+                  <li>Always split data into training, validation, and test sets.</li>
+                  <li>The hypothesis space defines which functions the model can represent; inductive bias constrains the search.</li>
+                  <li>Common loss functions: 0-1 loss, squared error, absolute error, cross-entropy.</li>
+                  <li>ERM minimises average training loss; regularisation prevents overfitting.</li>
+                  <li>No Free Lunch: no single algorithm dominates on all problems.</li>
+                </ul>
+              </div>
+            </section>
+
+            <section id="references">
+              <h2>References</h2>
+              <ul>
+                <li>Bishop, C. M. (2006). <em>Pattern Recognition and Machine Learning</em>. Springer.</li>
+                <li>Mitchell, T. M. (1997). <em>Machine Learning</em>. McGraw-Hill.</li>
+                <li>Shalev-Shwartz, S. &amp; Ben-David, S. (2014). <em>Understanding Machine Learning</em>. Cambridge.</li>
+              </ul>
+            </section>
+
+            <button class="complete-btn" data-page="ch08-supervised-overview">&#9745; Mark as Complete</button>
+
+            <div class="nav-buttons">
+              <a href="../07-reasoning-under-uncertainty/quiz-uncertainty.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Quiz: Uncertainty</span>
+              </a>
+              <a href="linear-regression.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Linear Regression</span>
+              </a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#what-is-supervised">1. What is Supervised Learning?</a></li>
+              <li><a href="#classification-vs-regression">2. Classification vs Regression</a></li>
+              <li><a href="#data-splits">3. Data Splits</a></li>
+              <li><a href="#hypothesis-space">4. Hypothesis Space &amp; Inductive Bias</a></li>
+              <li><a href="#loss-functions">5. Loss Functions</a></li>
+              <li><a href="#erm">6. Empirical Risk Minimization</a></li>
+              <li><a href="#ml-taxonomy">7. ML Taxonomy</a></li>
+              <li><a href="#generalization">8. Generalisation</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

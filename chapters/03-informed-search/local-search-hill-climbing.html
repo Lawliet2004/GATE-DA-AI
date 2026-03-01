@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Local Search &amp; Hill Climbing — steepest ascent, first-choice, random-restart variants, 8-queens example, and GATE DA AI preparation.">
+  <title>Local Search &amp; Hill Climbing — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a><a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Overview<span class="link-type notes">Notes</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a><a href="../01-intelligent-agents/notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/uniform-cost-search.html" class="sidebar-link"><span class="link-check"></span> UCS<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA*<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="sma-star.html" class="sidebar-link"><span class="link-check"></span> SMA*<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded<span class="link-type theory">Theory</span></a>
+            <a href="local-search-hill-climbing.html" class="sidebar-link active"><span class="link-check"></span> Hill Climbing<span class="link-type theory">Theory</span></a>
+            <a href="simulated-annealing.html" class="sidebar-link"><span class="link-check"></span> Simulated Annealing<span class="link-type theory">Theory</span></a>
+            <a href="genetic-algorithms.html" class="sidebar-link"><span class="link-check"></span> Genetic Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> A* Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="heuristic-functions.html">Ch 3: Informed Search</a> &raquo;
+          <span class="current">Hill Climbing</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch03-hill-climbing">
+
+            <h1>Local Search &amp; Hill Climbing</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch03-hill-climbing" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="heuristic-functions.html">Heuristic Functions</a> &mdash; evaluation/objective functions</li>
+                <li><a href="a-star-search.html">A* Search</a> &mdash; contrast: systematic vs local search</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand the local search paradigm: no path, just optimize</li>
+                <li>Implement steepest-ascent hill climbing</li>
+                <li>Recognize problems: local maxima, plateaus, ridges</li>
+                <li>Apply variants: first-choice, stochastic, random-restart</li>
+                <li>Solve the 8-queens problem using hill climbing</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: Local Search Paradigm -->
+              <section id="paradigm">
+                <h2>1. The Local Search Paradigm</h2>
+                <p>All search algorithms we have studied so far &mdash; BFS, DFS, A*, IDA*, RBFS &mdash; are <strong>systematic</strong> searches. They explore the state space methodically, remember paths, and can guarantee optimality and completeness. But many real-world problems don&rsquo;t need a path; they just need a <strong>good state</strong>.</p>
+
+                <div class="key-concept">
+                  <h4>Local Search vs Systematic Search</h4>
+                  <p><strong>Systematic search:</strong> Find a path from start to goal. Remembers explored states. Guarantees completeness.<br>
+                  <strong>Local search:</strong> Operate on a single &ldquo;current state&rdquo; and move to neighboring states. No path memory. No completeness guarantee. But uses <strong>O(1) memory</strong> (constant space).</p>
+                </div>
+
+                <p>Local search algorithms are ideal for:</p>
+                <ul>
+                  <li><strong>Optimization problems</strong> &mdash; find the state that maximizes/minimizes an objective function</li>
+                  <li><strong>Constraint satisfaction</strong> &mdash; find a state satisfying all constraints (e.g., 8-queens)</li>
+                  <li><strong>Very large state spaces</strong> &mdash; where systematic search is infeasible</li>
+                </ul>
+
+                <h3>1.1 Objective Function Landscape</h3>
+                <p>Visualize the state space as a <strong>landscape</strong>. Each state has an &ldquo;elevation&rdquo; equal to its objective function (or heuristic) value. The goal is to find the <strong>global maximum</strong> (or minimum, depending on formulation).</p>
+                <pre><code>  Elevation (objective value)
+  ^
+  |     /\        /\
+  |    /  \  /\  /  \     &larr; Global maximum
+  |   /    \/  \/    \
+  |  /   plateau      \   &larr; Local maximum
+  | / shoulder          \
+  |/________________________&rarr; State space</code></pre>
+                <p>Key landscape features:</p>
+                <ul>
+                  <li><strong>Global maximum</strong> &mdash; the best state overall</li>
+                  <li><strong>Local maximum</strong> &mdash; better than all neighbors, but not the global best</li>
+                  <li><strong>Plateau (flat)</strong> &mdash; a flat area where all neighbors have equal value</li>
+                  <li><strong>Ridge</strong> &mdash; a narrow elevated area that is hard to navigate</li>
+                  <li><strong>Shoulder</strong> &mdash; a plateau with an uphill edge</li>
+                </ul>
+              </section>
+
+              <!-- Section 2: Steepest Ascent -->
+              <section id="steepest-ascent">
+                <h2>2. Steepest-Ascent Hill Climbing</h2>
+                <p>The simplest variant. At each step, evaluate <strong>all neighbors</strong> and move to the one with the <strong>highest value</strong>. If no neighbor is better than the current state, stop.</p>
+
+                <h3>2.1 Pseudocode</h3>
+                <pre><code>function STEEPEST-ASCENT-HILL-CLIMBING(problem):
+    current = problem.initial_state
+
+    loop:
+        neighbor = highest-valued successor of current
+
+        if VALUE(neighbor) &le; VALUE(current):
+            return current    // current is a local maximum
+
+        current = neighbor</code></pre>
+
+                <p>This is also called <strong>greedy local search</strong> because it always takes the steepest uphill step. It never looks ahead and never backtracks.</p>
+
+                <div class="warning-box">
+                  <h4>&#9888; Greedy &ne; Optimal</h4>
+                  <p>Steepest-ascent hill climbing finds a <strong>local maximum</strong>, which may or may not be the global maximum. It is incomplete for optimization &mdash; there is no guarantee of finding the best solution.</p>
+                </div>
+
+                <h3>2.2 Problems with Steepest Ascent</h3>
+                <div class="table-responsive">
+                  <table class="styled-table">
+                    <thead>
+                      <tr><th>Problem</th><th>Description</th><th>What Happens</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>Local maxima</strong></td><td>A peak higher than neighbors but not the global best</td><td>Algorithm stops prematurely</td></tr>
+                      <tr><td><strong>Plateaus</strong></td><td>Flat area; no uphill neighbor exists</td><td>Algorithm gets stuck (random walk may help)</td></tr>
+                      <tr><td><strong>Ridges</strong></td><td>Sequence of local maxima not directly connected</td><td>Algorithm oscillates or stops at ridge edge</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 3: Variants -->
+              <section id="variants">
+                <h2>3. Hill Climbing Variants</h2>
+
+                <h3>3.1 First-Choice Hill Climbing</h3>
+                <p>Instead of evaluating <em>all</em> neighbors, generate successors <strong>randomly</strong> and accept the first one that improves the current state.</p>
+                <pre><code>function FIRST-CHOICE-HILL-CLIMBING(problem):
+    current = problem.initial_state
+
+    loop:
+        // Generate random successors until one is better
+        successor = random successor of current
+
+        if VALUE(successor) > VALUE(current):
+            current = successor
+        else:
+            // try again (with a limit on attempts)
+            if too_many_failures:
+                return current</code></pre>
+                <p><strong>Advantage:</strong> Much faster per step when the number of successors is very large (e.g., thousands of neighbors). No need to evaluate them all.</p>
+
+                <h3>3.2 Stochastic Hill Climbing</h3>
+                <p>Choose randomly among <strong>all uphill neighbors</strong>, with probability proportional to the steepness of the uphill move. This is less greedy &mdash; it doesn&rsquo;t always pick the steepest move, which can help avoid some local maxima.</p>
+                <pre><code>function STOCHASTIC-HILL-CLIMBING(problem):
+    current = problem.initial_state
+
+    loop:
+        uphill_neighbors = {n : VALUE(n) > VALUE(current)}
+        if uphill_neighbors is empty:
+            return current
+
+        // Select with probability proportional to improvement
+        current = WEIGHTED-RANDOM-CHOICE(uphill_neighbors)</code></pre>
+
+                <h3>3.3 Random-Restart Hill Climbing</h3>
+                <p>Run steepest-ascent hill climbing multiple times from <strong>random initial states</strong>. Return the best solution found across all restarts.</p>
+                <pre><code>function RANDOM-RESTART-HILL-CLIMBING(problem, max_restarts):
+    best = null
+
+    for i = 1 to max_restarts:
+        current = RANDOM-STATE(problem)
+        result = STEEPEST-ASCENT-HILL-CLIMBING(current)
+
+        if best is null OR VALUE(result) > VALUE(best):
+            best = result
+
+    return best</code></pre>
+
+                <div class="key-concept">
+                  <h4>Why Random Restart Works</h4>
+                  <p>If each run has probability <em>p</em> of finding the global maximum, then the probability of <strong>not</strong> finding it after <em>k</em> restarts is (1&minus;p)<sup>k</sup>. This decreases exponentially! For example, if p = 0.14 (as in 8-queens), then after 6 restarts the probability of success is 1 &minus; (0.86)<sup>6</sup> &asymp; 0.60, and after 20 restarts it is &asymp; 0.96.</p>
+                </div>
+
+                <h3>3.4 Comparison of Variants</h3>
+                <div class="table-responsive">
+                  <table class="styled-table">
+                    <thead>
+                      <tr><th>Variant</th><th>Evaluates per step</th><th>Escapes local maxima?</th><th>Completeness</th><th>Best for</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Steepest Ascent</td><td>All neighbors</td><td>No</td><td>Incomplete</td><td>Small neighbor sets</td></tr>
+                      <tr><td>First-Choice</td><td>One (random)</td><td>No</td><td>Incomplete</td><td>Large neighbor sets</td></tr>
+                      <tr><td>Stochastic</td><td>All uphill</td><td>Slightly</td><td>Incomplete</td><td>Rough landscapes</td></tr>
+                      <tr><td>Random-Restart</td><td>All (per run)</td><td>Yes (probabilistic)</td><td>Complete w.p.1</td><td>Most problems</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 4: 8-Queens Example -->
+              <section id="eight-queens">
+                <h2>4. 8-Queens: Hill Climbing Step by Step</h2>
+                <p>The <strong>8-Queens problem</strong>: place 8 queens on an 8&times;8 board so that no two queens attack each other. We use the number of <strong>attacking pairs</strong> as our cost function (to minimize) &mdash; equivalently, we maximize the negative.</p>
+
+                <h3>4.1 State Representation</h3>
+                <p>Each state is an array of 8 numbers: <code>[c₁, c₂, &hellip;, c₈]</code> where c<sub>i</sub> is the row of the queen in column <em>i</em>. This guarantees one queen per column.  A neighbor is obtained by moving <strong>one queen to a different row in its column</strong>.</p>
+                <p>Number of neighbors per state: 8 &times; 7 = 56 (each of 8 queens can move to 7 other rows).</p>
+
+                <h3>4.2 Evaluation Function</h3>
+                <p><strong>h(state)</strong> = number of pairs of queens attacking each other (directly or indirectly). Goal: h = 0.</p>
+
+                <h3>4.3 Walkthrough</h3>
+                <div class="example-box">
+                  <div class="box-title">Example: Hill Climbing on 8-Queens</div>
+                  <pre><code>Initial state: [5, 6, 7, 4, 2, 1, 3, 8]
+  . . . . . . . Q     (column 8, row 8)
+  . . . . . . Q .     (column 7, row 3? — let's use 1-indexed)
+  ...
+
+Attacking pairs (h): Let's compute for a concrete small case.
+
+Suppose h = 17 (many conflicts).
+
+Step 1: Evaluate all 56 neighbors.
+  Best neighbor: move queen in col 3 from row 7 to row 2.
+  New h = 12.  Improvement: 17 → 12.  Accept.
+
+Step 2: Evaluate all 56 neighbors of new state.
+  Best neighbor: move queen in col 5 from row 2 to row 6.
+  New h = 8.  Accept.
+
+Step 3: Best neighbor reduces h to 5. Accept.
+
+Step 4: Best neighbor reduces h to 3. Accept.
+
+Step 5: Best neighbor reduces h to 1. Accept.
+
+Step 6: Best neighbor has h = 1 (no improvement). STUCK at local minimum!
+  h = 1 means one attacking pair remains.</code></pre>
+                  <p>The steepest-ascent hill climber got stuck at h = 1, a <strong>local minimum</strong> (not the global minimum h = 0).</p>
+                </div>
+
+                <h3>4.4 Statistics for 8-Queens</h3>
+                <p>Empirical results from Russell &amp; Norvig (random initial states, 8-queens):</p>
+                <div class="table-responsive">
+                  <table class="styled-table">
+                    <thead>
+                      <tr><th>Metric</th><th>Steepest Ascent</th><th>Steepest + Sideways moves</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Success rate</td><td>~14%</td><td>~94%</td></tr>
+                      <tr><td>Average steps (success)</td><td>~4</td><td>~21</td></tr>
+                      <tr><td>Average steps (failure)</td><td>~3</td><td>~64</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>Allowing <strong>sideways moves</strong> (accepting neighbors with equal h, up to a limit like 100) dramatically improves success rate from 14% to 94%.</p>
+
+                <h3>4.5 Random Restart for 8-Queens</h3>
+                <p>With random-restart and p &asymp; 0.14 per trial:</p>
+                <ul>
+                  <li>Expected restarts to solve: 1/0.14 &asymp; 7</li>
+                  <li>Expected total steps: 7 &times; 4 (success steps) &asymp; 28 + extra failure steps</li>
+                  <li>With sideways: expected restarts = 1/0.94 &asymp; 1.06 &mdash; almost always first try!</li>
+                </ul>
+              </section>
+
+              <!-- Section 5: Random Restart Analysis -->
+              <section id="restart-analysis">
+                <h2>5. Random Restart: Probability Analysis</h2>
+                <p>Let <em>p</em> be the probability that a single hill-climbing run reaches the global optimum.</p>
+                <ul>
+                  <li>Probability of failure in one run: (1 &minus; p)</li>
+                  <li>Probability of failure in <em>k</em> runs: (1 &minus; p)<sup>k</sup></li>
+                  <li>Probability of success in <em>k</em> runs: 1 &minus; (1 &minus; p)<sup>k</sup></li>
+                  <li>Expected number of runs to find optimum: 1 / p (geometric distribution)</li>
+                </ul>
+
+                <div class="example-box">
+                  <div class="box-title">Quick Calculation</div>
+                  <p>For 8-queens with steepest ascent: p = 0.14.</p>
+                  <p>P(success in 10 runs) = 1 &minus; (0.86)<sup>10</sup> = 1 &minus; 0.221 = <strong>0.779 (77.9%)</strong></p>
+                  <p>P(success in 25 runs) = 1 &minus; (0.86)<sup>25</sup> = 1 &minus; 0.021 = <strong>0.979 (97.9%)</strong></p>
+                  <p>Expected restarts: 1/0.14 &asymp; <strong>7.1 restarts</strong></p>
+                </div>
+
+                <p>This analysis shows that random-restart hill climbing is <strong>complete with probability 1</strong>: as the number of restarts &rarr; &infin;, the probability of success &rarr; 1. This makes it surprisingly effective despite the simplicity of each individual run.</p>
+              </section>
+
+              <!-- Section 6: Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>Local search operates on a <strong>single current state</strong> &mdash; no path, O(1) memory.</li>
+                    <li><strong>Steepest-ascent</strong> hill climbing greedily moves to the best neighbor; gets stuck at local maxima.</li>
+                    <li><strong>First-choice</strong> variant is faster per step for large neighbor sets.</li>
+                    <li><strong>Stochastic</strong> variant introduces randomness in selection among uphill moves.</li>
+                    <li><strong>Random-restart</strong> is the most robust: repeats from random starts, complete with probability 1.</li>
+                    <li>Key problems: local maxima, plateaus, ridges &mdash; but sideways moves and restarts mitigate these.</li>
+                    <li>For 8-queens: steepest ascent succeeds ~14% of the time; with sideways moves, ~94%.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- References -->
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell &amp; Norvig, <em>Artificial Intelligence: A Modern Approach</em>, 4th Ed. &mdash; Section 4.1.</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch03-hill-climbing">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="memory-bounded-search.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Memory-Bounded Search</span></a>
+              <a href="simulated-annealing.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Simulated Annealing</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#paradigm">1. Local Search Paradigm</a></li>
+              <li><a href="#steepest-ascent">2. Steepest-Ascent</a></li>
+              <li><a href="#variants">3. Variants</a></li>
+              <li><a href="#eight-queens">4. 8-Queens Example</a></li>
+              <li><a href="#restart-analysis">5. Random Restart Analysis</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Unsupervised Learning — K-Means, Hierarchical Clustering, DBSCAN, PCA, Association Rules with step-by-step examples for GATE DA preparation.">
+  <title>Unsupervised Learning — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="supervised-learning.html" class="sidebar-link"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="unsupervised-learning.html" class="sidebar-link active"><span class="link-check"></span> Unsupervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="bias-variance-tradeoff.html" class="sidebar-link"><span class="link-check"></span> Bias-Variance Tradeoff<span class="link-type theory">Theory</span></a>
+            <a href="overfitting-underfitting.html" class="sidebar-link"><span class="link-check"></span> Overfitting &amp; Underfitting<span class="link-type theory">Theory</span></a>
+            <a href="cross-validation.html" class="sidebar-link"><span class="link-check"></span> Cross-Validation<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-metrics.html" class="sidebar-link"><span class="link-check"></span> Evaluation Metrics<span class="link-type theory">Theory</span></a>
+            <a href="feature-engineering.html" class="sidebar-link"><span class="link-check"></span> Feature Engineering<span class="link-type theory">Theory</span></a>
+            <a href="ml-math-essentials.html" class="sidebar-link"><span class="link-check"></span> ML Math Essentials<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="ml-fundamentals.html">Chapter 8: ML Foundations</a> &raquo; <span class="current">Unsupervised Learning</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch08-unsupervised-learning">
+
+            <h1>Unsupervised Learning</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch08-unsupervised-learning" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Understand K-Means clustering algorithm step-by-step</li>
+              <li>Choose optimal K using elbow method and silhouette score</li>
+              <li>Compare hierarchical clustering approaches and linkage criteria</li>
+              <li>Apply PCA for dimensionality reduction using eigendecomposition</li>
+              <li>Know DBSCAN for density-based clustering and Apriori for association rules</li>
+            </ul></div>
+
+            <!-- Section 1: K-Means -->
+            <section id="k-means">
+              <h2>1. K-Means Clustering</h2>
+              <p>K-Means partitions n data points into K clusters by iteratively assigning points to the nearest centroid and recomputing centroids.</p>
+
+              <div class="algorithm-block">
+                <div class="box-title">K-Means Algorithm (Lloyd&rsquo;s Algorithm)</div>
+                <pre>Input: Data X = {x_1, ..., x_n}, number of clusters K
+
+1. INITIALISE: Randomly select K data points as initial centroids &mu;_1, ..., &mu;_K
+2. REPEAT until convergence:
+   a. ASSIGN: For each x_i, assign to cluster c_i = argmin_k ||x_i - &mu;_k||^2
+   b. UPDATE: For each cluster k, recompute centroid &mu;_k = (1/|C_k|) &sum;_{x_i &isin; C_k} x_i
+3. Convergence: Stop when assignments no longer change (or max iterations reached)
+
+Objective: Minimise WCSS = &sum;_{k=1}^{K} &sum;_{x_i &isin; C_k} ||x_i - &mu;_k||^2</pre>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: K-Means Step-by-Step</div>
+                <p><strong>Q:</strong> Apply K-Means (K=2) to points: A(1,1), B(1.5,2), C(3,4), D(5,7), E(3.5,5), F(4.5,5). Initial centroids: &mu;&#8321;=(1,1), &mu;&#8322;=(5,7).</p>
+                <p><strong>Iteration 1 &mdash; Assignment:</strong></p>
+                <ul>
+                  <li>A(1,1): d(A,&mu;&#8321;)=0, d(A,&mu;&#8322;)=7.21 &rarr; Cluster 1</li>
+                  <li>B(1.5,2): d(B,&mu;&#8321;)=1.12, d(B,&mu;&#8322;)=6.10 &rarr; Cluster 1</li>
+                  <li>C(3,4): d(C,&mu;&#8321;)=3.61, d(C,&mu;&#8322;)=3.61 &rarr; Cluster 1 (tie, assign to first)</li>
+                  <li>D(5,7): d(D,&mu;&#8321;)=7.21, d(D,&mu;&#8322;)=0 &rarr; Cluster 2</li>
+                  <li>E(3.5,5): d(E,&mu;&#8321;)=4.72, d(E,&mu;&#8322;)=2.50 &rarr; Cluster 2</li>
+                  <li>F(4.5,5): d(F,&mu;&#8321;)=5.32, d(F,&mu;&#8322;)=2.06 &rarr; Cluster 2</li>
+                </ul>
+                <p><strong>Iteration 1 &mdash; Update:</strong></p>
+                <p>&mu;&#8321; = ((1+1.5+3)/3, (1+2+4)/3) = (1.83, 2.33)</p>
+                <p>&mu;&#8322; = ((5+3.5+4.5)/3, (7+5+5)/3) = (4.33, 5.67)</p>
+                <p>Continue until assignments stabilise.</p>
+              </div>
+
+              <h3 id="choosing-k">1.1 Choosing K: Elbow Method</h3>
+              <p>Plot the <strong>Within-Cluster Sum of Squares (WCSS)</strong> against different values of K. The &ldquo;elbow&rdquo; point where the rate of decrease sharply changes suggests the optimal K.</p>
+
+              <h3 id="silhouette">1.2 Silhouette Score</h3>
+              <div class="theorem-box">
+                <div class="box-title">Silhouette Coefficient</div>
+                <p>For each data point i:</p>
+                <p><strong>s(i) = (b(i) &minus; a(i)) / max(a(i), b(i))</strong></p>
+                <p>where a(i) = mean intra-cluster distance, b(i) = mean nearest-cluster distance. Range: [&minus;1, 1]. Higher is better. Average over all points gives the silhouette score.</p>
+              </div>
+
+              <div class="warning-box">
+                <div class="box-title">K-Means Limitations</div>
+                <ul>
+                  <li>Assumes spherical, equally-sized clusters</li>
+                  <li>Sensitive to initialisation (solution: K-Means++ or multiple runs)</li>
+                  <li>K must be specified in advance</li>
+                  <li>Sensitive to outliers (centroids get pulled toward them)</li>
+                  <li>Cannot find non-convex clusters</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 2: Hierarchical Clustering -->
+            <section id="hierarchical-clustering">
+              <h2>2. Hierarchical Clustering</h2>
+              <p>Hierarchical clustering builds a tree-like structure (dendrogram) of nested clusters. There are two approaches:</p>
+
+              <h3 id="agglomerative">2.1 Agglomerative (Bottom-Up)</h3>
+              <div class="algorithm-block">
+                <div class="box-title">Agglomerative Clustering</div>
+                <pre>1. Start: Each data point is its own cluster (n clusters)
+2. REPEAT until one cluster remains:
+   a. Find the two closest clusters
+   b. Merge them into a single cluster
+3. Use the dendrogram to choose the desired number of clusters by cutting at appropriate height</pre>
+              </div>
+
+              <h3 id="linkage">2.2 Linkage Criteria</h3>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Linkage</th><th>Distance Between Clusters</th><th>Properties</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Single</strong></td><td>min distance between any two points</td><td>Can find elongated clusters; sensitive to noise (chaining effect)</td></tr>
+                    <tr><td><strong>Complete</strong></td><td>max distance between any two points</td><td>Compact clusters; sensitive to outliers</td></tr>
+                    <tr><td><strong>Average</strong></td><td>Average distance between all pairs</td><td>Compromise between single and complete</td></tr>
+                    <tr><td><strong>Ward&rsquo;s</strong></td><td>Increase in WCSS after merging</td><td>Minimises variance; tends to create equal-sized clusters</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: Agglomerative Clustering</div>
+                <p><strong>Q:</strong> Points: A(0,0), B(1,0), C(4,0), D(5,0). Use single linkage. Show merge steps.</p>
+                <p><strong>Distance matrix:</strong></p>
+                <p>d(A,B)=1, d(A,C)=4, d(A,D)=5, d(B,C)=3, d(B,D)=4, d(C,D)=1</p>
+                <p><strong>Step 1:</strong> Merge A&amp;B (distance 1) and C&amp;D (distance 1) &mdash; tie, merge both.</p>
+                <p><strong>Step 2:</strong> Clusters: {A,B}, {C,D}. Single linkage distance = min(d(B,C)) = 3. Merge &rarr; {A,B,C,D}.</p>
+                <p>Dendrogram heights: 1, 1, 3.</p>
+              </div>
+            </section>
+
+            <!-- Section 3: DBSCAN -->
+            <section id="dbscan">
+              <h2>3. DBSCAN</h2>
+              <p><strong>D</strong>ensity-<strong>B</strong>ased <strong>S</strong>patial <strong>C</strong>lustering of <strong>A</strong>pplications with <strong>N</strong>oise. Unlike K-Means, DBSCAN can find arbitrarily shaped clusters and automatically identifies noise points.</p>
+
+              <div class="definition-box">
+                <div class="box-title">Key Concepts</div>
+                <ul>
+                  <li><strong>&epsilon; (eps):</strong> Radius of the neighbourhood around a point</li>
+                  <li><strong>MinPts:</strong> Minimum number of points within &epsilon; to form a dense region</li>
+                  <li><strong>Core point:</strong> Has &ge; MinPts within its &epsilon;-neighbourhood</li>
+                  <li><strong>Border point:</strong> Within &epsilon; of a core point, but has &lt; MinPts neighbours</li>
+                  <li><strong>Noise point:</strong> Neither core nor border</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-block">
+                <div class="box-title">DBSCAN Algorithm</div>
+                <pre>For each unvisited point p:
+  1. Mark p as visited
+  2. Find all points within &epsilon; of p (N_&epsilon;(p))
+  3. If |N_&epsilon;(p)| &lt; MinPts: mark p as NOISE (may later change to border)
+  4. Else: p is a CORE point
+     a. Create new cluster C, add p to C
+     b. For each point q in N_&epsilon;(p):
+        - If q is unvisited, mark visited, find N_&epsilon;(q)
+          - If |N_&epsilon;(q)| &ge; MinPts, add N_&epsilon;(q) to seed set
+        - If q is not yet in any cluster, add q to C</pre>
+              </div>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Property</th><th>K-Means</th><th>DBSCAN</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>K required?</strong></td><td>Yes</td><td>No (auto-detects clusters)</td></tr>
+                    <tr><td><strong>Cluster shapes</strong></td><td>Spherical only</td><td>Arbitrary shapes</td></tr>
+                    <tr><td><strong>Noise handling</strong></td><td>No</td><td>Yes (identifies outliers)</td></tr>
+                    <tr><td><strong>Scalability</strong></td><td>O(nKt)</td><td>O(n log n) with spatial index</td></tr>
+                    <tr><td><strong>Parameters</strong></td><td>K</td><td>&epsilon;, MinPts</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 4: PCA -->
+            <section id="pca">
+              <h2>4. Principal Component Analysis (PCA)</h2>
+              <p>PCA is a <strong>dimensionality reduction</strong> technique that transforms data into a new coordinate system where the axes (principal components) are ordered by the amount of variance they capture.</p>
+
+              <div class="algorithm-block">
+                <div class="box-title">PCA Algorithm</div>
+                <pre>Input: Data matrix X (n &times; d), desired dimensions k
+
+1. CENTRE: Subtract the mean of each feature: X_c = X - &mu;
+2. COVARIANCE MATRIX: Compute C = (1/(n-1)) X_c^T X_c  (d &times; d matrix)
+3. EIGENDECOMPOSITION: Find eigenvalues &lambda;_1 &ge; &lambda;_2 &ge; ... &ge; &lambda;_d 
+   and corresponding eigenvectors v_1, v_2, ..., v_d of C
+4. SELECT: Choose top k eigenvectors (those with largest eigenvalues)
+5. PROJECT: Z = X_c &middot; V_k  where V_k = [v_1 | v_2 | ... | v_k] (d &times; k)
+
+Result: Z is the n &times; k reduced dataset</pre>
+              </div>
+
+              <div class="theorem-box">
+                <div class="box-title">Explained Variance Ratio</div>
+                <p><strong>EVR(k) = &lambda;&#7496; / &sum;&#7524; &lambda;&#7524;</strong></p>
+                <p>The proportion of total variance explained by the k-th principal component. Cumulative EVR tells us how much total information is retained when using the top k components.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: PCA</div>
+                <p><strong>Q:</strong> The covariance matrix of a 2D dataset is [[4, 2], [2, 3]]. Find the principal components and the proportion of variance explained by the first component.</p>
+                <p><strong>Solution:</strong></p>
+                <p>Eigenvalues: det(C &minus; &lambda;I) = 0 &rarr; (4&minus;&lambda;)(3&minus;&lambda;) &minus; 4 = 0 &rarr; &lambda;&sup2; &minus; 7&lambda; + 8 = 0</p>
+                <p>&lambda; = (7 &plusmn; &radic;(49&minus;32))/2 = (7 &plusmn; &radic;17)/2</p>
+                <p>&lambda;&#8321; = (7 + 4.123)/2 = <strong>5.561</strong>, &lambda;&#8322; = (7 &minus; 4.123)/2 = <strong>1.439</strong></p>
+                <p>Variance explained by PC1: 5.561 / (5.561 + 1.439) = 5.561 / 7 = <strong>79.4%</strong></p>
+                <p>For eigenvector of &lambda;&#8321;: (C &minus; 5.561I)v = 0 gives direction of maximum variance.</p>
+              </div>
+
+              <div class="note-box">
+                <div class="box-title">Key PCA Properties</div>
+                <ul>
+                  <li>Principal components are <strong>orthogonal</strong> to each other</li>
+                  <li>PCA is a <strong>linear</strong> transformation &mdash; cannot capture non-linear relationships (use Kernel PCA for that)</li>
+                  <li>Features must be <strong>centred</strong> (and typically <strong>standardised</strong>) before applying PCA</li>
+                  <li>The number of non-zero eigenvalues equals the rank of the data matrix</li>
+                  <li>Sum of all eigenvalues equals the total variance in the data</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 5: Association Rules -->
+            <section id="association-rules">
+              <h2>5. Association Rule Mining (Apriori)</h2>
+              <p>Association rules discover interesting relationships between variables in large datasets. The classic application is <strong>market basket analysis</strong>.</p>
+
+              <div class="definition-box">
+                <div class="box-title">Key Metrics</div>
+                <ul>
+                  <li><strong>Support(A):</strong> Fraction of transactions containing itemset A. Support(A) = count(A) / N</li>
+                  <li><strong>Confidence(A&rarr;B):</strong> P(B|A) = Support(A&cup;B) / Support(A)</li>
+                  <li><strong>Lift(A&rarr;B):</strong> Confidence(A&rarr;B) / Support(B). Lift &gt; 1 indicates positive correlation.</li>
+                </ul>
+              </div>
+
+              <div class="algorithm-block">
+                <div class="box-title">Apriori Principle</div>
+                <pre>If an itemset is infrequent, all its supersets are also infrequent.
+(Contrapositive: If an itemset is frequent, all its subsets must be frequent.)
+
+Algorithm:
+1. Find all frequent 1-itemsets (support &ge; min_support)
+2. Generate candidate k-itemsets from frequent (k-1)-itemsets
+3. Prune candidates whose subsets are not all frequent
+4. Scan database to count support of remaining candidates
+5. Repeat until no more frequent itemsets can be found
+6. Generate rules from frequent itemsets that meet min_confidence</pre>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">Example: Market Basket</div>
+                <p><strong>Transactions:</strong> T1={Bread, Milk}, T2={Bread, Diapers, Beer}, T3={Milk, Diapers, Beer}, T4={Bread, Milk, Diapers, Beer}, T5={Bread, Milk, Diapers}. N=5, min_support=0.4.</p>
+                <p>Support(Bread)=4/5=0.8, Support(Milk)=4/5=0.8, Support(Diapers)=4/5=0.8, Support(Beer)=3/5=0.6</p>
+                <p>Support({Bread,Milk})=3/5=0.6 &ge; 0.4 &check;</p>
+                <p>Confidence(Bread&rarr;Milk) = 0.6/0.8 = 0.75 (75%)</p>
+                <p>Lift(Bread&rarr;Milk) = 0.75/0.8 = 0.9375 (&lt;1, slight negative association)</p>
+              </div>
+            </section>
+
+            <!-- Section 6: Summary -->
+            <section id="summary">
+              <h2>6. Summary &amp; Comparison</h2>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Algorithm</th><th>Type</th><th>Key Strength</th><th>Key Weakness</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>K-Means</strong></td><td>Partition Clustering</td><td>Fast, scalable</td><td>Fixed K, spherical clusters</td></tr>
+                    <tr><td><strong>Hierarchical</strong></td><td>Hierarchical Clustering</td><td>No K needed, dendrogram</td><td>O(n&sup3;) time complexity</td></tr>
+                    <tr><td><strong>DBSCAN</strong></td><td>Density Clustering</td><td>Arbitrary shapes, noise detection</td><td>Varying density is problematic</td></tr>
+                    <tr><td><strong>PCA</strong></td><td>Dimensionality Reduction</td><td>Captures max variance, orthogonal</td><td>Linear only, loses interpretability</td></tr>
+                    <tr><td><strong>Apriori</strong></td><td>Association Rules</td><td>Interpretable rules</td><td>Exponential candidate generation</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+          </article>
+
+          <aside class="on-this-page"><h4>On This Page</h4><ul>
+            <li><a href="#k-means">1. K-Means Clustering</a></li>
+            <li><a href="#hierarchical-clustering">2. Hierarchical Clustering</a></li>
+            <li><a href="#dbscan">3. DBSCAN</a></li>
+            <li><a href="#pca">4. PCA</a></li>
+            <li><a href="#association-rules">5. Association Rules</a></li>
+            <li><a href="#summary">6. Summary</a></li>
+          </ul></aside>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="supervised-learning.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Supervised Learning</span></a>
+          <a href="bias-variance-tradeoff.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Bias-Variance Tradeoff</span></a>
+        </div>
+        <button class="complete-btn" data-page="ch08-unsupervised-learning">&#10003; Mark as Complete</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

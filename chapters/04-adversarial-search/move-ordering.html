@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Move Ordering Techniques — Killer moves, history heuristic, transposition tables, iterative deepening with move ordering for alpha-beta pruning optimization.">
+  <title>Move Ordering — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+            <a href="minimax-algorithm.html" class="sidebar-link"><span class="link-check"></span> Minimax<span class="link-type theory">Theory</span></a>
+            <a href="alpha-beta-pruning.html" class="sidebar-link"><span class="link-check"></span> Alpha-Beta Pruning<span class="link-type theory">Theory</span></a>
+            <a href="move-ordering.html" class="sidebar-link active"><span class="link-check"></span> Move Ordering<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-functions.html" class="sidebar-link"><span class="link-check"></span> Evaluation Functions<span class="link-type theory">Theory</span></a>
+            <a href="stochastic-games.html" class="sidebar-link"><span class="link-check"></span> Stochastic Games<span class="link-type theory">Theory</span></a>
+            <a href="partially-observable-games.html" class="sidebar-link"><span class="link-check"></span> Partially Observable<span class="link-type theory">Theory</span></a>
+            <a href="monte-carlo-tree-search.html" class="sidebar-link"><span class="link-check"></span> MCTS<span class="link-type theory">Theory</span></a>
+            <a href="practical-adversarial.html" class="sidebar-link"><span class="link-check"></span> Tic-Tac-Toe Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-adversarial.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="game-theory-basics.html">Chapter 4: Adversarial Search</a> &raquo;
+          <span class="current">Move Ordering</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch04-move-ordering">
+            <h1>Move Ordering Techniques</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch04-move-ordering" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="alpha-beta-pruning.html">Alpha-Beta Pruning</a> &mdash; How pruning depends on move order</li>
+                <li><a href="../02-uninformed-search/iterative-deepening-dfs.html">Iterative Deepening DFS</a> &mdash; IDDFS strategy</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand why move ordering is critical for alpha-beta performance</li>
+                <li>Describe killer move heuristic and history heuristic</li>
+                <li>Explain transposition tables and their role in avoiding redundant computation</li>
+                <li>Combine iterative deepening with move ordering for practical game search</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="why-ordering">
+                <h2>1. Why Move Ordering Matters</h2>
+                <p>Alpha-beta pruning&rsquo;s efficiency varies dramatically based on the order children are explored:</p>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Ordering</th><th>Nodes Evaluated</th><th>Effective Branching</th></tr></thead>
+                    <tbody>
+                      <tr><td>Worst order</td><td>O(b<sup>d</sup>)</td><td>b (no pruning)</td></tr>
+                      <tr><td>Random order</td><td>O(b<sup>3d/4</sup>)</td><td>b<sup>3/4</sup></td></tr>
+                      <tr><td>Perfect order</td><td>O(b<sup>d/2</sup>)</td><td>b<sup>1/2</sup> (= &radic;b)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>For chess (b&asymp;35), perfect ordering reduces the effective branching factor from 35 to &asymp;6. This is the difference between searching 6 moves deep and 12 moves deep in the same time.</p>
+
+                <div class="note-box">
+                  <div class="box-title">The Goal</div>
+                  <p>Examine the <strong>best move first</strong> at every node. If at a MAX node we look at the highest-value child first, and at a MIN node the lowest-value child first, alpha-beta achieves maximum pruning.</p>
+                </div>
+              </section>
+
+              <section id="killer-moves">
+                <h2>2. Killer Move Heuristic</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Killer Move</div>
+                  <p>A <strong>killer move</strong> is a move that caused a cutoff (pruning) at the same depth in a sibling subtree. The idea: if a move was strong enough to cause a cutoff at depth d in one branch, it is likely strong at depth d in other branches too.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <div class="algo-header">Killer Move Heuristic</div>
+                  <div class="algo-body">
+<pre>Maintain array: killers[depth] &larr; list of 2&ndash;3 moves
+
+When a move m causes a &beta;-cutoff at depth d:
+    Store m in killers[d]
+
+When generating moves at depth d:
+    Try killers[d] moves FIRST (before other moves)
+    Then try remaining moves in normal order</pre>
+                  </div>
+                </div>
+
+                <p>Typically, two killer moves are stored per depth level. This simple heuristic improves pruning significantly in practice, especially in chess engines.</p>
+              </section>
+
+              <section id="history-heuristic">
+                <h2>3. History Heuristic</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">History Heuristic</div>
+                  <p>Maintain a global table <strong>H[move]</strong> that tracks how often each move has been &ldquo;good&rdquo; (caused cutoffs) across the entire search. Moves with higher history scores are tried first.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <div class="algo-header">History Heuristic</div>
+                  <div class="algo-body">
+<pre>Initialize: H[m] &larr; 0 for all moves m
+
+When move m causes a cutoff at depth d:
+    H[m] &larr; H[m] + 2<sup>d</sup>   (deeper cutoffs weighted more)
+
+When ordering moves at any node:
+    Sort moves by H[m] in descending order</pre>
+                  </div>
+                </div>
+
+                <p>The weighting by 2<sup>d</sup> gives more credit to moves that cause cutoffs deeper in the tree, where they save more computation.</p>
+              </section>
+
+              <section id="transposition-tables">
+                <h2>4. Transposition Tables</h2>
+
+                <p>In many games, different move sequences can lead to the <strong>same board position</strong> (a transposition). Without detection, the same subtree is searched multiple times.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Transposition Table</div>
+                  <p>A hash table that stores previously evaluated positions along with their minimax values, search depth, and best move. Before searching a node, check if the position has already been evaluated.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <div class="algo-header">Transposition Table Lookup</div>
+                  <div class="algo-body">
+<pre>function ALPHA-BETA-TT(state, &alpha;, &beta;, depth):
+    // Check transposition table
+    entry &larr; TT.lookup(hash(state))
+    if entry &ne; null AND entry.depth &ge; depth:
+        if entry.flag = EXACT: return entry.value
+        if entry.flag = LOWER: &alpha; &larr; max(&alpha;, entry.value)
+        if entry.flag = UPPER: &beta; &larr; min(&beta;, entry.value)
+        if &alpha; &ge; &beta;: return entry.value
+    
+    // Normal alpha-beta search...
+    // After computing value v, store in TT:
+    TT.store(hash(state), v, depth, flag)</pre>
+                  </div>
+                </div>
+
+                <h3>4.1 Zobrist Hashing</h3>
+                <p>The standard method for hashing board positions. Assign a random 64-bit number to each (piece, square) combination. The hash of a position is the XOR of all active (piece, square) values.</p>
+                <ul>
+                  <li><strong>Incremental update:</strong> When a piece moves from square A to B, hash &oplus;= zobrist[piece][A] &oplus; zobrist[piece][B]</li>
+                  <li><strong>O(1)</strong> to update after each move</li>
+                  <li>Uniform distribution minimizes collisions</li>
+                </ul>
+
+                <div class="example-box">
+                  <div class="box-title">Chess Example</div>
+                  <p>After 1. e4 e5 2. Nf3 Nc6 and after 1. Nf3 Nc6 2. e4 e5, the board position is identical. The transposition table avoids re-searching this subtree. In typical chess middlegame positions, transposition tables reduce nodes by 20&ndash;40%.</p>
+                </div>
+              </section>
+
+              <section id="iterative-deepening">
+                <h2>5. Iterative Deepening with Move Ordering</h2>
+
+                <p><strong>Iterative deepening</strong> combined with alpha-beta is the gold standard for game-playing programs. The key insight: use the results from the shallower search to order moves for the deeper search.</p>
+
+                <div class="algorithm-block">
+                  <div class="algo-header">Iterative Deepening Alpha-Beta (IDA-B)</div>
+                  <div class="algo-body">
+<pre>function ID-ALPHA-BETA(state, max_time):
+    best_move &larr; null
+    for depth = 1, 2, 3, ...:
+        if time_elapsed > max_time: break
+        (value, move) &larr; ALPHA-BETA(state, depth)
+        best_move &larr; move  // always have a move ready
+    return best_move</pre>
+                  </div>
+                </div>
+
+                <p>Benefits of this approach:</p>
+                <ul>
+                  <li><strong>Anytime algorithm:</strong> Can be interrupted and still return a useful move</li>
+                  <li><strong>Move ordering from previous iteration:</strong> The best move from depth d&minus;1 is tried first at depth d</li>
+                  <li><strong>Minimal overhead:</strong> The cost of iterations 1 through d&minus;1 is only about 1/b of iteration d</li>
+                  <li><strong>Transposition table synergy:</strong> Shallower searches populate the table</li>
+                </ul>
+
+                <div class="note-box">
+                  <div class="box-title">Practical Impact</div>
+                  <p>Modern chess engines (Stockfish, Leela) use iterative deepening + alpha-beta + transposition tables + killer moves + history heuristic. This combination approaches the theoretical best-case O(b<sup>d/2</sup>) in practice.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>Move ordering can improve alpha-beta from O(b<sup>d</sup>) to O(b<sup>d/2</sup>).</li>
+                    <li>Killer moves: reuse moves that caused cutoffs at the same depth in sibling nodes.</li>
+                    <li>History heuristic: global table tracking which moves tend to cause cutoffs.</li>
+                    <li>Transposition tables: cache evaluated positions to avoid redundant work; use Zobrist hashing.</li>
+                    <li>Iterative deepening provides move ordering from shallower searches and acts as an anytime algorithm.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>AIMA</em>, 4th Ed. &mdash; Chapter 5.3&ndash;5.4</li>
+                  <li>Schaeffer, J. &ldquo;The History Heuristic&rdquo;, <em>ICCA Journal</em>, 1989</li>
+                  <li>Zobrist, A. &ldquo;A New Hashing Method with Application for Game Playing&rdquo;, Tech Report, 1970</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch04-move-ordering">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="alpha-beta-pruning.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Alpha-Beta Pruning</span></a>
+              <a href="evaluation-functions.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Evaluation Functions</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#why-ordering">1. Why Move Ordering Matters</a></li>
+              <li><a href="#killer-moves">2. Killer Move Heuristic</a></li>
+              <li><a href="#history-heuristic">3. History Heuristic</a></li>
+              <li><a href="#transposition-tables">4. Transposition Tables</a></li>
+              <li><a href="#iterative-deepening">5. Iterative Deepening</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

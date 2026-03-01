@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Recursive Best-First Search (RBFS) — linear space, f-limit tracking, pseudocode, and worked examples for GATE DA AI preparation.">
+  <title>RBFS — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div>
+      <div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div>
+      <div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First Search<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded Search<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA* Search<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link active"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="weighted-a-star.html" class="sidebar-link"><span class="link-check"></span> Weighted A*<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-informed-strategies.html" class="sidebar-link"><span class="link-check"></span> Strategy Comparison<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> Informed Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE Previous Year<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="heuristic-functions.html">Ch 3: Informed Search</a> &raquo;
+          <span class="current">RBFS</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch03-rbfs">
+
+            <h1>Recursive Best-First Search (RBFS)</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch03-rbfs" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="a-star-search.html">A* Search</a> &mdash; understanding f(n)=g(n)+h(n)</li>
+                <li><a href="ida-star.html">IDA* Search</a> &mdash; iterative deepening with f-cost cutoff</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand RBFS as a linear-space best-first search</li>
+                <li>Explain the f_limit mechanism and backed-up f-values</li>
+                <li>Write RBFS pseudocode</li>
+                <li>Compare RBFS with IDA*</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="idea">
+                <h2>1. Core Idea</h2>
+                <p>RBFS mimics best-first search using only <strong>O(bd)</strong> space. It keeps track of the f-value of the <strong>best alternative path</strong> available from any ancestor. If the current node&rsquo;s f-value exceeds this &ldquo;f_limit,&rdquo; RBFS unwinds back to explore the alternative, but <strong>stores the best f-value found in the forgotten subtree</strong> so it can return later if needed.</p>
+                <p>Key insight: When RBFS abandons a subtree, it backs up the best f-value from that subtree to the parent. This means RBFS remembers the &ldquo;promise&rdquo; of the forgotten subtree without storing it in memory.</p>
+              </section>
+
+              <section id="pseudocode">
+                <h2>2. Pseudocode</h2>
+                <pre><code>function RBFS(problem):
+    return RBFS-SEARCH(problem, MAKE-NODE(problem.initial), ∞)
+
+function RBFS-SEARCH(problem, node, f_limit):
+    if GOAL-TEST(node.state):
+        return SOLUTION(node), 0
+
+    successors = EXPAND(node)
+    if successors is empty:
+        return FAILURE, ∞
+
+    for each s in successors:
+        s.f = max(g(s) + h(s), node.f)   // don't go below parent's f
+
+    loop:
+        best = successor with lowest f
+        if best.f > f_limit:
+            return FAILURE, best.f         // back up best f-value
+
+        alternative = second-lowest f among successors
+        result, best.f = RBFS-SEARCH(problem, best, min(f_limit, alternative))
+        if result ≠ FAILURE:
+            return result, 0</code></pre>
+
+                <div class="note-box">
+                  <div class="box-title">Key Detail: max(g(s)+h(s), node.f)</div>
+                  <p>When generating successors, RBFS sets each child&rsquo;s f-value to the maximum of its computed f and the parent&rsquo;s f. This ensures f-values are <strong>non-decreasing along any path</strong> (important when the heuristic is not consistent).</p>
+                </div>
+              </section>
+
+              <section id="properties">
+                <h2>3. Properties</h2>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Property</th><th>RBFS</th></tr></thead>
+                    <tbody>
+                      <tr><td>Complete?</td><td>Yes (finite space with admissible h)</td></tr>
+                      <tr><td>Optimal?</td><td>Yes (with admissible h)</td></tr>
+                      <tr><td>Space</td><td>O(bd) &mdash; linear</td></tr>
+                      <tr><td>Time</td><td>O(b<sup>d</sup>) worst case, but can be better than IDA* due to less re-expansion</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section id="rbfs-vs-ida">
+                <h2>4. RBFS vs IDA*</h2>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Feature</th><th>IDA*</th><th>RBFS</th></tr></thead>
+                    <tbody>
+                      <tr><td>Cutoff mechanism</td><td>Global f-cost cutoff</td><td>Local f_limit per recursive call</td></tr>
+                      <tr><td>Re-expansion</td><td>Re-expands entire tree each iteration</td><td>Re-expands only when switching between subtrees</td></tr>
+                      <tr><td>Real-valued costs</td><td>May iterate many times (many distinct f-values)</td><td>Handles better &mdash; switches at exact f-value thresholds</td></tr>
+                      <tr><td>Backed-up knowledge</td><td>None &mdash; forgets everything between iterations</td><td>Remembers best f-value of abandoned subtrees</td></tr>
+                      <tr><td>Complexity of code</td><td>Simpler</td><td>More complex (tracked f-values)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section id="worked-examples">
+                <h2>5. Worked Examples</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Example 1: RBFS Walkthrough</div>
+                  <pre><code>Graph: S→A (cost 1), S→B (cost 1)
+       A→G (cost 3), B→C (cost 1), C→G (cost 1)
+h: h(S)=2, h(A)=3, h(B)=2, h(C)=1, h(G)=0</code></pre>
+                  <p><strong>Call RBFS(S, f_limit=∞)</strong></p>
+                  <ol>
+                    <li>Expand S: successors A (f=1+3=4), B (f=1+2=3). Max with parent f(S)=2: A.f=max(4,2)=4, B.f=max(3,2)=3.</li>
+                    <li>best = B (f=3), alternative = A (f=4). Call RBFS(B, f_limit=min(∞,4)=4).</li>
+                    <li>Expand B: successor C (f=2+1=3). Max with parent f(B)=3: C.f=max(3,3)=3.</li>
+                    <li>best = C (f=3), no alternative → alternative=∞. Call RBFS(C, f_limit=min(4,∞)=4).</li>
+                    <li>Expand C: successor G (f=3+0=3). Max with parent f(C)=3: G.f=max(3,3)=3.</li>
+                    <li>best = G (f=3 ≤ 4). Goal test on G: <strong>SUCCESS! Path S→B→C→G, cost=3.</strong></li>
+                  </ol>
+                  <p>RBFS found the optimal path without ever exploring A&rsquo;s subtree.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 2: RBFS with Subtree Switching</div>
+                  <pre><code>Graph: S→A (cost 1), S→B (cost 2)
+       A→D (cost 3), B→G (cost 1)
+h: h(S)=2, h(A)=1, h(B)=1, h(D)=5, h(G)=0</code></pre>
+                  <p><strong>Call RBFS(S, f_limit=∞)</strong></p>
+                  <ol>
+                    <li>Expand S: A (f=1+1=2), B (f=2+1=3). Parent f(S)=2: A.f=max(2,2)=2, B.f=max(3,2)=3.</li>
+                    <li>best = A (f=2), alternative = B (f=3). Call RBFS(A, f_limit=min(∞,3)=3).</li>
+                    <li>Expand A: D (f=4+5=9). Max with parent f(A)=2: D.f=max(9,2)=9.</li>
+                    <li>best=D (f=9 > f_limit=3). Return FAILURE, back up f=9 to A: A.f ← 9.</li>
+                    <li>Back in S: now A.f=9, B.f=3. best=B. Call RBFS(B, f_limit=min(∞,9)=9).</li>
+                    <li>Expand B: G (f=3+0=3). Max with parent f(B)=3: G.f=max(3,3)=3.</li>
+                    <li>best=G (f=3 ≤ 9). Goal! <strong>Path S→B→G, cost=3.</strong></li>
+                  </ol>
+                  <p>RBFS explored A first (lower f), discovered it was unpromising (D has f=9), backed up f=9 to A, then switched to B and found the goal.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>RBFS uses O(bd) space like IDA*, but is generally more efficient in time.</li>
+                    <li>Backed-up f-values let RBFS &ldquo;remember&rdquo; abandoned subtrees&rsquo; promise.</li>
+                    <li>Handles real-valued costs better than IDA*.</li>
+                    <li>Still suffers from excessive re-generation of nodes (time cost for space saving).</li>
+                    <li>Optimal and complete with admissible heuristic.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch03-rbfs">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="ida-star.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">IDA* Search</span></a>
+              <a href="heuristic-design-techniques.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Heuristic Design Techniques</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#idea">1. Core Idea</a></li>
+              <li><a href="#pseudocode">2. Pseudocode</a></li>
+              <li><a href="#properties">3. Properties</a></li>
+              <li><a href="#rbfs-vs-ida">4. RBFS vs IDA*</a></li>
+              <li><a href="#worked-examples">5. Worked Examples</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

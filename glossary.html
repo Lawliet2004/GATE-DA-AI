@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Complete A-Z glossary of Artificial Intelligence terminology — 100+ terms with definitions and links to relevant chapters.">
+  <title>AI Glossary — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/navigation.css">
+  <link rel="stylesheet" href="css/theory.css">
+  <link rel="stylesheet" href="css/notes.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .glossary-hero {
+      text-align: center;
+      padding: var(--spacing-2xl) var(--spacing-lg);
+      background: linear-gradient(135deg, #bf360c, #e65100, #ff6d00);
+      color: #fff;
+      border-radius: var(--border-radius-lg);
+      margin-bottom: var(--spacing-2xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .glossary-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .glossary-hero * { position: relative; z-index: 1; }
+    .glossary-hero h1 { color: #fff; font-size: 2.2rem; margin-bottom: var(--spacing-sm); border: none; padding: 0; }
+    .glossary-hero p { opacity: 0.92; font-size: var(--font-size-md); max-width: 640px; margin: 0 auto; }
+    .glossary-hero .term-count { display: inline-block; margin-top: var(--spacing-lg); background: rgba(255,255,255,0.15); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--border-radius-md); font-weight: 700; font-size: var(--font-size-lg); }
+
+    /* Search/Filter bar */
+    .glossary-filter {
+      display: flex;
+      gap: var(--spacing-md);
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: var(--spacing-xl);
+      padding: var(--spacing-md) var(--spacing-lg);
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius-md);
+      border: 1px solid var(--border-light);
+    }
+    .glossary-filter .filter-input {
+      flex: 1;
+      min-width: 220px;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-sm);
+      font-size: var(--font-size-md);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: inherit;
+    }
+    .glossary-filter .filter-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+    .glossary-filter .filter-count { font-size: var(--font-size-sm); color: var(--text-muted); white-space: nowrap; }
+
+    /* Letter nav */
+    .letter-nav { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: var(--spacing-xl); justify-content: center; }
+    .letter-nav a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: var(--border-radius-sm);
+      background: var(--bg-secondary); color: var(--text-primary);
+      font-weight: 700; font-size: var(--font-size-sm);
+      text-decoration: none; border: 1px solid var(--border-light);
+      transition: all 0.15s ease;
+    }
+    .letter-nav a:hover, .letter-nav a:focus { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+    .letter-nav a.disabled { opacity: 0.35; pointer-events: none; }
+
+    /* Letter group */
+    .letter-group { margin-bottom: var(--spacing-2xl); }
+    .letter-group-header {
+      font-size: var(--font-size-2xl);
+      font-weight: 800;
+      color: var(--color-primary);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 3px solid var(--color-primary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* Definition box */
+    .definition-box {
+      padding: var(--spacing-md) var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
+      border-left: 4px solid var(--color-primary);
+      background: var(--bg-secondary);
+      border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .definition-box:hover { border-left-color: var(--color-secondary); }
+    .definition-box .term-name {
+      font-size: var(--font-size-md);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-xs);
+    }
+    .definition-box .term-def {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xs);
+      line-height: 1.6;
+    }
+    .definition-box .term-link {
+      font-size: var(--font-size-xs);
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .definition-box .term-link:hover { text-decoration: underline; }
+
+    .no-results { text-align: center; padding: var(--spacing-2xl); color: var(--text-muted); font-size: var(--font-size-md); display: none; }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">☰</button>
+        <a href="index.html" class="site-logo">
+          <span class="logo-icon">🧠</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" placeholder="Search topics… (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">🌙</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/00-introduction/what-is-ai.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">00</span> Introduction to AI</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/01-intelligent-agents/agents-and-environments.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">01</span> Intelligent Agents</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/02-uninformed-search/problem-formulation.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">02</span> Uninformed Search</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/03-informed-search/heuristic-functions.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">03</span> Informed Search</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/04-adversarial-search/game-theory-basics.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">04</span> Adversarial Search</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/05-propositional-logic/syntax-and-semantics.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">05</span> Propositional Logic</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/06-predicate-logic/first-order-logic-syntax.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">06</span> Predicate Logic</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/07-reasoning-under-uncertainty/probability-review.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">07</span> Reasoning Under Uncertainty</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/08-machine-learning-foundations/ml-paradigms.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">08</span> ML Foundations</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/09-neural-networks-deep-learning/perceptron.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">09</span> Neural Networks &amp; DL</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/10-natural-language-processing/text-preprocessing.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">10</span> Natural Language Processing</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/11-computer-vision/image-fundamentals.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">11</span> Computer Vision</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/12-reinforcement-learning/mdp.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">12</span> Reinforcement Learning</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/13-planning/classical-planning.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">13</span> Planning</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/14-constraint-satisfaction/csp-formulation.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">14</span> Constraint Satisfaction</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/15-advanced-topics/explainable-ai.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">15</span> Advanced Topics</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/16-gate-da-preparation/exam-pattern-strategy.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">16</span> GATE DA Preparation</a></div></div>
+      </div>
+    </nav>
+
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">🏠 Home</a> <span class="breadcrumb-sep">›</span>
+          <span class="breadcrumb-current">AI Glossary</span>
+        </nav>
+
+        <!-- Bookmark Button -->
+        <button class="bookmark-btn" id="bookmarkBtn" title="Bookmark this page" aria-label="Bookmark this page">⭐ Bookmark</button>
+
+        <!-- ===== HERO ===== -->
+        <section class="glossary-hero fade-in">
+          <h1>📖 AI Glossary</h1>
+          <p>A comprehensive A–Z reference of Artificial Intelligence terminology. Each term links to the relevant chapter for deeper study.</p>
+          <div class="term-count" id="totalTermCount">📝 Loading terms…</div>
+        </section>
+
+        <!-- ===== FILTER ===== -->
+        <div class="glossary-filter" id="glossary-filter">
+          <span style="font-size:1.2rem;">🔍</span>
+          <input type="text" class="filter-input" id="glossarySearch" placeholder="Filter terms… (type to search)" aria-label="Filter glossary terms">
+          <span class="filter-count" id="filterCount"></span>
+        </div>
+
+        <!-- ===== LETTER NAV ===== -->
+        <nav class="letter-nav" id="letterNav" aria-label="Alphabet navigation"></nav>
+
+        <!-- ===== GLOSSARY CONTENT ===== -->
+        <div id="glossaryContent"></div>
+        <div class="no-results" id="noResults">😕 No terms match your search. Try a different keyword.</div>
+
+        <!-- ===== PREV/NEXT NAV ===== -->
+        <nav class="prev-next-nav" aria-label="Page navigation">
+          <a href="about.html" class="prev-next-btn prev-btn">
+            <span class="nav-direction">← Previous</span>
+            <span class="nav-title">About This Course</span>
+          </a>
+          <a href="chapters/00-introduction/what-is-ai.html" class="prev-next-btn next-btn">
+            <span class="nav-direction">Next →</span>
+            <span class="nav-title">Start Learning: What is AI?</span>
+          </a>
+        </nav>
+
+      </div>
+
+      <!-- ===== PAGE TOC (RIGHT SIDEBAR) ===== -->
+      <aside class="page-toc" aria-label="On this page">
+        <div class="page-toc-title">On This Page</div>
+        <ul id="tocLetters"></ul>
+      </aside>
+    </main>
+  </div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/progress-tracker.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/animations.js"></script>
+
+  <script>
+  (function() {
+    'use strict';
+
+    /* ===== GLOSSARY DATA: 120+ AI terms ===== */
+    var terms = [
+      { term: "A* Search", def: "A best-first graph search algorithm that uses f(n) = g(n) + h(n) to find the least-cost path from a start node to a goal. Optimal when the heuristic is admissible and consistent.", link: "chapters/03-informed-search/a-star-search.html", ch: "Ch 03" },
+      { term: "Activation Function", def: "A non-linear function applied to the output of a neuron (e.g., ReLU, sigmoid, tanh) that enables neural networks to learn complex patterns.", link: "chapters/09-neural-networks-deep-learning/activation-functions.html", ch: "Ch 09" },
+      { term: "Admissibility", def: "A property of a heuristic function h(n) where it never overestimates the true cost to reach the goal. Required for A* to guarantee optimality.", link: "chapters/03-informed-search/admissibility-and-consistency.html", ch: "Ch 03" },
+      { term: "Agent", def: "An entity that perceives its environment through sensors and acts upon it through actuators. The central concept in AI systems design.", link: "chapters/01-intelligent-agents/agents-and-environments.html", ch: "Ch 01" },
+      { term: "Alpha-Beta Pruning", def: "An optimization of the minimax algorithm that prunes branches of the game tree that cannot influence the final decision, reducing search time significantly.", link: "chapters/04-adversarial-search/alpha-beta-pruning.html", ch: "Ch 04" },
+      { term: "Approximate Inference", def: "Methods for estimating probability distributions when exact inference is computationally intractable, including sampling-based approaches like MCMC.", link: "chapters/07-reasoning-under-uncertainty/approximate-inference-overview.html", ch: "Ch 07" },
+      { term: "Arc Consistency", def: "A constraint propagation technique (AC-3) that removes values from variable domains that cannot participate in any consistent assignment with neighboring variables.", link: "chapters/14-constraint-satisfaction/arc-consistency.html", ch: "Ch 14" },
+      { term: "Artificial Intelligence", def: "The field of computer science focused on creating systems that can perform tasks requiring human-like intelligence, including reasoning, learning, perception, and language understanding.", link: "chapters/00-introduction/what-is-ai.html", ch: "Ch 00" },
+      { term: "Attention Mechanism", def: "A neural network component that learns to assign different weights to different parts of the input, allowing the model to focus on relevant information. Foundation of transformers.", link: "chapters/09-neural-networks-deep-learning/attention-mechanism.html", ch: "Ch 09" },
+      { term: "Autonomous System", def: "A system capable of operating independently in complex environments without continuous human guidance, using sensors, planning, and decision-making.", link: "chapters/15-advanced-topics/autonomous-systems.html", ch: "Ch 15" },
+      { term: "Backpropagation", def: "The algorithm for computing gradients in neural networks by propagating errors backward from the output layer to update weights using the chain rule of calculus.", link: "chapters/09-neural-networks-deep-learning/backpropagation.html", ch: "Ch 09" },
+      { term: "Backtracking Search", def: "A depth-first search approach for CSPs that assigns values to one variable at a time and backtracks when a constraint violation is detected.", link: "chapters/14-constraint-satisfaction/backtracking-csp.html", ch: "Ch 14" },
+      { term: "Bayesian Network", def: "A directed acyclic graph (DAG) representing a joint probability distribution, where nodes are random variables and edges encode conditional dependencies.", link: "chapters/07-reasoning-under-uncertainty/bayesian-networks.html", ch: "Ch 07" },
+      { term: "Bellman Equation", def: "A recursive equation expressing the value of a state as the expected immediate reward plus the discounted value of the next state. Foundation of dynamic programming in RL.", link: "chapters/12-reinforcement-learning/value-iteration.html", ch: "Ch 12" },
+      { term: "BERT", def: "Bidirectional Encoder Representations from Transformers — a pre-trained language model that learns contextual word representations by attending to both left and right context.", link: "chapters/10-natural-language-processing/bert-and-variants.html", ch: "Ch 10" },
+      { term: "Bias-Variance Tradeoff", def: "The balance between model simplicity (high bias, low variance) and model complexity (low bias, high variance). Optimal generalization requires balancing both sources of error.", link: "chapters/08-machine-learning-foundations/bias-variance-tradeoff.html", ch: "Ch 08" },
+      { term: "Bidirectional Search", def: "A search strategy that simultaneously searches forward from the start and backward from the goal, meeting in the middle. Can reduce time complexity significantly.", link: "chapters/02-uninformed-search/bidirectional-search.html", ch: "Ch 02" },
+      { term: "Breadth-First Search (BFS)", def: "An uninformed search algorithm that explores all nodes at the current depth before moving to the next level. Complete and optimal for uniform-cost edges. Time/space: O(b^d).", link: "chapters/02-uninformed-search/breadth-first-search.html", ch: "Ch 02" },
+      { term: "Clause", def: "A disjunction of literals in propositional logic. Used in resolution-based theorem proving and SAT solving. A Horn clause has at most one positive literal.", link: "chapters/05-propositional-logic/horn-clauses.html", ch: "Ch 05" },
+      { term: "CNF (Conjunctive Normal Form)", def: "A standard form for logical formulas expressed as a conjunction of clauses, where each clause is a disjunction of literals. Required for resolution.", link: "chapters/05-propositional-logic/normal-forms.html", ch: "Ch 05" },
+      { term: "Computer Vision", def: "The field of AI concerned with enabling machines to interpret and understand visual information from images and video.", link: "chapters/11-computer-vision/image-fundamentals.html", ch: "Ch 11" },
+      { term: "Conditional Independence", def: "Two variables X and Y are conditionally independent given Z if P(X,Y|Z) = P(X|Z)P(Y|Z). Central concept in Bayesian network structure.", link: "chapters/07-reasoning-under-uncertainty/conditional-independence.html", ch: "Ch 07" },
+      { term: "Consistency (Heuristic)", def: "A heuristic h is consistent if for every node n and successor n', h(n) ≤ c(n,n') + h(n'). Stronger than admissibility. Ensures A* never re-expands nodes.", link: "chapters/03-informed-search/admissibility-and-consistency.html", ch: "Ch 03" },
+      { term: "Constraint Propagation", def: "Techniques that reduce the search space of a CSP by enforcing local consistency conditions, removing values that cannot participate in any solution.", link: "chapters/14-constraint-satisfaction/constraint-propagation.html", ch: "Ch 14" },
+      { term: "Constraint Satisfaction Problem (CSP)", def: "A problem defined by variables, domains, and constraints. The goal is to find an assignment of values to variables satisfying all constraints simultaneously.", link: "chapters/14-constraint-satisfaction/csp-formulation.html", ch: "Ch 14" },
+      { term: "Convolutional Neural Network (CNN)", def: "A neural network designed for grid-like data (images) using convolutional layers that learn spatial filters, pooling layers, and fully connected layers.", link: "chapters/09-neural-networks-deep-learning/convolutional-neural-networks.html", ch: "Ch 09" },
+      { term: "Cross-Validation", def: "A model evaluation technique that partitions data into k folds, training on k-1 folds and testing on the remaining fold, repeated k times. Gives robust performance estimates.", link: "chapters/08-machine-learning-foundations/cross-validation.html", ch: "Ch 08" },
+      { term: "D-Separation", def: "A graphical criterion for checking conditional independence in Bayesian networks. Determines if two sets of variables are independent given a third set by analyzing paths in the DAG.", link: "chapters/07-reasoning-under-uncertainty/conditional-independence-in-bn.html", ch: "Ch 07" },
+      { term: "Decision Tree", def: "A tree-structured classifier that recursively partitions the feature space based on feature values, with leaves representing class labels or predictions.", link: "chapters/08-machine-learning-foundations/ml-paradigms.html", ch: "Ch 08" },
+      { term: "Deep Learning", def: "A subset of machine learning using neural networks with many layers (deep architectures) to learn hierarchical representations of data.", link: "chapters/00-introduction/ai-vs-ml-vs-dl.html", ch: "Ch 00" },
+      { term: "Deep Reinforcement Learning", def: "The combination of deep neural networks with reinforcement learning, using neural networks to approximate value functions or policies in complex state spaces.", link: "chapters/12-reinforcement-learning/deep-reinforcement-learning.html", ch: "Ch 12" },
+      { term: "Depth-First Search (DFS)", def: "An uninformed search that explores the deepest node first. Space-efficient (O(bm)) but not complete in infinite spaces and not optimal.", link: "chapters/02-uninformed-search/depth-first-search.html", ch: "Ch 02" },
+      { term: "Depth-Limited Search", def: "DFS with a predetermined depth limit l, preventing infinite descent. Returns cutoff if the limit is reached without finding the goal.", link: "chapters/02-uninformed-search/depth-limited-search.html", ch: "Ch 02" },
+      { term: "DNF (Disjunctive Normal Form)", def: "A standard form for logical formulas expressed as a disjunction of conjunctive clauses. Dual of CNF.", link: "chapters/05-propositional-logic/normal-forms.html", ch: "Ch 05" },
+      { term: "Dropout", def: "A regularization technique where randomly selected neurons are ignored during training, preventing co-adaptation and reducing overfitting.", link: "chapters/09-neural-networks-deep-learning/regularization-techniques.html", ch: "Ch 09" },
+      { term: "Evaluation Function", def: "A function that estimates the utility of a game state without performing full minimax search. Used in game-playing programs to cut off search.", link: "chapters/04-adversarial-search/evaluation-functions.html", ch: "Ch 04" },
+      { term: "Evaluation Metrics", def: "Measures used to assess model performance: accuracy, precision, recall, F1-score, AUC-ROC, RMSE, etc.", link: "chapters/08-machine-learning-foundations/evaluation-metrics.html", ch: "Ch 08" },
+      { term: "Exact Inference", def: "Computing exact posterior probabilities in a Bayesian network, typically via enumeration or variable elimination.", link: "chapters/07-reasoning-under-uncertainty/exact-inference-enumeration.html", ch: "Ch 07" },
+      { term: "Existential Quantifier (∃)", def: "A logical symbol meaning 'there exists.' ∃x P(x) asserts that at least one element in the domain satisfies predicate P.", link: "chapters/06-predicate-logic/quantifiers.html", ch: "Ch 06" },
+      { term: "Explainable AI (XAI)", def: "Methods and techniques that make AI system decisions understandable and interpretable to humans, addressing the 'black box' problem.", link: "chapters/15-advanced-topics/explainable-ai.html", ch: "Ch 15" },
+      { term: "Feature Engineering", def: "The process of creating, selecting, and transforming input features to improve model performance. Includes normalization, encoding, and dimensionality reduction.", link: "chapters/08-machine-learning-foundations/feature-engineering.html", ch: "Ch 08" },
+      { term: "Federated Learning", def: "A distributed ML approach where models are trained across multiple devices/servers without centralizing data, preserving privacy.", link: "chapters/15-advanced-topics/federated-learning.html", ch: "Ch 15" },
+      { term: "First-Order Logic (FOL)", def: "A formal logic system extending propositional logic with predicates, variables, quantifiers (∀, ∃), and functions. Also called predicate logic.", link: "chapters/06-predicate-logic/first-order-logic-syntax.html", ch: "Ch 06" },
+      { term: "Forward Chaining", def: "A data-driven inference strategy that starts from known facts and applies rules to derive new facts until the goal is reached or no more rules apply.", link: "chapters/05-propositional-logic/forward-backward-chaining.html", ch: "Ch 05" },
+      { term: "Game Tree", def: "A tree representing all possible moves in a sequential game, where nodes represent game states and edges represent moves by players.", link: "chapters/04-adversarial-search/game-theory-basics.html", ch: "Ch 04" },
+      { term: "Generalized Modus Ponens", def: "An inference rule in FOL that combines modus ponens with unification, allowing derivation of new conclusions from Horn clauses and known facts.", link: "chapters/06-predicate-logic/generalized-modus-ponens.html", ch: "Ch 06" },
+      { term: "Generative Adversarial Network (GAN)", def: "A framework with two competing networks: a generator that creates synthetic data and a discriminator that distinguishes real from fake.", link: "chapters/11-computer-vision/generative-models-vision.html", ch: "Ch 11" },
+      { term: "Genetic Algorithm", def: "A metaheuristic optimization inspired by natural selection, using populations of candidate solutions evolved through selection, crossover, and mutation operators.", link: "chapters/03-informed-search/genetic-algorithms.html", ch: "Ch 03" },
+      { term: "Gibbs Sampling", def: "An MCMC method that samples each variable in turn from its conditional distribution given the current values of all other variables.", link: "chapters/07-reasoning-under-uncertainty/gibbs-sampling.html", ch: "Ch 07" },
+      { term: "GPT", def: "Generative Pre-trained Transformer — a large-scale autoregressive language model that generates text by predicting the next token in a sequence.", link: "chapters/10-natural-language-processing/gpt-architecture.html", ch: "Ch 10" },
+      { term: "Gradient Descent", def: "An optimization algorithm that iteratively adjusts parameters in the direction of steepest descent of the loss function. Variants include SGD, Adam, RMSProp.", link: "chapters/09-neural-networks-deep-learning/optimization-algorithms.html", ch: "Ch 09" },
+      { term: "Graph Planning (GraphPlan)", def: "A planning algorithm that builds a planning graph to find solutions and uses backward search through the graph to extract valid plans.", link: "chapters/13-planning/graph-planning.html", ch: "Ch 13" },
+      { term: "Greedy Best-First Search", def: "A search algorithm that expands the node closest to the goal according to h(n). Fast but not optimal — can get stuck in local optima.", link: "chapters/03-informed-search/greedy-best-first-search.html", ch: "Ch 03" },
+      { term: "GRU (Gated Recurrent Unit)", def: "A simplified variant of LSTM with two gates (reset and update) that addresses the vanishing gradient problem in RNNs with fewer parameters.", link: "chapters/09-neural-networks-deep-learning/lstm-gru.html", ch: "Ch 09" },
+      { term: "Heuristic Function", def: "An estimate h(n) of the cost from node n to the goal. Used in informed search to guide exploration toward promising paths.", link: "chapters/03-informed-search/heuristic-functions.html", ch: "Ch 03" },
+      { term: "Hidden Markov Model (HMM)", def: "A statistical model where a system transitions between hidden states with observable emissions. Used in speech recognition, NLP, and bioinformatics.", link: "chapters/07-reasoning-under-uncertainty/hidden-markov-models.html", ch: "Ch 07" },
+      { term: "Hill Climbing", def: "A local search algorithm that continuously moves to the neighbor with the highest value. Simple but prone to local maxima, plateaus, and ridges.", link: "chapters/03-informed-search/local-search-hill-climbing.html", ch: "Ch 03" },
+      { term: "Horn Clause", def: "A clause with at most one positive literal. Horn clauses enable efficient inference via forward and backward chaining in polynomial time.", link: "chapters/05-propositional-logic/horn-clauses.html", ch: "Ch 05" },
+      { term: "IDA* (Iterative Deepening A*)", def: "A memory-efficient variant of A* that performs depth-first search with an f-cost cutoff that increases each iteration. Optimal with admissible heuristic.", link: "chapters/03-informed-search/ida-star.html", ch: "Ch 03" },
+      { term: "Image Segmentation", def: "The task of partitioning an image into regions corresponding to objects or areas of interest. Includes semantic, instance, and panoptic segmentation.", link: "chapters/11-computer-vision/image-segmentation.html", ch: "Ch 11" },
+      { term: "Inference Rule", def: "A logical rule for deriving new conclusions from existing premises. Examples: modus ponens, modus tollens, resolution, and unit propagation.", link: "chapters/05-propositional-logic/inference-rules.html", ch: "Ch 05" },
+      { term: "Iterative Deepening DFS (IDDFS)", def: "Combines BFS completeness with DFS space efficiency by performing DFS with increasing depth limits. Time: O(b^d), Space: O(bd).", link: "chapters/02-uninformed-search/iterative-deepening-dfs.html", ch: "Ch 02" },
+      { term: "Knowledge Representation", def: "Methods for encoding information about the world in a form that an AI system can use for reasoning. Includes logic, frames, semantic networks, and ontologies.", link: "chapters/06-predicate-logic/knowledge-representation-fol.html", ch: "Ch 06" },
+      { term: "Language Model", def: "A model that assigns probabilities to sequences of words. Used in NLP for text generation, translation, and understanding. Includes n-gram and neural models.", link: "chapters/10-natural-language-processing/language-models.html", ch: "Ch 10" },
+      { term: "Large Language Model (LLM)", def: "A neural language model with billions of parameters trained on massive text corpora, capable of generation, reasoning, and few-shot learning.", link: "chapters/10-natural-language-processing/large-language-models.html", ch: "Ch 10" },
+      { term: "Likelihood Weighting", def: "An importance sampling method for Bayesian networks that fixes evidence variables and weights samples by the likelihood of the evidence.", link: "chapters/07-reasoning-under-uncertainty/likelihood-weighting.html", ch: "Ch 07" },
+      { term: "Logical Connective", def: "An operator combining propositions: AND (∧), OR (∨), NOT (¬), IMPLIES (→), BICONDITIONAL (↔). Foundation of propositional logic.", link: "chapters/05-propositional-logic/logical-connectives.html", ch: "Ch 05" },
+      { term: "Logical Equivalence", def: "Two formulas are logically equivalent if they have identical truth values in all interpretations. Example: De Morgan's laws, double negation.", link: "chapters/05-propositional-logic/logical-equivalences.html", ch: "Ch 05" },
+      { term: "LSTM (Long Short-Term Memory)", def: "An RNN variant with gating mechanisms (input, forget, output gates) that allows learning long-range dependencies by controlling information flow.", link: "chapters/09-neural-networks-deep-learning/lstm-gru.html", ch: "Ch 09" },
+      { term: "Machine Learning", def: "The study of algorithms that improve their performance on tasks through experience (data) without being explicitly programmed. Subset of AI.", link: "chapters/00-introduction/ai-vs-ml-vs-dl.html", ch: "Ch 00" },
+      { term: "Markov Chain Monte Carlo (MCMC)", def: "A class of algorithms that draw samples from probability distributions by constructing a Markov chain with the desired distribution as its stationary distribution.", link: "chapters/07-reasoning-under-uncertainty/markov-chain-monte-carlo.html", ch: "Ch 07" },
+      { term: "Markov Decision Process (MDP)", def: "A mathematical framework for sequential decision-making under uncertainty, defined by states, actions, transition probabilities, and rewards.", link: "chapters/12-reinforcement-learning/mdp.html", ch: "Ch 12" },
+      { term: "Minimax Algorithm", def: "A decision rule for two-player zero-sum games that minimizes the maximum possible loss. The maximizing player picks the move with the highest minimax value.", link: "chapters/04-adversarial-search/minimax-algorithm.html", ch: "Ch 04" },
+      { term: "Modus Ponens", def: "A fundamental inference rule: from P and P → Q, conclude Q. The basis for forward chaining in rule-based systems.", link: "chapters/05-propositional-logic/inference-rules.html", ch: "Ch 05" },
+      { term: "Monte Carlo Tree Search (MCTS)", def: "A search algorithm that uses random simulations (rollouts) to evaluate game tree nodes, balancing exploration and exploitation. Used in AlphaGo.", link: "chapters/04-adversarial-search/monte-carlo-tree-search.html", ch: "Ch 04" },
+      { term: "Move Ordering", def: "Examining likely good moves first in alpha-beta search to maximize pruning. Good ordering can reduce time from O(b^d) to O(b^(d/2)).", link: "chapters/04-adversarial-search/move-ordering.html", ch: "Ch 04" },
+      { term: "Multilayer Perceptron (MLP)", def: "A feedforward neural network with one or more hidden layers between input and output. A universal function approximator (with enough hidden units).", link: "chapters/09-neural-networks-deep-learning/multilayer-perceptron.html", ch: "Ch 09" },
+      { term: "Multimodal AI", def: "AI systems that can process and integrate multiple types of data (text, images, audio, video) for a unified understanding.", link: "chapters/15-advanced-topics/multimodal-ai.html", ch: "Ch 15" },
+      { term: "Natural Language Processing (NLP)", def: "The field of AI focused on enabling computers to understand, interpret, and generate human language.", link: "chapters/10-natural-language-processing/text-preprocessing.html", ch: "Ch 10" },
+      { term: "Neural Network", def: "A computational model inspired by biological neural networks, consisting of interconnected nodes (neurons) organized in layers that learn from data.", link: "chapters/09-neural-networks-deep-learning/perceptron.html", ch: "Ch 09" },
+      { term: "Object Detection", def: "A computer vision task that identifies and localizes objects in images with bounding boxes and class labels. Methods include YOLO, R-CNN, SSD.", link: "chapters/11-computer-vision/object-detection.html", ch: "Ch 11" },
+      { term: "Overfitting", def: "When a model learns noise and details in training data to the extent that it performs poorly on unseen data. Addressed by regularization and cross-validation.", link: "chapters/08-machine-learning-foundations/overfitting-underfitting.html", ch: "Ch 08" },
+      { term: "Partial-Order Planning", def: "A planning approach where actions are partially ordered, allowing flexibility in execution order. Only ordering constraints necessary for correctness are imposed.", link: "chapters/13-planning/partial-order-planning.html", ch: "Ch 13" },
+      { term: "Particle Filtering", def: "A sequential Monte Carlo method for estimating the state of a dynamic system represented by a set of weighted particles.", link: "chapters/07-reasoning-under-uncertainty/particle-filtering.html", ch: "Ch 07" },
+      { term: "PEAS Framework", def: "Performance measure, Environment, Actuators, Sensors — a framework for specifying the task environment of an intelligent agent.", link: "chapters/01-intelligent-agents/task-environment-peas.html", ch: "Ch 01" },
+      { term: "Perceptron", def: "The simplest neural network model: a single neuron that computes a weighted sum of inputs plus bias, passed through a step function. Can learn linearly separable functions.", link: "chapters/09-neural-networks-deep-learning/perceptron.html", ch: "Ch 09" },
+      { term: "Policy", def: "A mapping from states to actions in reinforcement learning. An optimal policy maximizes expected cumulative reward.", link: "chapters/12-reinforcement-learning/policy-iteration.html", ch: "Ch 12" },
+      { term: "Policy Iteration", def: "An RL algorithm alternating between policy evaluation (computing V^π) and policy improvement (making the policy greedy with respect to V^π) until convergence.", link: "chapters/12-reinforcement-learning/policy-iteration.html", ch: "Ch 12" },
+      { term: "Predicate", def: "A function that returns true or false for given arguments in FOL. Example: Parent(x, y) is true if x is a parent of y.", link: "chapters/06-predicate-logic/predicates-functions-constants.html", ch: "Ch 06" },
+      { term: "Prior Sampling", def: "A basic sampling method for Bayesian networks that generates samples by sampling each variable in topological order from its conditional distribution.", link: "chapters/07-reasoning-under-uncertainty/prior-sampling.html", ch: "Ch 07" },
+      { term: "Problem Formulation", def: "Defining a problem in terms of initial state, actions, transition model, goal test, and path cost for search-based solution.", link: "chapters/02-uninformed-search/problem-formulation.html", ch: "Ch 02" },
+      { term: "Prompt Engineering", def: "The practice of designing and optimizing input prompts to guide large language models toward desired outputs.", link: "chapters/10-natural-language-processing/prompt-engineering.html", ch: "Ch 10" },
+      { term: "Propositional Logic", def: "A formal logic system dealing with propositions (true/false statements) combined using logical connectives. Simpler than FOL but less expressive.", link: "chapters/05-propositional-logic/syntax-and-semantics.html", ch: "Ch 05" },
+      { term: "Q-Learning", def: "A model-free RL algorithm that learns the action-value function Q(s,a) directly from experience using the Bellman optimality equation, without needing a model of the environment.", link: "chapters/12-reinforcement-learning/q-learning.html", ch: "Ch 12" },
+      { term: "Quantifier", def: "Logical symbols specifying the scope of a variable in FOL: universal (∀, 'for all') and existential (∃, 'there exists').", link: "chapters/06-predicate-logic/quantifiers.html", ch: "Ch 06" },
+      { term: "Quantum Machine Learning", def: "An emerging field exploring the use of quantum computing to accelerate or improve machine learning algorithms.", link: "chapters/15-advanced-topics/quantum-machine-learning.html", ch: "Ch 15" },
+      { term: "Rationality", def: "An agent is rational if it selects actions expected to maximize its performance measure given its percept sequence and built-in knowledge.", link: "chapters/01-intelligent-agents/rationality.html", ch: "Ch 01" },
+      { term: "RBFS (Recursive Best-First Search)", def: "A memory-bounded search algorithm that mimics A* behavior using only linear space by keeping track of the best alternative path's f-value.", link: "chapters/03-informed-search/rbfs.html", ch: "Ch 03" },
+      { term: "Recurrent Neural Network (RNN)", def: "A neural network with connections forming directed cycles, allowing it to maintain a hidden state for processing sequential data.", link: "chapters/09-neural-networks-deep-learning/recurrent-neural-networks.html", ch: "Ch 09" },
+      { term: "Regularization", def: "Techniques to prevent overfitting by adding constraints or penalties to the model: L1 (Lasso), L2 (Ridge), dropout, early stopping, batch normalization.", link: "chapters/09-neural-networks-deep-learning/regularization-techniques.html", ch: "Ch 09" },
+      { term: "Reinforcement Learning", def: "An ML paradigm where an agent learns to make decisions by receiving rewards or penalties from its environment, maximizing cumulative reward.", link: "chapters/12-reinforcement-learning/mdp.html", ch: "Ch 12" },
+      { term: "Rejection Sampling", def: "A sampling method that generates samples from the prior distribution and rejects those inconsistent with the evidence. Simple but can be very inefficient.", link: "chapters/07-reasoning-under-uncertainty/rejection-sampling.html", ch: "Ch 07" },
+      { term: "Resolution", def: "A single inference rule for propositional and first-order logic that derives new clauses by resolving complementary literals. Complete for refutation proofs.", link: "chapters/05-propositional-logic/propositional-resolution.html", ch: "Ch 05" },
+      { term: "Resolution in FOL", def: "Extension of propositional resolution to first-order logic using unification to find complementary literals. Complete for refutation in FOL.", link: "chapters/06-predicate-logic/resolution-in-fol.html", ch: "Ch 06" },
+      { term: "Satisfiability (SAT)", def: "The problem of determining whether there exists an assignment of truth values to propositions that makes a given formula true. NP-complete.", link: "chapters/05-propositional-logic/satisfiability-sat.html", ch: "Ch 05" },
+      { term: "Simulated Annealing", def: "A probabilistic local search technique inspired by metallurgical annealing that allows uphill moves with decreasing probability, escaping local optima.", link: "chapters/03-informed-search/simulated-annealing.html", ch: "Ch 03" },
+      { term: "Skolemization", def: "The process of eliminating existential quantifiers from FOL formulas by replacing existentially quantified variables with Skolem constants or functions.", link: "chapters/06-predicate-logic/skolemization.html", ch: "Ch 06" },
+      { term: "SMA* (Simplified Memory-Bounded A*)", def: "A variant of A* that limits memory usage by dropping the worst-value leaf node when memory is full, reconstructing it later if needed.", link: "chapters/03-informed-search/sma-star.html", ch: "Ch 03" },
+      { term: "State Space", def: "The set of all possible states reachable from the initial state through any sequence of actions. The search space for problem-solving agents.", link: "chapters/02-uninformed-search/state-space-representation.html", ch: "Ch 02" },
+      { term: "Stochastic Game", def: "A game involving chance elements (e.g., dice rolls), requiring expectiminimax rather than simple minimax for optimal play.", link: "chapters/04-adversarial-search/stochastic-games.html", ch: "Ch 04" },
+      { term: "STRIPS", def: "Stanford Research Institute Problem Solver — a classical planning language representing actions with preconditions, add effects, and delete effects.", link: "chapters/13-planning/strips.html", ch: "Ch 13" },
+      { term: "Supervised Learning", def: "An ML paradigm where models learn from labeled training data (input-output pairs) to predict outputs for new inputs. Includes classification and regression.", link: "chapters/08-machine-learning-foundations/ml-paradigms.html", ch: "Ch 08" },
+      { term: "Transformer", def: "A neural architecture based entirely on self-attention mechanisms, processing input in parallel rather than sequentially. Foundation of modern LLMs.", link: "chapters/09-neural-networks-deep-learning/transformers.html", ch: "Ch 09" },
+      { term: "Truth Table", def: "A tabular method for computing the truth value of a compound proposition for all possible truth value assignments to its atomic components.", link: "chapters/05-propositional-logic/truth-tables.html", ch: "Ch 05" },
+      { term: "Turing Test", def: "A test proposed by Alan Turing in 1950: a machine passes if a human interrogator cannot distinguish its responses from those of a human.", link: "chapters/00-introduction/what-is-ai.html", ch: "Ch 00" },
+      { term: "Underfitting", def: "When a model is too simple to capture the underlying pattern in the data, resulting in poor performance on both training and test sets.", link: "chapters/08-machine-learning-foundations/overfitting-underfitting.html", ch: "Ch 08" },
+      { term: "Unification", def: "An algorithm for finding a substitution that makes two logical expressions identical. Essential for resolution in first-order logic.", link: "chapters/06-predicate-logic/unification.html", ch: "Ch 06" },
+      { term: "Uniform-Cost Search (UCS)", def: "A search strategy that expands the node with the lowest path cost g(n). Equivalent to BFS with uniform costs. Optimal and complete.", link: "chapters/02-uninformed-search/uniform-cost-search.html", ch: "Ch 02" },
+      { term: "Universal Quantifier (∀)", def: "A logical symbol meaning 'for all.' ∀x P(x) asserts that every element in the domain satisfies predicate P.", link: "chapters/06-predicate-logic/quantifiers.html", ch: "Ch 06" },
+      { term: "Unsupervised Learning", def: "An ML paradigm where models learn patterns from unlabeled data. Includes clustering (K-means), dimensionality reduction (PCA), and density estimation.", link: "chapters/08-machine-learning-foundations/ml-paradigms.html", ch: "Ch 08" },
+      { term: "Value Iteration", def: "An RL algorithm that computes the optimal value function by iteratively applying the Bellman optimality equation until convergence.", link: "chapters/12-reinforcement-learning/value-iteration.html", ch: "Ch 12" },
+      { term: "Variable Elimination", def: "An exact inference algorithm for Bayesian networks that computes marginal probabilities by summing out variables in an efficient order using factors.", link: "chapters/07-reasoning-under-uncertainty/variable-elimination.html", ch: "Ch 07" },
+      { term: "Word Embedding", def: "A dense vector representation of words where semantically similar words have similar vectors. Learned by Word2Vec, GloVe, or contextual models like BERT.", link: "chapters/10-natural-language-processing/word-embeddings.html", ch: "Ch 10" },
+      { term: "AI Ethics", def: "The study of moral issues and responsible practices in AI development, including fairness, accountability, transparency, and bias mitigation.", link: "chapters/15-advanced-topics/ai-ethics-fairness.html", ch: "Ch 15" },
+      { term: "AI Safety", def: "Research ensuring AI systems behave as intended, covering alignment, robustness, and preventing unintended harmful behaviors.", link: "chapters/15-advanced-topics/ai-safety-alignment.html", ch: "Ch 15" },
+      { term: "Backward Chaining", def: "A goal-driven inference strategy that starts from the goal and works backward to find supporting facts and rules. Used in Prolog and expert systems.", link: "chapters/05-propositional-logic/forward-backward-chaining.html", ch: "Ch 05" },
+      { term: "Batch Normalization", def: "A regularization technique that normalizes layer inputs by re-centering and re-scaling, accelerating training and improving stability.", link: "chapters/09-neural-networks-deep-learning/regularization-techniques.html", ch: "Ch 09" },
+      { term: "Classical Planning", def: "Planning in fully observable, deterministic, static environments with discrete states and actions. Assumes perfect knowledge of the world.", link: "chapters/13-planning/classical-planning.html", ch: "Ch 13" },
+      { term: "Neuromorphic Computing", def: "Hardware and computational approaches inspired by the structure and function of biological neural systems, using spiking neural networks and specialized chips.", link: "chapters/15-advanced-topics/neuromorphic-computing.html", ch: "Ch 15" },
+      { term: "Partially Observable Game", def: "A game where players do not have full information about the current state, requiring strategies that account for hidden information.", link: "chapters/04-adversarial-search/partially-observable-games.html", ch: "Ch 04" },
+      { term: "Precision", def: "The ratio of true positives to all predicted positives: TP/(TP+FP). Measures accuracy of positive predictions.", link: "chapters/08-machine-learning-foundations/evaluation-metrics.html", ch: "Ch 08" },
+      { term: "Recall", def: "The ratio of true positives to all actual positives: TP/(TP+FN). Measures the completeness of positive predictions.", link: "chapters/08-machine-learning-foundations/evaluation-metrics.html", ch: "Ch 08" },
+      { term: "Self-Attention", def: "A mechanism where each element in a sequence attends to every other element, computing relevance scores to create context-aware representations.", link: "chapters/09-neural-networks-deep-learning/attention-mechanism.html", ch: "Ch 09" },
+      { term: "Softmax", def: "A function that normalizes a vector of real numbers into a probability distribution, commonly used as the output layer of classification networks.", link: "chapters/09-neural-networks-deep-learning/activation-functions.html", ch: "Ch 09" },
+      { term: "ReLU (Rectified Linear Unit)", def: "An activation function f(x) = max(0, x). The most widely used activation in deep learning due to simplicity and effectiveness at mitigating vanishing gradients.", link: "chapters/09-neural-networks-deep-learning/activation-functions.html", ch: "Ch 09" },
+      { term: "Sigmoid Function", def: "An S-shaped activation function σ(x) = 1/(1+e^(-x)) that maps inputs to the range (0, 1). Used historically in neural networks and logistic regression.", link: "chapters/09-neural-networks-deep-learning/activation-functions.html", ch: "Ch 09" }
+    ];
+
+    /* Sort terms alphabetically */
+    terms.sort(function(a, b) { return a.term.toUpperCase().localeCompare(b.term.toUpperCase()); });
+
+    /* Group by first letter */
+    function groupByLetter(list) {
+      var groups = {};
+      list.forEach(function(item) {
+        var first = item.term.charAt(0).toUpperCase();
+        /* Treat digits/symbols as '#' */
+        if (!/[A-Z]/.test(first)) first = '#';
+        if (!groups[first]) groups[first] = [];
+        groups[first].push(item);
+      });
+      return groups;
+    }
+
+    /* Build letter navigation */
+    function buildLetterNav(groups) {
+      var nav = document.getElementById('letterNav');
+      var toc = document.getElementById('tocLetters');
+      var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+      nav.innerHTML = '';
+      toc.innerHTML = '';
+      letters.forEach(function(letter) {
+        var a = document.createElement('a');
+        a.href = '#letter-' + letter;
+        a.textContent = letter;
+        if (!groups[letter]) a.className = 'disabled';
+        nav.appendChild(a);
+
+        if (groups[letter]) {
+          var li = document.createElement('li');
+          var link = document.createElement('a');
+          link.href = '#letter-' + letter;
+          link.textContent = letter + ' (' + groups[letter].length + ')';
+          li.appendChild(link);
+          toc.appendChild(li);
+        }
+      });
+    }
+
+    /* Render glossary */
+    function renderGlossary(list) {
+      var container = document.getElementById('glossaryContent');
+      var noResults = document.getElementById('noResults');
+      var filterCountEl = document.getElementById('filterCount');
+      container.innerHTML = '';
+
+      if (list.length === 0) {
+        noResults.style.display = 'block';
+        filterCountEl.textContent = '0 terms';
+        return;
+      }
+      noResults.style.display = 'none';
+      filterCountEl.textContent = list.length + ' term' + (list.length !== 1 ? 's' : '');
+
+      var groups = groupByLetter(list);
+      buildLetterNav(groups);
+
+      var sortedKeys = Object.keys(groups).sort();
+      sortedKeys.forEach(function(letter) {
+        var section = document.createElement('div');
+        section.className = 'letter-group';
+        section.id = 'letter-' + letter;
+
+        var header = document.createElement('div');
+        header.className = 'letter-group-header';
+        header.textContent = letter;
+        section.appendChild(header);
+
+        groups[letter].forEach(function(item) {
+          var box = document.createElement('div');
+          box.className = 'definition-box';
+          box.innerHTML =
+            '<div class="term-name">' + escapeHtml(item.term) + '</div>' +
+            '<div class="term-def">' + escapeHtml(item.def) + '</div>' +
+            '<a class="term-link" href="' + encodeURI(item.link) + '">📖 Learn more in ' + escapeHtml(item.ch) + ' →</a>';
+          section.appendChild(box);
+        });
+
+        container.appendChild(section);
+      });
+    }
+
+    function escapeHtml(str) {
+      var div = document.createElement('div');
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    }
+
+    /* Filter handler */
+    var searchInput = document.getElementById('glossarySearch');
+    var debounceTimer;
+    searchInput.addEventListener('input', function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function() {
+        var query = searchInput.value.trim().toLowerCase();
+        if (!query) {
+          renderGlossary(terms);
+          return;
+        }
+        var filtered = terms.filter(function(item) {
+          return item.term.toLowerCase().indexOf(query) !== -1 ||
+                 item.def.toLowerCase().indexOf(query) !== -1;
+        });
+        renderGlossary(filtered);
+      }, 200);
+    });
+
+    /* Initial render */
+    document.getElementById('totalTermCount').textContent = '📝 ' + terms.length + ' Terms Defined';
+    renderGlossary(terms);
+
+  })();
+  </script>
+</body>
+</html>

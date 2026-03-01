@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Greedy Best-First Search — Evaluation function f(n)=h(n), priority queue expansion, properties, step-by-step trace on Romania map for GATE DA.">
+  <title>Greedy Best-First Search — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link active"><span class="link-check"></span> Greedy Best-First Search<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded Search<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA* Search<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="weighted-a-star.html" class="sidebar-link"><span class="link-check"></span> Weighted A*<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-informed-strategies.html" class="sidebar-link"><span class="link-check"></span> Strategy Comparison<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> Informed Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE Previous Year<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div>
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="sidebar-overlay"></div>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="heuristic-functions.html">Ch 3: Informed Search</a> &raquo;
+          <span class="current">Greedy Best-First Search</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch03-greedy-bfs">
+
+            <h1>Greedy Best-First Search</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch03-greedy-bfs" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="heuristic-functions.html">Heuristic Functions</a> &mdash; h(n) notation, domain knowledge</li>
+                <li><a href="../02-uninformed-search/problem-formulation.html">Uninformed Search</a> &mdash; Priority queues, BFS concept</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand the evaluation function f(n) = h(n)</li>
+                <li>Write the pseudocode using a priority queue</li>
+                <li>Analyze completeness, optimality, time, and space complexity</li>
+                <li>Trace Greedy BFS on the Romania map</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="overview">
+                <h2>1. Overview</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Greedy Best-First Search</div>
+                  <p>Greedy Best-First Search expands the node that <strong>appears to be closest to the goal</strong> according to the heuristic function. Its evaluation function is: <strong>f(n) = h(n)</strong>.</p>
+                </div>
+
+                <p>The algorithm uses a priority queue (min-heap) ordered by h(n). At each step, it removes the node with the <strong>smallest h-value</strong> and expands it. The key idea: always chase the node that &ldquo;looks&rdquo; nearest to the goal, ignoring the cost already incurred to reach the current node.</p>
+
+                <p>This is called &ldquo;greedy&rdquo; because it only considers the estimated future cost (h), completely ignoring the path cost so far (g). It is &ldquo;best-first&rdquo; because it selects the best node according to its evaluation function.</p>
+              </section>
+
+              <section id="pseudocode">
+                <h2>2. Pseudocode</h2>
+
+                <pre><code>function GREEDY-BEST-FIRST-SEARCH(problem):
+    node = MAKE-NODE(problem.initial_state)
+    frontier = PRIORITY-QUEUE ordered by h(node)
+    frontier.INSERT(node)
+    explored = empty set
+
+    while frontier is not empty:
+        node = frontier.POP()          // lowest h(n)
+        if problem.GOAL-TEST(node.state):
+            return SOLUTION(node)
+        explored.ADD(node.state)
+
+        for each action in problem.ACTIONS(node.state):
+            child = CHILD-NODE(problem, node, action)
+            if child.state not in explored and child not in frontier:
+                frontier.INSERT(child)
+            else if child in frontier with higher h:
+                frontier.REPLACE(child)  // update with lower h
+
+    return FAILURE</code></pre>
+              </section>
+
+              <section id="properties">
+                <h2>3. Properties</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Property</th><th>Greedy Best-First Search</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>Complete?</strong></td><td>No (can get stuck in loops in graph version without repeated-state checking; with repeated-state checking, complete in finite spaces)</td></tr>
+                      <tr><td><strong>Optimal?</strong></td><td><strong>No.</strong> It finds a goal quickly but not necessarily via the cheapest path.</td></tr>
+                      <tr><td><strong>Time Complexity</strong></td><td>O(b<sup>m</sup>) worst case, but a good heuristic can reduce this dramatically</td></tr>
+                      <tr><td><strong>Space Complexity</strong></td><td>O(b<sup>m</sup>) &mdash; keeps all nodes in memory</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p>Where <em>b</em> is the branching factor and <em>m</em> is the maximum depth of the search space.</p>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Why Not Optimal?</div>
+                  <p>Greedy BFS ignores path cost g(n). It may find a path to the goal that passes through nodes with low h-values but high actual edge costs, while a cheaper path exists through nodes with higher h-values but lower cumulative cost.</p>
+                </div>
+              </section>
+
+              <section id="romania-trace">
+                <h2>4. Step-by-Step Trace: Romania Map</h2>
+
+                <p>Goal: Travel from <strong>Arad</strong> to <strong>Bucharest</strong> using Greedy BFS with straight-line distance to Bucharest as h(n).</p>
+
+                <pre><code>h_SLD values:
+Arad=366, Sibiu=253, Timisoara=329, Zerind=374,
+Oradea=380, Fagaras=176, Rimnicu Vilcea=193,
+Pitesti=100, Bucharest=0, Craiova=160, Giurgiu=77</code></pre>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Step</th><th>Expand</th><th>Frontier (node: h)</th><th>Action</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>0</td><td>&mdash;</td><td>Arad: 366</td><td>Initialize</td></tr>
+                      <tr><td>1</td><td>Arad</td><td>Sibiu:253, Timisoara:329, Zerind:374</td><td>Expand Arad (lowest h=366, only node)</td></tr>
+                      <tr><td>2</td><td>Sibiu</td><td>Fagaras:176, RimnicuVilcea:193, Timisoara:329, Zerind:374, Oradea:380</td><td>Expand Sibiu (h=253, lowest)</td></tr>
+                      <tr><td>3</td><td>Fagaras</td><td>Bucharest:0, RimnicuVilcea:193, Timisoara:329, Zerind:374, Oradea:380</td><td>Expand Fagaras (h=176, lowest)</td></tr>
+                      <tr><td>4</td><td>Bucharest</td><td>&mdash;</td><td>Goal found! h=0</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p><strong>Path found:</strong> Arad &rarr; Sibiu &rarr; Fagaras &rarr; Bucharest</p>
+                <p><strong>Path cost:</strong> 140 + 99 + 211 = <strong>450 km</strong></p>
+                <p><strong>Is this optimal?</strong> No! The optimal path is Arad &rarr; Sibiu &rarr; Rimnicu Vilcea &rarr; Pitesti &rarr; Bucharest = 418 km. Greedy BFS was &ldquo;tricked&rdquo; by Fagaras having a lower h-value than Rimnicu Vilcea.</p>
+              </section>
+
+              <section id="worked-examples">
+                <h2>5. Worked Examples</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Example 1: Simple Graph</div>
+                  <p>Consider a graph with nodes S (start), A, B, C, G (goal):</p>
+                  <pre><code>Edges: S→A (cost 1), S→B (cost 5), A→C (cost 3), B→G (cost 2), C→G (cost 6)
+Heuristics: h(S)=7, h(A)=5, h(B)=2, h(C)=4, h(G)=0</code></pre>
+                  <p><strong>Greedy BFS trace:</strong></p>
+                  <ol>
+                    <li>Frontier: {S:7}. Expand S → children A(h=5), B(h=2)</li>
+                    <li>Frontier: {B:2, A:5}. Expand B (h=2) → child G(h=0)</li>
+                    <li>Frontier: {G:0, A:5}. Expand G → <strong>Goal found!</strong></li>
+                  </ol>
+                  <p>Path: S → B → G, cost = 5 + 2 = <strong>7</strong></p>
+                  <p>But path S → A → C → G has cost 1 + 3 + 6 = 10 (more expensive, so Greedy got lucky here).</p>
+                  <p>However, consider if edge S→B cost 50: Greedy still picks B first (h=2), giving cost = 50+2 = 52, while S→A→C→G = 10. <strong>Greedy is not optimal.</strong></p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 2: Greedy BFS Can Loop</div>
+                  <p>Graph: S→A (cost 1, h(A)=3), A→B (cost 1, h(B)=2), B→A (cost 1, h(A)=3), B→G (cost 10, h(G)=0).</p>
+                  <p>Without repeated-state detection, after expanding S and reaching A, then B, the algorithm could re-add A (h=3) and oscillate between A and B. With repeated-state detection (explored set), this is avoided and G is eventually found.</p>
+                  <p><strong>Takeaway:</strong> Without an explored set, Greedy BFS is <strong>not complete</strong> &mdash; it can loop forever.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 3: Grid World</div>
+                  <p>5&times;5 grid. Start = (0,0), Goal = (4,4). h(n) = Manhattan distance. No obstacles.</p>
+                  <pre><code>h(0,0)=8, h(1,0)=7, h(0,1)=7, h(1,1)=6, ... h(4,4)=0</code></pre>
+                  <p>Greedy BFS expands nodes diagonally toward the goal (always picking the neighbor with smallest Manhattan distance). It finds the path in just 8 expansions (moving right or down each step). On a grid with no obstacles, Greedy BFS performs very well because h is highly informative.</p>
+                  <p>If we add a wall across row 2 (blocking direct diagonal path), Greedy might explore many nodes heading toward the wall before backing up, showing its weakness in environments where the heuristic is misleading.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>Greedy BFS uses f(n) = h(n) &mdash; only the heuristic estimate, no path cost.</li>
+                    <li>Expands the node that appears closest to the goal.</li>
+                    <li><strong>Not optimal</strong> and <strong>not complete</strong> without repeated-state checking.</li>
+                    <li>Time and space: O(b<sup>m</sup>) worst case.</li>
+                    <li>Can be very fast with a good heuristic but easily misled.</li>
+                    <li>Foundation for understanding A* (which fixes the optimality problem).</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>Artificial Intelligence: A Modern Approach</em>, 4th Ed. &mdash; Section 3.5.1</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch03-greedy-bfs">&#9745; Mark as Complete</button>
+
+            <div class="nav-buttons">
+              <a href="heuristic-functions.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Heuristic Functions</span>
+              </a>
+              <a href="a-star-search.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">A* Search</span>
+              </a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#overview">1. Overview</a></li>
+              <li><a href="#pseudocode">2. Pseudocode</a></li>
+              <li><a href="#properties">3. Properties</a></li>
+              <li><a href="#romania-trace">4. Romania Map Trace</a></li>
+              <li><a href="#worked-examples">5. Worked Examples</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

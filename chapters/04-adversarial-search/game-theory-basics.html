@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Game Theory Basics for AI — Types of games, game trees, terminal states, utility functions, zero-sum games, Nash equilibrium, and connection to adversarial search for GATE DA.">
+  <title>Game Theory Basics — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a><a href="../03-informed-search/quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="game-theory-basics.html" class="sidebar-link active"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+            <a href="minimax-algorithm.html" class="sidebar-link"><span class="link-check"></span> Minimax<span class="link-type theory">Theory</span></a>
+            <a href="alpha-beta-pruning.html" class="sidebar-link"><span class="link-check"></span> Alpha-Beta Pruning<span class="link-type theory">Theory</span></a>
+            <a href="move-ordering.html" class="sidebar-link"><span class="link-check"></span> Move Ordering<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-functions.html" class="sidebar-link"><span class="link-check"></span> Evaluation Functions<span class="link-type theory">Theory</span></a>
+            <a href="stochastic-games.html" class="sidebar-link"><span class="link-check"></span> Stochastic Games<span class="link-type theory">Theory</span></a>
+            <a href="monte-carlo-tree-search.html" class="sidebar-link"><span class="link-check"></span> MCTS<span class="link-type theory">Theory</span></a>
+            <a href="practical-adversarial.html" class="sidebar-link"><span class="link-check"></span> Tic-Tac-Toe Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-adversarial.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="game-theory-basics.html">Chapter 4: Adversarial Search</a> &raquo;
+          <span class="current">Game Theory Basics</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch04-game-theory">
+
+            <!-- Page Header -->
+            <h1>Game Theory Basics</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch04-game-theory" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="../02-uninformed-search/state-space-representation.html">State Space Representation</a> &mdash; States, actions, transitions</li>
+                <li><a href="../02-uninformed-search/problem-formulation.html">Problem Formulation</a> &mdash; Defining search problems</li>
+                <li><a href="../03-informed-search/heuristic-functions.html">Heuristic Functions</a> &mdash; Basic search strategies</li>
+              </ul>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand why adversarial search differs from standard search</li>
+                <li>Classify games by their properties (deterministic vs stochastic, perfect vs imperfect information, zero-sum vs general-sum)</li>
+                <li>Define game trees, terminal states, and utility functions</li>
+                <li>Explain two-player zero-sum games and their significance in AI</li>
+                <li>Distinguish normal form and extensive form representations</li>
+                <li>Recognize the connection between game trees and search trees</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="why-adversarial">
+                <h2>1. Why Adversarial Search?</h2>
+
+                <p>In standard search problems (Chapters 2&ndash;3), the agent is the sole decision-maker. The environment is passive &mdash; it doesn&rsquo;t fight back. In <strong>adversarial search</strong>, the agent faces an <strong>opponent</strong> who actively tries to minimize the agent&rsquo;s success.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Adversarial Search</div>
+                  <p>A search problem in which two or more agents have <strong>conflicting goals</strong>, and each agent must account for the opponent&rsquo;s moves when choosing its own actions. The game tree is a search tree where the opponent controls half (or some fraction) of the moves.</p>
+                </div>
+
+                <p>Games are an ideal domain for studying AI because they are:</p>
+                <ul>
+                  <li><strong>Well-defined</strong> &mdash; clear rules, states, and outcomes</li>
+                  <li><strong>Challenging</strong> &mdash; opponents create enormous complexity</li>
+                  <li><strong>Measurable</strong> &mdash; win/loss/draw provides clear performance metric</li>
+                  <li><strong>Abstract</strong> &mdash; strip away real-world noise, focus on reasoning</li>
+                </ul>
+
+                <div class="note-box">
+                  <div class="box-title">Search vs. Games</div>
+                  <p>In standard search, the agent plans a complete path from start to goal. In a game, the agent can only decide its <strong>next move</strong> because the opponent&rsquo;s response is uncertain. The agent must use a <strong>strategy</strong> (or policy) rather than a fixed plan.</p>
+                </div>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="types-of-games">
+                <h2>2. Types of Games</h2>
+
+                <p>Games can be classified along several dimensions. Understanding these classifications is essential for choosing the correct algorithm.</p>
+
+                <h3>2.1 Deterministic vs. Stochastic</h3>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Property</th><th>Deterministic</th><th>Stochastic</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Randomness</td><td>No chance elements</td><td>Involves dice, card draws, etc.</td></tr>
+                      <tr><td>Outcome of actions</td><td>Fully predictable</td><td>Probabilistic outcomes</td></tr>
+                      <tr><td>Examples</td><td>Chess, Checkers, Go, Tic-Tac-Toe</td><td>Backgammon, Poker, Monopoly</td></tr>
+                      <tr><td>Algorithm</td><td>Minimax, Alpha-Beta</td><td>Expectiminimax</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>2.2 Perfect vs. Imperfect Information</h3>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Property</th><th>Perfect Information</th><th>Imperfect Information</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>State visibility</td><td>Both players see the complete game state</td><td>Some information is hidden</td></tr>
+                      <tr><td>Examples</td><td>Chess, Go, Checkers</td><td>Poker, Battleship, Bridge</td></tr>
+                      <tr><td>Decision basis</td><td>Full knowledge of current position</td><td>Belief states, probability estimates</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>2.3 Zero-Sum vs. General-Sum</h3>
+                <div class="definition-box">
+                  <div class="box-title">Zero-Sum Game</div>
+                  <p>A game is <strong>zero-sum</strong> if the total payoff to all players sums to zero (or a constant) for every outcome. One player&rsquo;s gain is exactly the other player&rsquo;s loss. Formally: <strong>U<sub>A</sub> + U<sub>B</sub> = 0</strong> for all terminal states.</p>
+                </div>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Property</th><th>Zero-Sum</th><th>General-Sum</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Payoff relationship</td><td>Strictly competitive: one wins, other loses equally</td><td>Mixed motives: cooperation possible</td></tr>
+                      <tr><td>Examples</td><td>Chess (+1/0/&minus;1), Go, Tic-Tac-Toe</td><td>Prisoner&rsquo;s Dilemma, trade negotiations</td></tr>
+                      <tr><td>AI focus</td><td>Primary focus of adversarial search</td><td>More complex, game theory heavy</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>2.4 Number of Players</h3>
+                <ul>
+                  <li><strong>Two-player games</strong> &mdash; Most studied in AI (Chess, Go, Tic-Tac-Toe)</li>
+                  <li><strong>Multi-player games</strong> &mdash; Alliances may form; more complex strategies (e.g., Risk)</li>
+                  <li><strong>Single-player &ldquo;games&rdquo;</strong> &mdash; Really just search/optimization problems (e.g., puzzles)</li>
+                </ul>
+
+                <div class="note-box">
+                  <div class="box-title">GATE Focus</div>
+                  <p>GATE DA questions focus almost exclusively on <strong>two-player, deterministic, perfect-information, zero-sum games</strong>. This is the setting for Minimax and Alpha-Beta pruning. Stochastic games (Expectiminimax) appear occasionally.</p>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="game-tree">
+                <h2>3. The Game Tree</h2>
+
+                <p>A <strong>game tree</strong> represents all possible plays of a game. It is essentially a search tree, but with an important difference: <strong>different levels are controlled by different players</strong>.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Game Tree Components</div>
+                  <ul>
+                    <li><strong>S<sub>0</sub></strong> &mdash; Initial state (starting position of the game)</li>
+                    <li><strong>PLAYER(s)</strong> &mdash; Function that returns which player moves in state s</li>
+                    <li><strong>ACTIONS(s)</strong> &mdash; Set of legal moves in state s</li>
+                    <li><strong>RESULT(s, a)</strong> &mdash; Transition model: state resulting from action a in state s</li>
+                    <li><strong>IS-TERMINAL(s)</strong> &mdash; Returns true if s is a terminal state (game over)</li>
+                    <li><strong>UTILITY(s, p)</strong> &mdash; Numeric payoff for player p at terminal state s</li>
+                  </ul>
+                </div>
+
+                <h3>3.1 Example: Tic-Tac-Toe Game Tree (Partial)</h3>
+                <pre><code>                        (empty board)          &larr; MAX moves (X)
+                       /     |     \
+                    X..     .X.     ..X  ...     &larr; 9 possible first moves
+                   / | \   / | \
+                 XO. X.O  ...                    &larr; MIN moves (O)
+                / | \
+             XOX XO. ...                         &larr; MAX moves (X)
+               ...
+            Terminal states: X wins (+1), O wins (-1), Draw (0)</code></pre>
+
+                <p>For Tic-Tac-Toe:</p>
+                <ul>
+                  <li><strong>Branching factor:</strong> starts at 9, decreases each level</li>
+                  <li><strong>Maximum depth:</strong> 9 moves</li>
+                  <li><strong>Total game tree nodes:</strong> 9! = 362,880 (upper bound; actual &asymp; 255,168 due to early termination)</li>
+                  <li><strong>Unique states:</strong> about 5,478 (after accounting for symmetry)</li>
+                </ul>
+
+                <h3>3.2 Terminal States and Utility</h3>
+
+                <p>The <strong>utility function</strong> (also called <strong>payoff function</strong>) assigns a numeric value to each terminal state from the perspective of a player.</p>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Game</th><th>Win</th><th>Loss</th><th>Draw</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Tic-Tac-Toe</td><td>+1</td><td>&minus;1</td><td>0</td></tr>
+                      <tr><td>Chess</td><td>+1</td><td>&minus;1</td><td>0</td></tr>
+                      <tr><td>Backgammon</td><td>+192 (max)</td><td>&minus;192</td><td>N/A</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p>In a zero-sum game, UTILITY(s, MAX) = &minus;UTILITY(s, MIN). So we only need to track one value &mdash; the utility for MAX. MAX tries to <strong>maximize</strong> this value; MIN tries to <strong>minimize</strong> it.</p>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="game-representations">
+                <h2>4. Normal Form vs. Extensive Form</h2>
+
+                <h3>4.1 Normal Form (Strategic Form)</h3>
+                <p>A <strong>normal form game</strong> is represented as a matrix showing payoffs for each combination of player strategies. Both players choose simultaneously.</p>
+
+                <div class="example-box">
+                  <div class="box-title">Example: Prisoner&rsquo;s Dilemma (Normal Form)</div>
+                  <pre><code>                    Player B
+                  Cooperate    Defect
+Player A  Coop   (-1, -1)    (-3, 0)
+          Defect ( 0, -3)    (-2, -2)
+
+Each cell: (Payoff for A, Payoff for B)
+Dominant strategy: Both defect &rarr; (-2, -2)</code></pre>
+                  <p>Note: This is a general-sum game &mdash; not zero-sum since (-1)+(-1) &ne; 0.</p>
+                </div>
+
+                <h3>4.2 Extensive Form (Game Tree)</h3>
+                <p>An <strong>extensive form game</strong> is represented as a tree showing the sequential structure of decisions. This is the standard representation used in adversarial search.</p>
+
+                <div class="example-box">
+                  <div class="box-title">Example: Simple Game in Extensive Form</div>
+                  <pre><code>         MAX (root)
+        /          \
+    a1 /            \ a2
+      /              \
+    MIN              MIN
+   /   \            /   \
+  b1    b2        b3    b4
+  |     |         |     |
+ (3)   (12)      (8)   (2)
+ 
+Terminal utilities shown for MAX player.
+MAX wants highest value, MIN wants lowest.
+
+Optimal play: MAX chooses a1 (value 3)
+  because MIN will choose b1 (giving 3) at left,
+  and MIN will choose b4 (giving 2) at right.
+  MAX prefers 3 over 2, so chooses a1.</code></pre>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Key Distinction</div>
+                  <p>Normal form is used primarily in classical game theory (simultaneous moves). Extensive form (game tree) is the standard representation in AI adversarial search (sequential moves). For GATE, you&rsquo;ll almost always work with the extensive form / game tree.</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="zero-sum-detail">
+                <h2>5. Two-Player Zero-Sum Games in Detail</h2>
+
+                <p>The vast majority of adversarial search algorithms focus on <strong>two-player zero-sum games with perfect information</strong>. Here are the key properties:</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Two-Player Zero-Sum Game</div>
+                  <ul>
+                    <li><strong>Players:</strong> MAX and MIN (by convention)</li>
+                    <li><strong>MAX</strong> moves first (or is the player we&rsquo;re computing for)</li>
+                    <li><strong>MIN</strong> is the opponent</li>
+                    <li>They alternate turns (in most games)</li>
+                    <li>UTILITY(s, MAX) + UTILITY(s, MIN) = 0 for all terminal states s</li>
+                    <li>MAX wants to maximize UTILITY; MIN wants to minimize it</li>
+                  </ul>
+                </div>
+
+                <p>The <strong>minimax value</strong> of a node is the utility that both players can guarantee under optimal play. This is the foundation of the Minimax algorithm (next section).</p>
+
+                <pre><code>MINIMAX-VALUE(s) =
+  UTILITY(s)                           if IS-TERMINAL(s)
+  max over a in ACTIONS(s) of
+    MINIMAX-VALUE(RESULT(s, a))        if PLAYER(s) = MAX
+  min over a in ACTIONS(s) of
+    MINIMAX-VALUE(RESULT(s, a))        if PLAYER(s) = MIN</code></pre>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="nash-equilibrium">
+                <h2>6. Nash Equilibrium (Brief)</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Nash Equilibrium</div>
+                  <p>A set of strategies (one per player) where <strong>no player can improve their payoff by unilaterally changing their strategy</strong>, given the other players&rsquo; strategies remain fixed.</p>
+                </div>
+
+                <p>In two-player zero-sum games, the Nash equilibrium corresponds exactly to the <strong>minimax solution</strong>. Both players play optimally, and neither can benefit from deviating. The minimax theorem (von Neumann, 1928) guarantees that such an equilibrium always exists in finite two-player zero-sum games.</p>
+
+                <div class="example-box">
+                  <div class="box-title">Example: Nash Equilibrium in Tic-Tac-Toe</div>
+                  <p>The Nash equilibrium of Tic-Tac-Toe is a <strong>draw</strong>. If both players play optimally, neither can force a win. The minimax value of the initial state is 0 (draw). Any deviation from optimal play by one player can only benefit the other.</p>
+                </div>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="solved-games">
+                <h2>7. Solved vs. Unsolved Games</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Game</th><th>Status</th><th>Game Tree Complexity</th><th>Result</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Tic-Tac-Toe</td><td>Strongly solved</td><td>~10<sup>5</sup></td><td>Draw with optimal play</td></tr>
+                      <tr><td>Connect Four</td><td>Strongly solved (1988)</td><td>~10<sup>13</sup></td><td>First player wins</td></tr>
+                      <tr><td>Checkers</td><td>Weakly solved (2007)</td><td>~10<sup>31</sup></td><td>Draw with optimal play</td></tr>
+                      <tr><td>Chess</td><td>Unsolved</td><td>~10<sup>123</sup></td><td>Unknown (likely draw)</td></tr>
+                      <tr><td>Go (19&times;19)</td><td>Unsolved</td><td>~10<sup>360</sup></td><td>Unknown</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <ul>
+                  <li><strong>Strongly solved:</strong> Optimal strategy known for all positions</li>
+                  <li><strong>Weakly solved:</strong> Optimal strategy known from the initial position with both players playing optimally</li>
+                  <li><strong>Unsolved:</strong> Too complex to solve completely with current technology</li>
+                </ul>
+              </section>
+
+              <!-- Section 8 -->
+              <section id="connection-to-search">
+                <h2>8. Connection to Search</h2>
+
+                <p>A game tree is fundamentally a <strong>search tree</strong> with a twist:</p>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Aspect</th><th>Standard Search</th><th>Adversarial Search (Game)</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Decision-maker</td><td>Single agent</td><td>Two (or more) agents alternate</td></tr>
+                      <tr><td>Goal</td><td>Reach a goal state</td><td>Maximize utility at terminal state</td></tr>
+                      <tr><td>Plan</td><td>Sequence of actions</td><td>Strategy (action for each possible state)</td></tr>
+                      <tr><td>Branching</td><td>Agent&rsquo;s actions only</td><td>Agent + opponent actions</td></tr>
+                      <tr><td>Evaluation</td><td>Path cost (minimize)</td><td>Utility at leaves (max/min alternation)</td></tr>
+                      <tr><td>Complexity</td><td>O(b<sup>d</sup>)</td><td>O(b<sup>m</sup>) where m can be very large</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p>The key insight: in a game tree, the <strong>opponent controls half the moves</strong>. You cannot simply plan a path; you must plan for the <strong>worst-case response</strong> at every opponent node. This is why we need specialized algorithms like Minimax.</p>
+              </section>
+
+              <!-- Section 9: GATE Practice -->
+              <section id="gate-practice">
+                <h2>9. GATE Practice Points</h2>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Common Mistakes</div>
+                  <ul>
+                    <li>Confusing zero-sum with general-sum games &mdash; Prisoner&rsquo;s Dilemma is NOT zero-sum</li>
+                    <li>Assuming all games have perfect information &mdash; Poker has hidden cards</li>
+                    <li>Forgetting that in a zero-sum game, MIN&rsquo;s utility = &minus;(MAX&rsquo;s utility)</li>
+                    <li>Treating game trees like regular search trees (ignoring the alternating min/max)</li>
+                  </ul>
+                </div>
+
+                <div class="quick-facts">
+                  <h4>&#9889; Quick Facts for GATE</h4>
+                  <ul>
+                    <li>Adversarial search applies to competitive multi-agent environments</li>
+                    <li>GATE focuses on two-player, deterministic, perfect-information, zero-sum games</li>
+                    <li>A game tree has MAX and MIN nodes alternating by level</li>
+                    <li>Utility is always defined from MAX&rsquo;s perspective in zero-sum games</li>
+                    <li>Nash equilibrium = minimax solution for two-player zero-sum games</li>
+                    <li>Tic-Tac-Toe, Chess, Go are deterministic perfect-information zero-sum games</li>
+                    <li>Backgammon is stochastic (dice); Poker has imperfect information</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>Adversarial search differs from standard search because an opponent actively works against the agent.</li>
+                    <li>Games are classified as deterministic/stochastic, perfect/imperfect information, zero-sum/general-sum.</li>
+                    <li>A game tree represents all possible plays, with alternating MAX and MIN decision levels.</li>
+                    <li>Terminal states have utility values; MAX maximizes, MIN minimizes.</li>
+                    <li>Two-player zero-sum games are the primary focus of adversarial search algorithms.</li>
+                    <li>The minimax value gives the guaranteed outcome under optimal play by both sides.</li>
+                    <li>Nash equilibrium in zero-sum games corresponds to the minimax solution.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- References -->
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>Artificial Intelligence: A Modern Approach</em>, 4th Edition &mdash; Chapter 5.1&ndash;5.2</li>
+                  <li>von Neumann, J. &amp; Morgenstern, O. <em>Theory of Games and Economic Behavior</em> (1944)</li>
+                  <li>Schaeffer, J. et al. &ldquo;Checkers Is Solved&rdquo; &mdash; <em>Science</em>, 2007</li>
+                </ul>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch04-game-theory">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="../03-informed-search/quiz-informed-search.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Informed Search Quiz</span>
+              </a>
+              <a href="minimax-algorithm.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Minimax Algorithm</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#why-adversarial">1. Why Adversarial Search?</a></li>
+              <li><a href="#types-of-games">2. Types of Games</a></li>
+              <li><a href="#game-tree">3. The Game Tree</a></li>
+              <li><a href="#game-representations">4. Normal vs. Extensive Form</a></li>
+              <li><a href="#zero-sum-detail">5. Zero-Sum Games</a></li>
+              <li><a href="#nash-equilibrium">6. Nash Equilibrium</a></li>
+              <li><a href="#solved-games">7. Solved vs. Unsolved</a></li>
+              <li><a href="#connection-to-search">8. Connection to Search</a></li>
+              <li><a href="#gate-practice">9. GATE Practice</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

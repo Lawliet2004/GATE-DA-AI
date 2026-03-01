@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NLP Chapter Notes — concise cheatsheet covering text preprocessing, word embeddings, language models, transformers, BERT, GPT, and prompt engineering for GATE DA.">
+  <title>Chapter Notes: Natural Language Processing — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a>
+            <a href="word-embeddings.html" class="sidebar-link"><span class="link-check"></span> Word Embeddings<span class="link-type theory">Theory</span></a>
+            <a href="language-models.html" class="sidebar-link"><span class="link-check"></span> Language Models<span class="link-type theory">Theory</span></a>
+            <a href="large-language-models.html" class="sidebar-link"><span class="link-check"></span> Large Language Models<span class="link-type theory">Theory</span></a>
+            <a href="gpt-architecture.html" class="sidebar-link"><span class="link-check"></span> GPT Architecture<span class="link-type theory">Theory</span></a>
+            <a href="bert-and-variants.html" class="sidebar-link"><span class="link-check"></span> BERT &amp; Variants<span class="link-type theory">Theory</span></a>
+            <a href="prompt-engineering.html" class="sidebar-link"><span class="link-check"></span> Prompt Engineering<span class="link-type theory">Theory</span></a>
+            <a href="notes-nlp.html" class="sidebar-link active"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-nlp.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="text-preprocessing.html">Chapter 10: Natural Language Processing</a> &raquo; <span class="current">Chapter Notes</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch10-notes-nlp">
+
+            <h1>&#128221; Chapter 10: NLP &mdash; Quick-Revision Notes</h1>
+            <p>A compact cheatsheet covering every major topic in the Natural Language Processing chapter. Use this for last-minute revision before GATE DA.</p>
+
+            <!-- Section 1 -->
+            <section id="text-preprocessing">
+              <h2>1. Text Preprocessing</h2>
+              <table>
+                <thead><tr><th>Technique</th><th>Purpose</th><th>Key Detail</th></tr></thead>
+                <tbody>
+                  <tr><td>Tokenization</td><td>Split text into units</td><td>Word-level, sub-word (BPE, WordPiece), character-level</td></tr>
+                  <tr><td>Lowercasing</td><td>Normalize case</td><td>Reduces vocabulary; may lose proper noun info</td></tr>
+                  <tr><td>Stop-word removal</td><td>Remove frequent words</td><td>&ldquo;the&rdquo;, &ldquo;is&rdquo;, &ldquo;and&rdquo; &mdash; task-dependent</td></tr>
+                  <tr><td>Stemming</td><td>Strip suffixes</td><td>Porter Stemmer: &ldquo;running&rdquo; &rarr; &ldquo;run&rdquo;; crude, fast</td></tr>
+                  <tr><td>Lemmatization</td><td>Dictionary lookup</td><td>&ldquo;better&rdquo; &rarr; &ldquo;good&rdquo;; needs POS; slower, accurate</td></tr>
+                </tbody>
+              </table>
+              <p><strong>Bag of Words (BoW):</strong> Document = vector of word counts. Ignores word order. Sparse &amp; high-dimensional.</p>
+              <p><strong>TF-IDF:</strong> TF-IDF(t, d) = TF(t, d) &times; log(N / DF(t)). Upweights rare, informative terms.</p>
+              <p><strong>N-grams:</strong> Contiguous sequences of n tokens. Count of n-grams in string of length L = L &minus; n + 1.</p>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="word-embeddings">
+              <h2>2. Word Embeddings</h2>
+              <table>
+                <thead><tr><th>Model</th><th>Method</th><th>Key Property</th></tr></thead>
+                <tbody>
+                  <tr><td>Word2Vec CBOW</td><td>Predict center word from context window</td><td>Faster training; better for frequent words</td></tr>
+                  <tr><td>Word2Vec Skip-gram</td><td>Predict context words from center word</td><td>Better for rare words; slower</td></tr>
+                  <tr><td>GloVe</td><td>Factorize word co-occurrence matrix</td><td>Global statistics; good analogies</td></tr>
+                </tbody>
+              </table>
+              <p><strong>Key formulas:</strong></p>
+              <ul>
+                <li>Cosine similarity: cos(&theta;) = (A &middot; B) / (&#8214;A&#8214; &times; &#8214;B&#8214;)</li>
+                <li>Vector arithmetic: vec(&ldquo;king&rdquo;) &minus; vec(&ldquo;man&rdquo;) + vec(&ldquo;woman&rdquo;) &asymp; vec(&ldquo;queen&rdquo;)</li>
+                <li>Negative sampling loss: log &sigma;(v<sub>w</sub>&prime; &middot; v<sub>c</sub>) + &sum;<sub>k</sub> log &sigma;(&minus;v<sub>w<sub>k</sub></sub>&prime; &middot; v<sub>c</sub>)</li>
+              </ul>
+              <p><strong>Limitation:</strong> Static embeddings &mdash; one vector per word regardless of context (&ldquo;bank&rdquo; = same vector in all sentences).</p>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="language-models">
+              <h2>3. Language Models</h2>
+              <p><strong>Chain rule:</strong> P(w<sub>1</sub>...w<sub>n</sub>) = &prod;<sub>i=1</sub><sup>n</sup> P(w<sub>i</sub> | w<sub>1</sub>...w<sub>i&minus;1</sub>)</p>
+              <p><strong>N-gram approximation (Markov):</strong> P(w<sub>i</sub> | w<sub>1</sub>...w<sub>i&minus;1</sub>) &asymp; P(w<sub>i</sub> | w<sub>i&minus;n+1</sub>...w<sub>i&minus;1</sub>)</p>
+
+              <table>
+                <thead><tr><th>Model</th><th>Formula</th><th>Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>Unigram</td><td>P(w) = count(w) / N</td><td>No context</td></tr>
+                  <tr><td>Bigram</td><td>P(w<sub>i</sub>|w<sub>i&minus;1</sub>) = C(w<sub>i&minus;1</sub>,w<sub>i</sub>) / C(w<sub>i&minus;1</sub>)</td><td>1 word context</td></tr>
+                  <tr><td>Trigram</td><td>P(w<sub>i</sub>|w<sub>i&minus;2</sub>,w<sub>i&minus;1</sub>) = C(w<sub>i&minus;2</sub>,w<sub>i&minus;1</sub>,w<sub>i</sub>) / C(w<sub>i&minus;2</sub>,w<sub>i&minus;1</sub>)</td><td>2 word context</td></tr>
+                </tbody>
+              </table>
+              <p><strong>Perplexity:</strong> PP(W) = P(w<sub>1</sub>...w<sub>N</sub>)<sup>&minus;1/N</sup> &mdash; lower is better.</p>
+              <p><strong>Smoothing techniques:</strong></p>
+              <ul>
+                <li><strong>Laplace (add-1):</strong> P(w<sub>i</sub>|w<sub>i&minus;1</sub>) = (C(w<sub>i&minus;1</sub>,w<sub>i</sub>) + 1) / (C(w<sub>i&minus;1</sub>) + V)</li>
+                <li><strong>Kneser-Ney:</strong> Discounts counts by fixed d; redistributes using continuation probability</li>
+              </ul>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="transformers">
+              <h2>4. Transformer Architecture</h2>
+              <p><strong>Self-Attention:</strong> Attention(Q, K, V) = softmax(QK<sup>T</sup> / &radic;d<sub>k</sub>) &middot; V</p>
+              <p><strong>Multi-Head Attention:</strong> Concatenate h attention heads, then project: MultiHead = Concat(head<sub>1</sub>, ..., head<sub>h</sub>) &middot; W<sup>O</sup></p>
+              <p><strong>Transformer block:</strong> Multi-Head Attention &rarr; Add &amp; LayerNorm &rarr; FFN &rarr; Add &amp; LayerNorm</p>
+              <p><strong>FFN:</strong> FFN(x) = max(0, xW<sub>1</sub> + b<sub>1</sub>)W<sub>2</sub> + b<sub>2</sub></p>
+              <p><strong>Positional Encoding (sinusoidal):</strong></p>
+              <ul>
+                <li>PE(pos, 2i) = sin(pos / 10000<sup>2i/d</sup>)</li>
+                <li>PE(pos, 2i+1) = cos(pos / 10000<sup>2i/d</sup>)</li>
+              </ul>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="gpt-bert">
+              <h2>5. GPT vs BERT at a Glance</h2>
+              <table>
+                <thead><tr><th></th><th>GPT (Decoder)</th><th>BERT (Encoder)</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Direction</strong></td><td>Left-to-right (causal mask)</td><td>Bidirectional (full attention)</td></tr>
+                  <tr><td><strong>Pretraining</strong></td><td>Next-token prediction</td><td>MLM (15% masked) + NSP</td></tr>
+                  <tr><td><strong>Strength</strong></td><td>Text generation</td><td>Text understanding / classification</td></tr>
+                  <tr><td><strong>Tokenizer</strong></td><td>BPE</td><td>WordPiece</td></tr>
+                  <tr><td><strong>Usage mode</strong></td><td>Prompting (zero/few-shot)</td><td>Fine-tuning with task head</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="bert-variants">
+              <h2>6. BERT Variants Quick Reference</h2>
+              <table>
+                <thead><tr><th>Variant</th><th>Key Change</th></tr></thead>
+                <tbody>
+                  <tr><td>RoBERTa</td><td>No NSP; dynamic masking; more data &amp; longer training</td></tr>
+                  <tr><td>ALBERT</td><td>Cross-layer weight sharing; factorized embeddings; SOP replaces NSP</td></tr>
+                  <tr><td>DistilBERT</td><td>6-layer student via knowledge distillation; 40% smaller, 97% performance</td></tr>
+                  <tr><td>ELECTRA</td><td>Replaced-token detection (generator + discriminator); more sample-efficient</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="llm-concepts">
+              <h2>7. Large Language Model Concepts</h2>
+              <ul>
+                <li><strong>Scaling laws:</strong> Loss &prop; N<sup>&minus;&alpha;</sup> (Kaplan); Chinchilla: tokens &asymp; 20 &times; parameters</li>
+                <li><strong>Emergent abilities:</strong> Capabilities that appear only at sufficient scale (e.g., CoT reasoning)</li>
+                <li><strong>In-Context Learning (ICL):</strong> Learning from examples in the prompt without weight updates</li>
+                <li><strong>RLHF:</strong> SFT &rarr; Train reward model &rarr; PPO optimization</li>
+                <li><strong>LoRA:</strong> Low-Rank Adaptation &mdash; freeze model; add small trainable matrices</li>
+              </ul>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="prompt-engineering">
+              <h2>8. Prompt Engineering Cheatsheet</h2>
+              <table>
+                <thead><tr><th>Technique</th><th>When to Use</th></tr></thead>
+                <tbody>
+                  <tr><td>Zero-shot</td><td>Simple, well-defined tasks with capable models</td></tr>
+                  <tr><td>Few-shot (k=3&ndash;8)</td><td>Need specific output format or domain adaptation</td></tr>
+                  <tr><td>Chain-of-Thought</td><td>Math, logic, multi-step reasoning</td></tr>
+                  <tr><td>Self-Consistency</td><td>High-stakes reasoning; majority vote over N samples</td></tr>
+                  <tr><td>ReAct</td><td>Tasks needing external tools (search, calculate)</td></tr>
+                  <tr><td>RAG</td><td>Knowledge-intensive QA; reduce hallucination</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 9 -->
+            <section id="formula-sheet">
+              <h2>9. Formula Quick Reference</h2>
+              <table>
+                <thead><tr><th>Concept</th><th>Formula</th></tr></thead>
+                <tbody>
+                  <tr><td>TF-IDF</td><td>TF(t,d) &times; log(N / DF(t))</td></tr>
+                  <tr><td>N-gram count</td><td>L &minus; n + 1</td></tr>
+                  <tr><td>Cosine similarity</td><td>(A &middot; B) / (&#8214;A&#8214; &middot; &#8214;B&#8214;)</td></tr>
+                  <tr><td>Bigram probability</td><td>C(w<sub>i&minus;1</sub>, w<sub>i</sub>) / C(w<sub>i&minus;1</sub>)</td></tr>
+                  <tr><td>Perplexity</td><td>P(W)<sup>&minus;1/N</sup></td></tr>
+                  <tr><td>Self-Attention</td><td>softmax(QK<sup>T</sup> / &radic;d<sub>k</sub>) &middot; V</td></tr>
+                  <tr><td>Laplace smoothing</td><td>(C(w<sub>i&minus;1</sub>,w<sub>i</sub>)+1) / (C(w<sub>i&minus;1</sub>)+V)</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 10 -->
+            <section id="gate-tips">
+              <h2>10. GATE DA Quick Tips</h2>
+              <div class="tip-box">
+                <ul>
+                  <li>&#9889; TF-IDF and BoW are <strong>high-relevance</strong> topics for GATE DA &mdash; practice numerical problems.</li>
+                  <li>&#9889; Know the bigram/trigram probability formula cold &mdash; expect plug-and-compute questions.</li>
+                  <li>&#9889; Perplexity: lower = better. If PP = V (vocabulary size), the model is random.</li>
+                  <li>&#9889; Stemming is <strong>rule-based</strong> (faster, cruder); lemmatization is <strong>dictionary-based</strong> (slower, accurate).</li>
+                  <li>&#9889; Self-attention complexity is O(n&sup2; &middot; d) where n = sequence length, d = dimension.</li>
+                  <li>&#9889; BERT = encoder (bidirectional, understanding); GPT = decoder (left-to-right, generation).</li>
+                  <li>&#9889; For GATE: focus on TF-IDF calculations, n-gram probabilities, perplexity, and BoW representations.</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch10-notes-nlp">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="prompt-engineering.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Prompt Engineering</span></a>
+              <a href="quiz-nlp.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Quiz: NLP</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#text-preprocessing">1. Text Preprocessing</a></li>
+            <li><a href="#word-embeddings">2. Word Embeddings</a></li>
+            <li><a href="#language-models">3. Language Models</a></li>
+            <li><a href="#transformers">4. Transformer Architecture</a></li>
+            <li><a href="#gpt-bert">5. GPT vs BERT</a></li>
+            <li><a href="#bert-variants">6. BERT Variants</a></li>
+            <li><a href="#llm-concepts">7. LLM Concepts</a></li>
+            <li><a href="#prompt-engineering">8. Prompt Engineering</a></li>
+            <li><a href="#formula-sheet">9. Formula Reference</a></li>
+            <li><a href="#gate-tips">10. GATE Tips</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

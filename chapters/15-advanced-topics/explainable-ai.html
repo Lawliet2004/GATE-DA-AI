@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explainable AI (XAI) — interpretability, LIME, SHAP, saliency maps, and counterfactual explanations for GATE DA AI preparation.">
+  <title>Explainable AI (XAI) — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="explainable-ai.html" class="sidebar-link active"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-ethics-fairness.html" class="sidebar-link"><span class="link-check"></span> AI Ethics &amp; Fairness<span class="link-type theory">Theory</span></a>
+            <a href="federated-learning.html" class="sidebar-link"><span class="link-check"></span> Federated Learning<span class="link-type theory">Theory</span></a>
+            <a href="neuromorphic-computing.html" class="sidebar-link"><span class="link-check"></span> Neuromorphic Computing<span class="link-type theory">Theory</span></a>
+            <a href="quantum-machine-learning.html" class="sidebar-link"><span class="link-check"></span> Quantum ML<span class="link-type theory">Theory</span></a>
+            <a href="ai-safety-alignment.html" class="sidebar-link"><span class="link-check"></span> AI Safety &amp; Alignment<span class="link-type theory">Theory</span></a>
+            <a href="multimodal-ai.html" class="sidebar-link"><span class="link-check"></span> Multimodal AI<span class="link-type theory">Theory</span></a>
+            <a href="autonomous-systems.html" class="sidebar-link"><span class="link-check"></span> Autonomous Systems<span class="link-type theory">Theory</span></a>
+            <a href="recent-breakthroughs.html" class="sidebar-link"><span class="link-check"></span> Recent Breakthroughs<span class="link-type theory">Theory</span></a>
+            <a href="notes-advanced.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-advanced.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="explainable-ai.html">Chapter 15: Advanced Topics</a> &raquo; <span class="current">Explainable AI (XAI)</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch15-explainable-ai">
+
+            <h1>Explainable AI (XAI)</h1>
+
+            <div class="note-box">
+              <strong>GATE DA Relevance:</strong> Explainable AI is an emerging topic in the GATE DA syllabus. Questions may test your understanding of why interpretability matters, the distinction between model-agnostic and model-specific methods, and the fundamental mechanics of LIME and SHAP. Expect conceptual questions on trade-offs between accuracy and interpretability.
+            </div>
+
+            <!-- Section 1 -->
+            <h2>1. The Need for Interpretability</h2>
+            <p>As AI systems are increasingly deployed in high-stakes domains&mdash;healthcare diagnostics, criminal justice, autonomous vehicles, and finance&mdash;the ability to understand <em>why</em> a model makes a particular decision has become critically important. Interpretability is not merely an academic exercise; it is a practical necessity.</p>
+
+            <div class="definition-box">
+              <strong>Explainable AI (XAI):</strong> A set of techniques and methods that produce human-understandable explanations for the outputs of machine learning models, enabling users to comprehend, trust, and effectively manage AI-powered decision-making systems.
+            </div>
+
+            <h3>1.1 Why Do We Need XAI?</h3>
+            <ul>
+              <li><strong>Trust &amp; Adoption:</strong> Stakeholders (doctors, judges, engineers) need to trust model outputs before acting on them.</li>
+              <li><strong>Debugging &amp; Improvement:</strong> Understanding model behavior helps identify bugs, biases, and failure modes.</li>
+              <li><strong>Regulatory Compliance:</strong> Laws like the EU&rsquo;s GDPR mandate a &ldquo;right to explanation&rdquo; for automated decision-making.</li>
+              <li><strong>Scientific Discovery:</strong> Explanations can reveal previously unknown patterns in data.</li>
+              <li><strong>Accountability:</strong> When models cause harm, we must be able to trace the reasoning behind the decision.</li>
+            </ul>
+
+            <!-- Section 2 -->
+            <h2>2. Black-Box vs White-Box Models</h2>
+            <p>Models exist on a spectrum of interpretability. Understanding this spectrum is fundamental to XAI.</p>
+
+            <div class="definition-box">
+              <strong>White-Box (Interpretable) Models:</strong> Models whose internal logic is directly inspectable and understandable by humans. Examples include linear regression, decision trees, and rule-based systems.
+            </div>
+
+            <div class="definition-box">
+              <strong>Black-Box Models:</strong> Models whose internal workings are too complex for direct human comprehension. Examples include deep neural networks, ensemble methods (random forests with hundreds of trees), and SVMs with non-linear kernels.
+            </div>
+
+            <h3>2.1 Interpretability Spectrum</h3>
+            <table>
+              <thead>
+                <tr><th>Model Type</th><th>Interpretability</th><th>Typical Accuracy</th><th>Examples</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Rule-based</td><td>Very High</td><td>Low&ndash;Medium</td><td>IF-THEN rules, decision lists</td></tr>
+                <tr><td>Linear Models</td><td>High</td><td>Medium</td><td>Linear/Logistic Regression</td></tr>
+                <tr><td>Decision Trees</td><td>High</td><td>Medium</td><td>CART, C4.5</td></tr>
+                <tr><td>Ensemble Methods</td><td>Low&ndash;Medium</td><td>High</td><td>Random Forest, Gradient Boosting</td></tr>
+                <tr><td>Deep Neural Networks</td><td>Very Low</td><td>Very High</td><td>CNNs, Transformers, RNNs</td></tr>
+              </tbody>
+            </table>
+
+            <div class="warning-box">
+              <strong>Key Insight:</strong> There is often a <em>trade-off</em> between model accuracy and interpretability. More complex models tend to achieve higher accuracy but are harder to explain. XAI techniques aim to bridge this gap.
+            </div>
+
+            <!-- Section 3 -->
+            <h2>3. LIME &mdash; Local Interpretable Model-Agnostic Explanations</h2>
+            <p>LIME (Ribeiro et al., 2016) is one of the most widely used XAI techniques. It explains individual predictions by approximating the model locally with an interpretable surrogate.</p>
+
+            <div class="definition-box">
+              <strong>LIME:</strong> A technique that explains any classifier&rsquo;s prediction by learning a simple, interpretable model (e.g., linear regression) around the neighborhood of the instance being explained.
+            </div>
+
+            <h3>3.1 How LIME Works</h3>
+            <ol>
+              <li><strong>Select an instance</strong> <em>x</em> for which you want an explanation.</li>
+              <li><strong>Generate perturbed samples</strong> by randomly modifying features of <em>x</em> to create a neighborhood dataset <em>Z</em>.</li>
+              <li><strong>Obtain predictions</strong> from the black-box model <em>f</em> for all perturbed samples.</li>
+              <li><strong>Weight samples</strong> by proximity to <em>x</em> using a kernel function: <em>&pi;<sub>x</sub>(z) = exp(&minus;D(x, z)&sup2; / &sigma;&sup2;)</em>.</li>
+              <li><strong>Fit a simple model</strong> <em>g</em> (e.g., linear model) on the weighted perturbed dataset.</li>
+              <li><strong>Return the explanation</strong>: the coefficients of <em>g</em> indicate feature importance for this prediction.</li>
+            </ol>
+
+            <p>The objective function LIME optimizes is:</p>
+            <p style="text-align:center;"><em>&xi;(x) = argmin<sub>g &isin; G</sub> L(f, g, &pi;<sub>x</sub>) + &Omega;(g)</em></p>
+            <p>where <em>L</em> is the fidelity loss (how well <em>g</em> approximates <em>f</em> locally), and <em>&Omega;(g)</em> is a complexity penalty favoring simpler explanations.</p>
+
+            <div class="example-box">
+              <strong>Example &mdash; LIME for Text Classification:</strong> Suppose a sentiment classifier labels a movie review as &ldquo;Positive.&rdquo; LIME perturbs the review by removing words, queries the model on each variant, and discovers that the words &ldquo;brilliant,&rdquo; &ldquo;masterpiece,&rdquo; and &ldquo;captivating&rdquo; contributed most strongly to the positive prediction.
+            </div>
+
+            <!-- Section 4 -->
+            <h2>4. SHAP &mdash; SHapley Additive exPlanations</h2>
+            <p>SHAP (Lundberg &amp; Lee, 2017) is grounded in cooperative game theory. It assigns each feature a <strong>Shapley value</strong> representing its marginal contribution to the prediction.</p>
+
+            <div class="definition-box">
+              <strong>Shapley Value:</strong> Originating from game theory, the Shapley value of feature <em>i</em> for prediction <em>f(x)</em> is the weighted average of its marginal contributions across all possible feature coalitions:<br><br>
+              <em>&phi;<sub>i</sub> = &sum;<sub>S &sube; N\{i}</sub> [|S|!(|N|&minus;|S|&minus;1)! / |N|!] &middot; [f(S &cup; {i}) &minus; f(S)]</em>
+            </div>
+
+            <h3>4.1 Properties of SHAP</h3>
+            <p>SHAP satisfies several desirable axiomatic properties:</p>
+            <ul>
+              <li><strong>Local Accuracy (Efficiency):</strong> Feature contributions sum to the difference between the prediction and the expected value: <em>f(x) = &phi;<sub>0</sub> + &sum;<sub>i=1</sub><sup>M</sup> &phi;<sub>i</sub></em>.</li>
+              <li><strong>Missingness:</strong> Missing features have zero attribution.</li>
+              <li><strong>Consistency:</strong> If a feature&rsquo;s contribution increases in a new model, its Shapley value does not decrease.</li>
+              <li><strong>Symmetry:</strong> Features that contribute equally receive equal Shapley values.</li>
+            </ul>
+
+            <h3>4.2 SHAP Variants</h3>
+            <ul>
+              <li><strong>KernelSHAP:</strong> Model-agnostic; uses a weighted linear regression similar to LIME but with Shapley-value-based weights.</li>
+              <li><strong>TreeSHAP:</strong> Optimized for tree-based models (XGBoost, LightGBM, Random Forest); runs in O(TLD&sup2;) time.</li>
+              <li><strong>DeepSHAP:</strong> Extends DeepLIFT for deep neural networks using Shapley value approximations.</li>
+            </ul>
+
+            <div class="example-box">
+              <strong>Example &mdash; SHAP for Loan Approval:</strong> A model denies a loan application. SHAP reveals: income (&phi; = &minus;0.35), credit score (&phi; = &minus;0.28), employment status (&phi; = +0.15), existing debt (&phi; = &minus;0.22). The negative Shapley values for income and credit score are the primary drivers of the denial.
+            </div>
+
+            <!-- Section 5 -->
+            <h2>5. Attention Visualization &amp; Saliency Maps</h2>
+            <p>For neural networks, specialized techniques exist to visualize which parts of the input the model focuses on.</p>
+
+            <h3>5.1 Attention Mechanisms</h3>
+            <p>In Transformer-based models, attention weights indicate how much each input token influences the output. The attention score between query <em>q</em> and key <em>k</em> is:</p>
+            <p style="text-align:center;"><em>Attention(Q, K, V) = softmax(QK<sup>T</sup> / &radic;d<sub>k</sub>) &middot; V</em></p>
+            <p>Attention heatmaps can be extracted from each layer and head to visualize token-to-token relationships.</p>
+
+            <div class="warning-box">
+              <strong>Caution:</strong> Attention weights do not always faithfully represent feature importance. Research (Jain &amp; Wallace, 2019) has shown that attention distributions can be misleading&mdash;alternative attention distributions may yield identical predictions.
+            </div>
+
+            <h3>5.2 Saliency Maps (Gradient-Based)</h3>
+            <p>Saliency maps highlight input regions most relevant to the model&rsquo;s output by computing gradients of the output with respect to the input:</p>
+            <p style="text-align:center;"><em>S(x) = |&part;f(x) / &part;x|</em></p>
+            <p>Key gradient-based methods include:</p>
+            <ul>
+              <li><strong>Vanilla Gradients:</strong> Direct computation of &part;y / &part;x.</li>
+              <li><strong>Gradient &times; Input:</strong> Element-wise product of gradients and input values.</li>
+              <li><strong>Integrated Gradients:</strong> Accumulates gradients along a path from a baseline to the input: <em>IG<sub>i</sub>(x) = (x<sub>i</sub> &minus; x&prime;<sub>i</sub>) &middot; &int;<sub>0</sub><sup>1</sup> (&part;f(x&prime; + &alpha;(x &minus; x&prime;)) / &part;x<sub>i</sub>) d&alpha;</em></li>
+              <li><strong>Grad-CAM:</strong> Uses gradients flowing into the final convolutional layer to produce coarse localization maps for CNNs.</li>
+            </ul>
+
+            <div class="example-box">
+              <strong>Example &mdash; Grad-CAM for Image Classification:</strong> A CNN classifies an image as &ldquo;cat.&rdquo; Grad-CAM highlights the cat&rsquo;s face and ears as the most influential regions, overlaid as a heatmap on the original image. This helps verify that the model is looking at the right features rather than background artifacts.
+            </div>
+
+            <!-- Section 6 -->
+            <h2>6. Counterfactual Explanations</h2>
+            <p>Counterfactual explanations answer the question: <em>&ldquo;What minimal change to the input would change the model&rsquo;s decision?&rdquo;</em></p>
+
+            <div class="definition-box">
+              <strong>Counterfactual Explanation:</strong> An alternative input <em>x&prime;</em> close to the original <em>x</em> such that the model output changes: <em>f(x&prime;) &ne; f(x)</em>. The objective is to minimize the distance <em>d(x, x&prime;)</em> subject to the classification change.
+            </div>
+
+            <p>The optimization problem is:</p>
+            <p style="text-align:center;"><em>x&prime; = argmin<sub>x&prime;</sub> d(x, x&prime;) + &lambda; &middot; L(f(x&prime;), y&prime;)</em></p>
+            <p>where <em>y&prime;</em> is the desired (counterfactual) class and <em>&lambda;</em> balances proximity and validity.</p>
+
+            <h3>6.1 Properties of Good Counterfactuals</h3>
+            <ul>
+              <li><strong>Proximity:</strong> The counterfactual should be close to the original instance.</li>
+              <li><strong>Sparsity:</strong> Fewer features should be changed.</li>
+              <li><strong>Plausibility:</strong> The counterfactual should be a realistic data point (lie on the data manifold).</li>
+              <li><strong>Actionability:</strong> Changes should be feasible (e.g., &ldquo;increase income&rdquo; is actionable; &ldquo;change age&rdquo; is not).</li>
+            </ul>
+
+            <div class="example-box">
+              <strong>Example &mdash; Loan Denial Counterfactual:</strong> &ldquo;Your loan was denied. If your annual income were &dollar;5,000 higher and your credit score were 20 points higher, the loan would have been approved.&rdquo; This provides actionable feedback to the applicant.
+            </div>
+
+            <!-- Section 7 -->
+            <h2>7. Model-Agnostic vs Model-Specific Methods</h2>
+            <p>XAI methods are broadly categorized based on their applicability across different model types.</p>
+
+            <table>
+              <thead>
+                <tr><th>Aspect</th><th>Model-Agnostic</th><th>Model-Specific</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Applicability</td><td>Any ML model</td><td>Specific architectures only</td></tr>
+                <tr><td>Examples</td><td>LIME, SHAP (KernelSHAP), Counterfactuals</td><td>Grad-CAM (CNNs), Attention (Transformers), TreeSHAP</td></tr>
+                <tr><td>Speed</td><td>Often slower (requires multiple model queries)</td><td>Typically faster (exploits model internals)</td></tr>
+                <tr><td>Fidelity</td><td>Approximation of true model behavior</td><td>Can be exact</td></tr>
+                <tr><td>Flexibility</td><td>Can compare explanations across models</td><td>Locked to one architecture</td></tr>
+              </tbody>
+            </table>
+
+            <h3>7.1 Choosing the Right Method</h3>
+            <div class="note-box">
+              <strong>Guideline:</strong> Use <em>model-agnostic</em> methods when you need to explain any model or compare explanations across different models. Use <em>model-specific</em> methods when you need faster, more faithful explanations and your model architecture supports them.
+            </div>
+
+            <!-- Section 8 -->
+            <h2>8. Regulatory Requirements &amp; GDPR</h2>
+            <p>The legal landscape increasingly demands explainability from AI systems.</p>
+
+            <h3>8.1 GDPR Right to Explanation</h3>
+            <p>The EU General Data Protection Regulation (GDPR), specifically Articles 13&ndash;15 and Recital 71, establishes that individuals have the right to obtain &ldquo;meaningful information about the logic involved&rdquo; when subjected to automated decision-making. Key implications:</p>
+            <ul>
+              <li>Organizations must provide <strong>meaningful explanations</strong> of automated decisions.</li>
+              <li>Data subjects can <strong>contest decisions</strong> and request human review.</li>
+              <li>The explanation must be provided in a <strong>concise, intelligible</strong> form.</li>
+            </ul>
+
+            <h3>8.2 Other Regulatory Frameworks</h3>
+            <ul>
+              <li><strong>EU AI Act (2024):</strong> Classifies AI systems by risk level; high-risk systems require transparency and explainability documentation.</li>
+              <li><strong>US ECOA &amp; Fair Lending:</strong> Requires lenders to provide specific reasons for credit denials.</li>
+              <li><strong>IEEE P7001:</strong> Standard for transparency in autonomous systems.</li>
+            </ul>
+
+            <div class="example-box">
+              <strong>Example &mdash; GDPR Compliance:</strong> A bank uses a neural network for credit scoring. To comply with GDPR, it deploys SHAP to generate per-applicant explanations, listing the top 5 features that influenced each decision, which are shared with applicants upon request.
+            </div>
+
+            <!-- Section 9 -->
+            <h2>9. Accuracy vs Interpretability Trade-Off</h2>
+            <p>One of the central tensions in XAI is the perceived trade-off between model performance and explainability.</p>
+
+            <h3>9.1 The Rashomon Effect</h3>
+            <p>Research by Cynthia Rudin (2019) challenges the assumption that this trade-off is inevitable. The <strong>Rashomon effect</strong> suggests that for many problems, there exist multiple models with similar accuracy&mdash;some of which may be inherently interpretable.</p>
+
+            <div class="note-box">
+              <strong>Key Insight:</strong> Before reaching for complex black-box models with post-hoc explanations, always check whether a simpler, interpretable model achieves comparable performance. In many real-world tasks, the accuracy gap between a well-tuned interpretable model and a black-box model is surprisingly small.
+            </div>
+
+            <h3>9.2 Strategies to Balance the Trade-Off</h3>
+            <ul>
+              <li><strong>Start simple:</strong> Begin with interpretable models; escalate complexity only if needed.</li>
+              <li><strong>Distillation:</strong> Train a complex model, then distill it into a simpler, interpretable model (e.g., decision tree extraction from neural networks).</li>
+              <li><strong>Hybrid approaches:</strong> Use black-box for prediction, white-box for explanation generation.</li>
+              <li><strong>Inherently interpretable deep models:</strong> Attention-based architectures, concept bottleneck models, and self-explaining neural networks.</li>
+            </ul>
+
+            <!-- Section 10 -->
+            <h2>10. Summary &amp; GATE DA Key Takeaways</h2>
+
+            <div class="theorem-box">
+              <strong>Summary of XAI Methods:</strong>
+              <ul>
+                <li><strong>LIME:</strong> Local, model-agnostic, uses perturbations and a surrogate model.</li>
+                <li><strong>SHAP:</strong> Based on Shapley values from game theory; satisfies efficiency, symmetry, and consistency axioms.</li>
+                <li><strong>Saliency Maps:</strong> Gradient-based, model-specific (neural networks), visualize input importance.</li>
+                <li><strong>Counterfactuals:</strong> Answer &ldquo;what-if&rdquo; questions; provide actionable explanations.</li>
+                <li><strong>Attention Visualization:</strong> Extracts attention weights from Transformers; use with caution.</li>
+              </ul>
+            </div>
+
+            <div class="note-box">
+              <strong>GATE DA Exam Tips:</strong>
+              <ul>
+                <li>Know the difference between <em>global</em> (entire model) and <em>local</em> (single prediction) explanations.</li>
+                <li>Understand the Shapley value formula and its four axiomatic properties.</li>
+                <li>Be prepared to compare LIME vs SHAP in terms of approach, guarantees, and computational cost.</li>
+                <li>Remember: attention &ne; explanation (attention weights may not faithfully indicate importance).</li>
+                <li>Regulatory questions may appear&mdash;know the GDPR right to explanation concept.</li>
+              </ul>
+            </div>
+
+          </article>
+
+          <aside class="page-toc" aria-label="On this page">
+            <div class="toc-header">On This Page</div>
+            <ul id="toc-links"></ul>
+          </aside>
+        </div>
+
+        <nav class="nav-buttons" aria-label="Page navigation">
+          <a href="../14-constraint-satisfaction/quiz-csp.html" class="btn btn-nav btn-prev">&larr; Previous: Quiz &mdash; CSP</a>
+          <a href="ai-ethics-fairness.html" class="btn btn-nav btn-next">Next: AI Ethics &amp; Fairness &rarr;</a>
+        </nav>
+        <div class="page-actions"><button class="btn btn-sm btn-bookmark" data-page="ch15-explainable-ai">&#128278; Bookmark</button><button class="btn btn-sm btn-complete" data-page="ch15-explainable-ai">&#9989; Mark Complete</button></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

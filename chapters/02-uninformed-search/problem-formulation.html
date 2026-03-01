@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Problem Formulation in AI Search — Learn well-defined problems, initial state, actions, transition model, goal test, path cost. Worked examples for 8-puzzle, Romania map, and 8-queens for GATE DA.">
+  <title>Problem Formulation — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+            <a href="../01-intelligent-agents/rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a>
+            <a href="../01-intelligent-agents/task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a>
+            <a href="../01-intelligent-agents/agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a>
+            <a href="../01-intelligent-agents/practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a>
+            <a href="../01-intelligent-agents/notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="problem-formulation.html" class="sidebar-link active"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+            <a href="state-space-representation.html" class="sidebar-link"><span class="link-check"></span> State Space<span class="link-type theory">Theory</span></a>
+            <a href="breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-first-search.html" class="sidebar-link"><span class="link-check"></span> DFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-limited-search.html" class="sidebar-link"><span class="link-check"></span> Depth-Limited<span class="link-type theory">Theory</span></a>
+            <a href="iterative-deepening-dfs.html" class="sidebar-link"><span class="link-check"></span> IDDFS<span class="link-type theory">Theory</span></a>
+            <a href="uniform-cost-search.html" class="sidebar-link"><span class="link-check"></span> UCS<span class="link-type theory">Theory</span></a>
+            <a href="bidirectional-search.html" class="sidebar-link"><span class="link-check"></span> Bidirectional<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-uninformed-strategies.html" class="sidebar-link"><span class="link-check"></span> Comparison<span class="link-type theory">Theory</span></a>
+            <a href="complexity-analysis.html" class="sidebar-link"><span class="link-check"></span> Complexity<span class="link-type theory">Theory</span></a>
+            <a href="practical-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uninformed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">10</span> NLP</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">13</span> Planning</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="sidebar-overlay"></div>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="problem-formulation.html">Chapter 2: Uninformed Search</a> &raquo;
+          <span class="current">Problem Formulation</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch02-problem-formulation">
+
+            <!-- Page Header -->
+            <h1>Problem Formulation</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch02-problem-formulation" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="../01-intelligent-agents/agents-and-environments.html">Agents &amp; Environments</a> &mdash; Understanding of agents, percepts, and actions</li>
+                <li><a href="../01-intelligent-agents/agent-types.html">Agent Types</a> &mdash; Goal-based agents and their decision-making process</li>
+              </ul>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Define the five components of a <strong>well-defined problem</strong></li>
+                <li>Formulate real-world problems as formal search problems</li>
+                <li>Distinguish between <strong>incremental</strong> and <strong>complete-state</strong> formulations</li>
+                <li>Apply problem formulation to classic AI examples: 8-puzzle, Romania map, 8-queens</li>
+                <li>Solve GATE-style problems on mapping real-world scenarios to formal representations</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="why-formulation">
+                <h2>1. Why Problem Formulation Matters</h2>
+
+                <p>Before an AI agent can <strong>search</strong> for a solution, it must understand <em>what</em> the problem is. Problem formulation is the process of deciding what actions and states to consider, given a goal. It is the bridge between the real world and the abstract world where algorithms operate.</p>
+
+                <p>Consider a GPS navigation system. The real world has millions of details&mdash;trees, buildings, traffic lights, pedestrians. But for route planning, the agent only cares about <strong>intersections</strong> (states) and <strong>roads</strong> (actions). This abstraction&mdash;ignoring irrelevant details&mdash;is the essence of problem formulation.</p>
+
+                <div class="note-box">
+                  <div class="box-title">Why This Matters for GATE DA</div>
+                  <p>GATE problems frequently ask you to identify the initial state, goal test, or state space size for a given problem description. Being able to formally specify these components is essential for answering questions on any search algorithm.</p>
+                </div>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="well-defined-problems">
+                <h2>2. The Five Components of a Well-Defined Problem</h2>
+
+                <p>A <strong>well-defined problem</strong> is specified by exactly five components:</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Well-Defined Problem (Russell &amp; Norvig)</div>
+                  <ol>
+                    <li><strong>Initial State:</strong> The state in which the agent starts. Denoted s<sub>0</sub>.</li>
+                    <li><strong>Actions:</strong> The set of possible actions available to the agent in state s. Written as ACTIONS(s).</li>
+                    <li><strong>Transition Model:</strong> A description of what each action does. RESULT(s, a) returns the state that results from doing action a in state s. Together, the initial state, actions, and transition model define the <strong>state space</strong>&mdash;the set of all states reachable from the initial state by any sequence of actions.</li>
+                    <li><strong>Goal Test:</strong> Determines if a given state is a goal state. Can be explicit (a set of goal states) or implicit (a property to check).</li>
+                    <li><strong>Path Cost:</strong> A function that assigns a numeric cost to each path. Typically the sum of step costs: c(s, a, s&prime;) for going from state s to s&prime; via action a. The agent seeks a <strong>minimum cost</strong> path.</li>
+                  </ol>
+                </div>
+
+                <p>A <strong>solution</strong> to a problem is a sequence of actions that leads from the initial state to a goal state. An <strong>optimal solution</strong> has the lowest path cost among all solutions.</p>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Component</th>
+                        <th>Notation</th>
+                        <th>What It Answers</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Initial State</td><td>s<sub>0</sub></td><td>Where do we start?</td></tr>
+                      <tr><td>Actions</td><td>ACTIONS(s)</td><td>What can we do in state s?</td></tr>
+                      <tr><td>Transition Model</td><td>RESULT(s, a)</td><td>Where does action a take us from s?</td></tr>
+                      <tr><td>Goal Test</td><td>GOAL-TEST(s)</td><td>Is state s a goal?</td></tr>
+                      <tr><td>Path Cost</td><td>g(path) = &sum; c(s, a, s&prime;)</td><td>How expensive is this path?</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="example-8-puzzle">
+                <h2>3. Worked Example 1: The 8-Puzzle</h2>
+
+                <p>The 8-puzzle consists of a 3&times;3 grid with tiles numbered 1&ndash;8 and one blank space. Tiles adjacent to the blank can slide into the blank position. The goal is to reach a specific target configuration.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">8-Puzzle Formulation</div>
+                  <ul>
+                    <li><strong>States:</strong> Each state describes the location of each of the eight tiles and the blank in one of the nine squares. Total states = 9! / 2 = 181,440 reachable states (half of 9! = 362,880 because only half the permutations are reachable from any given state).</li>
+                    <li><strong>Initial State:</strong> Any specific arrangement of tiles on the board.</li>
+                    <li><strong>Actions:</strong> The blank can move {Left, Right, Up, Down}. Not all actions are available in every state (e.g., the blank in the top-left corner cannot move Left or Up).</li>
+                    <li><strong>Transition Model:</strong> RESULT(s, a) returns the board configuration after moving the blank in direction a.</li>
+                    <li><strong>Goal Test:</strong> Does the current configuration match the goal configuration? (Explicit goal.)</li>
+                    <li><strong>Path Cost:</strong> Each move costs 1. Total path cost = number of moves.</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">GATE Tip: Who Moves?</div>
+                  <p>We model the <strong>blank</strong> as the agent that moves (Left, Right, Up, Down), even though visually it&rsquo;s the tiles that slide. This simplifies the action set to at most 4 actions per state.</p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="example-romania">
+                <h2>4. Worked Example 2: Romania Road Map</h2>
+
+                <p>This is the classic textbook example. An agent is in Arad and wants to reach Bucharest by driving through Romanian cities connected by roads.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Romania Road Map Formulation</div>
+                  <ul>
+                    <li><strong>States:</strong> The set of all cities in Romania: {Arad, Zerind, Sibiu, Timisoara, Oradea, Fagaras, Rimnicu Vilcea, Pitesti, Bucharest, Giurgiu, Craiova, Drobeta, Mehadia, Lugoj, &hellip;}</li>
+                    <li><strong>Initial State:</strong> In(Arad).</li>
+                    <li><strong>Actions:</strong> Drive from one city to an adjacent city. ACTIONS(In(Arad)) = {Go(Zerind), Go(Sibiu), Go(Timisoara)}.</li>
+                    <li><strong>Transition Model:</strong> RESULT(In(Arad), Go(Zerind)) = In(Zerind).</li>
+                    <li><strong>Goal Test:</strong> Is current state = In(Bucharest)? (Explicit, single goal state.)</li>
+                    <li><strong>Path Cost:</strong> Sum of road distances in kilometers. For example, Arad &rarr; Sibiu costs 140 km.</li>
+                  </ul>
+                </div>
+
+                <p>This problem illustrates that actions have <strong>different costs</strong> (unlike the 8-puzzle where every step costs 1). The optimal solution must minimize total distance, not just the number of cities visited.</p>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="example-8-queens">
+                <h2>5. Worked Example 3: The 8-Queens Problem</h2>
+
+                <p>Place 8 queens on a standard 8&times;8 chessboard so that no two queens attack each other (no two share the same row, column, or diagonal).</p>
+
+                <h3 id="incremental-formulation">5.1 Incremental Formulation</h3>
+                <p>Start with an empty board, place queens one at a time:</p>
+                <ul>
+                  <li><strong>States:</strong> Any arrangement of 0&ndash;8 queens on the board.</li>
+                  <li><strong>Initial State:</strong> Empty board (0 queens placed).</li>
+                  <li><strong>Actions:</strong> Place a queen in any empty square.</li>
+                  <li><strong>Transition Model:</strong> Returns the board with one more queen added.</li>
+                  <li><strong>Goal Test:</strong> 8 queens on the board, none attacking each other.</li>
+                  <li><strong>Path Cost:</strong> Irrelevant&mdash;we only care about finding a goal state, not the path to it.</li>
+                </ul>
+                <p>This na&iuml;ve formulation has 64 &times; 63 &times; &hellip; &times; 57 &asymp; 1.8 &times; 10<sup>14</sup> possible sequences. We can do <strong>much</strong> better.</p>
+
+                <h3 id="improved-incremental">5.2 Improved Incremental Formulation</h3>
+                <p>Since no two queens can share a row, place one queen per row, left to right:</p>
+                <ul>
+                  <li><strong>States:</strong> Arrangements of k queens (0 &le; k &le; 8), one per row in the first k rows, with no mutual attacks.</li>
+                  <li><strong>Actions:</strong> Add a queen to any non-attacked square in the next empty row.</li>
+                  <li><strong>State-space size:</strong> Only 2,057 states to check!</li>
+                </ul>
+
+                <h3 id="complete-state-formulation">5.3 Complete-State Formulation</h3>
+                <p>Start with all 8 queens on the board (one per column) and iteratively improve:</p>
+                <ul>
+                  <li><strong>States:</strong> All arrangements of 8 queens, one per column.</li>
+                  <li><strong>Initial State:</strong> All 8 queens randomly placed (one per column).</li>
+                  <li><strong>Actions:</strong> Move a queen within its column.</li>
+                  <li><strong>Goal Test:</strong> No two queens attack each other.</li>
+                </ul>
+                <p>This is the approach used by local search algorithms like hill climbing and simulated annealing.</p>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Incremental vs. Complete-State</div>
+                  <p><strong>Incremental:</strong> Build the solution piece by piece from scratch. Suitable for systematic search (BFS, DFS).<br>
+                  <strong>Complete-State:</strong> Start with a complete (possibly incorrect) assignment and modify it. Suitable for local search (hill climbing, genetic algorithms). GATE may ask you to distinguish these!</p>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="real-world-mapping">
+                <h2>6. Real-World to Formal Problem Mapping</h2>
+
+                <p>Many GATE questions describe a real-world scenario and ask you to formulate it. The key is <strong>abstraction</strong>&mdash;remove irrelevant details while keeping enough structure to solve the problem.</p>
+
+                <h3>Example A: Route Planning</h3>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Real World</th><th>Formal Problem</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Cities, intersections</td><td>States</td></tr>
+                      <tr><td>Roads connecting cities</td><td>Actions</td></tr>
+                      <tr><td>Driving on a road</td><td>Transition model</td></tr>
+                      <tr><td>&ldquo;Am I at the destination?&rdquo;</td><td>Goal test</td></tr>
+                      <tr><td>Distance / travel time</td><td>Path cost</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Example B: Robotic Assembly</h3>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Real World</th><th>Formal Problem</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Joint angles of robot arm, positions of parts</td><td>States</td></tr>
+                      <tr><td>Rotate joint, move gripper, grasp part</td><td>Actions</td></tr>
+                      <tr><td>Physics simulation of robot motion</td><td>Transition model</td></tr>
+                      <tr><td>Is the product assembled correctly?</td><td>Goal test</td></tr>
+                      <tr><td>Total time or energy consumed</td><td>Path cost</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Example C: Missionary-Cannibal Problem</h3>
+                <p>Three missionaries and three cannibals must cross a river using a boat that holds at most two people. If cannibals ever outnumber missionaries on either bank, the missionaries get eaten.</p>
+                <div class="definition-box">
+                  <div class="box-title">Formal Formulation</div>
+                  <ul>
+                    <li><strong>State:</strong> (M<sub>L</sub>, C<sub>L</sub>, B) where M<sub>L</sub> = missionaries on left bank, C<sub>L</sub> = cannibals on left bank, B = boat position (L or R). M<sub>R</sub> = 3 &minus; M<sub>L</sub>, C<sub>R</sub> = 3 &minus; C<sub>L</sub>.</li>
+                    <li><strong>Initial State:</strong> (3, 3, L)&mdash;all on left bank, boat on left.</li>
+                    <li><strong>Actions:</strong> Move 1 or 2 people (any combination of M and C) across the river, subject to constraints: M<sub>L</sub> &ge; C<sub>L</sub> (or M<sub>L</sub> = 0) and M<sub>R</sub> &ge; C<sub>R</sub> (or M<sub>R</sub> = 0).</li>
+                    <li><strong>Goal Test:</strong> State = (0, 0, R).</li>
+                    <li><strong>Path Cost:</strong> Number of crossings.</li>
+                    <li><strong>State Space Size:</strong> 4 &times; 4 &times; 2 = 32 possible states, but only about 16 are legal.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="abstraction">
+                <h2>7. The Role of Abstraction</h2>
+
+                <p>A good problem formulation <strong>abstracts away</strong> irrelevant details. For the Romania road map, we ignore road conditions, weather, driving speed variations, and traffic. The resulting abstraction must satisfy two conditions:</p>
+
+                <ol>
+                  <li><strong>Validity:</strong> Any abstract solution can be expanded into a solution in the real world.</li>
+                  <li><strong>Usefulness:</strong> Each abstract action should be &ldquo;easy&rdquo; to carry out (easier than the original problem).</li>
+                </ol>
+
+                <p>Finding the right level of abstraction is more art than science, but critical for efficient problem solving.</p>
+              </section>
+
+              <!-- Section 8 -->
+              <section id="gate-practice">
+                <h2>8. GATE Practice Problems</h2>
+
+                <div class="worked-example">
+                  <div class="box-title">Practice Problem 1</div>
+                  <p><strong>Q:</strong> The 15-puzzle (4&times;4 grid with tiles 1&ndash;15 and one blank) has how many reachable states?</p>
+                  <p><strong>A:</strong> Total permutations = 16! = 20,922,789,888,000. Only half are reachable from any given starting state, so the answer is 16!/2 = <strong>10,461,394,944,000</strong> (&asymp; 1.05 &times; 10<sup>13</sup>).</p>
+                </div>
+
+                <div class="worked-example">
+                  <div class="box-title">Practice Problem 2</div>
+                  <p><strong>Q:</strong> For the 8-puzzle, the branching factor (average number of actions per state) is approximately?</p>
+                  <p><strong>A:</strong> The blank in a corner has 2 moves, on an edge has 3 moves, in the center has 4 moves. There are 4 corners, 4 edges, and 1 center. Average = (4&times;2 + 4&times;3 + 1&times;4) / 9 = (8 + 12 + 4) / 9 = <strong>24/9 &asymp; 2.67</strong>.</p>
+                </div>
+
+                <div class="worked-example">
+                  <div class="box-title">Practice Problem 3</div>
+                  <p><strong>Q:</strong> In the missionary-cannibal problem, if we start at (3, 3, L), which of the following is NOT a valid action?</p>
+                  <p>&bull; Move 1 missionary and 1 cannibal to right<br>
+                  &bull; Move 2 cannibals to right<br>
+                  &bull; Move 2 missionaries to right</p>
+                  <p><strong>A:</strong> Move 2 missionaries to right: Left bank becomes (1, 3, R). Since M<sub>L</sub>=1 &lt; C<sub>L</sub>=3 and M<sub>L</sub> &ne; 0, missionaries get eaten. <strong>Invalid!</strong><br>
+                  Move 1M+1C: Left=(2,2,R), valid. Move 2C: Left=(3,1,R), valid (M<sub>L</sub>=3 &ge; C<sub>L</sub>=1 and M<sub>R</sub>=0 on right).</p>
+                </div>
+              </section>
+
+              <!-- Section 9 -->
+              <section id="common-mistakes">
+                <h2>9. Common Mistakes</h2>
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Avoid These Errors</div>
+                  <ul>
+                    <li><strong>Confusing states and actions.</strong> A state is a snapshot of the world; an action is a transition between states.</li>
+                    <li><strong>Forgetting path cost.</strong> If all step costs are 1, you can sometimes ignore it, but GATE loves weighted problems.</li>
+                    <li><strong>Overcounting state space.</strong> In the 8-puzzle, only half of all permutations are reachable. In the 8-queens, not all 64<sup>8</sup> placements are legal.</li>
+                    <li><strong>Mixing incremental and complete-state approaches</strong> in the same formulation.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>A problem is defined by five components: <strong>initial state, actions, transition model, goal test, path cost</strong>.</li>
+                    <li>The <strong>state space</strong> is the set of all states reachable from the initial state via valid actions.</li>
+                    <li><strong>Incremental formulation</strong> builds a solution from scratch; <strong>complete-state formulation</strong> starts with a full assignment and modifies it.</li>
+                    <li>Good formulation requires <strong>abstraction</strong>&mdash;removing irrelevant details while preserving solvability.</li>
+                    <li>Classic examples: 8-puzzle (181,440 reachable states), Romania map (weighted graph), 8-queens (2,057 states with improved formulation).</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- References -->
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>Artificial Intelligence: A Modern Approach</em>, Chapter 3.1&ndash;3.2.</li>
+                </ul>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch02-problem-formulation">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="../01-intelligent-agents/quiz-agents.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Ch 01: Chapter Quiz</span>
+              </a>
+              <a href="state-space-representation.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">State Space Representation</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#why-formulation">1. Why Problem Formulation Matters</a></li>
+              <li><a href="#well-defined-problems">2. Five Components</a></li>
+              <li><a href="#example-8-puzzle">3. Example: 8-Puzzle</a></li>
+              <li><a href="#example-romania">4. Example: Romania Map</a></li>
+              <li><a href="#example-8-queens">5. Example: 8-Queens</a>
+                <ul>
+                  <li><a href="#incremental-formulation">5.1 Incremental</a></li>
+                  <li><a href="#complete-state-formulation">5.3 Complete-State</a></li>
+                </ul>
+              </li>
+              <li><a href="#real-world-mapping">6. Real-World Mapping</a></li>
+              <li><a href="#abstraction">7. Abstraction</a></li>
+              <li><a href="#gate-practice">8. GATE Practice</a></li>
+              <li><a href="#common-mistakes">9. Common Mistakes</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Backtracking Search for CSPs — generate-and-test, backtracking algorithm, MRV, degree heuristic, LCV, forward checking, MAC, backjumping for GATE DA.">
+  <title>Backtracking Search for CSPs — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a>
+            <a href="backtracking-csp.html" class="sidebar-link active"><span class="link-check"></span> Backtracking Search<span class="link-type theory">Theory</span></a>
+            <a href="arc-consistency.html" class="sidebar-link"><span class="link-check"></span> Arc Consistency<span class="link-type theory">Theory</span></a>
+            <a href="constraint-propagation.html" class="sidebar-link"><span class="link-check"></span> Constraint Propagation<span class="link-type theory">Theory</span></a>
+            <a href="practical-csp.html" class="sidebar-link"><span class="link-check"></span> &#128736; Practical: CSP Solver<span class="link-type practical">Practical</span></a>
+            <a href="notes-csp.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-csp.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="csp-formulation.html">Chapter 14: Constraint Satisfaction</a> &raquo; <span class="current">Backtracking Search</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch14-backtracking-csp">
+
+            <h1>Backtracking Search for CSPs</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="chapters/14-constraint-satisfaction/backtracking-csp.html" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Understand why <strong>generate-and-test</strong> is impractical</li>
+              <li>Describe the <strong>backtracking search</strong> algorithm for CSPs</li>
+              <li>Apply variable ordering heuristics: <strong>MRV</strong> and <strong>degree heuristic</strong></li>
+              <li>Apply value ordering heuristic: <strong>Least Constraining Value (LCV)</strong></li>
+              <li>Explain <strong>forward checking</strong> and <strong>maintaining arc consistency (MAC)</strong></li>
+              <li>Differentiate <strong>chronological</strong> vs <strong>intelligent backtracking</strong></li>
+              <li>Describe <strong>backjumping</strong> and <strong>conflict-directed backjumping</strong></li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="generate-and-test">
+                <h2>1. Naive Generate-and-Test</h2>
+
+                <p>The simplest approach to solving a CSP is <strong>generate-and-test</strong>: enumerate all possible complete assignments and check each one against the constraints.</p>
+
+                <div class="warning-box">
+                  <h4>&#9888; Why Generate-and-Test Fails</h4>
+                  <p>For a CSP with n variables each having domain size d, there are d<sup>n</sup> complete assignments. For Australia map coloring: 3<sup>7</sup> = 2,187 assignments. For 25-Queens: 25<sup>25</sup> &asymp; 8.88 &times; 10<sup>34</sup>. Clearly, this brute-force approach does not scale.</p>
+                </div>
+
+                <p>The key insight is that we can detect failures <strong>early</strong> &mdash; as soon as a partial assignment violates a constraint, there is no need to extend it further. This is the principle behind backtracking.</p>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="backtracking-algorithm">
+                <h2>2. Backtracking Search Algorithm</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Backtracking Search</h4>
+                  <p><strong>Backtracking search</strong> is a depth-first search that assigns values to one variable at a time and backtracks when a variable has no legal values remaining. It exploits the commutativity property by choosing a single unassigned variable at each node.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Algorithm: Backtracking-Search(csp)</h4>
+                  <pre>
+function BACKTRACKING-SEARCH(csp) returns solution or failure
+    return BACKTRACK({}, csp)
+
+function BACKTRACK(assignment, csp) returns solution or failure
+    if assignment is complete then return assignment
+    var &larr; SELECT-UNASSIGNED-VARIABLE(csp, assignment)
+    for each value in ORDER-DOMAIN-VALUES(var, assignment, csp) do
+        if value is consistent with assignment then
+            add {var = value} to assignment
+            inferences &larr; INFERENCE(csp, var, assignment)
+            if inferences &ne; failure then
+                add inferences to csp
+                result &larr; BACKTRACK(assignment, csp)
+                if result &ne; failure then return result
+            remove inferences from csp
+            remove {var = value} from assignment
+    return failure
+                  </pre>
+                </div>
+
+                <p>The algorithm has three key customization points:</p>
+                <ol>
+                  <li><strong>SELECT-UNASSIGNED-VARIABLE</strong>: which variable to assign next?</li>
+                  <li><strong>ORDER-DOMAIN-VALUES</strong>: in what order to try values?</li>
+                  <li><strong>INFERENCE</strong>: what deductions to make after each assignment?</li>
+                </ol>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="variable-ordering">
+                <h2>3. Variable Ordering Heuristics</h2>
+
+                <h3>3.1 Minimum Remaining Values (MRV)</h3>
+
+                <div class="definition-box">
+                  <h4>&#128218; MRV Heuristic (Most Constrained Variable)</h4>
+                  <p>Choose the variable with the <strong>fewest legal values</strong> remaining in its domain. Also called the <strong>fail-first</strong> heuristic because it picks the variable most likely to cause failure soon, pruning the search tree early.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; MRV Example</h4>
+                  <p>Suppose after some assignments, the remaining domains are:</p>
+                  <ul>
+                    <li>X<sub>3</sub>: {R, B} &mdash; 2 values</li>
+                    <li>X<sub>5</sub>: {G} &mdash; 1 value</li>
+                    <li>X<sub>7</sub>: {R, G, B} &mdash; 3 values</li>
+                  </ul>
+                  <p>MRV selects <strong>X<sub>5</sub></strong> (only 1 value). If X<sub>5</sub>'s single value leads to failure, we detect it immediately without wasting time on X<sub>7</sub>'s 3 options.</p>
+                </div>
+
+                <h3>3.2 Degree Heuristic</h3>
+
+                <div class="definition-box">
+                  <h4>&#128218; Degree Heuristic</h4>
+                  <p>As a tie-breaker for MRV, choose the variable involved in the <strong>most constraints</strong> on remaining unassigned variables. This maximizes the pruning effect of the next assignment.</p>
+                </div>
+
+                <p>In the Australia map example, if MRV yields a tie between NT and Q (both with 2 remaining values), the degree heuristic would select whichever has more unassigned neighbours.</p>
+
+                <div class="note-box">
+                  <h4>&#128161; GATE Tip</h4>
+                  <p>MRV and degree heuristic are among the most frequently tested CSP concepts in GATE. Remember: MRV = <em>fewest remaining values</em> (fail-first), Degree = <em>most constraints on unassigned neighbours</em> (tie-breaker).</p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="value-ordering">
+                <h2>4. Value Ordering: Least Constraining Value</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Least Constraining Value (LCV)</h4>
+                  <p>Once a variable is selected, try the value that <strong>rules out the fewest values</strong> in the domains of neighbouring unassigned variables. The intuition: prefer values that leave maximum flexibility for future assignments.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; LCV Example</h4>
+                  <p>Variable Q (Queensland) has domain {R, G, B}. Its neighbours are NT, SA, and NSW.</p>
+                  <ul>
+                    <li>Q = R &rarr; eliminates R from 2 neighbours &rarr; rules out 2 values</li>
+                    <li>Q = G &rarr; eliminates G from 3 neighbours &rarr; rules out 3 values</li>
+                    <li>Q = B &rarr; eliminates B from 1 neighbour &rarr; rules out 1 value</li>
+                  </ul>
+                  <p>LCV chooses <strong>Q = B</strong> first (rules out only 1 value), then Q = R, then Q = G.</p>
+                </div>
+
+                <div class="warning-box">
+                  <h4>&#9888; Variable vs Value Ordering Strategy</h4>
+                  <p><strong>Variable ordering</strong> uses a <em>fail-first</em> strategy (pick the most constrained variable). <strong>Value ordering</strong> uses a <em>fail-last</em> strategy (pick the least constraining value). These are complementary: choose the hardest variable first, but try the easiest value for it first.</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="forward-checking">
+                <h2>5. Forward Checking</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Forward Checking</h4>
+                  <p>After assigning a value to variable X, <strong>forward checking</strong> examines each unassigned variable Y that shares a constraint with X, and removes from Y's domain any value that is inconsistent with X's assignment. If any domain becomes empty, the assignment is rejected immediately.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; Forward Checking Trace (Australia Map)</h4>
+                  <p>Initial domains: all variables have {R, G, B}.</p>
+                  <p><strong>Step 1</strong>: Assign WA = R</p>
+                  <ul>
+                    <li>NT: remove R &rarr; {G, B}</li>
+                    <li>SA: remove R &rarr; {G, B}</li>
+                  </ul>
+                  <p><strong>Step 2</strong>: Assign NT = G (MRV: NT and SA both have 2 values)</p>
+                  <ul>
+                    <li>SA: remove G &rarr; {B}</li>
+                    <li>Q: remove G &rarr; {R, B}</li>
+                  </ul>
+                  <p><strong>Step 3</strong>: Assign SA = B (forced &mdash; only 1 value)</p>
+                  <ul>
+                    <li>Q: remove B &rarr; {R}</li>
+                    <li>NSW: remove B &rarr; {R, G}</li>
+                    <li>V: remove B &rarr; {R, G}</li>
+                  </ul>
+                  <p>Forward checking has reduced the remaining problem significantly without any backtracking!</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Limitation of Forward Checking</h4>
+                  <p>Forward checking only checks constraints between the <em>current</em> variable and <em>future</em> variables. It does <strong>not</strong> detect inconsistencies between two future variables. For example, if NSW and V both need separate colours but both only have {R}, forward checking won't detect this conflict. <strong>Arc consistency</strong> (next section) addresses this limitation.</p>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="mac">
+                <h2>6. Maintaining Arc Consistency (MAC)</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; MAC</h4>
+                  <p><strong>Maintaining Arc Consistency</strong> extends forward checking by running <strong>AC-3</strong> (arc consistency algorithm) after each assignment. When X<sub>i</sub> is assigned, MAC initializes the queue with all arcs (X<sub>j</sub>, X<sub>i</sub>) where X<sub>j</sub> is an unassigned neighbour of X<sub>i</sub>, then propagates until the queue is empty or a domain wipe-out occurs.</p>
+                </div>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Feature</th><th>Forward Checking</th><th>MAC</th></tr></thead>
+                  <tbody>
+                    <tr><td>Checks performed</td><td>Current &rarr; future variables only</td><td>Propagates between all future variables</td></tr>
+                    <tr><td>Detection power</td><td>Detects single-variable domain wipe-out</td><td>Detects all arc-inconsistencies</td></tr>
+                    <tr><td>Cost per step</td><td>Lower</td><td>Higher (runs AC-3)</td></tr>
+                    <tr><td>Overall efficiency</td><td>Good for loosely constrained</td><td>Superior for tightly constrained problems</td></tr>
+                    <tr><td>Typical use</td><td>Simple CSPs</td><td>Default in modern solvers</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="intelligent-backtracking">
+                <h2>7. Intelligent Backtracking</h2>
+
+                <h3>7.1 Chronological Backtracking</h3>
+                <p>Standard backtracking is <strong>chronological</strong>: when a dead-end is reached, it backtracks to the most <em>recently</em> assigned variable. This can be wasteful if the conflict was caused by a much earlier assignment.</p>
+
+                <h3>7.2 Backjumping</h3>
+                <div class="definition-box">
+                  <h4>&#128218; Backjumping</h4>
+                  <p><strong>Backjumping</strong> backtracks to the most recent variable in the <strong>conflict set</strong> &mdash; the set of previously assigned variables that caused the current variable's domain to become empty. This skips over irrelevant variables.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; Backjumping Example</h4>
+                  <p>Suppose we assigned WA=R, NT=G, T=R, Q=?, and Q's domain is empty because of constraints with NT and SA (not T). The conflict set of Q is {NT, SA}. Instead of backtracking to T (chronological), backjumping goes directly to NT or SA.</p>
+                </div>
+
+                <h3>7.3 Conflict-Directed Backjumping</h3>
+                <div class="definition-box">
+                  <h4>&#128218; Conflict-Directed Backjumping</h4>
+                  <p>An enhancement where the conflict set is <strong>accumulated</strong> during backjumping. When backjumping from X<sub>j</sub> to X<sub>i</sub>, the conflict set of X<sub>i</sub> is updated to include all variables from X<sub>j</sub>'s conflict set (minus X<sub>i</sub> itself) merged with X<sub>i</sub>'s own conflict set. This propagates conflict information further up the search tree.</p>
+                </div>
+
+                <div class="theorem-box">
+                  <h4>&#128220; Key Insight</h4>
+                  <p>When <strong>forward checking</strong> or <strong>MAC</strong> is used, simple backjumping has no advantage over chronological backtracking &mdash; because forward checking already ensures that the most recent variable is always relevant to any domain wipe-out. Conflict-directed backjumping, however, can still help in some cases.</p>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <ul>
+                  <li><strong>Generate-and-test</strong> checks d<sup>n</sup> assignments &mdash; impractical for large CSPs.</li>
+                  <li><strong>Backtracking search</strong> assigns one variable at a time and prunes on constraint violations.</li>
+                  <li><strong>MRV</strong> (fail-first) picks the variable with fewest remaining values; <strong>Degree heuristic</strong> breaks ties.</li>
+                  <li><strong>LCV</strong> (fail-last) orders values to maximise remaining flexibility.</li>
+                  <li><strong>Forward checking</strong> removes inconsistent values from future variable domains after each assignment.</li>
+                  <li><strong>MAC</strong> runs full arc consistency after each assignment &mdash; stronger than forward checking.</li>
+                  <li><strong>Backjumping</strong> and <strong>conflict-directed backjumping</strong> skip irrelevant backtrack points using conflict sets.</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="bookmark-btn" data-page="chapters/14-constraint-satisfaction/backtracking-csp.html" title="Bookmark this page">&#9733; Bookmark</button>
+            <button class="complete-btn" data-page="chapters/14-constraint-satisfaction/backtracking-csp.html">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="csp-formulation.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">CSP Formulation</span></a>
+              <a href="arc-consistency.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Arc Consistency</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#generate-and-test">1. Generate-and-Test</a></li>
+            <li><a href="#backtracking-algorithm">2. Backtracking Algorithm</a></li>
+            <li><a href="#variable-ordering">3. Variable Ordering</a></li>
+            <li><a href="#value-ordering">4. Value Ordering (LCV)</a></li>
+            <li><a href="#forward-checking">5. Forward Checking</a></li>
+            <li><a href="#mac">6. MAC</a></li>
+            <li><a href="#intelligent-backtracking">7. Intelligent Backtracking</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

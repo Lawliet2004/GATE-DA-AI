@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chapter 9 Notes — Quick reference for neural networks and deep learning: key formulas, architecture comparisons, activation cheat sheet, optimizer comparison for GATE DA.">
+  <title>Chapter Notes: Deep Learning — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a>
+            <a href="perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="multilayer-perceptron.html" class="sidebar-link"><span class="link-check"></span> Multilayer Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="backpropagation.html" class="sidebar-link"><span class="link-check"></span> Backpropagation<span class="link-type theory">Theory</span></a>
+            <a href="activation-functions.html" class="sidebar-link"><span class="link-check"></span> Activation Functions<span class="link-type theory">Theory</span></a>
+            <a href="optimization-algorithms.html" class="sidebar-link"><span class="link-check"></span> Optimization Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="convolutional-neural-networks.html" class="sidebar-link"><span class="link-check"></span> CNNs<span class="link-type theory">Theory</span></a>
+            <a href="recurrent-neural-networks.html" class="sidebar-link"><span class="link-check"></span> RNNs<span class="link-type theory">Theory</span></a>
+            <a href="lstm-gru.html" class="sidebar-link"><span class="link-check"></span> LSTM &amp; GRU<span class="link-type theory">Theory</span></a>
+            <a href="attention-transformers.html" class="sidebar-link"><span class="link-check"></span> Attention &amp; Transformers<span class="link-type theory">Theory</span></a>
+            <a href="regularization-deep-learning.html" class="sidebar-link"><span class="link-check"></span> DL Regularization<span class="link-type theory">Theory</span></a>
+            <a href="practical-neural-network.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-deep-learning.html" class="sidebar-link active"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="neural-network-basics.html">Chapter 9: Neural Networks &amp; Deep Learning</a> &raquo; <span class="current">Chapter Notes</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch09-notes-deep-learning">
+
+            <h1>Chapter 9 &mdash; Quick Reference Notes</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <button class="bookmark-btn" data-page="ch09-notes-deep-learning" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- ============ Section 1: Core Formulas ============ -->
+            <section id="formulas">
+              <h2>&#128209; Key Formulas</h2>
+
+              <div class="note-card">
+                <h4>Perceptron Update</h4>
+                <div class="formula-list">
+                  <code>y = sign(w &middot; x + b)</code><br>
+                  <code>w &larr; w + &eta;(y<sub>true</sub> &minus; y<sub>pred</sub>)x</code>
+                </div>
+              </div>
+
+              <div class="note-card">
+                <h4>MLP Forward Pass</h4>
+                <div class="formula-list">
+                  <code>z<sup>[l]</sup> = W<sup>[l]</sup> a<sup>[l&minus;1]</sup> + b<sup>[l]</sup></code><br>
+                  <code>a<sup>[l]</sup> = f(z<sup>[l]</sup>)</code>
+                </div>
+              </div>
+
+              <div class="note-card">
+                <h4>Backpropagation (Output Layer)</h4>
+                <div class="formula-list">
+                  <code>&delta;<sup>[L]</sup> = &nabla;<sub>a</sub>J &odot; f'(z<sup>[L]</sup>)</code><br>
+                  <code>&part;J/&part;W<sup>[l]</sup> = &delta;<sup>[l]</sup> (a<sup>[l&minus;1]</sup>)<sup>T</sup></code><br>
+                  <code>&delta;<sup>[l&minus;1]</sup> = (W<sup>[l]</sup>)<sup>T</sup> &delta;<sup>[l]</sup> &odot; f'(z<sup>[l&minus;1]</sup>)</code>
+                </div>
+              </div>
+
+              <div class="note-card">
+                <h4>CNN Output Size</h4>
+                <div class="formula-list">
+                  <code>O = &lfloor;(W &minus; F + 2P) / S&rfloor; + 1</code>
+                </div>
+              </div>
+
+              <div class="note-card">
+                <h4>Attention</h4>
+                <div class="formula-list">
+                  <code>Attention(Q,K,V) = softmax(QK<sup>T</sup> / &radic;d<sub>k</sub>) V</code>
+                </div>
+              </div>
+
+              <div class="note-card">
+                <h4>Adam Update</h4>
+                <div class="formula-list">
+                  <code>m<sub>t</sub> = &beta;<sub>1</sub> m<sub>t&minus;1</sub> + (1&minus;&beta;<sub>1</sub>) g<sub>t</sub></code><br>
+                  <code>v<sub>t</sub> = &beta;<sub>2</sub> v<sub>t&minus;1</sub> + (1&minus;&beta;<sub>2</sub>) g<sub>t</sub>&sup2;</code><br>
+                  <code>&theta; &larr; &theta; &minus; &eta; m&#770;<sub>t</sub> / (&radic;v&#770;<sub>t</sub> + &epsilon;)</code>
+                </div>
+              </div>
+            </section>
+
+            <!-- ============ Section 2: Parameter Counting ============ -->
+            <section id="param-counting">
+              <h2>&#128290; Parameter Counting Cheat Sheet</h2>
+              <table class="comparison-table">
+                <tr><th>Layer Type</th><th>Formula</th><th>Example (d=100, n=256)</th></tr>
+                <tr><td>FC (Dense)</td><td>n<sub>out</sub> &times; (n<sub>in</sub> + 1)</td><td>256 &times; 101 = 25,856</td></tr>
+                <tr><td>Conv2D</td><td>K &times; (C<sub>in</sub> &times; F&sup2; + 1)</td><td>16 &times; (3&times;3&times;3+1) = 448</td></tr>
+                <tr><td>Vanilla RNN</td><td>n(d+n+1) + m(n+1)</td><td>varies</td></tr>
+                <tr><td>LSTM</td><td>4n(n + d + 1)</td><td>4&times;256&times;357 = 365,568</td></tr>
+                <tr><td>GRU</td><td>3n(n + d + 1)</td><td>3&times;256&times;357 = 274,176</td></tr>
+                <tr><td>Batch Norm</td><td>2 &times; C</td><td>2&times;256 = 512</td></tr>
+                <tr><td>Pooling</td><td>0</td><td>0</td></tr>
+              </table>
+            </section>
+
+            <!-- ============ Section 3: Activation Cheat Sheet ============ -->
+            <section id="activations">
+              <h2>&#9889; Activation Functions</h2>
+              <table class="comparison-table">
+                <tr><th>Function</th><th>Formula</th><th>Range</th><th>Derivative</th><th>Use In</th></tr>
+                <tr><td>Sigmoid</td><td>&sigma;(x) = 1/(1+e<sup>&minus;x</sup>)</td><td>(0,1)</td><td>&sigma;(1&minus;&sigma;)</td><td>Binary output, gates</td></tr>
+                <tr><td>tanh</td><td>(e<sup>x</sup>&minus;e<sup>&minus;x</sup>)/(e<sup>x</sup>+e<sup>&minus;x</sup>)</td><td>(&minus;1,1)</td><td>1&minus;tanh&sup2;</td><td>RNN hidden states</td></tr>
+                <tr><td>ReLU</td><td>max(0, x)</td><td>[0, &infin;)</td><td>0 or 1</td><td>Default for hidden layers</td></tr>
+                <tr><td>Leaky ReLU</td><td>max(&alpha;x, x)</td><td>(&minus;&infin;, &infin;)</td><td>&alpha; or 1</td><td>When dying ReLU is an issue</td></tr>
+                <tr><td>GELU</td><td>x &middot; &Phi;(x)</td><td>&asymp;(&minus;0.17, &infin;)</td><td>complex</td><td>Transformers (BERT, GPT)</td></tr>
+                <tr><td>Softmax</td><td>e<sup>z<sub>i</sub></sup>/&sum;e<sup>z<sub>j</sub></sup></td><td>(0,1), sums to 1</td><td>&mdash;</td><td>Multi-class output</td></tr>
+              </table>
+
+              <div class="quick-fact">
+                <strong>Quick Rule:</strong> Use ReLU for hidden layers, sigmoid for binary output, softmax for multi-class output.
+              </div>
+            </section>
+
+            <!-- ============ Section 4: Optimizer Comparison ============ -->
+            <section id="optimizers">
+              <h2>&#128640; Optimizer Quick Reference</h2>
+              <table class="comparison-table">
+                <tr><th>Optimizer</th><th>Adaptive?</th><th>Momentum?</th><th>Defaults</th></tr>
+                <tr><td>SGD</td><td>No</td><td>No</td><td>&eta; = 0.01</td></tr>
+                <tr><td>SGD + Momentum</td><td>No</td><td>Yes</td><td>&beta; = 0.9</td></tr>
+                <tr><td>AdaGrad</td><td>Yes</td><td>No</td><td>&eta; = 0.01</td></tr>
+                <tr><td>RMSProp</td><td>Yes</td><td>No</td><td>&gamma; = 0.9, &eta; = 0.001</td></tr>
+                <tr><td>Adam</td><td>Yes</td><td>Yes</td><td>&beta;<sub>1</sub>=0.9, &beta;<sub>2</sub>=0.999, &eta;=0.001</td></tr>
+              </table>
+
+              <div class="mnemonic">
+                <strong>Mnemonic for Adam defaults:</strong> &ldquo;9-triple9-thousandth&rdquo; &rarr; &beta;<sub>1</sub>=0.9, &beta;<sub>2</sub>=0.999, &eta;=0.001.
+              </div>
+            </section>
+
+            <!-- ============ Section 5: Architecture Comparison ============ -->
+            <section id="architectures">
+              <h2>&#127959; Architecture Quick Comparison</h2>
+              <table class="comparison-table">
+                <tr><th>Architecture</th><th>Best For</th><th>Key Feature</th><th>Sequential?</th></tr>
+                <tr><td>MLP</td><td>Tabular data</td><td>Fully connected</td><td>No</td></tr>
+                <tr><td>CNN</td><td>Images, spatial data</td><td>Weight sharing, local connectivity</td><td>No</td></tr>
+                <tr><td>RNN</td><td>Sequences</td><td>Hidden state recurrence</td><td>Yes</td></tr>
+                <tr><td>LSTM</td><td>Long sequences</td><td>Cell state + 3 gates</td><td>Yes</td></tr>
+                <tr><td>GRU</td><td>Long sequences (faster)</td><td>2 gates, no cell state</td><td>Yes</td></tr>
+                <tr><td>Transformer</td><td>Everything (NLP, CV, &hellip;)</td><td>Self-attention, parallelisable</td><td>No</td></tr>
+              </table>
+            </section>
+
+            <!-- ============ Section 6: Common Mistakes ============ -->
+            <section id="common-mistakes">
+              <h2>&#9888; Common GATE Mistakes</h2>
+              <ul>
+                <li>Forgetting the <strong>+1</strong> (bias) in parameter counting.</li>
+                <li>Confusing <strong>floor</strong> vs ceiling in CNN output formula &mdash; always use floor.</li>
+                <li>Thinking pooling has learnable parameters &mdash; it has <strong>zero</strong>.</li>
+                <li>Applying dropout at <strong>test time</strong> &mdash; only used during training.</li>
+                <li>Mixing up LSTM gates: <strong>forget</strong> gate erases; <strong>input</strong> gate writes.</li>
+                <li>Forgetting <strong>bias correction</strong> in Adam (&divide; by 1&minus;&beta;<sup>t</sup>).</li>
+                <li>Ignoring the scaling factor &radic;d<sub>k</sub> in attention.</li>
+              </ul>
+            </section>
+
+            <button class="complete-btn" data-page="ch09-notes-deep-learning">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="practical-neural-network.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Interactive Demos</span></a>
+              <a href="quiz-deep-learning.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Chapter Quiz</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#formulas">Key Formulas</a></li>
+            <li><a href="#param-counting">Param Counting</a></li>
+            <li><a href="#activations">Activations</a></li>
+            <li><a href="#optimizers">Optimizers</a></li>
+            <li><a href="#architectures">Architectures</a></li>
+            <li><a href="#common-mistakes">Common Mistakes</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

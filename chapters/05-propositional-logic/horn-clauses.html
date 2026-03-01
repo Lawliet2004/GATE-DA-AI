@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horn Clauses - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li class="active"><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>Horn Clauses</span>
+        </div>
+
+        <article class="theory-content">
+            <h1>Horn Clauses and Definite Clauses</h1>
+
+            <div class="gate-badge">GATE DA — High Importance</div>
+
+            <div class="learning-objectives">
+                <h3>🎯 Learning Objectives</h3>
+                <ul>
+                    <li>Define Horn clauses, definite clauses, goal clauses, and facts</li>
+                    <li>Understand forward chaining and backward chaining algorithms</li>
+                    <li>Know why Horn clauses can be decided in linear time</li>
+                    <li>Understand the connection to Prolog and logic programming</li>
+                </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section>
+                <h2>1. Horn Clause Definition</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Horn Clause</div>
+                    <p>A <strong>Horn clause</strong> is a clause (disjunction of literals) with <strong>at most one positive literal</strong>.</p>
+                    <p class="formula">A Horn clause has the form: ¬A₁ ∨ ¬A₂ ∨ ... ∨ ¬Aₖ ∨ B</p>
+                    <p>This is equivalent to the implication: <span class="formula">A₁ ∧ A₂ ∧ ... ∧ Aₖ → B</span></p>
+                </div>
+
+                <h3>Types of Horn Clauses</h3>
+                <table class="styled-table">
+                    <thead><tr><th>Type</th><th>Form</th><th>Example</th><th>Meaning</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Definite clause</strong></td><td>A₁ ∧ ... ∧ Aₖ → B</td><td>P ∧ Q → R</td><td>Rule with body and head</td></tr>
+                        <tr><td><strong>Fact</strong></td><td>B (no body)</td><td>P</td><td>A definite clause with empty body</td></tr>
+                        <tr><td><strong>Goal clause</strong></td><td>A₁ ∧ ... ∧ Aₖ → ⊥</td><td>¬P ∨ ¬Q</td><td>Query / no positive literal</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="note-box">
+                    <h4>📝 Key Insight</h4>
+                    <p>A <strong>fact</strong> is a special case of a definite clause where the body is empty (equivalently, ⊤ → B, which simplifies to B). Every fact is a unit clause with a single positive literal.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Classifying Clauses</h4>
+                    <ul>
+                        <li>{P} — <strong>Fact</strong> (definite clause, 1 positive literal, no negative literals)</li>
+                        <li>{¬P, ¬Q, R} — <strong>Definite clause</strong> (1 positive: R) → means P ∧ Q → R</li>
+                        <li>{¬P, ¬Q} — <strong>Goal clause</strong> (0 positive literals) → means P ∧ Q → ⊥</li>
+                        <li>{P, Q} — <strong>NOT a Horn clause</strong> (2 positive literals)</li>
+                        <li>{¬P, Q, R} — <strong>NOT a Horn clause</strong> (2 positive literals)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 2: Why Horn Clauses -->
+            <section>
+                <h2>2. Why Horn Clauses Matter</h2>
+
+                <div class="theorem-box">
+                    <h4>Theorem: Linear-Time Inference for Horn Clauses</h4>
+                    <p>Entailment for Horn clause knowledge bases can be decided in <strong>O(n)</strong> time, where n is the total size of the knowledge base. This is dramatically faster than the general propositional satisfiability problem, which is NP-complete.</p>
+                </div>
+
+                <p>Key reasons Horn clauses are important:</p>
+                <ul>
+                    <li>They form the basis of <strong>Prolog</strong> and logic programming languages.</li>
+                    <li>Many real-world knowledge bases can be expressed using only Horn clauses.</li>
+                    <li>Forward and backward chaining are <strong>sound and complete</strong> for Horn clause KBs.</li>
+                </ul>
+            </section>
+
+            <!-- Section 3: Forward Chaining -->
+            <section>
+                <h2>3. Forward Chaining</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Forward Chaining (Data-Driven Reasoning)</div>
+                    <p>Start from known facts and repeatedly apply definite clauses whose premises are all satisfied to derive new facts. Continue until the query is proved or no new facts can be derived.</p>
+                </div>
+
+                <div class="algorithm-block">
+                    <div class="algo-header">Algorithm: Forward Chaining</div>
+                    <div class="algo-body">
+<pre>
+function FORWARD-CHAIN(KB, q):
+    // KB: set of Horn clauses, q: query symbol
+    count ← table of premise counts for each clause
+    inferred ← table mapping symbols to FALSE
+    agenda ← list of known facts in KB
+    
+    while agenda is not empty:
+        p ← POP(agenda)
+        if p == q:
+            return TRUE
+        if inferred[p] == FALSE:
+            inferred[p] ← TRUE
+            for each clause c where p is in premise of c:
+                decrement count[c]
+                if count[c] == 0:
+                    add head of c to agenda
+    
+    return FALSE
+</pre>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Forward Chaining</h4>
+                    <p><strong>Knowledge Base:</strong></p>
+                    <ul>
+                        <li>Fact: P</li>
+                        <li>Fact: Q</li>
+                        <li>Rule: P ∧ Q → R</li>
+                        <li>Rule: R → S</li>
+                        <li>Rule: S ∧ P → T</li>
+                    </ul>
+                    <p><strong>Query: T?</strong></p>
+                    <table class="styled-table">
+                        <thead><tr><th>Step</th><th>Agenda</th><th>Inferred</th><th>Action</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>[P, Q]</td><td>{}</td><td>Pop P, mark inferred. R's count: 2→1</td></tr>
+                            <tr><td>2</td><td>[Q]</td><td>{P}</td><td>Pop Q, mark inferred. R's count: 1→0 → add R</td></tr>
+                            <tr><td>3</td><td>[R]</td><td>{P, Q}</td><td>Pop R, mark inferred. S's count: 1→0 → add S</td></tr>
+                            <tr><td>4</td><td>[S]</td><td>{P, Q, R}</td><td>Pop S, mark inferred. T's count: 2→1 (P already inferred decremented earlier)</td></tr>
+                        </tbody>
+                    </table>
+                    <p>Wait — T needs S ∧ P. P was already inferred, and now S is inferred, so T's count reaches 0. Add T to agenda.</p>
+                    <p>Step 5: Pop T from agenda. T == query → return <strong>TRUE</strong>. ✅</p>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 Properties of Forward Chaining</h4>
+                    <ul>
+                        <li><strong>Sound and Complete</strong> for propositional Horn clause KBs</li>
+                        <li><strong>Time complexity:</strong> O(n) where n = size of KB</li>
+                        <li><strong>Data-driven:</strong> starts from facts, works toward the query</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Backward Chaining -->
+            <section>
+                <h2>4. Backward Chaining</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Backward Chaining (Goal-Driven Reasoning)</div>
+                    <p>Start from the query and work backwards: to prove the query, find a rule whose head matches, then try to prove all premises of that rule. Repeat recursively until known facts are reached.</p>
+                </div>
+
+                <div class="algorithm-block">
+                    <div class="algo-header">Algorithm: Backward Chaining</div>
+                    <div class="algo-body">
+<pre>
+function BACKWARD-CHAIN(KB, q):
+    return BC-OR(KB, q, {})
+
+function BC-OR(KB, goal, visited):
+    if goal ∈ known_facts(KB):
+        return TRUE
+    if goal ∈ visited:
+        return FALSE  // avoid infinite loops
+    visited ← visited ∪ {goal}
+    
+    for each clause c in KB where head(c) == goal:
+        if BC-AND(KB, premises(c), visited):
+            return TRUE
+    return FALSE
+
+function BC-AND(KB, goals, visited):
+    if goals is empty:
+        return TRUE
+    g ← FIRST(goals)
+    if BC-OR(KB, g, visited):
+        return BC-AND(KB, REST(goals), visited)
+    return FALSE
+</pre>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Backward Chaining for query T</h4>
+                    <p>Using the same KB as above:</p>
+                    <ol>
+                        <li>Goal: T. Find rule: S ∧ P → T. Need to prove S and P.</li>
+                        <li>Subgoal: S. Find rule: R → S. Need to prove R.</li>
+                        <li>Subgoal: R. Find rule: P ∧ Q → R. Need to prove P and Q.</li>
+                        <li>Subgoal: P. P is a known fact → <strong>Success</strong>.</li>
+                        <li>Subgoal: Q. Q is a known fact → <strong>Success</strong>.</li>
+                        <li>R is proved → S is proved.</li>
+                        <li>Subgoal: P (for T's rule). Already a fact → <strong>Success</strong>.</li>
+                        <li>T is proved! ✅</li>
+                    </ol>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 Forward vs Backward Chaining</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>Property</th><th>Forward Chaining</th><th>Backward Chaining</th></tr></thead>
+                        <tbody>
+                            <tr><td>Direction</td><td>Facts → Goal</td><td>Goal → Facts</td></tr>
+                            <tr><td>Strategy</td><td>Data-driven</td><td>Goal-driven</td></tr>
+                            <tr><td>Used in</td><td>Production systems, rule engines</td><td>Prolog, expert systems</td></tr>
+                            <tr><td>Explores</td><td>All derivable facts</td><td>Only relevant facts</td></tr>
+                            <tr><td>Completeness</td><td>Sound &amp; Complete for Horn</td><td>Sound &amp; Complete for Horn</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 5: Prolog -->
+            <section>
+                <h2>5. Connection to Prolog</h2>
+                <p><strong>Prolog</strong> (Programming in Logic) is a programming language based on Horn clauses. A Prolog program consists of:</p>
+                <ul>
+                    <li><strong>Facts:</strong> <code>parent(tom, bob).</code> — Tom is a parent of Bob.</li>
+                    <li><strong>Rules:</strong> <code>grandparent(X, Z) :- parent(X, Y), parent(Y, Z).</code></li>
+                    <li><strong>Queries:</strong> <code>?- grandparent(tom, Z).</code></li>
+                </ul>
+                <p>Prolog uses <strong>backward chaining</strong> with depth-first search to answer queries. It operates on first-order Horn clauses (extending propositional Horn clauses with variables).</p>
+            </section>
+
+            <!-- GATE -->
+            <section>
+                <h2>6. GATE Exam Tips</h2>
+                <div class="warning-box">
+                    <h4>🎯 Key Points for GATE</h4>
+                    <ul>
+                        <li>Know how to <strong>identify Horn clauses</strong> from a given set of clauses.</li>
+                        <li>Be able to <strong>trace forward and backward chaining</strong> step by step.</li>
+                        <li>Remember: Horn clause satisfiability is <strong>solvable in linear time</strong>.</li>
+                        <li>GATE may ask: "Which of the following is a Horn clause?" — count positive literals!</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="resolution-method.html" class="nav-btn prev-btn">← Previous: Resolution Method</a>
+            <a href="sat-problem.html" class="nav-btn next-btn">Next: SAT Problem →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-horn-clauses">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-horn-clauses">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Common mistakes students make in GATE DA AI section, organized by topic — search algorithms, logic, probability, Bayesian networks, and general exam strategy pitfalls.">
+  <title>Common Mistakes in GATE DA AI — Master AI for GATE DA</title>
+
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a><a href="common-mistakes.html" class="sidebar-link active"><span class="link-check"></span> Common Mistakes<span class="link-type theory">Theory</span></a></div></div>
+
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="exam-pattern-strategy.html">Ch 16: GATE DA Preparation</a> &raquo;
+          <span class="current">Common Mistakes</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch16-common-mistakes">
+
+            <h1>Common Mistakes in GATE DA AI Section</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: Critical</span>
+              <button class="bookmark-btn" data-page="ch16-common-mistakes" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="note-box">
+              <div class="box-title">&#128161; Why This Page Matters</div>
+              <p>Knowing the correct concepts is only half the battle. Many students lose marks not because they don&rsquo;t know the material, but because they fall into <strong>predictable traps</strong>. This page catalogues the most frequent mistakes by topic so you can recognise and avoid them on exam day.</p>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- ============================================================ -->
+              <!--  PART A: SEARCH ALGORITHMS MISTAKES                          -->
+              <!-- ============================================================ -->
+              <section id="search-mistakes">
+                <h2>Part A &mdash; Search Algorithm Mistakes</h2>
+
+                <!-- Mistake 1 -->
+                <div id="mistake-1" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 1: Confusing Completeness vs Optimality</div>
+                  <p><strong>The mistake:</strong> Students treat &ldquo;complete&rdquo; and &ldquo;optimal&rdquo; as interchangeable, believing that a complete algorithm always returns the best solution.</p>
+                  <p><strong>Why it happens:</strong> Both words sound positive, so students conflate &ldquo;will find <em>a</em> solution&rdquo; with &ldquo;will find the <em>best</em> solution.&rdquo;</p>
+                  <p><strong>Correct understanding:</strong></p>
+                  <ul>
+                    <li><strong>Complete</strong> &mdash; Guaranteed to find <em>a</em> solution if one exists (may not be the cheapest).</li>
+                    <li><strong>Optimal</strong> &mdash; Guaranteed to find the <em>least-cost</em> solution.</li>
+                  </ul>
+                  <p>An algorithm can be complete but <strong>not</strong> optimal (e.g., DFS on a finite graph finds a solution but not necessarily the shortest one). Conversely, an incomplete algorithm may never terminate, so optimality is irrelevant.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 1</div>
+                  <pre><code>Graph:  S &rarr; A (cost 1) &rarr; G (cost 10)
+        S &rarr; B (cost 5) &rarr; G (cost 1)</code></pre>
+                  <p><strong>&#10060; Wrong reasoning:</strong> &ldquo;DFS is complete on this finite graph, so it will find the optimal path.&rdquo;</p>
+                  <p>DFS might explore S &rarr; A &rarr; G (total cost 11) first and return it.</p>
+                  <p><strong>&#9989; Correct:</strong> The optimal path is S &rarr; B &rarr; G (cost 6). DFS found <em>a</em> solution (complete &#10004;) but not the cheapest (not optimal &#10008;). Only UCS or A* (with admissible h) guarantees optimality here.</p>
+                </div>
+
+                <!-- Mistake 2 -->
+                <div id="mistake-2" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 2: Forgetting DFS Is Not Complete in Infinite Spaces</div>
+                  <p><strong>The mistake:</strong> Claiming DFS is always complete. Students forget the critical caveat: DFS can loop forever in infinite state spaces (or graphs with cycles and no visited check).</p>
+                  <p><strong>Why it happens:</strong> Textbook examples usually use small finite trees where DFS works fine, building a false sense of generality.</p>
+                  <p><strong>Correct understanding:</strong></p>
+                  <ul>
+                    <li>DFS is <strong>not complete</strong> in infinite-depth spaces &mdash; it may descend an infinite branch and never backtrack.</li>
+                    <li>DFS is complete only in <strong>finite</strong> state spaces (with cycle detection or a depth limit).</li>
+                    <li>Iterative Deepening DFS (IDDFS) fixes this: it is complete even in infinite spaces.</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 2</div>
+                  <pre><code>State space: S &rarr; A &rarr; B &rarr; C &rarr; D &rarr; &hellip; (infinite chain)
+                          &brvbar;
+                          &rarr; G  (goal reachable from S via a different branch)</code></pre>
+                  <p><strong>&#10060; Wrong:</strong> &ldquo;DFS will find G since the graph contains a path to it.&rdquo;</p>
+                  <p><strong>&#9989; Correct:</strong> If DFS explores the infinite branch S &rarr; A &rarr; B &rarr; C &rarr; &hellip; first, it will <strong>never</strong> backtrack to discover the branch leading to G. DFS is <strong>incomplete</strong> in this space. Use BFS or IDDFS instead.</p>
+                </div>
+
+                <!-- Mistake 3 -->
+                <div id="mistake-3" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 3: Wrong Complexity Calculations (Confusing b, d, m)</div>
+                  <p><strong>The mistake:</strong> Mixing up the three key parameters when computing time/space complexity of search algorithms.</p>
+                  <p><strong>Why it happens:</strong> The symbols look similar, and different textbooks sometimes use slightly different notation.</p>
+                  <p><strong>Correct definitions:</strong></p>
+                  <ul>
+                    <li><strong>b</strong> = branching factor (max number of successors of any node)</li>
+                    <li><strong>d</strong> = depth of the shallowest goal node</li>
+                    <li><strong>m</strong> = maximum depth of the search tree (may be &infin;)</li>
+                  </ul>
+                  <p><strong>Key complexities to memorise:</strong></p>
+                  <table class="comparison-table">
+                    <thead><tr><th>Algorithm</th><th>Time</th><th>Space</th><th>Uses which depth?</th></tr></thead>
+                    <tbody>
+                      <tr><td>BFS</td><td>O(b<sup>d</sup>)</td><td>O(b<sup>d</sup>)</td><td>d (shallowest goal)</td></tr>
+                      <tr><td>DFS</td><td>O(b<sup>m</sup>)</td><td>O(bm)</td><td>m (max depth)</td></tr>
+                      <tr><td>IDDFS</td><td>O(b<sup>d</sup>)</td><td>O(bd)</td><td>d</td></tr>
+                      <tr><td>UCS</td><td>O(b<sup>1+&lfloor;C*/&epsilon;&rfloor;</sup>)</td><td>Same</td><td>cost-based</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 3</div>
+                  <p><strong>GATE-style question:</strong> A search tree has branching factor b = 3, shallowest goal at depth d = 4, and maximum depth m = 10. What is the worst-case time complexity of DFS?</p>
+                  <p><strong>&#10060; Wrong answer:</strong> O(3<sup>4</sup>) = O(81) &mdash; using d instead of m.</p>
+                  <p><strong>&#9989; Correct answer:</strong> O(3<sup>10</sup>) = O(59049) &mdash; DFS may explore the entire tree to depth m before finding the goal.</p>
+                </div>
+
+                <!-- Mistake 4 -->
+                <div id="mistake-4" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 4: Assuming UCS = BFS (Ignoring Non-Uniform Costs)</div>
+                  <p><strong>The mistake:</strong> Treating Uniform-Cost Search and Breadth-First Search as identical algorithms.</p>
+                  <p><strong>Why it happens:</strong> When all edge costs are equal (say, 1), UCS behaves exactly like BFS. Students over-generalise from this special case.</p>
+                  <p><strong>Correct understanding:</strong></p>
+                  <ul>
+                    <li><strong>BFS</strong> expands by <em>depth level</em> (number of edges from start). It is optimal only when all step costs are identical.</li>
+                    <li><strong>UCS</strong> expands by <em>path cost g(n)</em>. It is optimal for any non-negative step costs (&ge; &epsilon; &gt; 0).</li>
+                    <li>When costs vary, BFS can return a <strong>suboptimal</strong> solution.</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 4</div>
+                  <pre><code>Graph:
+  S &rarr; A  cost 1
+  S &rarr; B  cost 5
+  A &rarr; G  cost 10
+  B &rarr; G  cost 1</code></pre>
+                  <p><strong>BFS order:</strong> S &rarr; expand level 1: {A, B} &rarr; expand level 2: A&rarr;G found! Path cost = 1 + 10 = <strong>11</strong>.</p>
+                  <p><strong>UCS order:</strong> S(0) &rarr; A(1) &rarr; B(5) &rarr; B&rarr;G(6). Path cost = 5 + 1 = <strong>6</strong>. &#9989; Optimal!</p>
+                  <p><strong>&#10060; BFS returned cost 11.</strong> UCS returned cost 6. They are <strong>not</strong> the same when costs differ.</p>
+                </div>
+
+                <!-- Mistake 5 -->
+                <div id="mistake-5" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 5: Thinking A* with Inadmissible Heuristic Always Gives Wrong Answer</div>
+                  <p><strong>The mistake:</strong> Believing that if h(n) is inadmissible (overestimates), A* will <em>always</em> return a suboptimal solution.</p>
+                  <p><strong>Why it happens:</strong> The textbook states &ldquo;A* is optimal if h is admissible.&rdquo; Students read the contrapositive incorrectly: admissibility is a <em>sufficient</em> condition, not a <em>necessary</em> one.</p>
+                  <p><strong>Correct understanding:</strong></p>
+                  <ul>
+                    <li>An inadmissible heuristic means A* <strong>may</strong> return a suboptimal solution &mdash; but it <strong>does not guarantee</strong> a wrong answer.</li>
+                    <li>If the overestimation does not affect the expansion order on the path to the goal, A* might still find the optimal solution by luck.</li>
+                    <li>The key point: admissibility gives a <strong>guarantee</strong>. Without it, we lose the guarantee but don&rsquo;t necessarily lose correctness in every instance.</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 5</div>
+                  <pre><code>Graph: S &rarr; A(1) &rarr; G(2)    and    S &rarr; G(5)
+Inadmissible h: h(S)=10, h(A)=5, h(G)=0
+True h*: h*(S)=3, h*(A)=2, h*(G)=0
+h(A)=5 &gt; h*(A)=2, so h is inadmissible.</code></pre>
+                  <p><strong>A* trace:</strong></p>
+                  <ul>
+                    <li>S: f = 0 + 10 = 10. Expand S.</li>
+                    <li>A: f = 1 + 5 = 6. G(via S): f = 5 + 0 = 5. Expand G(via S), cost = 5.</li>
+                  </ul>
+                  <p>Wait &mdash; the optimal path S&rarr;A&rarr;G costs 3, but A* found cost 5. Here, inadmissibility <strong>did</strong> cause a mistake.</p>
+                  <p>But consider: if h(A) = 3 (still &gt; h*(A) = 2, so inadmissible), then f(A) = 1+3 = 4 &lt; f(G via S) = 5, so A* would expand A first and find optimal cost 3. <strong>Same inadmissible heuristic structure, different outcome.</strong></p>
+                  <p><strong>&#9989; Takeaway:</strong> Inadmissible h <em>can</em> cause suboptimal results, but doesn&rsquo;t <em>always</em> do so. GATE may test this nuance.</p>
+                </div>
+              </section>
+
+              <!-- ============================================================ -->
+              <!--  PART B: LOGIC MISTAKES                                      -->
+              <!-- ============================================================ -->
+              <section id="logic-mistakes">
+                <h2>Part B &mdash; Logic Mistakes</h2>
+
+                <!-- Mistake 6 -->
+                <div id="mistake-6" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 6: Wrong CNF Conversion (Forgetting to Distribute &or; over &and;)</div>
+                  <p><strong>The mistake:</strong> Students eliminate implications and push negations inward correctly, but then <strong>skip or misapply the distribution step</strong> needed to reach Conjunctive Normal Form.</p>
+                  <p><strong>Why it happens:</strong> The distribution law (A &or; (B &and; C) &equiv; (A &or; B) &and; (A &or; C)) can produce an exponential blowup, so students rush it or forget to apply it at all.</p>
+                  <p><strong>Correct CNF conversion steps:</strong></p>
+                  <ol>
+                    <li>Eliminate &rarr; and &harr; using equivalences</li>
+                    <li>Push &not; inward using De Morgan&rsquo;s laws (and double negation)</li>
+                    <li><strong>Distribute &or; over &and;</strong> until you have a conjunction of clauses (every clause is a disjunction of literals)</li>
+                  </ol>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 6</div>
+                  <p>Convert to CNF: A &or; (B &and; C)</p>
+                  <p><strong>&#10060; Wrong:</strong> &ldquo;It&rsquo;s already in CNF.&rdquo; (Student sees &or; and &and; and assumes it&rsquo;s done.)</p>
+                  <p>But A &or; (B &and; C) is <strong>not</strong> a conjunction of disjunctive clauses &mdash; it has &or; at the top level with &and; nested inside.</p>
+                  <p><strong>&#9989; Correct:</strong> Apply distribution:</p>
+                  <pre><code>A &or; (B &and; C)
+&equiv; (A &or; B) &and; (A &or; C)    &larr; distribute &or; over &and;</code></pre>
+                  <p>Now it is CNF: two clauses (A &or; B) and (A &or; C).</p>
+                  <p><strong>Harder example:</strong> (P &or; Q) &or; (R &and; S &and; T)</p>
+                  <pre><code>&equiv; ((P &or; Q) &or; R) &and; ((P &or; Q) &or; S) &and; ((P &or; Q) &or; T)
+&equiv; (P &or; Q &or; R) &and; (P &or; Q &or; S) &and; (P &or; Q &or; T)</code></pre>
+                </div>
+
+                <!-- Mistake 7 -->
+                <div id="mistake-7" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 7: Confusing &forall; and &exist; Scope in Nested Quantifiers</div>
+                  <p><strong>The mistake:</strong> Students swap the order of quantifiers or assume they commute freely. The order of &forall; and &exist; <strong>matters</strong>.</p>
+                  <p><strong>Why it happens:</strong> In English, the difference between &ldquo;everyone loves someone&rdquo; and &ldquo;someone is loved by everyone&rdquo; feels subtle. In logic, the meanings are drastically different.</p>
+                  <p><strong>Correct understanding:</strong></p>
+                  <ul>
+                    <li><strong>&forall;x &exist;y Loves(x, y)</strong> = For every person x, there exists some person y that x loves. (Each person has at least one loved one &mdash; possibly different for each person.)</li>
+                    <li><strong>&exist;y &forall;x Loves(x, y)</strong> = There exists a person y such that every person x loves y. (One specific person is loved by everyone.)</li>
+                    <li>These are <strong>not equivalent</strong>. &exist;y &forall;x &rArr; &forall;x &exist;y, but not vice versa.</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 7</div>
+                  <p><strong>GATE-style question:</strong> Translate &ldquo;Every student has a favourite teacher&rdquo; into FOL.</p>
+                  <p><strong>&#10060; Wrong:</strong> &exist;t &forall;s FavTeacher(s, t) &mdash; this says there is <em>one</em> teacher who is the favourite of <em>all</em> students.</p>
+                  <p><strong>&#9989; Correct:</strong> &forall;s &exist;t FavTeacher(s, t) &mdash; for each student, there exists (possibly different) a favourite teacher.</p>
+                  <p><strong>Key rule:</strong> The quantifier on the &ldquo;dependent&rdquo; variable goes <strong>after</strong> (inside) the quantifier it depends on. Here, the teacher depends on the student, so &exist;t goes after &forall;s.</p>
+                </div>
+
+                <!-- Mistake 8 -->
+                <div id="mistake-8" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 8: Unification with Occurs Check Failures</div>
+                  <p><strong>The mistake:</strong> Attempting to unify a variable x with a term that <em>contains</em> x (e.g., unifying x with f(x)), producing an infinite structure.</p>
+                  <p><strong>Why it happens:</strong> Students mechanically apply the substitution {x/f(x)} without checking whether x appears inside the term being substituted.</p>
+                  <p><strong>Correct understanding:</strong></p>
+                  <ul>
+                    <li>Before binding x &rarr; t, always check: does x occur in t?</li>
+                    <li>If x &isin; vars(t), unification <strong>fails</strong> (occurs check). The binding x/f(x) would create an infinite term f(f(f(&hellip;))).</li>
+                    <li>GATE often tests this with predicates like P(x, f(x)) and P(y, y).</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 8</div>
+                  <p>Unify: P(x, f(x)) with P(a, y)</p>
+                  <p><strong>Step 1:</strong> x = a &rArr; &theta; = {x/a}. Apply: P(a, f(a)) and P(a, y).</p>
+                  <p><strong>Step 2:</strong> y = f(a) &rArr; &theta; = {x/a, y/f(a)}. &#9989; <strong>Success.</strong></p>
+                  <hr>
+                  <p>Now unify: P(x, f(x)) with P(y, y)</p>
+                  <p><strong>Step 1:</strong> x = y &rArr; &theta; = {x/y}. Apply: P(y, f(y)) and P(y, y).</p>
+                  <p><strong>Step 2:</strong> y = f(y)? <strong>Occurs check:</strong> y appears in f(y). &#10060; <strong>FAIL.</strong></p>
+                  <p><strong>&#10060; Wrong answer:</strong> &theta; = {x/y, y/f(y)} &mdash; this is invalid because it creates an infinite term.</p>
+                  <p><strong>&#9989; Correct answer:</strong> Unification <strong>fails</strong>.</p>
+                </div>
+
+                <!-- Mistake 9 -->
+                <div id="mistake-9" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 9: Wrong Application of Modus Ponens</div>
+                  <p><strong>The mistake:</strong> Applying Modus Ponens in the wrong direction &mdash; from the consequent to the antecedent &mdash; which is the fallacy of <strong>affirming the consequent</strong>.</p>
+                  <p><strong>Why it happens:</strong> Students remember &ldquo;if A then B, and we know something, therefore something else&rdquo; but get confused about <em>which</em> part must be known.</p>
+                  <p><strong>Correct rule (Modus Ponens):</strong></p>
+                  <pre><code>Given:  A &rarr; B   and   A
+Derive: B</code></pre>
+                  <p><strong>Invalid (Affirming the Consequent):</strong></p>
+                  <pre><code>Given:  A &rarr; B   and   B
+Derive: A     &larr; INVALID!</code></pre>
+                  <p>Also distinguish from <strong>Modus Tollens</strong> (which IS valid):</p>
+                  <pre><code>Given:  A &rarr; B   and   &not;B
+Derive: &not;A   &#10004;</code></pre>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 9</div>
+                  <p>Knowledge base: &ldquo;If it rains, the ground is wet.&rdquo; (Rain &rarr; Wet)</p>
+                  <p><strong>&#10060; Wrong reasoning:</strong> &ldquo;The ground is wet. Therefore, it rained.&rdquo; (Wet &rArr; Rain &mdash; affirming the consequent. The ground could be wet from a sprinkler.)</p>
+                  <p><strong>&#9989; Correct Modus Ponens:</strong> &ldquo;It is raining. Therefore, the ground is wet.&rdquo; (Rain, Rain&rarr;Wet &rArr; Wet &#10004;)</p>
+                  <p><strong>&#9989; Correct Modus Tollens:</strong> &ldquo;The ground is NOT wet. Therefore, it is NOT raining.&rdquo; (&not;Wet, Rain&rarr;Wet &rArr; &not;Rain &#10004;)</p>
+                </div>
+              </section>
+
+              <!-- ============================================================ -->
+              <!--  PART C: PROBABILITY / BAYESIAN NETWORK MISTAKES             -->
+              <!-- ============================================================ -->
+              <section id="probability-mistakes">
+                <h2>Part C &mdash; Probability &amp; Bayesian Network Mistakes</h2>
+
+                <!-- Mistake 10 -->
+                <div id="mistake-10" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 10: Confusing Prior and Posterior</div>
+                  <p><strong>The mistake:</strong> Using P(Disease) when the question asks for P(Disease | Test+), or vice versa.</p>
+                  <p><strong>Why it happens:</strong> Students forget that evidence updates the probability. The word &ldquo;probability&rdquo; is used loosely in English, blurring the distinction between before and after observing evidence.</p>
+                  <p><strong>Correct understanding:</strong></p>
+                  <ul>
+                    <li><strong>Prior P(H)</strong> = probability of hypothesis <em>before</em> seeing evidence.</li>
+                    <li><strong>Posterior P(H|E)</strong> = probability of hypothesis <em>after</em> seeing evidence E.</li>
+                    <li><strong>Bayes&rsquo; Theorem:</strong> P(H|E) = P(E|H) &middot; P(H) / P(E)</li>
+                    <li>The posterior is almost never equal to the prior (unless E is independent of H).</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 10</div>
+                  <p>Disease prevalence: P(D) = 0.01. Test sensitivity: P(+|D) = 0.95. False positive rate: P(+|&not;D) = 0.05.</p>
+                  <p><strong>Question:</strong> A person tests positive. What is the probability they have the disease?</p>
+                  <p><strong>&#10060; Wrong:</strong> &ldquo;The test is 95% accurate, so P(D|+) &asymp; 0.95.&rdquo; (Confused the likelihood P(+|D) with the posterior P(D|+).)</p>
+                  <p><strong>&#9989; Correct:</strong> Apply Bayes&rsquo; Theorem:</p>
+                  <pre><code>P(D|+) = P(+|D) &middot; P(D) / P(+)
+P(+)   = P(+|D)P(D) + P(+|&not;D)P(&not;D)
+       = 0.95 &times; 0.01 + 0.05 &times; 0.99
+       = 0.0095 + 0.0495 = 0.059
+P(D|+) = 0.0095 / 0.059 &asymp; <strong>0.161</strong> (about 16%, NOT 95%!)</code></pre>
+                </div>
+
+                <!-- Mistake 11 -->
+                <div id="mistake-11" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 11: Wrong Variable Elimination Order</div>
+                  <p><strong>The mistake:</strong> Eliminating variables in an arbitrary order without considering which order minimises intermediate factor sizes, or worse, eliminating a <strong>query variable</strong> or <strong>evidence variable</strong>.</p>
+                  <p><strong>Why it happens:</strong> Students learn the algorithm mechanically and forget the constraints on which variables must be preserved. Also, good elimination orderings require thought.</p>
+                  <p><strong>Correct approach:</strong></p>
+                  <ul>
+                    <li><strong>Never</strong> eliminate the query variable(s) or evidence variables.</li>
+                    <li>Eliminate only the hidden (non-query, non-evidence) variables.</li>
+                    <li>Prefer eliminating variables that appear in the fewest factors first (min-degree heuristic) or that create the smallest new factors (min-fill heuristic).</li>
+                    <li>A bad ordering is still correct &mdash; just much slower. But eliminating the wrong variable entirely changes the result.</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 11</div>
+                  <p>Bayesian Network: A &rarr; B &rarr; C. Query: P(C | A = true). Hidden variable: B.</p>
+                  <p><strong>&#10060; Wrong:</strong> Student eliminates C (the query variable!) and computes P(B | A=true) instead.</p>
+                  <p><strong>&#9989; Correct:</strong></p>
+                  <pre><code>P(C | A=true) = &sum;<sub>B</sub> P(B | A=true) &middot; P(C | B)
+             = P(B=t|A=t)&middot;P(C|B=t) + P(B=f|A=t)&middot;P(C|B=f)</code></pre>
+                  <p>We sum out B (the hidden variable), keeping A fixed (evidence) and C as the result (query).</p>
+                </div>
+
+                <!-- Mistake 12 -->
+                <div id="mistake-12" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 12: Forgetting Conditional Independence &ne; Marginal Independence</div>
+                  <p><strong>The mistake:</strong> Assuming that if X and Y are conditionally independent given Z, then X and Y are also marginally independent (or vice versa).</p>
+                  <p><strong>Why it happens:</strong> The word &ldquo;independent&rdquo; is overloaded. Students don&rsquo;t fully internalise that the conditioning context changes the independence relationship.</p>
+                  <p><strong>Correct understanding:</strong></p>
+                  <ul>
+                    <li><strong>Conditional independence:</strong> P(X, Y | Z) = P(X | Z) &middot; P(Y | Z). Written X &perp; Y | Z.</li>
+                    <li><strong>Marginal independence:</strong> P(X, Y) = P(X) &middot; P(Y). Written X &perp; Y.</li>
+                    <li>Neither implies the other in general!</li>
+                    <li>Classic Bayesian Network example: In the &ldquo;explaining away&rdquo; (v-structure) pattern A &rarr; C &larr; B, A and B are marginally independent but <strong>not</strong> conditionally independent given C.</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 12</div>
+                  <p>Bayesian Network (v-structure): Earthquake &rarr; Alarm &larr; Burglary</p>
+                  <p>Earthquake and Burglary are independent causes of the Alarm.</p>
+                  <ul>
+                    <li><strong>Marginally:</strong> P(E, B) = P(E) &middot; P(B) &#10004; (independent before observing Alarm).</li>
+                    <li><strong>Conditionally given Alarm=true:</strong> If we <em>know</em> the alarm went off and then learn there was no earthquake, the probability of burglary <em>increases</em> (explaining away). So E and B are <strong>not</strong> conditionally independent given A.</li>
+                  </ul>
+                  <p><strong>&#10060; Wrong:</strong> &ldquo;E &perp; B, therefore E &perp; B | A.&rdquo;</p>
+                  <p><strong>&#9989; Correct:</strong> E &perp; B is true, but E &perp; B | A is <strong>false</strong>. Observing the common effect (Alarm) introduces a dependency between the causes.</p>
+                </div>
+
+                <!-- Mistake 13 -->
+                <div id="mistake-13" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 13: Not Normalising After Variable Elimination</div>
+                  <p><strong>The mistake:</strong> After summing out hidden variables, students report the raw factor values without normalising, yielding numbers that don&rsquo;t sum to 1.</p>
+                  <p><strong>Why it happens:</strong> Variable elimination produces an <strong>unnormalised</strong> distribution. The normalisation step is easy to forget, especially under exam pressure.</p>
+                  <p><strong>Correct approach:</strong></p>
+                  <ul>
+                    <li>After eliminating all hidden variables, you get a factor &phi;(query).</li>
+                    <li>The final step is to <strong>normalise</strong>: P(Q = q) = &phi;(q) / &sum;<sub>q&prime;</sub> &phi;(q&prime;).</li>
+                    <li>If your answers don&rsquo;t sum to 1, you almost certainly forgot to normalise.</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 13</div>
+                  <p>After variable elimination, you obtain:</p>
+                  <pre><code>&phi;(C = true)  = 0.054
+&phi;(C = false) = 0.126</code></pre>
+                  <p><strong>&#10060; Wrong answer:</strong> P(C = true) = 0.054, P(C = false) = 0.126. (These sum to 0.18, not 1!)</p>
+                  <p><strong>&#9989; Correct:</strong> Normalise:</p>
+                  <pre><code>&alpha; = 1 / (0.054 + 0.126) = 1 / 0.18 &asymp; 5.556
+P(C = true)  = 0.054 / 0.18 = <strong>0.30</strong>
+P(C = false) = 0.126 / 0.18 = <strong>0.70</strong>
+                            Sum = 1.00 &#10004;</code></pre>
+                </div>
+              </section>
+
+              <!-- ============================================================ -->
+              <!--  PART D: GENERAL EXAM MISTAKES                               -->
+              <!-- ============================================================ -->
+              <section id="general-mistakes">
+                <h2>Part D &mdash; General Exam Mistakes</h2>
+
+                <!-- Mistake 14 -->
+                <div id="mistake-14" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 14: Time Management &mdash; Spending Too Long on One Question</div>
+                  <p><strong>The mistake:</strong> Getting stuck on a single hard question (often a 2-mark question) and spending 10&ndash;15 minutes on it, leaving insufficient time for easier questions worth the same or more marks.</p>
+                  <p><strong>Why it happens:</strong> Test anxiety, sunk-cost fallacy (&ldquo;I&rsquo;ve already spent 5 minutes, I must finish it&rdquo;), or underestimating the remaining questions.</p>
+                  <p><strong>Correct approach:</strong></p>
+                  <ul>
+                    <li><strong>GATE DA has 65 questions in 180 minutes</strong> &mdash; roughly 2.8 minutes per question on average.</li>
+                    <li>1-mark questions: aim for &le; 2 minutes. 2-mark questions: aim for &le; 4 minutes.</li>
+                    <li>If you&rsquo;re stuck after 3&ndash;4 minutes, <strong>mark for review</strong> and move on. Return to it later if time permits.</li>
+                    <li>Answering three easy 1-mark questions (3 marks) is better than struggling with one hard 2-mark question.</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">&#128337; Time Budget Suggestion</div>
+                  <table class="comparison-table">
+                    <thead><tr><th>Phase</th><th>Time</th><th>Activity</th></tr></thead>
+                    <tbody>
+                      <tr><td>First pass</td><td>0&ndash;90 min</td><td>Attempt all questions, skip hard ones quickly</td></tr>
+                      <tr><td>Second pass</td><td>90&ndash;150 min</td><td>Return to marked/skipped questions</td></tr>
+                      <tr><td>Review</td><td>150&ndash;180 min</td><td>Verify answers, check NAT rounding, fix bubbles</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Mistake 15 -->
+                <div id="mistake-15" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 15: MCQ vs MSQ Confusion (Partial Marking)</div>
+                  <p><strong>The mistake:</strong> Not understanding the different marking schemes for MCQ (Multiple Choice Questions) and MSQ (Multiple Select Questions), leading to wrong risk-reward decisions.</p>
+                  <p><strong>Why it happens:</strong> Students don&rsquo;t read the instructions carefully, or they apply MCQ strategy to MSQ and vice versa.</p>
+                  <p><strong>Correct understanding:</strong></p>
+                  <table class="comparison-table">
+                    <thead><tr><th>Type</th><th>Correct</th><th>Wrong/Partial</th><th>Unanswered</th><th>Negative Marking?</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>MCQ</strong> (1 correct)</td><td>Full marks</td><td>&minus;1/3 (1-mark) or &minus;2/3 (2-mark)</td><td>0</td><td><strong>Yes</strong></td></tr>
+                      <tr><td><strong>MSQ</strong> (1+ correct)</td><td>Full marks</td><td>0 (partial or wrong)</td><td>0</td><td><strong>No</strong></td></tr>
+                      <tr><td><strong>NAT</strong> (numerical)</td><td>Full marks</td><td>0</td><td>0</td><td><strong>No</strong></td></tr>
+                    </tbody>
+                  </table>
+                  <p><strong>Key strategy implications:</strong></p>
+                  <ul>
+                    <li>For MCQ: guessing randomly has negative expected value. Eliminate at least one option before guessing.</li>
+                    <li>For MSQ: <strong>no penalty</strong> for wrong answers, but partial correct answers get 0 marks. You must select <strong>all</strong> correct options and no wrong ones. Always attempt MSQ since there&rsquo;s no negative marking.</li>
+                    <li>For NAT: always enter an answer &mdash; no penalty for wrong attempts.</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 15</div>
+                  <p><strong>Scenario (MCQ, 2 marks):</strong> You&rsquo;re unsure between options A and C. You&rsquo;ve eliminated B and D.</p>
+                  <p><strong>&#10060; Wrong strategy:</strong> Skip it (&ldquo;I&rsquo;m not sure&rdquo;). Expected value of skipping = 0.</p>
+                  <p><strong>&#9989; Better strategy:</strong> With 2 remaining options, you have a 50% chance of getting +2 and 50% chance of getting &minus;2/3. Expected value = 0.5 &times; 2 + 0.5 &times; (&minus;2/3) = 1 &minus; 0.333 = <strong>+0.667</strong>. Always guess when you can eliminate options!</p>
+                  <hr>
+                  <p><strong>Scenario (MSQ, 2 marks):</strong> You&rsquo;re sure about options A and B, unsure about C.</p>
+                  <p><strong>&#10060; Wrong:</strong> Select A, B, and C &ldquo;just to be safe&rdquo; (if C is wrong, you get <strong>0 marks</strong> despite A and B being right).</p>
+                  <p><strong>&#9989; Correct analysis:</strong> If you&rsquo;re &gt; 50% confident C is correct, include it (partial answers get 0 anyway). If unsure, leave C out only if A+B is the complete correct set. In MSQ, you need <strong>exactly</strong> the right set.</p>
+                </div>
+
+                <!-- Mistake 16 -->
+                <div id="mistake-16" class="warning-box">
+                  <div class="box-title">&#9888; Mistake 16: NAT Rounding Errors</div>
+                  <p><strong>The mistake:</strong> Entering a NAT (Numerical Answer Type) response with incorrect rounding, or entering it in the wrong format, causing the system to mark a correct solution as wrong.</p>
+                  <p><strong>Why it happens:</strong> Students round intermediate results too aggressively, or they&rsquo;re unsure whether to round to 2, 3, or 4 decimal places.</p>
+                  <p><strong>Correct approach:</strong></p>
+                  <ul>
+                    <li>GATE typically accepts NAT answers within a <strong>range</strong> (e.g., &plusmn;0.01 or &plusmn;1% of the correct answer).</li>
+                    <li><strong>Never round intermediate calculations.</strong> Keep at least 4&ndash;5 decimal places throughout, and round only the final answer.</li>
+                    <li>If the question says &ldquo;round to 2 decimal places,&rdquo; do exactly that. Otherwise, enter the most precise value you calculated (2&ndash;4 decimal places).</li>
+                    <li>Check the format: some NAT questions expect integers, others expect decimals. Read the instruction under the answer box.</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Mistake 16</div>
+                  <p><strong>Question:</strong> Calculate the entropy H(X) where P(X=0) = 0.7, P(X=1) = 0.3. Answer up to 2 decimal places.</p>
+                  <p><strong>&#10060; Wrong approach (premature rounding):</strong></p>
+                  <pre><code>log<sub>2</sub>(0.7) &asymp; &minus;0.51 (rounded too early)
+log<sub>2</sub>(0.3) &asymp; &minus;1.74 (rounded too early)
+H = &minus;(0.7 &times; &minus;0.51 + 0.3 &times; &minus;1.74)
+  = &minus;(&minus;0.357 &minus; 0.522) = <strong>0.88</strong></code></pre>
+                  <p><strong>&#9989; Correct approach (full precision intermediate steps):</strong></p>
+                  <pre><code>log<sub>2</sub>(0.7) = &minus;0.51457 (keep full precision)
+log<sub>2</sub>(0.3) = &minus;1.73697
+H = &minus;(0.7 &times; (&minus;0.51457) + 0.3 &times; (&minus;1.73697))
+  = &minus;(&minus;0.36020 &minus; 0.52109)
+  = &minus;(&minus;0.88129) = 0.88129
+  &rArr; Rounded: <strong>0.88</strong></code></pre>
+                  <p>In this case the answers happen to match, but with more complex calculations premature rounding can push you outside the accepted range. <strong>Always keep full intermediate precision.</strong></p>
+                </div>
+              </section>
+
+              <!-- ============================================================ -->
+              <!--  SUMMARY & QUICK REFERENCE                                   -->
+              <!-- ============================================================ -->
+              <section id="summary">
+                <h2>Summary &mdash; Quick Reference Checklist</h2>
+
+                <div class="note-box">
+                  <div class="box-title">&#128203; Before-Exam Checklist</div>
+                  <p>Print or memorise this list. Skim it the night before the exam.</p>
+                </div>
+
+                <div class="summary-section">
+                  <h3>Search Algorithms</h3>
+                  <ul>
+                    <li>&#9745; Complete &ne; Optimal. Know the difference.</li>
+                    <li>&#9745; DFS is <strong>not complete</strong> in infinite spaces.</li>
+                    <li>&#9745; b = branching factor, d = shallowest goal, m = max depth. DFS uses m, BFS uses d.</li>
+                    <li>&#9745; UCS &ne; BFS when edge costs differ.</li>
+                    <li>&#9745; Inadmissible h <em>may</em> still give optimal results &mdash; but removes the guarantee.</li>
+                  </ul>
+                  <h3>Logic</h3>
+                  <ul>
+                    <li>&#9745; CNF requires distributing &or; over &and;. Don&rsquo;t stop early.</li>
+                    <li>&#9745; &forall;x &exist;y &ne; &exist;y &forall;x. Quantifier order matters.</li>
+                    <li>&#9745; Occurs check: cannot unify x with f(x).</li>
+                    <li>&#9745; Modus Ponens: A, A&rarr;B &rArr; B. Not: B, A&rarr;B &rArr; A.</li>
+                  </ul>
+                  <h3>Probability &amp; Bayesian Networks</h3>
+                  <ul>
+                    <li>&#9745; P(H|E) &ne; P(E|H). Always apply Bayes&rsquo; Theorem.</li>
+                    <li>&#9745; Never eliminate query or evidence variables.</li>
+                    <li>&#9745; Conditional independence &ne; marginal independence (explaining away).</li>
+                    <li>&#9745; Always normalise VE results so probabilities sum to 1.</li>
+                  </ul>
+                  <h3>General Exam Strategy</h3>
+                  <ul>
+                    <li>&#9745; ~2.8 min per question. Move on after 4 min max.</li>
+                    <li>&#9745; MCQ has negative marking; MSQ and NAT do not.</li>
+                    <li>&#9745; For NAT, keep full precision in intermediate steps. Round only the final answer.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>Artificial Intelligence: A Modern Approach</em>, 4th Ed. &mdash; Chapters 3&ndash;7, 12&ndash;14</li>
+                  <li>GATE DA Official Syllabus and Previous Year Question Papers (2022&ndash;2025)</li>
+                  <li>Koller, D. &amp; Friedman, N. <em>Probabilistic Graphical Models</em>, MIT Press</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch16-common-mistakes">&#9745; Mark as Complete</button>
+
+            <div class="nav-buttons">
+              <a href="formula-sheet.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Formula Sheet</span>
+              </a>
+              <a href="mock-test-1.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Mock Test 1</span>
+              </a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#search-mistakes">A. Search Mistakes</a>
+                <ul>
+                  <li><a href="#mistake-1">1. Completeness vs Optimality</a></li>
+                  <li><a href="#mistake-2">2. DFS in Infinite Spaces</a></li>
+                  <li><a href="#mistake-3">3. b, d, m Confusion</a></li>
+                  <li><a href="#mistake-4">4. UCS &ne; BFS</a></li>
+                  <li><a href="#mistake-5">5. Inadmissible Heuristic</a></li>
+                </ul>
+              </li>
+              <li><a href="#logic-mistakes">B. Logic Mistakes</a>
+                <ul>
+                  <li><a href="#mistake-6">6. CNF Conversion</a></li>
+                  <li><a href="#mistake-7">7. Quantifier Scope</a></li>
+                  <li><a href="#mistake-8">8. Occurs Check</a></li>
+                  <li><a href="#mistake-9">9. Modus Ponens</a></li>
+                </ul>
+              </li>
+              <li><a href="#probability-mistakes">C. Probability Mistakes</a>
+                <ul>
+                  <li><a href="#mistake-10">10. Prior vs Posterior</a></li>
+                  <li><a href="#mistake-11">11. VE Ordering</a></li>
+                  <li><a href="#mistake-12">12. Cond. vs Marginal Indep.</a></li>
+                  <li><a href="#mistake-13">13. Normalisation</a></li>
+                </ul>
+              </li>
+              <li><a href="#general-mistakes">D. General Mistakes</a>
+                <ul>
+                  <li><a href="#mistake-14">14. Time Management</a></li>
+                  <li><a href="#mistake-15">15. MCQ vs MSQ</a></li>
+                  <li><a href="#mistake-16">16. NAT Rounding</a></li>
+                </ul>
+              </li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

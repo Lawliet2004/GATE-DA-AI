@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Agents and Environments in AI — Learn the formal definition of intelligent agents, agent functions vs agent programs, percept sequences, and worked examples for GATE DA preparation.">
+  <title>Agents &amp; Environments — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="agents-and-environments.html" class="sidebar-link active"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+            <a href="rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a>
+            <a href="task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a>
+            <a href="agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a>
+            <a href="practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a>
+            <a href="notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="agents-and-environments.html">Chapter 1: Intelligent Agents</a> &raquo;
+          <span class="current">Agents &amp; Environments</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch01-agents-environments">
+
+            <!-- Page Header -->
+            <h1>Agents and Environments</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch01-agents-environments" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="../00-introduction/what-is-ai.html">What is AI?</a> &mdash; Understanding the Rational Agent approach</li>
+                <li><a href="../00-introduction/types-of-ai.html">Types of AI</a> &mdash; Basic classification of AI systems</li>
+              </ul>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Define what an agent is and identify its components (sensors and actuators)</li>
+                <li>Understand the relationship between an agent and its environment</li>
+                <li>Distinguish between <strong>agent function</strong> and <strong>agent program</strong></li>
+                <li>Define and use the concept of <strong>percept sequence</strong></li>
+                <li>Analyze real-world systems as agents and identify their sensors, actuators, and environments</li>
+                <li>Solve GATE-style questions on agent-environment modeling</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: Intuitive Introduction -->
+              <section id="intuitive-introduction">
+                <h2>1. An Intuitive Introduction</h2>
+
+                <p>Imagine you are sitting in a <strong>self-driving car</strong>. The car has cameras, LIDAR, radar, and GPS (its <strong>sensors</strong>) that constantly gather information about the road, other vehicles, pedestrians, and traffic signals. Based on this information, the car makes decisions: turn left, accelerate, brake, or change lanes. It executes these decisions through its steering wheel, accelerator, and brakes (its <strong>actuators</strong>).</p>
+
+                <p>In AI terminology, the self-driving car is an <strong>agent</strong>. The road, other cars, pedestrians, weather, and traffic rules form its <strong>environment</strong>. The car perceives the environment through sensors and acts upon it through actuators. This simple yet powerful abstraction is the foundation of all modern AI.</p>
+
+                <p>But agents are not just robots or cars. Consider these everyday examples:</p>
+                <ul>
+                  <li><strong>You</strong> are an agent: your eyes, ears, and skin are sensors; your hands, legs, and voice are actuators; the world is your environment.</li>
+                  <li><strong>A spam filter</strong> is an agent: its sensor is the incoming email text; its actuator is the classify action (spam/not spam); its environment is the email stream.</li>
+                  <li><strong>A thermostat</strong> is an agent: it senses temperature and acts by turning a heater on or off.</li>
+                </ul>
+
+                <div class="note-box">
+                  <div class="box-title">Why This Matters for GATE DA</div>
+                  <p>The agent-environment framework is the <strong>central organizing concept</strong> of AI in the GATE DA syllabus. Every subsequent topic&mdash;search algorithms, game playing, logical reasoning, machine learning&mdash;is about designing agents that act intelligently in various environments. Expect 1&ndash;3 direct questions on agent definitions and their components.</p>
+                </div>
+              </section>
+
+              <!-- Section 2: Formal Definition of an Agent -->
+              <section id="formal-definition">
+                <h2>2. Formal Definition of an Agent</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Agent (Russell &amp; Norvig)</div>
+                  <p>An <strong>agent</strong> is anything that can be viewed as perceiving its <strong>environment</strong> through <strong>sensors</strong> and acting upon that environment through <strong>actuators</strong>.</p>
+                </div>
+
+                <p>This definition is deliberately broad. It applies to:</p>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Agent</th>
+                        <th>Sensors</th>
+                        <th>Actuators</th>
+                        <th>Environment</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Human</td>
+                        <td>Eyes, ears, skin, tongue, nose</td>
+                        <td>Hands, legs, vocal cords</td>
+                        <td>Physical world</td>
+                      </tr>
+                      <tr>
+                        <td>Robot</td>
+                        <td>Cameras, infrared, touch sensors</td>
+                        <td>Motors, grippers, speakers</td>
+                        <td>Factory floor, warehouse</td>
+                      </tr>
+                      <tr>
+                        <td>Software agent</td>
+                        <td>Keystrokes, file contents, network data</td>
+                        <td>Screen output, file writes, network packets</td>
+                        <td>Operating system, internet</td>
+                      </tr>
+                      <tr>
+                        <td>Thermostat</td>
+                        <td>Temperature sensor</td>
+                        <td>Heater switch (on/off)</td>
+                        <td>Room</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3 id="percept-percept-sequence">2.1 Percept and Percept Sequence</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Percept</div>
+                  <p>A <strong>percept</strong> is the agent&rsquo;s perceptual input at any given instant&mdash;the content that its sensors provide at one moment in time.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Percept Sequence</div>
+                  <p>The <strong>percept sequence</strong> is the complete history of everything the agent has ever perceived. An agent&rsquo;s choice of action can depend on the entire percept sequence observed to date, but not on anything it hasn&rsquo;t perceived.</p>
+                </div>
+
+                <p><strong>Example:</strong> Consider a vacuum-cleaner agent in a two-square world (Square A and Square B). Each square is either Clean or Dirty. At each time step, the agent perceives its current location and the status of that square.</p>
+
+                <ul>
+                  <li>At time 1, the agent is in Square A and it&rsquo;s Dirty. Percept: <code>[A, Dirty]</code></li>
+                  <li>At time 2, after cleaning, it&rsquo;s still in A and it&rsquo;s now Clean. Percept: <code>[A, Clean]</code></li>
+                  <li>At time 3, it moves to B and finds it Dirty. Percept: <code>[B, Dirty]</code></li>
+                </ul>
+
+                <p>The percept sequence so far is: <code>[A, Dirty], [A, Clean], [B, Dirty]</code>. The agent&rsquo;s next action can depend on this entire history.</p>
+              </section>
+
+              <!-- Section 3: Agent Function vs Agent Program -->
+              <section id="agent-function-vs-program">
+                <h2>3. Agent Function vs. Agent Program</h2>
+
+                <p>This distinction is crucial and frequently tested in GATE:</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Agent Function</div>
+                  <p>The <strong>agent function</strong> maps every possible percept sequence to an action. It is a <em>mathematical</em> (abstract) description of the agent&rsquo;s behavior.</p>
+                  <p style="text-align:center; font-size:1.1em; margin-top:0.5em;"><strong>f : P* &rarr; A</strong></p>
+                  <p>where P* is the set of all possible percept sequences and A is the set of actions.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Agent Program</div>
+                  <p>The <strong>agent program</strong> is a concrete implementation of the agent function. It runs on a physical computing device (the <strong>agent architecture</strong>). The agent program takes the <em>current percept</em> as input and returns an action.</p>
+                  <p style="text-align:center; font-size:1.1em; margin-top:0.5em;"><strong>agent = architecture + program</strong></p>
+                </div>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Aspect</th>
+                        <th>Agent Function</th>
+                        <th>Agent Program</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Nature</td>
+                        <td>Abstract / Mathematical</td>
+                        <td>Concrete / Implementation</td>
+                      </tr>
+                      <tr>
+                        <td>Input</td>
+                        <td>Entire percept sequence</td>
+                        <td>Current percept (may maintain internal memory)</td>
+                      </tr>
+                      <tr>
+                        <td>Size</td>
+                        <td>Can be infinitely large (all possible sequences)</td>
+                        <td>Finite code running on hardware</td>
+                      </tr>
+                      <tr>
+                        <td>Representation</td>
+                        <td>A lookup table (conceptually)</td>
+                        <td>Rules, search, neural network, etc.</td>
+                      </tr>
+                      <tr>
+                        <td>Analogy</td>
+                        <td>The &ldquo;specification&rdquo; or &ldquo;what to do&rdquo;</td>
+                        <td>The &ldquo;code&rdquo; or &ldquo;how to do it&rdquo;</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Key Insight</div>
+                  <p>The agent function is an <em>external characterization</em> of the agent&rsquo;s behavior&mdash;it describes what action the agent takes for every possible percept history. The agent program is the <em>internal implementation</em>. Multiple different agent programs can implement the same agent function. For example, a lookup table and a neural network could both implement the same input-output mapping.</p>
+                </div>
+
+                <h3 id="table-driven-agent">3.1 The Table-Driven Agent</h3>
+
+                <p>Conceptually, the simplest agent program is a <strong>table-driven agent</strong>: a giant lookup table that stores the action for every possible percept sequence. While this trivially implements any agent function, it is wildly impractical:</p>
+
+                <div class="example-box">
+                  <div class="box-title">Why Table-Driven Agents Fail</div>
+                  <p>Consider a chess-playing agent. A chess position has about 10<sup>47</sup> legal states. If the agent considers sequences of moves, the table would need entries for every possible sequence of board states seen so far&mdash;an astronomically large number. Even storing a table for a simple 2&times;2 grid world over 100 time steps would require 2<sup>100</sup> entries. The table-driven approach demonstrates that we need <em>smarter</em> agent programs that compress the agent function into compact code.</p>
+                </div>
+              </section>
+
+              <!-- Section 4: The Agent-Environment Interface -->
+              <section id="agent-environment-interface">
+                <h2>4. The Agent-Environment Interface</h2>
+
+                <p>The interaction between an agent and its environment follows a simple cycle:</p>
+
+                <ol>
+                  <li><strong>Perceive:</strong> The agent receives a percept from the environment through its sensors.</li>
+                  <li><strong>Decide:</strong> The agent program processes the percept (possibly considering past percepts) and selects an action.</li>
+                  <li><strong>Act:</strong> The agent executes the action on the environment through its actuators.</li>
+                  <li><strong>Update:</strong> The environment transitions to a new state (which may or may not be affected by the agent&rsquo;s action).</li>
+                  <li><strong>Repeat:</strong> The cycle continues.</li>
+                </ol>
+
+                <div class="note-box">
+                  <div class="box-title">Perception-Action Loop</div>
+                  <p style="text-align:center; font-family:monospace; font-size:1.05em;">
+                    Environment &xrarr; [Sensors] &xrarr; <strong>Percept</strong> &xrarr; [Agent Program] &xrarr; <strong>Action</strong> &xrarr; [Actuators] &xrarr; Environment
+                  </p>
+                  <p>This loop is sometimes called the <strong>sense-think-act</strong> cycle or the <strong>perception-action loop</strong>. It is fundamental to understanding how all AI agents operate.</p>
+                </div>
+
+                <h3 id="environment-states">4.1 Environment States</h3>
+                <p>The environment has a <strong>state</strong> at every instant. The agent&rsquo;s action may change the state. Other processes in the environment (other agents, natural dynamics) may also change the state. The agent may or may not be able to observe the full state&mdash;this determines whether the environment is <em>fully observable</em> or <em>partially observable</em> (covered in detail in the <a href="task-environment-peas.html">PEAS Framework</a> topic).</p>
+              </section>
+
+              <!-- Section 5: Vacuum-Cleaner World -->
+              <section id="vacuum-world">
+                <h2>5. The Vacuum-Cleaner World</h2>
+
+                <p>The vacuum-cleaner world is the canonical example used by Russell &amp; Norvig to illustrate agents. Understanding it thoroughly is essential for GATE.</p>
+
+                <h3>Setup</h3>
+                <ul>
+                  <li>Two squares: <strong>A</strong> (left) and <strong>B</strong> (right)</li>
+                  <li>Each square is either <strong>Clean</strong> or <strong>Dirty</strong></li>
+                  <li>The agent (vacuum cleaner) is in one square at a time</li>
+                  <li><strong>Percepts:</strong> [location, status] &mdash; e.g., [A, Dirty]</li>
+                  <li><strong>Actions:</strong> Left, Right, Suck, NoOp</li>
+                </ul>
+
+                <h3>Agent Function (Partial Table)</h3>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Percept Sequence</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>[A, Clean]</td><td>Right</td></tr>
+                      <tr><td>[A, Dirty]</td><td>Suck</td></tr>
+                      <tr><td>[B, Clean]</td><td>Left</td></tr>
+                      <tr><td>[B, Dirty]</td><td>Suck</td></tr>
+                      <tr><td>[A, Clean], [A, Clean]</td><td>Right</td></tr>
+                      <tr><td>[A, Clean], [A, Dirty]</td><td>Suck</td></tr>
+                      <tr><td>&hellip;</td><td>&hellip;</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p>Notice how the table grows exponentially with the length of the percept sequence. A simple reflex agent (covered in <a href="agent-types.html">Agent Types</a>) can implement this agent function with just four rules, ignoring the percept history entirely and acting only on the current percept.</p>
+
+                <h3>Simple Reflex Agent Program (Pseudocode)</h3>
+                <pre><code>function VACUUM-AGENT(percept):
+    location, status = percept
+    if status == Dirty:
+        return Suck
+    else if location == A:
+        return Right
+    else:
+        return Left</code></pre>
+              </section>
+
+              <!-- Section 6: Worked Examples -->
+              <section id="worked-examples">
+                <h2>6. Worked Examples</h2>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 1: Vacuum-Cleaner Agent Analysis</div>
+                  <p><strong>Question:</strong> In the vacuum-cleaner world, the agent starts in Square A (Dirty) and Square B is also Dirty. The agent uses the simple reflex program above. Trace through the agent&rsquo;s actions and percept sequence for 4 time steps.</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Time 1:</strong> Percept = [A, Dirty]. Action = Suck. (Square A becomes Clean)</li>
+                    <li><strong>Time 2:</strong> Percept = [A, Clean]. Action = Right. (Agent moves to B)</li>
+                    <li><strong>Time 3:</strong> Percept = [B, Dirty]. Action = Suck. (Square B becomes Clean)</li>
+                    <li><strong>Time 4:</strong> Percept = [B, Clean]. Action = Left. (Agent moves to A)</li>
+                  </ol>
+                  <p><strong>Percept sequence:</strong> [A, Dirty], [A, Clean], [B, Dirty], [B, Clean]</p>
+                  <p><strong>Result:</strong> Both squares are clean after 3 steps. The agent continues to oscillate between A and B (doing no useful work). A more sophisticated agent would use NoOp when both squares are clean.</p>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 2: Chess-Playing Agent</div>
+                  <p><strong>Question:</strong> Identify the sensors, actuators, percepts, actions, and environment for a chess-playing software agent (like Stockfish).</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Sensors:</strong> The interface that receives the current board state (positions of all pieces) and the opponent&rsquo;s last move. In a digital game, this is provided as data from the game server.</li>
+                    <li><strong>Actuators:</strong> The interface that sends the agent&rsquo;s chosen move to the game server (e.g., &ldquo;e2 to e4&rdquo;).</li>
+                    <li><strong>Percepts:</strong> The current board configuration plus the game history (moves made so far). Example: &ldquo;White pawn on e4, Black pawn on e5, &hellip;&rdquo;</li>
+                    <li><strong>Actions:</strong> All legal moves from the current position. Each action specifies a piece and its destination square.</li>
+                    <li><strong>Environment:</strong> The chessboard (8&times;8 grid), the rules of chess, and the opponent player.</li>
+                  </ol>
+                  <p><strong>Agent function:</strong> Maps every possible game history (sequence of board positions) to the best next move.</p>
+                  <p><strong>Agent program:</strong> Uses minimax search with alpha-beta pruning and evaluation functions to select moves efficiently (rather than a lookup table).</p>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 3: Medical Diagnosis Agent</div>
+                  <p><strong>Question:</strong> A hospital deploys an AI system to assist doctors in diagnosing diseases based on patient symptoms, lab test results, and medical history. Model this as an agent.</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Agent:</strong> The medical diagnosis AI system.</li>
+                    <li><strong>Sensors:</strong> Input interfaces that receive patient data&mdash;symptoms (fever, cough, fatigue), lab results (blood counts, X-ray images), and medical history (past conditions, medications, allergies).</li>
+                    <li><strong>Actuators:</strong> Output interface that displays the diagnosis (disease name, probability), recommended tests, and suggested treatment plans to the doctor.</li>
+                    <li><strong>Percepts:</strong> Each patient encounter forms a percept: {symptoms: [fever, cough], lab_results: [WBC: 12000, CRP: elevated], history: [diabetes]}. The percept sequence includes all patients seen so far.</li>
+                    <li><strong>Actions:</strong> Output a diagnosis (e.g., &ldquo;Pneumonia with 87% confidence&rdquo;), recommend additional tests (e.g., &ldquo;Order chest CT scan&rdquo;), or suggest treatment (e.g., &ldquo;Prescribe antibiotics&rdquo;).</li>
+                    <li><strong>Environment:</strong> The hospital setting, patient population, available tests, disease prevalence in the region, and the doctor who makes final decisions.</li>
+                  </ol>
+                  <p><strong>Key insight:</strong> The environment is <em>partially observable</em> (the agent cannot see the patient&rsquo;s internal organs directly), <em>stochastic</em> (diseases have probabilistic symptoms), and <em>sequential</em> (a previous diagnosis may influence future tests).</p>
+                </div>
+              </section>
+
+              <!-- Section 7: GATE-Style Practice -->
+              <section id="gate-practice">
+                <h2>7. GATE-Style Example Questions</h2>
+
+                <div class="example-box">
+                  <div class="box-title">GATE Practice Question 1 (1 mark)</div>
+                  <p><strong>Question:</strong> Which of the following is NOT a component of an intelligent agent?</p>
+                  <p>(A) Sensors &nbsp;&nbsp; (B) Actuators &nbsp;&nbsp; (C) Compiler &nbsp;&nbsp; (D) Environment</p>
+                  <p><strong>Answer:</strong> (C) Compiler. An agent is defined by its sensors (to perceive), actuators (to act), and its environment. A compiler is a software development tool, not a component of the agent framework.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">GATE Practice Question 2 (2 marks)</div>
+                  <p><strong>Question:</strong> The agent function for a vacuum cleaner in a 2-square world maps percept sequences to actions. If the agent operates for <em>T</em> time steps and each percept has 4 possible values ([A, Clean], [A, Dirty], [B, Clean], [B, Dirty]), how many entries does the agent function table have for percept sequences of length exactly <em>T</em>?</p>
+                  <p><strong>Answer:</strong> 4<sup>T</sup>. There are 4 possible percepts per time step. For a sequence of length exactly T, the number of distinct sequences is 4 &times; 4 &times; &hellip; &times; 4 = 4<sup>T</sup>. The total table size for sequences up to length T is 4<sup>1</sup> + 4<sup>2</sup> + &hellip; + 4<sup>T</sup> = (4<sup>T+1</sup> &minus; 4) / 3.</p>
+                </div>
+              </section>
+
+              <!-- Section 8: Common Mistakes -->
+              <section id="common-mistakes">
+                <h2>8. Common Mistakes &amp; Misconceptions</h2>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 1: Confusing Agent Function with Agent Program</div>
+                  <p>The agent function is a <em>mathematical abstraction</em> (a mapping from all percept sequences to actions). The agent program is a <em>concrete implementation</em> that runs on hardware. The function is the &ldquo;what&rdquo;; the program is the &ldquo;how.&rdquo; In GATE, if a question asks about the &ldquo;agent function,&rdquo; think of it as the complete behavioral specification.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 2: Assuming the Agent Knows the Environment State</div>
+                  <p>An agent only knows what its sensors tell it. The percept may give incomplete or noisy information about the true environment state. Don&rsquo;t assume the agent has full knowledge unless the problem explicitly states the environment is &ldquo;fully observable.&rdquo;</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 3: Forgetting the Environment in the Agent Model</div>
+                  <p>Students sometimes focus only on the agent (sensors + actuators + program) and forget that the environment is a critical part of the model. The agent&rsquo;s design depends heavily on the properties of the environment (which we study in <a href="task-environment-peas.html">PEAS</a>).</p>
+                </div>
+              </section>
+
+              <!-- Section 9: Summary -->
+              <section id="summary" class="summary-section">
+                <h2>&#128218; Summary</h2>
+                <ul>
+                  <li>An <strong>agent</strong> perceives its environment through <strong>sensors</strong> and acts through <strong>actuators</strong>.</li>
+                  <li>A <strong>percept</strong> is the sensory input at one instant; the <strong>percept sequence</strong> is the entire history of percepts.</li>
+                  <li>The <strong>agent function</strong> is an abstract mathematical mapping from percept sequences to actions: f : P* &rarr; A.</li>
+                  <li>The <strong>agent program</strong> is a concrete implementation of the agent function running on hardware (the architecture): agent = architecture + program.</li>
+                  <li>A <strong>table-driven agent</strong> stores the complete agent function but is impractical due to exponential table size.</li>
+                  <li>The perception-action loop (sense &rarr; decide &rarr; act &rarr; repeat) is the fundamental cycle of all AI agents.</li>
+                  <li>The vacuum-cleaner world is the canonical example for understanding agents, percepts, and actions.</li>
+                </ul>
+              </section>
+
+              <!-- Section 10: References -->
+              <section id="references" class="references-section">
+                <h2>References</h2>
+                <ol>
+                  <li>Russell, S. &amp; Norvig, P. (2020). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson. &mdash; Chapter 2, Sections 2.1&ndash;2.2.</li>
+                  <li>Poole, D. &amp; Mackworth, A. (2017). <em>Artificial Intelligence: Foundations of Computational Agents</em> (2nd ed.). Cambridge University Press. &mdash; Chapter 2.</li>
+                  <li>Wooldridge, M. (2009). <em>An Introduction to MultiAgent Systems</em> (2nd ed.). Wiley. &mdash; Chapter 1.</li>
+                </ol>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch01-agents-environments">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="../00-introduction/quiz-introduction.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Ch 00: Chapter Quiz</span>
+              </a>
+              <a href="rationality.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Rationality</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#intuitive-introduction">1. Intuitive Introduction</a></li>
+              <li><a href="#formal-definition">2. Formal Definition</a>
+                <ul>
+                  <li><a href="#percept-percept-sequence">2.1 Percept &amp; Percept Sequence</a></li>
+                </ul>
+              </li>
+              <li><a href="#agent-function-vs-program">3. Agent Function vs. Program</a>
+                <ul>
+                  <li><a href="#table-driven-agent">3.1 Table-Driven Agent</a></li>
+                </ul>
+              </li>
+              <li><a href="#agent-environment-interface">4. Agent-Environment Interface</a>
+                <ul>
+                  <li><a href="#environment-states">4.1 Environment States</a></li>
+                </ul>
+              </li>
+              <li><a href="#vacuum-world">5. Vacuum-Cleaner World</a></li>
+              <li><a href="#worked-examples">6. Worked Examples</a></li>
+              <li><a href="#gate-practice">7. GATE Practice</a></li>
+              <li><a href="#common-mistakes">8. Common Mistakes</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

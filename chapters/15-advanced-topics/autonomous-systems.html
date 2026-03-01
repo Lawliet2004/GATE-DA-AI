@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Autonomous Systems — self-driving cars, perception, planning, control, SLAM, sensor fusion, SAE levels, sim-to-real transfer, and edge AI for GATE DA AI preparation.">
+  <title>Autonomous Systems — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-ethics-fairness.html" class="sidebar-link"><span class="link-check"></span> AI Ethics &amp; Fairness<span class="link-type theory">Theory</span></a>
+            <a href="federated-learning.html" class="sidebar-link"><span class="link-check"></span> Federated Learning<span class="link-type theory">Theory</span></a>
+            <a href="neuromorphic-computing.html" class="sidebar-link"><span class="link-check"></span> Neuromorphic Computing<span class="link-type theory">Theory</span></a>
+            <a href="quantum-machine-learning.html" class="sidebar-link"><span class="link-check"></span> Quantum ML<span class="link-type theory">Theory</span></a>
+            <a href="ai-safety-alignment.html" class="sidebar-link"><span class="link-check"></span> AI Safety &amp; Alignment<span class="link-type theory">Theory</span></a>
+            <a href="multimodal-ai.html" class="sidebar-link"><span class="link-check"></span> Multimodal AI<span class="link-type theory">Theory</span></a>
+            <a href="autonomous-systems.html" class="sidebar-link active"><span class="link-check"></span> Autonomous Systems<span class="link-type theory">Theory</span></a>
+            <a href="recent-breakthroughs.html" class="sidebar-link"><span class="link-check"></span> Recent Breakthroughs<span class="link-type theory">Theory</span></a>
+            <a href="notes-advanced.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-advanced.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="explainable-ai.html">Chapter 15: Advanced Topics</a> &raquo; <span class="current">Autonomous Systems</span></nav>
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch15-autonomous-systems">
+            <h1>Autonomous Systems</h1>
+
+            <!-- Section 1: Introduction -->
+            <h2 id="introduction">Introduction to Autonomous Systems</h2>
+            <p>Autonomous systems are AI-powered agents that perceive their environment, make decisions, and act in the physical world with <strong>minimal or no human intervention</strong>. From self-driving cars and delivery drones to surgical robots and planetary rovers, these systems represent some of the most challenging and impactful applications of artificial intelligence.</p>
+
+            <div class="definition-box">
+              <h4>&#128218; Autonomous System</h4>
+              <p>A system capable of sensing its environment, processing sensory information, making decisions, and executing actions to achieve specified goals without continuous human supervision. Autonomy exists on a spectrum: from simple rule-based automation to fully self-directed agents operating in complex, dynamic, and unstructured environments.</p>
+            </div>
+
+            <p>The design of autonomous systems integrates nearly every AI sub-discipline: computer vision for <strong>perception</strong>, search and planning algorithms for <strong>decision-making</strong>, control theory for <strong>actuation</strong>, and machine learning for <strong>adaptation and improvement</strong>. This makes autonomous systems a capstone topic that ties together concepts from across the AI curriculum.</p>
+
+            <div class="note-box">
+              <h4>&#128161; GATE DA Relevance</h4>
+              <p>Autonomous systems integrate concepts from search (Ch. 02&ndash;03), planning (Ch. 13), reinforcement learning (Ch. 12), computer vision (Ch. 11), and probabilistic reasoning (Ch. 07). Understanding the perception-planning-control pipeline and SLAM provides a unifying context for these topics. Questions may present autonomous system scenarios requiring you to identify which AI techniques apply.</p>
+            </div>
+
+            <!-- Section 2: SAE Levels of Autonomy -->
+            <h2 id="sae-levels">SAE Levels of Driving Automation</h2>
+            <p>The Society of Automotive Engineers (SAE) defines six levels of driving automation (J3016 standard), providing a widely-used framework for classifying autonomous vehicle capabilities.</p>
+
+            <div class="definition-box">
+              <h4>&#128218; SAE J3016 Levels</h4>
+              <p>A taxonomy ranging from Level 0 (no automation) to Level 5 (full automation), defining the division of driving tasks between human and machine. The key transition is between Level 2 (human must always supervise) and Level 3 (system handles driving in defined conditions; human is fallback).</p>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Level</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Human Role</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>0</strong></td>
+                  <td>No Automation</td>
+                  <td>Human performs all driving tasks</td>
+                  <td>Full control</td>
+                  <td>Standard manual car</td>
+                </tr>
+                <tr>
+                  <td><strong>1</strong></td>
+                  <td>Driver Assistance</td>
+                  <td>System assists with steering OR speed (not both)</td>
+                  <td>Always supervising</td>
+                  <td>Adaptive cruise control</td>
+                </tr>
+                <tr>
+                  <td><strong>2</strong></td>
+                  <td>Partial Automation</td>
+                  <td>System handles steering AND speed simultaneously</td>
+                  <td>Must monitor at all times</td>
+                  <td>Tesla Autopilot, GM Super Cruise</td>
+                </tr>
+                <tr>
+                  <td><strong>3</strong></td>
+                  <td>Conditional Automation</td>
+                  <td>System handles all driving in specific conditions</td>
+                  <td>Fallback when requested</td>
+                  <td>Mercedes Drive Pilot (traffic jam)</td>
+                </tr>
+                <tr>
+                  <td><strong>4</strong></td>
+                  <td>High Automation</td>
+                  <td>System handles all driving in defined operational domain</td>
+                  <td>Not needed in domain</td>
+                  <td>Waymo robotaxi (geofenced)</td>
+                </tr>
+                <tr>
+                  <td><strong>5</strong></td>
+                  <td>Full Automation</td>
+                  <td>System handles all driving everywhere</td>
+                  <td>Passenger only</td>
+                  <td>Not yet achieved</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="warning-box">
+              <h4>&#9888;&#65039; The Level 2&ndash;3 Gap</h4>
+              <p>The transition from Level 2 to Level 3 is critical because it shifts <strong>legal liability</strong> from the human driver to the manufacturer. At Level 2, the human is always responsible; at Level 3+, the system is responsible when active. This has profound legal, insurance, and ethical implications, and explains why many companies have been cautious about deploying Level 3 systems.</p>
+            </div>
+
+            <!-- Section 3: Perception -->
+            <h2 id="perception">Perception: Sensing the Environment</h2>
+            <p>Perception is the first stage of the autonomous systems pipeline: converting raw sensor data into a structured understanding of the environment.</p>
+
+            <div class="definition-box">
+              <h4>&#128218; Perception in Autonomous Systems</h4>
+              <p>The process of using sensors and AI algorithms to detect, classify, and track objects, estimate the vehicle&rsquo;s position, and build a representation of the surrounding environment. This includes tasks such as object detection, semantic segmentation, depth estimation, lane detection, and traffic sign recognition.</p>
+            </div>
+
+            <h3>Key Sensors</h3>
+            <ul>
+              <li><strong>Cameras:</strong> RGB images for object detection, lane marking, traffic signs. Cheap and information-dense but sensitive to lighting and weather.</li>
+              <li><strong>LiDAR (Light Detection and Ranging):</strong> Emits laser pulses to create a 3D point cloud. Accurate depth measurement, works in low light, but expensive and sparse.</li>
+              <li><strong>Radar:</strong> Uses radio waves for object detection and velocity estimation. Works in all weather conditions, good at measuring relative speed, but low resolution.</li>
+              <li><strong>Ultrasonic Sensors:</strong> Short-range proximity detection for parking assistance.</li>
+              <li><strong>GNSS/GPS + IMU:</strong> Global positioning and inertial measurement for vehicle localisation.</li>
+            </ul>
+
+            <div class="example-box">
+              <h4>&#128300; Example &mdash; LiDAR vs Camera Debate</h4>
+              <p>The autonomous driving industry is divided between two philosophies: <strong>Multi-sensor (Waymo, Cruise):</strong> uses cameras + LiDAR + radar for redundancy and complementary strengths. LiDAR provides accurate 3D geometry; cameras provide rich semantic information; radar works in all weather. <strong>Vision-only (Tesla):</strong> argues that cameras alone are sufficient since humans drive with vision only, and that LiDAR is an expensive &ldquo;crutch&rdquo; that hinders scalability. Both approaches have trade-offs in cost, safety margins, and capability.</p>
+            </div>
+
+            <h3>Perception Tasks</h3>
+            <ul>
+              <li><strong>3D Object Detection:</strong> Detecting and localising objects (vehicles, pedestrians, cyclists) in 3D space. Models like PointPillars (LiDAR), BEVFormer (camera), and PointPainting (fusion) are widely used.</li>
+              <li><strong>Semantic Segmentation:</strong> Classifying every pixel/point as road, sidewalk, building, vegetation, etc.</li>
+              <li><strong>Lane Detection:</strong> Identifying lane boundaries and their geometry for path planning.</li>
+              <li><strong>Occupancy Prediction:</strong> Predicting which 3D voxels in the scene are occupied, providing a unified representation that handles objects of any shape.</li>
+            </ul>
+
+            <!-- Section 4: Sensor Fusion -->
+            <h2 id="sensor-fusion">Sensor Fusion</h2>
+            <p>No single sensor is sufficient for robust autonomous driving. Sensor fusion combines data from multiple sensors to produce a more accurate, reliable, and complete understanding of the environment.</p>
+
+            <div class="definition-box">
+              <h4>&#128218; Sensor Fusion</h4>
+              <p>The process of combining data from multiple heterogeneous sensors to produce a unified representation that is more accurate and robust than any individual sensor alone. Fusion can occur at different levels: data-level (raw), feature-level, or decision-level.</p>
+            </div>
+
+            <h3>Fusion Levels</h3>
+            <ol>
+              <li><strong>Early (Data-level) Fusion:</strong> Raw sensor data is projected into a common coordinate frame and merged before processing. Example: projecting LiDAR points onto camera images to create RGBD images.</li>
+              <li><strong>Mid-level (Feature-level) Fusion:</strong> Each sensor is processed by its own feature extractor, and the features are merged before the final detection head. Example: BEVFusion transforms camera and LiDAR features into a shared Bird&rsquo;s Eye View (BEV) representation.</li>
+              <li><strong>Late (Decision-level) Fusion:</strong> Each sensor produces independent detections, which are combined using techniques like non-maximum suppression (NMS) or tracking-based association.</li>
+            </ol>
+
+            <div class="theorem-box">
+              <h4>&#128210; Kalman Filter for Sensor Fusion</h4>
+              <p>The <strong>Kalman Filter</strong> is a fundamental algorithm for fusing noisy measurements from multiple sensors. It maintains a belief (Gaussian distribution) over the system state and updates it in two steps: (1) <strong>Predict:</strong> Use the motion model to propagate the state forward. (2) <strong>Update:</strong> Incorporate the new sensor measurement, weighting it by the Kalman gain (inversely proportional to measurement noise). The <strong>Extended Kalman Filter (EKF)</strong> handles nonlinear systems by linearising around the current estimate.</p>
+            </div>
+
+            <div class="example-box">
+              <h4>&#128300; Example &mdash; Multi-Sensor Fusion for Pedestrian Detection</h4>
+              <p>A camera detects a pedestrian at bearing 30&deg; with high confidence but unknown distance. A radar detects an object at 15m, 28&deg; with known velocity 1.2 m/s but cannot classify it. LiDAR detects a point cluster at (14.8m, 29&deg;) with precise shape but no semantic label. Sensor fusion combines all three: the camera provides classification (pedestrian), LiDAR provides precise 3D position, and radar provides velocity. The fused output: &ldquo;pedestrian at 14.9m, 29&deg;, moving at 1.2 m/s&rdquo;&mdash;more complete and reliable than any single sensor.</p>
+            </div>
+
+            <!-- Section 5: SLAM -->
+            <h2 id="slam">Simultaneous Localisation and Mapping (SLAM)</h2>
+            <p>SLAM is the problem of building a map of an unknown environment while simultaneously determining the agent&rsquo;s location within that map&mdash;a chicken-and-egg problem that is fundamental to autonomous navigation.</p>
+
+            <div class="definition-box">
+              <h4>&#128218; SLAM</h4>
+              <p><strong>Simultaneous Localisation and Mapping:</strong> Given a sequence of sensor observations and control inputs, estimate both the map m of the environment and the trajectory x<sub>1:t</sub> of the agent. Formally: find the posterior P(x<sub>1:t</sub>, m | z<sub>1:t</sub>, u<sub>1:t</sub>), where z are observations and u are control commands.</p>
+            </div>
+
+            <h3>Types of SLAM</h3>
+            <ul>
+              <li><strong>Visual SLAM (vSLAM):</strong> Uses cameras as the primary sensor. ORB-SLAM3 is a prominent example that extracts ORB features, matches them across frames, and optimises the pose graph.</li>
+              <li><strong>LiDAR SLAM:</strong> Uses LiDAR point clouds. LOAM (LiDAR Odometry and Mapping) extracts edge and planar features for efficient scan matching.</li>
+              <li><strong>Filter-based SLAM:</strong> Uses EKF or particle filters (FastSLAM) to maintain a probabilistic estimate of the robot pose and landmark positions.</li>
+              <li><strong>Graph-based SLAM:</strong> Represents poses as nodes and constraints (odometry, loop closures) as edges in a graph, then optimises the entire graph jointly.</li>
+            </ul>
+
+            <div class="example-box">
+              <h4>&#128300; Example &mdash; Loop Closure in SLAM</h4>
+              <p>A robot navigates a building and returns to a previously visited location. Due to accumulated odometry drift, it believes it is 3 meters away from its true position. <strong>Loop closure detection</strong> recognises that the current observation matches a previous one (e.g., same visual landmarks), creating a constraint that &ldquo;these two poses should be the same location.&rdquo; The SLAM system then re-optimises the entire trajectory, correcting the accumulated drift and producing a consistent map.</p>
+            </div>
+
+            <div class="warning-box">
+              <h4>&#9888;&#65039; SLAM Challenges</h4>
+              <p>(1) <strong>Dynamic environments:</strong> Moving objects (people, vehicles) violate the static world assumption of classical SLAM. (2) <strong>Perceptual aliasing:</strong> Different locations that look similar cause false loop closures. (3) <strong>Scale ambiguity:</strong> Monocular visual SLAM cannot determine absolute scale without additional sensors. (4) <strong>Computational cost:</strong> Full graph optimisation becomes expensive as the map grows large; techniques like sliding-window optimisation and marginalisation help manage complexity.</p>
+            </div>
+
+            <!-- Section 6: Planning and Decision-Making -->
+            <h2 id="planning">Planning and Decision-Making</h2>
+            <p>After perceiving the environment, an autonomous system must decide <strong>what to do</strong>. Planning in autonomous driving typically operates at three levels:</p>
+
+            <h3>Route Planning (Mission Level)</h3>
+            <p>High-level path from origin to destination using road networks. Uses graph search algorithms (Dijkstra, A*) on road maps. This is the layer provided by navigation systems like Google Maps.</p>
+
+            <h3>Behavioural Planning</h3>
+            <p>Decides high-level driving behaviours: lane changes, merges, turns, stops, yielding. Often implemented as a <strong>finite state machine (FSM)</strong> or decision tree that considers traffic rules, other agents&rsquo; intentions, and safety constraints.</p>
+
+            <h3>Motion Planning (Trajectory Level)</h3>
+            <p>Generates a smooth, feasible trajectory that follows the behavioural plan while respecting vehicle dynamics, comfort constraints, and obstacle avoidance.</p>
+
+            <div class="definition-box">
+              <h4>&#128218; Motion Planning</h4>
+              <p>The problem of finding a collision-free path from the current state to a goal state that satisfies kinematic/dynamic constraints, optimises for smoothness and comfort, and is safe with respect to predicted agent trajectories. Common approaches include lattice planners, optimisation-based planners, and sampling-based methods (RRT, RRT*).</p>
+            </div>
+
+            <div class="example-box">
+              <h4>&#128300; Example &mdash; Three-Level Planning Pipeline</h4>
+              <p>A self-driving car needs to get from point A to point B: (1) <strong>Route planner:</strong> Computes the fastest route via highways and city streets using A* on the road graph. (2) <strong>Behavioural planner:</strong> At an intersection, decides to wait for a pedestrian to cross before turning left. (3) <strong>Motion planner:</strong> Generates a smooth left-turn trajectory with appropriate speed profile, ensuring the vehicle stays in the correct lane and maintains safe distance from the crosswalk.</p>
+            </div>
+
+            <div class="note-box">
+              <h4>&#128161; End-to-End vs Modular Approaches</h4>
+              <p>Traditional autonomous driving uses a <strong>modular pipeline</strong> (perception &rarr; prediction &rarr; planning &rarr; control) where each module is designed and optimised separately. Recent research explores <strong>end-to-end</strong> approaches that learn to map directly from sensor inputs to control outputs using imitation learning or RL. End-to-end models (e.g., UniAD, MILE) can potentially avoid error propagation between modules, but are harder to debug and verify for safety.</p>
+            </div>
+
+            <!-- Section 7: Control -->
+            <h2 id="control">Control: Executing Actions</h2>
+            <p>The control system converts planned trajectories into physical actuator commands (steering angle, throttle, brake) that the vehicle can execute.</p>
+
+            <div class="definition-box">
+              <h4>&#128218; Vehicle Control</h4>
+              <p>The process of computing and applying actuator commands to track a desired reference trajectory. Control must handle vehicle dynamics (non-holonomic constraints, tire physics, delays) and disturbances (road irregularities, wind). Common controllers include PID, pure pursuit, Stanley, and Model Predictive Control (MPC).</p>
+            </div>
+
+            <h3>Common Control Algorithms</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Controller</th>
+                  <th>Type</th>
+                  <th>Strengths</th>
+                  <th>Weaknesses</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>PID</strong></td>
+                  <td>Reactive</td>
+                  <td>Simple, well-understood, easy to tune</td>
+                  <td>No prediction; struggles with complex dynamics</td>
+                </tr>
+                <tr>
+                  <td><strong>Pure Pursuit</strong></td>
+                  <td>Geometric</td>
+                  <td>Smooth paths, simple implementation</td>
+                  <td>Cuts corners at high speed; no speed control</td>
+                </tr>
+                <tr>
+                  <td><strong>Stanley</strong></td>
+                  <td>Geometric</td>
+                  <td>Good cross-track error correction</td>
+                  <td>Oscillation-prone at low speeds</td>
+                </tr>
+                <tr>
+                  <td><strong>MPC</strong></td>
+                  <td>Optimisation-based</td>
+                  <td>Handles constraints and dynamics; predictive</td>
+                  <td>Computationally expensive; requires accurate model</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="theorem-box">
+              <h4>&#128210; Model Predictive Control (MPC)</h4>
+              <p>MPC solves a finite-horizon optimisation problem at each time step: minimise a cost function (tracking error + control effort) subject to vehicle dynamics and constraints (speed limits, acceleration bounds, steering limits), over a prediction horizon of N steps. Only the first control command is applied; the process repeats at the next time step with updated state (&ldquo;receding horizon&rdquo;). MPC is the gold standard for autonomous vehicle control due to its ability to handle constraints explicitly.</p>
+            </div>
+
+            <!-- Section 8: Sim-to-Real Transfer -->
+            <h2 id="sim-to-real">Sim-to-Real Transfer</h2>
+            <p>Training and testing autonomous systems in the real world is dangerous, expensive, and slow. Simulation provides a safe, scalable alternative&mdash;but models trained in simulation often fail when deployed in reality due to the <strong>reality gap</strong>.</p>
+
+            <div class="definition-box">
+              <h4>&#128218; Sim-to-Real Transfer</h4>
+              <p>The process of training an AI model in a simulated environment and deploying it in the real world. The <strong>reality gap</strong> (or <strong>domain gap</strong>) refers to differences between simulation and reality&mdash;in visual appearance, physics, sensor noise, and agent behaviour&mdash;that cause models to underperform when transferred.</p>
+            </div>
+
+            <h3>Techniques for Bridging the Reality Gap</h3>
+            <ul>
+              <li><strong>Domain Randomisation:</strong> Randomise simulation parameters (textures, lighting, object sizes, physics properties) so the model learns features robust to variation. The real world becomes &ldquo;just another variation.&rdquo;</li>
+              <li><strong>Domain Adaptation:</strong> Use techniques like adversarial training, style transfer, or CycleGAN to make simulated images look more realistic, or to align feature distributions between domains.</li>
+              <li><strong>System Identification:</strong> Carefully measure and replicate real-world physical parameters (friction, mass, delay) in simulation.</li>
+              <li><strong>Real-World Fine-Tuning:</strong> Pre-train in simulation, then fine-tune on a small amount of real-world data.</li>
+            </ul>
+
+            <div class="example-box">
+              <h4>&#128300; Example &mdash; Domain Randomisation</h4>
+              <p>OpenAI trained a robotic hand (Dactyl) to solve a Rubik&rsquo;s cube entirely in simulation. They randomised hundreds of parameters: cube size (&plusmn;15%), friction coefficients (0.5&ndash;2.0&times;), gravity direction (&plusmn;0.5 rad), camera positions, lighting angles, and table textures. After training on billions of randomised episodes, the policy transferred successfully to a physical robot hand that had never been used during training. The key insight: sufficient randomisation makes the model robust enough that reality falls within the distribution of training variations.</p>
+            </div>
+
+            <div class="warning-box">
+              <h4>&#9888;&#65039; Sim-to-Real Challenges</h4>
+              <p>(1) <strong>Unmodelled phenomena:</strong> Real-world physics includes effects that simulators don&rsquo;t capture (deformable objects, complex fluid dynamics, cable entanglement). (2) <strong>Computational cost:</strong> High-fidelity simulation with domain randomisation requires massive compute. (3) <strong>Reward hacking in simulation:</strong> Agents may exploit simulator bugs that don&rsquo;t exist in reality. (4) <strong>Long-tail events:</strong> Rare but critical scenarios (unusual obstacles, extreme weather) may not be covered even by randomised simulation.</p>
+            </div>
+
+            <!-- Section 9: Edge AI for Autonomous Systems -->
+            <h2 id="edge-ai">Edge AI</h2>
+            <p>Autonomous systems must make decisions in real-time, often in environments with limited or no cloud connectivity. <strong>Edge AI</strong> refers to running AI inference directly on the device (vehicle, drone, robot) rather than in the cloud.</p>
+
+            <div class="definition-box">
+              <h4>&#128218; Edge AI</h4>
+              <p>The deployment of AI models on local, resource-constrained devices at the network edge. For autonomous systems, this means running perception, planning, and control models on on-board hardware (GPUs, TPUs, FPGAs, or specialised ASICs) with strict latency, power, and thermal constraints.</p>
+            </div>
+
+            <h3>Key Considerations</h3>
+            <ul>
+              <li><strong>Latency:</strong> Self-driving requires end-to-end latency under 100ms(sensor &rarr; decision &rarr; actuation). Cloud round-trip times (50&ndash;200ms) are unacceptable for safety-critical decisions.</li>
+              <li><strong>Model Compression:</strong> Techniques like quantisation (FP32 &rarr; INT8), pruning, knowledge distillation, and neural architecture search (NAS) reduce model size and inference time.</li>
+              <li><strong>Hardware Platforms:</strong> NVIDIA Jetson (GPU), Google Edge TPU, Intel Movidius (VPU), custom ASICs (Tesla FSD chip: 144 TOPS at 72W).</li>
+              <li><strong>Power Budget:</strong> An autonomous vehicle&rsquo;s compute system typically consumes 300&ndash;2000W, compared to a data centre GPU at 300&ndash;700W per card.</li>
+            </ul>
+
+            <div class="example-box">
+              <h4>&#128300; Example &mdash; Tesla FSD Chip</h4>
+              <p>Tesla designed a custom SoC (System-on-Chip) for Full Self-Driving: (1) Two redundant inference chips, each delivering 72 TOPS (trillions of operations per second). (2) 36 TOPS at INT8 precision per neural network accelerator. (3) Total system power: ~72W. (4) Processes 8 cameras + 12 ultrasonic sensors + 1 radar (previously) in real-time. (5) Runs the full perception-planning-control stack with <100ms latency. This demonstrates the tight coupling between AI algorithms and custom hardware in autonomous systems.</p>
+            </div>
+
+            <div class="note-box">
+              <h4>&#128161; Quantisation for Edge Deployment</h4>
+              <p><strong>Post-Training Quantisation (PTQ):</strong> Convert a trained FP32 model to INT8 by calibrating with a representative dataset. Typically loses &lt;1% accuracy with 4&times; speedup. <strong>Quantisation-Aware Training (QAT):</strong> Simulate quantisation during training, allowing the model to adapt. Achieves near-FP32 accuracy with INT8 or even INT4 precision. For autonomous systems, INT8 inference is the de facto standard for deploying large perception models on edge hardware.</p>
+            </div>
+
+            <!-- Section 10: Key Takeaways -->
+            <h2 id="key-takeaways">Key Takeaways for GATE DA</h2>
+
+            <div class="definition-box">
+              <h4>&#128218; Summary of Core Concepts</h4>
+              <ul>
+                <li><strong>SAE Levels:</strong> 0 (none) to 5 (full); Level 3 shifts liability from human to system.</li>
+                <li><strong>Perception:</strong> Cameras (semantic), LiDAR (3D geometry), radar (velocity, all-weather).</li>
+                <li><strong>Sensor Fusion:</strong> Early (data), mid (feature), late (decision); Kalman filter for state estimation.</li>
+                <li><strong>SLAM:</strong> Simultaneous localisation and mapping; filter-based or graph-based; loop closure is critical.</li>
+                <li><strong>Planning:</strong> Route (graph search) &rarr; Behavioural (FSM) &rarr; Motion (trajectory optimisation).</li>
+                <li><strong>Control:</strong> PID (simple), MPC (optimal with constraints); receding horizon strategy.</li>
+                <li><strong>Sim-to-Real:</strong> Domain randomisation, domain adaptation; reality gap is the core challenge.</li>
+                <li><strong>Edge AI:</strong> On-device inference &lt;100ms; quantisation (INT8) for deployment; custom ASICs.</li>
+              </ul>
+            </div>
+
+            <div class="note-box">
+              <h4>&#128161; Exam Tips</h4>
+              <p>Focus on the <strong>perception-planning-control pipeline</strong> and be able to explain each stage. Know the SAE levels (especially the Level 2/3 distinction). Understand <strong>sensor trade-offs</strong> (camera vs LiDAR vs radar). For SLAM, remember it solves localisation and mapping simultaneously, and loop closure corrects drift. MPC is the most important control algorithm to understand for exam purposes.</p>
+            </div>
+
+          </article>
+          <aside class="page-toc" aria-label="On this page"><div class="toc-header">On This Page</div><ul id="toc-links"></ul></aside>
+        </div>
+        <nav class="nav-buttons" aria-label="Page navigation">
+          <a href="multimodal-ai.html" class="btn btn-nav btn-prev">&larr; Previous: Multimodal AI</a>
+          <a href="recent-breakthroughs.html" class="btn btn-nav btn-next">Next: Recent Breakthroughs &rarr;</a>
+        </nav>
+        <div class="page-actions"><button class="btn btn-sm btn-bookmark" data-page="ch15-autonomous-systems">&#128278; Bookmark</button><button class="btn btn-sm btn-complete" data-page="ch15-autonomous-systems">&#9989; Mark Complete</button></div>
+      </div>
+    </main>
+  </div>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stochastic Games and Expectiminimax — Chance nodes in game trees, expectiminimax algorithm, backgammon example, and probability-based game playing.">
+  <title>Stochastic Games — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+            <a href="minimax-algorithm.html" class="sidebar-link"><span class="link-check"></span> Minimax<span class="link-type theory">Theory</span></a>
+            <a href="alpha-beta-pruning.html" class="sidebar-link"><span class="link-check"></span> Alpha-Beta Pruning<span class="link-type theory">Theory</span></a>
+            <a href="move-ordering.html" class="sidebar-link"><span class="link-check"></span> Move Ordering<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-functions.html" class="sidebar-link"><span class="link-check"></span> Evaluation Functions<span class="link-type theory">Theory</span></a>
+            <a href="stochastic-games.html" class="sidebar-link active"><span class="link-check"></span> Stochastic Games<span class="link-type theory">Theory</span></a>
+            <a href="partially-observable-games.html" class="sidebar-link"><span class="link-check"></span> Partially Observable<span class="link-type theory">Theory</span></a>
+            <a href="monte-carlo-tree-search.html" class="sidebar-link"><span class="link-check"></span> MCTS<span class="link-type theory">Theory</span></a>
+            <a href="practical-adversarial.html" class="sidebar-link"><span class="link-check"></span> Tic-Tac-Toe Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-adversarial.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="game-theory-basics.html">Chapter 4: Adversarial Search</a> &raquo;
+          <span class="current">Stochastic Games</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch04-stochastic-games">
+            <h1>Stochastic Games &amp; Expectiminimax</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch04-stochastic-games" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="minimax-algorithm.html">Minimax Algorithm</a> &mdash; Deterministic game search</li>
+                <li><a href="evaluation-functions.html">Evaluation Functions</a> &mdash; Heuristic evaluation</li>
+                <li><a href="../07-reasoning-under-uncertainty/probability-basics.html">Probability Basics</a> &mdash; Expected value (helpful)</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand how chance/randomness is modeled in game trees</li>
+                <li>Describe the Expectiminimax algorithm with chance nodes</li>
+                <li>Compute expected values at chance nodes using probability weights</li>
+                <li>Analyse the complexity increase caused by chance nodes</li>
+                <li>Apply Expectiminimax to backgammon-style games</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="chance-nodes">
+                <h2>1. Chance Nodes in Game Trees</h2>
+                <p>In <strong>stochastic games</strong>, randomness enters through dice rolls, card draws, or other chance events. The game tree now has three types of nodes:</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Three Types of Nodes</div>
+                  <ul>
+                    <li><strong>MAX nodes</strong> &mdash; MAX player chooses action to maximize value</li>
+                    <li><strong>MIN nodes</strong> &mdash; MIN player chooses action to minimize value</li>
+                    <li><strong>CHANCE nodes</strong> &mdash; Nature &ldquo;chooses&rdquo; an outcome with known probability; value is the <strong>expected value</strong> over all outcomes</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Game Tree with Chance Nodes</div>
+                  <pre><code>           MAX (A)            &larr; MAX chooses move
+          /       \
+     CHANCE       CHANCE      &larr; Dice roll
+     /    \       /    \
+  (1/2) (1/2) (1/3) (2/3)    &larr; Probabilities
+    |      |     |      |
+  MIN(B) MIN(C) MIN(D) MIN(E) &larr; MIN responds
+  / \    / \    / \    / \
+ 3   7  1   5  6   2  4   8</code></pre>
+                </div>
+              </section>
+
+              <section id="expectiminimax">
+                <h2>2. The Expectiminimax Algorithm</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Expectiminimax Value</div>
+                  <p>The value of a node n is defined recursively:</p>
+                  <ul>
+                    <li><strong>UTILITY(n)</strong> if n is terminal</li>
+                    <li><strong>max<sub>c</sub> EXPECTIMINIMAX(c)</strong> if n is a MAX node</li>
+                    <li><strong>min<sub>c</sub> EXPECTIMINIMAX(c)</strong> if n is a MIN node</li>
+                    <li><strong>&sum;<sub>c</sub> P(c) &middot; EXPECTIMINIMAX(c)</strong> if n is a CHANCE node</li>
+                  </ul>
+                </div>
+
+                <div class="algorithm-block">
+                  <div class="algo-header">Algorithm: EXPECTIMINIMAX(state)</div>
+                  <div class="algo-body">
+<pre>function EXPECTIMINIMAX(state):
+    if IS-TERMINAL(state): return UTILITY(state)
+    if PLAYER(state) = MAX:
+        return max over a in ACTIONS(state) of
+            EXPECTIMINIMAX(RESULT(state, a))
+    else if PLAYER(state) = MIN:
+        return min over a in ACTIONS(state) of
+            EXPECTIMINIMAX(RESULT(state, a))
+    else:  // CHANCE node
+        v &larr; 0
+        for each outcome o with probability P(o):
+            v &larr; v + P(o) &times; EXPECTIMINIMAX(RESULT(state, o))
+        return v</pre>
+                  </div>
+                </div>
+              </section>
+
+              <section id="worked-example">
+                <h2>3. Worked Example</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Computing Expectiminimax Values</div>
+                  <pre><code>Using the tree from Section 1:
+
+Step 1 — MIN nodes (bottom):
+  B = min(3, 7) = 3       D = min(6, 2) = 2
+  C = min(1, 5) = 1       E = min(4, 8) = 4
+
+Step 2 — CHANCE nodes:
+  Left CHANCE  = (1/2)(3) + (1/2)(1) = 1.5 + 0.5 = 2.0
+  Right CHANCE = (1/3)(2) + (2/3)(4) = 0.667 + 2.667 = 3.333
+
+Step 3 — MAX node (root):
+  A = max(2.0, 3.333) = <strong>3.333</strong>
+
+MAX chooses the right branch (expected value 3.333).</code></pre>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Dice Game Example</div>
+                  <p>A simplified dice game: MAX rolls a die (1&ndash;6, each with P = 1/6), then MIN chooses from 2 moves.</p>
+                  <pre><code>For die outcome = 1: MIN node with children {10, 4} &rarr; min = 4
+For die outcome = 2: MIN node with children {8, 6}  &rarr; min = 6
+For die outcome = 3: MIN node with children {2, 9}  &rarr; min = 2
+For die outcome = 4: MIN node with children {7, 3}  &rarr; min = 3
+For die outcome = 5: MIN node with children {5, 11} &rarr; min = 5
+For die outcome = 6: MIN node with children {1, 12} &rarr; min = 1
+
+CHANCE value = (1/6)(4 + 6 + 2 + 3 + 5 + 1) = 21/6 = <strong>3.5</strong></code></pre>
+                </div>
+              </section>
+
+              <section id="complexity">
+                <h2>4. Complexity Analysis</h2>
+
+                <div class="theorem-box">
+                  <div class="box-title">Expectiminimax Complexity</div>
+                  <p>For a game tree with branching factor b, number of chance outcomes n<sub>c</sub>, and depth m:</p>
+                  <ul>
+                    <li><strong>Time:</strong> O((b &times; n<sub>c</sub>)<sup>m</sup>) &mdash; chance nodes multiply the branching factor</li>
+                    <li><strong>Space:</strong> O(b &times; n<sub>c</sub> &times; m)</li>
+                  </ul>
+                  <p>For backgammon: b &asymp; 20 legal moves, n<sub>c</sub> = 21 distinct dice rolls. Effective branching factor &asymp; 420.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Alpha-Beta with Chance Nodes</div>
+                  <p>Standard alpha-beta pruning is <strong>much less effective</strong> with chance nodes because the expected value depends on all children of a chance node. You cannot prune a chance node&rsquo;s children unless you know bounds on the evaluation function values. If EVAL is bounded in [a, b], some pruning is possible using Star1/Star2 algorithms.</p>
+                </div>
+              </section>
+
+              <section id="backgammon">
+                <h2>5. Backgammon: A Case Study</h2>
+                <p>Backgammon is the classic stochastic game studied in AI:</p>
+                <ul>
+                  <li><strong>Dice:</strong> Two dice rolled each turn, 21 distinct outcomes (6 doubles + 15 non-doubles &times; 2 for ordering counted once)</li>
+                  <li><strong>Branching:</strong> ~20 legal move combinations per dice outcome</li>
+                  <li><strong>Full tree:</strong> Impractical to search deeply; evaluation functions are essential</li>
+                </ul>
+
+                <div class="example-box">
+                  <div class="box-title">TD-Gammon (Tesauro, 1992)</div>
+                  <p>Gerald Tesauro&rsquo;s TD-Gammon used a neural network evaluation function trained via temporal-difference reinforcement learning. It searched 2&ndash;3 plies with expectiminimax and achieved expert-level play. This was one of the earliest demonstrations that neural network + search could master a complex game.</p>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">GATE Tip</div>
+                  <p>For GATE, focus on the Expectiminimax computation: backup rule at each node type and probability calculations at chance nodes. Questions typically give a small tree and ask you to compute the root value.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>Stochastic games add CHANCE nodes to the game tree between MAX and MIN moves.</li>
+                    <li>CHANCE node value = expected value = &sum; P(outcome) &times; value(outcome).</li>
+                    <li>Expectiminimax extends minimax: max at MAX, min at MIN, expected value at CHANCE.</li>
+                    <li>Complexity increases by factor of n<sub>c</sub> (number of chance outcomes) per chance level.</li>
+                    <li>Alpha-beta pruning is limited at chance nodes; bounded evaluation enables some pruning.</li>
+                    <li>Backgammon is the canonical example; TD-Gammon demonstrated neural network evaluation.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>AIMA</em>, 4th Ed. &mdash; Chapter 5.5</li>
+                  <li>Tesauro, G. &ldquo;Temporal Difference Learning and TD-Gammon&rdquo;, <em>CACM</em>, 1995</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch04-stochastic-games">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="evaluation-functions.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Evaluation Functions</span></a>
+              <a href="partially-observable-games.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Partially Observable Games</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#chance-nodes">1. Chance Nodes</a></li>
+              <li><a href="#expectiminimax">2. Expectiminimax Algorithm</a></li>
+              <li><a href="#worked-example">3. Worked Example</a></li>
+              <li><a href="#complexity">4. Complexity Analysis</a></li>
+              <li><a href="#backgammon">5. Backgammon Case Study</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

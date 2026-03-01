@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive ML Demos — Linear Regression Visualizer, K-Means Clustering, Decision Boundary explorer for GATE DA.">
+  <title>Interactive ML Demos — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="supervised-learning.html" class="sidebar-link"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="unsupervised-learning.html" class="sidebar-link"><span class="link-check"></span> Unsupervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="bias-variance-tradeoff.html" class="sidebar-link"><span class="link-check"></span> Bias-Variance Tradeoff<span class="link-type theory">Theory</span></a>
+            <a href="overfitting-underfitting.html" class="sidebar-link"><span class="link-check"></span> Overfitting &amp; Underfitting<span class="link-type theory">Theory</span></a>
+            <a href="cross-validation.html" class="sidebar-link"><span class="link-check"></span> Cross-Validation<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-metrics.html" class="sidebar-link"><span class="link-check"></span> Evaluation Metrics<span class="link-type theory">Theory</span></a>
+            <a href="feature-engineering.html" class="sidebar-link"><span class="link-check"></span> Feature Engineering<span class="link-type theory">Theory</span></a>
+            <a href="ml-math-essentials.html" class="sidebar-link"><span class="link-check"></span> ML Math Essentials<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link active"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="ml-fundamentals.html">Chapter 8: ML Foundations</a> &raquo; <span class="current">Interactive Demos</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-practical" data-page-id="ch08-practical-ml">
+
+            <h1>Interactive ML Demos</h1>
+
+            <div class="prerequisites-box">
+              <h4>&#128218; Prerequisites</h4>
+              <ul>
+                <li><a href="supervised-learning.html">Supervised Learning</a> (Linear Regression)</li>
+                <li><a href="unsupervised-learning.html">Unsupervised Learning</a> (K-Means)</li>
+                <li><a href="ml-math-essentials.html">ML Math Essentials</a> (Gradient Descent)</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; What You&rsquo;ll Explore</h4><ul>
+              <li>Fit a linear regression line by clicking to add data points</li>
+              <li>Watch K-Means clustering step-by-step</li>
+              <li>Visualise gradient descent converging on a loss surface</li>
+            </ul></div>
+
+            <!-- Demo 1: Linear Regression -->
+            <section id="demo-regression">
+              <h2>Demo 1: Linear Regression Visualiser</h2>
+              <p>Click on the canvas to add data points. The best-fit line is computed in real-time using the least squares formula. The MSE is displayed below.</p>
+
+              <div class="demo-container">
+                <div class="demo-controls">
+                  <button id="regClear" class="demo-btn">Clear Points</button>
+                  <button id="regRandom" class="demo-btn">Add Random Data</button>
+                </div>
+                <canvas id="regressionCanvas" width="600" height="400" style="border:1px solid var(--border-color); cursor:crosshair; max-width:100%; background:var(--bg-secondary);"></canvas>
+                <div class="demo-output">
+                  <p><strong>Equation:</strong> <span id="regEquation">y = 0</span></p>
+                  <p><strong>MSE:</strong> <span id="regMSE">0</span> &nbsp;|&nbsp; <strong>R&sup2;:</strong> <span id="regR2">0</span> &nbsp;|&nbsp; <strong>Points:</strong> <span id="regCount">0</span></p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Demo 2: K-Means -->
+            <section id="demo-kmeans">
+              <h2>Demo 2: K-Means Clustering</h2>
+              <p>Click to place data points, then press &ldquo;Run K-Means&rdquo; to watch the algorithm iterate step-by-step. Centroids are shown as larger squares.</p>
+
+              <div class="demo-container">
+                <div class="demo-controls">
+                  <label>K = <input type="number" id="kValue" value="3" min="2" max="8" style="width:50px;"></label>
+                  <button id="kmRun" class="demo-btn">Run K-Means</button>
+                  <button id="kmStep" class="demo-btn">Step</button>
+                  <button id="kmClear" class="demo-btn">Clear</button>
+                  <button id="kmRandom" class="demo-btn">Random Data</button>
+                </div>
+                <canvas id="kmeansCanvas" width="600" height="400" style="border:1px solid var(--border-color); cursor:crosshair; max-width:100%; background:var(--bg-secondary);"></canvas>
+                <div class="demo-output">
+                  <p><strong>Iteration:</strong> <span id="kmIter">0</span> &nbsp;|&nbsp; <strong>Status:</strong> <span id="kmStatus">Click to add points</span></p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Demo 3: Gradient Descent -->
+            <section id="demo-gd">
+              <h2>Demo 3: Gradient Descent Visualiser</h2>
+              <p>Watch gradient descent minimise f(w) = w&sup2; &minus; 4w + 5 starting from different initial points. Adjust the learning rate to see convergence behaviour.</p>
+
+              <div class="demo-container">
+                <div class="demo-controls">
+                  <label>Start w = <input type="number" id="gdStart" value="-2" step="0.5" style="width:60px;"></label>
+                  <label>Learning Rate &eta; = <input type="number" id="gdLR" value="0.1" step="0.05" min="0.01" max="1.0" style="width:70px;"></label>
+                  <button id="gdRun" class="demo-btn">Run GD</button>
+                  <button id="gdStep" class="demo-btn">Step</button>
+                  <button id="gdReset" class="demo-btn">Reset</button>
+                </div>
+                <canvas id="gdCanvas" width="600" height="350" style="border:1px solid var(--border-color); max-width:100%; background:var(--bg-secondary);"></canvas>
+                <div class="demo-output">
+                  <p><strong>w =</strong> <span id="gdW">-2</span> &nbsp;|&nbsp; <strong>f(w) =</strong> <span id="gdF">17</span> &nbsp;|&nbsp; <strong>f'(w) =</strong> <span id="gdGrad">-8</span> &nbsp;|&nbsp; <strong>Step:</strong> <span id="gdStepNum">0</span></p>
+                </div>
+              </div>
+            </section>
+
+          </article>
+
+          <aside class="on-this-page"><h4>On This Page</h4><ul>
+            <li><a href="#demo-regression">Demo 1: Linear Regression</a></li>
+            <li><a href="#demo-kmeans">Demo 2: K-Means</a></li>
+            <li><a href="#demo-gd">Demo 3: Gradient Descent</a></li>
+          </ul></aside>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="ml-math-essentials.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">ML Math Essentials</span></a>
+          <a href="notes-ml-foundations.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Chapter Notes</span></a>
+        </div>
+        <button class="complete-btn" data-page="ch08-practical-ml">&#10003; Mark as Complete</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+
+  <!-- Demo 1: Linear Regression -->
+  <script>
+  (function(){
+    var canvas=document.getElementById('regressionCanvas'),ctx=canvas.getContext('2d');
+    var pts=[];
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      // axis labels
+      ctx.fillStyle='var(--text-secondary,#666)';ctx.font='12px sans-serif';
+      ctx.fillText('x',canvas.width-15,canvas.height-5);ctx.fillText('y',5,15);
+      // points
+      pts.forEach(function(p){ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);ctx.fillStyle='#3b82f6';ctx.fill();});
+      if(pts.length>=2){fitLine();}
+      updateStats();
+    }
+    function fitLine(){
+      var n=pts.length,sx=0,sy=0,sxx=0,sxy=0;
+      pts.forEach(function(p){sx+=p.x;sy+=p.y;sxx+=p.x*p.x;sxy+=p.x*p.y;});
+      var denom=n*sxx-sx*sx;if(Math.abs(denom)<1e-10)return;
+      var m=(n*sxy-sx*sy)/denom,b=(sy*sxx-sx*sxy)/denom;
+      ctx.beginPath();ctx.moveTo(0,b);ctx.lineTo(canvas.width,m*canvas.width+b);
+      ctx.strokeStyle='#ef4444';ctx.lineWidth=2;ctx.stroke();ctx.lineWidth=1;
+      // residual lines
+      ctx.setLineDash([4,4]);ctx.strokeStyle='rgba(239,68,68,0.3)';
+      pts.forEach(function(p){var pred=m*p.x+b;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x,pred);ctx.stroke();});
+      ctx.setLineDash([]);
+    }
+    function updateStats(){
+      var n=pts.length;document.getElementById('regCount').textContent=n;
+      if(n<2){document.getElementById('regEquation').textContent='Need at least 2 points';document.getElementById('regMSE').textContent='-';document.getElementById('regR2').textContent='-';return;}
+      var sx=0,sy=0,sxx=0,sxy=0,syy=0;
+      pts.forEach(function(p){sx+=p.x;sy+=p.y;sxx+=p.x*p.x;sxy+=p.x*p.y;syy+=p.y*p.y;});
+      var denom=n*sxx-sx*sx;if(Math.abs(denom)<1e-10)return;
+      var m=(n*sxy-sx*sy)/denom,b=(sy*sxx-sx*sxy)/denom;
+      var mse=0,mean_y=sy/n,ss_tot=0;
+      pts.forEach(function(p){var e=p.y-(m*p.x+b);mse+=e*e;ss_tot+=(p.y-mean_y)*(p.y-mean_y);});
+      mse/=n;var r2=ss_tot>0?1-mse*n/ss_tot:0;
+      document.getElementById('regEquation').textContent='y = '+m.toFixed(3)+'x + '+b.toFixed(3);
+      document.getElementById('regMSE').textContent=mse.toFixed(2);
+      document.getElementById('regR2').textContent=r2.toFixed(4);
+    }
+    canvas.addEventListener('click',function(e){var r=canvas.getBoundingClientRect();pts.push({x:e.clientX-r.left,y:e.clientY-r.top});draw();});
+    document.getElementById('regClear').addEventListener('click',function(){pts=[];draw();});
+    document.getElementById('regRandom').addEventListener('click',function(){
+      for(var i=0;i<20;i++){var x=50+Math.random()*500,y=50+0.5*x+Math.random()*100-50;pts.push({x:x,y:y});}draw();
+    });
+    draw();
+  })();
+  </script>
+
+  <!-- Demo 2: K-Means -->
+  <script>
+  (function(){
+    var canvas=document.getElementById('kmeansCanvas'),ctx=canvas.getContext('2d');
+    var pts=[],centroids=[],assignments=[],iter=0,running=false;
+    var colors=['#3b82f6','#ef4444','#10b981','#f59e0b','#8b5cf6','#ec4899','#06b6d4','#f97316'];
+
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      pts.forEach(function(p,i){
+        ctx.beginPath();ctx.arc(p.x,p.y,5,0,Math.PI*2);
+        ctx.fillStyle=assignments[i]!==undefined?colors[assignments[i]%colors.length]:'#94a3b8';ctx.fill();
+      });
+      centroids.forEach(function(c,i){
+        ctx.fillStyle=colors[i%colors.length];ctx.fillRect(c.x-7,c.y-7,14,14);
+        ctx.strokeStyle='#000';ctx.lineWidth=2;ctx.strokeRect(c.x-7,c.y-7,14,14);ctx.lineWidth=1;
+      });
+      document.getElementById('kmIter').textContent=iter;
+    }
+
+    function initCentroids(){
+      var k=parseInt(document.getElementById('kValue').value)||3;
+      centroids=[];assignments=[];iter=0;
+      var indices=[];while(indices.length<k&&indices.length<pts.length){var idx=Math.floor(Math.random()*pts.length);if(indices.indexOf(idx)===-1)indices.push(idx);}
+      indices.forEach(function(idx){centroids.push({x:pts[idx].x,y:pts[idx].y});});
+    }
+
+    function assignStep(){
+      var changed=false;
+      pts.forEach(function(p,i){
+        var minD=Infinity,best=0;
+        centroids.forEach(function(c,j){var d=(p.x-c.x)*(p.x-c.x)+(p.y-c.y)*(p.y-c.y);if(d<minD){minD=d;best=j;}});
+        if(assignments[i]!==best){changed=true;assignments[i]=best;}
+      });
+      return changed;
+    }
+
+    function updateCentroids(){
+      centroids.forEach(function(c,j){
+        var sx=0,sy=0,cnt=0;
+        pts.forEach(function(p,i){if(assignments[i]===j){sx+=p.x;sy+=p.y;cnt++;}});
+        if(cnt>0){c.x=sx/cnt;c.y=sy/cnt;}
+      });
+    }
+
+    function step(){
+      if(pts.length<2||centroids.length===0)return false;
+      var changed=assignStep();updateCentroids();iter++;draw();
+      if(!changed){document.getElementById('kmStatus').textContent='Converged!';return false;}
+      document.getElementById('kmStatus').textContent='Running...';return true;
+    }
+
+    canvas.addEventListener('click',function(e){var r=canvas.getBoundingClientRect();pts.push({x:e.clientX-r.left,y:e.clientY-r.top});assignments.push(undefined);draw();
+      document.getElementById('kmStatus').textContent=pts.length+' points added';});
+    document.getElementById('kmClear').addEventListener('click',function(){pts=[];centroids=[];assignments=[];iter=0;running=false;draw();document.getElementById('kmStatus').textContent='Click to add points';});
+    document.getElementById('kmRandom').addEventListener('click',function(){
+      for(var c=0;c<3;c++){var cx=100+Math.random()*400,cy=80+Math.random()*240;for(var i=0;i<15;i++){pts.push({x:cx+Math.random()*80-40,y:cy+Math.random()*80-40});assignments.push(undefined);}}draw();
+      document.getElementById('kmStatus').textContent=pts.length+' points added';});
+    document.getElementById('kmRun').addEventListener('click',function(){
+      if(centroids.length===0)initCentroids();running=true;
+      function loop(){if(running&&step())requestAnimationFrame(function(){setTimeout(loop,400);});else running=false;}loop();});
+    document.getElementById('kmStep').addEventListener('click',function(){if(centroids.length===0)initCentroids();step();});
+    draw();
+  })();
+  </script>
+
+  <!-- Demo 3: Gradient Descent -->
+  <script>
+  (function(){
+    var canvas=document.getElementById('gdCanvas'),ctx=canvas.getContext('2d');
+    var w,history,stepNum,running=false;
+    var W_MIN=-3,W_MAX=7,F_MAX=30;
+
+    function f(x){return x*x-4*x+5;}
+    function fprime(x){return 2*x-4;}
+    function toCanvasX(wv){return(wv-W_MIN)/(W_MAX-W_MIN)*canvas.width;}
+    function toCanvasY(fv){return canvas.height-(fv/F_MAX)*canvas.height;}
+
+    function drawCurve(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      // Draw f(w)
+      ctx.beginPath();ctx.strokeStyle='#3b82f6';ctx.lineWidth=2;
+      for(var px=0;px<=canvas.width;px++){var wv=W_MIN+(px/canvas.width)*(W_MAX-W_MIN);var y=toCanvasY(f(wv));if(px===0)ctx.moveTo(px,y);else ctx.lineTo(px,y);}
+      ctx.stroke();ctx.lineWidth=1;
+      // Minimum marker
+      ctx.beginPath();ctx.arc(toCanvasX(2),toCanvasY(f(2)),4,0,Math.PI*2);ctx.fillStyle='#10b981';ctx.fill();
+      ctx.fillStyle='var(--text-secondary,#666)';ctx.font='11px sans-serif';ctx.fillText('min at w=2',toCanvasX(2)+8,toCanvasY(f(2))+4);
+      // Axis labels
+      ctx.fillText('w',canvas.width-15,canvas.height-5);ctx.fillText('f(w)',5,15);
+      for(var wl=Math.ceil(W_MIN);wl<=Math.floor(W_MAX);wl++){ctx.fillText(wl,toCanvasX(wl)-4,canvas.height-3);}
+    }
+
+    function drawHistory(){
+      if(history.length===0)return;
+      ctx.fillStyle='#ef4444';ctx.strokeStyle='rgba(239,68,68,0.5)';
+      history.forEach(function(h,i){
+        ctx.beginPath();ctx.arc(toCanvasX(h.w),toCanvasY(h.f),6,0,Math.PI*2);ctx.fill();
+        if(i>0){ctx.beginPath();ctx.moveTo(toCanvasX(history[i-1].w),toCanvasY(history[i-1].f));ctx.lineTo(toCanvasX(h.w),toCanvasY(h.f));ctx.stroke();}
+      });
+    }
+
+    function updateDisplay(){
+      var h=history[history.length-1]||{w:parseFloat(document.getElementById('gdStart').value),f:f(parseFloat(document.getElementById('gdStart').value)),g:fprime(parseFloat(document.getElementById('gdStart').value))};
+      document.getElementById('gdW').textContent=h.w.toFixed(4);
+      document.getElementById('gdF').textContent=h.f.toFixed(4);
+      document.getElementById('gdGrad').textContent=h.g.toFixed(4);
+      document.getElementById('gdStepNum').textContent=stepNum;
+    }
+
+    function gdStep(){
+      var lr=parseFloat(document.getElementById('gdLR').value)||0.1;
+      var grad=fprime(w);
+      w=w-lr*grad;
+      stepNum++;
+      history.push({w:w,f:f(w),g:fprime(w)});
+      drawCurve();drawHistory();updateDisplay();
+      return Math.abs(fprime(w))>1e-6&&stepNum<200;
+    }
+
+    function reset(){
+      w=parseFloat(document.getElementById('gdStart').value)||0;
+      history=[{w:w,f:f(w),g:fprime(w)}];stepNum=0;running=false;
+      drawCurve();drawHistory();updateDisplay();
+    }
+
+    document.getElementById('gdReset').addEventListener('click',reset);
+    document.getElementById('gdStep').addEventListener('click',function(){if(history.length===0)reset();gdStep();});
+    document.getElementById('gdRun').addEventListener('click',function(){
+      if(history.length===0)reset();running=true;
+      function loop(){if(running&&gdStep())requestAnimationFrame(function(){setTimeout(loop,200);});else running=false;}loop();
+    });
+    reset();
+  })();
+  </script>
+</body>
+</html>

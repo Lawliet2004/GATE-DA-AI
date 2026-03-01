@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ML Math Essentials — Linear algebra, calculus, probability, gradient descent and optimization for Machine Learning and GATE DA.">
+  <title>ML Math Essentials — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="supervised-learning.html" class="sidebar-link"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="unsupervised-learning.html" class="sidebar-link"><span class="link-check"></span> Unsupervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="bias-variance-tradeoff.html" class="sidebar-link"><span class="link-check"></span> Bias-Variance Tradeoff<span class="link-type theory">Theory</span></a>
+            <a href="overfitting-underfitting.html" class="sidebar-link"><span class="link-check"></span> Overfitting &amp; Underfitting<span class="link-type theory">Theory</span></a>
+            <a href="cross-validation.html" class="sidebar-link"><span class="link-check"></span> Cross-Validation<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-metrics.html" class="sidebar-link"><span class="link-check"></span> Evaluation Metrics<span class="link-type theory">Theory</span></a>
+            <a href="feature-engineering.html" class="sidebar-link"><span class="link-check"></span> Feature Engineering<span class="link-type theory">Theory</span></a>
+            <a href="ml-math-essentials.html" class="sidebar-link active"><span class="link-check"></span> ML Math Essentials<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="ml-fundamentals.html">Chapter 8: ML Foundations</a> &raquo; <span class="current">ML Math Essentials</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch08-ml-math-essentials">
+
+            <h1>ML Math Essentials</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch08-ml-math-essentials" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Review linear algebra concepts essential for ML</li>
+              <li>Understand gradients and the chain rule for optimization</li>
+              <li>Apply MLE and MAP estimation</li>
+              <li>Master gradient descent variants (batch, SGD, mini-batch)</li>
+              <li>Recognize convex vs non-convex optimization</li>
+            </ul></div>
+
+            <!-- Section 1: Linear Algebra -->
+            <section id="linear-algebra">
+              <h2>1. Linear Algebra for ML</h2>
+
+              <div class="definition-box">
+                <div class="box-title">Vectors and Matrices</div>
+                <ul>
+                  <li><strong>Vector:</strong> A column of numbers x &isin; R&#8319;. Represents a data point with n features.</li>
+                  <li><strong>Matrix:</strong> X &isin; R&#7504;&times;&#8319; — m samples, n features. Each row is a data point.</li>
+                  <li><strong>Dot product:</strong> a&middot;b = &sum;a&#7522;b&#7522; = |a||b|cos&theta;. Measures similarity.</li>
+                  <li><strong>Matrix multiplication:</strong> (AB)&#7522;&#11388; = &sum;&#8342; A&#7522;&#8342;B&#8342;&#11388;. AB &ne; BA in general.</li>
+                </ul>
+              </div>
+
+              <h3>1.1 Key Concepts</h3>
+              <div class="definition-box">
+                <div class="box-title">Eigenvalues and Eigenvectors</div>
+                <p>For a square matrix A, if <strong>Av = &lambda;v</strong> for some non-zero vector v, then:</p>
+                <ul>
+                  <li>&lambda; is an <strong>eigenvalue</strong> and v is the corresponding <strong>eigenvector</strong></li>
+                  <li>To find: solve det(A &minus; &lambda;I) = 0 for &lambda;, then (A &minus; &lambda;I)v = 0 for v</li>
+                  <li><strong>ML usage:</strong> PCA finds eigenvectors of the covariance matrix. The eigenvector with the largest eigenvalue is the direction of maximum variance.</li>
+                </ul>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: Eigenvalues</div>
+                <p><strong>Q:</strong> Find the eigenvalues of A = [[4, 2], [1, 3]].</p>
+                <p><strong>A:</strong> det(A &minus; &lambda;I) = (4&minus;&lambda;)(3&minus;&lambda;) &minus; 2&times;1 = &lambda;&sup2; &minus; 7&lambda; + 10 = 0</p>
+                <p>&lambda; = (7 &plusmn; &radic;(49&minus;40))/2 = (7 &plusmn; 3)/2. So <strong>&lambda;&sub1; = 5, &lambda;&sub2; = 2</strong>.</p>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">Positive Definite Matrix</div>
+                <p>A symmetric matrix A is <strong>positive definite</strong> if x&#7488;Ax &gt; 0 for all non-zero x, equivalently all eigenvalues are positive. The covariance matrix is always positive semi-definite.</p>
+              </div>
+            </section>
+
+            <!-- Section 2: Calculus for ML -->
+            <section id="calculus">
+              <h2>2. Calculus for ML</h2>
+
+              <div class="definition-box">
+                <div class="box-title">Gradient</div>
+                <p>For a function f(w&sub1;, w&sub2;, ..., w&#8345;), the gradient is the vector of partial derivatives:</p>
+                <p><strong>&nabla;f = [&part;f/&part;w&sub1;, &part;f/&part;w&sub2;, ..., &part;f/&part;w&#8345;]&#7488;</strong></p>
+                <p>The gradient points in the direction of <strong>steepest ascent</strong>. To minimise f, move in the direction of &minus;&nabla;f.</p>
+              </div>
+
+              <div class="theorem-box">
+                <div class="box-title">Chain Rule</div>
+                <p>If y = f(g(x)), then dy/dx = f'(g(x)) &times; g'(x).</p>
+                <p><strong>In ML:</strong> Backpropagation in neural networks uses the chain rule to compute gradients layer by layer:</p>
+                <p>&part;L/&part;w = (&part;L/&part;a) &times; (&part;a/&part;z) &times; (&part;z/&part;w)</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: Gradient Computation</div>
+                <p><strong>Q:</strong> Compute the gradient of f(w&sub1;, w&sub2;) = w&sub1;&sup2; + 3w&sub1;w&sub2; + 2w&sub2;&sup2; at (1, 2).</p>
+                <p><strong>A:</strong></p>
+                <ul>
+                  <li>&part;f/&part;w&sub1; = 2w&sub1; + 3w&sub2; = 2(1) + 3(2) = <strong>8</strong></li>
+                  <li>&part;f/&part;w&sub2; = 3w&sub1; + 4w&sub2; = 3(1) + 4(2) = <strong>11</strong></li>
+                </ul>
+                <p>&nabla;f(1,2) = <strong>[8, 11]</strong></p>
+              </div>
+            </section>
+
+            <!-- Section 3: Probability for ML -->
+            <section id="probability">
+              <h2>3. Probability for ML</h2>
+
+              <div class="definition-box">
+                <div class="box-title">Bayes' Theorem</div>
+                <p><strong>P(A|B) = P(B|A) &times; P(A) / P(B)</strong></p>
+                <ul>
+                  <li>P(A|B): <span class="key-term">Posterior</span></li>
+                  <li>P(B|A): <span class="key-term">Likelihood</span></li>
+                  <li>P(A): <span class="key-term">Prior</span></li>
+                  <li>P(B): <span class="key-term">Evidence (normalizing constant)</span></li>
+                </ul>
+              </div>
+
+              <h3>3.1 Maximum Likelihood Estimation (MLE)</h3>
+              <div class="theorem-box">
+                <div class="box-title">MLE</div>
+                <p>Find the parameter &theta; that maximises the likelihood of the observed data:</p>
+                <p><strong>&theta;_MLE = argmax_&theta; P(D|&theta;) = argmax_&theta; &sum; log P(x&#7522;|&theta;)</strong></p>
+                <p>For a Gaussian: MLE of &mu; = sample mean, MLE of &sigma;&sup2; = sample variance (biased).</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: MLE</div>
+                <p><strong>Q:</strong> Coin flips: 7 heads, 3 tails. What is the MLE estimate of P(heads)?</p>
+                <p><strong>A:</strong> For Bernoulli, MLE of p = (number of heads)/(total flips) = 7/10 = <strong>0.7</strong></p>
+              </div>
+
+              <h3>3.2 Maximum A Posteriori (MAP)</h3>
+              <div class="theorem-box">
+                <div class="box-title">MAP Estimation</div>
+                <p>Incorporates a prior distribution on &theta;:</p>
+                <p><strong>&theta;_MAP = argmax_&theta; P(&theta;|D) = argmax_&theta; [log P(D|&theta;) + log P(&theta;)]</strong></p>
+                <ul>
+                  <li>MAP with Gaussian prior on weights is equivalent to <strong>L2 regularization (Ridge)</strong></li>
+                  <li>MAP with Laplace prior on weights is equivalent to <strong>L1 regularization (Lasso)</strong></li>
+                  <li>MAP with uniform prior reduces to MLE</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 4: Optimization -->
+            <section id="optimization">
+              <h2>4. Optimization &amp; Gradient Descent</h2>
+
+              <div class="algorithm-block">
+                <div class="box-title">Batch Gradient Descent</div>
+                <pre>Input: learning rate &eta;, initial weights w
+Repeat until convergence:
+    1. Compute gradient g = (1/n) &sum; &nabla;L(w; x_i, y_i) over ALL n samples
+    2. Update: w &larr; w &minus; &eta; &times; g
+Output: Optimized weights w</pre>
+              </div>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Variant</th><th>Batch Size</th><th>Pro</th><th>Con</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Batch GD</strong></td><td>All n samples</td><td>Stable convergence, true gradient</td><td>Slow for large datasets; memory intensive</td></tr>
+                    <tr><td><strong>SGD</strong></td><td>1 sample</td><td>Fast updates, can escape local minima</td><td>Noisy; high variance in updates</td></tr>
+                    <tr><td><strong>Mini-batch GD</strong></td><td>B samples (32&ndash;512)</td><td>Balance: fast yet stable, GPU-friendly</td><td>Extra hyperparameter (batch size)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: Gradient Descent Step</div>
+                <p><strong>Q:</strong> f(w) = w&sup2; &minus; 4w + 5. Starting at w=0, learning rate &eta;=0.1. What is w after one step?</p>
+                <p><strong>A:</strong> f'(w) = 2w &minus; 4. At w=0: f'(0) = &minus;4. Update: w = 0 &minus; 0.1&times;(&minus;4) = <strong>0.4</strong></p>
+                <p>After two steps: f'(0.4) = 2(0.4)&minus;4 = &minus;3.2. w = 0.4 &minus; 0.1(&minus;3.2) = <strong>0.72</strong></p>
+                <p>(True minimum is at w = 2.)</p>
+              </div>
+
+              <h3 id="convexity">4.1 Convexity</h3>
+              <div class="definition-box">
+                <div class="box-title">Convex Functions</div>
+                <p>A function f is <strong>convex</strong> if for all x, y and &lambda; &isin; [0,1]:</p>
+                <p>f(&lambda;x + (1&minus;&lambda;)y) &le; &lambda;f(x) + (1&minus;&lambda;)f(y)</p>
+                <ul>
+                  <li>Convex functions have a <strong>single global minimum</strong> (no local minima)</li>
+                  <li>GD on convex functions is guaranteed to find the global minimum</li>
+                  <li><strong>Convex in ML:</strong> MSE loss for linear regression, logistic loss</li>
+                  <li><strong>Non-convex in ML:</strong> Neural network loss functions (many local minima)</li>
+                </ul>
+              </div>
+
+              <h3 id="learning-rate">4.2 Learning Rate</h3>
+              <div class="warning-box">
+                <div class="box-title">Choosing the Learning Rate</div>
+                <ul>
+                  <li><strong>Too large:</strong> Overshoots the minimum; may diverge</li>
+                  <li><strong>Too small:</strong> Very slow convergence; may get stuck</li>
+                  <li><strong>Learning rate schedules:</strong> Start large and decay (step decay, exponential decay, cosine annealing)</li>
+                  <li><strong>Adaptive methods:</strong> Adam, RMSProp, AdaGrad automatically adjust per-parameter learning rates</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 5: Key Formulas -->
+            <section id="key-formulas">
+              <h2>5. Essential Formulas Summary</h2>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Concept</th><th>Formula</th><th>ML Application</th></tr></thead>
+                  <tbody>
+                    <tr><td>Dot product</td><td>a&middot;b = &sum;a&#7522;b&#7522;</td><td>Similarity, linear models</td></tr>
+                    <tr><td>Matrix inverse</td><td>A&#8315;&sup1;A = I</td><td>Normal equation: w*=(X&#7488;X)&#8315;&sup1;X&#7488;y</td></tr>
+                    <tr><td>Eigendecomposition</td><td>Av = &lambda;v</td><td>PCA</td></tr>
+                    <tr><td>Gradient</td><td>&nabla;f = [&part;f/&part;w&#7522;]</td><td>Gradient descent</td></tr>
+                    <tr><td>Chain rule</td><td>dy/dx = (dy/du)(du/dx)</td><td>Backpropagation</td></tr>
+                    <tr><td>Bayes' theorem</td><td>P(A|B)=P(B|A)P(A)/P(B)</td><td>Naive Bayes, MAP</td></tr>
+                    <tr><td>MLE</td><td>argmax &sum;log P(x&#7522;|&theta;)</td><td>Parameter estimation</td></tr>
+                    <tr><td>GD update</td><td>w &larr; w &minus; &eta;&nabla;L</td><td>All iterative training</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+          </article>
+
+          <aside class="on-this-page"><h4>On This Page</h4><ul>
+            <li><a href="#linear-algebra">1. Linear Algebra</a></li>
+            <li><a href="#calculus">2. Calculus</a></li>
+            <li><a href="#probability">3. Probability</a></li>
+            <li><a href="#optimization">4. Optimization &amp; GD</a></li>
+            <li><a href="#key-formulas">5. Essential Formulas</a></li>
+          </ul></aside>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="feature-engineering.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Feature Engineering</span></a>
+          <a href="practical-ml.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Interactive Demos</span></a>
+        </div>
+        <button class="complete-btn" data-page="ch08-ml-math-essentials">&#10003; Mark as Complete</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

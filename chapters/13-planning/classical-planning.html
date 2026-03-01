@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Classical Planning — planning vs search, PDDL, state-space representation, forward &amp; backward search, heuristics for planning, GATE DA preparation.">
+  <title>Classical Planning — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="classical-planning.html" class="sidebar-link active"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a>
+            <a href="strips.html" class="sidebar-link"><span class="link-check"></span> STRIPS<span class="link-type theory">Theory</span></a>
+            <a href="partial-order-planning.html" class="sidebar-link"><span class="link-check"></span> Partial-Order Planning<span class="link-type theory">Theory</span></a>
+            <a href="graph-planning.html" class="sidebar-link"><span class="link-check"></span> GraphPlan<span class="link-type theory">Theory</span></a>
+            <a href="notes-planning.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-planning.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="classical-planning.html">Chapter 13: Planning</a> &raquo; <span class="current">Classical Planning</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch13-classical-planning">
+
+            <h1>Classical Planning</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="chapters/13-planning/classical-planning.html" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Distinguish <strong>planning</strong> from general <strong>search</strong></li>
+              <li>Describe the <strong>state-space representation</strong> used in classical planning</li>
+              <li>Understand <strong>PDDL</strong> as a standard planning language</li>
+              <li>Explain the <strong>closed-world assumption</strong> and the <strong>frame problem</strong></li>
+              <li>Compare <strong>forward</strong> and <strong>backward</strong> state-space search</li>
+              <li>Apply <strong>planning heuristics</strong> such as the ignore-delete-list and relaxed plan graph</li>
+              <li>Evaluate <strong>plan quality</strong> using standard metrics</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="planning-vs-search">
+                <h2>1. Planning vs. Search</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; What Is Planning?</h4>
+                  <p><strong>Planning</strong> is the process of selecting a sequence of actions to achieve a goal from a given initial state. Unlike generic search, planning exploits the <em>logical structure</em> of the problem &mdash; actions are described in terms of preconditions and effects on state variables, enabling powerful domain-independent heuristics.</p>
+                </div>
+
+                <p>In classical search (Chapters 2&ndash;3), the successor function is a <strong>black box</strong>: the algorithm can generate successors but cannot inspect <em>why</em> a state changes. Planning opens this black box:</p>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Feature</th><th>Generic Search</th><th>Classical Planning</th></tr></thead>
+                  <tbody>
+                    <tr><td>State representation</td><td>Atomic / opaque</td><td>Set of <strong>propositional fluents</strong></td></tr>
+                    <tr><td>Actions</td><td>Black-box successor function</td><td>Structured: preconditions + effects</td></tr>
+                    <tr><td>Goal</td><td>Goal test (boolean)</td><td>Conjunction of fluents</td></tr>
+                    <tr><td>Heuristics</td><td>Domain-specific</td><td>Derived automatically from action schemas</td></tr>
+                    <tr><td>Decomposability</td><td>Generally no</td><td>Sub-goals can often be solved independently</td></tr>
+                  </tbody>
+                </table>
+
+                <div class="note-box">
+                  <h4>&#128161; Key Insight</h4>
+                  <p>Because planning uses a <strong>factored representation</strong> of states (sets of propositions), it can reason about sub-goals independently, apply relaxation heuristics automatically, and scale to much larger problems than uninformed or informed search with opaque states.</p>
+                </div>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="state-space">
+                <h2>2. State-Space Representation</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Classical Planning State</h4>
+                  <p>A <strong>state</strong> is a set of ground atomic propositions (called <em>fluents</em>) that are true. Everything not in the set is assumed <strong>false</strong> (closed-world assumption).</p>
+                  <p>Example fluents: <code>On(A,B)</code>, <code>Clear(A)</code>, <code>OnTable(C)</code>, <code>Holding(Nothing)</code></p>
+                </div>
+
+                <p>A classical planning problem is specified by three components:</p>
+                <ol>
+                  <li><strong>Initial state</strong> s<sub>0</sub>: a complete set of fluents describing the world at the start.</li>
+                  <li><strong>Goal</strong> g: a <em>partial</em> set of fluents that must all be true in the final state.</li>
+                  <li><strong>Actions</strong> A: a set of action schemas, each with preconditions and effects.</li>
+                </ol>
+
+                <div class="example-box">
+                  <h4>&#128300; Example &mdash; Simple Logistics</h4>
+                  <p><strong>Initial state:</strong> {At(Package1, CityA), At(Truck1, CityA), Road(CityA, CityB)}</p>
+                  <p><strong>Goal:</strong> {At(Package1, CityB)}</p>
+                  <p><strong>Actions:</strong></p>
+                  <ul>
+                    <li><em>Load(pkg, truck, city)</em> &mdash; Pre: At(pkg, city) &and; At(truck, city); Effect: In(pkg, truck) &and; &not;At(pkg, city)</li>
+                    <li><em>Drive(truck, from, to)</em> &mdash; Pre: At(truck, from) &and; Road(from, to); Effect: At(truck, to) &and; &not;At(truck, from)</li>
+                    <li><em>Unload(pkg, truck, city)</em> &mdash; Pre: In(pkg, truck) &and; At(truck, city); Effect: At(pkg, city) &and; &not;In(pkg, truck)</li>
+                  </ul>
+                  <p><strong>Plan:</strong> Load(Package1, Truck1, CityA) &rarr; Drive(Truck1, CityA, CityB) &rarr; Unload(Package1, Truck1, CityB)</p>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="pddl">
+                <h2>3. PDDL &mdash; Planning Domain Definition Language</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; PDDL</h4>
+                  <p><strong>PDDL</strong> (Planning Domain Definition Language) is the standard input language for automated planners. It separates a planning problem into two files:</p>
+                  <ul>
+                    <li><strong>Domain file:</strong> defines predicates, action schemas (with parameters, preconditions, effects)</li>
+                    <li><strong>Problem file:</strong> defines the objects, initial state, and goal condition</li>
+                  </ul>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>PDDL Action Schema Template</h4>
+<pre>(:action &lt;action-name&gt;
+  :parameters (?x - type1 ?y - type2 ...)
+  :precondition (and (pred1 ?x) (pred2 ?x ?y) ...)
+  :effect (and (pred3 ?x)
+               (not (pred1 ?x))
+               ...)
+)</pre>
+                </div>
+
+                <p>PDDL fluents follow the <strong>STRIPS convention</strong>: effects are split into an <em>add list</em> (positive literals) and a <em>delete list</em> (negated literals). Any fluent not mentioned in the effect is unchanged &mdash; this is the <strong>STRIPS assumption</strong>, which solves the frame problem within this restricted language.</p>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="closed-world-frame">
+                <h2>4. Closed-World Assumption &amp; Frame Problem</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Closed-World Assumption (CWA)</h4>
+                  <p>Any fluent <em>not</em> explicitly stated in a state description is assumed to be <strong>false</strong>. This eliminates the need to list all negative facts.</p>
+                </div>
+
+                <div class="definition-box">
+                  <h4>&#128218; Frame Problem</h4>
+                  <p>The <strong>frame problem</strong> asks: how do we represent the fact that most things in the world <em>do not change</em> when an action is performed? Without a solution, every action would need explicit &ldquo;frame axioms&rdquo; for every unchanged fluent, leading to a combinatorial explosion.</p>
+                </div>
+
+                <p><strong>Solutions to the frame problem:</strong></p>
+                <ul>
+                  <li><strong>STRIPS assumption:</strong> only fluents in the add/delete list change; everything else persists. Simple and effective for classical planning.</li>
+                  <li><strong>Successor-state axioms</strong> (situation calculus): a fluent is true in the next situation iff an action made it true, or it was already true and no action made it false.</li>
+                  <li><strong>Effect axioms only:</strong> in PDDL, only effects are specified; the planner infers persistence automatically.</li>
+                </ul>
+
+                <div class="warning-box">
+                  <h4>&#9888; GATE Tip</h4>
+                  <p>Questions about the frame problem often appear in the context of knowledge representation. Remember: the frame problem is about <strong>representing non-change efficiently</strong>, not about reasoning speed.</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="forward-search">
+                <h2>5. Forward (Progression) State-Space Search</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Forward Search</h4>
+                  <p>Start from the <strong>initial state</strong> s<sub>0</sub>, apply all applicable actions to generate successor states, and search forward until a state satisfying the goal is reached.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Forward State-Space Search</h4>
+<pre>function ForwardSearch(s₀, goal, actions):
+    frontier ← {s₀}
+    explored ← ∅
+    while frontier ≠ ∅:
+        s ← frontier.pop()
+        if goal ⊆ s: return plan
+        explored ← explored ∪ {s}
+        for each action a in actions:
+            if a.preconditions ⊆ s:
+                s' ← (s \ a.delete_list) ∪ a.add_list
+                if s' ∉ explored:
+                    frontier.add(s')
+    return failure</pre>
+                </div>
+
+                <p><strong>Properties:</strong></p>
+                <ul>
+                  <li><strong>Sound and complete</strong> (with graph search)</li>
+                  <li><strong>Large branching factor:</strong> many actions may be applicable but irrelevant to the goal</li>
+                  <li>Works well with good heuristics that prune the search space</li>
+                </ul>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="backward-search">
+                <h2>6. Backward (Regression) State-Space Search</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Backward Search</h4>
+                  <p>Start from the <strong>goal</strong> and work backwards. At each step, find actions whose effects include at least one goal literal, then compute the <em>regression</em> of the goal through that action to obtain a new sub-goal.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Regression of Goal g Through Action a</h4>
+<pre>regress(g, a):
+    // a is relevant if it adds at least one fluent in g
+    // a is consistent if it does not delete any fluent in g
+    g' ← (g \ a.add_list) ∪ a.preconditions
+    return g'</pre>
+                </div>
+
+                <p><strong>Advantages over forward search:</strong></p>
+                <ul>
+                  <li>Considers only <strong>relevant actions</strong> (those that achieve a goal literal), reducing branching factor</li>
+                  <li>Operates on <em>partial states</em> (belief sets), potentially much smaller than full states</li>
+                </ul>
+
+                <p><strong>Disadvantage:</strong> defining consistent and non-redundant regression sets can be complex; also harder to compute good heuristics for partial states.</p>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="heuristics">
+                <h2>7. Heuristics for Planning</h2>
+
+                <p>A major advantage of the factored representation is that we can derive <strong>domain-independent heuristics</strong> automatically.</p>
+
+                <div class="definition-box">
+                  <h4>&#128218; Ignore-Delete-List Heuristic (h<sup>+</sup>)</h4>
+                  <p>Remove all <em>delete effects</em> from every action. In the resulting <strong>relaxed problem</strong>, fluents once achieved are never lost. Solving this relaxed problem gives an <strong>admissible heuristic</strong> (never over-estimates) because the relaxed problem is strictly easier.</p>
+                </div>
+
+                <p>Computing h<sup>+</sup> exactly is still NP-hard, but practical approximations exist:</p>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Heuristic</th><th>Idea</th><th>Admissible?</th><th>Informative?</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>h<sub>max</sub></strong></td><td>Cost of the single hardest goal fluent to achieve</td><td>Yes</td><td>Low</td></tr>
+                    <tr><td><strong>h<sub>add</sub></strong></td><td>Sum of individual costs to achieve each goal fluent</td><td>No (over-estimates due to positive interactions)</td><td>High</td></tr>
+                    <tr><td><strong>h<sup>FF</sup></strong></td><td>Length of a relaxed plan extracted from a relaxed planning graph</td><td>Not guaranteed</td><td>Very high</td></tr>
+                    <tr><td><strong>h<sup>LM-cut</sup></strong></td><td>Landmark-based lower bound using cost-partitioning</td><td>Yes</td><td>High</td></tr>
+                  </tbody>
+                </table>
+
+                <div class="definition-box">
+                  <h4>&#128218; Relaxed Planning Graph (RPG)</h4>
+                  <p>Build a planning graph (see GraphPlan chapter) <em>without mutex propagation</em>. The level at which all goal propositions first appear gives an admissible heuristic. The <strong>FF heuristic</strong> extracts an actual relaxed plan and counts its actions &mdash; more informative but not necessarily admissible.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#128300; Example &mdash; Ignore-Delete-List</h4>
+                  <p>Consider two actions:</p>
+                  <ul>
+                    <li>Move(A, Table, B): Pre={Clear(A), On(A,Table), Clear(B)}; Add={On(A,B)}; Del={On(A,Table), Clear(B)}</li>
+                    <li>Move(C, D, Table): Pre={Clear(C), On(C,D)}; Add={On(C,Table), Clear(D)}; Del={On(C,D)}</li>
+                  </ul>
+                  <p>Relaxed versions (delete lists removed): after Move(A, Table, B), both On(A,Table) <em>and</em> On(A,B) are true simultaneously. This makes the problem easier &mdash; the cost of the relaxed solution lower-bounds the true cost.</p>
+                </div>
+              </section>
+
+              <!-- Section 8 -->
+              <section id="plan-quality">
+                <h2>8. Plan Quality Metrics</h2>
+
+                <p>Not all valid plans are equally good. Common metrics include:</p>
+                <ul>
+                  <li><strong>Plan length:</strong> total number of actions (minimised in optimal planning)</li>
+                  <li><strong>Plan cost:</strong> &sum; cost(a<sub>i</sub>) where each action has a numeric cost</li>
+                  <li><strong>Makespan:</strong> number of time steps when actions can execute in <em>parallel</em></li>
+                </ul>
+
+                <div class="note-box">
+                  <h4>&#128161; Optimal vs. Satisficing Planning</h4>
+                  <p><strong>Optimal planners</strong> (e.g., A* with admissible heuristic) guarantee minimal cost but are slower. <strong>Satisficing planners</strong> (e.g., FF, LAMA) find good plans quickly without optimality guarantees. GATE questions usually focus on understanding the algorithms rather than implementation-level optimisation.</p>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <ul>
+                  <li>Classical planning uses a <strong>factored state representation</strong> (set of fluents) rather than atomic states.</li>
+                  <li>The <strong>closed-world assumption</strong> treats unlisted fluents as false; the <strong>frame problem</strong> is solved by only specifying effects.</li>
+                  <li><strong>PDDL</strong> is the standard language for expressing planning domains and problems.</li>
+                  <li><strong>Forward search</strong> (progression) starts from s<sub>0</sub>; <strong>backward search</strong> (regression) starts from the goal &mdash; each has trade-offs in branching factor and heuristic availability.</li>
+                  <li>Planning heuristics like <strong>h<sub>add</sub></strong>, <strong>h<sub>max</sub></strong>, <strong>h<sup>FF</sup></strong>, and <strong>h<sup>LM-cut</sup></strong> are derived by relaxing the problem (e.g., ignoring delete lists).</li>
+                  <li>Plan quality is measured by <strong>length</strong>, <strong>cost</strong>, or <strong>makespan</strong>.</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="chapters/13-planning/classical-planning.html">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="../12-reinforcement-learning/quiz-rl.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">RL Quiz</span></a>
+              <a href="strips.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">STRIPS Planning</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#planning-vs-search">1. Planning vs Search</a></li>
+            <li><a href="#state-space">2. State-Space Representation</a></li>
+            <li><a href="#pddl">3. PDDL</a></li>
+            <li><a href="#closed-world-frame">4. CWA &amp; Frame Problem</a></li>
+            <li><a href="#forward-search">5. Forward Search</a></li>
+            <li><a href="#backward-search">6. Backward Search</a></li>
+            <li><a href="#heuristics">7. Heuristics for Planning</a></li>
+            <li><a href="#plan-quality">8. Plan Quality</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI vs Machine Learning vs Deep Learning — understand the subset relationship, key differences, comparison table, and when to use each for GATE DA.">
+  <title>AI vs ML vs DL — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-vs-ml-vs-dl.html" class="sidebar-link active"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="what-is-ai.html">Chapter 0: Introduction</a> &raquo;
+          <span class="current">AI vs ML vs DL</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch00-ai-vs-ml-vs-dl">
+
+            <!-- Page Header -->
+            <h1>AI vs Machine Learning vs Deep Learning</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch00-ai-vs-ml-vs-dl" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="what-is-ai.html">What is Artificial Intelligence?</a></li>
+                <li><a href="types-of-ai.html">Types of AI</a></li>
+              </ul>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand the subset relationship: DL &sub; ML &sub; AI</li>
+                <li>Define AI, ML, and DL precisely</li>
+                <li>Compare and contrast AI, ML, and DL across multiple dimensions</li>
+                <li>Identify when to use traditional AI, ML, or DL</li>
+                <li>Relate these distinctions to the GATE DA syllabus topics</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: The Big Picture -->
+              <section id="big-picture">
+                <h2>1. The Big Picture: A Nested Relationship</h2>
+
+                <p>One of the most important conceptual clarifications in AI is understanding the relationship between Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL). These are <strong>not</strong> three separate fields&mdash;they are <strong>nested subsets</strong>:</p>
+
+                <div class="theorem-box">
+                  <div class="box-title">The Subset Relationship</div>
+                  <p><strong>Deep Learning &sub; Machine Learning &sub; Artificial Intelligence</strong></p>
+                  <p>Deep Learning is a subset of Machine Learning, which is itself a subset of Artificial Intelligence. All DL is ML, and all ML is AI, but not all AI is ML and not all ML is DL.</p>
+                </div>
+
+                <div class="diagram-container">
+                  <pre style="text-align:left; display:inline-block; font-family:var(--font-mono); font-size:0.85rem;">
+┌─────────────────────────────────────────────────────────┐
+│               ARTIFICIAL INTELLIGENCE (AI)              │
+│   Search, Planning, Logic, Robotics, NLP, Vision, ...   │
+│                                                         │
+│   ┌─────────────────────────────────────────────────┐   │
+│   │            MACHINE LEARNING (ML)                │   │
+│   │   Decision Trees, SVM, Naive Bayes, k-NN,      │   │
+│   │   Random Forest, Clustering, Regression, ...    │   │
+│   │                                                 │   │
+│   │   ┌─────────────────────────────────────────┐   │   │
+│   │   │         DEEP LEARNING (DL)              │   │   │
+│   │   │   CNNs, RNNs, LSTMs, Transformers,     │   │   │
+│   │   │   GANs, Autoencoders, GPT, BERT, ...   │   │   │
+│   │   └─────────────────────────────────────────┘   │   │
+│   └─────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────┘</pre>
+                  <div class="caption">Figure: The nested subset relationship between AI, ML, and DL</div>
+                </div>
+
+                <p>Let us define each term precisely and then compare them systematically.</p>
+              </section>
+
+              <!-- Section 2: Definitions -->
+              <section id="definitions">
+                <h2>2. Precise Definitions</h2>
+
+                <h3 id="def-ai">2.1 Artificial Intelligence (AI)</h3>
+                <div class="definition-box">
+                  <div class="box-title">Artificial Intelligence</div>
+                  <p>The broad science and engineering of creating systems that can perform tasks that normally require human intelligence. AI encompasses a wide range of techniques including search algorithms, logic and reasoning, knowledge representation, planning, perception, natural language processing, robotics, and learning.</p>
+                </div>
+
+                <p><strong>Key point:</strong> Not all AI involves learning from data. Many AI techniques are rule-based, knowledge-based, or search-based:</p>
+                <ul>
+                  <li><strong>Search algorithms</strong> (BFS, DFS, A*) solve problems by exploring state spaces.</li>
+                  <li><strong>Logic-based systems</strong> use formal rules to derive conclusions.</li>
+                  <li><strong>Expert systems</strong> encode human expert knowledge as if-then rules.</li>
+                  <li><strong>Planning algorithms</strong> generate sequences of actions to achieve goals.</li>
+                </ul>
+
+                <h3 id="def-ml">2.2 Machine Learning (ML)</h3>
+                <div class="definition-box">
+                  <div class="box-title">Machine Learning</div>
+                  <p>A subfield of AI in which systems <strong>learn from data</strong> to improve their performance on a task <em>without being explicitly programmed</em> for that specific task. Arthur Samuel (1959) defined it as: &ldquo;The field of study that gives computers the ability to learn without being explicitly programmed.&rdquo;</p>
+                  <p>More formally (Tom Mitchell, 1997): A computer program is said to learn from experience <em>E</em> with respect to some task <em>T</em> and performance measure <em>P</em>, if its performance at task <em>T</em>, as measured by <em>P</em>, improves with experience <em>E</em>.</p>
+                </div>
+
+                <p><strong>Types of Machine Learning:</strong></p>
+                <ul>
+                  <li><strong>Supervised Learning:</strong> Learn from labeled data (input-output pairs). Examples: classification, regression.</li>
+                  <li><strong>Unsupervised Learning:</strong> Learn patterns from unlabeled data. Examples: clustering, dimensionality reduction.</li>
+                  <li><strong>Reinforcement Learning:</strong> Learn by interacting with an environment and receiving rewards/penalties. Examples: game playing, robotic control.</li>
+                  <li><strong>Semi-Supervised Learning:</strong> Uses a combination of labeled and unlabeled data.</li>
+                </ul>
+
+                <h3 id="def-dl">2.3 Deep Learning (DL)</h3>
+                <div class="definition-box">
+                  <div class="box-title">Deep Learning</div>
+                  <p>A subfield of Machine Learning that uses <strong>artificial neural networks with multiple layers</strong> (hence &ldquo;deep&rdquo;) to learn hierarchical representations of data. Deep learning automatically discovers the features needed for detection or classification, eliminating the need for manual feature engineering.</p>
+                </div>
+
+                <p><strong>Key characteristics of Deep Learning:</strong></p>
+                <ul>
+                  <li><strong>Multiple layers:</strong> Typically 3 or more hidden layers (but modern models can have hundreds or thousands).</li>
+                  <li><strong>Automatic feature extraction:</strong> Lower layers learn simple features (edges, textures); higher layers learn complex features (objects, concepts).</li>
+                  <li><strong>Data hungry:</strong> Requires large amounts of training data to perform well.</li>
+                  <li><strong>Compute intensive:</strong> Typically requires GPUs or TPUs for efficient training.</li>
+                  <li><strong>Architectures:</strong> CNNs (images), RNNs/LSTMs (sequences), Transformers (attention-based, used in NLP and beyond).</li>
+                </ul>
+              </section>
+
+              <!-- Section 3: Comparison Table -->
+              <section id="comparison">
+                <h2>3. Detailed Comparison</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Dimension</th>
+                        <th>AI (Broad)</th>
+                        <th>Machine Learning</th>
+                        <th>Deep Learning</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Definition</strong></td>
+                        <td>Systems that mimic human intelligence</td>
+                        <td>Systems that learn from data</td>
+                        <td>Neural nets with many layers</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Scope</strong></td>
+                        <td>Broadest (includes ML, DL, and non-learning methods)</td>
+                        <td>Subset of AI</td>
+                        <td>Subset of ML</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Data Dependency</strong></td>
+                        <td>May not need data (rule-based, search)</td>
+                        <td>Needs moderate data</td>
+                        <td>Needs large amounts of data</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Feature Engineering</strong></td>
+                        <td>Manual (domain-expert design)</td>
+                        <td>Manual or semi-automatic</td>
+                        <td>Automatic (learned by the network)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Compute Needs</strong></td>
+                        <td>Varies (can be low)</td>
+                        <td>Moderate (CPU usually sufficient)</td>
+                        <td>High (GPU/TPU required)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Interpretability</strong></td>
+                        <td>Often interpretable (rules, logic)</td>
+                        <td>Moderate (decision trees are interpretable; SVMs less so)</td>
+                        <td>Low (black box)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Performance with small data</strong></td>
+                        <td>Can work well (rule-based)</td>
+                        <td>Often works well</td>
+                        <td>Often poor (overfits)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Performance with big data</strong></td>
+                        <td>Rules don&rsquo;t scale well</td>
+                        <td>Good, but may plateau</td>
+                        <td>Excellent (performance keeps improving)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Example Techniques</strong></td>
+                        <td>A* Search, Minimax, Expert Systems, Logic</td>
+                        <td>SVM, Decision Tree, k-NN, Random Forest, Naive Bayes</td>
+                        <td>CNN, RNN, LSTM, Transformer, GAN</td>
+                      </tr>
+                      <tr>
+                        <td><strong>GATE DA Chapters</strong></td>
+                        <td>Chapters 1&ndash;7, 10&ndash;14</td>
+                        <td>Chapter 8</td>
+                        <td>Chapter 9</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 4: The Relationship Explained -->
+              <section id="relationship">
+                <h2>4. Understanding the Relationship</h2>
+
+                <p>Think of it as concentric circles or Russian nesting dolls:</p>
+
+                <div class="note-box">
+                  <div class="box-title">Analogy: Transportation</div>
+                  <p><strong>AI</strong> is like &ldquo;transportation&rdquo; &mdash; the broad concept of moving from A to B. It includes walking, cycling, driving, flying, sailing, etc.</p>
+                  <p><strong>ML</strong> is like &ldquo;motor vehicles&rdquo; &mdash; a specific category of transportation that uses engines and learns (adapts) to road conditions. It includes cars, trucks, motorcycles.</p>
+                  <p><strong>DL</strong> is like &ldquo;autonomous electric vehicles&rdquo; &mdash; a specific type of motor vehicle that represents the cutting edge, with multiple layers of automation, self-driving capability, but requires specialized infrastructure (charging stations = GPUs) and works best on highways (big data).</p>
+                </div>
+
+                <h3>What AI Includes Beyond ML</h3>
+                <p>Many important AI techniques do not involve learning from data at all:</p>
+                <ul>
+                  <li><strong>Search algorithms:</strong> BFS, DFS, A*, Minimax &mdash; these explore solution spaces using algorithms, not data-driven learning.</li>
+                  <li><strong>Logical reasoning:</strong> Propositional logic, predicate logic, resolution &mdash; derive conclusions from formal rules.</li>
+                  <li><strong>Knowledge representation:</strong> Ontologies, semantic networks, frames &mdash; encode world knowledge explicitly.</li>
+                  <li><strong>Planning:</strong> STRIPS, partial-order planning &mdash; generate action sequences.</li>
+                  <li><strong>Constraint satisfaction:</strong> Backtracking, arc consistency &mdash; solve constraint problems without learning.</li>
+                </ul>
+
+                <h3>What ML Includes Beyond DL</h3>
+                <p>Many ML algorithms are not deep learning:</p>
+                <ul>
+                  <li><strong>Decision Trees &amp; Random Forests</strong> &mdash; Tree-based classifiers</li>
+                  <li><strong>Support Vector Machines (SVM)</strong> &mdash; Margin-based classifiers</li>
+                  <li><strong>k-Nearest Neighbors (k-NN)</strong> &mdash; Instance-based learning</li>
+                  <li><strong>Naive Bayes</strong> &mdash; Probabilistic classifier</li>
+                  <li><strong>Linear/Logistic Regression</strong> &mdash; Statistical models</li>
+                  <li><strong>k-Means Clustering</strong> &mdash; Unsupervised clustering</li>
+                  <li><strong>Principal Component Analysis (PCA)</strong> &mdash; Dimensionality reduction</li>
+                </ul>
+                <p>These algorithms often work better than deep learning on small datasets, are more interpretable, and require far less computational resources.</p>
+              </section>
+
+              <!-- Section 5: When to Use What -->
+              <section id="when-to-use">
+                <h2>5. When to Use What?</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Scenario</th>
+                        <th>Recommended Approach</th>
+                        <th>Reasoning</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Problem has clear, well-defined rules</td>
+                        <td><strong>Traditional AI</strong> (rule-based, search)</td>
+                        <td>No need for data; rules are explicit (e.g., chess engine, expert system)</td>
+                      </tr>
+                      <tr>
+                        <td>Small/medium structured dataset</td>
+                        <td><strong>Classical ML</strong> (SVM, Decision Tree, etc.)</td>
+                        <td>DL overfits on small data; classical ML is efficient and interpretable</td>
+                      </tr>
+                      <tr>
+                        <td>Large dataset, tabular data</td>
+                        <td><strong>Classical ML</strong> (Gradient Boosting, Random Forest)</td>
+                        <td>Gradient boosting often outperforms DL on tabular data; faster to train</td>
+                      </tr>
+                      <tr>
+                        <td>Image classification/detection</td>
+                        <td><strong>Deep Learning</strong> (CNNs)</td>
+                        <td>DL excels at learning image features automatically; state-of-the-art</td>
+                      </tr>
+                      <tr>
+                        <td>Natural language understanding</td>
+                        <td><strong>Deep Learning</strong> (Transformers)</td>
+                        <td>Transformers (BERT, GPT) dominate NLP benchmarks</td>
+                      </tr>
+                      <tr>
+                        <td>Speech recognition</td>
+                        <td><strong>Deep Learning</strong> (RNN/Transformer)</td>
+                        <td>Sequence modeling with attention mechanisms excels here</td>
+                      </tr>
+                      <tr>
+                        <td>Need for interpretability</td>
+                        <td><strong>Classical ML or Traditional AI</strong></td>
+                        <td>Decision trees, rule-based systems are transparent</td>
+                      </tr>
+                      <tr>
+                        <td>Limited computational resources</td>
+                        <td><strong>Classical ML or Traditional AI</strong></td>
+                        <td>DL requires GPUs; classical methods run on CPUs</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Common GATE Misconception</div>
+                  <p>Many students assume Deep Learning is always the best approach. In reality, <strong>classical ML often outperforms DL on tabular/structured data with moderate sample sizes</strong>. DL shines primarily on unstructured data (images, text, audio) and when large datasets are available. GATE DA questions may test this understanding.</p>
+                </div>
+              </section>
+
+              <!-- Section 6: Examples -->
+              <section id="examples">
+                <h2>6. Examples &amp; Practice</h2>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Example 1: Classifying a System</div>
+                  <p><strong>Question:</strong> A hospital uses a system that diagnoses diseases based on &ldquo;if-then&rdquo; rules written by doctors (e.g., &ldquo;IF fever &gt; 39&deg;C AND cough AND chest pain THEN suspect pneumonia&rdquo;). Is this AI, ML, or DL?</p>
+                  <p><strong>Answer:</strong> This is <strong>AI (specifically, an expert system)</strong> but NOT ML and NOT DL. It does not learn from data; the rules are hand-coded by domain experts. It falls within AI but outside the ML subset.</p>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Example 2: Subset Identification</div>
+                  <p><strong>Question:</strong> A spam filter uses a <strong>Naive Bayes classifier</strong> trained on 10,000 labeled emails. Is this AI, ML, or DL?</p>
+                  <p><strong>Answer:</strong> This is <strong>AI</strong> (it performs an intelligent task), <strong>ML</strong> (it learns from labeled data), but <strong>NOT DL</strong> (Naive Bayes is a probabilistic model, not a deep neural network). It sits in the ML circle but outside the DL circle.</p>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Example 3: Architecture Identification</div>
+                  <p><strong>Question:</strong> Google Photos uses a system with 22 layers of convolutional and fully-connected neural network layers to automatically tag people in photos. Is this AI, ML, or DL?</p>
+                  <p><strong>Answer:</strong> This is <strong>all three</strong>: AI (performs facial recognition), ML (learns from data), and DL (uses a deep neural network with many layers). It sits in the innermost circle&mdash;DL.</p>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Example 4: GATE-Style Question</div>
+                  <p><strong>Question:</strong> Which of the following is TRUE?</p>
+                  <ol type="A">
+                    <li>All Machine Learning algorithms use neural networks.</li>
+                    <li>Deep Learning is a superset of Machine Learning.</li>
+                    <li>A* search algorithm is an AI technique but not a Machine Learning technique.</li>
+                    <li>Random Forest is a Deep Learning algorithm.</li>
+                  </ol>
+                  <p><strong>Answer: C</strong></p>
+                  <p><strong>Explanation:</strong> (A) False&mdash;many ML algorithms (SVM, Decision Trees, k-NN) don&rsquo;t use neural networks. (B) False&mdash;DL is a <em>subset</em> of ML, not a superset. (C) Correct&mdash;A* is a search algorithm that solves problems without learning from data. (D) False&mdash;Random Forest is an ensemble of decision trees, not a neural network.</p>
+                </div>
+              </section>
+
+              <!-- Section 7: Data Science Connection -->
+              <section id="data-science">
+                <h2>7. Where Does Data Science Fit?</h2>
+
+                <p>Since GATE DA is the &ldquo;Data Science and AI&rdquo; paper, it&rsquo;s worth clarifying how Data Science relates to AI/ML/DL.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Data Science</div>
+                  <p>An interdisciplinary field that uses scientific methods, algorithms, processes, and systems to extract knowledge and insights from structured and unstructured data. Data Science draws from statistics, mathematics, computer science, domain expertise, and&mdash;increasingly&mdash;machine learning and AI.</p>
+                </div>
+
+                <p><strong>Relationship:</strong> Data Science and AI overlap in the ML region. Data Scientists use ML techniques for prediction and pattern discovery. However, Data Science also includes non-AI activities like data cleaning, exploratory data analysis, visualization, and statistical inference. Similarly, AI includes non-data activities like logic, search, and planning.</p>
+
+                <div class="diagram-container">
+                  <pre style="text-align:left; display:inline-block; font-family:var(--font-mono); font-size:0.85rem;">
+┌────────────────┐     ┌─────────────────────┐
+│  DATA SCIENCE  │     │        AI           │
+│  ┌──────────┐  │     │  ┌──────────────┐   │
+│  │Statistics │  │     │  │ Search,Logic │   │
+│  │  EDA     │  │     │  │ Planning     │   │
+│  └──────────┘  │     │  └──────────────┘   │
+│      ┌─────────┼─────┼────────┐            │
+│      │    ML (overlap area)   │            │
+│      │   DL   ┌───────┐      │            │
+│      │        │ D L   │      │            │
+│      │        └───────┘      │            │
+│      └─────────┼─────┼───────┘            │
+│  ┌──────────┐  │     │                     │
+│  │ Viz, ETL │  │     │  ┌──────────────┐   │
+│  │ Reporting│  │     │  │  Robotics,   │   │
+│  └──────────┘  │     │  │  NLP, Vision │   │
+└────────────────┘     └─────────────────────┘</pre>
+                  <div class="caption">Figure: Data Science and AI overlap in the Machine Learning region</div>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary" class="summary-section">
+                <h2>&#128218; Summary</h2>
+                <ul>
+                  <li>The relationship is: <strong>DL &sub; ML &sub; AI</strong> (nested subsets).</li>
+                  <li><strong>AI</strong> is the broadest field: any system mimicking intelligent behavior.</li>
+                  <li><strong>ML</strong> is a subset of AI: systems that learn from data without explicit programming.</li>
+                  <li><strong>DL</strong> is a subset of ML: neural networks with multiple hidden layers that automatically extract features.</li>
+                  <li>Not all AI is ML (e.g., search, logic, planning). Not all ML is DL (e.g., SVMs, decision trees).</li>
+                  <li>DL excels on unstructured data (images, text) with large datasets; classical ML excels on structured/tabular data.</li>
+                  <li>Data Science overlaps with AI/ML but also includes statistics, visualization, and data engineering.</li>
+                </ul>
+              </section>
+
+              <!-- References -->
+              <section id="references" class="references-section">
+                <h2>References</h2>
+                <ol>
+                  <li>Russell, S. &amp; Norvig, P. (2020). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson.</li>
+                  <li>Mitchell, T. (1997). <em>Machine Learning</em>. McGraw-Hill.</li>
+                  <li>Goodfellow, I., Bengio, Y. &amp; Courville, A. (2016). <em>Deep Learning</em>. MIT Press.</li>
+                  <li>Samuel, A. (1959). &ldquo;Some Studies in Machine Learning Using the Game of Checkers.&rdquo; <em>IBM Journal of Research and Development</em>.</li>
+                  <li>LeCun, Y., Bengio, Y. &amp; Hinton, G. (2015). &ldquo;Deep Learning.&rdquo; <em>Nature</em>, 521, 436&ndash;444.</li>
+                </ol>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch00-ai-vs-ml-vs-dl">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="types-of-ai.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Types of AI</span>
+              </a>
+              <a href="gate-da-exam-overview.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">GATE DA Exam Overview</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#big-picture">1. The Big Picture</a></li>
+              <li><a href="#definitions">2. Definitions</a>
+                <ul>
+                  <li><a href="#def-ai">2.1 AI</a></li>
+                  <li><a href="#def-ml">2.2 ML</a></li>
+                  <li><a href="#def-dl">2.3 DL</a></li>
+                </ul>
+              </li>
+              <li><a href="#comparison">3. Detailed Comparison</a></li>
+              <li><a href="#relationship">4. The Relationship</a></li>
+              <li><a href="#when-to-use">5. When to Use What?</a></li>
+              <li><a href="#examples">6. Examples &amp; Practice</a></li>
+              <li><a href="#data-science">7. Data Science Connection</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

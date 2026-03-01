@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quantum Machine Learning — qubits, superposition, entanglement, quantum gates, variational circuits, quantum kernel methods, NISQ era, and quantum advantage for GATE DA AI preparation.">
+  <title>Quantum Machine Learning — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-ethics-fairness.html" class="sidebar-link"><span class="link-check"></span> AI Ethics &amp; Fairness<span class="link-type theory">Theory</span></a>
+            <a href="federated-learning.html" class="sidebar-link"><span class="link-check"></span> Federated Learning<span class="link-type theory">Theory</span></a>
+            <a href="neuromorphic-computing.html" class="sidebar-link"><span class="link-check"></span> Neuromorphic Computing<span class="link-type theory">Theory</span></a>
+            <a href="quantum-machine-learning.html" class="sidebar-link active"><span class="link-check"></span> Quantum ML<span class="link-type theory">Theory</span></a>
+            <a href="ai-safety-alignment.html" class="sidebar-link"><span class="link-check"></span> AI Safety &amp; Alignment<span class="link-type theory">Theory</span></a>
+            <a href="multimodal-ai.html" class="sidebar-link"><span class="link-check"></span> Multimodal AI<span class="link-type theory">Theory</span></a>
+            <a href="autonomous-systems.html" class="sidebar-link"><span class="link-check"></span> Autonomous Systems<span class="link-type theory">Theory</span></a>
+            <a href="recent-breakthroughs.html" class="sidebar-link"><span class="link-check"></span> Recent Breakthroughs<span class="link-type theory">Theory</span></a>
+            <a href="notes-advanced.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-advanced.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="explainable-ai.html">Chapter 15: Advanced Topics</a> &raquo; <span class="current">Quantum Machine Learning</span></nav>
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch15-quantum-machine-learning">
+            <h1>Quantum Machine Learning</h1>
+
+            <!-- Section 1: Introduction -->
+            <h2 id="introduction">Introduction to Quantum Machine Learning</h2>
+            <p>Quantum Machine Learning (QML) is an interdisciplinary field at the intersection of quantum computing and machine learning. It explores how quantum phenomena&mdash;superposition, entanglement, and interference&mdash;can be leveraged to accelerate or improve classical machine learning algorithms. As quantum hardware matures, QML represents one of the most promising application domains for near-term quantum devices.</p>
+
+            <div class="definition-box">
+              <h3>&#128214; Quantum Machine Learning (QML)</h3>
+              <p>A research discipline that investigates the use of quantum computing resources&mdash;qubits, quantum gates, and quantum algorithms&mdash;to enhance, speed up, or fundamentally alter machine learning tasks such as classification, regression, clustering, and generative modelling.</p>
+            </div>
+
+            <p>The promise of QML rests on two pillars: (1) quantum computers can represent and manipulate exponentially large state spaces using polynomial physical resources, and (2) quantum algorithms can sometimes achieve provable speedups over their classical counterparts for specific sub-routines commonly used in ML, such as linear algebra operations, sampling, and optimisation.</p>
+
+            <div class="note-box">
+              <h3>&#128161; Why Study QML for GATE DA?</h3>
+              <p>While GATE DA does not yet include quantum computing as a core topic, understanding QML helps you appreciate the frontier of AI research. Questions on computational complexity, linear algebra, and probabilistic models&mdash;all central to QML&mdash;are very much within the GATE DA syllabus.</p>
+            </div>
+
+            <!-- Section 2: Qubits and Quantum States -->
+            <h2 id="qubits">Qubits and Quantum States</h2>
+            <p>The classical bit takes on a value of 0 or 1. A <strong>qubit</strong> (quantum bit) is the quantum analogue: it can exist in a <em>superposition</em> of |0&rang; and |1&rang; simultaneously.</p>
+
+            <div class="definition-box">
+              <h3>&#128214; Qubit</h3>
+              <p>A qubit is a two-level quantum system whose state is described by a vector in a two-dimensional complex Hilbert space: <code>|&psi;&rang; = &alpha;|0&rang; + &beta;|1&rang;</code>, where &alpha; and &beta; are complex amplitudes satisfying |&alpha;|&sup2; + |&beta;|&sup2; = 1.</p>
+            </div>
+
+            <p>Key properties of qubits that make them powerful for computation:</p>
+            <ul>
+              <li><strong>Superposition:</strong> A qubit can encode a weighted combination of 0 and 1, enabling exploration of multiple computational paths simultaneously.</li>
+              <li><strong>Measurement:</strong> Upon measurement, a qubit collapses to |0&rang; with probability |&alpha;|&sup2; or to |1&rang; with probability |&beta;|&sup2;.</li>
+              <li><strong>Bloch Sphere:</strong> A single-qubit pure state can be visualised as a point on the Bloch sphere, parameterised by angles &theta; and &phi;.</li>
+            </ul>
+
+            <div class="example-box">
+              <h3>&#128300; Example &mdash; Single Qubit State</h3>
+              <p>The state <code>|+&rang; = (1/&radic;2)|0&rang; + (1/&radic;2)|1&rang;</code> is an equal superposition. Measuring it yields 0 or 1 each with 50% probability. This is created from |0&rang; by applying a Hadamard gate.</p>
+            </div>
+
+            <p>For <em>n</em> qubits, the combined state lives in a 2<sup>n</sup>-dimensional Hilbert space. This exponential growth is the source of quantum computing's potential power&mdash;with just 300 qubits, the state space exceeds the number of atoms in the observable universe.</p>
+
+            <!-- Section 3: Superposition and Entanglement -->
+            <h2 id="superposition-entanglement">Superposition &amp; Entanglement</h2>
+            <p><strong>Superposition</strong> allows a quantum register of <em>n</em> qubits to represent 2<sup>n</sup> basis states simultaneously. This does not mean we can read out all 2<sup>n</sup> values at once&mdash;measurement collapses the state&mdash;but quantum algorithms cleverly use interference to amplify the probability of correct outcomes.</p>
+
+            <div class="definition-box">
+              <h3>&#128214; Quantum Entanglement</h3>
+              <p>Entanglement is a quantum correlation between two or more qubits such that the state of the composite system cannot be factored into independent single-qubit states. If qubits A and B are entangled, measuring A instantaneously determines the outcome of measuring B, regardless of distance.</p>
+            </div>
+
+            <div class="example-box">
+              <h3>&#128300; Bell State (Maximally Entangled Pair)</h3>
+              <p>The Bell state <code>|&Phi;+&rang; = (1/&radic;2)(|00&rang; + |11&rang;)</code> is the simplest entangled state. If the first qubit is measured as 0, the second is guaranteed to also be 0, and vice versa. This two-qubit state cannot be written as a tensor product of individual qubit states.</p>
+            </div>
+
+            <p>Entanglement is a key resource for quantum algorithms. In QML, entanglement enables:</p>
+            <ul>
+              <li>Encoding complex correlations between features in a quantum feature map.</li>
+              <li>Creating highly expressive parameterised quantum circuits that classical models cannot efficiently simulate.</li>
+              <li>Enabling quantum teleportation of information across distributed quantum networks.</li>
+            </ul>
+
+            <div class="warning-box">
+              <h3>&#9888;&#65039; Common Misconception</h3>
+              <p>Entanglement does <strong>not</strong> enable faster-than-light communication. While measurement outcomes are correlated, no usable information is transmitted without a classical communication channel. This is formalised by the no-communication theorem.</p>
+            </div>
+
+            <!-- Section 4: Quantum Gates and Circuits -->
+            <h2 id="quantum-gates">Quantum Gates &amp; Circuits</h2>
+            <p>Quantum computation proceeds by applying a sequence of <strong>quantum gates</strong>&mdash;unitary transformations&mdash;to qubits. A quantum circuit is a directed acyclic graph of gates applied over time.</p>
+
+            <div class="definition-box">
+              <h3>&#128214; Quantum Gate</h3>
+              <p>A quantum gate is a unitary operator <em>U</em> acting on one or more qubits. Unitarity (U&dagger;U = I) guarantees that quantum evolution is reversible and preserves the total probability of the quantum state.</p>
+            </div>
+
+            <p>Important single-qubit gates:</p>
+            <table>
+              <thead>
+                <tr><th>Gate</th><th>Symbol</th><th>Action</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Hadamard</td><td>H</td><td>Creates equal superposition: H|0&rang; = |+&rang;</td></tr>
+                <tr><td>Pauli-X</td><td>X</td><td>Bit flip: X|0&rang; = |1&rang; (quantum NOT)</td></tr>
+                <tr><td>Pauli-Z</td><td>Z</td><td>Phase flip: Z|1&rang; = &minus;|1&rang;</td></tr>
+                <tr><td>Rotation-Y</td><td>R<sub>Y</sub>(&theta;)</td><td>Rotates state around Y-axis by angle &theta;</td></tr>
+                <tr><td>Phase Gate</td><td>S</td><td>Applies a &pi;/2 phase to |1&rang;</td></tr>
+              </tbody>
+            </table>
+
+            <p>Important multi-qubit gates:</p>
+            <ul>
+              <li><strong>CNOT (Controlled-NOT):</strong> Flips the target qubit if the control qubit is |1&rang;. Essential for creating entanglement.</li>
+              <li><strong>CZ (Controlled-Z):</strong> Applies a Z gate to the target qubit conditioned on the control being |1&rang;.</li>
+              <li><strong>SWAP:</strong> Exchanges the states of two qubits.</li>
+              <li><strong>Toffoli (CCNOT):</strong> A three-qubit gate; universal for classical reversible computation.</li>
+            </ul>
+
+            <div class="example-box">
+              <h3>&#128300; Building a Bell State Circuit</h3>
+              <p>To create the Bell state |&Phi;+&rang;: (1) Start with |00&rang;. (2) Apply H to qubit 0: (|0&rang; + |1&rang;)/&radic;2 &otimes; |0&rang;. (3) Apply CNOT with qubit 0 as control and qubit 1 as target: (|00&rang; + |11&rang;)/&radic;2. This two-gate circuit is the building block of many quantum algorithms.</p>
+            </div>
+
+            <div class="note-box">
+              <h3>&#128161; Universal Gate Sets</h3>
+              <p>The set {H, T, CNOT} is universal for quantum computation, meaning any unitary operation can be approximated to arbitrary precision using only these gates. This is analogous to how {AND, NOT} is universal for classical Boolean logic.</p>
+            </div>
+
+            <!-- Section 5: Variational Quantum Circuits -->
+            <h2 id="variational-circuits">Variational Quantum Circuits (VQCs)</h2>
+            <p>Variational Quantum Circuits (also called parameterised quantum circuits or PQCs) are the workhorses of near-term QML. They combine quantum circuits with classical optimisation in a hybrid quantum-classical loop.</p>
+
+            <div class="definition-box">
+              <h3>&#128214; Variational Quantum Circuit</h3>
+              <p>A VQC is a quantum circuit <em>U(&theta;)</em> whose gates depend on tunable parameters &theta;. A classical optimiser iteratively adjusts &theta; to minimise a cost function computed from measurement outcomes, analogous to training weights in a neural network.</p>
+            </div>
+
+            <p>The VQC training loop:</p>
+            <ol>
+              <li><strong>State Preparation:</strong> Encode classical data <em>x</em> into a quantum state using a feature map circuit S(x).</li>
+              <li><strong>Parameterised Evolution:</strong> Apply variational layers W(&theta;) consisting of parameterised rotation gates and entangling gates.</li>
+              <li><strong>Measurement:</strong> Measure qubits to obtain expectation values of observables.</li>
+              <li><strong>Classical Optimisation:</strong> Compute the loss function and update &theta; using gradient-based (parameter-shift rule) or gradient-free optimisers.</li>
+              <li><strong>Repeat:</strong> Iterate until convergence.</li>
+            </ol>
+
+            <div class="example-box">
+              <h3>&#128300; Variational Quantum Classifier</h3>
+              <p>To classify two-feature data into two classes: (1) Encode features x<sub>1</sub>, x<sub>2</sub> using R<sub>Y</sub> rotations on two qubits. (2) Apply a layer of CNOT + R<sub>Y</sub>(&theta;<sub>i</sub>) gates. (3) Measure the first qubit in the Z basis. (4) If &langle;Z&rangle; &gt; 0, predict class 0; else class 1. (5) Optimise &theta; to minimise cross-entropy loss over training data.</p>
+            </div>
+
+            <div class="warning-box">
+              <h3>&#9888;&#65039; Barren Plateau Problem</h3>
+              <p>As the number of qubits and circuit depth increases, the gradient of the cost function can become exponentially small across the parameter landscape&mdash;a phenomenon called <strong>barren plateaus</strong>. This makes training deep VQCs extremely difficult, analogous to the vanishing gradient problem in classical deep learning but potentially more severe.</p>
+            </div>
+
+            <!-- Section 6: Quantum Kernel Methods -->
+            <h2 id="quantum-kernels">Quantum Kernel Methods</h2>
+            <p>Quantum kernel methods offer an alternative to variational approaches. Instead of training a parameterised circuit, they use a fixed quantum feature map to compute kernel values that are then fed into a classical SVM or other kernel machine.</p>
+
+            <div class="definition-box">
+              <h3>&#128214; Quantum Kernel</h3>
+              <p>A quantum kernel K(x<sub>i</sub>, x<sub>j</sub>) is defined as the inner product of quantum feature states: K(x<sub>i</sub>, x<sub>j</sub>) = |&langle;&phi;(x<sub>i</sub>)|&phi;(x<sub>j</sub>)&rangle;|&sup2;, where |&phi;(x)&rang; = U(x)|0&rang; is the quantum state produced by encoding data point <em>x</em> via a quantum circuit U(x).</p>
+            </div>
+
+            <p>Steps in quantum kernel classification:</p>
+            <ol>
+              <li>Choose a quantum feature map circuit U(x) (e.g., ZZ-feature map with entanglement).</li>
+              <li>For each pair of training points (x<sub>i</sub>, x<sub>j</sub>), prepare |&phi;(x<sub>i</sub>)&rang;, then apply U&dagger;(x<sub>j</sub>) and measure the probability of the all-zeros state.</li>
+              <li>Construct the kernel matrix K of size N &times; N.</li>
+              <li>Train a classical SVM using this quantum kernel matrix.</li>
+            </ol>
+
+            <div class="theorem-box">
+              <h3>&#128295; Quantum Kernel Advantage Criterion</h3>
+              <p>A quantum kernel can provide advantage over classical kernels only if the quantum feature map produces states that are hard for classical computers to simulate. Specifically, if the quantum kernel can be efficiently computed classically, there is no computational advantage. The geometric difference between the quantum and classical kernel matrices serves as a diagnostic for potential quantum advantage.</p>
+            </div>
+
+            <div class="note-box">
+              <h3>&#128161; Projected Quantum Kernels</h3>
+              <p>Standard quantum kernels suffer from the "curse of dimensionality in Hilbert space"&mdash;exponentially large feature spaces can lead to kernel values that are exponentially concentrated near zero. <strong>Projected quantum kernels</strong> address this by projecting back to a lower-dimensional space using reduced density matrices, improving trainability.</p>
+            </div>
+
+            <!-- Section 7: NISQ Era and Quantum Hardware -->
+            <h2 id="nisq-era">The NISQ Era</h2>
+            <p>Current quantum computers are in the <strong>Noisy Intermediate-Scale Quantum (NISQ)</strong> era, characterised by devices with tens to a few thousand qubits that lack full error correction.</p>
+
+            <div class="definition-box">
+              <h3>&#128214; NISQ (Noisy Intermediate-Scale Quantum)</h3>
+              <p>A term coined by John Preskill (2018) to describe current quantum processors with 50&ndash;1000+ qubits that are too noisy for fault-tolerant computation but large enough to potentially demonstrate quantum advantage for specific tasks. Gate errors, decoherence, and limited connectivity constrain the complexity of executable circuits.</p>
+            </div>
+
+            <p>Key challenges of NISQ devices for QML:</p>
+            <ul>
+              <li><strong>Gate Fidelity:</strong> Two-qubit gate errors are typically 0.1&ndash;1%, limiting circuit depth to ~100&ndash;1000 gates before noise overwhelms the signal.</li>
+              <li><strong>Qubit Connectivity:</strong> Physical qubits are not all-to-all connected, requiring SWAP gates that add noise and depth.</li>
+              <li><strong>Decoherence:</strong> Qubits lose their quantum state over time (T<sub>1</sub> relaxation, T<sub>2</sub> dephasing), setting a time budget for computation.</li>
+              <li><strong>Readout Errors:</strong> Measurements are imperfect, introducing statistical noise in output probabilities.</li>
+              <li><strong>Shot Noise:</strong> Finite measurement samples mean expectation values are estimated with statistical uncertainty proportional to 1/&radic;N<sub>shots</sub>.</li>
+            </ul>
+
+            <div class="example-box">
+              <h3>&#128300; NISQ-Friendly QML Algorithms</h3>
+              <p>Algorithms designed for NISQ hardware include: (1) <strong>VQE</strong> (Variational Quantum Eigensolver) for chemistry simulations, (2) <strong>QAOA</strong> (Quantum Approximate Optimisation Algorithm) for combinatorial problems, (3) <strong>Quantum classifiers</strong> using shallow VQCs, and (4) <strong>Quantum kernel estimators</strong>. All use hybrid quantum-classical loops to keep quantum circuit depth low.</p>
+            </div>
+
+            <!-- Section 8: Quantum Advantage Claims -->
+            <h2 id="quantum-advantage">Quantum Advantage Claims</h2>
+            <p>A central question in QML is whether quantum computers can outperform classical computers for practical ML tasks. This is distinct from general quantum computational advantage (quantum supremacy).</p>
+
+            <div class="definition-box">
+              <h3>&#128214; Quantum Advantage</h3>
+              <p>A quantum algorithm is said to provide <strong>quantum advantage</strong> (or quantum speedup) for a task if it solves the task provably faster or with fewer resources than the best-known classical algorithm. <strong>Quantum supremacy</strong> is the more specific claim that a quantum device performs a computation that no classical computer can complete in feasible time.</p>
+            </div>
+
+            <p>Milestones and claims in quantum advantage:</p>
+            <ul>
+              <li><strong>Google Sycamore (2019):</strong> Claimed quantum supremacy for random circuit sampling&mdash;a task with limited practical utility but demonstrating a computational separation.</li>
+              <li><strong>Xanadu Borealis (2022):</strong> Demonstrated advantage in Gaussian boson sampling using photonic quantum computing.</li>
+              <li><strong>IBM Heron (2024&ndash;25):</strong> Focused on utility-scale quantum computing with error mitigation, showing quantum processors can produce correct results for 100+ qubit circuits.</li>
+            </ul>
+
+            <div class="warning-box">
+              <h3>&#9888;&#65039; QML Advantage Is Not Guaranteed</h3>
+              <p>Many proposed QML speedups rely on the assumption that data is already in quantum form (quantum RAM). For classical data, the cost of loading data into a quantum state can negate any speedup. Furthermore, "dequantisation" results have shown that some quantum-inspired classical algorithms can match quantum speedups for tasks like recommendation systems.</p>
+            </div>
+
+            <div class="theorem-box">
+              <h3>&#128295; Conditions for QML Advantage</h3>
+              <p>Provable QML advantage requires: (1) The learning problem must have structure exploitable by quantum mechanics (e.g., data generated by quantum processes). (2) The quantum feature map must be classically intractable to simulate. (3) The quantum algorithm must provide a meaningful speedup that survives the overhead of data encoding and error mitigation. (4) The advantage must hold against the best classical algorithm, not just a naive baseline.</p>
+            </div>
+
+            <!-- Section 9: Key QML Algorithms -->
+            <h2 id="key-algorithms">Key QML Algorithms</h2>
+            <p>Several landmark algorithms form the foundation of QML research:</p>
+
+            <table>
+              <thead>
+                <tr><th>Algorithm</th><th>Task</th><th>Speedup</th><th>Caveat</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>HHL (2009)</td><td>Linear systems</td><td>Exponential (in matrix size)</td><td>Requires qRAM; output is quantum state</td></tr>
+                <tr><td>Quantum PCA</td><td>Principal components</td><td>Exponential</td><td>Needs density matrix exponentiation</td></tr>
+                <tr><td>Quantum SVM</td><td>Classification</td><td>Polynomial/Exponential</td><td>Depends on kernel evaluation cost</td></tr>
+                <tr><td>QAOA</td><td>Combinatorial optimisation</td><td>Heuristic</td><td>No proven exponential speedup</td></tr>
+                <tr><td>Quantum Boltzmann Machine</td><td>Generative modelling</td><td>Quadratic (sampling)</td><td>Hardware-demanding</td></tr>
+                <tr><td>Quantum GAN</td><td>Data generation</td><td>Heuristic</td><td>Trainability challenges</td></tr>
+              </tbody>
+            </table>
+
+            <div class="example-box">
+              <h3>&#128300; HHL Algorithm Intuition</h3>
+              <p>The HHL algorithm solves Ax = b for an N &times; N sparse matrix A in time O(log N), compared to classical O(N) for the best iterative methods. The catch: the input b must be a quantum state, and the output x is also a quantum state from which only limited information can be extracted per measurement. This makes it powerful for specific quantum subroutines but not a drop-in replacement for classical linear solvers.</p>
+            </div>
+
+            <!-- Section 10: Future Outlook and Summary -->
+            <h2 id="future-outlook">Future Outlook &amp; Summary</h2>
+            <p>Quantum Machine Learning sits at the frontier of both quantum computing and artificial intelligence. While the NISQ era presents significant hardware challenges, rapid progress in error correction, qubit quality, and algorithm design suggests that practical QML applications may emerge in the coming decade.</p>
+
+            <div class="note-box">
+              <h3>&#128161; Key Frameworks and Tools</h3>
+              <p><strong>Qiskit</strong> (IBM), <strong>Cirq</strong> (Google), <strong>PennyLane</strong> (Xanadu), and <strong>TensorFlow Quantum</strong> are leading open-source frameworks for QML research. PennyLane is particularly popular because it integrates seamlessly with PyTorch and TensorFlow, enabling hybrid quantum-classical model training.</p>
+            </div>
+
+            <p><strong>Summary of key concepts:</strong></p>
+            <ul>
+              <li>Qubits leverage superposition and entanglement to represent exponentially large state spaces.</li>
+              <li>Quantum gates perform unitary transformations; universal gate sets can approximate any quantum operation.</li>
+              <li>Variational Quantum Circuits are the dominant paradigm for NISQ-era QML, using hybrid quantum-classical optimisation.</li>
+              <li>Quantum kernel methods map data into quantum Hilbert space for classical kernel-based learning.</li>
+              <li>The NISQ era is characterised by noisy, limited-qubit devices that constrain circuit depth and complexity.</li>
+              <li>Quantum advantage for ML tasks is an active research question with both promising and cautionary results.</li>
+              <li>Practical QML likely requires fault-tolerant quantum hardware or cleverly designed NISQ algorithms.</li>
+            </ul>
+
+            <div class="warning-box">
+              <h3>&#9888;&#65039; Hype vs. Reality</h3>
+              <p>While QML is a genuinely exciting field, be cautious of overclaims. Many proposed "exponential speedups" have caveats (qRAM assumptions, dequantisation). Focus on understanding the fundamentals&mdash;linear algebra, probability, and optimisation&mdash;that underpin both quantum and classical ML. These foundations are what GATE DA tests.</p>
+            </div>
+
+          </article>
+          <aside class="page-toc" aria-label="On this page"><div class="toc-header">On This Page</div><ul id="toc-links"></ul></aside>
+        </div>
+        <nav class="nav-buttons" aria-label="Page navigation">
+          <a href="neuromorphic-computing.html" class="btn btn-nav btn-prev">&larr; Previous: Neuromorphic Computing</a>
+          <a href="ai-safety-alignment.html" class="btn btn-nav btn-next">Next: AI Safety &amp; Alignment &rarr;</a>
+        </nav>
+        <div class="page-actions"><button class="btn btn-sm btn-bookmark" data-page="ch15-quantum-machine-learning">&#128278; Bookmark</button><button class="btn btn-sm btn-complete" data-page="ch15-quantum-machine-learning">&#9989; Mark Complete</button></div>
+      </div>
+    </main>
+  </div>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

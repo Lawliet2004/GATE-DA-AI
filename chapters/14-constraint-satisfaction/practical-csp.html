@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Practical CSP Solver — interactive N-Queens demo, backtracking visualization, Sudoku solver, map coloring interactive, exercises for GATE DA.">
+  <title>Practical: CSP Solver — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a>
+            <a href="backtracking-csp.html" class="sidebar-link"><span class="link-check"></span> Backtracking Search<span class="link-type theory">Theory</span></a>
+            <a href="arc-consistency.html" class="sidebar-link"><span class="link-check"></span> Arc Consistency<span class="link-type theory">Theory</span></a>
+            <a href="constraint-propagation.html" class="sidebar-link"><span class="link-check"></span> Constraint Propagation<span class="link-type theory">Theory</span></a>
+            <a href="practical-csp.html" class="sidebar-link active"><span class="link-check"></span> &#128736; Practical: CSP Solver<span class="link-type practical">Practical</span></a>
+            <a href="notes-csp.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-csp.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="csp-formulation.html">Chapter 14: Constraint Satisfaction</a> &raquo; <span class="current">Practical: CSP Solver</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-practical" data-page-id="ch14-practical-csp">
+
+            <h1>&#128736; Practical: CSP Solver</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">Hands-On</span>
+              <button class="bookmark-btn" data-page="chapters/14-constraint-satisfaction/practical-csp.html" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; What You'll Build</h4><ul>
+              <li>An <strong>interactive 8-Queens</strong> demo with visual board</li>
+              <li>Understand <strong>backtracking visualization</strong> concepts</li>
+              <li>Explore a <strong>Sudoku solver</strong> example with constraint propagation</li>
+              <li>See <strong>map coloring</strong> as an interactive concept</li>
+              <li>Implement CSP algorithms in pseudocode</li>
+            </ul></div>
+
+            <div class="practical-content">
+
+              <!-- Section 1: N-Queens Interactive Demo -->
+              <section id="nqueens-demo">
+                <h2>1. Interactive 8-Queens Demo</h2>
+
+                <p>Click <strong>"Solve"</strong> to watch the backtracking algorithm place 8 queens on the board. Click <strong>"Reset"</strong> to clear. The algorithm tries column by column, placing a queen in a safe row, and backtracks when stuck.</p>
+
+                <div class="demo-container" style="margin:1.5rem 0;">
+                  <div style="display:flex; gap:1rem; margin-bottom:1rem; flex-wrap:wrap;">
+                    <button id="nq-solve" style="padding:0.6rem 1.5rem; background:var(--accent,#3498db); color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:600;">&#9654; Solve</button>
+                    <button id="nq-reset" style="padding:0.6rem 1.5rem; background:var(--bg-secondary,#eee); color:var(--text-primary,#333); border:1px solid var(--border,#ccc); border-radius:6px; cursor:pointer; font-weight:600;">&#8635; Reset</button>
+                    <span id="nq-status" style="align-self:center; font-weight:500;"></span>
+                  </div>
+                  <div id="nq-board" style="display:inline-grid; grid-template-columns:repeat(8,48px); grid-template-rows:repeat(8,48px); border:2px solid var(--border,#333); border-radius:4px;"></div>
+                  <div id="nq-stats" style="margin-top:0.75rem; font-size:0.9rem; color:var(--text-secondary,#666);"></div>
+                </div>
+
+                <script>
+                (function(){
+                  var N = 8;
+                  var board = document.getElementById('nq-board');
+                  var status = document.getElementById('nq-status');
+                  var stats = document.getElementById('nq-stats');
+                  var solving = false;
+                  var queens = [];
+                  var backtracks = 0;
+
+                  // Build grid cells
+                  function buildBoard(){
+                    board.innerHTML = '';
+                    for(var r=0;r<N;r++){
+                      for(var c=0;c<N;c++){
+                        var cell = document.createElement('div');
+                        cell.id = 'nq-'+r+'-'+c;
+                        cell.style.cssText = 'width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;'
+                          + 'background:'+((r+c)%2===0?'var(--bg-primary,#f0d9b5)':'var(--accent-light,#b58863)')+';';
+                        board.appendChild(cell);
+                      }
+                    }
+                  }
+                  buildBoard();
+
+                  function clearBoard(){
+                    queens = [];
+                    backtracks = 0;
+                    for(var r=0;r<N;r++)
+                      for(var c=0;c<N;c++)
+                        document.getElementById('nq-'+r+'-'+c).textContent = '';
+                    status.textContent = '';
+                    stats.textContent = '';
+                  }
+
+                  function placeQueen(r,c){ document.getElementById('nq-'+r+'-'+c).textContent = '♛'; }
+                  function removeQueen(r,c){ document.getElementById('nq-'+r+'-'+c).textContent = ''; }
+
+                  function isSafe(queens, row, col){
+                    for(var i=0;i<queens.length;i++){
+                      var qr = queens[i];
+                      if(qr === row) return false;
+                      if(Math.abs(qr - row) === Math.abs(i - col)) return false;
+                    }
+                    return true;
+                  }
+
+                  function solve(){
+                    if(solving) return;
+                    clearBoard();
+                    solving = true;
+                    status.textContent = 'Solving...';
+                    var steps = [];
+                    // Generate all steps with backtracking
+                    function bt(col){
+                      if(col === N){ return true; }
+                      for(var row=0;row<N;row++){
+                        if(isSafe(queens, row, col)){
+                          queens.push(row);
+                          steps.push({type:'place', r:row, c:col});
+                          if(bt(col+1)) return true;
+                          queens.pop();
+                          steps.push({type:'remove', r:row, c:col});
+                          backtracks++;
+                        }
+                      }
+                      return false;
+                    }
+                    queens = [];
+                    bt(0);
+                    // Animate steps
+                    var idx = 0;
+                    function animate(){
+                      if(idx >= steps.length){ 
+                        status.textContent = '✓ Solution found!';
+                        stats.textContent = 'Backtracks: ' + backtracks;
+                        solving = false;
+                        return;
+                      }
+                      var s = steps[idx];
+                      if(s.type === 'place') placeQueen(s.r, s.c);
+                      else removeQueen(s.r, s.c);
+                      idx++;
+                      setTimeout(animate, 60);
+                    }
+                    animate();
+                  }
+
+                  document.getElementById('nq-solve').addEventListener('click', solve);
+                  document.getElementById('nq-reset').addEventListener('click', function(){
+                    solving = false;
+                    clearBoard();
+                  });
+                })();
+                </script>
+
+                <div class="note-box">
+                  <h4>&#128161; How the Demo Works</h4>
+                  <p>The solver uses the CSP formulation: one variable per column (Q<sub>i</sub> = row of queen in column i), domain {0,&hellip;,7}. It tries rows top-to-bottom in each column and backtracks when no safe row exists. The animation shows each placement and removal in real time.</p>
+                </div>
+              </section>
+
+              <!-- Section 2: Backtracking Visualization Concept -->
+              <section id="backtracking-viz">
+                <h2>2. Backtracking Visualization Concept</h2>
+
+                <p>Understanding how backtracking unfolds is crucial. Here's the conceptual trace for <strong>4-Queens</strong>:</p>
+
+                <div class="algorithm-block">
+                  <h4>4-Queens Backtracking Trace</h4>
+                  <pre>
+Column 0: Try row 0
+  Column 1: Try row 0 → conflict (same row) ✗
+  Column 1: Try row 1 → conflict (diagonal) ✗
+  Column 1: Try row 2 → OK ✓
+    Column 2: Try row 0 → conflict (diagonal with Q1) ✗
+    Column 2: Try row 1 → conflict (row with col0? No. diagonal with col1? Yes) ✗
+    Column 2: Try row 2 → conflict (same row as col1) ✗
+    Column 2: Try row 3 → conflict (diagonal) ✗
+    BACKTRACK to Column 1
+  Column 1: Try row 3 → OK ✓
+    Column 2: Try row 0 → conflict (diagonal) ✗
+    Column 2: Try row 1 → OK ✓
+      Column 3: Try row 0 → conflict ✗
+      Column 3: Try row 1 → conflict ✗
+      Column 3: Try row 2 → conflict ✗
+      Column 3: Try row 3 → conflict ✗
+      BACKTRACK to Column 2
+    Column 2: Try row 2 → conflict ✗
+    Column 2: Try row 3 → conflict ✗
+    BACKTRACK to Column 1
+  Column 1: No more rows → BACKTRACK to Column 0
+Column 0: Try row 1
+  Column 1: Try row 3 → OK ✓
+    Column 2: Try row 0 → OK ✓
+      Column 3: Try row 2 → OK ✓ → SOLUTION: [1, 3, 0, 2] ★
+                  </pre>
+                </div>
+
+                <p>The solution Q<sub>0</sub>=1, Q<sub>1</sub>=3, Q<sub>2</sub>=0, Q<sub>3</sub>=2 means queens are placed at (row 1, col 0), (row 3, col 1), (row 0, col 2), (row 2, col 3).</p>
+              </section>
+
+              <!-- Section 3: Sudoku Solver -->
+              <section id="sudoku-solver">
+                <h2>3. Sudoku Solver Example</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Sudoku as a CSP</h4>
+                  <p>81 variables (one per cell), domains {1&ndash;9} (pre-filled cells have singleton domains), 27 AllDiff constraints (9 rows + 9 columns + 9 boxes).</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Pseudocode: Sudoku CSP Solver</h4>
+                  <pre>
+function SOLVE-SUDOKU(grid)
+    // 1. Enforce node consistency (pre-filled cells)
+    for each cell (i,j) with value v:
+        D[i][j] &larr; {v}
+
+    // 2. Run AC-3 to propagate constraints
+    if not AC-3(sudoku_csp) then return failure
+
+    // 3. Check if solved (all domains singleton)
+    if all |D[i][j]| = 1 then return grid
+
+    // 4. Pick unassigned cell with MRV
+    (i,j) &larr; cell with smallest |D[i][j]| > 1
+
+    // 5. Backtrack with MAC
+    for each v in D[i][j] do
+        saved_domains &larr; copy of all domains
+        D[i][j] &larr; {v}
+        if MAC(sudoku_csp, (i,j)) then
+            result &larr; SOLVE-SUDOKU(grid)
+            if result &ne; failure then return result
+        restore domains from saved_domains
+    return failure
+                  </pre>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; Sudoku AC-3 Propagation Example</h4>
+                  <p>Given a partially filled Sudoku where cell (0,0)=5:</p>
+                  <ul>
+                    <li>Remove 5 from all cells in Row 0</li>
+                    <li>Remove 5 from all cells in Column 0</li>
+                    <li>Remove 5 from all cells in top-left 3&times;3 box</li>
+                    <li>If any of those cells now has a singleton domain, propagate further</li>
+                  </ul>
+                  <p>With AC-3 + MRV, <strong>most easy/medium Sudoku puzzles are solved without any backtracking</strong> &mdash; propagation alone determines all values!</p>
+                </div>
+              </section>
+
+              <!-- Section 4: Map Coloring -->
+              <section id="map-coloring">
+                <h2>4. Map Coloring Interactive Concept</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Map Coloring CSP Implementation</h4>
+                  <p>The map coloring problem is one of the simplest CSPs to implement. Here is the structure for the Australia problem:</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Pseudocode: Map Coloring CSP</h4>
+                  <pre>
+// Define the CSP
+variables = [WA, NT, SA, Q, NSW, V, T]
+domains = {
+    WA: [R, G, B],  NT: [R, G, B],  SA: [R, G, B],
+    Q:  [R, G, B],  NSW:[R, G, B],  V:  [R, G, B],
+    T:  [R, G, B]
+}
+constraints = {
+    (WA, NT): &lambda;(a,b): a &ne; b,
+    (WA, SA): &lambda;(a,b): a &ne; b,
+    (NT, SA): &lambda;(a,b): a &ne; b,
+    (NT, Q):  &lambda;(a,b): a &ne; b,
+    (SA, Q):  &lambda;(a,b): a &ne; b,
+    (SA, NSW):&lambda;(a,b): a &ne; b,
+    (SA, V):  &lambda;(a,b): a &ne; b,
+    (Q, NSW): &lambda;(a,b): a &ne; b,
+    (NSW, V): &lambda;(a,b): a &ne; b
+}
+
+// Solve with Backtracking + MRV + Forward Checking
+solution &larr; BACKTRACKING-SEARCH(map_csp)
+// Expected: {WA:R, NT:G, SA:B, Q:R, NSW:G, V:R, T:R}
+                  </pre>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Applying Heuristics to Map Coloring</h4>
+                  <p><strong>MRV</strong>: Start with SA (most constraints = 5 neighbours). <strong>LCV</strong>: After SA=B, for NT, try the colour that leaves the most options for its neighbours. <strong>Forward checking</strong>: After SA=B, remove B from WA, NT, Q, NSW, V domains. This typically solves Australia in ~7 steps with no backtracking.</p>
+                </div>
+              </section>
+
+              <!-- Section 5: Exercises -->
+              <section id="exercises">
+                <h2>5. Exercises</h2>
+
+                <div class="example-box">
+                  <h4>&#9997; Exercise 1: 4-Queens by Hand</h4>
+                  <p>Using backtracking with MRV and forward checking, solve the 4-Queens problem. Show the domain of each variable after each assignment. How many backtracks occur?</p>
+                  <details style="margin-top:0.5rem;">
+                    <summary style="cursor:pointer; font-weight:600;">Show Solution</summary>
+                    <p style="margin-top:0.5rem;"><strong>Assign Q<sub>0</sub>=1</strong>: D<sub>1</sub>={3}, D<sub>2</sub>={0}, D<sub>3</sub>={2}. (After forward checking removes row/diagonal conflicts.)</p>
+                    <p><strong>Assign Q<sub>1</sub>=3</strong> (MRV: D<sub>1</sub> has 1 value): D<sub>2</sub>={0}, D<sub>3</sub>={2}.</p>
+                    <p><strong>Assign Q<sub>2</sub>=0</strong>: D<sub>3</sub>={2}.</p>
+                    <p><strong>Assign Q<sub>3</sub>=2</strong>: Solution [1,3,0,2]. <strong>0 backtracks!</strong></p>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; Exercise 2: AC-3 Trace</h4>
+                  <p>Given variables A, B, C with D<sub>A</sub>={1,2,3}, D<sub>B</sub>={1,2}, D<sub>C</sub>={2,3} and constraints A &gt; B and B &lt; C, run AC-3 and show the final domains.</p>
+                  <details style="margin-top:0.5rem;">
+                    <summary style="cursor:pointer; font-weight:600;">Show Solution</summary>
+                    <p style="margin-top:0.5rem;"><strong>Process (A, B)</strong>: A &gt; B. A=1: need B &lt; 1 → no support → remove 1. A=2: B=1 ✓. A=3: B=1 ✓. D<sub>A</sub>={2,3}.</p>
+                    <p><strong>Process (B, A)</strong>: B &lt; A. B=1: A=2 ✓. B=2: A=3 ✓. No change.</p>
+                    <p><strong>Process (B, C)</strong>: B &lt; C. B=1: C=2 ✓. B=2: C=3 ✓. No change.</p>
+                    <p><strong>Process (C, B)</strong>: C &gt; B. C=2: B=1 ✓. C=3: B=1 ✓. No change.</p>
+                    <p><strong>Final domains</strong>: D<sub>A</sub>={2,3}, D<sub>B</sub>={1,2}, D<sub>C</sub>={2,3}.</p>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; Exercise 3: Cutset Conditioning</h4>
+                  <p>For the Australia map CSP, identify a minimum cycle cutset. How many tree-CSP solves are needed? What is the total worst-case work?</p>
+                  <details style="margin-top:0.5rem;">
+                    <summary style="cursor:pointer; font-weight:600;">Show Solution</summary>
+                    <p style="margin-top:0.5rem;">Minimum cutset: <strong>{SA}</strong> (size 1). Removing SA makes the rest a forest: WA&ndash;NT, Q&ndash;NSW&ndash;V, T (disconnected).</p>
+                    <p>For each of SA's 3 values, solve the tree(s): 3 &times; O(6 &times; 9) = O(162). Much better than brute force 3<sup>7</sup> = 2187.</p>
+                  </details>
+                </div>
+              </section>
+            </div>
+
+            <button class="bookmark-btn" data-page="chapters/14-constraint-satisfaction/practical-csp.html" title="Bookmark this page">&#9733; Bookmark</button>
+            <button class="complete-btn" data-page="chapters/14-constraint-satisfaction/practical-csp.html">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="constraint-propagation.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Constraint Propagation</span></a>
+              <a href="notes-csp.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">CSP Quick Notes</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#nqueens-demo">1. 8-Queens Demo</a></li>
+            <li><a href="#backtracking-viz">2. Backtracking Visualization</a></li>
+            <li><a href="#sudoku-solver">3. Sudoku Solver</a></li>
+            <li><a href="#map-coloring">4. Map Coloring</a></li>
+            <li><a href="#exercises">5. Exercises</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

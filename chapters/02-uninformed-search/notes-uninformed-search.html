@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quick-revision notes for Uninformed Search — compact summary of BFS, DFS, IDDFS, UCS, DLS, Bidirectional Search with complexity formulas, comparison table, mnemonics, and GATE tips.">
+  <title>Chapter Notes: Uninformed Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a><a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a><a href="../01-intelligent-agents/notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+            <a href="state-space-representation.html" class="sidebar-link"><span class="link-check"></span> State Space<span class="link-type theory">Theory</span></a>
+            <a href="breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-first-search.html" class="sidebar-link"><span class="link-check"></span> DFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-limited-search.html" class="sidebar-link"><span class="link-check"></span> Depth-Limited<span class="link-type theory">Theory</span></a>
+            <a href="iterative-deepening-dfs.html" class="sidebar-link"><span class="link-check"></span> IDDFS<span class="link-type theory">Theory</span></a>
+            <a href="uniform-cost-search.html" class="sidebar-link"><span class="link-check"></span> UCS<span class="link-type theory">Theory</span></a>
+            <a href="bidirectional-search.html" class="sidebar-link"><span class="link-check"></span> Bidirectional<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-uninformed-strategies.html" class="sidebar-link"><span class="link-check"></span> Comparison<span class="link-type theory">Theory</span></a>
+            <a href="complexity-analysis.html" class="sidebar-link"><span class="link-check"></span> Complexity<span class="link-type theory">Theory</span></a>
+            <a href="practical-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uninformed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uninformed-search.html" class="sidebar-link active"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="problem-formulation.html">Chapter 2: Uninformed Search</a> &raquo; <span class="current">Chapter Notes</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch02-notes">
+
+            <h1>Uninformed Search &mdash; Quick Revision Notes</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch02-notes" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <p style="font-style:italic; color:var(--text-secondary);">Condensed revision notes for the entire Uninformed Search chapter. Designed for quick review before exams &mdash; print-friendly and scannable.</p>
+
+            <div class="notes-content">
+
+              <!-- Section 1: Key Definitions -->
+              <section id="key-definitions">
+                <h2>1. Key Definitions</h2>
+                <div class="quick-facts">
+                  <ul>
+                    <li><strong>Search Problem:</strong> Defined by (Initial State, Actions, Transition Model, Goal Test, Path Cost).</li>
+                    <li><strong>State Space:</strong> The set of all states reachable from the initial state by any sequence of actions.</li>
+                    <li><strong>Frontier (Open List):</strong> Set of nodes discovered but not yet expanded.</li>
+                    <li><strong>Explored Set (Closed List):</strong> Set of nodes already expanded (used in graph search).</li>
+                    <li><strong>Branching Factor (b):</strong> Maximum number of successors of any node.</li>
+                    <li><strong>Depth (d):</strong> Depth of the shallowest goal node.</li>
+                    <li><strong>Maximum Depth (m):</strong> Maximum depth of any node in the search tree.</li>
+                    <li><strong>Complete:</strong> Guaranteed to find a solution if one exists.</li>
+                    <li><strong>Optimal:</strong> Guaranteed to find the <em>least-cost</em> solution.</li>
+                    <li><strong>Uninformed (Blind):</strong> Uses only information available in the problem definition &mdash; no heuristic.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 2: Algorithm Summaries -->
+              <section id="algorithm-summaries">
+                <h2>2. Algorithm Quick Summaries</h2>
+
+                <h3>Breadth-First Search (BFS)</h3>
+                <ul>
+                  <li><strong>Data structure:</strong> FIFO Queue</li>
+                  <li><strong>Strategy:</strong> Expand shallowest unexpanded node first</li>
+                  <li><strong>Complete:</strong> Yes (if b is finite)</li>
+                  <li><strong>Optimal:</strong> Yes, only if all step costs are equal (unit cost)</li>
+                  <li><strong>Time:</strong> O(b<sup>d</sup>)</li>
+                  <li><strong>Space:</strong> O(b<sup>d</sup>) &mdash; stores entire frontier</li>
+                  <li><strong>Goal test:</strong> Typically on generation (early goal test)</li>
+                </ul>
+
+                <h3>Depth-First Search (DFS)</h3>
+                <ul>
+                  <li><strong>Data structure:</strong> LIFO Stack (or recursion)</li>
+                  <li><strong>Strategy:</strong> Expand deepest unexpanded node first</li>
+                  <li><strong>Complete:</strong> No (tree search); Yes for graph search on finite spaces</li>
+                  <li><strong>Optimal:</strong> No</li>
+                  <li><strong>Time:</strong> O(b<sup>m</sup>) &mdash; may explore entire tree</li>
+                  <li><strong>Space:</strong> O(b&middot;m) &mdash; stores one path + siblings</li>
+                  <li><strong>Best for:</strong> Memory-constrained problems where any solution suffices</li>
+                </ul>
+
+                <h3>Depth-Limited Search (DLS)</h3>
+                <ul>
+                  <li><strong>Data structure:</strong> Stack with depth limit L</li>
+                  <li><strong>Strategy:</strong> DFS that stops at depth L</li>
+                  <li><strong>Complete:</strong> No (solution may be deeper than L)</li>
+                  <li><strong>Optimal:</strong> No</li>
+                  <li><strong>Time:</strong> O(b<sup>L</sup>)</li>
+                  <li><strong>Space:</strong> O(b&middot;L)</li>
+                  <li><strong>Returns:</strong> solution, failure, or <em>cutoff</em> (depth limit reached)</li>
+                </ul>
+
+                <h3>Iterative Deepening DFS (IDDFS)</h3>
+                <ul>
+                  <li><strong>Data structure:</strong> Repeated DLS with limits 0, 1, 2, &hellip;</li>
+                  <li><strong>Strategy:</strong> Run DLS(0), DLS(1), DLS(2), &hellip; until solution found</li>
+                  <li><strong>Complete:</strong> Yes</li>
+                  <li><strong>Optimal:</strong> Yes (with unit step costs)</li>
+                  <li><strong>Time:</strong> O(b<sup>d</sup>) &mdash; same order as BFS</li>
+                  <li><strong>Space:</strong> O(b&middot;d) &mdash; <strong>linear!</strong></li>
+                  <li><strong>Overhead:</strong> b/(b&minus;1). For b=10, only ~11% extra work</li>
+                  <li><strong>Preferred uninformed method when depth is unknown and costs are uniform</strong></li>
+                </ul>
+
+                <h3>Uniform Cost Search (UCS)</h3>
+                <ul>
+                  <li><strong>Data structure:</strong> Priority Queue (min-heap on g(n))</li>
+                  <li><strong>Strategy:</strong> Expand node with lowest cumulative path cost g(n)</li>
+                  <li><strong>Complete:</strong> Yes (if step cost &ge; &epsilon; &gt; 0)</li>
+                  <li><strong>Optimal:</strong> Yes (if step cost &ge; &epsilon; &gt; 0)</li>
+                  <li><strong>Time:</strong> O(b<sup>1+&lfloor;C*/&epsilon;&rfloor;</sup>) where C* = optimal solution cost</li>
+                  <li><strong>Space:</strong> O(b<sup>1+&lfloor;C*/&epsilon;&rfloor;</sup>)</li>
+                  <li><strong>Goal test:</strong> On expansion (late goal test) &mdash; ensures cheapest path found first</li>
+                  <li><strong>Note:</strong> Reduces to BFS when all step costs are equal</li>
+                </ul>
+
+                <h3>Bidirectional Search</h3>
+                <ul>
+                  <li><strong>Data structure:</strong> Two BFS frontiers (from start and goal)</li>
+                  <li><strong>Strategy:</strong> Expand from both ends; stop when frontiers intersect</li>
+                  <li><strong>Complete:</strong> Yes (if both directions use BFS)</li>
+                  <li><strong>Optimal:</strong> Yes (with unit costs and BFS in both directions)</li>
+                  <li><strong>Time:</strong> O(b<sup>d/2</sup>)</li>
+                  <li><strong>Space:</strong> O(b<sup>d/2</sup>)</li>
+                  <li><strong>Requirements:</strong> Explicit goal state + reversible operators</li>
+                </ul>
+              </section>
+
+              <!-- Section 3: Master Comparison Table -->
+              <section id="comparison-table">
+                <h2>3. Master Comparison Table</h2>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Strategy</th>
+                        <th>Complete?</th>
+                        <th>Optimal?</th>
+                        <th>Time</th>
+                        <th>Space</th>
+                        <th>Data Structure</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>BFS</strong></td>
+                        <td>Yes<sup>1</sup></td>
+                        <td>Yes<sup>2</sup></td>
+                        <td>O(b<sup>d</sup>)</td>
+                        <td>O(b<sup>d</sup>)</td>
+                        <td>FIFO Queue</td>
+                      </tr>
+                      <tr>
+                        <td><strong>DFS</strong></td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>O(b<sup>m</sup>)</td>
+                        <td>O(b&middot;m)</td>
+                        <td>LIFO Stack</td>
+                      </tr>
+                      <tr>
+                        <td><strong>DLS</strong></td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>O(b<sup>L</sup>)</td>
+                        <td>O(b&middot;L)</td>
+                        <td>Stack + limit</td>
+                      </tr>
+                      <tr>
+                        <td><strong>IDDFS</strong></td>
+                        <td>Yes</td>
+                        <td>Yes<sup>2</sup></td>
+                        <td>O(b<sup>d</sup>)</td>
+                        <td>O(b&middot;d)</td>
+                        <td>Repeated DLS</td>
+                      </tr>
+                      <tr>
+                        <td><strong>UCS</strong></td>
+                        <td>Yes<sup>3</sup></td>
+                        <td>Yes<sup>3</sup></td>
+                        <td>O(b<sup>1+&lfloor;C*/&epsilon;&rfloor;</sup>)</td>
+                        <td>O(b<sup>1+&lfloor;C*/&epsilon;&rfloor;</sup>)</td>
+                        <td>Priority Queue</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Bidirectional</strong></td>
+                        <td>Yes</td>
+                        <td>Yes<sup>2</sup></td>
+                        <td>O(b<sup>d/2</sup>)</td>
+                        <td>O(b<sup>d/2</sup>)</td>
+                        <td>Two Queues</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary);"><sup>1</sup> if b is finite. <sup>2</sup> if step costs are uniform. <sup>3</sup> if step cost &ge; &epsilon; &gt; 0.</p>
+              </section>
+
+              <!-- Section 4: Formula Quick Reference -->
+              <section id="formula-reference">
+                <h2>4. Formula Quick Reference</h2>
+                <div class="formula-list">
+                  <ul>
+                    <li><strong>Nodes in a complete tree of depth d:</strong> &sum;<sub>i=0</sub><sup>d</sup> b<sup>i</sup> = (b<sup>d+1</sup> &minus; 1) / (b &minus; 1)</li>
+                    <li><strong>BFS nodes expanded (early goal test):</strong> (b<sup>d</sup> &minus; 1) / (b &minus; 1)</li>
+                    <li><strong>BFS nodes generated:</strong> (b<sup>d+1</sup> &minus; 1) / (b &minus; 1)</li>
+                    <li><strong>IDDFS total nodes generated:</strong> (d+1)&middot;1 + d&middot;b + (d&minus;1)&middot;b<sup>2</sup> + &hellip; + 1&middot;b<sup>d</sup></li>
+                    <li><strong>IDDFS overhead factor:</strong> b / (b &minus; 1) &mdash; e.g., b=10 gives 10/9 &asymp; 1.11</li>
+                    <li><strong>Bidirectional speedup:</strong> b<sup>d</sup> &rarr; 2 &middot; b<sup>d/2</sup> (exponential reduction)</li>
+                    <li><strong>UCS expands all nodes with g(n) &lt; C*</strong> before the goal node</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 5: Mnemonics -->
+              <section id="mnemonics">
+                <h2>5. Mnemonics &amp; Memory Aids</h2>
+
+                <div class="mnemonic-box">
+                  <div class="box-title">&#128161; &ldquo;BFS = Broad &amp; Fat, DFS = Deep &amp; Thin&rdquo;</div>
+                  <p>BFS explores broadly (wide frontier, high memory). DFS explores deeply (thin path, low memory).</p>
+                </div>
+
+                <div class="mnemonic-box">
+                  <div class="box-title">&#128161; Data Structure Mnemonic: &ldquo;BFS = Queue (Both start with consonants), DFS = Stack (Both have 'S')&rdquo;</div>
+                  <p><strong>B</strong>FS &rarr; <strong>Q</strong>ueue (FIFO). <strong>D</strong>FS &rarr; <strong>S</strong>tack (LIFO). <strong>U</strong>CS &rarr; <strong>P</strong>riority Queue (sorted by cost).</p>
+                </div>
+
+                <div class="mnemonic-box">
+                  <div class="box-title">&#128161; IDDFS = &ldquo;I Do DFS, Smartly&rdquo;</div>
+                  <p>IDDFS combines DFS space efficiency with BFS completeness. Think of it as &ldquo;smart DFS&rdquo; &mdash; it tries all depths systematically.</p>
+                </div>
+
+                <div class="mnemonic-box">
+                  <div class="box-title">&#128161; Completeness Check: &ldquo;BUI are Complete&rdquo;</div>
+                  <p><strong>B</strong>FS, <strong>U</strong>CS, <strong>I</strong>DDFS are complete (with their respective conditions). DFS and DLS are NOT.</p>
+                </div>
+
+                <div class="mnemonic-box">
+                  <div class="box-title">&#128161; Optimality: &ldquo;Unit costs? BFS/IDDFS. Variable costs? UCS only.&rdquo;</div>
+                  <p>For uniform step costs, BFS and IDDFS are optimal. For variable step costs, only UCS guarantees optimality among uninformed strategies.</p>
+                </div>
+              </section>
+
+              <!-- Section 6: Important Theorems -->
+              <section id="theorems">
+                <h2>6. Important Theorems &amp; Properties</h2>
+                <div class="quick-facts">
+                  <ul>
+                    <li><strong>Theorem (BFS Optimality):</strong> BFS finds the shallowest goal. It is optimal if and only if path cost is a non-decreasing function of depth (e.g., all step costs are equal).</li>
+                    <li><strong>Theorem (UCS Optimality):</strong> UCS is optimal and complete provided every step cost satisfies c(s,a,s&prime;) &ge; &epsilon; for some fixed &epsilon; &gt; 0.</li>
+                    <li><strong>Theorem (IDDFS Optimality):</strong> IDDFS is asymptotically optimal for unit-cost problems. Its time complexity is O(b<sup>d</sup>), same order as BFS, despite repeated iterations.</li>
+                    <li><strong>Property (Graph vs. Tree Search):</strong> Graph search (with explored set) prevents re-expansion of states, making DFS complete on finite state spaces. However, it uses O(|V|) extra space.</li>
+                    <li><strong>Property (UCS = Dijkstra):</strong> UCS is equivalent to Dijkstra&rsquo;s single-source shortest path algorithm. If you know Dijkstra&rsquo;s, you know UCS.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 7: Common Mistakes -->
+              <section id="common-mistakes">
+                <h2>7. Common Mistakes to Avoid</h2>
+                <ul>
+                  <li>&#10060; <strong>&ldquo;BFS is always optimal&rdquo;</strong> &mdash; Only with unit step costs. For variable costs, use UCS.</li>
+                  <li>&#10060; <strong>&ldquo;DFS space is O(m)&rdquo;</strong> &mdash; It&rsquo;s O(b&middot;m), not O(m). You must store siblings at each level.</li>
+                  <li>&#10060; <strong>&ldquo;DFS is complete&rdquo;</strong> &mdash; Tree-search DFS can loop forever. Only graph-search DFS on finite spaces is complete.</li>
+                  <li>&#10060; <strong>&ldquo;IDDFS is very wasteful&rdquo;</strong> &mdash; The overhead is only b/(b&minus;1), which is &le; 2 for b&ge;2 and ~11% for b=10.</li>
+                  <li>&#10060; <strong>&ldquo;UCS works with zero-cost edges&rdquo;</strong> &mdash; UCS requires &epsilon; &gt; 0 minimum cost. Zero-cost cycles break completeness.</li>
+                  <li>&#10060; <strong>Confusing &ldquo;expanded&rdquo; vs. &ldquo;generated&rdquo;</strong> &mdash; Generated = added to frontier. Expanded = removed from frontier and successors generated. BFS with early goal test checks on generation.</li>
+                  <li>&#10060; <strong>&ldquo;Bidirectional search always works&rdquo;</strong> &mdash; Requires explicit goal state and reversible operators. Cannot be used with abstract goal tests.</li>
+                </ul>
+              </section>
+
+              <!-- Section 8: When to Use Each -->
+              <section id="when-to-use">
+                <h2>8. When to Use Each Strategy</h2>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Strategy</th><th>Use When</th><th>Avoid When</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>BFS</strong></td><td>Small state space, unit costs, need shortest path</td><td>Large/deep state space (memory explosion)</td></tr>
+                      <tr><td><strong>DFS</strong></td><td>Any solution is fine, memory is tiny, many solutions exist</td><td>Need optimal solution, infinite depth possible</td></tr>
+                      <tr><td><strong>DLS</strong></td><td>Known maximum solution depth</td><td>Unknown depth (risk missing solution)</td></tr>
+                      <tr><td><strong>IDDFS</strong></td><td>Unknown depth, limited memory, unit costs, need optimal</td><td>Variable step costs (use UCS instead)</td></tr>
+                      <tr><td><strong>UCS</strong></td><td>Variable step costs, need optimal path</td><td>Unit-cost problems (overkill; use BFS/IDDFS)</td></tr>
+                      <tr><td><strong>Bidirectional</strong></td><td>Explicit goal, reversible operators, very large space</td><td>Abstract goal test, irreversible actions</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 9: GATE Tips -->
+              <section id="gate-tips">
+                <h2>9. GATE Exam Tips</h2>
+                <div class="quick-facts">
+                  <ul>
+                    <li><strong>Most frequently tested:</strong> Comparison table properties (completeness, optimality, complexity).</li>
+                    <li><strong>Common question type:</strong> &ldquo;How many nodes does X expand?&rdquo; &mdash; Always clarify if goal test is on generation or expansion.</li>
+                    <li><strong>NAT trap:</strong> IDDFS node count questions. Sum nodes across <em>all</em> iterations, not just the last one.</li>
+                    <li><strong>MCQ trap:</strong> &ldquo;Which is optimal?&rdquo; &mdash; Remember the conditions (unit cost for BFS/IDDFS, &epsilon;&gt;0 for UCS).</li>
+                    <li><strong>Trace questions:</strong> Maintain an explicit frontier on paper. For DFS, use a stack; for BFS, use a queue; for UCS, use a sorted list.</li>
+                    <li><strong>Shortcut:</strong> For b=2, d=n: BFS generates 2<sup>n+1</sup>&minus;1 nodes. For IDDFS overhead: multiply by b/(b&minus;1).</li>
+                    <li><strong>Time saver:</strong> If the question says &ldquo;all edges have weight 1&rdquo;, you can use BFS instead of UCS.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 10: One-Page Summary -->
+              <section id="one-page-summary">
+                <h2>10. One-Page Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li><strong>6 strategies:</strong> BFS, DFS, DLS, IDDFS, UCS, Bidirectional.</li>
+                    <li><strong>IDDFS</strong> is the preferred uninformed method &mdash; complete, optimal (unit costs), O(b&middot;d) space.</li>
+                    <li><strong>UCS</strong> is the only uninformed method optimal for variable costs (equivalent to Dijkstra&rsquo;s).</li>
+                    <li><strong>Bidirectional</strong> gives O(b<sup>d/2</sup>) but needs explicit goal + reversible operators.</li>
+                    <li><strong>DFS</strong> is space-efficient but incomplete and non-optimal.</li>
+                    <li>All uninformed methods are <strong>blind</strong> &mdash; they don&rsquo;t use domain-specific heuristics (that&rsquo;s Chapter 3: Informed Search).</li>
+                    <li>For GATE: <strong>memorise the comparison table</strong>, understand conditions for completeness/optimality, and practice tracing algorithms on small trees.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell &amp; Norvig, <em>Artificial Intelligence: A Modern Approach</em>, Chapter 3 (Sections 3.3&ndash;3.4).</li>
+                  <li>Korf, R. E. (1985). &ldquo;Depth-First Iterative-Deepening: An Optimal Admissible Tree Search.&rdquo; <em>Artificial Intelligence</em>, 27(1), 97&ndash;109.</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch02-notes">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="gate-previous-year-uninformed.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">GATE PYQs</span></a>
+              <a href="quiz-uninformed-search.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Quiz</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#key-definitions">1. Key Definitions</a></li>
+            <li><a href="#algorithm-summaries">2. Algorithm Summaries</a></li>
+            <li><a href="#comparison-table">3. Comparison Table</a></li>
+            <li><a href="#formula-reference">4. Formula Reference</a></li>
+            <li><a href="#mnemonics">5. Mnemonics</a></li>
+            <li><a href="#theorems">6. Theorems</a></li>
+            <li><a href="#common-mistakes">7. Common Mistakes</a></li>
+            <li><a href="#when-to-use">8. When to Use Each</a></li>
+            <li><a href="#gate-tips">9. GATE Tips</a></li>
+            <li><a href="#one-page-summary">10. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

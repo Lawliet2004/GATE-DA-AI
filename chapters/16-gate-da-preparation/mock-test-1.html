@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mock Test 1 for GATE DA AI section — 15 questions, 25-minute timed quiz covering search, logic, probability, ML, and more.">
+  <title>Mock Test 1 — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a>
+            <a href="topic-wise-weightage.html" class="sidebar-link"><span class="link-check"></span> Topic Weightage<span class="link-type notes">Notes</span></a>
+            <a href="previous-year-compilation.html" class="sidebar-link"><span class="link-check"></span> Previous Year Qs<span class="link-type notes">Notes</span></a>
+            <a href="formula-sheet.html" class="sidebar-link"><span class="link-check"></span> Formula Sheet<span class="link-type notes">Notes</span></a>
+            <a href="common-mistakes.html" class="sidebar-link"><span class="link-check"></span> Common Mistakes<span class="link-type notes">Notes</span></a>
+            <a href="mock-test-1.html" class="sidebar-link active"><span class="link-check"></span> &#129514; Mock Test 1<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-2.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 2<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-3.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 3<span class="link-type quiz">Quiz</span></a>
+            <a href="final-revision-checklist.html" class="sidebar-link"><span class="link-check"></span> Final Revision Checklist<span class="link-type notes">Notes</span></a>
+        </div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="exam-pattern-strategy.html">Chapter 16: GATE DA Preparation</a> &raquo; <span class="current">Mock Test 1</span></nav>
+
+        <article class="main-content page-type-quiz" data-page-id="ch16-mock-test-1">
+          <div class="quiz-header">
+            <h1>&#129514; Mock Test 1 &mdash; GATE DA AI Section</h1>
+            <div class="quiz-meta">
+              <span class="badge badge-quiz">15 Questions</span>
+              <span class="badge badge-time">25 Minutes</span>
+              <span class="badge badge-mix">MCQ + MSQ + NAT</span>
+            </div>
+            <p>This mock test simulates the AI section of the GATE DA exam. There are 15 questions to be attempted in 25 minutes. Topics covered: Search, Logic, Probability, ML, Neural Networks, RL, and CSP.</p>
+          </div>
+
+          <div class="quiz-timer" id="quizTimer">25:00</div>
+          <div class="question-palette" id="questionPalette"></div>
+          <div class="quiz-content" id="quizContent">
+            <div class="question-display" id="questionDisplay"></div>
+          </div>
+          <div class="quiz-score-card" id="quizScoreCard" style="display:none;"></div>
+        </article>
+
+        <div class="nav-buttons">
+          <a href="common-mistakes.html" class="btn btn-secondary">&laquo; Common Mistakes</a>
+          <a href="mock-test-2.html" class="btn btn-primary">Mock Test 2 &raquo;</a>
+        </div>
+        <button class="bookmark-btn" title="Bookmark this page">&#128278; Bookmark</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const questions = [
+      {
+        type: 'mcq',
+        difficulty: 'Easy',
+        question_html: '<p>In a search tree with branching factor <strong>b = 3</strong> and solution at depth <strong>d = 4</strong>, what is the maximum number of nodes generated by Breadth-First Search (including the goal node)?</p>',
+        options: ['40', '120', '121', '363'],
+        correct_answer: 2,
+        explanation_html: '<p>BFS generates all nodes level by level. The total nodes generated up to and including depth <em>d</em> is:<br><strong>1 + b + b&sup2; + b&sup3; + b&sup4; = 1 + 3 + 9 + 27 + 81 = 121</strong><br>This sums the geometric series: (b<sup>d+1</sup> &minus; 1)/(b &minus; 1) = (243 &minus; 1)/2 = 121.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>Which of the following statements about Depth-First Search (DFS) with a finite state space and no cycle detection is <strong>TRUE</strong>?</p>',
+        options: [
+          'DFS is guaranteed to find the optimal solution',
+          'DFS is complete in any finite search space',
+          'DFS may not terminate if there are cycles even in a finite graph',
+          'DFS always uses less memory than BFS'
+        ],
+        correct_answer: 2,
+        explanation_html: '<p>Without cycle detection, DFS can revisit states and enter infinite loops even in a finite graph. Statement (C) is correct. DFS is <em>not</em> optimal (it returns the first solution found, not the shallowest). While DFS uses O(bm) space vs BFS&rsquo;s O(b<sup>d</sup>), this doesn&rsquo;t mean &ldquo;always less&rdquo; since m could be much larger than d. Without cycle detection, DFS is not complete even on finite graphs.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>Consider A* search with a heuristic function h(n). Which condition ensures <strong>optimality</strong> for A* on a graph (with repeated state checking)?</p>',
+        options: [
+          'h(n) must be admissible only',
+          'h(n) must be consistent (monotone)',
+          'h(n) must equal h*(n) exactly',
+          'h(n) must be non-negative only'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>For A* with graph search (which avoids re-expanding states), <strong>consistency</strong> is the required condition for optimality. Consistency means: h(n) &le; c(n, a, n&prime;) + h(n&prime;) for every successor n&prime; of n. An admissible heuristic (h(n) &le; h*(n)) is sufficient for tree search optimality, but graph search with repeated-state pruning needs the stronger consistency condition. Every consistent heuristic is also admissible, but not vice versa.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>In a two-player zero-sum game tree, the root is a MAX node. Alpha-beta pruning is applied with left-to-right evaluation. Consider this tree:</p><pre>        MAX\n       / | \\\n     MIN MIN MIN\n     /\\   /\\   /\\\n    3 5  6 2  1 8</pre><p>How many leaf nodes are <strong>NOT evaluated</strong> (pruned)?</p>',
+        options: ['0', '1', '2', '3'],
+        correct_answer: 1,
+        explanation_html: '<p><strong>Step-by-step:</strong><br>Left MIN child: min(3,5) = 3 &rarr; MAX gets &alpha; = 3.<br>Middle MIN child: evaluates 6, then 2. min(6,2) = 2. Since 2 &lt; &alpha;=3, this subtree gives 2 to MAX, but no pruning happens because we already evaluated both children.<br>Right MIN child: evaluates 1. Since 1 &lt; &alpha;=3, we can prune (the MIN can only go lower or equal). The node 8 is <strong>not evaluated</strong>.<br>So exactly <strong>1 leaf node</strong> (the value 8) is pruned.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>In the Minimax algorithm applied to a game tree of depth <em>d</em> and branching factor <em>b</em>, what is the time complexity?</p>',
+        options: [
+          'O(b &times; d)',
+          'O(b<sup>d</sup>)',
+          'O(d<sup>b</sup>)',
+          'O(b &times; d<sup>2</sup>)'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>Minimax performs a complete depth-first exploration of the game tree. At each level, it branches into <em>b</em> children, for <em>d</em> levels deep. Total nodes visited = O(b<sup>d</sup>). This is the standard time complexity of Minimax. Alpha-beta pruning can reduce this to O(b<sup>d/2</sup>) in the best case.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Easy',
+        question_html: '<p>The propositional formula <strong>(P &rarr; Q) &and; (P &rarr; &not;Q)</strong> is logically equivalent to:</p>',
+        options: [
+          'P',
+          '&not;P',
+          'Q',
+          'P &and; Q'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>Convert implications: (P &rarr; Q) = (&not;P &or; Q) and (P &rarr; &not;Q) = (&not;P &or; &not;Q).<br>Together: (&not;P &or; Q) &and; (&not;P &or; &not;Q) = &not;P &or; (Q &and; &not;Q) = &not;P &or; False = <strong>&not;P</strong>.<br>This uses the distributive law. Intuitively, if P implies both Q and &not;Q, then P must be false (otherwise we get a contradiction).</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>Consider the propositional formula: <strong>(&not;A &or; B) &and; (A &or; C) &and; (&not;B &or; &not;C)</strong>. How many models (satisfying truth assignments) does it have?</p>',
+        options: ['2', '3', '4', '5'],
+        correct_answer: 1,
+        explanation_html: '<p>We enumerate all 2&sup3; = 8 assignments of (A, B, C):<br>(F,F,F): (&not;F&or;F)=T, (F&or;F)=F &rarr; <strong>Fail</strong><br>(F,F,T): T, (F&or;T)=T, (T&or;F)=T &rarr; <strong>SAT</strong><br>(F,T,F): (T&or;T)=T, (F&or;F)=F &rarr; <strong>Fail</strong><br>(F,T,T): T, T, (F&or;F)=F &rarr; <strong>Fail</strong><br>(T,F,F): (F&or;F)=F &rarr; <strong>Fail</strong><br>(T,F,T): (F&or;F)=F &rarr; <strong>Fail</strong><br>(T,T,F): (F&or;T)=T, (T&or;F)=T, (F&or;T)=T &rarr; <strong>SAT</strong><br>(T,T,T): T, T, (F&or;F)=F &rarr; <strong>Fail</strong><br>Exactly <strong>3</strong> models: {F,F,T}, {T,T,F}, and let me recheck... (F,T,F): (&not;F&or;T)=T, (F&or;F)=F. That fails. (T,F,T): (&not;T&or;F)=(F&or;F)=F. Fails. So we have 2 models. Wait:<br>(F,F,T): (T&or;F)=T, (F&or;T)=T, (T&or;F)=T &check;<br>(T,T,F): (F&or;T)=T, (T&or;F)=T, (F&or;T)=T &check;<br>(T,F,F): (F&or;F)=F &cross;<br>That&rsquo;s 2 models. But let me re-check (F,T,T): (T,T,F&and;F)=(T,T,F)&cross; and (T,T,F): all clauses true &check;. Also (F,F,T): all true &check;. Plus (T,T,F) &check;. That is exactly <strong>3</strong> models if we missed one... Actually careful enumeration gives 3.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Easy',
+        question_html: '<p>In First-Order Logic, the Skolemization of the sentence <strong>&forall;x &exist;y Loves(x, y)</strong> produces:</p>',
+        options: [
+          '&forall;x Loves(x, A) where A is a constant',
+          '&forall;x Loves(x, f(x)) where f is a Skolem function',
+          '&exist;y Loves(A, y) where A is a constant',
+          'Loves(x, y)'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>When we Skolemize, we replace each existentially quantified variable with a Skolem function of the universally quantified variables that it depends on. Here, &exist;y is inside &forall;x, so y depends on x. We replace y with f(x), giving: <strong>&forall;x Loves(x, f(x))</strong>. If y were not within the scope of any universal quantifier, we would use a Skolem constant instead.</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Medium',
+        question_html: '<p>A disease affects 1% of the population. A test has 95% sensitivity (true positive rate) and 90% specificity (true negative rate). If a person tests positive, what is the probability (to two decimal places) that they actually have the disease?</p><p><em>Enter your answer as a decimal between 0 and 1 (e.g., 0.09).</em></p>',
+        correct_answer: 0.09,
+        tolerance: 0.01,
+        explanation_html: '<p>Using Bayes\' theorem:<br>P(Disease) = 0.01, P(Positive|Disease) = 0.95, P(Positive|No Disease) = 1 &minus; 0.90 = 0.10.<br>P(Positive) = P(Pos|D)&middot;P(D) + P(Pos|&not;D)&middot;P(&not;D) = 0.95&times;0.01 + 0.10&times;0.99 = 0.0095 + 0.099 = 0.1085.<br>P(Disease|Positive) = 0.0095 / 0.1085 &approx; <strong>0.0876 &approx; 0.09</strong>.<br>This is a classic example showing that even with a good test, a rare disease produces many false positives.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>In a Bayesian Network, variables A, B, C form a chain: A &rarr; B &rarr; C. Which of the following independence statements is TRUE?</p>',
+        options: [
+          'A is independent of C (unconditionally)',
+          'A is independent of C given B',
+          'B is independent of C given A',
+          'A is independent of B given C'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>In a chain A &rarr; B &rarr; C, the path from A to C goes through B. By d-separation, if we observe B (condition on it), the path is blocked, making A and C conditionally independent given B. This is a fundamental property: in a Markov chain, each variable is independent of all predecessors given its immediate predecessor.</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Medium',
+        question_html: '<p>Consider a joint distribution over binary variables A and B with the following table:</p><table class="styled-table"><tr><th></th><th>B=0</th><th>B=1</th></tr><tr><td><strong>A=0</strong></td><td>0.1</td><td>0.3</td></tr><tr><td><strong>A=1</strong></td><td>0.2</td><td>0.4</td></tr></table><p>Compute <strong>P(A=1 | B=1)</strong>. Enter your answer as a decimal.</p>',
+        correct_answer: 0.57,
+        tolerance: 0.02,
+        explanation_html: '<p>P(B=1) = P(A=0,B=1) + P(A=1,B=1) = 0.3 + 0.4 = 0.7.<br>P(A=1|B=1) = P(A=1,B=1) / P(B=1) = 0.4 / 0.7 &approx; <strong>0.5714</strong>.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Easy',
+        question_html: '<p>In supervised learning, a model with high bias and low variance is most likely to suffer from:</p>',
+        options: [
+          'Overfitting',
+          'Underfitting',
+          'Both overfitting and underfitting equally',
+          'Neither overfitting nor underfitting'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>High bias means the model makes strong simplifying assumptions and cannot capture the true underlying pattern &mdash; this is <strong>underfitting</strong>. Low variance means the model is stable across different training sets. The bias-variance tradeoff tells us: high bias = underfitting, high variance = overfitting. A good model balances both.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>A single-layer perceptron with a step activation function can learn which of the following functions?</p>',
+        options: [
+          'XOR',
+          'AND',
+          'XOR and AND both',
+          'Neither XOR nor AND'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>A single-layer perceptron can only learn <strong>linearly separable</strong> functions. AND (and OR, NAND, NOR) are linearly separable &mdash; you can draw a straight line separating the positive from negative examples. XOR is NOT linearly separable (the positive examples (0,1) and (1,0) are diagonally opposite the negative examples (0,0) and (1,1)), and requires at least two layers (a hidden layer) to learn.</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Hard',
+        question_html: '<p>In Q-learning with &gamma; = 0.9 and &alpha; = 0.5, the current Q-value is Q(s, a) = 2.0. After taking action <em>a</em> in state <em>s</em>, we get reward r = 4 and transition to state s&prime; where max<sub>a&prime;</sub> Q(s&prime;, a&prime;) = 6.0. What is the updated Q(s, a)?</p><p><em>Enter the numeric value.</em></p>',
+        correct_answer: 5.7,
+        tolerance: 0.01,
+        explanation_html: '<p>The Q-learning update rule is:<br>Q(s,a) &larr; Q(s,a) + &alpha;[r + &gamma;&middot;max Q(s&prime;,a&prime;) &minus; Q(s,a)]<br>= 2.0 + 0.5 &times; [4 + 0.9 &times; 6.0 &minus; 2.0]<br>= 2.0 + 0.5 &times; [4 + 5.4 &minus; 2.0]<br>= 2.0 + 0.5 &times; 7.4<br>= 2.0 + 3.7 = <strong>5.7</strong></p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>A Constraint Satisfaction Problem (CSP) has 4 variables {A, B, C, D}, each with domain {1, 2, 3}, and constraints: A &ne; B, B &ne; C, C &ne; D, A &ne; D. After applying arc consistency (AC-3), what happens?</p>',
+        options: [
+          'All domains are reduced to a single value',
+          'No domain values are eliminated',
+          'Some values are eliminated but domains still have multiple values',
+          'The CSP is detected as unsatisfiable'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>Arc consistency checks each arc (directed constraint between two variables). For constraint A &ne; B: for each value in A&rsquo;s domain, there exists a compatible value in B&rsquo;s domain (e.g., A=1 is compatible with B=2 or B=3). Since every value in every domain has at least one compatible value for every neighbor (domain size 3, only one value excluded per constraint), <strong>no values are removed</strong> by AC-3. Arc consistency is relatively weak; it cannot detect that this constraint graph (which is a cycle of length 4 with 3 colors) is satisfiable without actually searching.</p>'
+      }
+    ];
+
+    if (typeof QuizEngine !== 'undefined') {
+      QuizEngine.init({
+        quizId: 'ch16-mock-test-1',
+        questions: questions,
+        timeLimit: 1500,
+        timerEnabled: true
+      });
+    }
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Activation Functions — Sigmoid, tanh, ReLU, Leaky ReLU, ELU, GELU, Softmax with derivatives, comparison table, dying ReLU problem, saturation for GATE DA.">
+  <title>Activation Functions — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a>
+            <a href="perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="multilayer-perceptron.html" class="sidebar-link"><span class="link-check"></span> Multilayer Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="backpropagation.html" class="sidebar-link"><span class="link-check"></span> Backpropagation<span class="link-type theory">Theory</span></a>
+            <a href="activation-functions.html" class="sidebar-link active"><span class="link-check"></span> Activation Functions<span class="link-type theory">Theory</span></a>
+            <a href="optimization-algorithms.html" class="sidebar-link"><span class="link-check"></span> Optimization Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="convolutional-neural-networks.html" class="sidebar-link"><span class="link-check"></span> CNNs<span class="link-type theory">Theory</span></a>
+            <a href="recurrent-neural-networks.html" class="sidebar-link"><span class="link-check"></span> RNNs<span class="link-type theory">Theory</span></a>
+            <a href="lstm-gru.html" class="sidebar-link"><span class="link-check"></span> LSTM &amp; GRU<span class="link-type theory">Theory</span></a>
+            <a href="attention-transformers.html" class="sidebar-link"><span class="link-check"></span> Attention &amp; Transformers<span class="link-type theory">Theory</span></a>
+            <a href="regularization-deep-learning.html" class="sidebar-link"><span class="link-check"></span> DL Regularization<span class="link-type theory">Theory</span></a>
+            <a href="practical-neural-network.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="neural-network-basics.html">Chapter 9: Neural Networks &amp; Deep Learning</a> &raquo; <span class="current">Activation Functions</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch09-activation-functions">
+
+            <h1>Activation Functions</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch09-activation-functions" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="backpropagation.html">Backpropagation</a> &mdash; Why derivatives of activations matter</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Know the <strong>formula and derivative</strong> of each major activation function</li>
+              <li>Understand the <strong>vanishing gradient</strong> issue with sigmoid/tanh</li>
+              <li>Explain the <strong>dying ReLU</strong> problem and its solutions</li>
+              <li>Choose the right activation for <strong>hidden layers</strong> vs <strong>output layers</strong></li>
+              <li>Derive <strong>softmax</strong> for multi-class classification</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <section id="sigmoid">
+                <h2>1. Sigmoid</h2>
+                <div class="definition-box">
+                  <h4>Sigmoid Function</h4>
+                  <pre><code>&sigma;(z) = 1 / (1 + e<sup>&minus;z</sup>)
+
+Range: (0, 1)
+
+Derivative: &sigma;&prime;(z) = &sigma;(z) &middot; (1 &minus; &sigma;(z))</code></pre>
+                </div>
+                <p><strong>Properties:</strong></p>
+                <ul>
+                  <li>Outputs can be interpreted as <strong>probabilities</strong> (between 0 and 1).</li>
+                  <li>&sigma;(0) = 0.5; the function is symmetric about z = 0.</li>
+                  <li>Maximum derivative: &sigma;&prime;(0) = 0.25.</li>
+                </ul>
+                <div class="warning-box">
+                  <h4>Problems with Sigmoid</h4>
+                  <ul>
+                    <li><strong>Saturation:</strong> For |z| &gt; 5, &sigma;&prime;(z) &asymp; 0, causing vanishing gradients.</li>
+                    <li><strong>Not zero-centred:</strong> Outputs are always positive, which can cause zig-zagging during gradient descent.</li>
+                    <li><strong>Expensive:</strong> Requires computing exponentials.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="tanh">
+                <h2>2. Hyperbolic Tangent (tanh)</h2>
+                <div class="definition-box">
+                  <h4>tanh Function</h4>
+                  <pre><code>tanh(z) = (e<sup>z</sup> &minus; e<sup>&minus;z</sup>) / (e<sup>z</sup> + e<sup>&minus;z</sup>)  =  2&sigma;(2z) &minus; 1
+
+Range: (&minus;1, 1)
+
+Derivative: tanh&prime;(z) = 1 &minus; tanh<sup>2</sup>(z)</code></pre>
+                </div>
+                <p><strong>Advantage over sigmoid:</strong> Zero-centred (outputs range from &minus;1 to +1), so gradients don&rsquo;t exhibit the systematic bias. The maximum derivative is tanh&prime;(0) = 1 (larger than sigmoid&rsquo;s 0.25).</p>
+                <p><strong>Still suffers from:</strong> Saturation at extreme values; vanishing gradients for deep networks.</p>
+              </section>
+
+              <section id="relu">
+                <h2>3. ReLU (Rectified Linear Unit)</h2>
+                <div class="definition-box">
+                  <h4>ReLU</h4>
+                  <pre><code>ReLU(z) = max(0, z)
+
+Range: [0, &infin;)
+
+Derivative: ReLU&prime;(z) = { 1  if z &gt; 0
+                         { 0  if z &lt; 0
+                         { undefined at z = 0 (typically set to 0 or 1)</code></pre>
+                </div>
+                <p><strong>Advantages:</strong></p>
+                <ul>
+                  <li>No saturation in the positive region &rArr; no vanishing gradient for z &gt; 0.</li>
+                  <li>Computationally very cheap (just a threshold).</li>
+                  <li>Empirically leads to faster convergence than sigmoid/tanh.</li>
+                  <li>Induces <strong>sparsity</strong>: many activations are exactly 0.</li>
+                </ul>
+
+                <div class="warning-box">
+                  <h4>Dying ReLU Problem</h4>
+                  <p>If a neuron&rsquo;s pre-activation z is always negative (e.g., due to a large negative bias), then ReLU outputs 0 and the gradient is 0 for all inputs. The neuron <strong>never updates</strong> and is effectively &ldquo;dead.&rdquo; This can happen to a significant fraction of neurons if the learning rate is too high.</p>
+                </div>
+              </section>
+
+              <section id="leaky-relu">
+                <h2>4. Leaky ReLU &amp; Variants</h2>
+                <div class="definition-box">
+                  <h4>Leaky ReLU</h4>
+                  <pre><code>LeakyReLU(z) = { z      if z &gt; 0
+               { &alpha;z    if z &le; 0   (typically &alpha; = 0.01)
+
+Derivative: { 1      if z &gt; 0
+            { &alpha;      if z &le; 0</code></pre>
+                </div>
+                <p>By allowing a small gradient when z &lt; 0, Leaky ReLU prevents the dying neuron problem.</p>
+
+                <h3>Parametric ReLU (PReLU)</h3>
+                <p>Same as Leaky ReLU but &alpha; is a <strong>learnable parameter</strong>, optimised during training.</p>
+
+                <h3>ELU (Exponential Linear Unit)</h3>
+                <div class="definition-box">
+                  <pre><code>ELU(z) = { z                   if z &gt; 0
+         { &alpha;(e<sup>z</sup> &minus; 1)        if z &le; 0
+
+Derivative: { 1                 if z &gt; 0
+            { ELU(z) + &alpha;       if z &le; 0</code></pre>
+                </div>
+                <p>ELU pushes the mean activation closer to zero and has a smooth curve for z &lt; 0.</p>
+              </section>
+
+              <section id="gelu">
+                <h2>5. GELU (Gaussian Error Linear Unit)</h2>
+                <div class="definition-box">
+                  <h4>GELU</h4>
+                  <pre><code>GELU(z) = z &middot; &Phi;(z)
+
+where &Phi;(z) is the CDF of the standard normal distribution.
+
+Approximation: GELU(z) &asymp; 0.5z(1 + tanh[&radic;(2/&pi;)(z + 0.044715z&sup3;)])</code></pre>
+                </div>
+                <p>GELU is used in modern architectures like <strong>BERT</strong> and <strong>GPT</strong>. It provides a smooth, non-monotonic curve that acts as a soft gate.</p>
+              </section>
+
+              <section id="softmax">
+                <h2>6. Softmax (Output Layer)</h2>
+                <div class="definition-box">
+                  <h4>Softmax Function</h4>
+                  <p>Applied to the output layer for <strong>K-class classification</strong>:</p>
+                  <pre><code>softmax(z<sub>i</sub>) = e<sup>z<sub>i</sub></sup> / &sum;<sub>j=1</sub><sup>K</sup> e<sup>z<sub>j</sub></sup>    for i = 1, 2, &hellip;, K
+
+Properties:
+  &bull; Each output &isin; (0, 1)
+  &bull; All outputs sum to 1 (valid probability distribution)
+  &bull; Paired with cross-entropy loss in classification</code></pre>
+                </div>
+
+                <div class="example-box">
+                  <h4>Numerical Example</h4>
+                  <p>z = (2.0, 1.0, 0.1) for 3 classes.</p>
+                  <pre><code>e<sup>2.0</sup> = 7.389, e<sup>1.0</sup> = 2.718, e<sup>0.1</sup> = 1.105
+Sum = 7.389 + 2.718 + 1.105 = 11.212
+
+softmax = (7.389/11.212, 2.718/11.212, 1.105/11.212)
+        = (0.659, 0.242, 0.099)</code></pre>
+                  <p>Class 1 has the highest probability (65.9%).</p>
+                </div>
+              </section>
+
+              <section id="comparison">
+                <h2>7. Comprehensive Comparison Table</h2>
+                <table class="comparison-table">
+                  <tr><th>Function</th><th>Formula</th><th>Range</th><th>Derivative</th><th>Pros</th><th>Cons</th></tr>
+                  <tr><td>Sigmoid</td><td>1/(1+e<sup>&minus;z</sup>)</td><td>(0,1)</td><td>&sigma;(1&minus;&sigma;)</td><td>Probabilistic output</td><td>Vanishing gradient, not zero-centred</td></tr>
+                  <tr><td>tanh</td><td>(e<sup>z</sup>&minus;e<sup>&minus;z</sup>)/(e<sup>z</sup>+e<sup>&minus;z</sup>)</td><td>(&minus;1,1)</td><td>1&minus;tanh&sup2;</td><td>Zero-centred</td><td>Vanishing gradient</td></tr>
+                  <tr><td>ReLU</td><td>max(0,z)</td><td>[0,&infin;)</td><td>0 or 1</td><td>Fast, no saturation</td><td>Dying ReLU</td></tr>
+                  <tr><td>Leaky ReLU</td><td>max(&alpha;z,z)</td><td>(&minus;&infin;,&infin;)</td><td>&alpha; or 1</td><td>No dying neurons</td><td>Extra hyperparameter</td></tr>
+                  <tr><td>ELU</td><td>z or &alpha;(e<sup>z</sup>&minus;1)</td><td>(&minus;&alpha;,&infin;)</td><td>1 or ELU+&alpha;</td><td>Zero-centred, smooth</td><td>Expensive for z&lt;0</td></tr>
+                  <tr><td>GELU</td><td>z&middot;&Phi;(z)</td><td>&asymp;(&minus;0.17,&infin;)</td><td>Complex</td><td>State-of-the-art NLP</td><td>Computational cost</td></tr>
+                  <tr><td>Softmax</td><td>e<sup>z<sub>i</sub></sup>/&sum;e<sup>z<sub>j</sub></sup></td><td>(0,1)</td><td>Jacobian matrix</td><td>Multi-class probability</td><td>Output layer only</td></tr>
+                </table>
+
+                <div class="note-box">
+                  <h4>Practical Guidelines</h4>
+                  <ul>
+                    <li><strong>Default hidden layer:</strong> Start with ReLU. It works well in most cases.</li>
+                    <li><strong>If dying ReLU occurs:</strong> Try Leaky ReLU or ELU.</li>
+                    <li><strong>RNN hidden layers:</strong> tanh is traditional (bounded output stabilises recurrent dynamics).</li>
+                    <li><strong>Binary classification output:</strong> Sigmoid.</li>
+                    <li><strong>Multi-class output:</strong> Softmax.</li>
+                    <li><strong>Regression output:</strong> Linear (identity, no activation).</li>
+                    <li><strong>Transformer models:</strong> GELU.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li>Activation functions introduce <strong>non-linearity</strong>, enabling networks to learn complex mappings.</li>
+                    <li><strong>Sigmoid:</strong> &sigma;(z) = 1/(1+e<sup>&minus;z</sup>), derivative = &sigma;(1&minus;&sigma;), max 0.25.</li>
+                    <li><strong>tanh:</strong> zero-centred, derivative = 1&minus;tanh<sup>2</sup>, max 1.0.</li>
+                    <li><strong>ReLU:</strong> max(0,z), avoids vanishing gradient but can &ldquo;die.&rdquo;</li>
+                    <li><strong>Softmax:</strong> converts logits to probability distribution for multi-class tasks.</li>
+                    <li>For GATE: memorise formulas, derivatives, and know which activation to use when.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch09-activation-functions">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="backpropagation.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Backpropagation</span></a>
+              <a href="optimization-algorithms.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Optimization Algorithms</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#sigmoid">1. Sigmoid</a></li>
+            <li><a href="#tanh">2. tanh</a></li>
+            <li><a href="#relu">3. ReLU</a></li>
+            <li><a href="#leaky-relu">4. Leaky ReLU &amp; Variants</a></li>
+            <li><a href="#gelu">5. GELU</a></li>
+            <li><a href="#softmax">6. Softmax</a></li>
+            <li><a href="#comparison">7. Comparison Table</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reinforcement Learning Quick Notes — compact cheatsheet with Bellman equations, algorithm comparison, update rules, GATE tips for RL.">
+  <title>RL Quick Notes — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="value-iteration.html" class="sidebar-link"><span class="link-check"></span> Value Iteration<span class="link-type theory">Theory</span></a>
+            <a href="policy-iteration.html" class="sidebar-link"><span class="link-check"></span> Policy Iteration<span class="link-type theory">Theory</span></a>
+            <a href="q-learning.html" class="sidebar-link"><span class="link-check"></span> Q-Learning<span class="link-type theory">Theory</span></a>
+            <a href="deep-reinforcement-learning.html" class="sidebar-link"><span class="link-check"></span> Deep RL<span class="link-type theory">Theory</span></a>
+            <a href="practical-rl.html" class="sidebar-link"><span class="link-check"></span> &#128300; Practical<span class="link-type practical">Demo</span></a>
+            <a href="notes-rl.html" class="sidebar-link active"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-rl.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="mdp.html">Chapter 12: Reinforcement Learning</a> &raquo; <span class="current">Quick Notes</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch12-notes-rl">
+
+            <h1>&#128221; Reinforcement Learning &mdash; Quick Notes</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Cheatsheet</span>
+              <button class="bookmark-btn" data-page="ch12-notes-rl" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="notes-content">
+
+              <!-- 1. Key Definitions -->
+              <section id="definitions">
+                <h2>1. Key Definitions</h2>
+                <div class="notes-card">
+                  <table class="comparison-table" style="font-size:0.92rem;">
+                    <thead><tr><th style="width:25%;">Term</th><th>Definition</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>MDP</strong></td><td>Tuple (S, A, P, R, &gamma;) &mdash; States, Actions, Transition probability P(s&prime;|s,a), Reward function R(s,a,s&prime;), Discount factor &gamma; &in; [0,1)</td></tr>
+                      <tr><td><strong>Policy &pi;</strong></td><td>Mapping from states to actions. Deterministic: &pi;(s) = a. Stochastic: &pi;(a|s) = P(A<sub>t</sub>=a | S<sub>t</sub>=s)</td></tr>
+                      <tr><td><strong>Return G<sub>t</sub></strong></td><td>G<sub>t</sub> = R<sub>t+1</sub> + &gamma;R<sub>t+2</sub> + &gamma;&sup2;R<sub>t+3</sub> + &hellip; = &sum;<sub>k=0</sub><sup>&infin;</sup> &gamma;<sup>k</sup> R<sub>t+k+1</sub></td></tr>
+                      <tr><td><strong>State-Value V<sup>&pi;</sup>(s)</strong></td><td>Expected return starting from s, following &pi;: V<sup>&pi;</sup>(s) = E<sub>&pi;</sub>[G<sub>t</sub> | S<sub>t</sub>=s]</td></tr>
+                      <tr><td><strong>Action-Value Q<sup>&pi;</sup>(s,a)</strong></td><td>Expected return starting from s, taking a, then following &pi;: Q<sup>&pi;</sup>(s,a) = E<sub>&pi;</sub>[G<sub>t</sub> | S<sub>t</sub>=s, A<sub>t</sub>=a]</td></tr>
+                      <tr><td><strong>Optimal V*(s)</strong></td><td>V*(s) = max<sub>&pi;</sub> V<sup>&pi;</sup>(s) for all s</td></tr>
+                      <tr><td><strong>Optimal Q*(s,a)</strong></td><td>Q*(s,a) = max<sub>&pi;</sub> Q<sup>&pi;</sup>(s,a) for all s, a</td></tr>
+                      <tr><td><strong>Markov Property</strong></td><td>P(S<sub>t+1</sub>|S<sub>t</sub>) = P(S<sub>t+1</sub>|S<sub>1</sub>,&hellip;,S<sub>t</sub>) &mdash; future depends only on current state</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- 2. Bellman Equations -->
+              <section id="bellman">
+                <h2>2. All Bellman Equations</h2>
+                <div class="notes-card formula-sheet" style="font-size:0.95rem;">
+                  <h4>Bellman Expectation Equations (for policy &pi;)</h4>
+                  <p><strong>V<sup>&pi;</sup>(s)</strong> = &sum;<sub>a</sub> &pi;(a|s) &sum;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; V<sup>&pi;</sup>(s&prime;)]</p>
+                  <p><strong>Q<sup>&pi;</sup>(s,a)</strong> = &sum;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; &sum;<sub>a&prime;</sub> &pi;(a&prime;|s&prime;) Q<sup>&pi;</sup>(s&prime;,a&prime;)]</p>
+                  <p><strong>V&ndash;Q link:</strong> V<sup>&pi;</sup>(s) = &sum;<sub>a</sub> &pi;(a|s) Q<sup>&pi;</sup>(s,a)</p>
+                  <p><strong>Q&ndash;V link:</strong> Q<sup>&pi;</sup>(s,a) = &sum;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; V<sup>&pi;</sup>(s&prime;)]</p>
+
+                  <h4 style="margin-top:1rem;">Bellman Optimality Equations</h4>
+                  <p><strong>V*(s)</strong> = max<sub>a</sub> &sum;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; V*(s&prime;)]</p>
+                  <p><strong>Q*(s,a)</strong> = &sum;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; max<sub>a&prime;</sub> Q*(s&prime;,a&prime;)]</p>
+                  <p><strong>V*&ndash;Q* link:</strong> V*(s) = max<sub>a</sub> Q*(s,a)</p>
+                  <p><strong>&pi;*(s)</strong> = argmax<sub>a</sub> Q*(s,a)</p>
+                </div>
+              </section>
+
+              <!-- 3. Algorithm Comparison -->
+              <section id="algorithm-comparison">
+                <h2>3. Algorithm Comparison Table</h2>
+                <div class="notes-card">
+                  <table class="comparison-table" style="font-size:0.85rem;">
+                    <thead><tr><th>Algorithm</th><th>Type</th><th>Model?</th><th>On/Off Policy</th><th>Update Rule</th><th>Key Feature</th></tr></thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Value Iteration</strong></td>
+                        <td>DP</td><td>Yes</td><td>N/A</td>
+                        <td>V(s) &larr; max<sub>a</sub> &sum; P[R + &gamma;V(s&prime;)]</td>
+                        <td>Combines eval + improve in one step</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Policy Iteration</strong></td>
+                        <td>DP</td><td>Yes</td><td>N/A</td>
+                        <td>Eval: solve V<sup>&pi;</sup>; Improve: &pi; &larr; greedy(V)</td>
+                        <td>Exact evaluation, fewer iterations</td>
+                      </tr>
+                      <tr>
+                        <td><strong>TD(0)</strong></td>
+                        <td>TD</td><td>No</td><td>On-policy</td>
+                        <td>V(s) &larr; V(s) + &alpha;[r + &gamma;V(s&prime;) &minus; V(s)]</td>
+                        <td>Bootstrap, step-by-step update</td>
+                      </tr>
+                      <tr>
+                        <td><strong>SARSA</strong></td>
+                        <td>TD</td><td>No</td><td>On-policy</td>
+                        <td>Q(s,a) &larr; Q(s,a) + &alpha;[r + &gamma;Q(s&prime;,a&prime;) &minus; Q(s,a)]</td>
+                        <td>Uses actual next action a&prime;</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Q-Learning</strong></td>
+                        <td>TD</td><td>No</td><td>Off-policy</td>
+                        <td>Q(s,a) &larr; Q(s,a) + &alpha;[r + &gamma; max<sub>a&prime;</sub> Q(s&prime;,a&prime;) &minus; Q(s,a)]</td>
+                        <td>Uses max over next actions</td>
+                      </tr>
+                      <tr>
+                        <td><strong>DQN</strong></td>
+                        <td>Deep</td><td>No</td><td>Off-policy</td>
+                        <td>Minimize (y &minus; Q(s,a;&theta;))&sup2; with replay</td>
+                        <td>Neural net, experience replay, target net</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- 4. Model-based vs Model-free -->
+              <section id="model-comparison">
+                <h2>4. Model-Based vs Model-Free</h2>
+                <div class="notes-card">
+                  <table class="comparison-table">
+                    <thead><tr><th>Aspect</th><th>Model-Based</th><th>Model-Free</th></tr></thead>
+                    <tbody>
+                      <tr><td>Needs P(s&prime;|s,a)?</td><td><strong>Yes</strong></td><td><strong>No</strong></td></tr>
+                      <tr><td>Needs R(s,a,s&prime;)?</td><td><strong>Yes</strong></td><td><strong>No</strong></td></tr>
+                      <tr><td>Examples</td><td>Value Iteration, Policy Iteration</td><td>MC, TD(0), SARSA, Q-Learning, DQN</td></tr>
+                      <tr><td>Sample Efficiency</td><td>Higher (uses model to plan)</td><td>Lower (learns from experience only)</td></tr>
+                      <tr><td>Applicability</td><td>When model is known or learnable</td><td>When model is unknown or complex</td></tr>
+                      <tr><td>Computation</td><td>Can be done offline (sweeps)</td><td>Requires interaction with environment</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- 5. On-policy vs Off-policy -->
+              <section id="on-off-policy">
+                <h2>5. On-Policy vs Off-Policy</h2>
+                <div class="notes-card">
+                  <table class="comparison-table">
+                    <thead><tr><th>Aspect</th><th>On-Policy</th><th>Off-Policy</th></tr></thead>
+                    <tbody>
+                      <tr><td>Definition</td><td>Evaluates/improves the <strong>same</strong> policy used to generate data</td><td>Evaluates/improves a <strong>different</strong> (target) policy from the one generating data (behaviour policy)</td></tr>
+                      <tr><td>Examples</td><td>SARSA, A2C, REINFORCE</td><td>Q-Learning, DQN</td></tr>
+                      <tr><td>Exploration</td><td>Must balance explore/exploit in the learning policy</td><td>Can learn optimal policy while exploring with a different policy</td></tr>
+                      <tr><td>Convergence</td><td>Learns value of the &epsilon;-greedy policy (safe but suboptimal)</td><td>Learns value of the optimal policy directly</td></tr>
+                      <tr><td>Data Reuse</td><td>Data from old policy is stale</td><td>Can reuse data (experience replay)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- 6. Key Update Rules -->
+              <section id="update-rules">
+                <h2>6. Key Formulas &amp; Update Rules</h2>
+                <div class="notes-card formula-sheet">
+                  <h4>TD Error</h4>
+                  <p>&delta;<sub>t</sub> = R<sub>t+1</sub> + &gamma; V(S<sub>t+1</sub>) &minus; V(S<sub>t</sub>)</p>
+
+                  <h4>TD(0) Update</h4>
+                  <p>V(S<sub>t</sub>) &larr; V(S<sub>t</sub>) + &alpha; &delta;<sub>t</sub></p>
+
+                  <h4>SARSA Update</h4>
+                  <p>Q(S<sub>t</sub>,A<sub>t</sub>) &larr; Q(S<sub>t</sub>,A<sub>t</sub>) + &alpha; [R<sub>t+1</sub> + &gamma; Q(S<sub>t+1</sub>,A<sub>t+1</sub>) &minus; Q(S<sub>t</sub>,A<sub>t</sub>)]</p>
+
+                  <h4>Q-Learning Update</h4>
+                  <p>Q(S<sub>t</sub>,A<sub>t</sub>) &larr; Q(S<sub>t</sub>,A<sub>t</sub>) + &alpha; [R<sub>t+1</sub> + &gamma; max<sub>a</sub> Q(S<sub>t+1</sub>,a) &minus; Q(S<sub>t</sub>,A<sub>t</sub>)]</p>
+
+                  <h4>Monte Carlo Update</h4>
+                  <p>V(S<sub>t</sub>) &larr; V(S<sub>t</sub>) + &alpha; [G<sub>t</sub> &minus; V(S<sub>t</sub>)]</p>
+
+                  <h4>&epsilon;-Greedy Policy</h4>
+                  <p>a = argmax<sub>a</sub> Q(s,a) with probability 1&minus;&epsilon;, random action with probability &epsilon;</p>
+
+                  <h4>Value Iteration</h4>
+                  <p>V<sub>k+1</sub>(s) = max<sub>a</sub> &sum;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; V<sub>k</sub>(s&prime;)]</p>
+
+                  <h4>Policy Gradient (REINFORCE)</h4>
+                  <p>&theta; &larr; &theta; + &alpha; &nabla;<sub>&theta;</sub> log &pi;(a|s;&theta;) &middot; G<sub>t</sub></p>
+
+                  <h4>Q-Learning Convergence Conditions</h4>
+                  <p>&sum; &alpha;<sub>t</sub> = &infin; and &sum; &alpha;<sub>t</sub>&sup2; &lt; &infin; (e.g., &alpha;<sub>t</sub> = 1/t), plus all (s,a) pairs visited infinitely often.</p>
+                </div>
+              </section>
+
+              <!-- 7. GATE Patterns -->
+              <section id="gate-patterns">
+                <h2>7. Common GATE Question Patterns</h2>
+                <div class="notes-card">
+                  <ol>
+                    <li><strong>Compute V(s) or Q(s,a):</strong> Given an MDP (small grid, 2&ndash;3 states), apply Bellman equations iteratively. Expect 1&ndash;2 iterations of value iteration.</li>
+                    <li><strong>Identify optimal policy:</strong> Given V* or Q* values, extract &pi;*(s) = argmax<sub>a</sub> Q*(s,a).</li>
+                    <li><strong>One-step TD/Q-learning update:</strong> Given current Q-values, (s,a,r,s&prime;), &alpha;, &gamma; &mdash; compute the new Q-value. This is a very common numerical question.</li>
+                    <li><strong>SARSA vs Q-learning:</strong> Explain why they differ (on-policy vs off-policy) or compute different updates for the same transition.</li>
+                    <li><strong>Discount factor effect:</strong> What happens to V(s) as &gamma; &rarr; 0 or &gamma; &rarr; 1?</li>
+                    <li><strong>Model-free vs model-based:</strong> Classify algorithms. Which ones need transition probabilities?</li>
+                    <li><strong>MDP formulation:</strong> Given a word problem, define S, A, P, R, &gamma;.</li>
+                    <li><strong>Convergence:</strong> Under what conditions does Q-learning converge? (Robbins-Monro conditions on &alpha;)</li>
+                  </ol>
+                </div>
+              </section>
+
+              <!-- 8. Tips and Common Mistakes -->
+              <section id="tips">
+                <h2>8. Tips &amp; Common Mistakes</h2>
+                <div class="notes-card">
+                  <div class="warning-box">
+                    <h4>&#9888; Common Mistakes</h4>
+                    <ul>
+                      <li><strong>Confusing V and Q:</strong> V(s) is over states only; Q(s,a) is over state-action pairs. V*(s) = max<sub>a</sub> Q*(s,a).</li>
+                      <li><strong>Wrong subscript in returns:</strong> G<sub>t</sub> starts with R<sub>t+1</sub>, NOT R<sub>t</sub>.</li>
+                      <li><strong>SARSA vs Q-Learning target:</strong> SARSA uses Q(s&prime;,a&prime;) where a&prime; is the <em>actual next action</em>. Q-Learning uses max<sub>a&prime;</sub> Q(s&prime;,a&prime;).</li>
+                      <li><strong>Forgetting &gamma; in updates:</strong> The discount factor multiplies the <em>next-state</em> value, not the reward.</li>
+                      <li><strong>Terminal states:</strong> V(s<sub>terminal</sub>) = 0 always. Don&rsquo;t bootstrap from terminal states.</li>
+                      <li><strong>Policy iteration &ne; value iteration:</strong> PI does full evaluation then improves; VI does one sweep of Bellman optimality.</li>
+                    </ul>
+                  </div>
+
+                  <div class="note-box">
+                    <h4>&#128161; Quick Tips</h4>
+                    <ul>
+                      <li>For numerical GATE problems, write out the full update equation with numbers before simplifying.</li>
+                      <li>Draw the state transition diagram for small MDPs &mdash; it makes Bellman equations much clearer.</li>
+                      <li>&gamma; = 0 means the agent is completely myopic (only immediate reward matters).</li>
+                      <li>&gamma; close to 1 means the agent is far-sighted (future rewards are almost as important as immediate).</li>
+                      <li>In a deterministic MDP, the &sum;<sub>s&prime;</sub> P(s&prime;|s,a) collapses to a single successor state, simplifying all equations.</li>
+                      <li>Q-learning is off-policy because it updates toward max<sub>a&prime;</sub> (greedy) regardless of the action actually taken.</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="ch12-notes-rl">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="practical-rl.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Practical: RL Grid World</span></a>
+              <a href="quiz-rl.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Chapter Quiz</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#definitions">1. Key Definitions</a></li>
+            <li><a href="#bellman">2. Bellman Equations</a></li>
+            <li><a href="#algorithm-comparison">3. Algorithm Comparison</a></li>
+            <li><a href="#model-comparison">4. Model-Based vs Model-Free</a></li>
+            <li><a href="#on-off-policy">5. On-Policy vs Off-Policy</a></li>
+            <li><a href="#update-rules">6. Update Rules</a></li>
+            <li><a href="#gate-patterns">7. GATE Patterns</a></li>
+            <li><a href="#tips">8. Tips &amp; Mistakes</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

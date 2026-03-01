@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Topic-wise weightage analysis for AI subjects in GATE DA, historical trends, and priority ranking for GATE DA AI preparation.">
+  <title>Topic-wise Weightage Analysis — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a>
+            <a href="topic-wise-weightage.html" class="sidebar-link active"><span class="link-check"></span> Topic Weightage<span class="link-type notes">Notes</span></a>
+            <a href="previous-year-compilation.html" class="sidebar-link"><span class="link-check"></span> Previous Year Qs<span class="link-type notes">Notes</span></a>
+            <a href="formula-sheet.html" class="sidebar-link"><span class="link-check"></span> Formula Sheet<span class="link-type notes">Notes</span></a>
+            <a href="common-mistakes.html" class="sidebar-link"><span class="link-check"></span> Common Mistakes<span class="link-type notes">Notes</span></a>
+            <a href="mock-test-1.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 1<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-2.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 2<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-3.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 3<span class="link-type quiz">Quiz</span></a>
+            <a href="final-revision-checklist.html" class="sidebar-link"><span class="link-check"></span> Final Revision Checklist<span class="link-type notes">Notes</span></a>
+        </div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="exam-pattern-strategy.html">Chapter 16: GATE DA Preparation</a> &raquo; <span class="current">Topic-wise Weightage Analysis</span></nav>
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch16-topic-wise-weightage">
+            <h1>Topic-wise Weightage Analysis</h1>
+
+            <!-- Section 1 -->
+            <h2 id="why-weightage-matters">Why Weightage Analysis Matters</h2>
+            <div class="definition-box">
+              <strong>Weightage Analysis</strong> is the systematic study of how marks are distributed across topics in previous GATE DA papers. It reveals which topics are consistently high-yield and which ones appear rarely, allowing you to allocate study time proportionally.
+            </div>
+            <p>Studying every topic equally is inefficient. The Pareto principle applies here: roughly <strong>80% of the marks</strong> come from about <strong>40&ndash;50% of the syllabus</strong>. By identifying and mastering the high-weightage topics, you can maximize your score with focused effort.</p>
+            <div class="note-box">
+              <strong>Remember:</strong> Weightage analysis is a guide, not a guarantee. GATE can always introduce surprise questions from less-common topics. Use this as a prioritization tool, not an excuse to skip topics entirely.
+            </div>
+
+            <!-- Section 2 -->
+            <h2 id="overall-ai-weightage">Overall AI Section Weightage</h2>
+            <p>The AI domain section of GATE DA carries <strong>30 marks</strong> out of 100. Based on analysis of the 2024 and 2025 papers and the official syllabus, the AI section topics can be grouped as follows:</p>
+
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>Topic Cluster</th>
+                  <th>Approx. Marks (out of 30)</th>
+                  <th>Approx. % of AI Section</th>
+                  <th>Priority</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Machine Learning (Supervised &amp; Unsupervised)</td><td>8&ndash;12</td><td>27&ndash;40%</td><td>&#128308; Very High</td></tr>
+                <tr><td>Search Algorithms (Uninformed + Informed)</td><td>4&ndash;6</td><td>13&ndash;20%</td><td>&#128308; Very High</td></tr>
+                <tr><td>Probability &amp; Bayesian Reasoning</td><td>3&ndash;5</td><td>10&ndash;17%</td><td>&#128992; High</td></tr>
+                <tr><td>Neural Networks &amp; Deep Learning</td><td>3&ndash;5</td><td>10&ndash;17%</td><td>&#128992; High</td></tr>
+                <tr><td>Logic (Propositional + Predicate)</td><td>2&ndash;4</td><td>7&ndash;13%</td><td>&#128993; Medium</td></tr>
+                <tr><td>Adversarial Search &amp; Game Trees</td><td>2&ndash;3</td><td>7&ndash;10%</td><td>&#128993; Medium</td></tr>
+                <tr><td>NLP Fundamentals</td><td>1&ndash;3</td><td>3&ndash;10%</td><td>&#128993; Medium</td></tr>
+                <tr><td>Reinforcement Learning</td><td>1&ndash;2</td><td>3&ndash;7%</td><td>&#128994; Low-Medium</td></tr>
+                <tr><td>Planning &amp; CSP</td><td>1&ndash;2</td><td>3&ndash;7%</td><td>&#128994; Low-Medium</td></tr>
+              </tbody>
+            </table>
+
+            <!-- Section 3 -->
+            <h2 id="high-priority-topics">High-Priority Topics (Must Master)</h2>
+            <div class="warning-box">
+              <strong>These topics alone can account for 18&ndash;23 marks out of 30 in the AI section.</strong> Mastering them is non-negotiable for a competitive score.
+            </div>
+
+            <h3>1. Machine Learning &mdash; Supervised Learning</h3>
+            <div class="note-box">
+              <strong>Expected marks:</strong> 5&ndash;8 marks per paper<br>
+              <strong>Key sub-topics:</strong>
+              <ul>
+                <li>Linear Regression (closed-form solution, gradient descent, regularization)</li>
+                <li>Logistic Regression (sigmoid, cross-entropy loss, decision boundary)</li>
+                <li>Support Vector Machines (margin, kernel trick, soft margin)</li>
+                <li>Decision Trees (entropy, information gain, Gini index, pruning)</li>
+                <li>Bias-Variance Tradeoff</li>
+                <li>Evaluation Metrics (accuracy, precision, recall, F1, ROC-AUC)</li>
+                <li>Cross-validation techniques</li>
+              </ul>
+            </div>
+
+            <h3>2. Machine Learning &mdash; Unsupervised Learning</h3>
+            <div class="note-box">
+              <strong>Expected marks:</strong> 2&ndash;4 marks per paper<br>
+              <strong>Key sub-topics:</strong>
+              <ul>
+                <li>K-Means Clustering (algorithm, convergence, choosing K)</li>
+                <li>Hierarchical Clustering (agglomerative, dendrograms)</li>
+                <li>Principal Component Analysis (eigenvalue decomposition, variance explained)</li>
+                <li>Dimensionality Reduction concepts</li>
+              </ul>
+            </div>
+
+            <h3>3. Search Algorithms</h3>
+            <div class="note-box">
+              <strong>Expected marks:</strong> 4&ndash;6 marks per paper<br>
+              <strong>Key sub-topics:</strong>
+              <ul>
+                <li>BFS, DFS, Uniform Cost Search (complexity, completeness, optimality)</li>
+                <li>A* Search (admissibility, consistency, optimality proofs)</li>
+                <li>Greedy Best-First Search</li>
+                <li>Heuristic design and admissibility verification</li>
+                <li>State space representation and problem formulation</li>
+                <li>Iterative Deepening DFS</li>
+              </ul>
+            </div>
+
+            <h3>4. Probabilistic Reasoning</h3>
+            <div class="note-box">
+              <strong>Expected marks:</strong> 3&ndash;5 marks per paper<br>
+              <strong>Key sub-topics:</strong>
+              <ul>
+                <li>Bayes&rsquo; Theorem and its applications</li>
+                <li>Bayesian Networks (conditional independence, d-separation)</li>
+                <li>Naive Bayes Classifier</li>
+                <li>Joint and conditional probability calculations</li>
+                <li>Maximum Likelihood Estimation (MLE)</li>
+              </ul>
+            </div>
+
+            <!-- Section 4 -->
+            <h2 id="medium-priority-topics">Medium-Priority Topics (Should Know Well)</h2>
+            <p>These topics appear regularly but with fewer marks. Solid understanding is needed, but exhaustive depth may not be required.</p>
+
+            <h3>5. Neural Networks &amp; Deep Learning</h3>
+            <div class="example-box">
+              <strong>Expected marks:</strong> 3&ndash;5 marks per paper<br>
+              <strong>Key sub-topics:</strong>
+              <ul>
+                <li>Perceptron &amp; Multi-Layer Perceptron</li>
+                <li>Backpropagation algorithm (chain rule, weight updates)</li>
+                <li>Activation functions (sigmoid, ReLU, tanh, softmax)</li>
+                <li>Convolutional Neural Networks (convolution, pooling, feature maps)</li>
+                <li>Recurrent Neural Networks (basic architecture, vanishing gradient)</li>
+                <li>Regularization (dropout, batch normalization, early stopping)</li>
+              </ul>
+            </div>
+
+            <h3>6. Logic (Propositional &amp; Predicate)</h3>
+            <div class="example-box">
+              <strong>Expected marks:</strong> 2&ndash;4 marks per paper<br>
+              <strong>Key sub-topics:</strong>
+              <ul>
+                <li>Truth tables and logical equivalences</li>
+                <li>CNF and DNF conversions</li>
+                <li>Resolution and inference rules</li>
+                <li>First-Order Logic: quantifiers, unification</li>
+                <li>Modus Ponens, Modus Tollens</li>
+                <li>Validity, satisfiability, and entailment</li>
+              </ul>
+            </div>
+
+            <h3>7. Adversarial Search</h3>
+            <div class="example-box">
+              <strong>Expected marks:</strong> 2&ndash;3 marks per paper<br>
+              <strong>Key sub-topics:</strong>
+              <ul>
+                <li>Minimax algorithm (full tree evaluation)</li>
+                <li>Alpha-Beta Pruning (node elimination, move ordering)</li>
+                <li>Game tree construction</li>
+                <li>Expectiminimax for stochastic games</li>
+              </ul>
+            </div>
+
+            <h3>8. NLP Fundamentals</h3>
+            <div class="example-box">
+              <strong>Expected marks:</strong> 1&ndash;3 marks per paper<br>
+              <strong>Key sub-topics:</strong>
+              <ul>
+                <li>Text preprocessing (tokenization, stemming, lemmatization)</li>
+                <li>Bag of Words, TF-IDF</li>
+                <li>Word embeddings (Word2Vec concepts)</li>
+                <li>N-gram language models</li>
+                <li>Basic sentiment analysis concepts</li>
+              </ul>
+            </div>
+
+            <!-- Section 5 -->
+            <h2 id="low-priority-topics">Low-Priority Topics (Good to Know)</h2>
+            <p>These topics appear sporadically. A conceptual understanding is usually sufficient; deep problem-solving practice may not be needed.</p>
+
+            <div class="note-box">
+              <strong>Topics in this category:</strong>
+              <ul>
+                <li><strong>Reinforcement Learning:</strong> MDPs, value iteration, policy iteration, Q-learning basics (1&ndash;2 marks)</li>
+                <li><strong>Planning:</strong> STRIPS representation, classical planning, partial-order planning (0&ndash;2 marks)</li>
+                <li><strong>Constraint Satisfaction:</strong> CSP formulation, backtracking, arc consistency (0&ndash;2 marks)</li>
+                <li><strong>Computer Vision:</strong> Image fundamentals, convolution operations, edge detection (0&ndash;1 marks)</li>
+                <li><strong>Advanced Topics:</strong> Explainable AI, ethics in AI, multi-agent systems (0&ndash;1 marks)</li>
+              </ul>
+            </div>
+
+            <div class="warning-box">
+              <strong>Don&rsquo;t skip low-priority topics entirely!</strong> In some years, a 2-mark question from a &ldquo;low-priority&rdquo; topic can appear. Having basic conceptual clarity ensures you can attempt it correctly and gain those marks.
+            </div>
+
+            <!-- Section 6 -->
+            <h2 id="year-wise-comparison">Year-wise Comparison</h2>
+            <p>The following table shows the approximate marks distribution for AI topics across GATE DA papers.</p>
+
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>Topic</th>
+                  <th>GATE DA 2024</th>
+                  <th>GATE DA 2025</th>
+                  <th>Average</th>
+                  <th>Trend</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>ML &mdash; Supervised</td><td>7</td><td>8</td><td>7.5</td><td>&#8593; Stable-High</td></tr>
+                <tr><td>ML &mdash; Unsupervised</td><td>3</td><td>4</td><td>3.5</td><td>&#8593; Increasing</td></tr>
+                <tr><td>Search Algorithms</td><td>5</td><td>4</td><td>4.5</td><td>&#8596; Stable</td></tr>
+                <tr><td>Probabilistic Reasoning</td><td>4</td><td>3</td><td>3.5</td><td>&#8596; Stable</td></tr>
+                <tr><td>Neural Networks / DL</td><td>3</td><td>4</td><td>3.5</td><td>&#8593; Increasing</td></tr>
+                <tr><td>Logic</td><td>3</td><td>2</td><td>2.5</td><td>&#8596; Stable</td></tr>
+                <tr><td>Adversarial Search</td><td>2</td><td>2</td><td>2.0</td><td>&#8596; Stable</td></tr>
+                <tr><td>NLP</td><td>1</td><td>2</td><td>1.5</td><td>&#8593; Increasing</td></tr>
+                <tr><td>RL</td><td>1</td><td>1</td><td>1.0</td><td>&#8596; Stable-Low</td></tr>
+                <tr><td>Planning / CSP</td><td>1</td><td>0</td><td>0.5</td><td>&#8595; Variable</td></tr>
+              </tbody>
+            </table>
+
+            <div class="example-box">
+              <strong>Key Observations:</strong>
+              <ul>
+                <li>Machine Learning (both supervised and unsupervised) consistently dominates with 10&ndash;12 marks</li>
+                <li>Neural Networks / Deep Learning shows an increasing trend &mdash; expect more questions in future papers</li>
+                <li>Search Algorithms remain a staple &mdash; at least 4&ndash;5 marks every year</li>
+                <li>NLP is gaining importance as the field grows</li>
+                <li>Planning and CSP are the most variable &mdash; can range from 0 to 3 marks</li>
+              </ul>
+            </div>
+
+            <!-- Section 7 -->
+            <h2 id="chapter-wise-marks">Chapter-wise Marks Distribution</h2>
+            <p>Here is the mapping of our website chapters to expected GATE DA marks in the AI domain:</p>
+
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>Chapter</th>
+                  <th>Website Coverage</th>
+                  <th>Expected Marks</th>
+                  <th>Study Hours</th>
+                  <th>ROI Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Ch 00: Introduction to AI</td><td>Background</td><td>0&ndash;1</td><td>3&ndash;5</td><td>&#11088;</td></tr>
+                <tr><td>Ch 01: Intelligent Agents</td><td>Conceptual</td><td>0&ndash;1</td><td>3&ndash;5</td><td>&#11088;</td></tr>
+                <tr><td>Ch 02: Uninformed Search</td><td>Core</td><td>2&ndash;3</td><td>8&ndash;12</td><td>&#11088;&#11088;&#11088;&#11088;</td></tr>
+                <tr><td>Ch 03: Informed Search</td><td>Core</td><td>2&ndash;4</td><td>10&ndash;15</td><td>&#11088;&#11088;&#11088;&#11088;&#11088;</td></tr>
+                <tr><td>Ch 04: Adversarial Search</td><td>Core</td><td>2&ndash;3</td><td>6&ndash;10</td><td>&#11088;&#11088;&#11088;</td></tr>
+                <tr><td>Ch 05: Propositional Logic</td><td>Core</td><td>1&ndash;2</td><td>8&ndash;12</td><td>&#11088;&#11088;&#11088;</td></tr>
+                <tr><td>Ch 06: Predicate Logic</td><td>Core</td><td>1&ndash;2</td><td>8&ndash;12</td><td>&#11088;&#11088;</td></tr>
+                <tr><td>Ch 07: Reasoning Under Uncertainty</td><td>Core</td><td>3&ndash;5</td><td>12&ndash;18</td><td>&#11088;&#11088;&#11088;&#11088;&#11088;</td></tr>
+                <tr><td>Ch 08: ML Foundations</td><td>Core</td><td>8&ndash;12</td><td>25&ndash;40</td><td>&#11088;&#11088;&#11088;&#11088;&#11088;</td></tr>
+                <tr><td>Ch 09: Neural Networks &amp; DL</td><td>Core</td><td>3&ndash;5</td><td>15&ndash;22</td><td>&#11088;&#11088;&#11088;&#11088;</td></tr>
+                <tr><td>Ch 10: NLP</td><td>Supplementary</td><td>1&ndash;3</td><td>8&ndash;12</td><td>&#11088;&#11088;&#11088;</td></tr>
+                <tr><td>Ch 11: Computer Vision</td><td>Supplementary</td><td>0&ndash;1</td><td>5&ndash;8</td><td>&#11088;</td></tr>
+                <tr><td>Ch 12: Reinforcement Learning</td><td>Supplementary</td><td>1&ndash;2</td><td>8&ndash;12</td><td>&#11088;&#11088;</td></tr>
+                <tr><td>Ch 13: Planning</td><td>Supplementary</td><td>0&ndash;1</td><td>5&ndash;8</td><td>&#11088;</td></tr>
+                <tr><td>Ch 14: CSP</td><td>Supplementary</td><td>0&ndash;2</td><td>5&ndash;8</td><td>&#11088;&#11088;</td></tr>
+                <tr><td>Ch 15: Advanced Topics</td><td>Awareness</td><td>0&ndash;1</td><td>3&ndash;5</td><td>&#11088;</td></tr>
+              </tbody>
+            </table>
+
+            <div class="definition-box">
+              <strong>ROI (Return on Investment) Rating:</strong> This measures the marks gained per study hour invested. A 5-star topic means studying it gives the highest score improvement per hour. Prioritize 5-star and 4-star topics first.
+            </div>
+
+            <!-- Section 8 -->
+            <h2 id="optimal-study-plan">Optimal Study Plan Based on Weightage</h2>
+            <p>Based on the weightage analysis, here is a recommended study order that maximizes marks gained per unit of study time:</p>
+
+            <div class="example-box">
+              <strong>Phase 1: High-ROI Topics (First 60% of study time)</strong>
+              <ol>
+                <li><strong>Machine Learning Foundations (Ch 08)</strong> &mdash; Spend the most time here. This single chapter can yield 8&ndash;12 marks.</li>
+                <li><strong>Reasoning Under Uncertainty (Ch 07)</strong> &mdash; Bayes&rsquo; theorem and probabilistic reasoning are tested every year.</li>
+                <li><strong>Search Algorithms (Ch 02 + Ch 03)</strong> &mdash; Consistently 4&ndash;6 marks. Algorithms are procedural and easy to master with practice.</li>
+                <li><strong>Neural Networks (Ch 09)</strong> &mdash; Growing in importance. Backpropagation and CNN concepts are frequently tested.</li>
+              </ol>
+            </div>
+
+            <div class="example-box">
+              <strong>Phase 2: Medium-ROI Topics (Next 25% of study time)</strong>
+              <ol start="5">
+                <li><strong>Adversarial Search (Ch 04)</strong> &mdash; Minimax and Alpha-Beta are predictable question patterns.</li>
+                <li><strong>Logic (Ch 05 + Ch 06)</strong> &mdash; Important for 2&ndash;4 marks. Focus on resolution and inference.</li>
+                <li><strong>NLP (Ch 10)</strong> &mdash; Increasing trend. Basics are usually sufficient.</li>
+              </ol>
+            </div>
+
+            <div class="example-box">
+              <strong>Phase 3: Low-ROI Topics (Last 15% of study time)</strong>
+              <ol start="8">
+                <li><strong>Reinforcement Learning (Ch 12)</strong> &mdash; Focus on MDPs and Bellman equations only.</li>
+                <li><strong>CSP (Ch 14)</strong> &mdash; Basic formulation and backtracking.</li>
+                <li><strong>Planning (Ch 13)</strong>, Computer Vision (Ch 11), Advanced Topics (Ch 15) &mdash; Conceptual awareness only.</li>
+              </ol>
+            </div>
+
+            <!-- Section 9 -->
+            <h2 id="question-type-distribution">Question Type Distribution by Topic</h2>
+            <p>Different topics tend to favour different question types. Understanding this helps in tailored preparation.</p>
+
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>Topic</th>
+                  <th>Most Common Type</th>
+                  <th>Preparation Focus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>ML &mdash; Supervised</td><td>NAT (numerical computation)</td><td>Practice calculations: gradient descent steps, entropy, Gini, loss values</td></tr>
+                <tr><td>ML &mdash; Unsupervised</td><td>MCQ + NAT</td><td>K-means iteration steps, PCA eigenvalue problems</td></tr>
+                <tr><td>Search Algorithms</td><td>NAT + MCQ</td><td>Trace algorithm execution, count nodes expanded, compute path cost</td></tr>
+                <tr><td>Probabilistic Reasoning</td><td>NAT (Bayes calculations)</td><td>Precise probability calculations, Bayesian network inference</td></tr>
+                <tr><td>Neural Networks</td><td>NAT + MCQ</td><td>Backpropagation weight updates, output computations, parameter counting</td></tr>
+                <tr><td>Logic</td><td>MCQ (true/false, equivalence)</td><td>Truth table verification, resolution steps, logical inference</td></tr>
+                <tr><td>Adversarial Search</td><td>NAT (minimax values)</td><td>Trace game trees, compute minimax values, identify pruned nodes</td></tr>
+                <tr><td>NLP</td><td>MCQ (conceptual)</td><td>Conceptual understanding of techniques and their applications</td></tr>
+              </tbody>
+            </table>
+
+            <div class="warning-box">
+              <strong>Important:</strong> NAT-heavy topics (ML, Search, Probability, Neural Networks) require strong computational practice. Merely understanding concepts is not enough &mdash; you must be able to compute precise numerical answers under time pressure.
+            </div>
+
+            <!-- Section 10 -->
+            <h2 id="strategic-recommendations">Strategic Recommendations</h2>
+            <div class="definition-box">
+              <strong>Summary of Key Strategies:</strong>
+              <ol>
+                <li><strong>Allocate 60% of study time to ML + Probability + Search + Neural Networks.</strong> These four clusters account for ~20 out of 30 AI marks.</li>
+                <li><strong>Practice numerical problems extensively.</strong> The majority of high-weightage topics are tested via NAT questions requiring precise computation.</li>
+                <li><strong>Don&rsquo;t neglect Logic.</strong> It&rsquo;s a reliable 2&ndash;4 marks every year and is conceptually distinct from other topics.</li>
+                <li><strong>Track the trend.</strong> Deep Learning and NLP are gaining weightage. Expect more questions on CNNs, RNNs, and word embeddings in upcoming years.</li>
+                <li><strong>Minimum viable coverage for low-priority topics.</strong> For RL, Planning, and CSP, know the basics well enough to attempt any straightforward question that appears.</li>
+                <li><strong>Solve previous year questions topic-wise.</strong> This is the most reliable way to calibrate your preparation against actual exam expectations.</li>
+              </ol>
+            </div>
+
+            <div class="note-box">
+              <strong>Next Step:</strong> Head to the <a href="previous-year-compilation.html">Previous Year Questions Compilation</a> to practice actual GATE-style questions organized by topic.
+            </div>
+
+          </article>
+          <aside class="page-toc" aria-label="On this page"><div class="toc-header">On This Page</div><ul id="toc-links"></ul></aside>
+        </div>
+        <nav class="nav-buttons" aria-label="Page navigation">
+          <a href="exam-pattern-strategy.html" class="btn btn-nav btn-prev">&larr; Previous: Exam Pattern &amp; Strategy</a>
+          <a href="previous-year-compilation.html" class="btn btn-nav btn-next">Next: Previous Year Compilation &rarr;</a>
+        </nav>
+        <div class="page-actions"><button class="btn btn-sm btn-bookmark" data-page="ch16-topic-wise-weightage">&#128278; Bookmark</button><button class="btn btn-sm btn-complete" data-page="ch16-topic-wise-weightage">&#9989; Mark Complete</button></div>
+      </div>
+    </main>
+  </div>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Practical RL Grid World — interactive value iteration and Q-learning demo on a 5×5 grid world for GATE DA.">
+  <title>Practical: RL Grid World — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="value-iteration.html" class="sidebar-link"><span class="link-check"></span> Value Iteration<span class="link-type theory">Theory</span></a>
+            <a href="policy-iteration.html" class="sidebar-link"><span class="link-check"></span> Policy Iteration<span class="link-type theory">Theory</span></a>
+            <a href="q-learning.html" class="sidebar-link"><span class="link-check"></span> Q-Learning<span class="link-type theory">Theory</span></a>
+            <a href="deep-reinforcement-learning.html" class="sidebar-link"><span class="link-check"></span> Deep RL<span class="link-type theory">Theory</span></a>
+            <a href="practical-rl.html" class="sidebar-link active"><span class="link-check"></span> &#128300; Practical<span class="link-type practical">Demo</span></a>
+            <a href="notes-rl.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-rl.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="mdp.html">Chapter 12: Reinforcement Learning</a> &raquo; <span class="current">Practical: RL Grid World</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-practical" data-page-id="ch12-practical-rl">
+
+            <h1>&#128300; Practical: RL Grid World</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">Hands-On Demo</span>
+              <button class="bookmark-btn" data-page="ch12-practical-rl" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Practical Objectives</h4><ul>
+              <li>Visualise <strong>value iteration</strong> converging on a 5&times;5 grid world</li>
+              <li>Observe <strong>Q-learning</strong> episodes and how Q-values evolve</li>
+              <li>See the <strong>optimal policy</strong> displayed as directional arrows</li>
+              <li>Experiment with &gamma; (discount factor) and &alpha; (learning rate)</li>
+            </ul></div>
+
+            <div class="practical-content">
+
+              <!-- Section 1: Overview -->
+              <section id="overview">
+                <h2>1. Overview</h2>
+                <p>This interactive demo implements two core RL algorithms on a simple <strong>5&times;5 grid world</strong>:</p>
+                <ul>
+                  <li><strong>Value Iteration (model-based):</strong> uses known transition probabilities and rewards to compute V* and the optimal policy.</li>
+                  <li><strong>Q-Learning (model-free):</strong> learns Q-values from episodes of exploration using the &epsilon;-greedy strategy.</li>
+                </ul>
+
+                <div class="note-box">
+                  <h4>&#128161; Grid World Setup</h4>
+                  <ul>
+                    <li><strong>S</strong> (green) = Start cell at position (0,0)</li>
+                    <li><strong>G</strong> (gold) = Goal cell at position (4,4) with reward +10</li>
+                    <li><strong>X</strong> (red) = Obstacle cells &mdash; impassable walls</li>
+                    <li>Each step costs <strong>&minus;0.1</strong> (encourages shortest path)</li>
+                    <li>Actions: Up, Down, Left, Right (deterministic transitions)</li>
+                    <li>Moving into a wall or obstacle keeps the agent in its current state</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 2: Interactive Grid -->
+              <section id="grid-demo">
+                <h2>2. Interactive Grid World</h2>
+
+                <div class="demo-controls" style="margin-bottom:1rem; display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center;">
+                  <button id="btnValueIteration" class="demo-btn" style="padding:0.5rem 1rem; border-radius:6px; border:2px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; font-weight:600;">Run Value Iteration</button>
+                  <button id="btnQLearning" class="demo-btn" style="padding:0.5rem 1rem; border-radius:6px; border:2px solid var(--accent); background:transparent; color:var(--accent); cursor:pointer; font-weight:600;">Run Q-Learning Episode</button>
+                  <button id="btnReset" class="demo-btn" style="padding:0.5rem 1rem; border-radius:6px; border:2px solid #e74c3c; background:transparent; color:#e74c3c; cursor:pointer; font-weight:600;">Reset</button>
+                  <label style="font-size:0.9rem;">&gamma;: <input type="range" id="gammaSlider" min="0.1" max="0.99" step="0.01" value="0.9" style="width:80px;"> <span id="gammaVal">0.90</span></label>
+                  <label style="font-size:0.9rem;">&alpha;: <input type="range" id="alphaSlider" min="0.01" max="1.0" step="0.01" value="0.1" style="width:80px;"> <span id="alphaVal">0.10</span></label>
+                </div>
+
+                <div id="gridContainer" style="display:grid; grid-template-columns:repeat(5,80px); grid-template-rows:repeat(5,80px); gap:3px; margin:1rem 0; font-family:monospace;">
+                  <!-- Grid cells generated by JS -->
+                </div>
+
+                <div id="statusLog" style="background:var(--bg-secondary, #f5f5f5); padding:0.75rem 1rem; border-radius:8px; min-height:60px; font-size:0.9rem; margin-bottom:1rem; max-height:200px; overflow-y:auto;">
+                  <em>Press a button above to start.</em>
+                </div>
+
+                <h3>Policy Visualisation</h3>
+                <div id="policyGrid" style="display:grid; grid-template-columns:repeat(5,80px); grid-template-rows:repeat(5,48px); gap:3px; margin:1rem 0; font-family:monospace; font-size:1.5rem; text-align:center;">
+                  <!-- Policy arrows generated by JS -->
+                </div>
+              </section>
+
+              <!-- Section 3: V-values and Q-values display -->
+              <section id="values-display">
+                <h2>3. Value &amp; Q-Value Display</h2>
+                <div style="display:flex; gap:2rem; flex-wrap:wrap;">
+                  <div>
+                    <h4>State Values V(s)</h4>
+                    <pre id="vValuesDisplay" style="background:var(--bg-secondary,#f5f5f5); padding:0.75rem; border-radius:6px; font-size:0.85rem; min-width:250px;">Run an algorithm to see V-values.</pre>
+                  </div>
+                  <div>
+                    <h4>Q-Learning Episode Count</h4>
+                    <p>Episodes run: <strong id="episodeCount">0</strong></p>
+                    <p>&epsilon;-greedy exploration: &epsilon; = <strong id="epsilonVal">0.2</strong></p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 4: Pseudocode Reference -->
+              <section id="pseudocode">
+                <h2>4. Algorithm Reference</h2>
+
+                <div class="algorithm-block">
+                  <h4>Value Iteration (for the Grid World)</h4>
+                  <pre>
+Initialize V(s) = 0 for all states
+Repeat until convergence (&Delta; &lt; &theta;):
+    &Delta; &larr; 0
+    For each state s:
+        v &larr; V(s)
+        V(s) &larr; max_a &sum;_{s'} P(s'|s,a) [R(s,a,s') + &gamma; V(s')]
+        &Delta; &larr; max(&Delta;, |v &minus; V(s)|)
+Output policy: &pi;(s) = argmax_a &sum;_{s'} P(s'|s,a) [R(s,a,s') + &gamma; V(s')]
+                  </pre>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Q-Learning (for the Grid World)</h4>
+                  <pre>
+Initialize Q(s,a) = 0 for all s, a
+For each episode:
+    s &larr; start state
+    Repeat until s is terminal:
+        Choose a from s using &epsilon;-greedy on Q
+        Take action a, observe r, s'
+        Q(s,a) &larr; Q(s,a) + &alpha; [r + &gamma; max_{a'} Q(s',a') &minus; Q(s,a)]
+        s &larr; s'
+                  </pre>
+                </div>
+              </section>
+
+              <!-- Section 5: Exercises -->
+              <section id="exercises">
+                <h2>5. Exercises</h2>
+                <div class="example-box">
+                  <h4>&#9997; Exercise 1: Policy Iteration</h4>
+                  <p>Modify the code below to implement <strong>policy iteration</strong> instead of value iteration. You will need two separate loops: one for <em>policy evaluation</em> (iterative) and one for <em>policy improvement</em> (greedy w.r.t. evaluated values). Compare the number of iterations needed for convergence with value iteration.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; Exercise 2: Stochastic Transitions</h4>
+                  <p>Change the transition model so that the intended action is executed with probability 0.8, and with probability 0.1 each the agent moves perpendicular (left or right of intended). How does this affect:</p>
+                  <ul>
+                    <li>The optimal policy (especially near obstacles)?</li>
+                    <li>The state values along the optimal path?</li>
+                    <li>The number of Q-learning episodes needed to converge?</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; Exercise 3: Discount Factor Experiments</h4>
+                  <p>Use the &gamma; slider to try values: 0.1, 0.5, 0.9, 0.99. For each, run value iteration and observe:</p>
+                  <ul>
+                    <li>How do V-values change as &gamma; approaches 1?</li>
+                    <li>Does the optimal policy change for different &gamma; values?</li>
+                    <li>What happens when &gamma; is very small (e.g., 0.1) — does the agent become &ldquo;myopic&rdquo;?</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; Exercise 4: SARSA vs Q-Learning</h4>
+                  <p>Implement SARSA alongside Q-learning. Run both algorithms for 500 episodes and compare:</p>
+                  <ul>
+                    <li>The learned Q-values near obstacles</li>
+                    <li>The resulting policies &mdash; does SARSA learn a &ldquo;safer&rdquo; path?</li>
+                    <li>Cumulative reward per episode over time</li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="ch12-practical-rl">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="deep-reinforcement-learning.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Deep Reinforcement Learning</span></a>
+              <a href="notes-rl.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">RL Quick Notes</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#overview">1. Overview</a></li>
+            <li><a href="#grid-demo">2. Grid World Demo</a></li>
+            <li><a href="#values-display">3. Values Display</a></li>
+            <li><a href="#pseudocode">4. Pseudocode</a></li>
+            <li><a href="#exercises">5. Exercises</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Grid World RL demo script -->
+  <script>
+  (function() {
+    // ---- Grid World Configuration ----
+    var ROWS = 5, COLS = 5;
+    var START = [0, 0];
+    var GOAL  = [4, 4];
+    var OBSTACLES = [[1,1],[2,2],[3,1],[1,3]];
+    var ACTIONS = [[-1,0],[1,0],[0,-1],[0,1]]; // up, down, left, right
+    var ACTION_NAMES = ['↑','↓','←','→'];
+    var STEP_REWARD = -0.1;
+    var GOAL_REWARD = 10;
+    var EPSILON = 0.2;
+
+    // State
+    var V = [], Q = [], episodesRun = 0;
+
+    function getGamma(){ return parseFloat(document.getElementById('gammaSlider').value); }
+    function getAlpha(){ return parseFloat(document.getElementById('alphaSlider').value); }
+    function isObstacle(r,c){ return OBSTACLES.some(function(o){ return o[0]===r && o[1]===c; }); }
+    function isGoal(r,c){ return r===GOAL[0] && c===GOAL[1]; }
+    function inBounds(r,c){ return r>=0 && r<ROWS && c>=0 && c<COLS; }
+
+    function step(r,c,ai){
+      var nr = r+ACTIONS[ai][0], nc = c+ACTIONS[ai][1];
+      if(!inBounds(nr,nc) || isObstacle(nr,nc)) return {r:r, c:c, reward: STEP_REWARD};
+      if(isGoal(nr,nc)) return {r:nr, c:nc, reward: GOAL_REWARD};
+      return {r:nr, c:nc, reward: STEP_REWARD};
+    }
+
+    // ---- Initialise grids ----
+    function initV(){ V=[]; for(var r=0;r<ROWS;r++){V[r]=[]; for(var c=0;c<COLS;c++) V[r][c]=0;} }
+    function initQ(){ Q=[]; for(var r=0;r<ROWS;r++){Q[r]=[]; for(var c=0;c<COLS;c++){Q[r][c]=[];for(var a=0;a<4;a++) Q[r][c][a]=0;}} }
+
+    function resetAll(){
+      initV(); initQ(); episodesRun=0;
+      document.getElementById('episodeCount').textContent='0';
+      renderGrid(); renderPolicy(); renderVValues();
+      log('Reset complete. Grid world ready.');
+    }
+
+    // ---- Value Iteration ----
+    function valueIteration(){
+      var gamma=getGamma(), theta=1e-4, maxIter=500;
+      initV();
+      for(var iter=0;iter<maxIter;iter++){
+        var delta=0;
+        for(var r=0;r<ROWS;r++) for(var c=0;c<COLS;c++){
+          if(isObstacle(r,c)||isGoal(r,c)) continue;
+          var oldV = V[r][c], bestV=-Infinity;
+          for(var a=0;a<4;a++){
+            var res=step(r,c,a);
+            var val=res.reward + gamma*V[res.r][res.c];
+            if(val>bestV) bestV=val;
+          }
+          V[r][c]=bestV;
+          delta=Math.max(delta, Math.abs(oldV-bestV));
+        }
+        if(delta<theta){ log('Value Iteration converged in '+(iter+1)+' iterations (γ='+gamma.toFixed(2)+').'); break; }
+      }
+      renderGrid(); renderPolicy(); renderVValues();
+    }
+
+    // ---- Q-Learning Episode ----
+    function qLearningEpisode(){
+      var gamma=getGamma(), alpha=getAlpha(), maxSteps=200;
+      var r=START[0], c=START[1], totalR=0;
+      for(var t=0;t<maxSteps;t++){
+        if(isGoal(r,c)) break;
+        // epsilon-greedy
+        var a;
+        if(Math.random()<EPSILON){
+          a=Math.floor(Math.random()*4);
+        } else {
+          a=0; var best=Q[r][c][0];
+          for(var i=1;i<4;i++) if(Q[r][c][i]>best){best=Q[r][c][i]; a=i;}
+        }
+        var res=step(r,c,a);
+        var maxQ=-Infinity;
+        for(var i=0;i<4;i++) if(Q[res.r][res.c][i]>maxQ) maxQ=Q[res.r][res.c][i];
+        Q[r][c][a] += alpha*(res.reward + gamma*maxQ - Q[r][c][a]);
+        totalR+=res.reward;
+        r=res.r; c=res.c;
+      }
+      episodesRun++;
+      document.getElementById('episodeCount').textContent=episodesRun;
+      // Derive V from Q for display
+      for(var ri=0;ri<ROWS;ri++) for(var ci=0;ci<COLS;ci++){
+        if(isObstacle(ri,ci)){V[ri][ci]=0;continue;}
+        var mx=-Infinity; for(var ai=0;ai<4;ai++) if(Q[ri][ci][ai]>mx) mx=Q[ri][ci][ai];
+        V[ri][ci]=mx;
+      }
+      renderGrid(); renderPolicy(); renderVValues();
+      log('Q-Learning episode '+episodesRun+': total reward = '+totalR.toFixed(2)+' ('+t+' steps, α='+alpha.toFixed(2)+')');
+    }
+
+    // ---- Rendering ----
+    function renderGrid(){
+      var cont=document.getElementById('gridContainer'); cont.innerHTML='';
+      for(var r=0;r<ROWS;r++) for(var c=0;c<COLS;c++){
+        var cell=document.createElement('div');
+        cell.style.cssText='display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid var(--border,#ccc);border-radius:6px;font-size:0.75rem;position:relative;';
+        if(isObstacle(r,c)){
+          cell.style.background='#e74c3c'; cell.style.color='#fff';
+          cell.innerHTML='<strong style="font-size:1.3rem;">X</strong>';
+        } else if(isGoal(r,c)){
+          cell.style.background='#f1c40f'; cell.innerHTML='<strong style="font-size:1.3rem;">G</strong><span>+10</span>';
+        } else if(r===START[0]&&c===START[1]){
+          cell.style.background='#2ecc71'; cell.style.color='#fff';
+          cell.innerHTML='<strong style="font-size:1.3rem;">S</strong><span>'+V[r][c].toFixed(2)+'</span>';
+        } else {
+          cell.style.background='var(--bg-secondary,#f9f9f9)';
+          cell.innerHTML='<span>'+V[r][c].toFixed(2)+'</span>';
+        }
+        cont.appendChild(cell);
+      }
+    }
+
+    function renderPolicy(){
+      var cont=document.getElementById('policyGrid'); cont.innerHTML='';
+      for(var r=0;r<ROWS;r++) for(var c=0;c<COLS;c++){
+        var cell=document.createElement('div');
+        cell.style.cssText='display:flex;align-items:center;justify-content:center;border:1px solid var(--border,#ddd);border-radius:4px;background:var(--bg-secondary,#f9f9f9);';
+        if(isObstacle(r,c)){ cell.textContent='X'; cell.style.background='#e74c3c'; cell.style.color='#fff'; }
+        else if(isGoal(r,c)){ cell.textContent='★'; cell.style.background='#f1c40f'; }
+        else {
+          // best action from V
+          var bestA=0, bestVal=-Infinity;
+          for(var a=0;a<4;a++){
+            var res=step(r,c,a);
+            var val=res.reward+getGamma()*V[res.r][res.c];
+            if(val>bestVal){bestVal=val; bestA=a;}
+          }
+          cell.textContent=ACTION_NAMES[bestA];
+        }
+        cont.appendChild(cell);
+      }
+    }
+
+    function renderVValues(){
+      var lines=[];
+      for(var r=0;r<ROWS;r++){
+        var row=[];
+        for(var c=0;c<COLS;c++){
+          if(isObstacle(r,c)) row.push('  X   ');
+          else row.push(V[r][c]>=0?' '+V[r][c].toFixed(2):V[r][c].toFixed(2));
+        }
+        lines.push(row.join('  '));
+      }
+      document.getElementById('vValuesDisplay').textContent=lines.join('\n');
+    }
+
+    function log(msg){
+      var el=document.getElementById('statusLog');
+      el.innerHTML+='<div>'+msg+'</div>';
+      el.scrollTop=el.scrollHeight;
+    }
+
+    // ---- Event listeners ----
+    document.getElementById('btnValueIteration').addEventListener('click', valueIteration);
+    document.getElementById('btnQLearning').addEventListener('click', qLearningEpisode);
+    document.getElementById('btnReset').addEventListener('click', resetAll);
+    document.getElementById('gammaSlider').addEventListener('input',function(){
+      document.getElementById('gammaVal').textContent=this.value;
+    });
+    document.getElementById('alphaSlider').addEventListener('input',function(){
+      document.getElementById('alphaVal').textContent=parseFloat(this.value).toFixed(2);
+    });
+
+    // Initial render
+    initV(); initQ(); renderGrid(); renderPolicy(); renderVValues();
+  })();
+  </script>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

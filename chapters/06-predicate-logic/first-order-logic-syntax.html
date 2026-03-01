@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="First-Order Logic Syntax — Constants, variables, predicates, functions, quantifiers ∀ ∃, well-formed formulas, free and bound variables for GATE DA preparation.">
+  <title>First-Order Logic Syntax — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="first-order-logic-syntax.html" class="sidebar-link active"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a>
+            <a href="fol-semantics.html" class="sidebar-link"><span class="link-check"></span> FOL Semantics<span class="link-type theory">Theory</span></a>
+            <a href="quantifier-rules.html" class="sidebar-link"><span class="link-check"></span> Quantifier Rules<span class="link-type theory">Theory</span></a>
+            <a href="fol-inference-rules.html" class="sidebar-link"><span class="link-check"></span> FOL Inference Rules<span class="link-type theory">Theory</span></a>
+            <a href="unification.html" class="sidebar-link"><span class="link-check"></span> Unification<span class="link-type theory">Theory</span></a>
+            <a href="resolution-in-fol.html" class="sidebar-link"><span class="link-check"></span> Resolution in FOL<span class="link-type theory">Theory</span></a>
+            <a href="forward-and-backward-chaining.html" class="sidebar-link"><span class="link-check"></span> Forward &amp; Backward Chaining<span class="link-type theory">Theory</span></a>
+            <a href="knowledge-engineering.html" class="sidebar-link"><span class="link-check"></span> Knowledge Engineering<span class="link-type theory">Theory</span></a>
+            <a href="limitations-of-fol.html" class="sidebar-link"><span class="link-check"></span> Limitations of FOL<span class="link-type theory">Theory</span></a>
+            <a href="practical-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Practice Exercises<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-predicate.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="first-order-logic-syntax.html">Chapter 6: Predicate Logic</a> &raquo;
+          <span class="current">First-Order Logic Syntax</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch06-fol-syntax">
+
+            <h1>First-Order Logic &mdash; Syntax</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch06-fol-syntax" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="../05-propositional-logic/syntax-and-semantics.html">Propositional Logic &mdash; Syntax &amp; Semantics</a></li>
+                <li>Basic set theory notation</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Distinguish constants, variables, predicates, and functions in FOL</li>
+                <li>Construct well-formed formulas using quantifiers &forall; and &exist;</li>
+                <li>Identify free and bound variables and understand scope of quantifiers</li>
+                <li>Translate English sentences into FOL and vice versa</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="why-fol">
+                <h2>1. Why First-Order Logic?</h2>
+                <p>Propositional logic treats the world as a collection of facts that are either true or false. It cannot express statements about <em>objects</em>, their <em>properties</em>, or <em>relationships</em> between them. First-Order Logic (FOL), also called <strong>Predicate Logic</strong>, extends propositional logic with:</p>
+                <ul>
+                  <li><strong>Objects</strong> &mdash; things in the world (people, numbers, cities)</li>
+                  <li><strong>Predicates</strong> &mdash; properties of objects or relations among them</li>
+                  <li><strong>Functions</strong> &mdash; mappings from objects to objects</li>
+                  <li><strong>Quantifiers</strong> &mdash; statements about all or some objects</li>
+                </ul>
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Propositional vs. FOL</div>
+                  <p><strong>Propositional:</strong> &ldquo;Socrates is mortal&rdquo; &rarr; P (a single proposition)</p>
+                  <p><strong>FOL:</strong> Mortal(Socrates) &mdash; we can now express <em>who</em> is mortal and reason about it generally: &forall;x (Human(x) &rarr; Mortal(x))</p>
+                </div>
+              </section>
+
+              <section id="vocabulary">
+                <h2>2. Vocabulary of FOL</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Constant Symbols</div>
+                  <p>Refer to specific objects in the domain. Typically lowercase or proper names.</p>
+                  <p><strong>Examples:</strong> <code>socrates</code>, <code>3</code>, <code>delhi</code>, <code>block_A</code></p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Variable Symbols</div>
+                  <p>Range over objects in the domain. Typically <code>x, y, z, w</code>.</p>
+                  <p>Variables allow us to make general statements: &forall;x P(x) means &ldquo;P holds for every object.&rdquo;</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Predicate Symbols (Relation Symbols)</div>
+                  <p>Map a tuple of objects to {true, false}. Each predicate has a fixed <strong>arity</strong> (number of arguments).</p>
+                  <ul>
+                    <li><strong>Unary:</strong> Human(x), Even(n) &mdash; arity 1</li>
+                    <li><strong>Binary:</strong> Loves(x, y), GreaterThan(a, b) &mdash; arity 2</li>
+                    <li><strong>Ternary:</strong> Between(x, y, z) &mdash; arity 3</li>
+                  </ul>
+                  <p>Special predicate: <strong>Equality</strong> (=) is built-in: x = y</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Function Symbols</div>
+                  <p>Map a tuple of objects to a single object. Each function has a fixed arity.</p>
+                  <ul>
+                    <li><strong>Unary:</strong> Father(x), Successor(n) &mdash; returns one object</li>
+                    <li><strong>Binary:</strong> Plus(x, y), LeftLeg(x) &mdash; arity 2</li>
+                  </ul>
+                  <p>A <strong>constant</strong> is a zero-arity function symbol.</p>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">GATE Tip</div>
+                  <p>In GATE questions, carefully distinguish predicates (return truth values) from functions (return objects). <code>Father(john)</code> as a function returns an object; <code>IsFather(john)</code> as a predicate returns true/false.</p>
+                </div>
+              </section>
+
+              <section id="terms">
+                <h2>3. Terms</h2>
+                <div class="definition-box">
+                  <div class="box-title">Definition &mdash; Term</div>
+                  <p>A <strong>term</strong> is an expression that refers to an object. Defined inductively:</p>
+                  <ol>
+                    <li>Every <strong>constant symbol</strong> is a term.</li>
+                    <li>Every <strong>variable symbol</strong> is a term.</li>
+                    <li>If f is an n-ary function symbol and t<sub>1</sub>, &hellip;, t<sub>n</sub> are terms, then <strong>f(t<sub>1</sub>, &hellip;, t<sub>n</sub>)</strong> is a term.</li>
+                  </ol>
+                  <p>Nothing else is a term.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Term Examples</div>
+                  <ul>
+                    <li><code>john</code> &mdash; constant (term)</li>
+                    <li><code>x</code> &mdash; variable (term)</li>
+                    <li><code>Father(john)</code> &mdash; function applied to constant (term)</li>
+                    <li><code>Plus(x, Successor(0))</code> &mdash; nested function application (term)</li>
+                    <li><code>Loves(x, y)</code> &mdash; <strong>NOT a term</strong> (this is an atomic formula, since Loves is a predicate)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="atomic-sentences">
+                <h2>4. Atomic Sentences (Atoms)</h2>
+                <div class="definition-box">
+                  <div class="box-title">Definition &mdash; Atomic Formula</div>
+                  <p>If P is an n-ary predicate and t<sub>1</sub>, &hellip;, t<sub>n</sub> are terms, then <strong>P(t<sub>1</sub>, &hellip;, t<sub>n</sub>)</strong> is an <strong>atomic formula</strong> (atom).</p>
+                  <p>An atom with no variables is called a <strong>ground atom</strong>.</p>
+                </div>
+                <div class="example-box">
+                  <div class="box-title">Atomic Formula Examples</div>
+                  <ul>
+                    <li>Human(socrates) &mdash; ground atom</li>
+                    <li>Loves(x, Mother(x)) &mdash; atom with variable x</li>
+                    <li>GreaterThan(Plus(2,3), 4) &mdash; ground atom with nested function</li>
+                    <li>x = Father(y) &mdash; equality atom</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="quantifiers">
+                <h2>5. Quantifiers</h2>
+                <p>The power of FOL comes from two quantifiers that let us make statements about collections of objects.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Universal Quantifier &forall; (&ldquo;for all&rdquo;)</div>
+                  <p><strong>&forall;x P(x)</strong> means &ldquo;P(x) is true for <em>every</em> object x in the domain.&rdquo;</p>
+                  <p><strong>Common pattern:</strong> &forall;x (Condition(x) &rarr; Conclusion(x))</p>
+                  <p>Example: &forall;x (Dog(x) &rarr; Mammal(x)) &mdash; &ldquo;All dogs are mammals.&rdquo;</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Existential Quantifier &exist; (&ldquo;there exists&rdquo;)</div>
+                  <p><strong>&exist;x P(x)</strong> means &ldquo;there is <em>at least one</em> object x in the domain for which P(x) is true.&rdquo;</p>
+                  <p><strong>Common pattern:</strong> &exist;x (Property<sub>1</sub>(x) &and; Property<sub>2</sub>(x))</p>
+                  <p>Example: &exist;x (Dog(x) &and; Black(x)) &mdash; &ldquo;There exists a black dog.&rdquo;</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Common Mistake</div>
+                  <p><strong>&forall; uses &rarr;</strong> (implication), not &and; (conjunction). Writing &forall;x (Dog(x) &and; Mammal(x)) says &ldquo;everything is both a dog and a mammal&rdquo; &mdash; almost certainly wrong!</p>
+                  <p><strong>&exist; uses &and;</strong> (conjunction), not &rarr;. Writing &exist;x (Dog(x) &rarr; Black(x)) is satisfied whenever there exists any non-dog, making it almost vacuously true.</p>
+                </div>
+              </section>
+
+              <section id="wff">
+                <h2>6. Well-Formed Formulas (WFFs)</h2>
+                <div class="definition-box">
+                  <div class="box-title">Inductive Definition of WFF</div>
+                  <ol>
+                    <li>Every <strong>atomic formula</strong> is a WFF.</li>
+                    <li>If &phi; is a WFF, then <strong>&not;&phi;</strong> is a WFF.</li>
+                    <li>If &phi; and &psi; are WFFs, then <strong>(&phi; &and; &psi;)</strong>, <strong>(&phi; &or; &psi;)</strong>, <strong>(&phi; &rarr; &psi;)</strong>, and <strong>(&phi; &harr; &psi;)</strong> are WFFs.</li>
+                    <li>If &phi; is a WFF and x is a variable, then <strong>&forall;x &phi;</strong> and <strong>&exist;x &phi;</strong> are WFFs.</li>
+                  </ol>
+                  <p>Nothing else is a WFF.</p>
+                </div>
+              </section>
+
+              <section id="scope-free-bound">
+                <h2>7. Scope, Free and Bound Variables</h2>
+                <div class="definition-box">
+                  <div class="box-title">Scope of a Quantifier</div>
+                  <p>In &forall;x &phi; or &exist;x &phi;, the formula &phi; is the <strong>scope</strong> of the quantifier. The variable x is <strong>bound</strong> within &phi;.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Free vs. Bound Variables</div>
+                  <ul>
+                    <li>An occurrence of variable x is <strong>bound</strong> if it falls within the scope of a quantifier &forall;x or &exist;x.</li>
+                    <li>An occurrence of x is <strong>free</strong> if it is not bound by any quantifier.</li>
+                    <li>A formula with <strong>no free variables</strong> is called a <strong>sentence</strong> (or <strong>closed formula</strong>).</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Free and Bound Variables &mdash; Examples</div>
+                  <ul>
+                    <li>&forall;x (P(x) &rarr; Q(x, y)) &mdash; x is bound, <strong>y is free</strong></li>
+                    <li>&exist;x P(x) &and; Q(x) &mdash; first x is bound (in &exist;x P(x)), second x is <strong>free</strong> (outside the scope of &exist;x if scope is just P(x))</li>
+                    <li>&forall;x &exist;y Loves(x, y) &mdash; both x and y are bound; this is a <strong>sentence</strong></li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Notation Caution</div>
+                  <p>The scope of &exist;x in &ldquo;&exist;x P(x) &and; Q(x)&rdquo; depends on parenthesization. With standard precedence, &exist;x binds only P(x), so the second x in Q(x) is free. If we write &exist;x (P(x) &and; Q(x)), both occurrences of x are bound.</p>
+                </div>
+              </section>
+
+              <section id="translation-examples">
+                <h2>8. FOL Translation Examples</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Example 1: &ldquo;Every student who studies hard passes the exam.&rdquo;</div>
+                  <p><strong>Predicates:</strong> Student(x), StudiesHard(x), Passes(x)</p>
+                  <p><strong>FOL:</strong> &forall;x ((Student(x) &and; StudiesHard(x)) &rarr; Passes(x))</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 2: &ldquo;There is a barber who shaves everyone who does not shave himself.&rdquo;</div>
+                  <p><strong>Predicates:</strong> Barber(x), Shaves(x, y)</p>
+                  <p><strong>FOL:</strong> &exist;x (Barber(x) &and; &forall;y (&not;Shaves(y, y) &rarr; Shaves(x, y)))</p>
+                  <p><em>Note:</em> This is the famous <strong>Barber Paradox</strong> &mdash; leads to contradiction in classical logic.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 3: &ldquo;Everyone loves someone.&rdquo;</div>
+                  <p><strong>FOL:</strong> &forall;x &exist;y Loves(x, y)</p>
+                  <p>Compare with &ldquo;There is someone whom everyone loves&rdquo;: &exist;y &forall;x Loves(x, y) &mdash; <strong>different meaning!</strong></p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 4: &ldquo;Not all birds can fly.&rdquo;</div>
+                  <p><strong>FOL:</strong> &not;&forall;x (Bird(x) &rarr; CanFly(x))</p>
+                  <p><strong>Equivalent:</strong> &exist;x (Bird(x) &and; &not;CanFly(x)) &mdash; &ldquo;There exists a bird that cannot fly.&rdquo;</p>
+                </div>
+              </section>
+
+              <section id="fol-syntax-table">
+                <h2>9. Quick Reference Table</h2>
+                <table>
+                  <thead>
+                    <tr><th>Symbol Type</th><th>Examples</th><th>Role</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Constants</td><td>a, b, john, 2</td><td>Name specific objects</td></tr>
+                    <tr><td>Variables</td><td>x, y, z</td><td>Range over domain objects</td></tr>
+                    <tr><td>Predicates</td><td>P, Loves, &gt;</td><td>Relations (return T/F)</td></tr>
+                    <tr><td>Functions</td><td>f, Father, +</td><td>Mappings (return objects)</td></tr>
+                    <tr><td>Connectives</td><td>&not;, &and;, &or;, &rarr;, &harr;</td><td>Combine formulas</td></tr>
+                    <tr><td>Quantifiers</td><td>&forall;, &exist;</td><td>Generalize over objects</td></tr>
+                    <tr><td>Equality</td><td>=</td><td>Identity of objects</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>FOL extends propositional logic with objects, predicates, functions, and quantifiers.</li>
+                    <li><strong>Terms</strong> refer to objects; <strong>atomic formulas</strong> are predicates applied to terms.</li>
+                    <li>&forall; (universal) typically pairs with &rarr;; &exist; (existential) typically pairs with &and;.</li>
+                    <li>A variable is <strong>bound</strong> if within scope of a quantifier, otherwise <strong>free</strong>.</li>
+                    <li>A <strong>sentence</strong> is a WFF with no free variables.</li>
+                    <li>Quantifier order matters: &forall;x&exist;y &ne; &exist;y&forall;x in general.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>AIMA</em>, 4th Ed. &mdash; Chapter 8: First-Order Logic</li>
+                  <li>Enderton, H.B. <em>A Mathematical Introduction to Logic</em>, 2nd Ed.</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch06-fol-syntax">&#9745; Mark as Complete</button>
+
+            <div class="nav-buttons">
+              <a href="../05-propositional-logic/quiz-propositional-logic.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Propositional Logic Quiz</span></a>
+              <a href="fol-semantics.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">FOL Semantics</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#why-fol">1. Why FOL?</a></li>
+              <li><a href="#vocabulary">2. Vocabulary</a></li>
+              <li><a href="#terms">3. Terms</a></li>
+              <li><a href="#atomic-sentences">4. Atomic Sentences</a></li>
+              <li><a href="#quantifiers">5. Quantifiers</a></li>
+              <li><a href="#wff">6. Well-Formed Formulas</a></li>
+              <li><a href="#scope-free-bound">7. Scope &amp; Free/Bound</a></li>
+              <li><a href="#translation-examples">8. Translation Examples</a></li>
+              <li><a href="#fol-syntax-table">9. Quick Reference</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

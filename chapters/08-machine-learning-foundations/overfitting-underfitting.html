@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Overfitting and Underfitting — Regularisation techniques L1 Lasso, L2 Ridge, Elastic Net, dropout, early stopping, learning curves for GATE DA preparation.">
+  <title>Overfitting &amp; Underfitting — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="supervised-learning.html" class="sidebar-link"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="unsupervised-learning.html" class="sidebar-link"><span class="link-check"></span> Unsupervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="bias-variance-tradeoff.html" class="sidebar-link"><span class="link-check"></span> Bias-Variance Tradeoff<span class="link-type theory">Theory</span></a>
+            <a href="overfitting-underfitting.html" class="sidebar-link active"><span class="link-check"></span> Overfitting &amp; Underfitting<span class="link-type theory">Theory</span></a>
+            <a href="cross-validation.html" class="sidebar-link"><span class="link-check"></span> Cross-Validation<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-metrics.html" class="sidebar-link"><span class="link-check"></span> Evaluation Metrics<span class="link-type theory">Theory</span></a>
+            <a href="feature-engineering.html" class="sidebar-link"><span class="link-check"></span> Feature Engineering<span class="link-type theory">Theory</span></a>
+            <a href="ml-math-essentials.html" class="sidebar-link"><span class="link-check"></span> ML Math Essentials<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="ml-fundamentals.html">Chapter 8: ML Foundations</a> &raquo; <span class="current">Overfitting &amp; Underfitting</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch08-overfitting-underfitting">
+
+            <h1>Overfitting &amp; Underfitting</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch08-overfitting-underfitting" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Recognise signs of overfitting and underfitting from training/test performance</li>
+              <li>Understand L1 (Lasso), L2 (Ridge), and Elastic Net regularisation</li>
+              <li>Apply early stopping, dropout, and data augmentation conceptually</li>
+              <li>Interpret learning curves to diagnose model issues</li>
+            </ul></div>
+
+            <!-- Section 1 -->
+            <section id="signs">
+              <h2>1. Recognising Overfitting and Underfitting</h2>
+
+              <div class="definition-box">
+                <div class="box-title">Overfitting</div>
+                <p>The model learns the training data <strong>too well</strong>, including noise and random fluctuations. It performs excellently on training data but poorly on unseen test data.</p>
+                <p><strong>Symptoms:</strong> Training accuracy &asymp; 99%, Test accuracy &asymp; 60%. Large gap between training and test error.</p>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">Underfitting</div>
+                <p>The model is <strong>too simple</strong> to capture the underlying patterns in the data. It performs poorly on both training and test data.</p>
+                <p><strong>Symptoms:</strong> Training accuracy &asymp; 55%, Test accuracy &asymp; 50%. Both errors are high, with a small gap between them.</p>
+              </div>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Indicator</th><th>Underfitting</th><th>Good Fit</th><th>Overfitting</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Training error</strong></td><td>High</td><td>Low</td><td>Very low</td></tr>
+                    <tr><td><strong>Test error</strong></td><td>High</td><td>Low (similar to train)</td><td>High (much &gt; train)</td></tr>
+                    <tr><td><strong>Gap (test&minus;train)</strong></td><td>Small</td><td>Small</td><td>Large</td></tr>
+                    <tr><td><strong>Bias</strong></td><td>High</td><td>Balanced</td><td>Low</td></tr>
+                    <tr><td><strong>Variance</strong></td><td>Low</td><td>Balanced</td><td>High</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="regularisation">
+              <h2>2. Regularisation Techniques</h2>
+              <p>Regularisation adds a penalty term to the loss function to discourage overly complex models. It shrinks model parameters toward zero, reducing the model&rsquo;s effective complexity.</p>
+
+              <h3 id="l2-ridge">2.1 L2 Regularisation (Ridge Regression)</h3>
+              <div class="theorem-box">
+                <div class="box-title">Ridge Regression Loss</div>
+                <p><strong>J(w) = (1/n) &sum;(y&#7522; &minus; &ycirc;&#7522;)&sup2; + &lambda; &sum;w&#7524;&sup2;</strong></p>
+                <p>The L2 penalty &lambda;&sum;w&#7524;&sup2; penalises large weights. The closed-form solution becomes:</p>
+                <p><strong>w* = (X&#7488;X + &lambda;I)&#8315;&sup1; X&#7488;y</strong></p>
+                <p>The addition of &lambda;I ensures the matrix is always invertible, solving the multicollinearity problem.</p>
+              </div>
+              <ul>
+                <li>Shrinks all weights toward zero but <strong>never exactly zero</strong></li>
+                <li>Keeps all features in the model (no feature selection)</li>
+                <li>Good when many features are believed to be relevant</li>
+              </ul>
+
+              <h3 id="l1-lasso">2.2 L1 Regularisation (Lasso Regression)</h3>
+              <div class="theorem-box">
+                <div class="box-title">Lasso Regression Loss</div>
+                <p><strong>J(w) = (1/n) &sum;(y&#7522; &minus; &ycirc;&#7522;)&sup2; + &lambda; &sum;|w&#7524;|</strong></p>
+                <p>The L1 penalty uses the absolute value of weights. No closed-form solution &mdash; requires iterative methods.</p>
+              </div>
+              <ul>
+                <li>Can shrink some weights to <strong>exactly zero</strong> &mdash; performs automatic <strong>feature selection</strong></li>
+                <li>Produces <strong>sparse models</strong> (fewer non-zero coefficients)</li>
+                <li>Good when only a few features are truly important</li>
+              </ul>
+
+              <h3 id="elastic-net">2.3 Elastic Net</h3>
+              <div class="theorem-box">
+                <div class="box-title">Elastic Net Loss</div>
+                <p><strong>J(w) = (1/n) &sum;(y&#7522; &minus; &ycirc;&#7522;)&sup2; + &lambda;&#8321; &sum;|w&#7524;| + &lambda;&#8322; &sum;w&#7524;&sup2;</strong></p>
+                <p>Combines L1 and L2 penalties. A mixing ratio &alpha; controls the balance: &alpha;=1 is pure Lasso, &alpha;=0 is pure Ridge.</p>
+              </div>
+              <ul>
+                <li>Overcomes Lasso&rsquo;s limitation of selecting at most n features where n &lt; d</li>
+                <li>Groups correlated features together (selects or excludes as a group)</li>
+              </ul>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Property</th><th>Ridge (L2)</th><th>Lasso (L1)</th><th>Elastic Net</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Penalty</strong></td><td>&lambda;&sum;w&sup2;</td><td>&lambda;&sum;|w|</td><td>&lambda;&#8321;&sum;|w| + &lambda;&#8322;&sum;w&sup2;</td></tr>
+                    <tr><td><strong>Feature selection</strong></td><td>No</td><td>Yes</td><td>Yes</td></tr>
+                    <tr><td><strong>Sparse solution</strong></td><td>No</td><td>Yes</td><td>Yes</td></tr>
+                    <tr><td><strong>Multicollinearity</strong></td><td>Handles well</td><td>May arbitrarily pick one</td><td>Groups correlated features</td></tr>
+                    <tr><td><strong>Closed-form</strong></td><td>Yes</td><td>No</td><td>No</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: Ridge Regression</div>
+                <p><strong>Q:</strong> For a 1D linear regression with 3 data points (1,2), (2,3), (3,5), compute the Ridge regression weight w with &lambda;=1 (no intercept). Use w* = (X&#7488;X + &lambda;I)&#8315;&sup1;X&#7488;y.</p>
+                <p><strong>Solution:</strong></p>
+                <p>X = [1, 2, 3]&#7488;, y = [2, 3, 5]&#7488;</p>
+                <p>X&#7488;X = 1 + 4 + 9 = 14</p>
+                <p>X&#7488;y = 2 + 6 + 15 = 23</p>
+                <p>w* = (14 + 1)&#8315;&sup1; &middot; 23 = 23/15 = <strong>1.533</strong></p>
+                <p>(Compare with OLS: w* = 23/14 = 1.643 &mdash; Ridge shrinks the weight towards zero.)</p>
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="dropout">
+              <h2>3. Dropout (Neural Networks)</h2>
+              <p>Dropout randomly &ldquo;drops&rdquo; (sets to zero) a fraction of neurons during each training step. Each training iteration uses a different random subset of the network.</p>
+              <ul>
+                <li><strong>Training:</strong> Each neuron is kept with probability p (typically 0.5 for hidden layers, 0.8 for input).</li>
+                <li><strong>Inference:</strong> All neurons are used, but weights are scaled by p to compensate.</li>
+                <li><strong>Effect:</strong> Prevents neurons from co-adapting. Acts as an implicit ensemble of many sub-networks.</li>
+              </ul>
+              <div class="note-box">
+                <div class="box-title">For GATE</div>
+                <p>Dropout is primarily conceptual in GATE. Know that it is a regularisation technique that reduces overfitting in neural networks by randomly deactivating neurons during training.</p>
+              </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="early-stopping">
+              <h2>4. Early Stopping</h2>
+              <p>Monitor the model&rsquo;s performance on a validation set during training. Stop training when validation error begins to increase, even if training error continues to decrease.</p>
+              <div class="algorithm-block">
+                <div class="box-title">Early Stopping Procedure</div>
+                <pre>1. Split data into training and validation sets
+2. Train the model iteratively (e.g., gradient descent epochs)
+3. After each epoch, evaluate on the validation set
+4. Record the best validation error and corresponding model parameters
+5. If validation error has not improved for P consecutive epochs (patience P):
+   STOP training and restore the best model parameters</pre>
+              </div>
+              <p><strong>Why it works:</strong> Early in training, the model learns genuine patterns (both train and val error decrease). As training continues, the model starts memorising noise (train error decreases but val error increases). Early stopping halts training at the transition point.</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="data-augmentation">
+              <h2>5. Data Augmentation</h2>
+              <p>Increase the effective size of the training set by creating modified versions of existing data. More data reduces variance (overfitting).</p>
+              <ul>
+                <li><strong>Images:</strong> Rotation, flipping, cropping, colour jittering, scaling</li>
+                <li><strong>Text:</strong> Synonym replacement, random insertion, back-translation</li>
+                <li><strong>Tabular:</strong> SMOTE (Synthetic Minority Oversampling Technique) for imbalanced classes</li>
+              </ul>
+              <div class="warning-box">
+                <div class="box-title">Caution</div>
+                <p>Augmented data must be <strong>semantically valid</strong>. For example, flipping a digit &ldquo;6&rdquo; vertically creates a &ldquo;9&rdquo; &mdash; this would introduce incorrect labels.</p>
+              </div>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="learning-curves">
+              <h2>6. Learning Curves</h2>
+              <p>Learning curves plot training and validation error as a function of training set size or training epochs. They are powerful diagnostic tools.</p>
+
+              <h3>6.1 High Bias (Underfitting) Learning Curve</h3>
+              <ul>
+                <li>Both training and validation errors are <strong>high</strong></li>
+                <li>Errors <strong>converge</strong> to a high value as data increases</li>
+                <li>Adding more data will <strong>NOT</strong> help significantly</li>
+                <li><strong>Fix:</strong> Increase model complexity, add features</li>
+              </ul>
+
+              <h3>6.2 High Variance (Overfitting) Learning Curve</h3>
+              <ul>
+                <li>Training error is <strong>low</strong>, validation error is <strong>high</strong></li>
+                <li>There is a <strong>large gap</strong> between the two curves</li>
+                <li>Adding more data <strong>WILL</strong> help (the gap narrows)</li>
+                <li><strong>Fix:</strong> More data, regularisation, simpler model</li>
+              </ul>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example: Diagnosing from Learning Curve</div>
+                <p><strong>Q:</strong> A model shows training error of 2% and validation error of 25%. What should you try first?</p>
+                <p>(A) Increase model complexity &nbsp; (B) Add regularisation &nbsp; (C) Remove features &nbsp; (D) Decrease learning rate</p>
+                <p><strong>A:</strong> (B) Add regularisation. The large gap (23%) indicates overfitting (high variance). Regularisation penalises complex models and reduces variance. Increasing complexity (A) would worsen overfitting.</p>
+              </div>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="summary-techniques">
+              <h2>7. Summary of Anti-Overfitting Techniques</h2>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Technique</th><th>Mechanism</th><th>When to Use</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>L2 (Ridge)</strong></td><td>Shrinks all weights toward zero</td><td>Many relevant features, multicollinearity</td></tr>
+                    <tr><td><strong>L1 (Lasso)</strong></td><td>Drives some weights to exactly zero</td><td>Feature selection needed, sparse models</td></tr>
+                    <tr><td><strong>Elastic Net</strong></td><td>Combines L1 and L2</td><td>Correlated features, best of both worlds</td></tr>
+                    <tr><td><strong>Dropout</strong></td><td>Randomly deactivates neurons</td><td>Deep neural networks</td></tr>
+                    <tr><td><strong>Early Stopping</strong></td><td>Stops training before overfitting</td><td>Any iterative training algorithm</td></tr>
+                    <tr><td><strong>Data Augmentation</strong></td><td>Increases effective training set</td><td>Limited training data, images/text</td></tr>
+                    <tr><td><strong>Cross-Validation</strong></td><td>Better model selection</td><td>Hyperparameter tuning</td></tr>
+                    <tr><td><strong>Pruning</strong></td><td>Removes tree branches</td><td>Decision trees</td></tr>
+                    <tr><td><strong>Ensemble Methods</strong></td><td>Averages multiple models</td><td>Reducing variance generally</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="gate-practice">
+              <h2>8. GATE-Style Practice</h2>
+              <div class="example-box">
+                <div class="box-title">GATE Example: L1 vs L2</div>
+                <p><strong>Q:</strong> Which regularisation technique can perform automatic feature selection?</p>
+                <p>(A) L2 (Ridge) &nbsp; (B) L1 (Lasso) &nbsp; (C) Both &nbsp; (D) Neither</p>
+                <p><strong>A:</strong> (B) L1 (Lasso). The L1 penalty can shrink weights to exactly zero, effectively removing the corresponding features from the model. L2 only shrinks weights close to zero but never exactly zero.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example: &lambda; Effect</div>
+                <p><strong>Q:</strong> As the regularisation parameter &lambda; increases in Ridge regression, what happens to bias and variance?</p>
+                <p><strong>A:</strong> Bias increases (model becomes simpler), variance decreases (model is less sensitive to training data). As &lambda; &rarr; &infin;, all weights &rarr; 0, giving maximum bias and minimum variance.</p>
+              </div>
+            </section>
+
+          </article>
+
+          <aside class="on-this-page"><h4>On This Page</h4><ul>
+            <li><a href="#signs">1. Recognising Over/Underfitting</a></li>
+            <li><a href="#regularisation">2. Regularisation</a></li>
+            <li><a href="#dropout">3. Dropout</a></li>
+            <li><a href="#early-stopping">4. Early Stopping</a></li>
+            <li><a href="#data-augmentation">5. Data Augmentation</a></li>
+            <li><a href="#learning-curves">6. Learning Curves</a></li>
+            <li><a href="#summary-techniques">7. Summary</a></li>
+            <li><a href="#gate-practice">8. GATE Practice</a></li>
+          </ul></aside>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="bias-variance-tradeoff.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Bias-Variance Tradeoff</span></a>
+          <a href="cross-validation.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Cross-Validation</span></a>
+        </div>
+        <button class="complete-btn" data-page="ch08-overfitting-underfitting">&#10003; Mark as Complete</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

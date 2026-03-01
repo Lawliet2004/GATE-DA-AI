@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="STRIPS Planning — representation, operator schemas, blocks world, Sussman anomaly, frame axioms, worked examples for GATE DA.">
+  <title>STRIPS Planning — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a>
+            <a href="strips.html" class="sidebar-link active"><span class="link-check"></span> STRIPS<span class="link-type theory">Theory</span></a>
+            <a href="partial-order-planning.html" class="sidebar-link"><span class="link-check"></span> Partial-Order Planning<span class="link-type theory">Theory</span></a>
+            <a href="graph-planning.html" class="sidebar-link"><span class="link-check"></span> GraphPlan<span class="link-type theory">Theory</span></a>
+            <a href="notes-planning.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-planning.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="classical-planning.html">Chapter 13: Planning</a> &raquo; <span class="current">STRIPS Planning</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch13-strips">
+
+            <h1>STRIPS Planning</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="chapters/13-planning/strips.html" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Define the <strong>STRIPS representation</strong>: preconditions, add list, delete list</li>
+              <li>Write <strong>operator schemas</strong> for planning domains</li>
+              <li>Trace the <strong>STRIPS algorithm</strong> on simple problems</li>
+              <li>Solve the classic <strong>Blocks World</strong> problem step by step</li>
+              <li>Explain the <strong>Sussman Anomaly</strong> and why it matters</li>
+              <li>Connect STRIPS to <strong>situation calculus</strong> and <strong>frame axioms</strong></li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="strips-representation">
+                <h2>1. The STRIPS Representation</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; STRIPS (Stanford Research Institute Problem Solver)</h4>
+                  <p><strong>STRIPS</strong> was one of the first automated planning systems (Fikes &amp; Nilsson, 1971). It represents each action using three components:</p>
+                  <ul>
+                    <li><strong>Preconditions:</strong> a conjunction of positive literals that must hold in the current state for the action to be applicable</li>
+                    <li><strong>Add List (effects+):</strong> literals that become <strong>true</strong> after the action executes</li>
+                    <li><strong>Delete List (effects&minus;):</strong> literals that become <strong>false</strong> after the action executes</li>
+                  </ul>
+                </div>
+
+                <p>Given a state s (a set of ground atoms) and an action a:</p>
+                <ol>
+                  <li><strong>Applicability:</strong> a is applicable in s iff Precond(a) &sube; s</li>
+                  <li><strong>Result:</strong> Result(s, a) = (s &minus; Del(a)) &cup; Add(a)</li>
+                </ol>
+
+                <div class="note-box">
+                  <h4>&#128161; Order of Operations</h4>
+                  <p>The delete list is applied <em>before</em> the add list. This means if a fluent appears in both the delete and add list, it will be <strong>true</strong> in the resulting state (because it is first removed, then re-added).</p>
+                </div>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="operator-schema">
+                <h2>2. Operator Schemas</h2>
+
+                <p>An <strong>operator schema</strong> is a parameterised action template. When its variables are bound to specific objects, it becomes a <strong>ground action</strong>.</p>
+
+                <div class="algorithm-block">
+                  <h4>Blocks World Operator Schemas</h4>
+<pre>Operator: MoveToBlock(b, x, y)
+  Preconditions: On(b, x), Clear(b), Clear(y), b ≠ y
+  Add List:      On(b, y), Clear(x)
+  Delete List:   On(b, x), Clear(y)
+
+Operator: MoveToTable(b, x)
+  Preconditions: On(b, x), Clear(b)
+  Add List:      OnTable(b), Clear(x)
+  Delete List:   On(b, x)
+
+Operator: MoveFromTable(b, y)
+  Preconditions: OnTable(b), Clear(b), Clear(y), b ≠ y
+  Add List:      On(b, y)
+  Delete List:   OnTable(b), Clear(y)</pre>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Naming Convention</h4>
+                  <p>Different textbooks use different operators for the blocks world. Some use a single <em>Move(b, from, to)</em> with Table as a special constant; others separate table moves. The key structure &mdash; preconditions, add list, delete list &mdash; remains the same.</p>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="strips-algorithm">
+                <h2>3. The STRIPS Algorithm</h2>
+
+                <p>The original STRIPS algorithm uses a <strong>goal-stack</strong> approach (means-ends analysis):</p>
+
+                <div class="algorithm-block">
+                  <h4>STRIPS Goal-Stack Algorithm</h4>
+<pre>function STRIPS(state, goals):
+    push all goals onto the goal stack
+    while goal stack is not empty:
+        g ← top of goal stack
+        if g is a conjunction of literals:
+            push each conjunct onto the stack
+        else if g is a single literal:
+            if g is satisfied in current state:
+                pop g from stack
+            else:
+                select an action a whose add list contains g
+                push a onto the stack
+                push preconditions of a onto the stack
+        else if g is an action:
+            if all preconditions of g are satisfied:
+                execute g: state ← (state \ Del(g)) ∪ Add(g)
+                pop g from stack
+    return action sequence</pre>
+                </div>
+
+                <div class="warning-box">
+                  <h4>&#9888; Limitations of Goal-Stack Planning</h4>
+                  <p>The goal-stack approach is <strong>not complete</strong> &mdash; it can fail on problems where sub-goals interact (the Sussman Anomaly). The order in which sub-goals are stacked can lead to undoing previously achieved goals. This limitation motivated the development of partial-order planners.</p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="blocks-world">
+                <h2>4. Blocks World: Detailed Example</h2>
+
+                <div class="example-box">
+                  <h4>&#128300; Blocks World Setup</h4>
+                  <p>Three blocks A, B, C on a table. We want to build a specific tower.</p>
+                  <p><strong>Initial State:</strong></p>
+                  <ul>
+                    <li>OnTable(A), OnTable(B), OnTable(C)</li>
+                    <li>Clear(A), Clear(B), Clear(C)</li>
+                    <li>HandEmpty</li>
+                  </ul>
+                  <p><strong>Goal:</strong> On(A, B) &and; On(B, C)</p>
+                  <p>We want: A on top of B, and B on top of C &rArr; tower C-B-A from bottom to top.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#128300; Step-by-Step Solution</h4>
+                  <p><strong>Step 1: MoveFromTable(B, C)</strong></p>
+                  <ul>
+                    <li>Check preconditions: OnTable(B) &#10003;, Clear(B) &#10003;, Clear(C) &#10003;, B &ne; C &#10003;</li>
+                    <li>Add: On(B, C)</li>
+                    <li>Delete: OnTable(B), Clear(C)</li>
+                    <li>New state: {OnTable(A), OnTable(C), On(B,C), Clear(A), Clear(B), HandEmpty}</li>
+                  </ul>
+                  <p><strong>Step 2: MoveFromTable(A, B)</strong></p>
+                  <ul>
+                    <li>Check preconditions: OnTable(A) &#10003;, Clear(A) &#10003;, Clear(B) &#10003;, A &ne; B &#10003;</li>
+                    <li>Add: On(A, B)</li>
+                    <li>Delete: OnTable(A), Clear(B)</li>
+                    <li>New state: {OnTable(C), On(B,C), On(A,B), Clear(A), HandEmpty}</li>
+                  </ul>
+                  <p><strong>Goal check:</strong> On(A,B) &#10003; and On(B,C) &#10003; &mdash; <strong>Plan found!</strong></p>
+                  <p><strong>Plan:</strong> &langle;MoveFromTable(B,C), MoveFromTable(A,B)&rangle; &mdash; 2 actions, optimal.</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Why Order Matters</h4>
+                  <p>If we had placed A on B <em>first</em>, then B would no longer be Clear, and we could not move B onto C without first undoing our work. This sensitivity to ordering leads directly to the Sussman Anomaly.</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="sussman-anomaly">
+                <h2>5. The Sussman Anomaly</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Sussman Anomaly</h4>
+                  <p>The <strong>Sussman Anomaly</strong> is a classic planning problem that demonstrates the failure of <strong>linear planners</strong> (those that solve sub-goals one at a time in a fixed order). No matter which sub-goal is tackled first, achieving it interferes with the other.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#128300; The Sussman Anomaly</h4>
+                  <p><strong>Initial State:</strong></p>
+                  <ul>
+                    <li>On(C, A), OnTable(A), OnTable(B)</li>
+                    <li>Clear(C), Clear(B)</li>
+                  </ul>
+                  <p><strong>Goal:</strong> On(A, B) &and; On(B, C)</p>
+
+                  <p><strong>Attempt 1 &mdash; Achieve On(A,B) first:</strong></p>
+                  <ol>
+                    <li>MoveToTable(C, A) &rarr; state: {OnTable(A), OnTable(B), OnTable(C), Clear(A), Clear(B), Clear(C)}</li>
+                    <li>MoveFromTable(A, B) &rarr; state: {On(A,B), OnTable(B), OnTable(C), Clear(A), Clear(C)}</li>
+                    <li>Now we need On(B,C), but B is not Clear (A is on it)! Must undo step 2.</li>
+                  </ol>
+
+                  <p><strong>Attempt 2 &mdash; Achieve On(B,C) first:</strong></p>
+                  <ol>
+                    <li>MoveFromTable(B, C) &rarr; but Clear(C) is true, so: On(B,C), but...</li>
+                    <li>Now we need On(A,B), but A has C on it (in the original state). Still requires moving C first.</li>
+                  </ol>
+
+                  <p><strong>Correct solution (interleaved):</strong></p>
+                  <ol>
+                    <li>MoveToTable(C, A) &mdash; free A</li>
+                    <li>MoveFromTable(B, C) &mdash; achieve On(B,C)</li>
+                    <li>MoveFromTable(A, B) &mdash; achieve On(A,B)</li>
+                  </ol>
+                  <p>This requires <strong>interleaving</strong> actions for different sub-goals, which a linear planner cannot do.</p>
+                </div>
+
+                <div class="warning-box">
+                  <h4>&#9888; GATE Importance</h4>
+                  <p>The Sussman Anomaly is a frequently tested concept. Key takeaway: <strong>linear (total-order) planners fail</strong> when sub-goals interact negatively. The solution is to use <strong>interleaved (partial-order) planning</strong> or a planner capable of backtracking.</p>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="situation-calculus">
+                <h2>6. Situation Calculus Connection</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Situation Calculus</h4>
+                  <p><strong>Situation calculus</strong> is a first-order logic formalism for reasoning about actions and change. It uses three key sorts:</p>
+                  <ul>
+                    <li><strong>Situations:</strong> sequences of actions starting from S<sub>0</sub>. Notation: do(a, s) is the situation after doing action a in situation s.</li>
+                    <li><strong>Actions:</strong> terms like Move(A, B).</li>
+                    <li><strong>Fluents:</strong> predicates or functions that vary across situations, e.g., On(A, B, s).</li>
+                  </ul>
+                </div>
+
+                <p>In situation calculus, the STRIPS action MoveToBlock(b, x, y) would be axiomatised as:</p>
+
+                <div class="algorithm-block">
+                  <h4>Situation Calculus Axioms for MoveToBlock</h4>
+<pre>// Precondition axiom
+Poss(MoveToBlock(b,x,y), s) ⟺
+  On(b, x, s) ∧ Clear(b, s) ∧ Clear(y, s) ∧ b ≠ y
+
+// Successor-state axiom for On
+On(b, z, do(a, s)) ⟺
+  [a = MoveToBlock(b, _, z) ∨ a = MoveFromTable(b, z)]
+  ∨ [On(b, z, s) ∧ ¬(a = MoveToBlock(b, z, _))
+                   ∧ ¬(a = MoveToTable(b, z))]</pre>
+                </div>
+
+                <p>The successor-state axiom neatly solves the <strong>frame problem</strong>: a fluent is true in the next situation if an action just made it true, or it was already true and no action made it false.</p>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="frame-axioms">
+                <h2>7. Frame Axioms in STRIPS</h2>
+
+                <p>In the STRIPS representation, frame axioms are handled <strong>implicitly</strong>:</p>
+                <ul>
+                  <li>Any fluent <em>not</em> in the add or delete list is <strong>automatically unchanged</strong>.</li>
+                  <li>This is sometimes called the <strong>STRIPS assumption</strong>.</li>
+                </ul>
+
+                <p>Without STRIPS, one would need explicit frame axioms:</p>
+                <div class="algorithm-block">
+                  <h4>Explicit Frame Axioms (without STRIPS assumption)</h4>
+<pre>// For every fluent F and every action A that does NOT affect F:
+F holds in state s ∧ action A does not delete F
+  → F holds in Result(s, A)
+
+// Example: On(C, Table) persists through MoveToBlock(A, Table, B)
+On(C, Table, s) → On(C, Table, Result(MoveToBlock(A,Table,B), s))</pre>
+                </div>
+
+                <p>With <em>n</em> fluents and <em>m</em> actions, naively we need O(n &times; m) frame axioms. STRIPS eliminates this overhead, which is one reason it became the standard for practical planning systems.</p>
+              </section>
+
+              <!-- Section 8 -->
+              <section id="worked-example">
+                <h2>8. Worked STRIPS Example: Four-Block Tower</h2>
+
+                <div class="example-box">
+                  <h4>&#128300; Building a Four-Block Tower</h4>
+                  <p><strong>Blocks:</strong> A, B, C, D</p>
+                  <p><strong>Initial State:</strong></p>
+                  <ul>
+                    <li>On(B, A), OnTable(A), OnTable(C), OnTable(D)</li>
+                    <li>Clear(B), Clear(C), Clear(D)</li>
+                  </ul>
+                  <p><strong>Goal:</strong> On(A, B) &and; On(B, C) &and; On(C, D)</p>
+                  <p>Target tower (bottom to top): D &ndash; C &ndash; B &ndash; A</p>
+
+                  <p><strong>Step 1: MoveToTable(B, A)</strong></p>
+                  <ul>
+                    <li>Pre: On(B,A) &#10003;, Clear(B) &#10003;</li>
+                    <li>Add: OnTable(B), Clear(A) &nbsp;|&nbsp; Del: On(B,A)</li>
+                    <li>State: {OnTable(A), OnTable(B), OnTable(C), OnTable(D), Clear(A), Clear(B), Clear(C), Clear(D)}</li>
+                  </ul>
+
+                  <p><strong>Step 2: MoveFromTable(C, D)</strong></p>
+                  <ul>
+                    <li>Pre: OnTable(C) &#10003;, Clear(C) &#10003;, Clear(D) &#10003;</li>
+                    <li>Add: On(C,D) &nbsp;|&nbsp; Del: OnTable(C), Clear(D)</li>
+                    <li>State: {OnTable(A), OnTable(B), OnTable(D), On(C,D), Clear(A), Clear(B), Clear(C)}</li>
+                  </ul>
+
+                  <p><strong>Step 3: MoveFromTable(B, C)</strong></p>
+                  <ul>
+                    <li>Pre: OnTable(B) &#10003;, Clear(B) &#10003;, Clear(C) &#10003;</li>
+                    <li>Add: On(B,C) &nbsp;|&nbsp; Del: OnTable(B), Clear(C)</li>
+                    <li>State: {OnTable(A), OnTable(D), On(C,D), On(B,C), Clear(A), Clear(B)}</li>
+                  </ul>
+
+                  <p><strong>Step 4: MoveFromTable(A, B)</strong></p>
+                  <ul>
+                    <li>Pre: OnTable(A) &#10003;, Clear(A) &#10003;, Clear(B) &#10003;</li>
+                    <li>Add: On(A,B) &nbsp;|&nbsp; Del: OnTable(A), Clear(B)</li>
+                    <li>State: {OnTable(D), On(C,D), On(B,C), On(A,B), Clear(A)}</li>
+                  </ul>
+
+                  <p><strong>Goal check:</strong> On(A,B) &#10003;, On(B,C) &#10003;, On(C,D) &#10003; &mdash; <strong>Success!</strong></p>
+                  <p><strong>Plan:</strong> &langle;MoveToTable(B,A), MoveFromTable(C,D), MoveFromTable(B,C), MoveFromTable(A,B)&rangle;</p>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <ul>
+                  <li><strong>STRIPS</strong> represents actions via <strong>preconditions</strong>, <strong>add lists</strong>, and <strong>delete lists</strong>.</li>
+                  <li>The state transition is: Result(s, a) = (s &minus; Del(a)) &cup; Add(a).</li>
+                  <li>The <strong>goal-stack algorithm</strong> uses means-ends analysis but is incomplete for interacting sub-goals.</li>
+                  <li>The <strong>Sussman Anomaly</strong> shows that linear planners fail when sub-goals interact &mdash; interleaving is required.</li>
+                  <li><strong>Situation calculus</strong> provides a logical underpinning; successor-state axioms elegantly solve the frame problem.</li>
+                  <li>The <strong>STRIPS assumption</strong> eliminates the need for explicit frame axioms by treating unlisted fluents as unchanged.</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="chapters/13-planning/strips.html">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="classical-planning.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Classical Planning</span></a>
+              <a href="partial-order-planning.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Partial-Order Planning</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#strips-representation">1. STRIPS Representation</a></li>
+            <li><a href="#operator-schema">2. Operator Schemas</a></li>
+            <li><a href="#strips-algorithm">3. STRIPS Algorithm</a></li>
+            <li><a href="#blocks-world">4. Blocks World Example</a></li>
+            <li><a href="#sussman-anomaly">5. Sussman Anomaly</a></li>
+            <li><a href="#situation-calculus">6. Situation Calculus</a></li>
+            <li><a href="#frame-axioms">7. Frame Axioms</a></li>
+            <li><a href="#worked-example">8. Worked Example</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

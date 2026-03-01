@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Planning Chapter Quiz — 15 MCQ covering STRIPS operators, blocks world, GraphPlan layers, POP threats, mutex types, planning graph level-off for GATE DA.">
+  <title>Planning Quiz — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a>
+            <a href="strips.html" class="sidebar-link"><span class="link-check"></span> STRIPS<span class="link-type theory">Theory</span></a>
+            <a href="partial-order-planning.html" class="sidebar-link"><span class="link-check"></span> Partial-Order Planning<span class="link-type theory">Theory</span></a>
+            <a href="graph-planning.html" class="sidebar-link"><span class="link-check"></span> GraphPlan<span class="link-type theory">Theory</span></a>
+            <a href="notes-planning.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-planning.html" class="sidebar-link active"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="classical-planning.html">Chapter 13: Planning</a> &raquo; <span class="current">Chapter Quiz</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-quiz" data-page-id="ch13-quiz-planning">
+
+            <h1>&#129514; Planning &mdash; Chapter Quiz</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">Mixed Difficulty</span>
+              <button class="bookmark-btn" data-page="chapters/13-planning/quiz-planning.html" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="quiz-meta">
+              <span>&#128221; 15 Questions</span>
+              <span>&#9200; 30 Minutes</span>
+              <span>&#127941; Easy / Medium / Hard</span>
+            </div>
+
+            <div id="quiz-container">
+              <!-- Quiz questions rendered by QuizEngine -->
+            </div>
+
+            <button class="complete-btn" data-page="chapters/13-planning/quiz-planning.html">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="notes-planning.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Planning Quick Notes</span></a>
+              <a href="../14-constraint-satisfaction/csp-formulation.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">CSP Formulation</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#quiz-container">Quiz</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+
+  <script>
+  (function(){
+    var questions = [
+      // ===== EASY (5) =====
+      {
+        id: "ch13-q1",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "In STRIPS representation, which three components define an action?",
+        options: [
+          "Initial state, goal state, and heuristic function",
+          "Preconditions, add list, and delete list",
+          "States, transitions, and rewards",
+          "Variables, domains, and constraints"
+        ],
+        correct_answer: 1,
+        explanation_html: "A STRIPS action is defined by its <strong>preconditions</strong> (what must be true for the action to apply), <strong>add list</strong> (positive effects), and <strong>delete list</strong> (negative effects). The result of applying action a in state s is: Result(s, a) = (s &minus; Del(a)) &cup; Add(a)."
+      },
+      {
+        id: "ch13-q2",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "Under the <strong>closed-world assumption</strong>, what is the status of a proposition not mentioned in the current state?",
+        options: [
+          "It is true",
+          "It is unknown",
+          "It is false",
+          "It depends on the domain"
+        ],
+        correct_answer: 2,
+        explanation_html: "The <strong>closed-world assumption (CWA)</strong> states that any proposition not explicitly listed in the state description is assumed to be <strong>false</strong>. This eliminates the need to enumerate all negative facts."
+      },
+      {
+        id: "ch13-q3",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "What does the <strong>frame problem</strong> in planning refer to?",
+        options: [
+          "How to efficiently search large state spaces",
+          "How to represent the fact that most things do not change when an action is performed",
+          "How to decompose a planning problem into sub-problems",
+          "How to choose between competing heuristics"
+        ],
+        correct_answer: 1,
+        explanation_html: "The <strong>frame problem</strong> is about representing <em>non-change</em>: when an action occurs, most fluents remain the same. STRIPS solves this by only listing what changes (add/delete lists) and assuming everything else persists."
+      },
+      {
+        id: "ch13-q4",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "In a partial-order plan, which special actions are always included?",
+        options: [
+          "Init and Goal",
+          "Start (with initial state as effects) and Finish (with goal as preconditions)",
+          "Begin and End, both with empty effects",
+          "Open and Close, which mark plan boundaries"
+        ],
+        correct_answer: 1,
+        explanation_html: "Every partial-order plan includes <strong>Start</strong> (no preconditions; effects = initial state fluents) and <strong>Finish</strong> (preconditions = goal fluents; no effects). The ordering Start &prec; Finish is always present."
+      },
+      {
+        id: "ch13-q5",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "Which of the following is true about the planning graph in GraphPlan?",
+        options: [
+          "Proposition layers shrink over time",
+          "Action layers shrink over time",
+          "Proposition and action layers grow monotonically",
+          "Mutex relations grow monotonically"
+        ],
+        correct_answer: 2,
+        explanation_html: "In a planning graph, the sets of propositions and actions <strong>grow monotonically</strong> (P<sub>i</sub> &sube; P<sub>i+1</sub>, A<sub>i</sub> &sube; A<sub>i+1</sub>), while mutex relations <strong>shrink monotonically</strong>. This guarantees eventual level-off and termination."
+      },
+      // ===== MEDIUM (5) =====
+      {
+        id: "ch13-q6",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "Given state s = {On(A,B), OnTable(B), Clear(A)} and action MoveToTable(A, B) with Pre={On(A,B), Clear(A)}, Add={OnTable(A), Clear(B)}, Del={On(A,B)}, what is the resulting state?",
+        options: [
+          "{OnTable(A), OnTable(B), Clear(A), Clear(B)}",
+          "{OnTable(A), OnTable(B), Clear(B)}",
+          "{On(A,B), OnTable(A), OnTable(B), Clear(A), Clear(B)}",
+          "{OnTable(A), Clear(A), Clear(B)}"
+        ],
+        correct_answer: 0,
+        explanation_html: "Apply Result(s, a) = (s &minus; Del(a)) &cup; Add(a). s = {On(A,B), OnTable(B), Clear(A)}. Delete On(A,B): {OnTable(B), Clear(A)}. Add OnTable(A) and Clear(B): {<strong>OnTable(A), OnTable(B), Clear(A), Clear(B)</strong>}."
+      },
+      {
+        id: "ch13-q7",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "The <strong>Sussman Anomaly</strong> demonstrates that:",
+        options: [
+          "Backward search is always better than forward search",
+          "Linear (total-order) planners fail when sub-goals interact negatively",
+          "GraphPlan cannot solve blocks world problems",
+          "PDDL is insufficient for representing planning domains"
+        ],
+        correct_answer: 1,
+        explanation_html: "The Sussman Anomaly shows that a <strong>linear planner</strong> (one that solves sub-goals one at a time in a fixed order) will fail because achieving one sub-goal undoes the other. The solution requires <strong>interleaving</strong> actions for different sub-goals."
+      },
+      {
+        id: "ch13-q8",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "In POP, action a<sub>t</sub> <strong>threatens</strong> causal link a<sub>i</sub> &rarr;<sup>p</sup> a<sub>j</sub> when:",
+        options: [
+          "a<sub>t</sub> adds p and could be ordered between a<sub>i</sub> and a<sub>j</sub>",
+          "a<sub>t</sub> deletes p and could be ordered between a<sub>i</sub> and a<sub>j</sub>",
+          "a<sub>t</sub> requires p as a precondition",
+          "a<sub>t</sub> is mutex with a<sub>i</sub>"
+        ],
+        correct_answer: 1,
+        explanation_html: "A <strong>threat</strong> occurs when action a<sub>t</sub> <strong>deletes</strong> the proposition p that is protected by the causal link a<sub>i</sub> &rarr;<sup>p</sup> a<sub>j</sub>, <em>and</em> the current ordering constraints allow a<sub>t</sub> to be placed between a<sub>i</sub> and a<sub>j</sub>."
+      },
+      {
+        id: "ch13-q9",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "Two actions have <strong>competing needs</strong> mutex in GraphPlan when:",
+        options: [
+          "One action deletes an effect of the other",
+          "One action deletes a precondition of the other",
+          "Their preconditions are mutex in the preceding proposition layer",
+          "They both add the same proposition"
+        ],
+        correct_answer: 2,
+        explanation_html: "<strong>Competing needs</strong> is an action-level mutex that occurs when a precondition of one action and a precondition of the other are <strong>mutex in the previous proposition layer</strong>. Unlike inconsistent effects and interference, this is a <em>derived</em> mutex that may disappear as the graph grows."
+      },
+      {
+        id: "ch13-q10",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "Which planning heuristic is computed by removing all delete effects from actions and solving the resulting relaxed problem?",
+        options: [
+          "h<sub>max</sub>",
+          "h<sub>add</sub>",
+          "h<sup>+</sup> (ignore-delete-list heuristic)",
+          "h<sub>set-level</sub>"
+        ],
+        correct_answer: 2,
+        explanation_html: "The <strong>ignore-delete-list heuristic (h<sup>+</sup>)</strong> is obtained by removing all delete effects from every action. In the relaxed problem, fluents once achieved are never lost. The optimal cost of the relaxed problem is an admissible heuristic, though computing it exactly is NP-hard."
+      },
+      // ===== HARD (5) =====
+      {
+        id: "ch13-q11",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "In the Sussman Anomaly, the initial state is {On(C,A), OnTable(A), OnTable(B), Clear(C), Clear(B)} and the goal is On(A,B) &and; On(B,C). What is the minimum number of actions in an optimal plan?",
+        options: [
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        correct_answer: 1,
+        explanation_html: "The optimal plan requires exactly <strong>3 actions</strong>: (1) MoveToTable(C, A) &mdash; frees A, (2) MoveFromTable(B, C) &mdash; achieves On(B,C), (3) MoveFromTable(A, B) &mdash; achieves On(A,B). No shorter plan exists because C must be moved off A before A can be moved, and B must be placed on C before A is placed on B."
+      },
+      {
+        id: "ch13-q12",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "In a planning graph, propositions p and q are mutex at level i+1 due to <strong>inconsistent support</strong>. Which of the following must be true?",
+        options: [
+          "There exists at least one non-mutex pair of actions that achieves p and q respectively",
+          "Every pair of actions (a<sub>p</sub>, a<sub>q</sub>) where a<sub>p</sub> achieves p and a<sub>q</sub> achieves q is mutex in A<sub>i</sub>",
+          "p and q are always mutex in all subsequent levels",
+          "p and q have inconsistent effects"
+        ],
+        correct_answer: 1,
+        explanation_html: "<strong>Inconsistent support</strong> means that for propositions p and q, <em>every</em> pair of actions that could produce them at level i is mutex. If even one non-mutex pair of achievers existed, the propositions would not be mutex. This is a derived mutex and may disappear at later levels as new achievers become available."
+      },
+      {
+        id: "ch13-q13",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "A POP threat on causal link a<sub>i</sub> &rarr;<sup>p</sup> a<sub>j</sub> by action a<sub>t</sub> is resolved by <strong>demotion</strong>. What ordering constraint is added?",
+        options: [
+          "a<sub>i</sub> &prec; a<sub>t</sub>",
+          "a<sub>t</sub> &prec; a<sub>i</sub>",
+          "a<sub>j</sub> &prec; a<sub>t</sub>",
+          "a<sub>t</sub> &prec; a<sub>j</sub>"
+        ],
+        correct_answer: 1,
+        explanation_html: "<strong>Demotion</strong> forces the threatening action a<sub>t</sub> to execute <em>before</em> the producer a<sub>i</sub>: a<sub>t</sub> &prec; a<sub>i</sub>. This ensures a<sub>t</sub> cannot appear between a<sub>i</sub> and a<sub>j</sub>. (Promotion would add a<sub>j</sub> &prec; a<sub>t</sub> instead.)"
+      },
+      {
+        id: "ch13-q14",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "Consider the &ldquo;have cake and eat it too&rdquo; problem. Initial state: {Have(Cake)}. Goal: {Have(Cake), Eaten(Cake)}. Actions: Eat(Cake) [Pre: Have(Cake); Add: Eaten(Cake); Del: Have(Cake)] and Bake(Cake) [Pre: &not;Have(Cake); Add: Have(Cake)]. At which planning graph level do the goal propositions first appear <strong>non-mutex</strong>?",
+        options: [
+          "P<sub>0</sub>",
+          "P<sub>1</sub>",
+          "P<sub>2</sub>",
+          "P<sub>3</sub>"
+        ],
+        correct_answer: 2,
+        explanation_html: "At P<sub>1</sub>, both Have(Cake) and Eaten(Cake) appear, but they are <strong>mutex</strong> because their only achievers (no-op(Have(Cake)) and Eat(Cake)) are mutex by inconsistent effects. At P<sub>2</sub>, Bake(Cake) becomes available as a new achiever for Have(Cake). Bake(Cake) and no-op(Eaten(Cake)) are <strong>not mutex</strong>, so the goals are first non-mutex at <strong>P<sub>2</sub></strong>."
+      },
+      {
+        id: "ch13-q15",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "Which of the following planning heuristics derived from the planning graph is <strong>admissible</strong>?",
+        options: [
+          "h<sub>sum-level</sub> &mdash; sum of first-appearance levels of each goal",
+          "h<sub>set-level</sub> &mdash; first level where all goals appear non-mutex",
+          "h<sub>add</sub> &mdash; sum of costs of individual goal fluents in the relaxed problem",
+          "h<sup>FF</sup> &mdash; number of actions in a relaxed plan"
+        ],
+        correct_answer: 1,
+        explanation_html: "<strong>h<sub>set-level</sub></strong> is admissible because it returns the first level at which all goal propositions appear and no pair is mutex &mdash; this can never overestimate the true plan length (a valid plan needs at least that many parallel steps). h<sub>sum-level</sub> can overestimate (positive interactions), h<sub>add</sub> can overestimate, and h<sup>FF</sup> is not guaranteed admissible."
+      }
+    ];
+
+    if(typeof QuizEngine !== 'undefined' && QuizEngine.init) {
+      QuizEngine.init({ quizId: 'quiz-ch13', timeLimit: 1800, questions: questions, containerId: 'quiz-container' });
+    } else {
+      // Fallback: render questions statically
+      var container = document.getElementById('quiz-container');
+      if(container) {
+        var html = '';
+        questions.forEach(function(q, idx){
+          html += '<div class="quiz-question" id="'+q.id+'" style="margin-bottom:2rem; padding:1.25rem; border:1px solid var(--border,#ddd); border-radius:8px;">';
+          html += '<h3>Question '+(idx+1)+' <span class="gate-badge '+(q.difficulty==='easy'?'low':q.difficulty==='medium'?'medium':'high')+'">'+q.difficulty.charAt(0).toUpperCase()+q.difficulty.slice(1)+'</span></h3>';
+          html += '<p>'+q.question_html+'</p>';
+          if(q.options){
+            html += '<div class="quiz-options">';
+            q.options.forEach(function(opt, oi){
+              html += '<label class="quiz-option" style="display:block;margin:0.4rem 0;cursor:pointer;"><input type="radio" name="'+q.id+'" value="'+oi+'"> '+opt+'</label>';
+            });
+            html += '</div>';
+          } else {
+            html += '<input type="text" class="quiz-nat-input" placeholder="Enter numerical answer" style="padding:0.5rem; border:1px solid var(--border,#ccc); border-radius:4px; width:200px;">';
+          }
+          html += '</div>';
+        });
+        html += '<button id="quizSubmitBtn" style="padding:0.75rem 2rem; background:var(--accent,#3498db); color:#fff; border:none; border-radius:8px; cursor:pointer; font-size:1rem; font-weight:600;">Submit Quiz</button>';
+        html += '<div id="quizResults" style="margin-top:1.5rem;"></div>';
+        container.innerHTML = html;
+
+        // Simple scoring
+        document.getElementById('quizSubmitBtn').addEventListener('click', function(){
+          var score = 0;
+          questions.forEach(function(q){
+            if(q.options){
+              var sel = document.querySelector('input[name="'+q.id+'"]:checked');
+              if(sel && parseInt(sel.value) === q.correct_answer) score++;
+            }
+          });
+          document.getElementById('quizResults').innerHTML = '<div style="padding:1rem; background:var(--bg-secondary,#f0f0f0); border-radius:8px; font-size:1.1rem;"><strong>Score: '+score+' / '+questions.length+'</strong></div>';
+        });
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

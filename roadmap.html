@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Visual learning roadmap from beginner to advanced — phased study plan with estimated hours for mastering AI for GATE DA.">
+  <title>Learning Roadmap — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/navigation.css">
+  <link rel="stylesheet" href="css/theory.css">
+  <link rel="stylesheet" href="css/notes.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .roadmap-hero {
+      text-align: center;
+      padding: var(--spacing-2xl) var(--spacing-lg);
+      background: linear-gradient(135deg, #1a237e, #4a148c, #880e4f);
+      color: #fff;
+      border-radius: var(--border-radius-lg);
+      margin-bottom: var(--spacing-2xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .roadmap-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .roadmap-hero * { position: relative; z-index: 1; }
+    .roadmap-hero h1 { color: #fff; font-size: 2.2rem; margin-bottom: var(--spacing-sm); border: none; padding: 0; }
+    .roadmap-hero p { opacity: 0.92; font-size: var(--font-size-md); max-width: 640px; margin: 0 auto; }
+    .roadmap-hero .total-hours { display: inline-block; margin-top: var(--spacing-lg); background: rgba(255,255,255,0.15); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--border-radius-md); font-weight: 700; font-size: var(--font-size-lg); }
+
+    /* Road / Path */
+    .roadmap-path { position: relative; padding-left: 40px; }
+    .roadmap-path::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--color-primary), var(--color-secondary), #e91e63, #ff9800, #4caf50, #2196f3, #9c27b0);
+      border-radius: 2px;
+    }
+
+    .phase-block { position: relative; margin-bottom: var(--spacing-2xl); }
+    .phase-block::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 8px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 4px solid var(--bg-primary);
+      z-index: 2;
+    }
+    .phase-block:nth-child(1)::before { background: var(--color-primary); }
+    .phase-block:nth-child(2)::before { background: var(--color-secondary); }
+    .phase-block:nth-child(3)::before { background: #e91e63; }
+    .phase-block:nth-child(4)::before { background: #ff9800; }
+    .phase-block:nth-child(5)::before { background: #4caf50; }
+    .phase-block:nth-child(6)::before { background: #2196f3; }
+    .phase-block:nth-child(7)::before { background: #9c27b0; }
+
+    .phase-header { display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-md); flex-wrap: wrap; }
+    .phase-num { font-size: var(--font-size-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 3px 12px; border-radius: 12px; background: var(--bg-secondary); color: var(--text-muted); }
+    .phase-title { font-size: var(--font-size-xl); font-weight: 700; margin: 0; }
+    .phase-hours { font-size: var(--font-size-sm); color: var(--text-muted); background: var(--bg-secondary); padding: 3px 10px; border-radius: var(--border-radius-sm); }
+    .phase-desc { font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--spacing-md); max-width: 700px; }
+
+    .phase-chapters { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--spacing-md); }
+    .roadmap-ch-card { padding: var(--spacing-lg); display: flex; flex-direction: column; }
+    .roadmap-ch-card .ch-icon { font-size: 2rem; margin-bottom: var(--spacing-sm); }
+    .roadmap-ch-card .ch-num { font-size: var(--font-size-xs); font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .roadmap-ch-card .ch-name { font-size: var(--font-size-md); font-weight: 700; margin: var(--spacing-xs) 0; }
+    .roadmap-ch-card .ch-desc { font-size: var(--font-size-sm); color: var(--text-secondary); flex: 1; margin-bottom: var(--spacing-md); }
+    .roadmap-ch-card .ch-meta { display: flex; justify-content: space-between; align-items: center; font-size: var(--font-size-xs); color: var(--text-muted); }
+    .roadmap-ch-card .ch-meta .hours { font-weight: 600; }
+    .roadmap-ch-card .ch-link { display: inline-block; margin-top: var(--spacing-sm); font-size: var(--font-size-sm); font-weight: 600; color: var(--color-primary); text-decoration: none; }
+    .roadmap-ch-card .ch-link:hover { text-decoration: underline; }
+
+    .phase-prereq { font-size: var(--font-size-xs); color: var(--text-muted); margin-top: var(--spacing-sm); }
+    .phase-prereq strong { color: var(--text-secondary); }
+
+    /* Summary bar */
+    .summary-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-2xl); }
+    .summary-bar .summary-item { text-align: center; padding: var(--spacing-md); }
+    .summary-bar .summary-item .s-val { font-size: var(--font-size-xl); font-weight: 700; color: var(--color-primary); display: block; }
+    .summary-bar .summary-item .s-lbl { font-size: var(--font-size-xs); color: var(--text-muted); }
+
+    /* Tips section */
+    .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-xl); }
+    .tip-card { padding: var(--spacing-lg); }
+    .tip-card .tip-icon { font-size: 1.6rem; margin-bottom: var(--spacing-sm); }
+    .tip-card h4 { margin: 0 0 var(--spacing-xs); font-size: var(--font-size-md); }
+    .tip-card p { font-size: var(--font-size-sm); color: var(--text-secondary); margin: 0; }
+
+    @media (max-width: 768px) {
+      .roadmap-path { padding-left: 28px; }
+      .roadmap-path::before { left: 10px; }
+      .phase-block::before { left: -22px; width: 16px; height: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">☰</button>
+        <a href="index.html" class="site-logo">
+          <span class="logo-icon">🧠</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" placeholder="Search topics… (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">🌙</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/00-introduction/what-is-ai.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">00</span> Introduction to AI</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/01-intelligent-agents/agents-and-environments.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">01</span> Intelligent Agents</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/02-uninformed-search/problem-formulation.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">02</span> Uninformed Search</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/03-informed-search/heuristic-functions.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">03</span> Informed Search</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/04-adversarial-search/game-theory-basics.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">04</span> Adversarial Search</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/05-propositional-logic/syntax-and-semantics.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">05</span> Propositional Logic</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/06-predicate-logic/first-order-logic-syntax.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">06</span> Predicate Logic</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/07-reasoning-under-uncertainty/probability-review.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">07</span> Reasoning Under Uncertainty</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/08-machine-learning-foundations/ml-paradigms.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">08</span> ML Foundations</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/09-neural-networks-deep-learning/perceptron.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">09</span> Neural Networks &amp; DL</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/10-natural-language-processing/text-preprocessing.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">10</span> Natural Language Processing</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/11-computer-vision/image-fundamentals.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">11</span> Computer Vision</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/12-reinforcement-learning/mdp.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">12</span> Reinforcement Learning</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/13-planning/classical-planning.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">13</span> Planning</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/14-constraint-satisfaction/csp-formulation.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">14</span> Constraint Satisfaction</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/15-advanced-topics/explainable-ai.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">15</span> Advanced Topics</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/16-gate-da-preparation/exam-pattern-strategy.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">16</span> GATE DA Preparation</a></div></div>
+      </div>
+    </nav>
+
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">🏠 Home</a> <span class="breadcrumb-sep">›</span>
+          <span class="breadcrumb-current">Learning Roadmap</span>
+        </nav>
+
+        <!-- Bookmark Button -->
+        <button class="bookmark-btn" id="bookmarkBtn" title="Bookmark this page" aria-label="Bookmark this page">⭐ Bookmark</button>
+
+        <!-- ===== HERO ===== -->
+        <section class="roadmap-hero fade-in">
+          <h1>🗺️ Learning Roadmap</h1>
+          <p>Your phased journey from AI beginner to GATE-DA-ready. Follow each phase in order — every phase builds on the previous one.</p>
+          <div class="total-hours">⏱️ Total Estimated Study Time: ~120 Hours</div>
+        </section>
+
+        <!-- ===== QUICK SUMMARY ===== -->
+        <section class="fade-in" id="overview">
+          <div class="summary-bar">
+            <div class="card summary-item card-hover"><span class="s-val">7</span><span class="s-lbl">Phases</span></div>
+            <div class="card summary-item card-hover"><span class="s-val">17</span><span class="s-lbl">Chapters</span></div>
+            <div class="card summary-item card-hover"><span class="s-val">118</span><span class="s-lbl">Topics</span></div>
+            <div class="card summary-item card-hover"><span class="s-val">~120h</span><span class="s-lbl">Study Hours</span></div>
+          </div>
+        </section>
+
+        <!-- ===== ROADMAP PATH ===== -->
+        <section class="fade-in" id="phases">
+          <h2>🛤️ Your Learning Path</h2>
+          <div class="roadmap-path">
+
+            <!-- ======== PHASE 1 ======== -->
+            <div class="phase-block">
+              <div class="phase-header">
+                <span class="phase-num">Phase 1</span>
+                <h3 class="phase-title">Foundations</h3>
+                <span class="phase-hours">⏱️ ~10 hours</span>
+              </div>
+              <p class="phase-desc">Build your base. Understand what AI is, how agents perceive and act in environments, and set the stage for search and reasoning.</p>
+              <div class="phase-chapters">
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">🌟</div>
+                  <div class="ch-num">Chapter 00</div>
+                  <div class="ch-name">Introduction to AI</div>
+                  <div class="ch-desc">What is AI? History, types (narrow vs general), AI vs ML vs DL distinctions, and GATE DA exam overview.</div>
+                  <div class="ch-meta"><span>5 topics</span><span class="hours">~4h</span></div>
+                  <a href="chapters/00-introduction/what-is-ai.html" class="ch-link">Start Chapter →</a>
+                </div>
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">🤖</div>
+                  <div class="ch-num">Chapter 01</div>
+                  <div class="ch-name">Intelligent Agents</div>
+                  <div class="ch-desc">Agents &amp; environments, rationality, PEAS framework, and the four main agent architectures (simple reflex to learning).</div>
+                  <div class="ch-meta"><span>4 topics</span><span class="hours">~6h</span></div>
+                  <a href="chapters/01-intelligent-agents/agents-and-environments.html" class="ch-link">Start Chapter →</a>
+                </div>
+              </div>
+              <p class="phase-prereq"><strong>Prerequisites:</strong> None — this is where you begin.</p>
+            </div>
+
+            <!-- ======== PHASE 2 ======== -->
+            <div class="phase-block">
+              <div class="phase-header">
+                <span class="phase-num">Phase 2</span>
+                <h3 class="phase-title">Search Strategies</h3>
+                <span class="phase-hours">⏱️ ~34 hours</span>
+              </div>
+              <p class="phase-desc">Master the most heavily tested GATE AI topic area. Learn blind search, heuristic search, A*, game trees, minimax, and alpha-beta pruning.</p>
+              <div class="phase-chapters">
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">🔍</div>
+                  <div class="ch-num">Chapter 02</div>
+                  <div class="ch-name">Uninformed Search</div>
+                  <div class="ch-desc">BFS, DFS, UCS, IDDFS, bidirectional search. Focus on time and space complexity comparisons — a GATE favourite.</div>
+                  <div class="ch-meta"><span>10 topics</span><span class="hours">~12h</span></div>
+                  <a href="chapters/02-uninformed-search/problem-formulation.html" class="ch-link">Start Chapter →</a>
+                </div>
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">🧭</div>
+                  <div class="ch-num">Chapter 03</div>
+                  <div class="ch-name">Informed Search</div>
+                  <div class="ch-desc">Heuristic functions, greedy best-first, A* search, IDA*, RBFS, SMA*, hill climbing, simulated annealing, genetic algorithms.</div>
+                  <div class="ch-meta"><span>10 topics</span><span class="hours">~12h</span></div>
+                  <a href="chapters/03-informed-search/heuristic-functions.html" class="ch-link">Start Chapter →</a>
+                </div>
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">⚔️</div>
+                  <div class="ch-num">Chapter 04</div>
+                  <div class="ch-name">Adversarial Search</div>
+                  <div class="ch-desc">Game theory basics, minimax, alpha-beta pruning, move ordering, evaluation functions, stochastic games, MCTS.</div>
+                  <div class="ch-meta"><span>8 topics</span><span class="hours">~10h</span></div>
+                  <a href="chapters/04-adversarial-search/game-theory-basics.html" class="ch-link">Start Chapter →</a>
+                </div>
+              </div>
+              <p class="phase-prereq"><strong>Prerequisites:</strong> Phase 1 (agents &amp; environments vocabulary).</p>
+            </div>
+
+            <!-- ======== PHASE 3 ======== -->
+            <div class="phase-block">
+              <div class="phase-header">
+                <span class="phase-num">Phase 3</span>
+                <h3 class="phase-title">Logic &amp; Reasoning</h3>
+                <span class="phase-hours">⏱️ ~36 hours</span>
+              </div>
+              <p class="phase-desc">Knowledge representation and probabilistic reasoning. These topics carry the highest combined GATE weightage — invest deeply here.</p>
+              <div class="phase-chapters">
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">🔗</div>
+                  <div class="ch-num">Chapter 05</div>
+                  <div class="ch-name">Propositional Logic</div>
+                  <div class="ch-desc">Syntax &amp; semantics, connectives, truth tables, CNF/DNF, inference rules, resolution, forward/backward chaining, SAT, Horn clauses.</div>
+                  <div class="ch-meta"><span>10 topics</span><span class="hours">~10h</span></div>
+                  <a href="chapters/05-propositional-logic/syntax-and-semantics.html" class="ch-link">Start Chapter →</a>
+                </div>
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">📐</div>
+                  <div class="ch-num">Chapter 06</div>
+                  <div class="ch-name">Predicate Logic</div>
+                  <div class="ch-desc">First-order logic syntax, quantifiers, unification, skolemization, FOL inference, generalized modus ponens, resolution in FOL.</div>
+                  <div class="ch-meta"><span>9 topics</span><span class="hours">~10h</span></div>
+                  <a href="chapters/06-predicate-logic/first-order-logic-syntax.html" class="ch-link">Start Chapter →</a>
+                </div>
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">🎲</div>
+                  <div class="ch-num">Chapter 07</div>
+                  <div class="ch-name">Reasoning Under Uncertainty</div>
+                  <div class="ch-desc">Probability, Bayes' rule, Bayesian networks, exact/approximate inference, sampling methods, HMMs, particle filtering.</div>
+                  <div class="ch-meta"><span>15 topics</span><span class="hours">~16h</span></div>
+                  <a href="chapters/07-reasoning-under-uncertainty/probability-review.html" class="ch-link">Start Chapter →</a>
+                </div>
+              </div>
+              <p class="phase-prereq"><strong>Prerequisites:</strong> Phase 1. Some probability background helps for Ch 07.</p>
+            </div>
+
+            <!-- ======== PHASE 4 ======== -->
+            <div class="phase-block">
+              <div class="phase-header">
+                <span class="phase-num">Phase 4</span>
+                <h3 class="phase-title">Machine Learning &amp; Deep Learning</h3>
+                <span class="phase-hours">⏱️ ~22 hours</span>
+              </div>
+              <p class="phase-desc">Bridge classical AI and modern ML/DL. Learn the theory behind learning algorithms, neural network architectures, and training methods.</p>
+              <div class="phase-chapters">
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">📈</div>
+                  <div class="ch-num">Chapter 08</div>
+                  <div class="ch-name">ML Foundations</div>
+                  <div class="ch-desc">ML paradigms (supervised, unsupervised, semi-supervised), bias-variance tradeoff, overfitting, cross-validation, evaluation metrics, feature engineering.</div>
+                  <div class="ch-meta"><span>6 topics</span><span class="hours">~8h</span></div>
+                  <a href="chapters/08-machine-learning-foundations/ml-paradigms.html" class="ch-link">Start Chapter →</a>
+                </div>
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">🧬</div>
+                  <div class="ch-num">Chapter 09</div>
+                  <div class="ch-name">Neural Networks &amp; Deep Learning</div>
+                  <div class="ch-desc">Perceptron, MLP, backpropagation, activation functions, optimizers, CNNs, RNNs, LSTM/GRU, attention, transformers, regularization.</div>
+                  <div class="ch-meta"><span>11 topics</span><span class="hours">~14h</span></div>
+                  <a href="chapters/09-neural-networks-deep-learning/perceptron.html" class="ch-link">Start Chapter →</a>
+                </div>
+              </div>
+              <p class="phase-prereq"><strong>Prerequisites:</strong> Phase 1 + basic linear algebra and calculus. Phase 3 (Ch 07 probability) helps significantly.</p>
+            </div>
+
+            <!-- ======== PHASE 5 ======== -->
+            <div class="phase-block">
+              <div class="phase-header">
+                <span class="phase-num">Phase 5</span>
+                <h3 class="phase-title">Applications</h3>
+                <span class="phase-hours">⏱️ ~22 hours</span>
+              </div>
+              <p class="phase-desc">See AI in action: natural language processing, computer vision, and reinforcement learning. Lower direct GATE weightage but essential for a complete understanding.</p>
+              <div class="phase-chapters">
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">💬</div>
+                  <div class="ch-num">Chapter 10</div>
+                  <div class="ch-name">Natural Language Processing</div>
+                  <div class="ch-desc">Text preprocessing, word embeddings (Word2Vec, GloVe), language models, LLMs, GPT architecture, BERT, prompt engineering.</div>
+                  <div class="ch-meta"><span>7 topics</span><span class="hours">~8h</span></div>
+                  <a href="chapters/10-natural-language-processing/text-preprocessing.html" class="ch-link">Start Chapter →</a>
+                </div>
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">👁️</div>
+                  <div class="ch-num">Chapter 11</div>
+                  <div class="ch-name">Computer Vision</div>
+                  <div class="ch-desc">Image fundamentals, CNN architectures (LeNet, AlexNet, VGG, ResNet), object detection, image segmentation, generative models.</div>
+                  <div class="ch-meta"><span>5 topics</span><span class="hours">~6h</span></div>
+                  <a href="chapters/11-computer-vision/image-fundamentals.html" class="ch-link">Start Chapter →</a>
+                </div>
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">🎮</div>
+                  <div class="ch-num">Chapter 12</div>
+                  <div class="ch-name">Reinforcement Learning</div>
+                  <div class="ch-desc">Markov Decision Processes, value iteration, policy iteration, Q-learning, and deep RL concepts.</div>
+                  <div class="ch-meta"><span>5 topics</span><span class="hours">~8h</span></div>
+                  <a href="chapters/12-reinforcement-learning/mdp.html" class="ch-link">Start Chapter →</a>
+                </div>
+              </div>
+              <p class="phase-prereq"><strong>Prerequisites:</strong> Phase 4 (neural networks for NLP/CV); Phase 3 (probability for RL).</p>
+            </div>
+
+            <!-- ======== PHASE 6 ======== -->
+            <div class="phase-block">
+              <div class="phase-header">
+                <span class="phase-num">Phase 6</span>
+                <h3 class="phase-title">Advanced AI</h3>
+                <span class="phase-hours">⏱️ ~20 hours</span>
+              </div>
+              <p class="phase-desc">Planning, constraint satisfaction, and cutting-edge AI topics. These round out your knowledge and occasionally appear in GATE.</p>
+              <div class="phase-chapters">
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">📋</div>
+                  <div class="ch-num">Chapter 13</div>
+                  <div class="ch-name">Planning</div>
+                  <div class="ch-desc">Classical planning, STRIPS representation, partial-order planning, and GraphPlan algorithm.</div>
+                  <div class="ch-meta"><span>4 topics</span><span class="hours">~6h</span></div>
+                  <a href="chapters/13-planning/classical-planning.html" class="ch-link">Start Chapter →</a>
+                </div>
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">🧩</div>
+                  <div class="ch-num">Chapter 14</div>
+                  <div class="ch-name">Constraint Satisfaction</div>
+                  <div class="ch-desc">CSP formulation, backtracking search, arc consistency (AC-3), and constraint propagation techniques.</div>
+                  <div class="ch-meta"><span>4 topics</span><span class="hours">~6h</span></div>
+                  <a href="chapters/14-constraint-satisfaction/csp-formulation.html" class="ch-link">Start Chapter →</a>
+                </div>
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">🚀</div>
+                  <div class="ch-num">Chapter 15</div>
+                  <div class="ch-name">Advanced Topics</div>
+                  <div class="ch-desc">Explainable AI, AI ethics, federated learning, neuromorphic computing, quantum ML, AI safety, multimodal AI, autonomous systems.</div>
+                  <div class="ch-meta"><span>9 topics</span><span class="hours">~8h</span></div>
+                  <a href="chapters/15-advanced-topics/explainable-ai.html" class="ch-link">Start Chapter →</a>
+                </div>
+              </div>
+              <p class="phase-prereq"><strong>Prerequisites:</strong> Phases 1–3 (search, logic). Phase 4 helps for advanced topics.</p>
+            </div>
+
+            <!-- ======== PHASE 7 ======== -->
+            <div class="phase-block">
+              <div class="phase-header">
+                <span class="phase-num">Phase 7</span>
+                <h3 class="phase-title">Exam Preparation</h3>
+                <span class="phase-hours">⏱️ ~6 hours + ongoing revision</span>
+              </div>
+              <p class="phase-desc">Consolidate everything. Practice previous year questions, memorize key formulas, review common mistakes, and follow the revision checklist.</p>
+              <div class="phase-chapters">
+                <div class="card roadmap-ch-card card-hover">
+                  <div class="ch-icon">🎯</div>
+                  <div class="ch-num">Chapter 16</div>
+                  <div class="ch-name">GATE DA Preparation</div>
+                  <div class="ch-desc">Exam pattern &amp; strategy, topic-wise weightage analysis, previous year question compilation, formula sheet, common mistakes, and final revision checklist.</div>
+                  <div class="ch-meta"><span>6 topics</span><span class="hours">~6h + revision</span></div>
+                  <a href="chapters/16-gate-da-preparation/exam-pattern-strategy.html" class="ch-link">Start Chapter →</a>
+                </div>
+              </div>
+              <p class="phase-prereq"><strong>Prerequisites:</strong> All previous phases. This is your final consolidation step.</p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ===== STUDY TIPS ===== -->
+        <section class="fade-in" id="tips">
+          <h2>💡 Study Tips for Success</h2>
+          <div class="tips-grid">
+            <div class="card tip-card card-hover">
+              <div class="tip-icon">📅</div>
+              <h4>Plan Your Schedule</h4>
+              <p>Allocate ~2 hours daily. At this pace, you can complete the entire roadmap in approximately 8–10 weeks.</p>
+            </div>
+            <div class="card tip-card card-hover">
+              <div class="tip-icon">🔁</div>
+              <h4>Spaced Repetition</h4>
+              <p>Review completed phases every 2 weeks. Use the formula sheet and revision checklist in Chapter 16 for quick recall.</p>
+            </div>
+            <div class="card tip-card card-hover">
+              <div class="tip-icon">✍️</div>
+              <h4>Practice Problems</h4>
+              <p>After each chapter, solve the quiz questions. For high-priority topics, solve GATE previous year questions immediately.</p>
+            </div>
+            <div class="card tip-card card-hover">
+              <div class="tip-icon">📝</div>
+              <h4>Take Notes</h4>
+              <p>Use the bookmark feature to save important pages. Write concise summaries in your own words for each chapter.</p>
+            </div>
+            <div class="card tip-card card-hover">
+              <div class="tip-icon">⏰</div>
+              <h4>Time Your Practice</h4>
+              <p>GATE gives ~2.7 minutes per question. Practice solving problems within this time limit, especially for search and logic.</p>
+            </div>
+            <div class="card tip-card card-hover">
+              <div class="tip-icon">🎯</div>
+              <h4>Focus on High Priority</h4>
+              <p>Phases 2 and 3 (Search + Logic/Reasoning) carry the most marks. Ensure you're rock-solid on these before moving to applications.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== PREV/NEXT NAV ===== -->
+        <nav class="prev-next-nav" aria-label="Page navigation">
+          <a href="syllabus.html" class="prev-next-btn prev-btn">
+            <span class="nav-direction">← Previous</span>
+            <span class="nav-title">GATE DA AI Syllabus</span>
+          </a>
+          <a href="about.html" class="prev-next-btn next-btn">
+            <span class="nav-direction">Next →</span>
+            <span class="nav-title">About This Course</span>
+          </a>
+        </nav>
+
+      </div>
+
+      <!-- ===== PAGE TOC (RIGHT SIDEBAR) ===== -->
+      <aside class="page-toc" aria-label="On this page">
+        <div class="page-toc-title">On This Page</div>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#phases">Learning Path</a></li>
+          <li><a href="#tips">Study Tips</a></li>
+        </ul>
+      </aside>
+    </main>
+  </div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/progress-tracker.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

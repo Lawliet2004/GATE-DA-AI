@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quick Revision Notes for Predicate Logic — FOL syntax cheat sheet, quantifier equivalences, inference rules, Skolemization steps, unification summary for GATE DA.">
+  <title>Notes: Predicate Logic — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a>
+            <a href="fol-semantics.html" class="sidebar-link"><span class="link-check"></span> FOL Semantics<span class="link-type theory">Theory</span></a>
+            <a href="quantifier-rules.html" class="sidebar-link"><span class="link-check"></span> Quantifier Rules<span class="link-type theory">Theory</span></a>
+            <a href="fol-inference-rules.html" class="sidebar-link"><span class="link-check"></span> FOL Inference Rules<span class="link-type theory">Theory</span></a>
+            <a href="unification.html" class="sidebar-link"><span class="link-check"></span> Unification<span class="link-type theory">Theory</span></a>
+            <a href="resolution-in-fol.html" class="sidebar-link"><span class="link-check"></span> Resolution in FOL<span class="link-type theory">Theory</span></a>
+            <a href="forward-and-backward-chaining.html" class="sidebar-link"><span class="link-check"></span> Forward &amp; Backward Chaining<span class="link-type theory">Theory</span></a>
+            <a href="knowledge-engineering.html" class="sidebar-link"><span class="link-check"></span> Knowledge Engineering<span class="link-type theory">Theory</span></a>
+            <a href="limitations-of-fol.html" class="sidebar-link"><span class="link-check"></span> Limitations of FOL<span class="link-type theory">Theory</span></a>
+            <a href="practical-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Practice Exercises<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-predicate.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-predicate-logic.html" class="sidebar-link active"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="first-order-logic-syntax.html">Chapter 6: Predicate Logic</a> &raquo; <span class="current">Quick Revision Notes</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch06-notes">
+
+            <h1>&#128203; Quick Revision Notes &mdash; Predicate Logic</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch06-notes" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <p>One-page summary of all Predicate Logic concepts. Perfect for last-minute revision before GATE.</p>
+
+            <div class="theory-content">
+
+              <!-- 1. SYNTAX -->
+              <section id="syntax-summary">
+                <h2>1. FOL Syntax Cheat Sheet</h2>
+                <table class="comparison-table">
+                  <thead><tr><th>Component</th><th>Symbol</th><th>Example</th></tr></thead>
+                  <tbody>
+                    <tr><td>Constants</td><td>a, b, John</td><td>Specific objects</td></tr>
+                    <tr><td>Variables</td><td>x, y, z</td><td>Placeholders for objects</td></tr>
+                    <tr><td>Predicates</td><td>P, Q, Loves</td><td>Relations: Loves(x, y)</td></tr>
+                    <tr><td>Functions</td><td>f, g, Mother</td><td>Mappings: Mother(x)</td></tr>
+                    <tr><td>Universal quantifier</td><td>&forall;</td><td>&forall;x &mdash; &ldquo;for all x&rdquo;</td></tr>
+                    <tr><td>Existential quantifier</td><td>&exist;</td><td>&exist;x &mdash; &ldquo;there exists x&rdquo;</td></tr>
+                    <tr><td>Connectives</td><td>&and; &or; &not; &rarr; &harr;</td><td>Same as propositional logic</td></tr>
+                    <tr><td>Equality</td><td>=</td><td>x = y</td></tr>
+                  </tbody>
+                </table>
+
+                <div class="note-box">
+                  <div class="box-title">Term vs Formula</div>
+                  <p><strong>Term:</strong> constant, variable, or f(t<sub>1</sub>,&hellip;,t<sub>n</sub>). Refers to an <em>object</em>.</p>
+                  <p><strong>Atomic formula:</strong> P(t<sub>1</sub>,&hellip;,t<sub>n</sub>) or t<sub>1</sub> = t<sub>2</sub>. Has a <em>truth value</em>.</p>
+                </div>
+              </section>
+
+              <!-- 2. QUANTIFIER EQUIVALENCES -->
+              <section id="quantifier-summary">
+                <h2>2. Quantifier Equivalences</h2>
+                <table class="comparison-table">
+                  <thead><tr><th>Rule</th><th>Equivalence</th></tr></thead>
+                  <tbody>
+                    <tr><td>Negation of &forall;</td><td>&not;&forall;x P(x) &equiv; &exist;x &not;P(x)</td></tr>
+                    <tr><td>Negation of &exist;</td><td>&not;&exist;x P(x) &equiv; &forall;x &not;P(x)</td></tr>
+                    <tr><td>&forall; distributes over &and;</td><td>&forall;x (P &and; Q) &equiv; &forall;x P &and; &forall;x Q</td></tr>
+                    <tr><td>&exist; distributes over &or;</td><td>&exist;x (P &or; Q) &equiv; &exist;x P &or; &exist;x Q</td></tr>
+                    <tr><td>Order: same type</td><td>&forall;x &forall;y P &equiv; &forall;y &forall;x P</td></tr>
+                    <tr><td>Order: different type</td><td>&forall;x &exist;y P &nequiv; &exist;y &forall;x P (in general)</td></tr>
+                  </tbody>
+                </table>
+
+                <div class="warning-box">
+                  <div class="box-title">Common Trap</div>
+                  <p>&forall;x (P &or; Q) &nequiv; &forall;x P &or; &forall;x Q &emsp; (NOT valid!)</p>
+                  <p>&exist;x (P &and; Q) &nequiv; &exist;x P &and; &exist;x Q &emsp; (left &rArr; right, but NOT right &rArr; left)</p>
+                </div>
+              </section>
+
+              <!-- 3. TRANSLATION PATTERNS -->
+              <section id="translation-summary">
+                <h2>3. Translation Patterns</h2>
+                <table class="comparison-table">
+                  <thead><tr><th>English</th><th>FOL Pattern</th></tr></thead>
+                  <tbody>
+                    <tr><td>All A are B</td><td>&forall;x (A(x) &rarr; B(x))</td></tr>
+                    <tr><td>Some A are B</td><td>&exist;x (A(x) &and; B(x))</td></tr>
+                    <tr><td>No A are B</td><td>&forall;x (A(x) &rarr; &not;B(x)) &equiv; &not;&exist;x (A(x) &and; B(x))</td></tr>
+                    <tr><td>Only A are B</td><td>&forall;x (B(x) &rarr; A(x))</td></tr>
+                    <tr><td>Exactly one</td><td>&exist;x (P(x) &and; &forall;y (P(y) &rarr; y = x))</td></tr>
+                  </tbody>
+                </table>
+                <div class="warning-box">
+                  <div class="box-title">&forall; uses &rarr;, &exist; uses &and;</div>
+                  <p>&forall;x (A(x) <strong>&and;</strong> B(x)) is almost always WRONG for &ldquo;all A are B&rdquo; — it says everything is both A and B.</p>
+                  <p>&exist;x (A(x) <strong>&rarr;</strong> B(x)) is too weak — true if anything is not A.</p>
+                </div>
+              </section>
+
+              <!-- 4. INFERENCE RULES -->
+              <section id="inference-summary">
+                <h2>4. FOL Inference Rules</h2>
+                <table class="comparison-table">
+                  <thead><tr><th>Rule</th><th>From</th><th>Derive</th><th>Restriction</th></tr></thead>
+                  <tbody>
+                    <tr><td>Universal Instantiation (UI)</td><td>&forall;x &alpha;(x)</td><td>&alpha;(t) for any ground term t</td><td>None</td></tr>
+                    <tr><td>Universal Generalization (UG)</td><td>&alpha;(x) for arbitrary x</td><td>&forall;x &alpha;(x)</td><td>x must be truly arbitrary, not from EI</td></tr>
+                    <tr><td>Existential Instantiation (EI)</td><td>&exist;x &alpha;(x)</td><td>&alpha;(c) for fresh constant c</td><td>c must be new</td></tr>
+                    <tr><td>Existential Generalization (EG)</td><td>&alpha;(t)</td><td>&exist;x &alpha;(x)</td><td>None</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <!-- 5. UNIFICATION -->
+              <section id="unification-summary">
+                <h2>5. Unification Quick Reference</h2>
+                <div class="note-box">
+                  <div class="box-title">MGU Algorithm Steps</div>
+                  <ol>
+                    <li>If expressions are identical, return empty substitution {}.</li>
+                    <li>If one is a variable x, and x does not occur in the other term t, return {x/t}.</li>
+                    <li>If both are f(s<sub>1</sub>,&hellip;,s<sub>n</sub>) and f(t<sub>1</sub>,&hellip;,t<sub>n</sub>), unify arguments left to right, composing substitutions.</li>
+                    <li>Otherwise, <strong>FAIL</strong>.</li>
+                  </ol>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Occur Check</div>
+                  <p>Cannot unify x with any term containing x. E.g., x and f(x) &rarr; FAIL.</p>
+                </div>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Expr 1</th><th>Expr 2</th><th>MGU</th></tr></thead>
+                  <tbody>
+                    <tr><td>P(x, a)</td><td>P(b, a)</td><td>{x/b}</td></tr>
+                    <tr><td>P(x, f(y))</td><td>P(a, f(g(b)))</td><td>{x/a, y/g(b)}</td></tr>
+                    <tr><td>P(x, x)</td><td>P(a, b)</td><td>FAIL (a &ne; b)</td></tr>
+                    <tr><td>P(x, f(x))</td><td>P(f(y), y)</td><td>FAIL (occur check)</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <!-- 6. CLAUSAL FORM -->
+              <section id="clausal-summary">
+                <h2>6. Conversion to Clausal Form</h2>
+                <div class="note-box">
+                  <div class="box-title">7 Steps</div>
+                  <ol>
+                    <li><strong>Eliminate &harr;:</strong> &alpha; &harr; &beta; &rArr; (&alpha; &rarr; &beta;) &and; (&beta; &rarr; &alpha;)</li>
+                    <li><strong>Eliminate &rarr;:</strong> &alpha; &rarr; &beta; &rArr; &not;&alpha; &or; &beta;</li>
+                    <li><strong>Move &not; inward:</strong> &not;&forall; &rArr; &exist;&not;, &not;&exist; &rArr; &forall;&not;, De Morgan&rsquo;s</li>
+                    <li><strong>Standardize variables:</strong> Rename so each quantifier uses a unique variable.</li>
+                    <li><strong>Skolemize:</strong> Replace &exist;x with Skolem constant (if no preceding &forall;) or Skolem function of all preceding universally quantified variables.</li>
+                    <li><strong>Drop &forall;:</strong> All remaining variables are implicitly universal.</li>
+                    <li><strong>Distribute &or; over &and;:</strong> Convert to CNF &rarr; set of clauses.</li>
+                  </ol>
+                </div>
+              </section>
+
+              <!-- 7. RESOLUTION -->
+              <section id="resolution-summary">
+                <h2>7. Resolution in FOL</h2>
+                <div class="note-box">
+                  <div class="box-title">Resolution Steps (Proof by Refutation)</div>
+                  <ol>
+                    <li>Convert KB to clausal form.</li>
+                    <li>Negate the goal and convert to clausal form.</li>
+                    <li>Add negated goal clauses to the clause set.</li>
+                    <li>Repeatedly select two clauses with complementary literals, unify, and resolve.</li>
+                    <li>If &square; (empty clause) is derived &rarr; proof complete!</li>
+                  </ol>
+                </div>
+              </section>
+
+              <!-- 8. CHAINING -->
+              <section id="chaining-summary">
+                <h2>8. Forward vs. Backward Chaining</h2>
+                <table class="comparison-table">
+                  <thead><tr><th>Aspect</th><th>Forward Chaining</th><th>Backward Chaining</th></tr></thead>
+                  <tbody>
+                    <tr><td>Direction</td><td>Data &rarr; Goal</td><td>Goal &rarr; Data</td></tr>
+                    <tr><td>Strategy</td><td>Apply rules to known facts</td><td>Start from query, find supporting facts</td></tr>
+                    <tr><td>Completeness</td><td>Complete for Datalog</td><td>Complete for Datalog</td></tr>
+                    <tr><td>Efficiency</td><td>May derive irrelevant facts</td><td>Goal-directed, avoids irrelevant work</td></tr>
+                    <tr><td>Termination</td><td>Guaranteed for Datalog</td><td>May loop without occur check</td></tr>
+                    <tr><td>Example system</td><td>Production systems, Rete</td><td>Prolog</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <!-- 9. DECIDABILITY -->
+              <section id="decidability-summary">
+                <h2>9. Decidability Summary</h2>
+                <table class="comparison-table">
+                  <thead><tr><th>Logic / Fragment</th><th>Decidability</th></tr></thead>
+                  <tbody>
+                    <tr><td>Propositional Logic</td><td>Decidable</td></tr>
+                    <tr><td>FOL (full)</td><td>Semi-decidable (undecidable)</td></tr>
+                    <tr><td>Monadic FOL</td><td>Decidable</td></tr>
+                    <tr><td>Datalog</td><td>Decidable</td></tr>
+                    <tr><td>Second-Order Logic</td><td>Not even semi-decidable (for full SO)</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <!-- 10. CRITICAL FORMULAS -->
+              <section id="formulas">
+                <h2>10. Must-Know Formulas</h2>
+                <div class="definition-box">
+                  <div class="box-title">Key Formulas for GATE</div>
+                  <ul>
+                    <li>&not;&forall;x P(x) &equiv; &exist;x &not;P(x)</li>
+                    <li>&not;&exist;x P(x) &equiv; &forall;x &not;P(x)</li>
+                    <li>&forall;x (P(x) &rarr; Q(x)) ⊨ &forall;x P(x) &rarr; &forall;x Q(x) &emsp; (but NOT &equiv;)</li>
+                    <li>&forall;x P(x) &rarr; &exist;x P(x) &emsp; (valid, assuming non-empty domain)</li>
+                    <li>Prenex form: move all quantifiers to the front</li>
+                    <li>Skolem function arity = number of preceding universal quantifiers</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch06-notes">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="gate-previous-year-predicate.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">GATE Previous Year Questions</span></a>
+              <a href="quiz-predicate-logic.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Chapter Quiz</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#syntax-summary">1. Syntax</a></li>
+            <li><a href="#quantifier-summary">2. Quantifiers</a></li>
+            <li><a href="#translation-summary">3. Translation</a></li>
+            <li><a href="#inference-summary">4. Inference Rules</a></li>
+            <li><a href="#unification-summary">5. Unification</a></li>
+            <li><a href="#clausal-summary">6. Clausal Form</a></li>
+            <li><a href="#resolution-summary">7. Resolution</a></li>
+            <li><a href="#chaining-summary">8. Chaining</a></li>
+            <li><a href="#decidability-summary">9. Decidability</a></li>
+            <li><a href="#formulas">10. Key Formulas</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

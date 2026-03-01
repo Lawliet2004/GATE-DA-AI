@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Perceptron — Rosenblatt's perceptron model, learning rule, convergence theorem, linear separability, XOR problem, decision boundary geometry, step-by-step numerical examples for GATE DA.">
+  <title>Perceptron — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a>
+            <a href="perceptron.html" class="sidebar-link active"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="multilayer-perceptron.html" class="sidebar-link"><span class="link-check"></span> Multilayer Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="backpropagation.html" class="sidebar-link"><span class="link-check"></span> Backpropagation<span class="link-type theory">Theory</span></a>
+            <a href="activation-functions.html" class="sidebar-link"><span class="link-check"></span> Activation Functions<span class="link-type theory">Theory</span></a>
+            <a href="optimization-algorithms.html" class="sidebar-link"><span class="link-check"></span> Optimization Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="convolutional-neural-networks.html" class="sidebar-link"><span class="link-check"></span> CNNs<span class="link-type theory">Theory</span></a>
+            <a href="recurrent-neural-networks.html" class="sidebar-link"><span class="link-check"></span> RNNs<span class="link-type theory">Theory</span></a>
+            <a href="lstm-gru.html" class="sidebar-link"><span class="link-check"></span> LSTM &amp; GRU<span class="link-type theory">Theory</span></a>
+            <a href="attention-transformers.html" class="sidebar-link"><span class="link-check"></span> Attention &amp; Transformers<span class="link-type theory">Theory</span></a>
+            <a href="regularization-deep-learning.html" class="sidebar-link"><span class="link-check"></span> DL Regularization<span class="link-type theory">Theory</span></a>
+            <a href="practical-neural-network.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="neural-network-basics.html">Chapter 9: Neural Networks &amp; Deep Learning</a> &raquo; <span class="current">Perceptron</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch09-perceptron">
+
+            <h1>Perceptron</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch09-perceptron" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="neural-network-basics.html">Neural Network Basics</a> &mdash; Artificial neuron, weighted sums, bias</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Write the <strong>perceptron model</strong>: y = sign(<strong>w</strong>&middot;<strong>x</strong> + b)</li>
+              <li>Implement the <strong>perceptron learning rule</strong></li>
+              <li>State and understand the <strong>Perceptron Convergence Theorem</strong></li>
+              <li>Explain <strong>linear separability</strong> and the <strong>XOR problem</strong></li>
+              <li>Compute the <strong>decision boundary</strong> equation for 2D inputs</li>
+              <li>Work through <strong>complete numerical examples</strong> suitable for GATE</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="model">
+                <h2>1. Rosenblatt&rsquo;s Perceptron (1958)</h2>
+                <p>Frank Rosenblatt proposed the <strong>Perceptron</strong> as the first algorithm that could <em>learn</em> weights from data. Unlike the McCulloch-Pitts model, the perceptron has an automatic <strong>learning rule</strong> that adjusts weights based on errors.</p>
+
+                <div class="definition-box">
+                  <h4>Perceptron Model</h4>
+                  <p>Given input vector <strong>x</strong> = (x<sub>1</sub>, x<sub>2</sub>, &hellip;, x<sub>n</sub>), weight vector <strong>w</strong> = (w<sub>1</sub>, w<sub>2</sub>, &hellip;, w<sub>n</sub>), and bias b:</p>
+                  <pre><code>z = w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + &hellip; + w<sub>n</sub>x<sub>n</sub> + b = <strong>w</strong>&middot;<strong>x</strong> + b
+
+y = sign(z) = { +1  if z &ge; 0
+              { &minus;1  if z &lt; 0</code></pre>
+                  <p>The output is a <strong>binary classification</strong>: +1 or &minus;1.</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>Alternative Convention</h4>
+                  <p>Some textbooks use y &isin; {0, 1} with a step function instead of sign. For GATE, the sign convention with &plusmn;1 is more common in perceptron contexts.</p>
+                </div>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="learning-rule">
+                <h2>2. Perceptron Learning Rule</h2>
+                <p>The perceptron learns by iteratively updating weights whenever it makes a <strong>misclassification</strong>.</p>
+
+                <div class="algorithm-block">
+                  <h4>Perceptron Learning Algorithm</h4>
+                  <pre><code>Initialize: w = 0 (or small random), b = 0, learning rate &eta; &gt; 0
+Repeat until convergence (no errors on training set):
+    For each training sample (x<sup>(i)</sup>, t<sup>(i)</sup>):
+        Compute prediction: y<sup>(i)</sup> = sign(w&middot;x<sup>(i)</sup> + b)
+        If y<sup>(i)</sup> &ne; t<sup>(i)</sup>:  (misclassification)
+            w &larr; w + &eta; &middot; t<sup>(i)</sup> &middot; x<sup>(i)</sup>
+            b &larr; b + &eta; &middot; t<sup>(i)</sup></code></pre>
+                </div>
+
+                <p><strong>Intuition:</strong> When the perceptron predicts wrong, the update rule pushes the weight vector <em>toward</em> the correct class direction. If the target is +1 but we predicted &minus;1, we add the input vector to the weights (moving the boundary to include the misclassified point).</p>
+
+                <div class="note-box">
+                  <h4>Learning Rate &eta;</h4>
+                  <p>For the basic perceptron, &eta; = 1 works fine because the sign function only cares about the <em>direction</em> of <strong>w</strong>, not its magnitude. Scaling &eta; just scales the entire weight vector, which doesn&rsquo;t change the decision boundary. However, &eta; is kept for generality.</p>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="convergence">
+                <h2>3. Perceptron Convergence Theorem</h2>
+
+                <div class="theorem-box">
+                  <h4>Perceptron Convergence Theorem (Novikoff, 1962)</h4>
+                  <p>If the training data is <strong>linearly separable</strong>, the perceptron learning algorithm will converge to a set of weights that correctly classifies all training points in a <strong>finite number of steps</strong>.</p>
+                  <p>Specifically, if there exists a weight vector <strong>w*</strong> with &Vert;<strong>w*</strong>&Vert; = 1 and margin &gamma; = min<sub>i</sub> t<sup>(i)</sup>(<strong>w*</strong>&middot;<strong>x</strong><sup>(i)</sup>) &gt; 0, and R = max<sub>i</sub> &Vert;<strong>x</strong><sup>(i)</sup>&Vert;, then the number of updates is at most (R/&gamma;)<sup>2</sup>.</p>
+                </div>
+
+                <div class="warning-box">
+                  <h4>Critical Limitation</h4>
+                  <p>If the data is <strong>NOT linearly separable</strong>, the perceptron algorithm will <strong>never converge</strong> &mdash; it will oscillate forever, never finding a perfect boundary. This is why the XOR problem was so devastating.</p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="linear-separability">
+                <h2>4. Linear Separability &amp; Decision Boundary</h2>
+
+                <div class="definition-box">
+                  <h4>Linear Separability</h4>
+                  <p>Two classes of points in &Ropf;<sup>n</sup> are <strong>linearly separable</strong> if there exists a hyperplane <strong>w</strong>&middot;<strong>x</strong> + b = 0 that perfectly separates all positive examples from all negative examples.</p>
+                </div>
+
+                <p>For 2D inputs (x<sub>1</sub>, x<sub>2</sub>), the decision boundary is a <strong>line</strong>:</p>
+                <pre><code>w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + b = 0
+&rArr; x<sub>2</sub> = &minus;(w<sub>1</sub>/w<sub>2</sub>)x<sub>1</sub> &minus; b/w<sub>2</sub></code></pre>
+                <p>This is a line with slope &minus;w<sub>1</sub>/w<sub>2</sub> and intercept &minus;b/w<sub>2</sub>.</p>
+
+                <div class="example-box">
+                  <h4>Example: Decision Boundary</h4>
+                  <p>Given w = (2, 3), b = &minus;6. The decision boundary is:</p>
+                  <p>2x<sub>1</sub> + 3x<sub>2</sub> &minus; 6 = 0 &rArr; x<sub>2</sub> = &minus;(2/3)x<sub>1</sub> + 2</p>
+                  <p>Points above this line (where 2x<sub>1</sub> + 3x<sub>2</sub> &minus; 6 &gt; 0) are classified as +1; points below as &minus;1.</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="xor-problem">
+                <h2>5. The XOR Problem</h2>
+                <p>The <strong>XOR (exclusive-or)</strong> function was the critical challenge that proved single-layer perceptrons have fundamental limitations.</p>
+
+                <table class="comparison-table">
+                  <tr><th>x<sub>1</sub></th><th>x<sub>2</sub></th><th>XOR Output</th></tr>
+                  <tr><td>0</td><td>0</td><td>0 (&minus;1)</td></tr>
+                  <tr><td>0</td><td>1</td><td>1 (+1)</td></tr>
+                  <tr><td>1</td><td>0</td><td>1 (+1)</td></tr>
+                  <tr><td>1</td><td>1</td><td>0 (&minus;1)</td></tr>
+                </table>
+
+                <p>If you plot these four points in 2D, the positive points (0,1) and (1,0) are on opposite corners, and the negative points (0,0) and (1,1) are on the other diagonal. <strong>No single straight line can separate them</strong>.</p>
+
+                <div class="theorem-box">
+                  <h4>Minsky &amp; Papert (1969)</h4>
+                  <p>In their book <em>Perceptrons</em>, Minsky and Papert formally proved that a single-layer perceptron <strong>cannot</strong> compute XOR or any function that is not linearly separable. This result caused widespread pessimism about neural networks and contributed to the first &ldquo;AI winter&rdquo; in neural network research.</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>Solution: Multi-Layer Networks</h4>
+                  <p>XOR <em>can</em> be solved by combining two perceptrons in a hidden layer: one computes (x<sub>1</sub> AND NOT x<sub>2</sub>) and the other computes (NOT x<sub>1</sub> AND x<sub>2</sub>); an output neuron then computes OR of these two hidden outputs. This is a <strong>2-layer network</strong> &mdash; the topic of the next page.</p>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="worked-example">
+                <h2>6. Complete Numerical Example (GATE-Style)</h2>
+
+                <div class="example-box">
+                  <h4>Problem</h4>
+                  <p>Train a perceptron with &eta; = 1 to learn the AND function. Inputs are (0,0), (0,1), (1,0), (1,1) with labels &minus;1, &minus;1, &minus;1, +1 respectively. Start with w<sub>1</sub>=0, w<sub>2</sub>=0, b=0.</p>
+                </div>
+
+                <h3>Solution: Step-by-Step</h3>
+                <p><strong>Epoch 1:</strong></p>
+                <ul class="step-list">
+                  <li><strong>Sample (0,0), t=&minus;1:</strong> z = 0&middot;0 + 0&middot;0 + 0 = 0 &rArr; y = sign(0) = +1. <em>Misclassified!</em>
+                    <br>Update: w<sub>1</sub> = 0 + 1&middot;(&minus;1)&middot;0 = 0, w<sub>2</sub> = 0 + 1&middot;(&minus;1)&middot;0 = 0, b = 0 + 1&middot;(&minus;1) = &minus;1</li>
+                  <li><strong>Sample (0,1), t=&minus;1:</strong> z = 0&middot;0 + 0&middot;1 + (&minus;1) = &minus;1 &rArr; y = sign(&minus;1) = &minus;1. <em>Correct!</em></li>
+                  <li><strong>Sample (1,0), t=&minus;1:</strong> z = 0&middot;1 + 0&middot;0 + (&minus;1) = &minus;1 &rArr; y = &minus;1. <em>Correct!</em></li>
+                  <li><strong>Sample (1,1), t=+1:</strong> z = 0&middot;1 + 0&middot;1 + (&minus;1) = &minus;1 &rArr; y = &minus;1. <em>Misclassified!</em>
+                    <br>Update: w<sub>1</sub> = 0 + 1&middot;(+1)&middot;1 = 1, w<sub>2</sub> = 0 + 1&middot;(+1)&middot;1 = 1, b = &minus;1 + 1&middot;(+1) = 0</li>
+                </ul>
+
+                <p><strong>After Epoch 1:</strong> w = (1, 1), b = 0</p>
+
+                <p><strong>Epoch 2:</strong></p>
+                <ul class="step-list">
+                  <li><strong>Sample (0,0), t=&minus;1:</strong> z = 1&middot;0 + 1&middot;0 + 0 = 0 &rArr; y = +1. <em>Misclassified!</em>
+                    <br>Update: w<sub>1</sub> = 1, w<sub>2</sub> = 1, b = 0 + (&minus;1) = &minus;1</li>
+                  <li><strong>Sample (0,1), t=&minus;1:</strong> z = 1&middot;0 + 1&middot;1 + (&minus;1) = 0 &rArr; y = +1. <em>Misclassified!</em>
+                    <br>Update: w<sub>1</sub> = 1, w<sub>2</sub> = 1 + (&minus;1)&middot;1 = 0, b = &minus;1 + (&minus;1) = &minus;2</li>
+                  <li><strong>Sample (1,0), t=&minus;1:</strong> z = 1&middot;1 + 0&middot;0 + (&minus;2) = &minus;1 &rArr; y = &minus;1. <em>Correct!</em></li>
+                  <li><strong>Sample (1,1), t=+1:</strong> z = 1&middot;1 + 0&middot;1 + (&minus;2) = &minus;1 &rArr; y = &minus;1. <em>Misclassified!</em>
+                    <br>Update: w<sub>1</sub> = 1 + 1 = 2, w<sub>2</sub> = 0 + 1 = 1, b = &minus;2 + 1 = &minus;1</li>
+                </ul>
+
+                <p><strong>After Epoch 2:</strong> w = (2, 1), b = &minus;1</p>
+
+                <p><strong>Epoch 3:</strong></p>
+                <ul class="step-list">
+                  <li><strong>Sample (0,0), t=&minus;1:</strong> z = &minus;1 &rArr; y = &minus;1. <em>Correct!</em></li>
+                  <li><strong>Sample (0,1), t=&minus;1:</strong> z = 0 + 1 &minus; 1 = 0 &rArr; y = +1. <em>Misclassified!</em>
+                    <br>Update: w<sub>1</sub> = 2, w<sub>2</sub> = 1 + (&minus;1)&middot;1 = 0, b = &minus;1 + (&minus;1) = &minus;2</li>
+                  <li><strong>Sample (1,0), t=&minus;1:</strong> z = 2&middot;1 + 0 &minus; 2 = 0 &rArr; y = +1. <em>Misclassified!</em>
+                    <br>Update: w<sub>1</sub> = 2 + (&minus;1)&middot;1 = 1, w<sub>2</sub> = 0, b = &minus;2 + (&minus;1) = &minus;3</li>
+                  <li><strong>Sample (1,1), t=+1:</strong> z = 1 + 0 &minus; 3 = &minus;2 &rArr; y = &minus;1. <em>Misclassified!</em>
+                    <br>Update: w<sub>1</sub> = 1 + 1 = 2, w<sub>2</sub> = 0 + 1 = 1, b = &minus;3 + 1 = &minus;2</li>
+                </ul>
+
+                <p><strong>After Epoch 3:</strong> w = (2, 1), b = &minus;2</p>
+
+                <p><strong>Epoch 4:</strong></p>
+                <ul class="step-list">
+                  <li><strong>(0,0):</strong> z = &minus;2 &rArr; y = &minus;1. Correct &check;</li>
+                  <li><strong>(0,1):</strong> z = 0 + 1 &minus; 2 = &minus;1 &rArr; y = &minus;1. Correct &check;</li>
+                  <li><strong>(1,0):</strong> z = 2 + 0 &minus; 2 = 0 &rArr; y = +1. <em>Misclassified!</em>
+                    <br>Update: w<sub>1</sub> = 2 &minus; 1 = 1, w<sub>2</sub> = 1, b = &minus;2 &minus; 1 = &minus;3</li>
+                  <li><strong>(1,1):</strong> z = 1 + 1 &minus; 3 = &minus;1 &rArr; y = &minus;1. <em>Misclassified!</em>
+                    <br>Update: w<sub>1</sub> = 1 + 1 = 2, w<sub>2</sub> = 1 + 1 = 2, b = &minus;3 + 1 = &minus;2</li>
+                </ul>
+
+                <p><strong>After Epoch 4:</strong> w = (2, 2), b = &minus;2. Testing: (0,0)&rarr;&minus;2 (&minus;1 &check;), (0,1)&rarr;0 (+1 &cross;). Continue training&hellip;</p>
+
+                <p>Eventually the algorithm converges (AND is linearly separable). A valid solution is <strong>w = (1, 1), b = &minus;1.5</strong> which gives: z = x<sub>1</sub> + x<sub>2</sub> &minus; 1.5. Only (1,1) yields z = 0.5 &gt; 0.</p>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="gate-problems">
+                <h2>7. GATE-Style Problems</h2>
+
+                <div class="example-box">
+                  <h4>GATE Problem: Decision Boundary</h4>
+                  <p><strong>Q:</strong> A perceptron has weights w<sub>1</sub> = 3, w<sub>2</sub> = &minus;2 and bias b = 6. What is the equation of the decision boundary? Classify point (4, 5).</p>
+                  <p><strong>A:</strong> Decision boundary: 3x<sub>1</sub> &minus; 2x<sub>2</sub> + 6 = 0 &rArr; x<sub>2</sub> = (3/2)x<sub>1</sub> + 3.</p>
+                  <p>For (4, 5): z = 3(4) &minus; 2(5) + 6 = 12 &minus; 10 + 6 = 8 &gt; 0 &rArr; <strong>class +1</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>GATE Problem: Boolean Functions</h4>
+                  <p><strong>Q:</strong> Which of the following Boolean functions can a single perceptron compute? (i) AND (ii) OR (iii) NAND (iv) XOR</p>
+                  <p><strong>A:</strong> A single perceptron can compute <strong>AND, OR, and NAND</strong> (all linearly separable). It <strong>cannot</strong> compute <strong>XOR</strong> (not linearly separable).</p>
+                </div>
+              </section>
+
+              <!-- Section 8 -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li>The <strong>Perceptron</strong> computes y = sign(<strong>w</strong>&middot;<strong>x</strong> + b) for binary classification.</li>
+                    <li>The <strong>learning rule</strong> updates weights on misclassification: w &larr; w + &eta;&middot;t&middot;x.</li>
+                    <li>The <strong>Convergence Theorem</strong> guarantees finite convergence <em>if and only if</em> data is linearly separable.</li>
+                    <li>The <strong>XOR problem</strong> cannot be solved by a single perceptron &mdash; need multi-layer networks.</li>
+                    <li>Decision boundary in 2D: w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + b = 0 is a straight line.</li>
+                    <li>For GATE: be prepared to trace the learning algorithm step by step and compute decision boundaries.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch09-perceptron">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="neural-network-basics.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Neural Network Basics</span></a>
+              <a href="multilayer-perceptron.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Multilayer Perceptron</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#model">1. Perceptron Model</a></li>
+            <li><a href="#learning-rule">2. Learning Rule</a></li>
+            <li><a href="#convergence">3. Convergence Theorem</a></li>
+            <li><a href="#linear-separability">4. Linear Separability</a></li>
+            <li><a href="#xor-problem">5. XOR Problem</a></li>
+            <li><a href="#worked-example">6. Numerical Example</a></li>
+            <li><a href="#gate-problems">7. GATE Problems</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

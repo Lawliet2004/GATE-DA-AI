@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive Tic-Tac-Toe Demo — Play against a Minimax AI with optional alpha-beta pruning. See nodes evaluated in real-time.">
+  <title>Tic-Tac-Toe Demo — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+            <a href="minimax-algorithm.html" class="sidebar-link"><span class="link-check"></span> Minimax<span class="link-type theory">Theory</span></a>
+            <a href="alpha-beta-pruning.html" class="sidebar-link"><span class="link-check"></span> Alpha-Beta Pruning<span class="link-type theory">Theory</span></a>
+            <a href="move-ordering.html" class="sidebar-link"><span class="link-check"></span> Move Ordering<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-functions.html" class="sidebar-link"><span class="link-check"></span> Evaluation Functions<span class="link-type theory">Theory</span></a>
+            <a href="stochastic-games.html" class="sidebar-link"><span class="link-check"></span> Stochastic Games<span class="link-type theory">Theory</span></a>
+            <a href="partially-observable-games.html" class="sidebar-link"><span class="link-check"></span> Partially Observable<span class="link-type theory">Theory</span></a>
+            <a href="monte-carlo-tree-search.html" class="sidebar-link"><span class="link-check"></span> MCTS<span class="link-type theory">Theory</span></a>
+            <a href="practical-adversarial.html" class="sidebar-link active"><span class="link-check"></span> Tic-Tac-Toe Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-adversarial.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="game-theory-basics.html">Chapter 4: Adversarial Search</a> &raquo;
+          <span class="current">Tic-Tac-Toe Demo</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-practical" data-page-id="ch04-practical">
+            <h1>Interactive Tic-Tac-Toe: Minimax in Action</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">Hands-On Demo</span>
+              <button class="bookmark-btn" data-page="ch04-practical" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="minimax-algorithm.html">Minimax Algorithm</a> &mdash; How minimax decides moves</li>
+                <li><a href="alpha-beta-pruning.html">Alpha-Beta Pruning</a> &mdash; Optimization of minimax</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>See minimax in action on a real game</li>
+                <li>Compare the number of nodes evaluated with and without alpha-beta pruning</li>
+                <li>Understand why the AI never loses at Tic-Tac-Toe</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="demo">
+                <h2>1. Play Against the AI</h2>
+                <p>You are <strong>X</strong> (you move first). The AI plays <strong>O</strong> using the Minimax algorithm. Toggle alpha-beta pruning to see how it affects the number of nodes the AI evaluates.</p>
+
+                <div class="demo-controls" style="margin-bottom:1rem; display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
+                  <label style="display:flex;align-items:center;gap:0.5rem;">
+                    <input type="checkbox" id="alphaBetaToggle" checked>
+                    <span>Enable Alpha-Beta Pruning</span>
+                  </label>
+                  <button id="resetGame" class="nav-btn" style="padding:0.4rem 1rem; cursor:pointer;">Reset Game</button>
+                </div>
+
+                <div id="ttt-board" style="display:grid; grid-template-columns:repeat(3,80px); grid-template-rows:repeat(3,80px); gap:4px; margin:1rem 0;">
+                  <button class="ttt-cell" data-index="0" style="width:80px;height:80px;font-size:2rem;font-weight:bold;cursor:pointer;border:2px solid var(--border-color,#ccc);background:var(--bg-primary,#fff);color:var(--text-primary,#333);"></button>
+                  <button class="ttt-cell" data-index="1" style="width:80px;height:80px;font-size:2rem;font-weight:bold;cursor:pointer;border:2px solid var(--border-color,#ccc);background:var(--bg-primary,#fff);color:var(--text-primary,#333);"></button>
+                  <button class="ttt-cell" data-index="2" style="width:80px;height:80px;font-size:2rem;font-weight:bold;cursor:pointer;border:2px solid var(--border-color,#ccc);background:var(--bg-primary,#fff);color:var(--text-primary,#333);"></button>
+                  <button class="ttt-cell" data-index="3" style="width:80px;height:80px;font-size:2rem;font-weight:bold;cursor:pointer;border:2px solid var(--border-color,#ccc);background:var(--bg-primary,#fff);color:var(--text-primary,#333);"></button>
+                  <button class="ttt-cell" data-index="4" style="width:80px;height:80px;font-size:2rem;font-weight:bold;cursor:pointer;border:2px solid var(--border-color,#ccc);background:var(--bg-primary,#fff);color:var(--text-primary,#333);"></button>
+                  <button class="ttt-cell" data-index="5" style="width:80px;height:80px;font-size:2rem;font-weight:bold;cursor:pointer;border:2px solid var(--border-color,#ccc);background:var(--bg-primary,#fff);color:var(--text-primary,#333);"></button>
+                  <button class="ttt-cell" data-index="6" style="width:80px;height:80px;font-size:2rem;font-weight:bold;cursor:pointer;border:2px solid var(--border-color,#ccc);background:var(--bg-primary,#fff);color:var(--text-primary,#333);"></button>
+                  <button class="ttt-cell" data-index="7" style="width:80px;height:80px;font-size:2rem;font-weight:bold;cursor:pointer;border:2px solid var(--border-color,#ccc);background:var(--bg-primary,#fff);color:var(--text-primary,#333);"></button>
+                  <button class="ttt-cell" data-index="8" style="width:80px;height:80px;font-size:2rem;font-weight:bold;cursor:pointer;border:2px solid var(--border-color,#ccc);background:var(--bg-primary,#fff);color:var(--text-primary,#333);"></button>
+                </div>
+
+                <div id="game-status" style="font-size:1.1rem; font-weight:bold; margin:0.5rem 0;">Your turn (X)</div>
+                <div id="node-count" style="margin:0.5rem 0;">Nodes evaluated by AI: <span id="nodesEvaluated">0</span></div>
+                <div id="cumulative-stats" style="margin:0.5rem 0;">Total nodes this game: <span id="totalNodes">0</span></div>
+              </section>
+
+              <section id="how-it-works">
+                <h2>2. How the AI Works</h2>
+
+                <div class="note-box">
+                  <div class="box-title">Minimax for Tic-Tac-Toe</div>
+                  <p>The AI explores the entire remaining game tree from the current position. Since Tic-Tac-Toe is small enough (max &asymp;9! = 362,880 states), minimax can solve it completely without any cutoff depth. The AI plays <strong>perfectly</strong> and will never lose.</p>
+                </div>
+
+                <h3>2.1 Node Counts to Observe</h3>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>AI&rsquo;s Move #</th><th>Without Alpha-Beta</th><th>With Alpha-Beta</th><th>Reduction</th></tr></thead>
+                    <tbody>
+                      <tr><td>1st (8 empty)</td><td>~549,946</td><td>~18,297</td><td>~97%</td></tr>
+                      <tr><td>2nd (6 empty)</td><td>~7,920</td><td>~900</td><td>~89%</td></tr>
+                      <tr><td>3rd (4 empty)</td><td>~168</td><td>~48</td><td>~71%</td></tr>
+                      <tr><td>4th (2 empty)</td><td>~4</td><td>~3</td><td>~25%</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>Alpha-beta pruning is most impactful early in the game when the tree is largest.</p>
+
+                <h3>2.2 Why the AI Never Loses</h3>
+                <p>The minimax value of Tic-Tac-Toe from the initial state is <strong>0 (draw)</strong>. With perfect play by both sides, neither player can win. Since the AI always plays perfectly, the best you can achieve is a draw.</p>
+              </section>
+
+              <section id="experiment">
+                <h2>3. Experiments to Try</h2>
+                <ul>
+                  <li><strong>Experiment 1:</strong> Play with alpha-beta ON, note total nodes. Reset and play the same moves with alpha-beta OFF. Compare.</li>
+                  <li><strong>Experiment 2:</strong> Try to win! You&rsquo;ll find the AI always blocks threats and forces a draw.</li>
+                  <li><strong>Experiment 3:</strong> Start in the corner vs. center vs. edge. Notice how the AI responds differently and the node counts change.</li>
+                </ul>
+              </section>
+
+              <section id="code-explanation">
+                <h2>4. Algorithm Applied</h2>
+                <div class="algorithm-block">
+                  <div class="algo-header">Minimax for Tic-Tac-Toe (Simplified)</div>
+                  <div class="algo-body">
+<pre>function bestMove(board, useAlphaBeta):
+    bestScore &larr; &minus;&infin;
+    bestAction &larr; null
+    for each empty cell c in board:
+        board[c] &larr; 'O'  // AI move
+        if useAlphaBeta:
+            score &larr; alphabeta(board, false, &minus;&infin;, +&infin;)
+        else:
+            score &larr; minimax(board, false)
+        board[c] &larr; empty
+        if score &gt; bestScore:
+            bestScore &larr; score
+            bestAction &larr; c
+    return bestAction
+
+// Utility: X wins &rarr; &minus;1, O wins &rarr; +1, Draw &rarr; 0</pre>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch04-practical">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="monte-carlo-tree-search.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Monte Carlo Tree Search</span></a>
+              <a href="gate-previous-year-adversarial.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">GATE Previous Year Questions</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#demo">1. Play Against the AI</a></li>
+              <li><a href="#how-it-works">2. How It Works</a></li>
+              <li><a href="#experiment">3. Experiments</a></li>
+              <li><a href="#code-explanation">4. Algorithm Applied</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+  <script>
+  // Tic-Tac-Toe Minimax Demo
+  (function() {
+    const board = Array(9).fill('');
+    let gameOver = false;
+    let nodesEvaluated = 0;
+    let totalNodes = 0;
+    const cells = document.querySelectorAll('.ttt-cell');
+    const statusEl = document.getElementById('game-status');
+    const nodesEl = document.getElementById('nodesEvaluated');
+    const totalEl = document.getElementById('totalNodes');
+    const resetBtn = document.getElementById('resetGame');
+    const abToggle = document.getElementById('alphaBetaToggle');
+
+    const WINNING_LINES = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+    ];
+
+    function checkWinner(b) {
+      for (const [a,c,d] of WINNING_LINES) {
+        if (b[a] && b[a]===b[c] && b[a]===b[d]) return b[a];
+      }
+      return b.includes('') ? null : 'draw';
+    }
+
+    function minimax(b, isMax) {
+      nodesEvaluated++;
+      const w = checkWinner(b);
+      if (w === 'O') return 1;
+      if (w === 'X') return -1;
+      if (w === 'draw') return 0;
+      let best = isMax ? -Infinity : Infinity;
+      for (let i = 0; i < 9; i++) {
+        if (b[i] === '') {
+          b[i] = isMax ? 'O' : 'X';
+          const val = minimax(b, !isMax);
+          b[i] = '';
+          best = isMax ? Math.max(best, val) : Math.min(best, val);
+        }
+      }
+      return best;
+    }
+
+    function alphabeta(b, isMax, alpha, beta) {
+      nodesEvaluated++;
+      const w = checkWinner(b);
+      if (w === 'O') return 1;
+      if (w === 'X') return -1;
+      if (w === 'draw') return 0;
+      if (isMax) {
+        let v = -Infinity;
+        for (let i = 0; i < 9; i++) {
+          if (b[i] === '') {
+            b[i] = 'O';
+            v = Math.max(v, alphabeta(b, false, alpha, beta));
+            b[i] = '';
+            if (v >= beta) return v;
+            alpha = Math.max(alpha, v);
+          }
+        }
+        return v;
+      } else {
+        let v = Infinity;
+        for (let i = 0; i < 9; i++) {
+          if (b[i] === '') {
+            b[i] = 'X';
+            v = Math.min(v, alphabeta(b, true, alpha, beta));
+            b[i] = '';
+            if (v <= alpha) return v;
+            beta = Math.min(beta, v);
+          }
+        }
+        return v;
+      }
+    }
+
+    function aiMove() {
+      if (gameOver) return;
+      const useAB = abToggle.checked;
+      nodesEvaluated = 0;
+      let bestScore = -Infinity, bestIdx = -1;
+      for (let i = 0; i < 9; i++) {
+        if (board[i] === '') {
+          board[i] = 'O';
+          const score = useAB ? alphabeta(board, false, -Infinity, Infinity) : minimax(board, false);
+          board[i] = '';
+          if (score > bestScore) { bestScore = score; bestIdx = i; }
+        }
+      }
+      if (bestIdx >= 0) {
+        board[bestIdx] = 'O';
+        cells[bestIdx].textContent = 'O';
+        cells[bestIdx].style.color = '#e74c3c';
+      }
+      nodesEl.textContent = nodesEvaluated.toLocaleString();
+      totalNodes += nodesEvaluated;
+      totalEl.textContent = totalNodes.toLocaleString();
+      const w = checkWinner(board);
+      if (w) { endGame(w); return; }
+      statusEl.textContent = 'Your turn (X)';
+    }
+
+    function endGame(winner) {
+      gameOver = true;
+      if (winner === 'X') statusEl.textContent = 'You win! (Impossible if AI is correct!)';
+      else if (winner === 'O') statusEl.textContent = 'AI wins!';
+      else statusEl.textContent = 'Draw! (Optimal result against perfect play)';
+    }
+
+    cells.forEach(cell => {
+      cell.addEventListener('click', function() {
+        const idx = parseInt(this.dataset.index);
+        if (board[idx] !== '' || gameOver) return;
+        board[idx] = 'X';
+        this.textContent = 'X';
+        this.style.color = '#3498db';
+        const w = checkWinner(board);
+        if (w) { endGame(w); return; }
+        statusEl.textContent = 'AI is thinking...';
+        setTimeout(aiMove, 100);
+      });
+    });
+
+    resetBtn.addEventListener('click', function() {
+      board.fill('');
+      cells.forEach(c => { c.textContent = ''; c.style.color = ''; });
+      gameOver = false;
+      totalNodes = 0;
+      nodesEl.textContent = '0';
+      totalEl.textContent = '0';
+      statusEl.textContent = 'Your turn (X)';
+    });
+  })();
+  </script>
+</body>
+</html>

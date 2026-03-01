@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chapter 0 Notes — one-page cheatsheet summarizing all introduction topics: AI definitions, history, types, AI vs ML vs DL, GATE DA facts.">
+  <title>Chapter 0 Notes &amp; Cheatsheet — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="notes-introduction.html" class="sidebar-link active"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="what-is-ai.html">Chapter 0: Introduction</a> &raquo;
+          <span class="current">Notes &amp; Cheatsheet</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch00-notes">
+
+            <!-- Page Header -->
+            <h1>Chapter 0: Introduction &mdash; Notes &amp; Cheatsheet</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">Revision Sheet</span>
+              <button class="bookmark-btn" data-page="ch00-notes" title="Bookmark this page">&#9733; Bookmark</button>
+              <button class="btn btn-sm btn-secondary" onclick="window.print()" style="margin-left:auto;">&#128424; Print</button>
+            </div>
+
+            <div class="notes-content">
+
+              <!-- Section 1: Key Definitions -->
+              <section id="key-definitions">
+                <h2>1. Key Definitions</h2>
+
+                <ol class="formula-list">
+                  <li><strong>Artificial Intelligence (AI):</strong> The science and engineering of making intelligent machines that can perform tasks requiring human intelligence. Encompasses search, logic, planning, learning, perception, and language.</li>
+                  <li><strong>Machine Learning (ML):</strong> Subset of AI. Systems that learn from data without being explicitly programmed. Defined by Mitchell: improves on task T with experience E as measured by P.</li>
+                  <li><strong>Deep Learning (DL):</strong> Subset of ML. Neural networks with multiple hidden layers that automatically learn hierarchical feature representations from data.</li>
+                  <li><strong>Rational Agent:</strong> An agent that acts to achieve the best expected outcome given its knowledge. Dominant modern AI approach (Russell &amp; Norvig).</li>
+                  <li><strong>Turing Test (1950):</strong> A machine passes if a human interrogator cannot distinguish its text responses from a human&rsquo;s. Tests &ldquo;Acting Humanly.&rdquo;</li>
+                  <li><strong>Total Turing Test:</strong> Extends the Turing Test to include computer vision (perceiving objects) and robotics (manipulating objects).</li>
+                  <li><strong>Narrow AI (ANI):</strong> AI designed for a specific task. All current AI is narrow AI.</li>
+                  <li><strong>General AI (AGI):</strong> Hypothetical AI matching human cognitive ability across all domains. Does not exist.</li>
+                  <li><strong>Super AI (ASI):</strong> Hypothetical AI surpassing human intelligence in every domain. Theoretical only.</li>
+                  <li><strong>Weak AI:</strong> Philosophical position: AI simulates but does not truly understand.</li>
+                  <li><strong>Strong AI:</strong> Philosophical position: AI can genuinely understand and possess consciousness.</li>
+                  <li><strong>Chinese Room Argument (Searle, 1980):</strong> Symbol manipulation without understanding is not true intelligence. Argues against Strong AI.</li>
+                  <li><strong>Expert System:</strong> AI program using if-then rules from domain experts. Knowledge base + inference engine.</li>
+                  <li><strong>McCulloch-Pitts Neuron (1943):</strong> First mathematical model of artificial neuron. Binary threshold unit.</li>
+                  <li><strong>Perceptron (Rosenblatt, 1958):</strong> Single-layer neural network. Can learn linearly separable functions only.</li>
+                </ol>
+              </section>
+
+              <!-- Section 2: Four Definitions of AI -->
+              <section id="four-definitions">
+                <h2>2. Four Definitions of AI (Russell &amp; Norvig)</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Human-Centered</th>
+                        <th>Rationalist</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Thought</strong></td>
+                        <td><strong>Thinking Humanly</strong> &mdash; Cognitive modeling; replicate human thought process</td>
+                        <td><strong>Thinking Rationally</strong> &mdash; Laws of thought; formal logic as foundation</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Behavior</strong></td>
+                        <td><strong>Acting Humanly</strong> &mdash; Turing Test; behavior indistinguishable from human</td>
+                        <td><strong>Acting Rationally</strong> &mdash; Rational agent; maximize expected performance &#10004;</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>&#10004; Modern AI standard:</strong> Acting Rationally (Rational Agent approach)</p>
+              </section>
+
+              <!-- Section 3: AI History Timeline -->
+              <section id="history-timeline">
+                <h2>3. AI History &mdash; Key Dates</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Year</th>
+                        <th>Event</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>1943</td><td>McCulloch-Pitts neuron model</td></tr>
+                      <tr><td>1949</td><td>Hebb&rsquo;s learning rule (&ldquo;fire together, wire together&rdquo;)</td></tr>
+                      <tr><td>1950</td><td>Turing&rsquo;s &ldquo;Computing Machinery &amp; Intelligence&rdquo; &mdash; Turing Test proposed</td></tr>
+                      <tr><td>1952</td><td>Samuel&rsquo;s checkers program &mdash; term &ldquo;Machine Learning&rdquo; coined</td></tr>
+                      <tr><td><strong>1956</strong></td><td><strong>Dartmouth Conference &mdash; AI born as a field (John McCarthy)</strong></td></tr>
+                      <tr><td>1958</td><td>Perceptron (Rosenblatt); LISP (McCarthy)</td></tr>
+                      <tr><td>1966</td><td>ELIZA chatbot (Weizenbaum)</td></tr>
+                      <tr><td>1969</td><td>Minsky &amp; Papert: <em>Perceptrons</em> &mdash; exposed XOR limitation</td></tr>
+                      <tr><td>1972</td><td>MYCIN expert system</td></tr>
+                      <tr><td>1974&ndash;80</td><td><strong>First AI Winter</strong></td></tr>
+                      <tr><td>1986</td><td>Backpropagation popularized (Rumelhart, Hinton, Williams)</td></tr>
+                      <tr><td>1987&ndash;93</td><td><strong>Second AI Winter</strong></td></tr>
+                      <tr><td>1997</td><td>Deep Blue defeats Kasparov (chess)</td></tr>
+                      <tr><td>2011</td><td>IBM Watson wins Jeopardy!</td></tr>
+                      <tr><td>2012</td><td>AlexNet wins ImageNet &mdash; deep learning era begins</td></tr>
+                      <tr><td>2016</td><td>AlphaGo defeats Lee Sedol (Go)</td></tr>
+                      <tr><td>2017</td><td>Transformer architecture (&ldquo;Attention is All You Need&rdquo;)</td></tr>
+                      <tr><td>2022</td><td>ChatGPT released</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 4: Type Classification -->
+              <section id="type-comparison">
+                <h2>4. AI Classification Quick Reference</h2>
+
+                <h3>By Capability</h3>
+                <ul>
+                  <li><strong>ANI (Narrow):</strong> Single task. Exists today. Examples: Siri, AlphaGo, GPT.</li>
+                  <li><strong>AGI (General):</strong> All human tasks. Does not exist.</li>
+                  <li><strong>ASI (Super):</strong> Surpasses all human ability. Theoretical.</li>
+                </ul>
+
+                <h3>By Functionality (Hintze)</h3>
+                <ul>
+                  <li><strong>Type I &mdash; Reactive:</strong> No memory, current input only. Example: Deep Blue.</li>
+                  <li><strong>Type II &mdash; Limited Memory:</strong> Uses recent data. Example: Self-driving cars, ChatGPT.</li>
+                  <li><strong>Type III &mdash; Theory of Mind:</strong> Models others&rsquo; mental states. Does not exist.</li>
+                  <li><strong>Type IV &mdash; Self-Aware:</strong> Possesses consciousness. Does not exist.</li>
+                </ul>
+              </section>
+
+              <!-- Section 5: AI vs ML vs DL -->
+              <section id="ai-ml-dl">
+                <h2>5. AI vs ML vs DL &mdash; Key Differences</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Aspect</th>
+                        <th>AI</th>
+                        <th>ML</th>
+                        <th>DL</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Scope</td><td>Broadest</td><td>Subset of AI</td><td>Subset of ML</td></tr>
+                      <tr><td>Relationship</td><td colspan="3"><strong>DL &sub; ML &sub; AI</strong></td></tr>
+                      <tr><td>Data needs</td><td>May not need data</td><td>Moderate</td><td>Large</td></tr>
+                      <tr><td>Features</td><td>Manual/domain</td><td>Manual/semi-auto</td><td>Auto-learned</td></tr>
+                      <tr><td>Compute</td><td>Varies</td><td>CPU OK</td><td>GPU/TPU needed</td></tr>
+                      <tr><td>Interpretable</td><td>Often yes</td><td>Moderate</td><td>Low (black box)</td></tr>
+                      <tr><td>Non-ML examples</td><td>A* search, logic, expert systems</td><td>&mdash;</td><td>&mdash;</td></tr>
+                      <tr><td>Non-DL ML</td><td>&mdash;</td><td>SVM, Decision Tree, k-NN</td><td>&mdash;</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 6: GATE DA Quick Facts -->
+              <section id="gate-facts">
+                <h2>6. GATE DA Quick Facts</h2>
+
+                <div class="quick-facts">
+                  <h3>&#9889; Exam Facts</h3>
+                  <ul>
+                    <li><strong>Duration:</strong> 3 hours | <strong>Questions:</strong> 65 | <strong>Marks:</strong> 100</li>
+                    <li><strong>Types:</strong> MCQ, MSQ, NAT</li>
+                    <li><strong>Negative marking:</strong> MCQ only (&minus;1/3 for 1-mark, &minus;2/3 for 2-mark)</li>
+                    <li><strong>MSQ/NAT:</strong> No negative marking &mdash; always attempt!</li>
+                    <li><strong>AI section:</strong> ~15 marks, ~8&ndash;10 questions</li>
+                    <li><strong>High-priority AI topics:</strong> Search (BFS, DFS, A*, Minimax, Alpha-Beta), Logic (Propositional, Predicate), Probability (Bayes)</li>
+                    <li><strong>Primary textbook:</strong> Russell &amp; Norvig &mdash; AIMA (4th ed.)</li>
+                    <li><strong>Time per question:</strong> ~2.77 minutes</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 7: Mnemonics -->
+              <section id="mnemonics">
+                <h2>7. Memory Aids</h2>
+
+                <div class="mnemonic-box">
+                  <div class="mnemonic-title">&#129504; Four AI Definitions</div>
+                  <p><strong>T-H-A-R</strong>: <strong>T</strong>hinking <strong>H</strong>umanly, <strong>A</strong>cting <strong>H</strong>umanly, Thinking <strong>R</strong>ationally, <strong>A</strong>cting <strong>R</strong>ationally</p>
+                  <p><em>&ldquo;The modern approach favors Acting Rationally (the AR in THAR).&rdquo;</em></p>
+                </div>
+
+                <div class="mnemonic-box">
+                  <div class="mnemonic-title">&#128197; Dartmouth = Birth of AI</div>
+                  <p><strong>1956</strong> &mdash; &ldquo;<strong>Fifty-six</strong> scientists gathered at <strong>Dartmouth</strong> and said: let&rsquo;s call it <strong>AI</strong>.&rdquo; (John <strong>M</strong>cCarthy coined the term.)</p>
+                </div>
+
+                <div class="mnemonic-box">
+                  <div class="mnemonic-title">&#127869; Subset Nesting</div>
+                  <p><strong>DL &sub; ML &sub; AI</strong> = &ldquo;A <strong>D</strong>eep <strong>L</strong>ake inside a <strong>M</strong>ountain <strong>L</strong>ake inside an <strong>A</strong>mazing <strong>I</strong>sland.&rdquo;</p>
+                </div>
+              </section>
+
+              <!-- Section 8: Common Traps -->
+              <section id="common-traps">
+                <h2>8. Common GATE Traps to Avoid</h2>
+
+                <ul>
+                  <li>&#10060; AI = ML = DL &rarr; &#9989; They are nested: DL &sub; ML &sub; AI</li>
+                  <li>&#10060; Turing Test = Definition of AI &rarr; &#9989; It&rsquo;s one approach (&ldquo;Acting Humanly&rdquo;); modern standard is Rational Agent</li>
+                  <li>&#10060; GPT is AGI &rarr; &#9989; GPT is versatile Narrow AI (ANI), not AGI</li>
+                  <li>&#10060; Weak AI = Narrow AI &rarr; &#9989; Weak/Strong is philosophical (understanding); Narrow/General is capability-based</li>
+                  <li>&#10060; Deep Blue learned from games &rarr; &#9989; Deep Blue was reactive (Type I), no learning ability</li>
+                  <li>&#10060; Rational = Omniscient &rarr; &#9989; Rational = best action given available info; Omniscient = knows everything</li>
+                  <li>&#10060; Chinese Room = Turing Test &rarr; &#9989; They are different: Turing Test tests acting humanly; Chinese Room argues against Strong AI</li>
+                </ul>
+              </section>
+
+            </div><!-- /notes-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch00-notes">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="gate-da-exam-overview.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">GATE DA Exam Overview</span>
+              </a>
+              <a href="quiz-introduction.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Chapter Quiz</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#key-definitions">1. Key Definitions</a></li>
+              <li><a href="#four-definitions">2. Four Definitions of AI</a></li>
+              <li><a href="#history-timeline">3. History Timeline</a></li>
+              <li><a href="#type-comparison">4. AI Classification</a></li>
+              <li><a href="#ai-ml-dl">5. AI vs ML vs DL</a></li>
+              <li><a href="#gate-facts">6. GATE DA Facts</a></li>
+              <li><a href="#mnemonics">7. Memory Aids</a></li>
+              <li><a href="#common-traps">8. Common Traps</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

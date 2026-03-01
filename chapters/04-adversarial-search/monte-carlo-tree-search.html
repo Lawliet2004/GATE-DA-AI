@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Monte Carlo Tree Search (MCTS) — Selection, Expansion, Simulation, Backpropagation phases, UCB1 formula, and applications in Go and complex games.">
+  <title>Monte Carlo Tree Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+            <a href="minimax-algorithm.html" class="sidebar-link"><span class="link-check"></span> Minimax<span class="link-type theory">Theory</span></a>
+            <a href="alpha-beta-pruning.html" class="sidebar-link"><span class="link-check"></span> Alpha-Beta Pruning<span class="link-type theory">Theory</span></a>
+            <a href="move-ordering.html" class="sidebar-link"><span class="link-check"></span> Move Ordering<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-functions.html" class="sidebar-link"><span class="link-check"></span> Evaluation Functions<span class="link-type theory">Theory</span></a>
+            <a href="stochastic-games.html" class="sidebar-link"><span class="link-check"></span> Stochastic Games<span class="link-type theory">Theory</span></a>
+            <a href="partially-observable-games.html" class="sidebar-link"><span class="link-check"></span> Partially Observable<span class="link-type theory">Theory</span></a>
+            <a href="monte-carlo-tree-search.html" class="sidebar-link active"><span class="link-check"></span> MCTS<span class="link-type theory">Theory</span></a>
+            <a href="practical-adversarial.html" class="sidebar-link"><span class="link-check"></span> Tic-Tac-Toe Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-adversarial.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="game-theory-basics.html">Chapter 4: Adversarial Search</a> &raquo;
+          <span class="current">Monte Carlo Tree Search</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch04-mcts">
+            <h1>Monte Carlo Tree Search (MCTS)</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch04-mcts" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="minimax-algorithm.html">Minimax Algorithm</a> &mdash; Game tree search</li>
+                <li><a href="evaluation-functions.html">Evaluation Functions</a> &mdash; Why heuristic evaluation is hard for some games</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand the four phases of MCTS: Selection, Expansion, Simulation, Backpropagation</li>
+                <li>Apply the UCB1 formula for balancing exploration and exploitation</li>
+                <li>Explain why MCTS works well for Go and other games with large branching factors</li>
+                <li>Know how AlphaGo/AlphaZero combined MCTS with neural networks</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="mcts-overview">
+                <h2>1. Why MCTS?</h2>
+                <p>For games like Go (b &asymp; 250, m &asymp; 150), even alpha-beta with evaluation functions is insufficient &mdash; the branching factor is too high and designing a good evaluation function for Go proved extremely difficult. MCTS takes a radically different approach: <strong>use random simulations</strong> to estimate move quality.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Monte Carlo Tree Search</div>
+                  <p>MCTS is an <strong>anytime best-first search</strong> algorithm that builds a search tree incrementally and uses <strong>random playouts</strong> (simulations) to evaluate positions. It does not require a hand-crafted evaluation function.</p>
+                </div>
+              </section>
+
+              <section id="four-phases">
+                <h2>2. The Four Phases</h2>
+                <p>Each MCTS iteration consists of four steps, repeated thousands or millions of times:</p>
+
+                <h3>Phase 1: Selection</h3>
+                <p>Starting from the root, use a <strong>tree policy</strong> (e.g., UCB1) to traverse the current tree, choosing the most promising nodes until reaching a leaf node of the current tree.</p>
+
+                <h3>Phase 2: Expansion</h3>
+                <p>Add one or more child nodes to the selected leaf, representing an unexplored move from that state.</p>
+
+                <h3>Phase 3: Simulation (Rollout)</h3>
+                <p>From the newly expanded node, play a <strong>random game</strong> to completion (or use a lightweight heuristic). This is called a <strong>playout</strong> or <strong>rollout</strong>. Returns +1 (win), 0 (draw), or &minus;1 (loss) for the root player.</p>
+
+                <h3>Phase 4: Backpropagation</h3>
+                <p>Propagate the simulation result <strong>back up the tree</strong> from the expanded node to the root, updating visit counts and win counts at each ancestor node.</p>
+
+                <div class="example-box">
+                  <div class="box-title">MCTS Iteration Diagram</div>
+                  <pre><code>  SELECTION          EXPANSION       SIMULATION      BACKPROPAGATION
+     (A)                (A)             (A)               (A) 
+    / \               / \             / \               / \  
+  (B)  (C)          (B)  (C)       (B)  (C)          (B)  (C)
+  /                 /               /                 /      
+(D)               (D)             (D)               (D)     
+                    \               \                 \      
+                    [E]             [E]               [E]    
+                    new         random playout    update stats
+                    node        from E &rarr; end     E&rarr;D&rarr;B&rarr;A</code></pre>
+                </div>
+              </section>
+
+              <section id="ucb1">
+                <h2>3. UCB1: Balancing Exploration and Exploitation</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">UCB1 (Upper Confidence Bound 1)</div>
+                  <p>The selection phase uses the UCB1 formula to choose which child to visit:</p>
+                  <div class="formula">
+                    <p><strong>UCB1(i) = w<sub>i</sub> / n<sub>i</sub> + C &middot; &radic;(ln N / n<sub>i</sub>)</strong></p>
+                  </div>
+                  <ul>
+                    <li><strong>w<sub>i</sub></strong> = number of wins after the i-th child</li>
+                    <li><strong>n<sub>i</sub></strong> = number of visits to the i-th child</li>
+                    <li><strong>N</strong> = total number of visits to the parent</li>
+                    <li><strong>C</strong> = exploration constant (typically &radic;2, tuned per application)</li>
+                  </ul>
+                </div>
+
+                <p>The formula has two terms:</p>
+                <ul>
+                  <li><strong>Exploitation term</strong> (w<sub>i</sub>/n<sub>i</sub>): Favor nodes with high win rates</li>
+                  <li><strong>Exploration term</strong> (C&radic;(ln N / n<sub>i</sub>)): Favor nodes that have been visited less often</li>
+                </ul>
+
+                <div class="example-box">
+                  <div class="box-title">UCB1 Calculation Example</div>
+                  <pre><code>Root visited N = 100 times. Three children:
+  Child A: 40 visits, 22 wins  &rarr; UCB1 = 22/40 + &radic;2 &middot;&radic;(ln100/40)
+         = 0.550 + 1.414 &times; 0.339 = 0.550 + 0.479 = 1.029
+  Child B: 35 visits, 20 wins  &rarr; UCB1 = 20/35 + &radic;2 &middot;&radic;(ln100/35)
+         = 0.571 + 1.414 &times; 0.362 = 0.571 + 0.512 = 1.083
+  Child C: 25 visits, 10 wins  &rarr; UCB1 = 10/25 + &radic;2 &middot;&radic;(ln100/25)
+         = 0.400 + 1.414 &times; 0.429 = 0.400 + 0.607 = 1.007
+
+Selection: Choose Child B (highest UCB1 = 1.083)
+  B wins due to good win rate AND moderate visit count.</code></pre>
+                </div>
+              </section>
+
+              <section id="algorithm">
+                <h2>4. Complete MCTS Algorithm</h2>
+
+                <div class="algorithm-block">
+                  <div class="algo-header">Algorithm: MCTS(root_state, max_iterations)</div>
+                  <div class="algo-body">
+<pre>function MCTS(root_state, max_iterations):
+    root &larr; new Node(root_state)
+    for i = 1 to max_iterations:
+        node &larr; SELECT(root)           // Phase 1
+        child &larr; EXPAND(node)           // Phase 2
+        result &larr; SIMULATE(child.state)  // Phase 3
+        BACKPROPAGATE(child, result)     // Phase 4
+    return child of root with highest visit count
+
+function SELECT(node):
+    while node is fully expanded AND not terminal:
+        node &larr; child of node with best UCB1
+    return node
+
+function EXPAND(node):
+    action &larr; random unexplored action from node.state
+    child_state &larr; RESULT(node.state, action)
+    child &larr; new Node(child_state, parent=node)
+    return child
+
+function SIMULATE(state):
+    while not IS-TERMINAL(state):
+        action &larr; random action from ACTIONS(state)
+        state &larr; RESULT(state, action)
+    return UTILITY(state)
+
+function BACKPROPAGATE(node, result):
+    while node &ne; null:
+        node.visits += 1
+        node.wins += result (from node's player perspective)
+        node &larr; node.parent</pre>
+                  </div>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Final Move Selection</div>
+                  <p>After all iterations, the best move is chosen based on <strong>visit count</strong> (most robust), not win rate. The most-visited child has the most statistical support.</p>
+                </div>
+              </section>
+
+              <section id="properties">
+                <h2>5. Properties of MCTS</h2>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Property</th><th>MCTS</th><th>Minimax + Alpha-Beta</th></tr></thead>
+                    <tbody>
+                      <tr><td>Evaluation function</td><td>Not required (uses playouts)</td><td>Required for cutoff search</td></tr>
+                      <tr><td>Anytime</td><td>Yes (returns best move found so far)</td><td>With iterative deepening</td></tr>
+                      <tr><td>Branching factor sensitivity</td><td>Handles very large b</td><td>Performance degrades with large b</td></tr>
+                      <tr><td>Asymptotic convergence</td><td>Converges to minimax with &infin; iterations</td><td>Exact minimax (full depth)</td></tr>
+                      <tr><td>Parallelism</td><td>Highly parallelizable (root, leaf, tree parallelization)</td><td>Harder to parallelize</td></tr>
+                      <tr><td>Best for</td><td>Go, complex strategy games</td><td>Chess, checkers</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section id="applications">
+                <h2>6. Applications: AlphaGo and Beyond</h2>
+
+                <div class="example-box">
+                  <div class="box-title">AlphaGo (DeepMind, 2016)</div>
+                  <p>AlphaGo combined MCTS with deep neural networks:</p>
+                  <ul>
+                    <li><strong>Policy network:</strong> Trained on human expert games to predict likely moves &rarr; guides SELECTION phase (replaces random action choice)</li>
+                    <li><strong>Value network:</strong> Trained via self-play to evaluate board positions &rarr; replaces random SIMULATION with learned evaluation</li>
+                    <li>MCTS integrates both networks to search effectively with b &asymp; 250</li>
+                    <li>Defeated world champion Lee Sedol 4&ndash;1 in March 2016</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">AlphaZero (DeepMind, 2017)</div>
+                  <p>AlphaZero generalized the approach:</p>
+                  <ul>
+                    <li>Learned entirely from <strong>self-play</strong> (no human data)</li>
+                    <li>Single neural network outputs both policy (move probabilities) and value</li>
+                    <li>Mastered Go, Chess, and Shogi from scratch within hours</li>
+                    <li>Surpassed Stockfish in chess after just 4 hours of training</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">GATE Tip</div>
+                  <p>For GATE, know the four phases, the UCB1 formula, and why MCTS works for high-branching-factor games. You may be asked to compute UCB1 values or identify the correct phase order.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>MCTS builds a search tree incrementally using random simulations.</li>
+                    <li>Four phases: Selection (UCB1), Expansion, Simulation (rollout), Backpropagation.</li>
+                    <li>UCB1 balances exploitation (high win rate) and exploration (less visited).</li>
+                    <li>No evaluation function needed — playouts provide value estimates.</li>
+                    <li>Especially powerful for games with large branching factors (Go: b &asymp; 250).</li>
+                    <li>AlphaGo/AlphaZero enhanced MCTS with neural network policy and value functions.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>AIMA</em>, 4th Ed. &mdash; Chapter 5.4</li>
+                  <li>Browne, C. et al. &ldquo;A Survey of Monte Carlo Tree Search Methods&rdquo;, <em>IEEE TCIAIG</em>, 2012</li>
+                  <li>Silver, D. et al. &ldquo;Mastering the Game of Go with Deep Neural Networks and Tree Search&rdquo;, <em>Nature</em>, 2016</li>
+                  <li>Silver, D. et al. &ldquo;A General Reinforcement Learning Algorithm that Masters Chess, Shogi, and Go&rdquo;, <em>Science</em>, 2018</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch04-mcts">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="partially-observable-games.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Partially Observable Games</span></a>
+              <a href="practical-adversarial.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Tic-Tac-Toe Demo</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#mcts-overview">1. Why MCTS?</a></li>
+              <li><a href="#four-phases">2. The Four Phases</a></li>
+              <li><a href="#ucb1">3. UCB1 Formula</a></li>
+              <li><a href="#algorithm">4. Complete Algorithm</a></li>
+              <li><a href="#properties">5. Properties</a></li>
+              <li><a href="#applications">6. Applications</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

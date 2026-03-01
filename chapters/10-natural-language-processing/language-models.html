@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Language Models — n-gram models, perplexity, smoothing techniques (Laplace, Kneser-Ney), neural language models, and sequence prediction for GATE DA preparation.">
+  <title>Language Models — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a>
+            <a href="word-embeddings.html" class="sidebar-link"><span class="link-check"></span> Word Embeddings<span class="link-type theory">Theory</span></a>
+            <a href="language-models.html" class="sidebar-link active"><span class="link-check"></span> Language Models<span class="link-type theory">Theory</span></a>
+            <a href="large-language-models.html" class="sidebar-link"><span class="link-check"></span> Large Language Models<span class="link-type theory">Theory</span></a>
+            <a href="gpt-architecture.html" class="sidebar-link"><span class="link-check"></span> GPT Architecture<span class="link-type theory">Theory</span></a>
+            <a href="bert-and-variants.html" class="sidebar-link"><span class="link-check"></span> BERT &amp; Variants<span class="link-type theory">Theory</span></a>
+            <a href="prompt-engineering.html" class="sidebar-link"><span class="link-check"></span> Prompt Engineering<span class="link-type theory">Theory</span></a>
+            <a href="notes-nlp.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-nlp.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="text-preprocessing.html">Chapter 10: Natural Language Processing</a> &raquo; <span class="current">Language Models</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch10-language-models">
+
+            <h1>Language Models</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch10-language-models" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="text-preprocessing.html">Text Preprocessing</a> &mdash; n-grams, tokenization</li>
+                <li><a href="../07-reasoning-under-uncertainty/probability-basics.html">Probability Basics</a> &mdash; conditional probability, chain rule</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Define what a language model computes and why it is useful</li>
+                <li>Derive and compute n-gram probabilities from a corpus</li>
+                <li>Compute perplexity and interpret it as a measure of model quality</li>
+                <li>Apply Laplace and Kneser-Ney smoothing to handle zero-count n-grams</li>
+                <li>Understand the transition from n-gram to neural language models</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="what-is-lm">
+              <h2>1. What Is a Language Model?</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> A language model (LM) assigns a probability P(w₁, w₂, &hellip;, w<sub>n</sub>) to a sequence of words. Equivalently, it estimates the probability of the next word given the preceding context: P(w<sub>n</sub> | w₁, &hellip;, w<sub>n&minus;1</sub>).
+              </div>
+              <p>Using the chain rule of probability:</p>
+              <p style="text-align:center; font-size:1.1rem;">P(w₁, w₂, &hellip;, w<sub>n</sub>) = &prod;<sub>i=1</sub><sup>n</sup> P(w<sub>i</sub> | w₁, &hellip;, w<sub>i&minus;1</sub>)</p>
+              <p><strong>Applications:</strong></p>
+              <ul>
+                <li><strong>Speech recognition:</strong> &ldquo;recognize speech&rdquo; vs &ldquo;wreck a nice beach&rdquo; &mdash; the LM assigns higher probability to the meaningful sentence.</li>
+                <li><strong>Machine translation:</strong> Choose the more fluent translation.</li>
+                <li><strong>Autocomplete / text generation:</strong> Predict the next word given a prefix.</li>
+                <li><strong>Spelling correction:</strong> &ldquo;I went to the [store/stor]&rdquo; &mdash; LM prefers &ldquo;store&rdquo;.</li>
+              </ul>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="n-gram-models">
+              <h2>2. N-gram Language Models</h2>
+              <p>Estimating P(w<sub>i</sub> | w₁, &hellip;, w<sub>i&minus;1</sub>) using the full history is impractical (too many possible histories). The <strong>Markov assumption</strong> limits context to the previous (n&minus;1) words:</p>
+              <p style="text-align:center; font-size:1.1rem;">P(w<sub>i</sub> | w₁, &hellip;, w<sub>i&minus;1</sub>) &approx; P(w<sub>i</sub> | w<sub>i&minus;n+1</sub>, &hellip;, w<sub>i&minus;1</sub>)</p>
+
+              <h3>2.1 Unigram Model (n = 1)</h3>
+              <p style="text-align:center;">P(w<sub>i</sub>) = count(w<sub>i</sub>) / N</p>
+              <p>where N is the total number of tokens in the corpus. Ignores all context.</p>
+
+              <h3>2.2 Bigram Model (n = 2)</h3>
+              <p style="text-align:center;">P(w<sub>i</sub> | w<sub>i&minus;1</sub>) = count(w<sub>i&minus;1</sub>, w<sub>i</sub>) / count(w<sub>i&minus;1</sub>)</p>
+
+              <h3>2.3 Trigram Model (n = 3)</h3>
+              <p style="text-align:center;">P(w<sub>i</sub> | w<sub>i&minus;2</sub>, w<sub>i&minus;1</sub>) = count(w<sub>i&minus;2</sub>, w<sub>i&minus;1</sub>, w<sub>i</sub>) / count(w<sub>i&minus;2</sub>, w<sub>i&minus;1</sub>)</p>
+
+              <div class="example-box">
+                <h4>Worked Example: Bigram Probabilities</h4>
+                <p><strong>Corpus:</strong> &ldquo;&lt;s&gt; the cat sat on the mat &lt;/s&gt;&rdquo;</p>
+                <p><strong>Bigram counts:</strong></p>
+                <table>
+                  <thead><tr><th>Bigram</th><th>Count</th></tr></thead>
+                  <tbody>
+                    <tr><td>(&lt;s&gt;, the)</td><td>1</td></tr>
+                    <tr><td>(the, cat)</td><td>1</td></tr>
+                    <tr><td>(cat, sat)</td><td>1</td></tr>
+                    <tr><td>(sat, on)</td><td>1</td></tr>
+                    <tr><td>(on, the)</td><td>1</td></tr>
+                    <tr><td>(the, mat)</td><td>1</td></tr>
+                    <tr><td>(mat, &lt;/s&gt;)</td><td>1</td></tr>
+                  </tbody>
+                </table>
+                <p><strong>P(cat | the) = count(the, cat) / count(the) = 1/2 = 0.5</strong></p>
+                <p><strong>P(mat | the) = count(the, mat) / count(the) = 1/2 = 0.5</strong></p>
+                <p>Note: count(the) = 2 because &ldquo;the&rdquo; appears twice in the corpus.</p>
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="perplexity">
+              <h2>3. Perplexity</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> Perplexity (PP) measures how well a language model predicts a test sequence. Lower perplexity = better model.
+              </div>
+              <p style="text-align:center; font-size:1.1rem;">PP(W) = P(w₁, w₂, &hellip;, w<sub>N</sub>)<sup>&minus;1/N</sup></p>
+              <p>Equivalently, using log probabilities:</p>
+              <p style="text-align:center; font-size:1.1rem;">log PP(W) = &minus;(1/N) &sum;<sub>i=1</sub><sup>N</sup> log₂ P(w<sub>i</sub> | w<sub>i&minus;n+1</sub>, &hellip;, w<sub>i&minus;1</sub>)</p>
+              <p><strong>Intuition:</strong> Perplexity is the weighted average branching factor &mdash; the average number of equally likely next words the model predicts. A perplexity of 100 means the model is as uncertain as if it had to choose uniformly among 100 options at each step.</p>
+
+              <div class="example-box">
+                <h4>Worked Example</h4>
+                <p><strong>Test sequence:</strong> &ldquo;the cat sat&rdquo; (N = 3 words)</p>
+                <p>Suppose a bigram model gives: P(the|&lt;s&gt;) = 0.5, P(cat|the) = 0.3, P(sat|cat) = 0.4</p>
+                <p>P(W) = 0.5 &times; 0.3 &times; 0.4 = 0.06</p>
+                <p>PP = 0.06<sup>&minus;1/3</sup> = (1/0.06)<sup>1/3</sup> = 16.67<sup>1/3</sup> &approx; <strong>2.55</strong></p>
+              </div>
+
+              <div class="gate-tip">
+                <h4>&#128161; GATE Tip</h4>
+                <p>Perplexity questions may appear as numerical answer type (NAT). Remember: PP = exp(&minus;(1/N) &sum; ln P(w<sub>i</sub>|context)) when using natural log. Be careful with the base of the logarithm!</p>
+              </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="smoothing">
+              <h2>4. Smoothing Techniques</h2>
+              <p>N-gram models assign zero probability to unseen n-grams, making the entire sequence probability zero. Smoothing redistributes some probability mass to unseen events.</p>
+
+              <h3>4.1 Laplace (Add-1) Smoothing</h3>
+              <p>Add 1 to every n-gram count:</p>
+              <p style="text-align:center; font-size:1.1rem;">P<sub>Laplace</sub>(w<sub>i</sub> | w<sub>i&minus;1</sub>) = (count(w<sub>i&minus;1</sub>, w<sub>i</sub>) + 1) / (count(w<sub>i&minus;1</sub>) + |V|)</p>
+              <p>where |V| is the vocabulary size. This ensures every bigram has a non-zero probability.</p>
+              <p><strong>Problem:</strong> Laplace smoothing shifts too much probability mass to unseen events, significantly distorting the distribution for large vocabularies.</p>
+
+              <h3>4.2 Add-k Smoothing</h3>
+              <p>Generalize Laplace by adding a fraction k (0 &lt; k &lt; 1) instead of 1:</p>
+              <p style="text-align:center;">P<sub>add-k</sub>(w<sub>i</sub> | w<sub>i&minus;1</sub>) = (count(w<sub>i&minus;1</sub>, w<sub>i</sub>) + k) / (count(w<sub>i&minus;1</sub>) + k&middot;|V|)</p>
+
+              <h3>4.3 Kneser-Ney Smoothing</h3>
+              <div class="definition-box">
+                <strong>Kneser-Ney:</strong> Subtracts a fixed discount δ from each non-zero count and distributes the saved probability mass based on the <em>continuation probability</em> &mdash; how likely a word is to appear as a novel continuation in different contexts.
+              </div>
+              <p style="text-align:center;">P<sub>KN</sub>(w<sub>i</sub> | w<sub>i&minus;1</sub>) = max(count(w<sub>i&minus;1</sub>, w<sub>i</sub>) &minus; δ, 0) / count(w<sub>i&minus;1</sub>) + λ(w<sub>i&minus;1</sub>) &middot; P<sub>continuation</sub>(w<sub>i</sub>)</p>
+              <p>where P<sub>continuation</sub>(w<sub>i</sub>) = |{w: count(w, w<sub>i</sub>) &gt; 0}| / |{(w, w&prime;): count(w, w&prime;) &gt; 0}|</p>
+              <p><strong>Why it works:</strong> Consider &ldquo;Francisco&rdquo;. It has a high unigram count but almost always follows &ldquo;San&rdquo;. Its continuation probability is low (appears after only one unique context), so Kneser-Ney correctly assigns it low probability as a novel continuation.</p>
+
+              <div class="example-box">
+                <h4>Example: Laplace Smoothing</h4>
+                <p><strong>Given:</strong> count(the, cat) = 5, count(the) = 100, |V| = 10,000</p>
+                <p><strong>MLE:</strong> P(cat|the) = 5/100 = 0.05</p>
+                <p><strong>Laplace:</strong> P(cat|the) = (5+1)/(100+10000) = 6/10100 &approx; 0.000594</p>
+                <p>The Laplace estimate is drastically lower because the |V| term in the denominator dominates. This illustrates why Laplace smoothing is too aggressive for large vocabularies.</p>
+              </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="neural-lm">
+              <h2>5. Neural Language Models</h2>
+              <p>Neural LMs overcome the limitations of n-gram models:</p>
+              <ul>
+                <li><strong>No data sparsity:</strong> Use continuous word embeddings instead of discrete count tables.</li>
+                <li><strong>Longer context:</strong> RNNs and Transformers can capture dependencies far beyond n&minus;1 words.</li>
+                <li><strong>Generalization:</strong> Similar words share similar embeddings, enabling generalization to unseen word combinations.</li>
+              </ul>
+
+              <h3>5.1 Bengio et al. (2003) &mdash; First Neural LM</h3>
+              <p>Architecture: look up embeddings of previous n&minus;1 words, concatenate, pass through a hidden layer, softmax output over vocabulary.</p>
+              <p style="text-align:center;">P(w<sub>t</sub> | w<sub>t&minus;n+1</sub>, &hellip;, w<sub>t&minus;1</sub>) = softmax(W &middot; tanh(H &middot; [e<sub>t&minus;n+1</sub>; &hellip;; e<sub>t&minus;1</sub>] + b) + d)</p>
+
+              <h3>5.2 RNN Language Models</h3>
+              <p>Use the hidden state h<sub>t</sub> to encode the entire preceding context:</p>
+              <p style="text-align:center;">h<sub>t</sub> = f(W<sub>h</sub> &middot; h<sub>t&minus;1</sub> + W<sub>x</sub> &middot; e<sub>t</sub> + b)</p>
+              <p style="text-align:center;">P(w<sub>t+1</sub> | w₁, &hellip;, w<sub>t</sub>) = softmax(W<sub>o</sub> &middot; h<sub>t</sub> + d)</p>
+              <p>LSTM and GRU variants address the vanishing gradient problem for long sequences.</p>
+
+              <h3>5.3 Transformer Language Models</h3>
+              <p>Use self-attention to process all positions in parallel, capturing long-range dependencies without recurrence. This architecture forms the basis of GPT, BERT, and other modern LLMs (covered in upcoming sections).</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="comparison">
+              <h2>6. N-gram vs Neural Language Models</h2>
+              <table>
+                <thead><tr><th>Feature</th><th>N-gram LM</th><th>Neural LM</th></tr></thead>
+                <tbody>
+                  <tr><td>Representation</td><td>Discrete count tables</td><td>Continuous embeddings</td></tr>
+                  <tr><td>Context length</td><td>Fixed (n&minus;1 words)</td><td>Variable (full sequence for Transformers)</td></tr>
+                  <tr><td>Data efficiency</td><td>Needs smoothing for unseen n-grams</td><td>Generalizes via embedding similarity</td></tr>
+                  <tr><td>Computational cost</td><td>Low (table lookups)</td><td>High (matrix operations, GPU needed)</td></tr>
+                  <tr><td>Training</td><td>Count and normalize</td><td>Backpropagation, gradient descent</td></tr>
+                  <tr><td>Performance</td><td>Decent for small tasks</td><td>State-of-the-art on all benchmarks</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="summary">
+              <h2>7. Summary</h2>
+              <div class="summary-section">
+                <ul>
+                  <li>A <strong>language model</strong> computes P(w₁, w₂, &hellip;, w<sub>n</sub>) using the chain rule of probability.</li>
+                  <li><strong>N-gram models</strong> approximate using the Markov assumption: P(w<sub>i</sub>|context) &approx; P(w<sub>i</sub>|w<sub>i&minus;n+1</sub>,&hellip;,w<sub>i&minus;1</sub>).</li>
+                  <li><strong>Perplexity</strong> = P(W)<sup>&minus;1/N</sup>: lower is better. Interpretable as average branching factor.</li>
+                  <li><strong>Laplace smoothing:</strong> add 1 to all counts. Simple but too aggressive.</li>
+                  <li><strong>Kneser-Ney:</strong> uses continuation probability for better smoothing.</li>
+                  <li><strong>Neural LMs</strong> (RNN, Transformer) overcome sparsity with continuous representations and variable-length context.</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch10-language-models">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="word-embeddings.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Word Embeddings</span></a>
+              <a href="large-language-models.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Large Language Models</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#what-is-lm">1. What Is a Language Model?</a></li>
+            <li><a href="#n-gram-models">2. N-gram Models</a></li>
+            <li><a href="#perplexity">3. Perplexity</a></li>
+            <li><a href="#smoothing">4. Smoothing</a></li>
+            <li><a href="#neural-lm">5. Neural Language Models</a></li>
+            <li><a href="#comparison">6. N-gram vs Neural</a></li>
+            <li><a href="#summary">7. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

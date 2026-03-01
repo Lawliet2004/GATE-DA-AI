@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Machine Learning Fundamentals — Learn what ML is, types of learning, Tom Mitchell's definition, the ML pipeline, key terminology, and GATE DA relevance.">
+  <title>ML Fundamentals — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="ml-fundamentals.html" class="sidebar-link active"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="supervised-learning.html" class="sidebar-link"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="unsupervised-learning.html" class="sidebar-link"><span class="link-check"></span> Unsupervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="bias-variance-tradeoff.html" class="sidebar-link"><span class="link-check"></span> Bias-Variance Tradeoff<span class="link-type theory">Theory</span></a>
+            <a href="overfitting-underfitting.html" class="sidebar-link"><span class="link-check"></span> Overfitting &amp; Underfitting<span class="link-type theory">Theory</span></a>
+            <a href="cross-validation.html" class="sidebar-link"><span class="link-check"></span> Cross-Validation<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-metrics.html" class="sidebar-link"><span class="link-check"></span> Evaluation Metrics<span class="link-type theory">Theory</span></a>
+            <a href="feature-engineering.html" class="sidebar-link"><span class="link-check"></span> Feature Engineering<span class="link-type theory">Theory</span></a>
+            <a href="ml-math-essentials.html" class="sidebar-link"><span class="link-check"></span> ML Math Essentials<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="ml-fundamentals.html">Chapter 8: ML Foundations</a> &raquo; <span class="current">ML Fundamentals</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch08-ml-fundamentals">
+
+            <h1>Machine Learning Fundamentals</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch08-ml-fundamentals" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Understand what Machine Learning is and why it matters</li>
+              <li>Know Tom Mitchell&rsquo;s formal definition of ML</li>
+              <li>Distinguish between supervised, unsupervised, semi-supervised, and reinforcement learning</li>
+              <li>Describe the complete ML pipeline from data collection to deployment</li>
+              <li>Master key terminology: features, labels, hypothesis, loss functions, data splits</li>
+            </ul></div>
+
+            <!-- Section 1 -->
+            <section id="what-is-ml">
+              <h2>1. What is Machine Learning?</h2>
+              <p>Machine Learning (ML) is a subfield of Artificial Intelligence that gives computers the ability to <strong>learn from data</strong> without being explicitly programmed for every possible scenario. Instead of writing rules by hand, we provide the machine with data and let it discover patterns automatically.</p>
+
+              <div class="definition-box">
+                <div class="box-title">Definition &mdash; Arthur Samuel (1959)</div>
+                <p>&ldquo;Machine Learning is the field of study that gives computers the ability to learn without being explicitly programmed.&rdquo;</p>
+              </div>
+
+              <p>Consider a spam email filter. A traditional programming approach would enumerate explicit rules (&ldquo;if subject contains &lsquo;free money&rsquo;, mark as spam&rdquo;). An ML approach feeds thousands of labelled emails to an algorithm, which automatically discovers the patterns distinguishing spam from legitimate mail.</p>
+
+              <div class="note-box">
+                <div class="box-title">Why ML Matters for GATE DA</div>
+                <p>GATE DA (Data Science &amp; AI) places significant weight on ML foundations. Questions range from conceptual MCQs about learning paradigms to numerical problems requiring you to compute loss functions, gradients, or evaluation metrics by hand.</p>
+              </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="mitchell-definition">
+              <h2>2. Tom Mitchell&rsquo;s Formal Definition</h2>
+
+              <div class="theorem-box">
+                <div class="box-title">Tom Mitchell&rsquo;s Definition (1997)</div>
+                <p>A computer program is said to <strong>learn</strong> from experience <strong>E</strong> with respect to some class of tasks <strong>T</strong> and performance measure <strong>P</strong>, if its performance at tasks in T, as measured by P, improves with experience E.</p>
+              </div>
+
+              <p>This definition is precise and frequently tested in GATE. Let us break it down with examples:</p>
+
+              <div class="example-box">
+                <div class="box-title">Example &mdash; Email Spam Classification</div>
+                <ul>
+                  <li><strong>Task (T):</strong> Classify emails as spam or not-spam</li>
+                  <li><strong>Experience (E):</strong> A dataset of emails labelled as spam or not-spam</li>
+                  <li><strong>Performance (P):</strong> Percentage of emails correctly classified (accuracy)</li>
+                </ul>
+                <p>The system &ldquo;learns&rdquo; if its accuracy improves as it processes more labelled emails.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">Example &mdash; House Price Prediction</div>
+                <ul>
+                  <li><strong>Task (T):</strong> Predict the selling price of a house</li>
+                  <li><strong>Experience (E):</strong> Historical data of house features and prices</li>
+                  <li><strong>Performance (P):</strong> Mean Squared Error between predicted and actual prices</li>
+                </ul>
+              </div>
+
+              <div class="warning-box">
+                <div class="box-title">GATE Trap</div>
+                <p>Questions may ask you to identify T, E, and P for a given scenario. Be careful: the &ldquo;experience&rdquo; is always the <em>data</em> the system learns from, not the act of running the algorithm.</p>
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="types-of-learning">
+              <h2>3. Types of Machine Learning</h2>
+              <p>ML algorithms are categorised based on the nature of the training signal (feedback) available to the learner.</p>
+
+              <h3 id="supervised-learning">3.1 Supervised Learning</h3>
+              <p>The training data consists of input-output pairs <strong>(x, y)</strong>. The algorithm learns a mapping function <em>f: X &rarr; Y</em> from inputs to outputs. The &ldquo;supervisor&rdquo; provides the correct label for each training example.</p>
+              <ul>
+                <li><strong>Classification:</strong> Output y is a discrete category (e.g., spam/not-spam, digit 0&ndash;9)</li>
+                <li><strong>Regression:</strong> Output y is a continuous value (e.g., house price, temperature)</li>
+              </ul>
+              <p><strong>Examples:</strong> Linear Regression, Logistic Regression, Decision Trees, SVMs, Neural Networks, KNN, Naive Bayes.</p>
+
+              <h3 id="unsupervised-learning">3.2 Unsupervised Learning</h3>
+              <p>The training data has <strong>no labels</strong> &mdash; only inputs <strong>x</strong>. The algorithm must discover hidden structure or patterns in the data on its own.</p>
+              <ul>
+                <li><strong>Clustering:</strong> Group similar data points (e.g., K-Means, DBSCAN, Hierarchical)</li>
+                <li><strong>Dimensionality Reduction:</strong> Reduce the number of features while preserving information (e.g., PCA)</li>
+                <li><strong>Association Rules:</strong> Discover relationships between variables (e.g., Apriori)</li>
+                <li><strong>Density Estimation:</strong> Model the underlying probability distribution of the data</li>
+              </ul>
+
+              <h3 id="semi-supervised-learning">3.3 Semi-Supervised Learning</h3>
+              <p>A small amount of labelled data is combined with a large amount of unlabelled data. This is practical because labelling data is expensive. The unlabelled data helps the model understand the data distribution, while the labelled data provides the supervision signal.</p>
+              <p><strong>Use case:</strong> Medical imaging where labelling requires expert radiologists (expensive), but unlabelled scans are abundant.</p>
+
+              <h3 id="reinforcement-learning">3.4 Reinforcement Learning</h3>
+              <p>An <strong>agent</strong> learns by interacting with an <strong>environment</strong>. Instead of being told the correct answer, the agent receives <strong>rewards</strong> or <strong>penalties</strong> for its actions. The goal is to learn a <strong>policy</strong> that maximises cumulative reward over time.</p>
+              <ul>
+                <li><strong>Key concepts:</strong> State, Action, Reward, Policy, Value Function</li>
+                <li><strong>Examples:</strong> Game playing (AlphaGo), robotic control, recommendation systems</li>
+              </ul>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Aspect</th><th>Supervised</th><th>Unsupervised</th><th>Semi-Supervised</th><th>Reinforcement</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Labels</strong></td><td>All data labelled</td><td>No labels</td><td>Few labels + many unlabelled</td><td>Reward signal</td></tr>
+                    <tr><td><strong>Goal</strong></td><td>Predict output</td><td>Find structure</td><td>Predict with limited labels</td><td>Maximise reward</td></tr>
+                    <tr><td><strong>Feedback</strong></td><td>Direct (correct answer)</td><td>None</td><td>Partial</td><td>Delayed (reward)</td></tr>
+                    <tr><td><strong>Examples</strong></td><td>Classification, regression</td><td>Clustering, PCA</td><td>Label propagation</td><td>Q-learning, SARSA</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="ml-pipeline">
+              <h2>4. The Machine Learning Pipeline</h2>
+              <p>Building an ML system involves a systematic pipeline of steps. Understanding this pipeline is essential for both practical ML and GATE conceptual questions.</p>
+
+              <div class="step-list">
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h4>Data Collection</h4>
+                    <p>Gather raw data from various sources: databases, APIs, sensors, web scraping, surveys. The quality and quantity of data directly impacts model performance. <span class="key-term">Garbage in, garbage out</span> is a fundamental ML principle.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h4>Data Preprocessing</h4>
+                    <p>Clean and prepare the data: handle missing values, remove duplicates, fix inconsistencies, encode categorical variables, normalise/standardise numerical features. This step typically consumes 60&ndash;80% of an ML project&rsquo;s time.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h4>Feature Engineering &amp; Selection</h4>
+                    <p>Create new informative features from raw data (feature engineering) and select the most relevant features (feature selection). Good features can dramatically improve model performance.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h4>Data Splitting</h4>
+                    <p>Split the dataset into <strong>training set</strong> (60&ndash;80%), <strong>validation set</strong> (10&ndash;20%), and <strong>test set</strong> (10&ndash;20%). The training set is used to fit the model, the validation set to tune hyperparameters, and the test set for final unbiased evaluation.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">5</div>
+                  <div class="step-content">
+                    <h4>Model Selection</h4>
+                    <p>Choose an appropriate algorithm based on the problem type (classification/regression), data characteristics (size, dimensionality, linearity), and requirements (interpretability, speed).</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">6</div>
+                  <div class="step-content">
+                    <h4>Model Training</h4>
+                    <p>Fit the model to the training data by optimising the loss function. The training algorithm adjusts model parameters to minimise the difference between predictions and actual values.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">7</div>
+                  <div class="step-content">
+                    <h4>Model Evaluation</h4>
+                    <p>Assess model performance on the validation/test set using appropriate metrics (accuracy, precision, recall, F1, MSE, R&sup2;, etc.). Compare against baselines and alternative models.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">8</div>
+                  <div class="step-content">
+                    <h4>Hyperparameter Tuning</h4>
+                    <p>Adjust hyperparameters (learning rate, regularisation strength, tree depth, etc.) using techniques like grid search, random search, or Bayesian optimisation. Evaluate each configuration on the validation set.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">9</div>
+                  <div class="step-content">
+                    <h4>Deployment &amp; Monitoring</h4>
+                    <p>Deploy the final model to production. Continuously monitor its performance for <strong>data drift</strong> (changes in input distribution) and <strong>concept drift</strong> (changes in the underlying relationship). Retrain as needed.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="key-terminology">
+              <h2>5. Key Terminology</h2>
+              <p>Mastering ML vocabulary is critical for understanding textbooks, research papers, and GATE questions.</p>
+
+              <div class="definition-box">
+                <div class="box-title">Features (Input Variables)</div>
+                <p>The measurable properties or attributes of the data used as inputs to the model. Also called <strong>independent variables</strong>, <strong>predictors</strong>, or <strong>attributes</strong>. Denoted as <strong>x = (x&#8321;, x&#8322;, &hellip;, x&#8345;)</strong> where n is the number of features.</p>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">Labels (Target Variable)</div>
+                <p>The output value the model is trying to predict. Also called the <strong>dependent variable</strong>, <strong>response</strong>, or <strong>target</strong>. Denoted as <strong>y</strong>. In supervised learning, labels are provided during training.</p>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">Training Set, Validation Set, Test Set</div>
+                <p><strong>Training set:</strong> Data used to fit/train the model parameters.<br>
+                <strong>Validation set:</strong> Data used to tune hyperparameters and select among candidate models. Not used for training.<br>
+                <strong>Test set:</strong> Data held out for final, unbiased evaluation. Never seen during training or tuning.</p>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">Hypothesis &amp; Hypothesis Space</div>
+                <p>A <strong>hypothesis</strong> h(x) is a candidate function that maps inputs to outputs. The <strong>hypothesis space</strong> H is the set of all possible hypotheses that the learning algorithm considers. For example, in linear regression, H is the set of all linear functions h(x) = w&#8321;x&#8321; + w&#8322;x&#8322; + &hellip; + w&#8345;x&#8345; + b.</p>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">Loss Function (Cost Function)</div>
+                <p>A function that quantifies the error between the model&rsquo;s prediction &ycirc; and the true label y for a single example. The <strong>cost function</strong> (or <strong>objective function</strong>) is typically the average loss over all training examples.</p>
+                <p><strong>Common loss functions:</strong></p>
+                <ul>
+                  <li><strong>Mean Squared Error (MSE):</strong> L = (1/n) &sum;(y&#7522; &minus; &ycirc;&#7522;)&sup2; &mdash; for regression</li>
+                  <li><strong>Cross-Entropy Loss:</strong> L = &minus;(1/n) &sum;[y&#7522; log(&ycirc;&#7522;) + (1&minus;y&#7522;) log(1&minus;&ycirc;&#7522;)] &mdash; for binary classification</li>
+                  <li><strong>0-1 Loss:</strong> L = 1 if &ycirc; &ne; y, else 0 &mdash; for classification (not differentiable)</li>
+                </ul>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">Parameters vs Hyperparameters</div>
+                <p><strong>Parameters:</strong> Internal to the model, learned from data during training (e.g., weights w in linear regression, split thresholds in decision trees).<br>
+                <strong>Hyperparameters:</strong> Set before training by the user, not learned from data (e.g., learning rate, number of hidden layers, regularisation strength &lambda;, K in KNN).</p>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">Generalisation</div>
+                <p>The ability of a trained model to perform well on <strong>unseen data</strong> (not just the training set). A model that performs well on training data but poorly on test data has poor generalisation &mdash; this is called <strong>overfitting</strong>.</p>
+              </div>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="parametric-nonparametric">
+              <h2>6. Parametric vs Non-Parametric Models</h2>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Aspect</th><th>Parametric</th><th>Non-Parametric</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Assumptions</strong></td><td>Assumes a fixed functional form (e.g., linear)</td><td>No fixed functional form</td></tr>
+                    <tr><td><strong>Parameters</strong></td><td>Fixed number, independent of data size</td><td>Grows with training data size</td></tr>
+                    <tr><td><strong>Training speed</strong></td><td>Generally faster</td><td>Can be slower for large datasets</td></tr>
+                    <tr><td><strong>Data requirement</strong></td><td>Works with less data</td><td>Needs more data to avoid overfitting</td></tr>
+                    <tr><td><strong>Flexibility</strong></td><td>Less flexible (may underfit)</td><td>More flexible (may overfit)</td></tr>
+                    <tr><td><strong>Examples</strong></td><td>Linear/Logistic Regression, Naive Bayes, Perceptron</td><td>KNN, Decision Trees, SVM with RBF kernel</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="ml-vs-traditional">
+              <h2>7. ML vs Traditional Programming</h2>
+              <p>In traditional programming, a human writes explicit rules: <strong>Data + Rules &rarr; Output</strong>. In Machine Learning, the paradigm is inverted: <strong>Data + Output &rarr; Rules (Model)</strong>. The algorithm discovers the rules from data automatically.</p>
+
+              <div class="example-box">
+                <div class="box-title">When to Use ML vs Traditional Programming</div>
+                <ul>
+                  <li><strong>Use ML when:</strong> The rules are too complex to code manually (e.g., image recognition), the rules change frequently (e.g., fraud detection), or you have abundant data but no clear algorithm.</li>
+                  <li><strong>Use traditional programming when:</strong> The rules are well-known and simple (e.g., tax calculation), the problem is deterministic, or the system must be fully explainable and auditable.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="gate-questions">
+              <h2>8. GATE-Style Practice</h2>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example 1 (MCQ)</div>
+                <p><strong>Q:</strong> In Tom Mitchell&rsquo;s definition, a program learns from experience E with respect to task T and performance measure P. For a chess-playing program that improves by playing against itself, identify T, E, and P.</p>
+                <p><strong>A:</strong> T = Playing chess. E = Games played against itself. P = Percentage of games won against opponents.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example 2 (MCQ)</div>
+                <p><strong>Q:</strong> Which of the following is NOT a type of unsupervised learning?</p>
+                <p>(A) Clustering &nbsp; (B) Dimensionality Reduction &nbsp; (C) Regression &nbsp; (D) Association Rule Mining</p>
+                <p><strong>A:</strong> (C) Regression is a supervised learning task because it requires labelled training data (continuous target values).</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example 3 (True/False)</div>
+                <p><strong>Q:</strong> In semi-supervised learning, the model uses only labelled data for training.</p>
+                <p><strong>A:</strong> False. Semi-supervised learning uses both a small amount of labelled data and a larger amount of unlabelled data.</p>
+              </div>
+            </section>
+
+            <!-- Section 9 -->
+            <section id="summary">
+              <h2>9. Chapter Summary</h2>
+              <div class="note-box">
+                <ul>
+                  <li>ML enables computers to learn patterns from data rather than following explicit rules</li>
+                  <li>Mitchell&rsquo;s definition: A program learns from E (experience) w.r.t. T (task) and P (performance measure)</li>
+                  <li>Four paradigms: Supervised (labelled data), Unsupervised (no labels), Semi-supervised (few labels), Reinforcement (rewards)</li>
+                  <li>The ML pipeline has 9 stages from data collection to deployment</li>
+                  <li>Key distinction: Parameters are learned; hyperparameters are set by the user</li>
+                  <li>Generalisation &mdash; performing well on unseen data &mdash; is the ultimate goal</li>
+                </ul>
+              </div>
+            </section>
+
+          </article>
+
+          <aside class="on-this-page"><h4>On This Page</h4><ul>
+            <li><a href="#what-is-ml">1. What is ML?</a></li>
+            <li><a href="#mitchell-definition">2. Mitchell&rsquo;s Definition</a></li>
+            <li><a href="#types-of-learning">3. Types of Learning</a></li>
+            <li><a href="#ml-pipeline">4. ML Pipeline</a></li>
+            <li><a href="#key-terminology">5. Key Terminology</a></li>
+            <li><a href="#parametric-nonparametric">6. Parametric vs Non-Parametric</a></li>
+            <li><a href="#ml-vs-traditional">7. ML vs Traditional Programming</a></li>
+            <li><a href="#gate-questions">8. GATE Practice</a></li>
+            <li><a href="#summary">9. Summary</a></li>
+          </ul></aside>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="../07-reasoning-under-uncertainty/quiz-uncertainty.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Quiz: Uncertainty</span></a>
+          <a href="supervised-learning.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Supervised Learning</span></a>
+        </div>
+        <button class="complete-btn" data-page="ch08-ml-fundamentals">&#10003; Mark as Complete</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

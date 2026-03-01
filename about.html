@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Master AI for GATE DA — course methodology, features overview, how to use this platform, keyboard shortcuts, and credits.">
+  <title>About This Course — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/navigation.css">
+  <link rel="stylesheet" href="css/theory.css">
+  <link rel="stylesheet" href="css/notes.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    .about-hero {
+      text-align: center;
+      padding: var(--spacing-2xl) var(--spacing-lg);
+      background: linear-gradient(135deg, #00695c, #00897b, #26a69a);
+      color: #fff;
+      border-radius: var(--border-radius-lg);
+      margin-bottom: var(--spacing-2xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .about-hero * { position: relative; z-index: 1; }
+    .about-hero h1 { color: #fff; font-size: 2.2rem; margin-bottom: var(--spacing-sm); border: none; padding: 0; }
+    .about-hero p { opacity: 0.92; font-size: var(--font-size-md); max-width: 640px; margin: 0 auto; }
+
+    .about-section { margin-bottom: var(--spacing-2xl); }
+    .about-section h2 { font-size: var(--font-size-xl); margin-bottom: var(--spacing-md); padding-bottom: var(--spacing-sm); border-bottom: 2px solid var(--border-light); }
+
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--spacing-md); }
+    .feature-card { padding: var(--spacing-lg); }
+    .feature-card .feat-icon { font-size: 2rem; margin-bottom: var(--spacing-sm); }
+    .feature-card h4 { margin: 0 0 var(--spacing-xs); font-size: var(--font-size-md); }
+    .feature-card p { font-size: var(--font-size-sm); color: var(--text-secondary); margin: 0; }
+
+    .structure-flow { display: flex; gap: var(--spacing-md); flex-wrap: wrap; justify-content: center; margin: var(--spacing-xl) 0; }
+    .flow-step { text-align: center; padding: var(--spacing-lg); min-width: 140px; max-width: 180px; position: relative; }
+    .flow-step .flow-icon { font-size: 2rem; margin-bottom: var(--spacing-sm); }
+    .flow-step .flow-label { font-size: var(--font-size-sm); font-weight: 700; }
+    .flow-step .flow-desc { font-size: var(--font-size-xs); color: var(--text-muted); margin-top: var(--spacing-xs); }
+    .flow-arrow { display: flex; align-items: center; font-size: 1.5rem; color: var(--text-muted); padding: 0 var(--spacing-xs); }
+
+    .shortcuts-table { width: 100%; border-collapse: collapse; }
+    .shortcuts-table th, .shortcuts-table td { padding: var(--spacing-sm) var(--spacing-md); text-align: left; border-bottom: 1px solid var(--border-light); font-size: var(--font-size-sm); }
+    .shortcuts-table th { background: var(--bg-secondary); font-weight: 700; }
+    .shortcuts-table tr:hover { background: var(--bg-secondary); }
+    .shortcuts-table kbd {
+      display: inline-block;
+      padding: 2px 8px;
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xs);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      box-shadow: 0 1px 0 var(--border-color);
+    }
+
+    .gate-tips-list { list-style: none; padding: 0; counter-reset: gate-tip; }
+    .gate-tips-list li { counter-increment: gate-tip; position: relative; padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 50px; margin-bottom: var(--spacing-sm); background: var(--bg-secondary); border-radius: var(--border-radius-md); font-size: var(--font-size-sm); }
+    .gate-tips-list li::before { content: counter(gate-tip); position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; background: var(--color-primary); color: #fff; font-weight: 700; font-size: var(--font-size-sm); display: flex; align-items: center; justify-content: center; }
+    .gate-tips-list li strong { color: var(--color-primary); }
+
+    .credits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md); }
+    .credit-card { padding: var(--spacing-lg); }
+    .credit-card h4 { margin: 0 0 var(--spacing-sm); font-size: var(--font-size-md); color: var(--color-primary); }
+    .credit-card p, .credit-card ul { font-size: var(--font-size-sm); color: var(--text-secondary); margin: 0; }
+    .credit-card ul { padding-left: var(--spacing-lg); margin-top: var(--spacing-xs); }
+    .credit-card ul li { margin-bottom: var(--spacing-xs); }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">☰</button>
+        <a href="index.html" class="site-logo">
+          <span class="logo-icon">🧠</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" placeholder="Search topics… (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">🌙</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/00-introduction/what-is-ai.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">00</span> Introduction to AI</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/01-intelligent-agents/agents-and-environments.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">01</span> Intelligent Agents</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/02-uninformed-search/problem-formulation.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">02</span> Uninformed Search</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/03-informed-search/heuristic-functions.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">03</span> Informed Search</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/04-adversarial-search/game-theory-basics.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">04</span> Adversarial Search</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/05-propositional-logic/syntax-and-semantics.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">05</span> Propositional Logic</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/06-predicate-logic/first-order-logic-syntax.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">06</span> Predicate Logic</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/07-reasoning-under-uncertainty/probability-review.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">07</span> Reasoning Under Uncertainty</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/08-machine-learning-foundations/ml-paradigms.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">08</span> ML Foundations</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/09-neural-networks-deep-learning/perceptron.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">09</span> Neural Networks &amp; DL</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/10-natural-language-processing/text-preprocessing.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">10</span> Natural Language Processing</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/11-computer-vision/image-fundamentals.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">11</span> Computer Vision</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/12-reinforcement-learning/mdp.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">12</span> Reinforcement Learning</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/13-planning/classical-planning.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">13</span> Planning</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/14-constraint-satisfaction/csp-formulation.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">14</span> Constraint Satisfaction</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/15-advanced-topics/explainable-ai.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">15</span> Advanced Topics</a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><a href="chapters/16-gate-da-preparation/exam-pattern-strategy.html" class="chapter-title" style="text-decoration:none;color:inherit;"><span class="chapter-num">16</span> GATE DA Preparation</a></div></div>
+      </div>
+    </nav>
+
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">🏠 Home</a> <span class="breadcrumb-sep">›</span>
+          <span class="breadcrumb-current">About This Course</span>
+        </nav>
+
+        <!-- Bookmark Button -->
+        <button class="bookmark-btn" id="bookmarkBtn" title="Bookmark this page" aria-label="Bookmark this page">⭐ Bookmark</button>
+
+        <!-- ===== HERO ===== -->
+        <section class="about-hero fade-in">
+          <h1>ℹ️ About This Course</h1>
+          <p>Everything you need to know about how this platform works, its features, and how to get the most out of it for your GATE DA AI preparation.</p>
+        </section>
+
+        <!-- ===== WHAT THIS COVERS ===== -->
+        <section class="about-section fade-in" id="what-we-cover">
+          <h2>📚 What This Website Covers</h2>
+          <div class="card" style="padding: var(--spacing-lg);">
+            <p><strong>Master AI for GATE DA</strong> is a comprehensive, self-contained learning platform covering the entire Artificial Intelligence syllabus for the GATE Data Science &amp; AI (DA) exam. The content spans 17 chapters and 118 topics, organized from foundational concepts to advanced applications.</p>
+
+            <h4 style="margin-top: var(--spacing-lg);">Core AI Topics Covered:</h4>
+            <ul>
+              <li><strong>Intelligent Agents</strong> — Agent architectures, rationality, PEAS framework</li>
+              <li><strong>Search Algorithms</strong> — Uninformed (BFS, DFS, UCS, IDDFS) and Informed (A*, IDA*, Hill Climbing, Simulated Annealing, Genetic Algorithms)</li>
+              <li><strong>Adversarial Search</strong> — Game trees, Minimax, Alpha-Beta Pruning, Monte Carlo Tree Search</li>
+              <li><strong>Logic &amp; Reasoning</strong> — Propositional logic, predicate logic (FOL), resolution, unification, skolemization</li>
+              <li><strong>Probabilistic Reasoning</strong> — Bayesian networks, exact and approximate inference, HMMs, MCMC methods</li>
+              <li><strong>Machine Learning Foundations</strong> — Bias-variance tradeoff, cross-validation, evaluation metrics</li>
+              <li><strong>Neural Networks &amp; Deep Learning</strong> — Perceptrons to Transformers, backpropagation, CNNs, RNNs, Attention</li>
+              <li><strong>Applications</strong> — NLP (embeddings, LLMs, BERT, GPT), Computer Vision (object detection, segmentation), Reinforcement Learning (MDPs, Q-learning)</li>
+              <li><strong>Planning &amp; CSPs</strong> — STRIPS, partial-order planning, GraphPlan, arc consistency, constraint propagation</li>
+              <li><strong>Advanced Topics</strong> — Explainable AI, AI ethics, federated learning, quantum ML, AI safety</li>
+              <li><strong>GATE DA Preparation</strong> — Exam strategy, previous year questions, formula sheet, revision checklist</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== CONTENT STRUCTURE ===== -->
+        <section class="about-section fade-in" id="structure">
+          <h2>🏗️ How Content is Structured</h2>
+          <p>Every topic follows a consistent four-stage learning flow designed for deep understanding and retention:</p>
+
+          <div class="structure-flow">
+            <div class="card flow-step card-hover">
+              <div class="flow-icon">📖</div>
+              <div class="flow-label">Theory</div>
+              <div class="flow-desc">Clear explanations with definitions, theorems, and intuition</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="card flow-step card-hover">
+              <div class="flow-icon">📝</div>
+              <div class="flow-label">Examples</div>
+              <div class="flow-desc">Worked-out examples with step-by-step solutions</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="card flow-step card-hover">
+              <div class="flow-icon">🔬</div>
+              <div class="flow-label">Practice</div>
+              <div class="flow-desc">Interactive demos and hands-on exercises</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="card flow-step card-hover">
+              <div class="flow-icon">✅</div>
+              <div class="flow-label">Quiz</div>
+              <div class="flow-desc">Self-assessment questions in GATE format</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding: var(--spacing-lg);">
+            <h4>Page Types</h4>
+            <p>Each page in the course is tagged with one of four types:</p>
+            <ul>
+              <li><strong style="color: #1565c0;">Theory</strong> — Core conceptual content with definitions, proofs, and explanations</li>
+              <li><strong style="color: #7b1fa2;">Practical</strong> — Hands-on exercises, interactive demos, algorithm traces, and implementation walkthroughs</li>
+              <li><strong style="color: #f57f17;">Notes</strong> — Summary pages, comparison tables, formula sheets, and quick-reference material</li>
+              <li><strong style="color: #2e7d32;">Quiz</strong> — Self-assessment questions in MCQ and NAT format to test understanding</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== FEATURES ===== -->
+        <section class="about-section fade-in" id="features">
+          <h2>✨ Features Overview</h2>
+          <div class="features-grid">
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">📊</div>
+              <h4>Progress Tracking</h4>
+              <p>Automatically tracks which topics you've completed. View chapter-level and overall progress on the dashboard. Data is stored locally in your browser.</p>
+            </div>
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">🌙</div>
+              <h4>Dark Mode</h4>
+              <p>Toggle between light and dark themes for comfortable reading in any environment. Your preference is saved and restored automatically.</p>
+            </div>
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">🔍</div>
+              <h4>Instant Search</h4>
+              <p>Press Ctrl+K to instantly search across all 118 topics. Find any concept, algorithm, or definition in seconds.</p>
+            </div>
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">⭐</div>
+              <h4>Bookmarks</h4>
+              <p>Bookmark any page for quick access later. Perfect for marking difficult topics you want to revisit or key reference pages.</p>
+            </div>
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">🎯</div>
+              <h4>GATE-Focused Content</h4>
+              <p>Every topic is tagged with GATE priority (High/Medium/Low). Content emphasizes problem-solving techniques tested in the exam.</p>
+            </div>
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">🔬</div>
+              <h4>Interactive Demos</h4>
+              <p>Visualize algorithms in action — trace BFS/DFS on graphs, step through minimax game trees, build Bayesian networks, and more.</p>
+            </div>
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">📱</div>
+              <h4>Responsive Design</h4>
+              <p>Works on desktop, tablet, and mobile. Study on any device. The sidebar collapses on smaller screens for maximum content space.</p>
+            </div>
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">⚡</div>
+              <h4>Fast &amp; Offline-Ready</h4>
+              <p>Pure HTML/CSS/JS — no server required. Download the entire site and study offline. No dependencies, no build tools, no framework overhead.</p>
+            </div>
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">📝</div>
+              <h4>Quiz Engine</h4>
+              <p>Built-in quiz system with MCQ and NAT question formats. Instant feedback with detailed explanations for each answer.</p>
+            </div>
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">🧭</div>
+              <h4>Smart Navigation</h4>
+              <p>Breadcrumb trail, "On This Page" sidebar, previous/next links, and chapter sidebar make it easy to navigate the entire course.</p>
+            </div>
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">🎨</div>
+              <h4>Smooth Animations</h4>
+              <p>Subtle fade-in and slide animations make the learning experience feel polished without being distracting.</p>
+            </div>
+            <div class="card feature-card card-hover">
+              <div class="feat-icon">♿</div>
+              <h4>Accessible</h4>
+              <p>Semantic HTML, ARIA labels, keyboard navigation support, and proper heading hierarchy ensure the site is accessible to all users.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== HOW TO USE FOR GATE ===== -->
+        <section class="about-section fade-in" id="gate-prep">
+          <h2>🎓 How to Use for GATE Preparation</h2>
+          <ol class="gate-tips-list">
+            <li>
+              <strong>Start with the Roadmap.</strong> Visit the <a href="roadmap.html">Learning Roadmap</a> to understand the recommended study sequence. Follow the 7-phase plan from foundations to exam prep.
+            </li>
+            <li>
+              <strong>Check the Syllabus Mapping.</strong> The <a href="syllabus.html">Syllabus</a> page maps every GATE DA AI topic to specific pages in the course. Use it to verify your coverage is complete.
+            </li>
+            <li>
+              <strong>Focus on High-Priority Topics First.</strong> Chapters 2–7 (Search, Logic, Reasoning) carry the most marks. Ensure these are rock-solid before moving to applications.
+            </li>
+            <li>
+              <strong>Use the Theory → Examples → Practice → Quiz Flow.</strong> For each chapter, read the theory pages, study the worked examples, try the interactive demos, then test yourself with the quiz.
+            </li>
+            <li>
+              <strong>Practice Previous Year Questions.</strong> After completing each chapter, attempt the relevant previous year GATE questions in Chapter 16. This builds exam-specific problem-solving speed.
+            </li>
+            <li>
+              <strong>Bookmark Difficult Topics.</strong> Click the bookmark button on pages you find challenging. Return to these during your revision phase.
+            </li>
+            <li>
+              <strong>Use the Formula Sheet for Revision.</strong> The <a href="chapters/16-gate-da-preparation/formula-sheet.html">Formula Sheet</a> in Chapter 16 compiles all key formulas. Review it weekly during your preparation.
+            </li>
+            <li>
+              <strong>Track Your Progress.</strong> The homepage dashboard shows your completion percentage. Aim for 100% coverage of high-priority chapters before the exam.
+            </li>
+            <li>
+              <strong>Final Revision with the Checklist.</strong> Two weeks before the exam, use the <a href="chapters/16-gate-da-preparation/final-revision-checklist.html">Final Revision Checklist</a> to ensure nothing is missed.
+            </li>
+            <li>
+              <strong>Avoid Common Mistakes.</strong> Read the <a href="chapters/16-gate-da-preparation/common-mistakes.html">Common Mistakes</a> page to learn from errors that cost marks in GATE exams.
+            </li>
+          </ol>
+        </section>
+
+        <!-- ===== KEYBOARD SHORTCUTS ===== -->
+        <section class="about-section fade-in" id="shortcuts">
+          <h2>⌨️ Keyboard Shortcuts</h2>
+          <div class="card" style="overflow-x:auto;">
+            <table class="shortcuts-table">
+              <thead>
+                <tr>
+                  <th>Shortcut</th>
+                  <th>Action</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><kbd>Ctrl</kbd> + <kbd>K</kbd></td>
+                  <td>Open Search</td>
+                  <td>Focus the search bar to quickly find any topic across all chapters.</td>
+                </tr>
+                <tr>
+                  <td><kbd>Esc</kbd></td>
+                  <td>Close Search / Close Sidebar</td>
+                  <td>Dismiss the search dropdown or close the mobile sidebar.</td>
+                </tr>
+                <tr>
+                  <td><kbd>←</kbd></td>
+                  <td>Previous Page</td>
+                  <td>Navigate to the previous topic page (when available).</td>
+                </tr>
+                <tr>
+                  <td><kbd>→</kbd></td>
+                  <td>Next Page</td>
+                  <td>Navigate to the next topic page (when available).</td>
+                </tr>
+                <tr>
+                  <td><kbd>D</kbd></td>
+                  <td>Toggle Dark Mode</td>
+                  <td>Switch between light and dark themes.</td>
+                </tr>
+                <tr>
+                  <td><kbd>B</kbd></td>
+                  <td>Toggle Bookmark</td>
+                  <td>Bookmark or un-bookmark the current page.</td>
+                </tr>
+                <tr>
+                  <td><kbd>S</kbd></td>
+                  <td>Toggle Sidebar</td>
+                  <td>Show or hide the chapter navigation sidebar.</td>
+                </tr>
+                <tr>
+                  <td><kbd>H</kbd></td>
+                  <td>Go Home</td>
+                  <td>Navigate back to the homepage dashboard.</td>
+                </tr>
+                <tr>
+                  <td><kbd>T</kbd></td>
+                  <td>Scroll to Top</td>
+                  <td>Smooth-scroll to the top of the current page.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===== CREDITS & REFERENCES ===== -->
+        <section class="about-section fade-in" id="credits">
+          <h2>🙏 Credits &amp; References</h2>
+          <div class="credits-grid">
+            <div class="card credit-card">
+              <h4>📕 Primary Textbook</h4>
+              <p><strong>Artificial Intelligence: A Modern Approach (AIMA)</strong></p>
+              <ul>
+                <li>Authors: Stuart Russell &amp; Peter Norvig</li>
+                <li>Edition: 4th Edition (2020)</li>
+                <li>Publisher: Pearson</li>
+                <li>The definitive AI textbook and the primary reference for GATE DA AI syllabus content</li>
+              </ul>
+            </div>
+            <div class="card credit-card">
+              <h4>📗 Machine Learning References</h4>
+              <ul>
+                <li><strong>Pattern Recognition and Machine Learning</strong> — Christopher Bishop</li>
+                <li><strong>Deep Learning</strong> — Ian Goodfellow, Yoshua Bengio, Aaron Courville</li>
+                <li><strong>Machine Learning: A Probabilistic Perspective</strong> — Kevin Murphy</li>
+                <li><strong>The Elements of Statistical Learning</strong> — Hastie, Tibshirani, Friedman</li>
+              </ul>
+            </div>
+            <div class="card credit-card">
+              <h4>📘 NLP &amp; Deep Learning</h4>
+              <ul>
+                <li><strong>Speech and Language Processing</strong> — Dan Jurafsky &amp; James H. Martin</li>
+                <li><strong>Attention Is All You Need</strong> — Vaswani et al. (2017) — Transformer paper</li>
+                <li><strong>BERT: Pre-training of Deep Bidirectional Transformers</strong> — Devlin et al. (2018)</li>
+                <li><strong>Neural Network Methods for NLP</strong> — Yoav Goldberg</li>
+              </ul>
+            </div>
+            <div class="card credit-card">
+              <h4>📙 Reinforcement Learning</h4>
+              <ul>
+                <li><strong>Reinforcement Learning: An Introduction</strong> — Richard Sutton &amp; Andrew Barto (2nd Ed.)</li>
+                <li><strong>Algorithms for Reinforcement Learning</strong> — Csaba Szepesvári</li>
+              </ul>
+            </div>
+            <div class="card credit-card">
+              <h4>🎓 GATE DA Resources</h4>
+              <ul>
+                <li>Official GATE DA syllabus — <a href="https://gate2025.iitr.ac.in/" target="_blank" rel="noopener">gate.iitk.ac.in</a></li>
+                <li>GATE previous year question papers (2024–2026)</li>
+                <li>GATE Overflow community solutions</li>
+                <li>NPTEL AI/ML courses by IIT faculty</li>
+              </ul>
+            </div>
+            <div class="card credit-card">
+              <h4>🛠️ Technology</h4>
+              <ul>
+                <li>Built with vanilla HTML5, CSS3, and JavaScript</li>
+                <li>No frameworks, no build tools, no server required</li>
+                <li>CSS Custom Properties for theming</li>
+                <li>LocalStorage for progress tracking and preferences</li>
+                <li>Accessible semantic HTML with ARIA attributes</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== LICENSE & DISCLAIMER ===== -->
+        <section class="about-section fade-in" id="license">
+          <h2>⚖️ Disclaimer</h2>
+          <div class="card" style="padding: var(--spacing-lg);">
+            <p>This is an educational resource created to help GATE DA aspirants study Artificial Intelligence. The content is based on standard AI textbooks (primarily AIMA by Russell &amp; Norvig) and publicly available educational material.</p>
+            <ul>
+              <li>This website is not affiliated with IIT or the GATE exam conducting body.</li>
+              <li>Syllabus weightage and exam pattern information is based on analysis of past papers and may change.</li>
+              <li>Always refer to the official GATE notification for the most current syllabus and exam details.</li>
+              <li>The content is provided as-is for educational purposes. Use your judgment alongside this material.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ===== PREV/NEXT NAV ===== -->
+        <nav class="prev-next-nav" aria-label="Page navigation">
+          <a href="roadmap.html" class="prev-next-btn prev-btn">
+            <span class="nav-direction">← Previous</span>
+            <span class="nav-title">Learning Roadmap</span>
+          </a>
+          <a href="glossary.html" class="prev-next-btn next-btn">
+            <span class="nav-direction">Next →</span>
+            <span class="nav-title">AI Glossary</span>
+          </a>
+        </nav>
+
+      </div>
+
+      <!-- ===== PAGE TOC (RIGHT SIDEBAR) ===== -->
+      <aside class="page-toc" aria-label="On this page">
+        <div class="page-toc-title">On This Page</div>
+        <ul>
+          <li><a href="#what-we-cover">What This Covers</a></li>
+          <li><a href="#structure">Content Structure</a></li>
+          <li><a href="#features">Features Overview</a></li>
+          <li><a href="#gate-prep">GATE Preparation</a></li>
+          <li><a href="#shortcuts">Keyboard Shortcuts</a></li>
+          <li><a href="#credits">Credits &amp; References</a></li>
+          <li><a href="#license">Disclaimer</a></li>
+        </ul>
+      </aside>
+    </main>
+  </div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/progress-tracker.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Q-Learning &amp; TD Methods — model-free RL, temporal-difference learning, SARSA, Q-Learning, ε-greedy exploration, cliff walking example for GATE DA.">
+  <title>Q-Learning &amp; TD Methods — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="value-iteration.html" class="sidebar-link"><span class="link-check"></span> Value Iteration<span class="link-type theory">Theory</span></a>
+            <a href="policy-iteration.html" class="sidebar-link"><span class="link-check"></span> Policy Iteration<span class="link-type theory">Theory</span></a>
+            <a href="q-learning.html" class="sidebar-link active"><span class="link-check"></span> Q-Learning<span class="link-type theory">Theory</span></a>
+            <a href="deep-reinforcement-learning.html" class="sidebar-link"><span class="link-check"></span> Deep RL<span class="link-type theory">Theory</span></a>
+            <a href="practical-rl.html" class="sidebar-link"><span class="link-check"></span> &#128300; Practical<span class="link-type practical">Demo</span></a>
+            <a href="notes-rl.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-rl.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="mdp.html">Chapter 12: Reinforcement Learning</a> &raquo; <span class="current">Q-Learning &amp; TD Methods</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch12-q-learning">
+
+            <h1>Q-Learning &amp; Temporal-Difference Methods</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch12-q-learning" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="mdp.html">MDPs</a> &mdash; MDP tuple, Bellman equations, value functions</li>
+              <li><a href="value-iteration.html">Value Iteration</a> &mdash; Bellman optimality operator</li>
+              <li><a href="policy-iteration.html">Policy Iteration</a> &mdash; policy evaluation and improvement</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Distinguish <strong>model-free</strong> from <strong>model-based</strong> RL</li>
+              <li>Derive the <strong>TD(0) update</strong> rule and explain the TD error &delta;</li>
+              <li>Implement <strong>SARSA</strong> (on-policy) and <strong>Q-Learning</strong> (off-policy) updates</li>
+              <li>Explain <strong>&epsilon;-greedy</strong> exploration and its role in convergence</li>
+              <li>Compare SARSA vs Q-Learning on the <strong>cliff walking</strong> problem</li>
+              <li>State the <strong>convergence conditions</strong> for Q-learning</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- ============================================================ -->
+              <!-- Section 1: Model-Free RL                                     -->
+              <!-- ============================================================ -->
+              <section id="model-free">
+                <h2>1. Model-Free Reinforcement Learning</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Model-Free RL</h4>
+                  <p><strong>Model-free</strong> methods learn value functions (or policies) directly from experience &mdash; sequences of (state, action, reward, next-state) tuples &mdash; <em>without</em> requiring knowledge of the transition function P(s&prime;|s,a) or the reward function R(s,a,s&prime;).</p>
+                </div>
+
+                <p>Dynamic programming methods (value iteration, policy iteration) are <strong>model-based</strong>: they need P and R. In many real-world problems the environment dynamics are unknown, making model-free methods essential.</p>
+
+                <div class="note-box">
+                  <h4>&#128161; Two Families of Model-Free Methods</h4>
+                  <ul>
+                    <li><strong>Monte Carlo (MC):</strong> Wait until the end of an episode, compute the actual return G<sub>t</sub>, and use it to update value estimates. Requires complete episodes.</li>
+                    <li><strong>Temporal-Difference (TD):</strong> Update value estimates after <em>every step</em> using a bootstrapped estimate. Does not require complete episodes.</li>
+                  </ul>
+                </div>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Property</th><th>Monte Carlo</th><th>Temporal-Difference</th><th>Dynamic Programming</th></tr></thead>
+                  <tbody>
+                    <tr><td>Requires model?</td><td>No</td><td>No</td><td>Yes</td></tr>
+                    <tr><td>Requires episodes?</td><td>Yes (complete)</td><td>No (online, step-by-step)</td><td>No</td></tr>
+                    <tr><td>Bootstraps?</td><td>No (uses actual G<sub>t</sub>)</td><td>Yes (uses estimated V or Q)</td><td>Yes</td></tr>
+                    <tr><td>Bias</td><td>Unbiased</td><td>Biased (due to bootstrap)</td><td>N/A (exact model)</td></tr>
+                    <tr><td>Variance</td><td>High</td><td>Lower</td><td>N/A</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <!-- ============================================================ -->
+              <!-- Section 2: TD(0) Learning                                    -->
+              <!-- ============================================================ -->
+              <section id="td-learning">
+                <h2>2. Temporal-Difference Learning: TD(0)</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; TD(0) Update Rule</h4>
+                  <p>After observing the transition (S<sub>t</sub>, A<sub>t</sub>, R<sub>t+1</sub>, S<sub>t+1</sub>), update the value estimate:</p>
+                  <p style="text-align:center; font-size:1.1em; background:var(--bg-secondary); padding:0.75rem; border-radius:8px;">V(S<sub>t</sub>) &larr; V(S<sub>t</sub>) + &alpha; [R<sub>t+1</sub> + &gamma; V(S<sub>t+1</sub>) &minus; V(S<sub>t</sub>)]</p>
+                  <p>where &alpha; &in; (0, 1] is the <strong>learning rate</strong> (step size).</p>
+                </div>
+
+                <h3>2.1 The TD Error (TD Target &minus; Current Estimate)</h3>
+
+                <div class="definition-box">
+                  <h4>&#128218; TD Error &delta;<sub>t</sub></h4>
+                  <p>The <strong>temporal-difference error</strong> measures the discrepancy between the current estimate and the bootstrapped target:</p>
+                  <p style="text-align:center; font-size:1.1em;">&delta;<sub>t</sub> = R<sub>t+1</sub> + &gamma; V(S<sub>t+1</sub>) &minus; V(S<sub>t</sub>)</p>
+                  <ul>
+                    <li><strong>TD target:</strong> R<sub>t+1</sub> + &gamma; V(S<sub>t+1</sub>) &mdash; a one-step look-ahead estimate of the return</li>
+                    <li><strong>&delta;<sub>t</sub> &gt; 0:</strong> The outcome was <em>better than expected</em> &rarr; increase V(S<sub>t</sub>)</li>
+                    <li><strong>&delta;<sub>t</sub> &lt; 0:</strong> The outcome was <em>worse than expected</em> &rarr; decrease V(S<sub>t</sub>)</li>
+                    <li><strong>&delta;<sub>t</sub> = 0:</strong> The estimate is consistent &mdash; no update needed</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Bootstrapping Intuition</h4>
+                  <p>TD(0) updates V(S<sub>t</sub>) toward R<sub>t+1</sub> + &gamma;V(S<sub>t+1</sub>) rather than waiting for the full return G<sub>t</sub>. It &ldquo;bootstraps&rdquo; by using its own estimate V(S<sub>t+1</sub>) as a stand-in for future rewards. This introduces <strong>bias</strong> but reduces <strong>variance</strong> compared to Monte Carlo.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#128221; Example: Single TD(0) Update</h4>
+                  <p>Current estimate: V(A) = 5.0. Parameters: &alpha; = 0.1, &gamma; = 0.9.</p>
+                  <p>Transition: State A &rarr; action a &rarr; reward +2 &rarr; State B where V(B) = 8.0.</p>
+                  <p>TD target = 2 + 0.9 &times; 8.0 = 9.2</p>
+                  <p>&delta; = 9.2 &minus; 5.0 = 4.2</p>
+                  <p>V(A) &larr; 5.0 + 0.1 &times; 4.2 = <strong>5.42</strong></p>
+                  <p>The value of A increased because the observed outcome (reward 2 plus being in a high-value state B) exceeded the current estimate.</p>
+                </div>
+              </section>
+
+              <!-- ============================================================ -->
+              <!-- Section 3: Exploration — ε-Greedy                            -->
+              <!-- ============================================================ -->
+              <section id="exploration">
+                <h2>3. Exploration: &epsilon;-Greedy Policy</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; &epsilon;-Greedy Policy</h4>
+                  <p>The agent selects actions according to:</p>
+                  <ul>
+                    <li>With probability <strong>1 &minus; &epsilon;</strong>: choose the greedy action a* = argmax<sub>a</sub> Q(s, a) &nbsp;(<em>exploit</em>)</li>
+                    <li>With probability <strong>&epsilon;</strong>: choose a random action uniformly from A &nbsp;(<em>explore</em>)</li>
+                  </ul>
+                  <p>The probability of each action under &epsilon;-greedy:</p>
+                  <p style="text-align:center; font-size:1.05em;">&pi;(a|s) = (1 &minus; &epsilon;) + &epsilon;/|A| &nbsp; if a = a*; &nbsp;&nbsp; &pi;(a|s) = &epsilon;/|A| &nbsp; otherwise</p>
+                </div>
+
+                <div class="warning-box">
+                  <h4>&#9888; Why Explore?</h4>
+                  <p>A purely greedy policy may converge to a <strong>suboptimal</strong> solution because it never tries actions that initially appear worse but could lead to higher long-term rewards. The &epsilon;-greedy strategy ensures every action has non-zero probability, which is necessary for convergence guarantees.</p>
+                </div>
+
+                <h3>3.1 Decaying &epsilon;</h3>
+                <p>In practice, &epsilon; is often <strong>decayed</strong> over time: start with high exploration (&epsilon; &asymp; 1.0) and gradually reduce (&epsilon; &rarr; 0) as the agent gains experience. Common schedules:</p>
+                <ul>
+                  <li><strong>Linear decay:</strong> &epsilon;<sub>t</sub> = max(&epsilon;<sub>min</sub>, &epsilon;<sub>0</sub> &minus; t &middot; &Delta;)</li>
+                  <li><strong>Exponential decay:</strong> &epsilon;<sub>t</sub> = &epsilon;<sub>0</sub> &middot; d<sup>t</sup> where d &in; (0, 1)</li>
+                </ul>
+              </section>
+
+              <!-- ============================================================ -->
+              <!-- Section 4: SARSA (On-Policy TD)                              -->
+              <!-- ============================================================ -->
+              <section id="sarsa">
+                <h2>4. SARSA: On-Policy TD Control</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; SARSA Update</h4>
+                  <p>SARSA updates the action-value function Q after observing the quintuple (S<sub>t</sub>, A<sub>t</sub>, R<sub>t+1</sub>, S<sub>t+1</sub>, A<sub>t+1</sub>) &mdash; hence the name <strong>S-A-R-S-A</strong>:</p>
+                  <p style="text-align:center; font-size:1.1em; background:var(--bg-secondary); padding:0.75rem; border-radius:8px;">Q(S<sub>t</sub>, A<sub>t</sub>) &larr; Q(S<sub>t</sub>, A<sub>t</sub>) + &alpha; [R<sub>t+1</sub> + &gamma; Q(S<sub>t+1</sub>, A<sub>t+1</sub>) &minus; Q(S<sub>t</sub>, A<sub>t</sub>)]</p>
+                  <p>The next action A<sub>t+1</sub> is the action <em>actually taken</em> by the agent&rsquo;s policy (e.g., &epsilon;-greedy).</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Algorithm: SARSA (On-Policy TD Control)</h4>
+                  <pre><code>function SARSA(env, &alpha;, &gamma;, &epsilon;, num_episodes):
+    Initialize Q(s, a) = 0 for all s &in; S, a &in; A
+    
+    for episode = 1 to num_episodes:
+        S &larr; env.reset()
+        A &larr; &epsilon;-greedy(Q, S, &epsilon;)
+        
+        while S is not terminal:
+            R, S' &larr; env.step(A)
+            A' &larr; &epsilon;-greedy(Q, S', &epsilon;)
+            
+            // SARSA update
+            Q(S, A) &larr; Q(S, A) + &alpha; [R + &gamma; Q(S', A') - Q(S, A)]
+            
+            S &larr; S'
+            A &larr; A'
+    
+    return Q</code></pre>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; On-Policy Property</h4>
+                  <p>SARSA is <strong>on-policy</strong> because the Q-value update uses the action A<sub>t+1</sub> that the current policy actually selects. This means SARSA evaluates and improves the same &epsilon;-greedy policy it is following. As a consequence, SARSA tends to learn a <strong>safer</strong> policy that accounts for its own exploratory behaviour.</p>
+                </div>
+              </section>
+
+              <!-- ============================================================ -->
+              <!-- Section 5: Q-Learning (Off-Policy TD)                        -->
+              <!-- ============================================================ -->
+              <section id="q-learning">
+                <h2>5. Q-Learning: Off-Policy TD Control</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Q-Learning Update</h4>
+                  <p>Q-Learning updates Q using the <strong>maximum</strong> Q-value of the next state, regardless of which action the agent actually takes:</p>
+                  <p style="text-align:center; font-size:1.1em; background:var(--bg-secondary); padding:0.75rem; border-radius:8px;">Q(S<sub>t</sub>, A<sub>t</sub>) &larr; Q(S<sub>t</sub>, A<sub>t</sub>) + &alpha; [R<sub>t+1</sub> + &gamma; max<sub>a</sub> Q(S<sub>t+1</sub>, a) &minus; Q(S<sub>t</sub>, A<sub>t</sub>)]</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Algorithm: Q-Learning (Off-Policy TD Control)</h4>
+                  <pre><code>function Q-LEARNING(env, &alpha;, &gamma;, &epsilon;, num_episodes):
+    Initialize Q(s, a) = 0 for all s &in; S, a &in; A
+    
+    for episode = 1 to num_episodes:
+        S &larr; env.reset()
+        
+        while S is not terminal:
+            A &larr; &epsilon;-greedy(Q, S, &epsilon;)
+            R, S' &larr; env.step(A)
+            
+            // Q-Learning update (note: max over actions, not the action taken)
+            Q(S, A) &larr; Q(S, A) + &alpha; [R + &gamma; max_a Q(S', a) - Q(S, A)]
+            
+            S &larr; S'
+    
+    return Q</code></pre>
+                </div>
+
+                <div class="theorem-box">
+                  <h4>&#128295; Q-Learning Convergence Theorem (Watkins &amp; Dayan, 1992)</h4>
+                  <p>Q-Learning converges to the optimal action-value function Q* with probability 1 provided:</p>
+                  <ol>
+                    <li>All state-action pairs are visited <strong>infinitely often</strong> (sufficient exploration)</li>
+                    <li>The learning rate &alpha;<sub>t</sub>(s, a) satisfies the <strong>Robbins-Monro conditions</strong>:
+                      <p style="text-align:center; font-size:1.05em;">&#8721;<sub>t</sub> &alpha;<sub>t</sub>(s,a) = &infin; &nbsp;&nbsp;&nbsp; and &nbsp;&nbsp;&nbsp; &#8721;<sub>t</sub> &alpha;<sub>t</sub>(s,a)&sup2; &lt; &infin;</p>
+                    </li>
+                  </ol>
+                  <p>A constant &alpha; does not satisfy condition 2 but works well in non-stationary environments and in practice.</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Off-Policy Property</h4>
+                  <p>Q-Learning is <strong>off-policy</strong> because the update uses max<sub>a</sub> Q(S<sub>t+1</sub>, a) &mdash; the value of the <em>best</em> action in the next state &mdash; rather than the action the agent actually takes. This means Q-Learning directly approximates Q* regardless of the behaviour policy. The agent can follow an &epsilon;-greedy exploration policy while learning about the optimal greedy policy.</p>
+                </div>
+              </section>
+
+              <!-- ============================================================ -->
+              <!-- Section 6: SARSA vs Q-Learning                               -->
+              <!-- ============================================================ -->
+              <section id="comparison">
+                <h2>6. SARSA vs Q-Learning: Detailed Comparison</h2>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Property</th><th>SARSA</th><th>Q-Learning</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Type</strong></td><td>On-policy</td><td>Off-policy</td></tr>
+                    <tr><td><strong>Update target</strong></td><td>R + &gamma; Q(S&prime;, A&prime;) where A&prime; &sim; &pi;</td><td>R + &gamma; max<sub>a</sub> Q(S&prime;, a)</td></tr>
+                    <tr><td><strong>Learns about</strong></td><td>The policy being followed (&epsilon;-greedy)</td><td>The optimal policy (greedy)</td></tr>
+                    <tr><td><strong>Safety</strong></td><td>Learns &ldquo;safer&rdquo; policies that account for exploration</td><td>Learns optimal policy assuming greedy execution</td></tr>
+                    <tr><td><strong>Convergence target</strong></td><td>Q<sup>&pi;</sup> for &epsilon;-greedy &pi;</td><td>Q* (optimal)</td></tr>
+                    <tr><td><strong>Sensitivity to &epsilon;</strong></td><td>High &mdash; large &epsilon; changes the target policy</td><td>Low &mdash; always targets optimal Q</td></tr>
+                    <tr><td><strong>Exploration risk</strong></td><td>Avoids risky exploratory states</td><td>May walk near dangerous states (but optimal under greedy execution)</td></tr>
+                  </tbody>
+                </table>
+
+                <div class="warning-box">
+                  <h4>&#9888; GATE Exam Tip: The Key Difference</h4>
+                  <p>The <strong>only difference</strong> between SARSA and Q-Learning is in the TD target:</p>
+                  <ul>
+                    <li>SARSA: R + &gamma; Q(S&prime;, <strong>A&prime;</strong>) &mdash; A&prime; is the action actually chosen by the policy</li>
+                    <li>Q-Learning: R + &gamma; <strong>max<sub>a</sub></strong> Q(S&prime;, a) &mdash; max over all possible actions</li>
+                  </ul>
+                  <p>If the policy is greedy (&epsilon; = 0), both updates are identical because A&prime; = argmax<sub>a</sub> Q(S&prime;, a).</p>
+                </div>
+              </section>
+
+              <!-- ============================================================ -->
+              <!-- Section 7: Learning Rate α                                   -->
+              <!-- ============================================================ -->
+              <section id="learning-rate">
+                <h2>7. The Learning Rate &alpha;</h2>
+
+                <p>The learning rate &alpha; controls how much new information overrides old estimates:</p>
+                <ul>
+                  <li><strong>&alpha; = 0:</strong> The agent learns nothing (Q never changes).</li>
+                  <li><strong>&alpha; = 1:</strong> The agent fully replaces old estimates with the latest sample &mdash; high variance, no averaging.</li>
+                  <li><strong>Small &alpha; (e.g., 0.01&ndash;0.1):</strong> Slow but stable learning. Good for convergence.</li>
+                  <li><strong>Large &alpha; (e.g., 0.5&ndash;0.9):</strong> Fast initial learning but noisy. Works in deterministic environments.</li>
+                </ul>
+
+                <div class="note-box">
+                  <h4>&#128161; Practical Guideline</h4>
+                  <p>In <strong>deterministic</strong> environments, &alpha; = 1 works well (each sample is exact). In <strong>stochastic</strong> environments, smaller &alpha; is needed to average out noise. A decaying schedule &alpha;<sub>t</sub> = 1/(1 + visit_count(s,a)) satisfies the Robbins-Monro conditions.</p>
+                </div>
+              </section>
+
+              <!-- ============================================================ -->
+              <!-- Section 8: Cliff Walking Example                             -->
+              <!-- ============================================================ -->
+              <section id="cliff-walking">
+                <h2>8. Cliff Walking: SARSA vs Q-Learning in Action</h2>
+
+                <div class="example-box">
+                  <h4>&#128221; The Cliff Walking Problem</h4>
+                  <p>A classic benchmark that highlights the on-policy vs off-policy distinction.</p>
+                  <pre><code>  4&times;12 Grid World
+  
+  ............ 
+  ............
+  ............
+  S CCCCCCCCCC G
+
+  S = Start (bottom-left)
+  G = Goal  (bottom-right)
+  C = Cliff cells (bottom row, between S and G)
+  
+  Rewards:
+  - Step into cliff: &minus;100 (agent returns to S)
+  - All other steps: &minus;1
+  - Reaching G: 0 (terminal)
+  
+  Actions: Up, Down, Left, Right (deterministic)</code></pre>
+                </div>
+
+                <h3>8.1 Q-Learning&rsquo;s Behaviour (Off-Policy)</h3>
+                <p>Q-Learning learns the <strong>optimal policy</strong>, which is to walk along the bottom row, right next to the cliff:</p>
+                <pre><code>  Optimal path (Q-Learning's greedy policy):
+  ............
+  ............
+  ............
+  S&rarr;&rarr;&rarr;&rarr;&rarr;&rarr;&rarr;&rarr;&rarr;&rarr;&rarr;G</code></pre>
+                <p>This is optimal under greedy execution. However, <strong>during training</strong> with &epsilon;-greedy exploration, the agent frequently falls off the cliff (random actions near the edge), accumulating large negative rewards per episode.</p>
+
+                <h3>8.2 SARSA&rsquo;s Behaviour (On-Policy)</h3>
+                <p>SARSA accounts for the &epsilon;-greedy exploration in its value estimates. It learns to avoid the cliff edge, taking a <strong>safer but longer</strong> path along the top:</p>
+                <pre><code>  Safe path (SARSA's policy):
+  &rarr;&rarr;&rarr;&rarr;&rarr;&rarr;&rarr;&rarr;&rarr;&rarr;&rarr;&darr;
+  ............&darr;
+  ............&darr;
+  S CCCCCCCCCC G</code></pre>
+
+                <h3>8.3 Learning Curve Comparison</h3>
+                <table class="comparison-table">
+                  <thead><tr><th>Metric</th><th>SARSA</th><th>Q-Learning</th></tr></thead>
+                  <tbody>
+                    <tr><td>Average reward during training</td><td><strong>Higher</strong> (fewer cliff falls)</td><td>Lower (frequent cliff falls during exploration)</td></tr>
+                    <tr><td>Optimal policy learned?</td><td>No (safe path, slightly suboptimal)</td><td><strong>Yes</strong> (shortest path)</td></tr>
+                    <tr><td>Performance if &epsilon; &rarr; 0</td><td>Converges to optimal</td><td>Already optimal</td></tr>
+                  </tbody>
+                </table>
+
+                <div class="note-box">
+                  <h4>&#128161; The Takeaway</h4>
+                  <p>If the agent must perform well <strong>during training</strong> (e.g., a robot that can be damaged), SARSA is preferred because it accounts for its own exploratory mistakes. If only the <strong>final learned policy</strong> matters, Q-Learning directly targets optimality.</p>
+                </div>
+              </section>
+
+              <!-- ============================================================ -->
+              <!-- Section 9: Worked Numerical Example                          -->
+              <!-- ============================================================ -->
+              <section id="worked-example">
+                <h2>9. Worked Example: Q-Learning Updates</h2>
+
+                <div class="example-box">
+                  <h4>&#128221; Step-by-Step Q-Learning</h4>
+                  <p>States: {A, B, C (terminal)}. Actions: {left, right}. &gamma; = 0.9, &alpha; = 0.5.</p>
+                  <p>Initial Q-table (all zeros):</p>
+                  <table class="comparison-table">
+                    <thead><tr><th>State</th><th>Q(s, left)</th><th>Q(s, right)</th></tr></thead>
+                    <tbody>
+                      <tr><td>A</td><td>0</td><td>0</td></tr>
+                      <tr><td>B</td><td>0</td><td>0</td></tr>
+                    </tbody>
+                  </table>
+
+                  <p><strong>Episode 1, Step 1:</strong> S=A, A=right (random), R=0, S&prime;=B</p>
+                  <p>Q(A, right) &larr; 0 + 0.5 &times; [0 + 0.9 &times; max(Q(B,left), Q(B,right)) &minus; 0]<br>
+                  = 0 + 0.5 &times; [0 + 0.9 &times; 0 &minus; 0] = <strong>0.0</strong></p>
+
+                  <p><strong>Episode 1, Step 2:</strong> S=B, A=right (random), R=+10, S&prime;=C (terminal)</p>
+                  <p>Q(B, right) &larr; 0 + 0.5 &times; [10 + 0.9 &times; 0 &minus; 0] = 0.5 &times; 10 = <strong>5.0</strong></p>
+
+                  <p><strong>Episode 2, Step 1:</strong> S=A, A=right (&epsilon;-greedy), R=0, S&prime;=B</p>
+                  <p>Q(A, right) &larr; 0 + 0.5 &times; [0 + 0.9 &times; max(0, 5.0) &minus; 0] = 0.5 &times; 4.5 = <strong>2.25</strong></p>
+
+                  <p><strong>Episode 2, Step 2:</strong> S=B, A=right, R=+10, S&prime;=C</p>
+                  <p>Q(B, right) &larr; 5.0 + 0.5 &times; [10 + 0 &minus; 5.0] = 5.0 + 2.5 = <strong>7.5</strong></p>
+
+                  <p>After 2 episodes, the Q-table:</p>
+                  <table class="comparison-table">
+                    <thead><tr><th>State</th><th>Q(s, left)</th><th>Q(s, right)</th></tr></thead>
+                    <tbody>
+                      <tr><td>A</td><td>0</td><td>2.25</td></tr>
+                      <tr><td>B</td><td>0</td><td>7.5</td></tr>
+                    </tbody>
+                  </table>
+                  <p>The greedy policy already prefers &ldquo;right&rdquo; in both states. With more episodes, Q(A, right) &rarr; 0.9 &times; 10 = 9.0 and Q(B, right) &rarr; 10.0 (the true Q* values).</p>
+                </div>
+              </section>
+
+              <!-- ============================================================ -->
+              <!-- Section 10: Expected SARSA                                   -->
+              <!-- ============================================================ -->
+              <section id="expected-sarsa">
+                <h2>10. Expected SARSA</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Expected SARSA Update</h4>
+                  <p>Instead of sampling the next action A&prime;, take the <strong>expectation</strong> over all possible next actions under the policy:</p>
+                  <p style="text-align:center; font-size:1.05em;">Q(S<sub>t</sub>, A<sub>t</sub>) &larr; Q(S<sub>t</sub>, A<sub>t</sub>) + &alpha; [R<sub>t+1</sub> + &gamma; &#8721;<sub>a</sub> &pi;(a|S<sub>t+1</sub>) Q(S<sub>t+1</sub>, a) &minus; Q(S<sub>t</sub>, A<sub>t</sub>)]</p>
+                </div>
+
+                <p>Expected SARSA has <strong>lower variance</strong> than SARSA (no sampling of A&prime;) while remaining on-policy. If the target policy is greedy, Expected SARSA reduces to Q-Learning.</p>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Method</th><th>Target</th><th>Type</th></tr></thead>
+                  <tbody>
+                    <tr><td>SARSA</td><td>R + &gamma; Q(S&prime;, A&prime;)</td><td>On-policy, sampled</td></tr>
+                    <tr><td>Expected SARSA</td><td>R + &gamma; &#8721;<sub>a</sub> &pi;(a|S&prime;) Q(S&prime;, a)</td><td>On-policy, expected</td></tr>
+                    <tr><td>Q-Learning</td><td>R + &gamma; max<sub>a</sub> Q(S&prime;, a)</td><td>Off-policy</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <!-- ============================================================ -->
+              <!-- Section 11: Summary                                          -->
+              <!-- ============================================================ -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section"><ul>
+                  <li><strong>Model-free</strong> methods learn from experience without knowing P or R</li>
+                  <li><strong>TD(0)</strong> bootstraps: V(S) &larr; V(S) + &alpha;[R + &gamma;V(S&prime;) &minus; V(S)]</li>
+                  <li><strong>SARSA</strong> (on-policy): updates Q(S,A) using the <em>actual</em> next action A&prime; &mdash; learns a safe, exploration-aware policy</li>
+                  <li><strong>Q-Learning</strong> (off-policy): updates Q(S,A) using max<sub>a</sub> Q(S&prime;, a) &mdash; directly learns the optimal Q*</li>
+                  <li><strong>&epsilon;-greedy</strong> balances exploration and exploitation; &epsilon; is typically decayed</li>
+                  <li>Q-Learning converges to Q* under Robbins-Monro conditions and infinite exploration</li>
+                  <li>In <strong>cliff walking</strong>: SARSA avoids the cliff (safe); Q-Learning walks the edge (optimal)</li>
+                  <li><strong>Expected SARSA</strong> uses the expected next-action Q-value, reducing variance</li>
+                </ul></div>
+              </section>
+
+              <section id="references"><h2>References</h2><ul>
+                <li>Sutton &amp; Barto, <em>Reinforcement Learning: An Introduction</em>, Chapters 6.1&ndash;6.5</li>
+                <li>Watkins &amp; Dayan, &ldquo;Q-Learning,&rdquo; <em>Machine Learning</em>, 1992</li>
+                <li>Russell &amp; Norvig, <em>AIMA</em>, Chapter 22.3</li>
+              </ul></section>
+            </div>
+
+            <button class="complete-btn" data-page="ch12-q-learning">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="policy-iteration.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Policy Iteration</span></a>
+              <a href="deep-reinforcement-learning.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Deep Reinforcement Learning</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#model-free">1. Model-Free RL</a></li>
+            <li><a href="#td-learning">2. TD(0) Learning</a></li>
+            <li><a href="#exploration">3. Exploration</a></li>
+            <li><a href="#sarsa">4. SARSA</a></li>
+            <li><a href="#q-learning">5. Q-Learning</a></li>
+            <li><a href="#comparison">6. SARSA vs Q-Learning</a></li>
+            <li><a href="#learning-rate">7. Learning Rate</a></li>
+            <li><a href="#cliff-walking">8. Cliff Walking</a></li>
+            <li><a href="#worked-example">9. Worked Example</a></li>
+            <li><a href="#expected-sarsa">10. Expected SARSA</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

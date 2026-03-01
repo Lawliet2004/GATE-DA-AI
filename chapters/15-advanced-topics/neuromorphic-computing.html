@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Neuromorphic Computing — spiking neural networks, neuromorphic hardware, energy-efficient AI for GATE DA AI preparation.">
+  <title>Neuromorphic Computing — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-ethics-fairness.html" class="sidebar-link"><span class="link-check"></span> AI Ethics &amp; Fairness<span class="link-type theory">Theory</span></a>
+            <a href="federated-learning.html" class="sidebar-link"><span class="link-check"></span> Federated Learning<span class="link-type theory">Theory</span></a>
+            <a href="neuromorphic-computing.html" class="sidebar-link active"><span class="link-check"></span> Neuromorphic Computing<span class="link-type theory">Theory</span></a>
+            <a href="quantum-machine-learning.html" class="sidebar-link"><span class="link-check"></span> Quantum ML<span class="link-type theory">Theory</span></a>
+            <a href="ai-safety-alignment.html" class="sidebar-link"><span class="link-check"></span> AI Safety &amp; Alignment<span class="link-type theory">Theory</span></a>
+            <a href="multimodal-ai.html" class="sidebar-link"><span class="link-check"></span> Multimodal AI<span class="link-type theory">Theory</span></a>
+            <a href="autonomous-systems.html" class="sidebar-link"><span class="link-check"></span> Autonomous Systems<span class="link-type theory">Theory</span></a>
+            <a href="recent-breakthroughs.html" class="sidebar-link"><span class="link-check"></span> Recent Breakthroughs<span class="link-type theory">Theory</span></a>
+            <a href="notes-advanced.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-advanced.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="explainable-ai.html">Chapter 15: Advanced Topics</a> &raquo; <span class="current">Neuromorphic Computing</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch15-neuromorphic-computing">
+
+            <h1>Neuromorphic Computing</h1>
+
+            <div class="note-box">
+              <strong>GATE DA Relevance:</strong> Neuromorphic computing represents a paradigm shift in hardware and algorithmic design for AI. GATE DA questions may test your understanding of spiking neural networks vs traditional ANNs, the Leaky Integrate-and-Fire neuron model, STDP learning, and energy efficiency advantages. Focus on conceptual differences and computational principles.
+            </div>
+
+            <!-- Section 1 -->
+            <h2>1. Biological Neuron Inspiration</h2>
+            <p>Neuromorphic computing draws direct inspiration from the architecture and computational principles of the biological brain. The human brain operates with approximately 86 billion neurons and 150 trillion synapses, consuming only about 20 watts of power&mdash;orders of magnitude more efficient than modern GPUs performing comparable tasks.</p>
+
+            <h3>1.1 Biological Neurons: Key Features</h3>
+            <ul>
+              <li><strong>Spike-based communication:</strong> Neurons communicate via discrete electrical pulses (action potentials or &ldquo;spikes&rdquo;) rather than continuous values.</li>
+              <li><strong>Temporal coding:</strong> Information is encoded not just in spike rates but in the precise timing of spikes.</li>
+              <li><strong>Massive parallelism:</strong> Each neuron processes inputs from thousands of other neurons simultaneously.</li>
+              <li><strong>Co-located memory and computation:</strong> Synaptic weights (memory) are physically at the point of computation, eliminating the von Neumann bottleneck.</li>
+              <li><strong>Event-driven:</strong> Neurons only consume energy when they fire, not continuously.</li>
+            </ul>
+
+            <div class="definition-box">
+              <strong>Neuromorphic Computing:</strong> A computing paradigm that mimics the structure and function of biological neural systems in hardware and software. It uses brain-inspired architectures with spiking neurons, event-driven processing, and co-located memory and computation to achieve extreme energy efficiency and real-time processing.
+            </div>
+
+            <h3>1.2 The Von Neumann Bottleneck</h3>
+            <p>Traditional computers separate memory (RAM) from computation (CPU/GPU), creating a data transfer bottleneck. In deep learning, this means constantly shuttling weight matrices between memory and processors, consuming enormous energy. Neuromorphic systems eliminate this by placing computation at the memory location&mdash;just as biological synapses do.</p>
+
+            <!-- Section 2 -->
+            <h2>2. Spiking Neural Networks (SNNs)</h2>
+            <p>SNNs are the algorithmic foundation of neuromorphic computing. They are considered the <strong>third generation</strong> of neural networks, following perceptrons (1st gen) and continuous-valued networks like CNNs and RNNs (2nd gen).</p>
+
+            <div class="definition-box">
+              <strong>Spiking Neural Network (SNN):</strong> A neural network where neurons communicate using discrete spikes over time, rather than continuous activation values. The temporal dynamics of spike generation and propagation are integral to the computation.
+            </div>
+
+            <h3>2.1 The Leaky Integrate-and-Fire (LIF) Neuron</h3>
+            <p>The most widely used spiking neuron model is the Leaky Integrate-and-Fire (LIF) neuron, which balances biological realism with computational tractability.</p>
+
+            <div class="theorem-box">
+              <strong>LIF Neuron Dynamics:</strong> The membrane potential <em>V(t)</em> evolves according to:<br><br>
+              <em>&tau;<sub>m</sub> &middot; dV/dt = &minus;(V(t) &minus; V<sub>rest</sub>) + R &middot; I(t)</em><br><br>
+              where:
+              <ul>
+                <li><em>&tau;<sub>m</sub></em> = membrane time constant (controls the &ldquo;leak&rdquo; rate)</li>
+                <li><em>V<sub>rest</sub></em> = resting potential (typically set to 0)</li>
+                <li><em>R</em> = membrane resistance</li>
+                <li><em>I(t)</em> = input current (sum of weighted incoming spikes)</li>
+              </ul>
+              When <em>V(t) &ge; V<sub>th</sub></em> (threshold), the neuron fires a spike and resets: <em>V(t) &rarr; V<sub>reset</sub></em>.
+            </div>
+
+            <p>In discrete time (used in simulations), the LIF update becomes:</p>
+            <p style="text-align:center;"><em>V[t+1] = &beta; &middot; V[t] + I[t] &minus; V<sub>th</sub> &middot; S[t]</em></p>
+            <p>where <em>&beta; = exp(&minus;&Delta;t / &tau;<sub>m</sub>)</em> is the decay factor and <em>S[t] &isin; {0, 1}</em> is the spike output.</p>
+
+            <h3>2.2 Other Neuron Models</h3>
+            <table>
+              <thead>
+                <tr><th>Model</th><th>Complexity</th><th>Biological Realism</th><th>Use Case</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Integrate-and-Fire (IF)</td><td>Very Low</td><td>Low</td><td>Theoretical analysis</td></tr>
+                <tr><td>Leaky IF (LIF)</td><td>Low</td><td>Medium</td><td>Most SNN research</td></tr>
+                <tr><td>Izhikevich</td><td>Medium</td><td>High</td><td>Large-scale brain simulation</td></tr>
+                <tr><td>Hodgkin-Huxley</td><td>Very High</td><td>Very High</td><td>Biophysical modeling</td></tr>
+                <tr><td>Adaptive Exponential IF</td><td>Medium</td><td>High</td><td>Balanced realism/efficiency</td></tr>
+              </tbody>
+            </table>
+
+            <div class="example-box">
+              <strong>Example &mdash; LIF Neuron Simulation:</strong> Consider a LIF neuron with &tau;<sub>m</sub> = 20 ms, V<sub>th</sub> = 1.0, V<sub>rest</sub> = 0, and &beta; = 0.9. With constant input I = 0.3:<br>
+              t=0: V = 0.0 + 0.3 = 0.3 (no spike)<br>
+              t=1: V = 0.9 &times; 0.3 + 0.3 = 0.57 (no spike)<br>
+              t=2: V = 0.9 &times; 0.57 + 0.3 = 0.813 (no spike)<br>
+              t=3: V = 0.9 &times; 0.813 + 0.3 = 1.032 &ge; 1.0 &rarr; <strong>SPIKE!</strong> V resets to 0.
+            </div>
+
+            <!-- Section 3 -->
+            <h2>3. Spike Timing-Dependent Plasticity (STDP)</h2>
+            <p>STDP is the primary learning rule in biological neural systems and forms the basis of unsupervised learning in SNNs.</p>
+
+            <div class="definition-box">
+              <strong>STDP:</strong> A biological learning rule where the synaptic weight change depends on the relative timing of pre-synaptic and post-synaptic spikes:<br><br>
+              <em>&Delta;w = A<sub>+</sub> &middot; exp(&minus;&Delta;t / &tau;<sub>+</sub>)</em> if <em>&Delta;t &gt; 0</em> (pre before post &rarr; <strong>potentiation</strong>)<br>
+              <em>&Delta;w = &minus;A<sub>&minus;</sub> &middot; exp(&Delta;t / &tau;<sub>&minus;</sub>)</em> if <em>&Delta;t &lt; 0</em> (post before pre &rarr; <strong>depression</strong>)<br><br>
+              where <em>&Delta;t = t<sub>post</sub> &minus; t<sub>pre</sub></em>.
+            </div>
+
+            <h3>3.1 Intuition Behind STDP</h3>
+            <p>If a pre-synaptic neuron fires <em>just before</em> a post-synaptic neuron (suggesting a causal relationship), the connection is <strong>strengthened</strong> (Long-Term Potentiation, LTP). If it fires <em>just after</em>, the connection is <strong>weakened</strong> (Long-Term Depression, LTD). This implements a form of Hebbian learning: &ldquo;neurons that fire together wire together.&rdquo;</p>
+
+            <h3>3.2 Learning in SNNs Beyond STDP</h3>
+            <ul>
+              <li><strong>Surrogate Gradient Methods:</strong> Use differentiable approximations of the spike function to enable backpropagation through time in SNNs.</li>
+              <li><strong>ANN-to-SNN Conversion:</strong> Train a standard ANN, then convert it to an SNN by replacing activations with spike rates.</li>
+              <li><strong>Reward-modulated STDP:</strong> Combine STDP with a global reward signal for reinforcement learning in SNNs.</li>
+              <li><strong>Equilibrium Propagation:</strong> A biologically plausible alternative to backpropagation.</li>
+            </ul>
+
+            <div class="warning-box">
+              <strong>Training Challenge:</strong> The non-differentiable nature of spikes (a step function from 0 to 1) makes standard backpropagation inapplicable to SNNs. Surrogate gradients replace the true gradient of the spike function with a smooth approximation (e.g., sigmoid or piece-wise linear) during the backward pass, enabling gradient-based training.
+            </div>
+
+            <!-- Section 4 -->
+            <h2>4. Neuromorphic Hardware</h2>
+            <p>Specialized hardware is essential to realize the efficiency benefits of neuromorphic computing. Several major chips have been developed.</p>
+
+            <h3>4.1 Intel Loihi (1 &amp; 2)</h3>
+            <ul>
+              <li><strong>Architecture:</strong> 128 neuromorphic cores, each with 1,024 spiking neurons (Loihi 1: ~130K neurons total).</li>
+              <li><strong>Loihi 2 (2021):</strong> Up to 1 million neurons, programmable neuron models, improved inter-chip connectivity.</li>
+              <li><strong>Features:</strong> On-chip learning (STDP and programmable rules), asynchronous event-driven processing.</li>
+              <li><strong>Power:</strong> ~1 watt for Loihi 1; tasks like keyword spotting can run at milliwatt levels.</li>
+            </ul>
+
+            <h3>4.2 IBM TrueNorth</h3>
+            <ul>
+              <li><strong>Architecture:</strong> 1 million neurons, 256 million synapses on a single chip.</li>
+              <li><strong>Design:</strong> 4,096 neurosynaptic cores; each core is a crossbar of 256 axons &times; 256 neurons.</li>
+              <li><strong>Power:</strong> Operates at approximately 70 milliwatts&mdash;roughly 10,000&times; more energy-efficient than a GPU for certain inference tasks.</li>
+              <li><strong>Limitation:</strong> Fixed neuron model; no on-chip learning capability.</li>
+            </ul>
+
+            <h3>4.3 Other Notable Platforms</h3>
+            <table>
+              <thead>
+                <tr><th>Platform</th><th>Developer</th><th>Neurons</th><th>Key Feature</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>SpiNNaker</td><td>University of Manchester</td><td>~1 billion (multi-board)</td><td>ARM-based, real-time brain simulation</td></tr>
+                <tr><td>BrainScaleS</td><td>Heidelberg University</td><td>~512 (per wafer module)</td><td>Analog, 1000&times; faster than biological time</td></tr>
+                <tr><td>Akida</td><td>BrainChip</td><td>1.2 million</td><td>Commercial edge AI; on-chip learning</td></tr>
+                <tr><td>Tianjic</td><td>Tsinghua University</td><td>~40,000</td><td>Hybrid ANN/SNN support</td></tr>
+              </tbody>
+            </table>
+
+            <div class="example-box">
+              <strong>Example &mdash; Energy Comparison:</strong> For a keyword recognition task (detecting &ldquo;Hey Siri&rdquo; or &ldquo;OK Google&rdquo;): a GPU consumes ~250W, a mobile CPU ~5W, a neuromorphic chip (Loihi) ~0.005W. A neuromorphic solution is approximately 50,000&times; more energy-efficient than a GPU and 1,000&times; more efficient than a mobile CPU for this specific task.
+            </div>
+
+            <!-- Section 5 -->
+            <h2>5. Energy Efficiency &amp; Event-Driven Computation</h2>
+            <p>The energy advantage of neuromorphic systems comes from their fundamentally different computational model.</p>
+
+            <h3>5.1 Why Neuromorphic Is Energy-Efficient</h3>
+            <div class="definition-box">
+              <strong>Event-Driven Computation:</strong> Unlike clock-driven conventional processors that compute every cycle regardless of input, neuromorphic systems process data only when spikes (events) occur. Inactive neurons consume near-zero power.
+            </div>
+
+            <ul>
+              <li><strong>Sparse activation:</strong> At any given time, only ~1&ndash;5% of neurons in an SNN fire, meaning 95&ndash;99% of the network is idle and consuming negligible power.</li>
+              <li><strong>In-memory computation:</strong> Synaptic weights are stored at the computation site (like in memristive crossbar arrays), eliminating expensive data movement.</li>
+              <li><strong>Binary spikes:</strong> Communication uses single-bit spikes rather than 32-bit floating point values.</li>
+              <li><strong>No matrix multiplications:</strong> SNNs use accumulate operations instead of the multiply-accumulate operations that dominate DNN inference.</li>
+            </ul>
+
+            <h3>5.2 Event Cameras &amp; Neuromorphic Sensors</h3>
+            <p>Neuromorphic sensors complement neuromorphic processors. <strong>Dynamic Vision Sensors (DVS)</strong> are event cameras that output pixel-level brightness changes asynchronously, producing a stream of events rather than full frames. Key advantages:</p>
+            <ul>
+              <li>Microsecond temporal resolution (vs. ~33ms for standard cameras at 30fps)</li>
+              <li>High dynamic range (~120 dB vs ~60 dB for standard cameras)</li>
+              <li>Very low power consumption and data rates (only changing pixels are reported)</li>
+            </ul>
+
+            <div class="example-box">
+              <strong>Example &mdash; Autonomous Drone Navigation:</strong> A neuromorphic drone system using a DVS camera and Intel Loihi chip processes visual data for obstacle avoidance at 1000+ frames/second equivalent while consuming less than 500 milliwatts total, enabling flight times 10&times; longer than GPU-based alternatives on the same battery.
+            </div>
+
+            <!-- Section 6 -->
+            <h2>6. Comparison with Traditional Deep Neural Networks</h2>
+
+            <table>
+              <thead>
+                <tr><th>Aspect</th><th>Traditional DNNs</th><th>Spiking Neural Networks</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Signal type</td><td>Continuous values (floats)</td><td>Discrete spikes (binary events)</td></tr>
+                <tr><td>Computation</td><td>Matrix multiplication</td><td>Accumulate on spike</td></tr>
+                <tr><td>Time dimension</td><td>Implicit (via sequences)</td><td>Inherent (temporal dynamics)</td></tr>
+                <tr><td>Processing</td><td>Synchronous, clock-driven</td><td>Asynchronous, event-driven</td></tr>
+                <tr><td>Training</td><td>Backpropagation (well established)</td><td>STDP, surrogate gradients (active research)</td></tr>
+                <tr><td>Hardware</td><td>GPUs, TPUs</td><td>Loihi, TrueNorth, SpiNNaker</td></tr>
+                <tr><td>Energy (inference)</td><td>High (always-on computation)</td><td>Very low (event-driven)</td></tr>
+                <tr><td>Accuracy (image classification)</td><td>State-of-the-art</td><td>Approaching DNN performance</td></tr>
+                <tr><td>Maturity</td><td>Mature ecosystem</td><td>Rapidly evolving</td></tr>
+              </tbody>
+            </table>
+
+            <div class="note-box">
+              <strong>Accuracy Gap:</strong> As of 2025, the best SNNs achieve ~97% accuracy on CIFAR-10 (vs. ~99% for DNNs) and ~77% on ImageNet (vs. ~91% for top DNNs). The gap is closing rapidly, especially with surrogate gradient training methods and ANN-to-SNN conversion techniques.
+            </div>
+
+            <!-- Section 7 -->
+            <h2>7. Information Encoding in SNNs</h2>
+            <p>How information is represented in spikes is a fundamental design choice in SNNs.</p>
+
+            <h3>7.1 Rate Coding</h3>
+            <div class="definition-box">
+              <strong>Rate Coding:</strong> Information is encoded in the firing rate (average number of spikes per unit time). A pixel value of 0.8 might be represented as an 80% probability of firing in each time step. Simple but requires many time steps for accurate representation.
+            </div>
+
+            <h3>7.2 Temporal Coding</h3>
+            <div class="definition-box">
+              <strong>Temporal Coding:</strong> Information is encoded in the precise timing of individual spikes. More important features cause spikes earlier (Time-to-First-Spike coding). Much more efficient&mdash;requires only a single spike per neuron&mdash;but harder to train.
+            </div>
+
+            <h3>7.3 Population Coding</h3>
+            <p>A group of neurons collectively represents a value, with each neuron tuned to respond maximally to a specific range. This is how the brain represents continuous quantities like direction or color.</p>
+
+            <div class="example-box">
+              <strong>Example &mdash; Spike Encoding:</strong> To encode the number 200 (on a 0&ndash;255 scale) as spikes:
+              <ul>
+                <li><strong>Rate code (T=10):</strong> Fire in ~8 out of 10 time steps: [1,1,1,0,1,1,1,1,0,1]</li>
+                <li><strong>Temporal code:</strong> Fire at time step t=2 (early spike = high value). T=10 budget.</li>
+                <li><strong>Population code:</strong> 4 neurons tuned to [0, 85, 170, 255]. Neuron 3 (tuned to 170) and Neuron 4 (tuned to 255) fire, with Neuron 3 firing more strongly.</li>
+              </ul>
+            </div>
+
+            <!-- Section 8 -->
+            <h2>8. Applications of Neuromorphic Computing</h2>
+
+            <h3>8.1 Edge AI &amp; IoT</h3>
+            <p>Neuromorphic chips excel at always-on, low-power sensing tasks at the edge:</p>
+            <ul>
+              <li>Gesture recognition in wearable devices</li>
+              <li>Anomaly detection in industrial IoT sensors</li>
+              <li>Keyword spotting in smart speakers</li>
+              <li>Heartbeat monitoring in medical wearables</li>
+            </ul>
+
+            <h3>8.2 Robotics</h3>
+            <ul>
+              <li>Real-time obstacle avoidance using DVS cameras</li>
+              <li>Tactile sensing with neuromorphic skin sensors</li>
+              <li>Motor control using spiking CPG (Central Pattern Generator) networks</li>
+            </ul>
+
+            <h3>8.3 Scientific Computing</h3>
+            <ul>
+              <li>Large-scale brain simulations (Human Brain Project uses SpiNNaker)</li>
+              <li>Optimization problems (neuromorphic systems can solve certain CSPs and graph problems efficiently)</li>
+              <li>Olfactory sensing (electronic noses using neuromorphic processing)</li>
+            </ul>
+
+            <h3>8.4 Space &amp; Defense</h3>
+            <p>Radiation-hardened neuromorphic chips are being explored for satellite and space applications where power budgets are extremely limited and real-time processing is essential.</p>
+
+            <!-- Section 9 -->
+            <h2>9. Challenges &amp; Future Directions</h2>
+
+            <h3>9.1 Current Limitations</h3>
+            <ul>
+              <li><strong>Training difficulty:</strong> No consensus on the best training algorithm for SNNs; surrogate gradients are effective but suboptimal.</li>
+              <li><strong>Software ecosystem:</strong> Limited compared to PyTorch/TensorFlow; emerging frameworks include Norse, snnTorch, and Lava (Intel).</li>
+              <li><strong>Accuracy gap:</strong> SNNs have not yet matched DNN accuracy on complex benchmarks like ImageNet.</li>
+              <li><strong>Standardization:</strong> No universal SNN architecture or benchmark suite.</li>
+              <li><strong>Scalability:</strong> Mapping large models onto neuromorphic hardware is non-trivial.</li>
+            </ul>
+
+            <h3>9.2 Promising Directions</h3>
+            <ul>
+              <li><strong>Hybrid systems:</strong> Combining neuromorphic and conventional processors for different parts of a pipeline.</li>
+              <li><strong>Memristive devices:</strong> Using resistive memory (memristors) for analog synaptic weight storage, enabling ultra-dense, low-power SNN hardware.</li>
+              <li><strong>Neuromorphic transformers:</strong> Adapting attention mechanisms to spiking domain.</li>
+              <li><strong>Continual learning:</strong> SNNs are naturally suited to learning new tasks without forgetting old ones (mitigating catastrophic forgetting).</li>
+            </ul>
+
+            <!-- Section 10 -->
+            <h2>10. Summary &amp; GATE DA Key Takeaways</h2>
+
+            <div class="note-box">
+              <strong>GATE DA Exam Tips:</strong>
+              <ul>
+                <li>Know the <strong>LIF neuron equation</strong> and the meaning of each parameter (&tau;<sub>m</sub>, V<sub>th</sub>, V<sub>rest</sub>).</li>
+                <li>Understand <strong>STDP</strong>: pre-before-post strengthens connections; post-before-pre weakens them.</li>
+                <li>Know why neuromorphic computing is energy-efficient: event-driven, sparse, in-memory computation.</li>
+                <li>Be able to compare <strong>SNNs vs DNNs</strong> on key dimensions: signal type, computation, training, hardware.</li>
+                <li>Know the major neuromorphic chips: <strong>Intel Loihi</strong> (on-chip learning) and <strong>IBM TrueNorth</strong> (1M neurons, ultra-low power).</li>
+                <li>Understand <strong>rate coding vs temporal coding</strong> for spike-based information representation.</li>
+                <li>The &ldquo;third generation&rdquo; of neural networks = spiking neural networks.</li>
+              </ul>
+            </div>
+
+            <div class="theorem-box">
+              <strong>Chapter Summary:</strong>
+              <ul>
+                <li>Neuromorphic computing is inspired by the brain&rsquo;s architecture: spiking communication, event-driven processing, co-located memory-computation.</li>
+                <li>SNNs use the LIF neuron model: integrate inputs, leak over time, spike at threshold, reset.</li>
+                <li>STDP: the biological learning rule based on relative spike timing (causal &rarr; strengthen, anti-causal &rarr; weaken).</li>
+                <li>Hardware: Intel Loihi (programmable, on-chip learning), IBM TrueNorth (1M neurons, 70 mW), SpiNNaker (large-scale simulation).</li>
+                <li>Energy efficiency from sparse, event-driven, binary spike computation (1000&ndash;10,000&times; more efficient than GPUs for certain tasks).</li>
+                <li>Encoding: rate coding (firing frequency), temporal coding (spike timing), population coding (ensemble).</li>
+                <li>Applications: edge AI, robotics, brain simulation, IoT, space systems.</li>
+                <li>Challenges: training difficulty, accuracy gap, limited software ecosystem.</li>
+              </ul>
+            </div>
+
+          </article>
+
+          <aside class="page-toc" aria-label="On this page">
+            <div class="toc-header">On This Page</div>
+            <ul id="toc-links"></ul>
+          </aside>
+        </div>
+
+        <nav class="nav-buttons" aria-label="Page navigation">
+          <a href="federated-learning.html" class="btn btn-nav btn-prev">&larr; Previous: Federated Learning</a>
+          <a href="quantum-machine-learning.html" class="btn btn-nav btn-next">Next: Quantum ML &rarr;</a>
+        </nav>
+        <div class="page-actions"><button class="btn btn-sm btn-bookmark" data-page="ch15-neuromorphic-computing">&#128278; Bookmark</button><button class="btn btn-sm btn-complete" data-page="ch15-neuromorphic-computing">&#9989; Mark Complete</button></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

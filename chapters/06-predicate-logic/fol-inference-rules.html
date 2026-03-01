@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FOL Inference Rules — Universal/Existential Instantiation and Generalization, combining with propositional rules, soundness concerns for GATE DA.">
+  <title>FOL Inference Rules — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a>
+            <a href="fol-semantics.html" class="sidebar-link"><span class="link-check"></span> FOL Semantics<span class="link-type theory">Theory</span></a>
+            <a href="quantifier-rules.html" class="sidebar-link"><span class="link-check"></span> Quantifier Rules<span class="link-type theory">Theory</span></a>
+            <a href="fol-inference-rules.html" class="sidebar-link active"><span class="link-check"></span> FOL Inference Rules<span class="link-type theory">Theory</span></a>
+            <a href="unification.html" class="sidebar-link"><span class="link-check"></span> Unification<span class="link-type theory">Theory</span></a>
+            <a href="resolution-in-fol.html" class="sidebar-link"><span class="link-check"></span> Resolution in FOL<span class="link-type theory">Theory</span></a>
+            <a href="forward-and-backward-chaining.html" class="sidebar-link"><span class="link-check"></span> Forward &amp; Backward Chaining<span class="link-type theory">Theory</span></a>
+            <a href="knowledge-engineering.html" class="sidebar-link"><span class="link-check"></span> Knowledge Engineering<span class="link-type theory">Theory</span></a>
+            <a href="limitations-of-fol.html" class="sidebar-link"><span class="link-check"></span> Limitations of FOL<span class="link-type theory">Theory</span></a>
+            <a href="practical-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Practice Exercises<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-predicate.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="first-order-logic-syntax.html">Chapter 6: Predicate Logic</a> &raquo; <span class="current">FOL Inference Rules</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch06-fol-inference">
+
+            <h1>FOL Inference Rules</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch06-fol-inference" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="first-order-logic-syntax.html">FOL Syntax</a> &mdash; terms, WFFs, quantifiers</li>
+                <li><a href="quantifier-rules.html">Quantifier Rules</a> &mdash; negation, distribution</li>
+                <li><a href="../05-propositional-logic/syntax-and-semantics.html">Propositional Inference</a> &mdash; Modus Ponens, Resolution</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Apply Universal Instantiation (UI) and Universal Generalization (UG)</li>
+                <li>Apply Existential Instantiation (EI) and Existential Generalization (EG)</li>
+                <li>Combine quantifier rules with propositional inference</li>
+                <li>Identify soundness pitfalls with incorrect generalization/instantiation</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="ui">
+                <h2>1. Universal Instantiation (UI)</h2>
+                <div class="definition-box">
+                  <div class="box-title">Universal Instantiation</div>
+                  <div class="formula">&forall;x &alpha;(x) &nbsp; &vdash; &nbsp; &alpha;(t)</div>
+                  <p>From &forall;x &alpha;, infer &alpha; with x replaced by <strong>any</strong> ground term t (or any term free for x in &alpha;).</p>
+                  <p><strong>Restriction:</strong> t must be <em>free for</em> x in &alpha; &mdash; substituting t for x must not cause any variable in t to become bound.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example</div>
+                  <p><strong>Given:</strong> &forall;x (Human(x) &rarr; Mortal(x))</p>
+                  <p><strong>UI with x = Socrates:</strong> Human(Socrates) &rarr; Mortal(Socrates)</p>
+                  <p><strong>UI with x = Father(John):</strong> Human(Father(John)) &rarr; Mortal(Father(John))</p>
+                </div>
+              </section>
+
+              <section id="ug">
+                <h2>2. Universal Generalization (UG)</h2>
+                <div class="definition-box">
+                  <div class="box-title">Universal Generalization</div>
+                  <div class="formula">&alpha;(x) &nbsp; &vdash; &nbsp; &forall;x &alpha;(x)</div>
+                  <p>If &alpha;(x) has been derived for an <strong>arbitrary</strong> x (not a specific individual), we can conclude &forall;x &alpha;(x).</p>
+                  <p><strong>Restrictions:</strong></p>
+                  <ul>
+                    <li>x must not appear in any undischarged assumption.</li>
+                    <li>x must not have been introduced by Existential Instantiation.</li>
+                  </ul>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Soundness Pitfall</div>
+                  <p>We <strong>cannot</strong> generalize over a specific constant. From Mortal(Socrates) we cannot conclude &forall;x Mortal(x). Socrates is a specific individual, not arbitrary.</p>
+                </div>
+              </section>
+
+              <section id="ei">
+                <h2>3. Existential Instantiation (EI)</h2>
+                <div class="definition-box">
+                  <div class="box-title">Existential Instantiation</div>
+                  <div class="formula">&exist;x &alpha;(x) &nbsp; &vdash; &nbsp; &alpha;(c)</div>
+                  <p>From &exist;x &alpha;(x), introduce a <strong>new Skolem constant</strong> c (not appearing elsewhere in the knowledge base) and conclude &alpha;(c).</p>
+                  <p><strong>Restriction:</strong> c must be completely <strong>fresh</strong> &mdash; it has not appeared in any prior formula.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example</div>
+                  <p><strong>Given:</strong> &exist;x (Dog(x) &and; Black(x))</p>
+                  <p><strong>EI:</strong> Dog(c<sub>1</sub>) &and; Black(c<sub>1</sub>) &emsp; where c<sub>1</sub> is a fresh constant.</p>
+                  <p>We know some black dog exists; c<sub>1</sub> names it, but we know nothing else about c<sub>1</sub>.</p>
+                </div>
+              </section>
+
+              <section id="eg">
+                <h2>4. Existential Generalization (EG)</h2>
+                <div class="definition-box">
+                  <div class="box-title">Existential Generalization</div>
+                  <div class="formula">&alpha;(t) &nbsp; &vdash; &nbsp; &exist;x &alpha;(x)</div>
+                  <p>If we know &alpha; holds for some specific term t, we can conclude &exist;x &alpha;(x) (replacing t by x).</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example</div>
+                  <p><strong>Given:</strong> Loves(John, Mary)</p>
+                  <p><strong>EG:</strong> &exist;x Loves(x, Mary) &emsp; (&ldquo;someone loves Mary&rdquo;)</p>
+                  <p><strong>EG:</strong> &exist;y Loves(John, y) &emsp; (&ldquo;John loves someone&rdquo;)</p>
+                  <p><strong>EG:</strong> &exist;x &exist;y Loves(x, y) &emsp; (&ldquo;someone loves someone&rdquo;)</p>
+                </div>
+              </section>
+
+              <section id="summary-table">
+                <h2>5. Summary of Four Rules</h2>
+                <table>
+                  <thead>
+                    <tr><th>Rule</th><th>From</th><th>Conclude</th><th>Key Restriction</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>UI</strong></td><td>&forall;x &alpha;(x)</td><td>&alpha;(t) for any t</td><td>t free for x in &alpha;</td></tr>
+                    <tr><td><strong>UG</strong></td><td>&alpha;(x) for arbitrary x</td><td>&forall;x &alpha;(x)</td><td>x not from EI, not in assumptions</td></tr>
+                    <tr><td><strong>EI</strong></td><td>&exist;x &alpha;(x)</td><td>&alpha;(c) for fresh c</td><td>c must be a brand-new constant</td></tr>
+                    <tr><td><strong>EG</strong></td><td>&alpha;(t) for some term t</td><td>&exist;x &alpha;(x)</td><td>None (always valid)</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <section id="combined-proof">
+                <h2>6. Combining with Propositional Rules &mdash; Worked Example</h2>
+                <div class="example-box">
+                  <div class="box-title">Proof: Socrates is Mortal</div>
+                  <p><strong>Knowledge Base:</strong></p>
+                  <ol>
+                    <li>&forall;x (Human(x) &rarr; Mortal(x)) &emsp; [All humans are mortal]</li>
+                    <li>Human(Socrates) &emsp; [Socrates is human]</li>
+                  </ol>
+                  <p><strong>Derivation:</strong></p>
+                  <ol start="3">
+                    <li>Human(Socrates) &rarr; Mortal(Socrates) &emsp; [UI on (1) with x = Socrates]</li>
+                    <li>Mortal(Socrates) &emsp; [Modus Ponens on (2) and (3)]</li>
+                  </ol>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Proof: Someone friendly passes</div>
+                  <p><strong>KB:</strong></p>
+                  <ol>
+                    <li>&forall;x (Friendly(x) &rarr; Passes(x))</li>
+                    <li>&exist;x Friendly(x)</li>
+                  </ol>
+                  <p><strong>Derivation:</strong></p>
+                  <ol start="3">
+                    <li>Friendly(c) &emsp; [EI on (2), c is fresh]</li>
+                    <li>Friendly(c) &rarr; Passes(c) &emsp; [UI on (1) with x = c]</li>
+                    <li>Passes(c) &emsp; [Modus Ponens on (3) and (4)]</li>
+                    <li>&exist;x Passes(x) &emsp; [EG on (5)]</li>
+                  </ol>
+                  <p>&therefore; Someone passes the exam. &square;</p>
+                </div>
+              </section>
+
+              <section id="soundness">
+                <h2>7. Soundness Concerns</h2>
+                <div class="theorem-box">
+                  <div class="box-title">Soundness of FOL Inference</div>
+                  <p>An inference system is <strong>sound</strong> if every formula it derives from a set of premises is a logical consequence of those premises. The four quantifier rules, when used with their restrictions, are sound.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Unsound Derivation Example</div>
+                  <ol>
+                    <li>&exist;x Rich(x) &emsp; [Some person is rich]</li>
+                    <li>Rich(c) &emsp; [EI, c is fresh]</li>
+                    <li>&forall;x Rich(x) &emsp; [WRONG! UG on (2) &mdash; but c came from EI!]</li>
+                  </ol>
+                  <p>This &ldquo;proves&rdquo; everyone is rich from the premise that someone is rich. The error: UG cannot be applied to a variable/constant introduced by EI.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li><strong>UI:</strong> &forall;x &alpha;(x) &vdash; &alpha;(t) for any suitable term t.</li>
+                    <li><strong>UG:</strong> &alpha;(x) &vdash; &forall;x &alpha;(x) only when x is truly arbitrary.</li>
+                    <li><strong>EI:</strong> &exist;x &alpha;(x) &vdash; &alpha;(c) with a fresh constant c.</li>
+                    <li><strong>EG:</strong> &alpha;(t) &vdash; &exist;x &alpha;(x) always valid.</li>
+                    <li>These rules bridge quantified formulas and propositional reasoning (Modus Ponens, etc.).</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>AIMA</em>, 4th Ed. &mdash; Section 9.1</li>
+                  <li>Huth, M. &amp; Ryan, M. <em>Logic in Computer Science</em>, 2nd Ed. &mdash; Ch. 2</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="ch06-fol-inference">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="quantifier-rules.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Quantifier Rules</span></a>
+              <a href="unification.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Unification</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#ui">1. Universal Instantiation</a></li>
+            <li><a href="#ug">2. Universal Generalization</a></li>
+            <li><a href="#ei">3. Existential Instantiation</a></li>
+            <li><a href="#eg">4. Existential Generalization</a></li>
+            <li><a href="#summary-table">5. Summary Table</a></li>
+            <li><a href="#combined-proof">6. Combined Proofs</a></li>
+            <li><a href="#soundness">7. Soundness</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

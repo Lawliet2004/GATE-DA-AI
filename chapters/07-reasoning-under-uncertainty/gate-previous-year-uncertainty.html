@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GATE Previous Year Questions on uncertainty, probability, Bayesian networks, Naive Bayes, HMM with detailed solutions for GATE DA preparation.">
+  <title>GATE PYQs: Uncertainty — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link active"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo; <span class="current">GATE PYQs</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch07-gate-pyq">
+
+            <h1>GATE Previous Year Questions: Reasoning Under Uncertainty</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: Essential</span>
+              <button class="bookmark-btn" data-page="ch07-gate-pyq" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="content-body">
+
+              <section id="q1">
+                <h2>Q1. Bayes' Theorem — Factory Defects (GATE DA 2017)</h2>
+                <div class="example-box">
+                  <h4>Problem</h4>
+                  <p>Three factories produce 30%, 45%, and 25% of total items. Defect rates are 3%, 4%, and 5% respectively. An item is found defective. What is the probability it came from Factory 2?</p>
+                  <h4>Solution</h4>
+                  <p>P(D) = 0.30(0.03) + 0.45(0.04) + 0.25(0.05) = 0.009 + 0.018 + 0.0125 = 0.0395</p>
+                  <p>P(F2|D) = 0.45 &times; 0.04 / 0.0395 = 0.018 / 0.0395 = <strong>0.4557 &asymp; 45.6%</strong></p>
+                </div>
+              </section>
+
+              <section id="q2">
+                <h2>Q2. Conditional Independence in BN (GATE 2018)</h2>
+                <div class="example-box">
+                  <h4>Problem</h4>
+                  <p>Given BN: A &rarr; C, B &rarr; C, C &rarr; D, C &rarr; E. Which of the following are true?<br>(a) A &perp; B<br>(b) A &perp; B | C<br>(c) D &perp; E | C<br>(d) A &perp; E</p>
+                  <h4>Solution</h4>
+                  <p>(a) A &rarr; C &larr; B. Collider C not observed &rArr; <strong>True (A &perp; B)</strong></p>
+                  <p>(b) With C observed, collider opens &rArr; <strong>False (A &not;&perp; B | C)</strong></p>
+                  <p>(c) C &rarr; D, C &rarr; E is a fork at C. C observed &rArr; <strong>True (D &perp; E | C)</strong></p>
+                  <p>(d) Path A &rarr; C &rarr; E. C not observed (chain) &rArr; path open &rArr; <strong>False (A &not;&perp; E)</strong></p>
+                  <p><strong>Answer: (a) and (c)</strong></p>
+                </div>
+              </section>
+
+              <section id="q3">
+                <h2>Q3. Naive Bayes Classification (GATE DA 2019)</h2>
+                <div class="example-box">
+                  <h4>Problem</h4>
+                  <p>Using Naive Bayes with two features X<sub>1</sub> and X<sub>2</sub>. P(C=1) = 0.4, P(C=0) = 0.6. P(X<sub>1</sub>=T|C=1) = 0.8, P(X<sub>2</sub>=T|C=1) = 0.5, P(X<sub>1</sub>=T|C=0) = 0.3, P(X<sub>2</sub>=T|C=0) = 0.7. Classify x = (T, T).</p>
+                  <h4>Solution</h4>
+                  <p>Score(C=1) = 0.4 &times; 0.8 &times; 0.5 = 0.16</p>
+                  <p>Score(C=0) = 0.6 &times; 0.3 &times; 0.7 = 0.126</p>
+                  <p>P(C=1|x) = 0.16 / (0.16 + 0.126) = 0.16/0.286 = <strong>0.559</strong></p>
+                  <p><strong>Answer: Classify as C = 1</strong></p>
+                </div>
+              </section>
+
+              <section id="q4">
+                <h2>Q4. Entropy Computation (GATE 2020)</h2>
+                <div class="example-box">
+                  <h4>Problem</h4>
+                  <p>A random variable X takes values {1, 2, 3, 4} with probabilities {1/2, 1/4, 1/8, 1/8}. Compute H(X).</p>
+                  <h4>Solution</h4>
+                  <p>H(X) = &minus;(1/2)log<sub>2</sub>(1/2) &minus; (1/4)log<sub>2</sub>(1/4) &minus; (1/8)log<sub>2</sub>(1/8) &minus; (1/8)log<sub>2</sub>(1/8)</p>
+                  <p>= 1/2(1) + 1/4(2) + 1/8(3) + 1/8(3) = 0.5 + 0.5 + 0.375 + 0.375 = <strong>1.75 bits</strong></p>
+                </div>
+              </section>
+
+              <section id="q5">
+                <h2>Q5. MLE for Bernoulli (GATE DA 2021)</h2>
+                <div class="example-box">
+                  <h4>Problem</h4>
+                  <p>A coin is flipped 20 times. 14 heads are observed. What is the MLE estimate of P(Heads)?</p>
+                  <h4>Solution</h4>
+                  <p>p&#770;<sub>MLE</sub> = k/n = 14/20 = <strong>0.70</strong></p>
+                </div>
+              </section>
+
+              <section id="q6">
+                <h2>Q6. BN Joint Probability (GATE 2019)</h2>
+                <div class="example-box">
+                  <h4>Problem</h4>
+                  <p>BN: A &rarr; B, A &rarr; C. P(A=T) = 0.3. P(B=T|A=T) = 0.9, P(B=T|A=F) = 0.4. P(C=T|A=T) = 0.7, P(C=T|A=F) = 0.2. Compute P(B=T, C=T).</p>
+                  <h4>Solution</h4>
+                  <p>P(B=T, C=T) = &sum;<sub>a</sub> P(a) P(B=T|a) P(C=T|a)</p>
+                  <p>= P(A=T) P(B=T|A=T) P(C=T|A=T) + P(A=F) P(B=T|A=F) P(C=T|A=F)</p>
+                  <p>= 0.3(0.9)(0.7) + 0.7(0.4)(0.2) = 0.189 + 0.056 = <strong>0.245</strong></p>
+                </div>
+              </section>
+
+              <section id="q7">
+                <h2>Q7. Information Gain (GATE DA 2022)</h2>
+                <div class="example-box">
+                  <h4>Problem</h4>
+                  <p>Dataset: 8 positive, 4 negative examples. Attribute A splits into A=Yes (5+, 1&minus;) and A=No (3+, 3&minus;). What is the information gain?</p>
+                  <h4>Solution</h4>
+                  <p>H(S) = &minus;(8/12)log<sub>2</sub>(8/12) &minus; (4/12)log<sub>2</sub>(4/12) = &minus;(2/3)log<sub>2</sub>(2/3) &minus; (1/3)log<sub>2</sub>(1/3) &asymp; 0.918</p>
+                  <p>H(S<sub>Yes</sub>) = &minus;(5/6)log<sub>2</sub>(5/6) &minus; (1/6)log<sub>2</sub>(1/6) &asymp; 0.650</p>
+                  <p>H(S<sub>No</sub>) = &minus;(3/6)log<sub>2</sub>(3/6) &minus; (3/6)log<sub>2</sub>(3/6) = 1.0</p>
+                  <p>IG = 0.918 &minus; (6/12)(0.650) &minus; (6/12)(1.0) = 0.918 &minus; 0.325 &minus; 0.500 = <strong>0.093</strong></p>
+                </div>
+              </section>
+
+              <section id="q8">
+                <h2>Q8. D-Separation (GATE 2023)</h2>
+                <div class="example-box">
+                  <h4>Problem</h4>
+                  <p>BN: X &rarr; Y &rarr; Z, W &rarr; Y. Is X &perp; W? Is X &perp; W | Y?</p>
+                  <h4>Solution</h4>
+                  <p>Path X &rarr; Y &larr; W. Y is a collider.</p>
+                  <p>X &perp; W: Collider Y is not observed &rArr; path blocked &rArr; <strong>Yes, X &perp; W</strong></p>
+                  <p>X &perp; W | Y: Collider Y is observed &rArr; path unblocked &rArr; <strong>No, X &not;&perp; W | Y</strong></p>
+                </div>
+              </section>
+
+              <section id="q9">
+                <h2>Q9. Markov Blanket (GATE DA 2022)</h2>
+                <div class="example-box">
+                  <h4>Problem</h4>
+                  <p>BN: A &rarr; C, B &rarr; C, C &rarr; D, C &rarr; E, D &rarr; F. What is the Markov blanket of C?</p>
+                  <h4>Solution</h4>
+                  <p>Parents of C: {A, B}<br>Children of C: {D, E}<br>Co-parents of children: D has no other parents besides C. E has no other parents besides C.</p>
+                  <p><strong>Markov blanket of C = {A, B, D, E}</strong></p>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-gate-pyq">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="practical-uncertainty.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Interactive Demos</span></a>
+              <a href="notes-uncertainty.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Chapter Notes</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#q1">Q1. Bayes (2017)</a></li>
+            <li><a href="#q2">Q2. D-Sep (2018)</a></li>
+            <li><a href="#q3">Q3. Naive Bayes (2019)</a></li>
+            <li><a href="#q4">Q4. Entropy (2020)</a></li>
+            <li><a href="#q5">Q5. MLE (2021)</a></li>
+            <li><a href="#q6">Q6. BN Joint (2019)</a></li>
+            <li><a href="#q7">Q7. Info Gain (2022)</a></li>
+            <li><a href="#q8">Q8. D-Sep (2023)</a></li>
+            <li><a href="#q9">Q9. Markov Blanket</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

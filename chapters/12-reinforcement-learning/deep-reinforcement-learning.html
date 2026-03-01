@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Deep Reinforcement Learning — DQN, Double DQN, Dueling DQN, Policy Gradients, Actor-Critic, PPO, AlphaGo for GATE DA.">
+  <title>Deep Reinforcement Learning — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="value-iteration.html" class="sidebar-link"><span class="link-check"></span> Value Iteration<span class="link-type theory">Theory</span></a>
+            <a href="policy-iteration.html" class="sidebar-link"><span class="link-check"></span> Policy Iteration<span class="link-type theory">Theory</span></a>
+            <a href="q-learning.html" class="sidebar-link"><span class="link-check"></span> Q-Learning<span class="link-type theory">Theory</span></a>
+            <a href="deep-reinforcement-learning.html" class="sidebar-link active"><span class="link-check"></span> Deep RL<span class="link-type theory">Theory</span></a>
+            <a href="practical-rl.html" class="sidebar-link"><span class="link-check"></span> &#128300; Practical<span class="link-type practical">Demo</span></a>
+            <a href="notes-rl.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-rl.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="mdp.html">Chapter 12: Reinforcement Learning</a> &raquo; <span class="current">Deep Reinforcement Learning</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch12-deep-rl">
+
+            <h1>Deep Reinforcement Learning</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Low-Medium</span>
+              <button class="bookmark-btn" data-page="ch12-deep-rl" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="mdp.html">MDPs</a> &mdash; Bellman equations, value functions</li>
+              <li><a href="q-learning.html">Q-Learning</a> &mdash; tabular Q-learning, TD learning</li>
+              <li><a href="../09-neural-networks-deep-learning/neural-network-basics.html">Neural Networks</a> &mdash; backpropagation, gradient descent</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Explain why <strong>function approximation</strong> is necessary for large state spaces</li>
+              <li>Describe the <strong>DQN</strong> architecture and its key innovations</li>
+              <li>Understand <strong>Double DQN</strong> and <strong>Dueling DQN</strong> improvements</li>
+              <li>Derive the <strong>REINFORCE</strong> policy gradient update rule</li>
+              <li>Compare <strong>value-based</strong>, <strong>policy-based</strong>, and <strong>actor-critic</strong> methods</li>
+              <li>Know the high-level ideas behind <strong>PPO</strong> and <strong>AlphaGo/AlphaZero</strong></li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: Function Approximation -->
+              <section id="function-approx">
+                <h2>1. The Need for Function Approximation</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Curse of Dimensionality in RL</h4>
+                  <p>Tabular methods store one value for every state (or state-action pair). When the state space is very large or continuous, maintaining a table becomes <strong>infeasible</strong>. For example:</p>
+                  <ul>
+                    <li><strong>Atari games:</strong> screen is 210 &times; 160 pixels &times; 3 colours &rArr; roughly 256<sup>100,800</sup> possible frames</li>
+                    <li><strong>Go:</strong> approximately 3<sup>361</sup> &asymp; 10<sup>170</sup> board positions</li>
+                    <li><strong>Robotics:</strong> continuous joint angles, velocities &mdash; infinite state space</li>
+                  </ul>
+                </div>
+
+                <p>The solution is <strong>function approximation</strong>: represent V(s), Q(s,a), or &pi;(a|s) using a parameterised function (e.g., a neural network) with parameters &theta;. Instead of a lookup table, we learn a function:</p>
+
+                <p style="text-align:center; font-size:1.1em;">Q(s, a; &theta;) &asymp; Q*(s, a)</p>
+
+                <p>This allows <strong>generalisation</strong> across similar states &mdash; updating the value for one state automatically affects nearby states in the feature space.</p>
+
+                <div class="note-box">
+                  <h4>&#128161; Types of Function Approximators</h4>
+                  <ul>
+                    <li><strong>Linear:</strong> Q(s,a;&theta;) = &theta;<sup>T</sup> &phi;(s,a) where &phi; is a feature vector. Simple, stable, but limited representational power.</li>
+                    <li><strong>Non-linear (neural networks):</strong> Much more expressive but can be unstable during training. Deep RL addresses this instability.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 2: DQN -->
+              <section id="dqn">
+                <h2>2. Deep Q-Network (DQN)</h2>
+
+                <p>The <strong>Deep Q-Network</strong> (Mnih et al., 2015) was the breakthrough that showed neural networks could successfully approximate Q-values and achieve human-level performance on Atari 2600 games.</p>
+
+                <div class="definition-box">
+                  <h4>&#128218; DQN Architecture</h4>
+                  <p>A DQN uses a deep neural network to approximate Q*(s,a). The network takes a state s as input and outputs Q-values for all actions simultaneously:</p>
+                  <p style="text-align:center;">Input: state s (e.g., stacked game frames) &rarr; CNN layers &rarr; FC layers &rarr; Output: Q(s, a<sub>1</sub>; &theta;), Q(s, a<sub>2</sub>; &theta;), &hellip;, Q(s, a<sub>|A|</sub>; &theta;)</p>
+                </div>
+
+                <p>Naively training a neural network with standard Q-learning update is unstable due to:</p>
+                <ol>
+                  <li><strong>Correlated samples:</strong> consecutive transitions (s<sub>t</sub>, a<sub>t</sub>, r<sub>t+1</sub>, s<sub>t+1</sub>) are highly correlated.</li>
+                  <li><strong>Non-stationary targets:</strong> the target r + &gamma; max<sub>a&prime;</sub> Q(s&prime;, a&prime;; &theta;) changes as &theta; changes.</li>
+                </ol>
+
+                <h3>2.1 Experience Replay</h3>
+                <p>Store transitions (s, a, r, s&prime;, done) in a <strong>replay buffer</strong> D of fixed capacity. During training, sample random mini-batches from D. This breaks correlations between consecutive samples and allows each transition to be reused multiple times.</p>
+
+                <h3>2.2 Target Network</h3>
+                <p>Maintain a separate <strong>target network</strong> with parameters &theta;<sup>&minus;</sup> that are only updated periodically (e.g., every C steps: &theta;<sup>&minus;</sup> &larr; &theta;). The loss function uses this frozen target:</p>
+
+                <div class="theorem-box">
+                  <h4>DQN Loss Function</h4>
+                  <p style="text-align:center; font-size:1.1em;">L(&theta;) = E<sub>(s,a,r,s&prime;) ~ D</sub> [ (r + &gamma; max<sub>a&prime;</sub> Q(s&prime;, a&prime;; &theta;<sup>&minus;</sup>) &minus; Q(s, a; &theta;))<sup>2</sup> ]</p>
+                  <p>Where &theta;<sup>&minus;</sup> is the <strong>frozen</strong> target network that stabilises training.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Algorithm: DQN with Experience Replay</h4>
+                  <pre>
+Initialize replay buffer D with capacity N
+Initialize Q-network with random weights &theta;
+Initialize target network with weights &theta;⁻ &larr; &theta;
+
+For episode = 1, 2, &hellip; do:
+    Initialise state s₁ (preprocess: stack last 4 frames)
+    For t = 1, 2, &hellip;, T do:
+        With probability &epsilon; select random action aₜ
+        Otherwise select aₜ = argmax_a Q(sₜ, a; &theta;)
+        Execute aₜ, observe reward rₜ₊₁ and next state sₜ₊₁
+        Store (sₜ, aₜ, rₜ₊₁, sₜ₊₁, done) in D
+        Sample random mini-batch of transitions from D
+        For each (sⱼ, aⱼ, rⱼ, s'ⱼ, doneⱼ):
+            If doneⱼ:  yⱼ = rⱼ
+            Else:       yⱼ = rⱼ + &gamma; max_{a'} Q(s'ⱼ, a'; &theta;⁻)
+        Gradient descent on (yⱼ &minus; Q(sⱼ, aⱼ; &theta;))² w.r.t. &theta;
+        Every C steps: &theta;⁻ &larr; &theta;
+                  </pre>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#128221; Atari Performance</h4>
+                  <p>The original DQN paper achieved <strong>superhuman performance</strong> on 29 out of 49 Atari games using the <em>same architecture and hyperparameters</em> for every game. The input was raw pixel frames (4 stacked 84&times;84 grayscale images) and the only game-specific knowledge was the set of available actions.</p>
+                </div>
+              </section>
+
+              <!-- Section 3: Double DQN -->
+              <section id="double-dqn">
+                <h2>3. Double DQN</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Overestimation Problem</h4>
+                  <p>Standard DQN uses max<sub>a&prime;</sub> Q(s&prime;, a&prime;; &theta;<sup>&minus;</sup>) for its target. The max operator introduces a <strong>positive bias</strong> because it both <em>selects</em> and <em>evaluates</em> the best action using the same values. If Q-values have noise, max will tend to pick the noisiest (overestimated) value.</p>
+                </div>
+
+                <p><strong>Double DQN</strong> (van Hasselt et al., 2016) decouples action selection from action evaluation:</p>
+
+                <div class="theorem-box">
+                  <h4>Double DQN Target</h4>
+                  <p style="text-align:center; font-size:1.1em;">y = r + &gamma; Q(s&prime;, argmax<sub>a&prime;</sub> Q(s&prime;, a&prime;; &theta;); &theta;<sup>&minus;</sup>)</p>
+                  <p>The <strong>online network</strong> (&theta;) selects the best action, but the <strong>target network</strong> (&theta;<sup>&minus;</sup>) evaluates it. This reduces overestimation bias significantly.</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Implementation Detail</h4>
+                  <p>Double DQN requires only a one-line change to the standard DQN code &mdash; change how the target value is computed. The rest of the algorithm (experience replay, target network updates) remains identical.</p>
+                </div>
+              </section>
+
+              <!-- Section 4: Dueling DQN -->
+              <section id="dueling-dqn">
+                <h2>4. Dueling DQN</h2>
+
+                <p><strong>Dueling DQN</strong> (Wang et al., 2016) modifies the network <em>architecture</em> rather than the learning algorithm.</p>
+
+                <div class="definition-box">
+                  <h4>&#128218; Advantage Function</h4>
+                  <p>The <strong>advantage function</strong> measures how much better an action is compared to the average:</p>
+                  <p style="text-align:center; font-size:1.1em;">A<sup>&pi;</sup>(s, a) = Q<sup>&pi;</sup>(s, a) &minus; V<sup>&pi;</sup>(s)</p>
+                  <p>By definition, &sum;<sub>a</sub> &pi;(a|s) A<sup>&pi;</sup>(s, a) = 0. The advantage tells us the <em>relative</em> value of each action.</p>
+                </div>
+
+                <p>The dueling architecture has two streams after the shared convolutional layers:</p>
+                <ol>
+                  <li><strong>Value stream:</strong> V(s; &theta;, &alpha;) &mdash; a scalar estimating the state value</li>
+                  <li><strong>Advantage stream:</strong> A(s, a; &theta;, &beta;) &mdash; one value per action estimating the advantage</li>
+                </ol>
+
+                <p>These are combined as:</p>
+                <p style="text-align:center; font-size:1.1em;">Q(s, a; &theta;, &alpha;, &beta;) = V(s; &theta;, &alpha;) + A(s, a; &theta;, &beta;) &minus; (1/|A|) &sum;<sub>a&prime;</sub> A(s, a&prime;; &theta;, &beta;)</p>
+
+                <div class="note-box">
+                  <h4>&#128161; Why Dueling Helps</h4>
+                  <p>In many states, <strong>it doesn&rsquo;t matter which action you take</strong> &mdash; the state value dominates. Dueling architecture can learn V(s) independent of A, making it more efficient when many actions have similar Q-values. This is especially useful in states where the choice of action is less important than recognising you are in a good or bad state.</p>
+                </div>
+              </section>
+
+              <!-- Section 5: Policy Gradient -->
+              <section id="policy-gradient">
+                <h2>5. Policy Gradient Methods</h2>
+
+                <p>Instead of learning Q-values and deriving a policy, <strong>policy gradient</strong> methods directly parameterise the policy &pi;(a|s; &theta;) and optimise it by gradient ascent on the expected return.</p>
+
+                <div class="definition-box">
+                  <h4>&#128218; Policy Gradient Objective</h4>
+                  <p>The objective is to maximise the expected return:</p>
+                  <p style="text-align:center; font-size:1.1em;">J(&theta;) = E<sub>&pi;&theta;</sub>[G<sub>0</sub>] = E<sub>&pi;&theta;</sub>[&sum;<sub>t=0</sub><sup>&infin;</sup> &gamma;<sup>t</sup> R<sub>t+1</sub>]</p>
+                </div>
+
+                <div class="theorem-box">
+                  <h4>Policy Gradient Theorem</h4>
+                  <p>The gradient of the objective can be written (without requiring the derivative of the state distribution) as:</p>
+                  <p style="text-align:center; font-size:1.1em;">&nabla;<sub>&theta;</sub> J(&theta;) = E<sub>&pi;&theta;</sub>[&sum;<sub>t=0</sub><sup>T</sup> &nabla;<sub>&theta;</sub> log &pi;(A<sub>t</sub>|S<sub>t</sub>; &theta;) &middot; G<sub>t</sub>]</p>
+                  <p>Where G<sub>t</sub> = &sum;<sub>k=0</sub><sup>&infin;</sup> &gamma;<sup>k</sup> R<sub>t+k+1</sub> is the return from time step t.</p>
+                </div>
+
+                <h3>5.1 REINFORCE Algorithm</h3>
+                <p>REINFORCE (Williams, 1992) is the simplest policy gradient method. It uses complete episode returns as the estimate of G<sub>t</sub>.</p>
+
+                <div class="algorithm-block">
+                  <h4>Algorithm: REINFORCE (Monte Carlo Policy Gradient)</h4>
+                  <pre>
+Initialize policy network &pi;(a|s; &theta;) with random weights
+
+For each episode:
+    Generate trajectory &tau; = (S₀, A₀, R₁, S₁, A₁, R₂, &hellip;, S_T)
+      by following &pi;(&middot;|&middot;; &theta;)
+    For t = 0, 1, &hellip;, T&minus;1:
+        Compute return: Gₜ = &sum;_{k=0}^{T-t-1} &gamma;ᵏ R_{t+k+1}
+    Update: &theta; &larr; &theta; + &alpha; &sum;_{t=0}^{T-1} &nabla;_&theta; log &pi;(Aₜ|Sₜ; &theta;) &middot; Gₜ
+                  </pre>
+                </div>
+
+                <h3>5.2 Baseline Subtraction</h3>
+                <p>REINFORCE has <strong>high variance</strong> because G<sub>t</sub> can vary enormously between episodes. A common variance reduction technique is to subtract a <strong>baseline</strong> b(s) from the return:</p>
+
+                <p style="text-align:center; font-size:1.1em;">&nabla;<sub>&theta;</sub> J(&theta;) = E<sub>&pi;&theta;</sub>[&sum;<sub>t</sub> &nabla;<sub>&theta;</sub> log &pi;(A<sub>t</sub>|S<sub>t</sub>; &theta;) &middot; (G<sub>t</sub> &minus; b(S<sub>t</sub>))]</p>
+
+                <p>The optimal baseline is approximately V<sup>&pi;</sup>(s). Subtracting it does <strong>not change the expected gradient</strong> (unbiased) but greatly <strong>reduces variance</strong>. The quantity G<sub>t</sub> &minus; V(S<sub>t</sub>) is an estimate of the advantage A(S<sub>t</sub>, A<sub>t</sub>).</p>
+
+                <div class="warning-box">
+                  <h4>&#9888; REINFORCE Limitations</h4>
+                  <ul>
+                    <li>Requires <strong>complete episodes</strong> (Monte Carlo)</li>
+                    <li><strong>High variance</strong> even with a baseline</li>
+                    <li><strong>Slow convergence</strong> &mdash; sample-inefficient</li>
+                    <li>Can converge to <strong>local optima</strong> (policy space is generally non-convex)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 6: Actor-Critic -->
+              <section id="actor-critic">
+                <h2>6. Actor-Critic Methods</h2>
+
+                <p>Actor-Critic methods combine the benefits of both value-based and policy-based approaches.</p>
+
+                <div class="definition-box">
+                  <h4>&#128218; Actor-Critic Architecture</h4>
+                  <ul>
+                    <li><strong>Actor:</strong> a parameterised policy &pi;(a|s; &theta;) that selects actions</li>
+                    <li><strong>Critic:</strong> a value function V(s; w) (or Q(s,a; w)) that evaluates how good the actor&rsquo;s actions are</li>
+                  </ul>
+                  <p>The critic provides a <strong>low-variance baseline</strong> for the policy gradient, replacing the high-variance Monte Carlo return with a bootstrapped TD estimate.</p>
+                </div>
+
+                <h3>6.1 Advantage Actor-Critic (A2C)</h3>
+                <p>The actor update uses the <strong>advantage estimate</strong> &delta;<sub>t</sub> = r<sub>t+1</sub> + &gamma; V(s<sub>t+1</sub>; w) &minus; V(s<sub>t</sub>; w) (the TD error) as an estimate of A(s,a):</p>
+                <ul>
+                  <li><strong>Actor update:</strong> &theta; &larr; &theta; + &alpha;<sub>&theta;</sub> &delta;<sub>t</sub> &nabla;<sub>&theta;</sub> log &pi;(a<sub>t</sub>|s<sub>t</sub>; &theta;)</li>
+                  <li><strong>Critic update:</strong> w &larr; w + &alpha;<sub>w</sub> &delta;<sub>t</sub> &nabla;<sub>w</sub> V(s<sub>t</sub>; w)</li>
+                </ul>
+
+                <h3>6.2 Asynchronous Advantage Actor-Critic (A3C)</h3>
+                <p>A3C (Mnih et al., 2016) runs <strong>multiple agents in parallel</strong> on separate copies of the environment. Each agent computes gradients locally and asynchronously updates a shared set of parameters. This provides:</p>
+                <ul>
+                  <li><strong>Decorrelated experience:</strong> different agents explore different parts of the state space simultaneously</li>
+                  <li><strong>No replay buffer needed:</strong> the parallelism itself provides diverse training data</li>
+                  <li><strong>Faster wall-clock training:</strong> leverages multi-core CPUs</li>
+                </ul>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Aspect</th><th>DQN (Value-Based)</th><th>REINFORCE (Policy-Based)</th><th>Actor-Critic</th></tr></thead>
+                  <tbody>
+                    <tr><td>Learns</td><td>Q-function</td><td>Policy directly</td><td>Both policy &amp; value</td></tr>
+                    <tr><td>Action space</td><td>Discrete only</td><td>Discrete or continuous</td><td>Discrete or continuous</td></tr>
+                    <tr><td>Variance</td><td>Low</td><td>High</td><td>Medium (reduced by critic)</td></tr>
+                    <tr><td>Bias</td><td>Biased (bootstrap)</td><td>Unbiased</td><td>Biased (bootstrap)</td></tr>
+                    <tr><td>Sample efficiency</td><td>Good (replay buffer)</td><td>Poor</td><td>Moderate</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <!-- Section 7: PPO -->
+              <section id="ppo">
+                <h2>7. Proximal Policy Optimization (PPO)</h2>
+
+                <p>PPO (Schulman et al., 2017) has become one of the most widely-used deep RL algorithms due to its simplicity and reliability. It is the algorithm behind much of the training for large language models via RLHF (Reinforcement Learning from Human Feedback).</p>
+
+                <div class="definition-box">
+                  <h4>&#128218; Trust Region Idea</h4>
+                  <p>Large policy updates can be catastrophic &mdash; a single bad update can destroy a well-performing policy. PPO constrains the policy update so that the new policy does not move too far from the old one.</p>
+                </div>
+
+                <p>Define the probability ratio:</p>
+                <p style="text-align:center; font-size:1.1em;">r<sub>t</sub>(&theta;) = &pi;(a<sub>t</sub>|s<sub>t</sub>; &theta;) / &pi;(a<sub>t</sub>|s<sub>t</sub>; &theta;<sub>old</sub>)</p>
+
+                <div class="theorem-box">
+                  <h4>PPO Clipped Objective</h4>
+                  <p style="text-align:center; font-size:1.1em;">L<sup>CLIP</sup>(&theta;) = E<sub>t</sub>[min(r<sub>t</sub>(&theta;) &middot; A&#770;<sub>t</sub>, clip(r<sub>t</sub>(&theta;), 1&minus;&epsilon;, 1+&epsilon;) &middot; A&#770;<sub>t</sub>)]</p>
+                  <p>Where &epsilon; is a small hyperparameter (typically 0.1&ndash;0.2) and A&#770;<sub>t</sub> is the estimated advantage. The clip prevents the ratio from moving outside [1&minus;&epsilon;, 1+&epsilon;], ensuring small policy changes.</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Why PPO Works Well</h4>
+                  <ul>
+                    <li>Simple to implement (no second-order optimisation like TRPO)</li>
+                    <li>Robust to hyperparameter choices</li>
+                    <li>Works with both discrete and continuous action spaces</li>
+                    <li>Supports parallel data collection</li>
+                    <li>Used in ChatGPT-style RLHF pipelines</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 8: AlphaGo/AlphaZero -->
+              <section id="alphago">
+                <h2>8. AlphaGo and AlphaZero</h2>
+
+                <p>DeepMind&rsquo;s AlphaGo (2016) and AlphaZero (2017) represent landmark achievements combining deep RL with search.</p>
+
+                <div class="definition-box">
+                  <h4>&#128218; AlphaGo Components</h4>
+                  <ol>
+                    <li><strong>Supervised learning (SL) policy network:</strong> trained on expert human moves to predict the next move given a board position</li>
+                    <li><strong>RL policy network:</strong> fine-tuned the SL policy via self-play using REINFORCE</li>
+                    <li><strong>Value network:</strong> trained to predict game outcomes from self-play positions</li>
+                    <li><strong>Monte Carlo Tree Search (MCTS):</strong> used the neural networks to guide search during actual play</li>
+                  </ol>
+                </div>
+
+                <h3>8.1 AlphaZero: Learning from Scratch</h3>
+                <p>AlphaZero simplified AlphaGo by removing the supervised learning phase entirely:</p>
+                <ul>
+                  <li><strong>Single neural network</strong> f<sub>&theta;</sub>(s) = (p, v) outputs both a policy vector p (move probabilities) and a scalar value v (win probability)</li>
+                  <li>Trained entirely via <strong>self-play</strong> reinforcement learning</li>
+                  <li>Uses <strong>MCTS</strong> guided by the neural network for action selection during self-play</li>
+                  <li>Achieved superhuman performance in Go, Chess, and Shogi &mdash; all with the <strong>same algorithm</strong></li>
+                </ul>
+
+                <div class="example-box">
+                  <h4>&#128221; AlphaZero Timeline</h4>
+                  <p>Starting from random play, AlphaZero surpassed AlphaGo (which had beaten world champion Lee Sedol) after just <strong>3 days of self-play training</strong>. In Chess, it exceeded the strength of Stockfish (strongest traditional chess engine) after only <strong>4 hours of self-play</strong>.</p>
+                </div>
+              </section>
+
+              <!-- Section 9: Applications -->
+              <section id="applications">
+                <h2>9. Applications of Deep RL</h2>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Domain</th><th>Application</th><th>Key Algorithm</th></tr></thead>
+                  <tbody>
+                    <tr><td>Game Playing</td><td>Atari, Go, StarCraft, Dota 2</td><td>DQN, AlphaZero, PPO</td></tr>
+                    <tr><td>Robotics</td><td>Manipulation, locomotion, dexterous hands</td><td>PPO, SAC, DDPG</td></tr>
+                    <tr><td>Resource Management</td><td>Data centre cooling (Google), chip placement</td><td>PPO, custom architectures</td></tr>
+                    <tr><td>NLP / LLMs</td><td>RLHF for ChatGPT, instruction following</td><td>PPO</td></tr>
+                    <tr><td>Autonomous Driving</td><td>Lane-keeping, decision-making at intersections</td><td>DQN variants, A3C</td></tr>
+                    <tr><td>Finance</td><td>Portfolio optimisation, algorithmic trading</td><td>DQN, Policy Gradient</td></tr>
+                    <tr><td>Healthcare</td><td>Treatment planning, drug dosing</td><td>Batch RL methods</td></tr>
+                  </tbody>
+                </table>
+
+                <div class="warning-box">
+                  <h4>&#9888; Challenges in Deep RL</h4>
+                  <ul>
+                    <li><strong>Sample inefficiency:</strong> millions of interactions often required</li>
+                    <li><strong>Reward design:</strong> poorly shaped rewards lead to unintended behaviour</li>
+                    <li><strong>Stability:</strong> training can be highly sensitive to hyperparameters</li>
+                    <li><strong>Sim-to-real gap:</strong> policies trained in simulation may not transfer to real world</li>
+                    <li><strong>Safety:</strong> exploration in real-world systems can be dangerous</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <ul>
+                  <li><strong>Function approximation</strong> enables RL in large/continuous state spaces by replacing tables with parameterised functions (neural networks).</li>
+                  <li><strong>DQN</strong> stabilised neural Q-learning through experience replay and target networks.</li>
+                  <li><strong>Double DQN</strong> reduces overestimation bias; <strong>Dueling DQN</strong> separates state value from action advantage.</li>
+                  <li><strong>Policy gradient</strong> methods (REINFORCE) directly optimise the policy; <strong>baseline subtraction</strong> reduces variance.</li>
+                  <li><strong>Actor-Critic</strong> methods (A2C, A3C) combine policy and value learning for lower variance.</li>
+                  <li><strong>PPO</strong> uses a clipped surrogate objective for stable, reliable training.</li>
+                  <li><strong>AlphaGo/AlphaZero</strong> combined neural networks with MCTS to master board games from self-play.</li>
+                  <li>Deep RL applications span games, robotics, NLP (RLHF), resource management, and more.</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="ch12-deep-rl">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="q-learning.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Q-Learning &amp; TD Methods</span></a>
+              <a href="practical-rl.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Practical: RL Grid World</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#function-approx">1. Function Approximation</a></li>
+            <li><a href="#dqn">2. DQN</a></li>
+            <li><a href="#double-dqn">3. Double DQN</a></li>
+            <li><a href="#dueling-dqn">4. Dueling DQN</a></li>
+            <li><a href="#policy-gradient">5. Policy Gradient</a></li>
+            <li><a href="#actor-critic">6. Actor-Critic</a></li>
+            <li><a href="#ppo">7. PPO</a></li>
+            <li><a href="#alphago">8. AlphaGo / AlphaZero</a></li>
+            <li><a href="#applications">9. Applications</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

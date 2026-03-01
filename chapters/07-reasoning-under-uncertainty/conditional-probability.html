@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conditional Probability — P(A|B) definition, multiplication rule, chain rule, urn problems, worked examples for GATE DA preparation.">
+  <title>Conditional Probability — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link active"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo;
+          <span class="current">Conditional Probability</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch07-conditional-probability">
+
+            <h1>Conditional Probability</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch07-conditional-probability" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="probability-basics.html">Probability Basics</a> &mdash; Sample space, events, axioms</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Define and compute conditional probability P(A|B)</li>
+              <li>Apply the multiplication rule to sequential events</li>
+              <li>Use the chain rule for three or more events</li>
+              <li>Solve urn-style and sequential drawing problems</li>
+            </ul></div>
+
+            <div class="content-body">
+
+              <!-- Section 1 -->
+              <section id="definition">
+                <h2>1. Definition of Conditional Probability</h2>
+
+                <div class="definition-box">
+                  <h4>Conditional Probability</h4>
+                  <p>The conditional probability of A given B is:</p>
+                  <div class="formula">P(A|B) = P(A &cap; B) / P(B), &nbsp; provided P(B) &gt; 0</div>
+                  <p>Intuitively, once we know B has occurred, the effective sample space shrinks to B, and we ask what fraction of B also includes A.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 1 &mdash; Fair Die</h4>
+                  <p>A fair die is rolled. Given that the outcome is even, what is P(outcome &ge; 5)?</p>
+                  <p><strong>Solution:</strong> B = {2, 4, 6} (even), A = {5, 6} (≥5). A &cap; B = {6}.<br>
+                  P(A|B) = P({6}) / P({2,4,6}) = (1/6) / (3/6) = <strong>1/3</strong>.</p>
+                </div>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="multiplication-rule">
+                <h2>2. Multiplication Rule</h2>
+
+                <div class="theorem-box">
+                  <h4>Multiplication Rule</h4>
+                  <p>Rearranging the conditional probability definition:</p>
+                  <div class="formula">P(A &cap; B) = P(B) &times; P(A|B) = P(A) &times; P(B|A)</div>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 2 &mdash; Drawing Cards Sequentially</h4>
+                  <p>Two cards are drawn without replacement. P(both Aces)?</p>
+                  <p><strong>Solution:</strong> P(1st Ace) = 4/52. P(2nd Ace | 1st Ace) = 3/51.<br>
+                  P(both Aces) = (4/52) &times; (3/51) = 12/2652 = <strong>1/221 &asymp; 0.0045</strong>.</p>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="chain-rule">
+                <h2>3. Chain Rule (Product Rule)</h2>
+
+                <div class="theorem-box">
+                  <h4>Chain Rule</h4>
+                  <p>For events A<sub>1</sub>, A<sub>2</sub>, &hellip;, A<sub>n</sub>:</p>
+                  <div class="formula">
+                    P(A<sub>1</sub> &cap; A<sub>2</sub> &cap; &hellip; &cap; A<sub>n</sub>) = P(A<sub>1</sub>) &times; P(A<sub>2</sub>|A<sub>1</sub>) &times; P(A<sub>3</sub>|A<sub>1</sub> &cap; A<sub>2</sub>) &times; &hellip; &times; P(A<sub>n</sub>|A<sub>1</sub> &cap; &hellip; &cap; A<sub>n&minus;1</sub>)
+                  </div>
+                </div>
+
+                <div class="note-box">
+                  <h4>Why the Chain Rule Matters</h4>
+                  <p>The chain rule is foundational for <strong>Bayesian networks</strong>, where we decompose a joint distribution into a product of conditional probabilities. We will use this extensively in later sections.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 3 &mdash; Three Cards</h4>
+                  <p>Three cards are drawn without replacement. P(all three are hearts)?</p>
+                  <p><strong>Solution:</strong><br>
+                  P(H<sub>1</sub>) = 13/52<br>
+                  P(H<sub>2</sub>|H<sub>1</sub>) = 12/51<br>
+                  P(H<sub>3</sub>|H<sub>1</sub> &cap; H<sub>2</sub>) = 11/50<br>
+                  P(all hearts) = (13/52)(12/51)(11/50) = 1716/132600 = <strong>11/850 &asymp; 0.0129</strong></p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="urn-problems">
+                <h2>4. Urn Problems (Classic GATE Style)</h2>
+
+                <div class="example-box">
+                  <h4>Example 4 &mdash; Two-Urn Problem <span class="gate-tag">GATE Style</span></h4>
+                  <p>Urn I has 3 red and 4 blue balls. Urn II has 5 red and 2 blue balls. A ball is drawn from Urn I and placed in Urn II, then a ball is drawn from Urn II. What is P(2nd ball is red)?</p>
+                  <p><strong>Solution:</strong> Let R<sub>1</sub> = red from Urn I, B<sub>1</sub> = blue from Urn I, R<sub>2</sub> = red from Urn II.</p>
+                  <p>Case 1: Red transferred &rArr; Urn II has 6R, 2B.<br>
+                  P(R<sub>1</sub>) &times; P(R<sub>2</sub>|R<sub>1</sub>) = (3/7)(6/8) = 18/56</p>
+                  <p>Case 2: Blue transferred &rArr; Urn II has 5R, 3B.<br>
+                  P(B<sub>1</sub>) &times; P(R<sub>2</sub>|B<sub>1</sub>) = (4/7)(5/8) = 20/56</p>
+                  <p>P(R<sub>2</sub>) = 18/56 + 20/56 = <strong>38/56 = 19/28 &asymp; 0.6786</strong></p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 5 &mdash; Sequential Without Replacement <span class="gate-tag">GATE Style NAT</span></h4>
+                  <p>A bag has 5 white and 3 black balls. Two balls are drawn without replacement. P(second ball is white)?</p>
+                  <p><strong>Solution:</strong><br>
+                  P(W<sub>2</sub>) = P(W<sub>1</sub>)P(W<sub>2</sub>|W<sub>1</sub>) + P(B<sub>1</sub>)P(W<sub>2</sub>|B<sub>1</sub>)<br>
+                  = (5/8)(4/7) + (3/8)(5/7) = 20/56 + 15/56 = 35/56 = <strong>5/8 = 0.625</strong></p>
+                  <p class="note-box"><strong>Insight:</strong> Marginal probability of the second draw equals the marginal probability of the first draw when drawing without replacement from a homogeneous pool!</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>Conditional probability:</strong> P(A|B) = P(A &cap; B) / P(B)</li>
+                    <li><strong>Multiplication rule:</strong> P(A &cap; B) = P(A)P(B|A)</li>
+                    <li><strong>Chain rule</strong> extends multiplication to n events — the basis for Bayesian network factorization</li>
+                    <li>For urn/sequential problems, enumerate cases and use the law of total probability</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-conditional-probability">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="probability-basics.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Probability Basics</span>
+              </a>
+              <a href="bayes-theorem.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Bayes' Theorem</span>
+              </a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#definition">1. Definition</a></li>
+              <li><a href="#multiplication-rule">2. Multiplication Rule</a></li>
+              <li><a href="#chain-rule">3. Chain Rule</a></li>
+              <li><a href="#urn-problems">4. Urn Problems</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

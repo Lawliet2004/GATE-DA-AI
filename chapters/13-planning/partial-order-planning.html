@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Partial-Order Planning — POP algorithm, least commitment, causal links, threat resolution, promotion and demotion, worked example for GATE DA.">
+  <title>Partial-Order Planning — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a>
+            <a href="strips.html" class="sidebar-link"><span class="link-check"></span> STRIPS<span class="link-type theory">Theory</span></a>
+            <a href="partial-order-planning.html" class="sidebar-link active"><span class="link-check"></span> Partial-Order Planning<span class="link-type theory">Theory</span></a>
+            <a href="graph-planning.html" class="sidebar-link"><span class="link-check"></span> GraphPlan<span class="link-type theory">Theory</span></a>
+            <a href="notes-planning.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-planning.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="classical-planning.html">Chapter 13: Planning</a> &raquo; <span class="current">Partial-Order Planning</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch13-partial-order-planning">
+
+            <h1>Partial-Order Planning (POP)</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="chapters/13-planning/partial-order-planning.html" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Contrast <strong>total-order</strong> and <strong>partial-order</strong> plans</li>
+              <li>Explain the <strong>least commitment</strong> strategy</li>
+              <li>Identify the four components of a partial-order plan</li>
+              <li>Trace the <strong>POP algorithm</strong> step by step</li>
+              <li>Resolve <strong>threats</strong> using promotion and demotion</li>
+              <li>Understand <strong>causal link protection</strong></li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="total-vs-partial">
+                <h2>1. Total-Order vs. Partial-Order Plans</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Total-Order Plan</h4>
+                  <p>A <strong>total-order plan</strong> is a fully ordered sequence of actions: a<sub>1</sub> &rarr; a<sub>2</sub> &rarr; &hellip; &rarr; a<sub>n</sub>. Every pair of actions has a definite ordering. This is what forward or backward state-space search produces.</p>
+                </div>
+
+                <div class="definition-box">
+                  <h4>&#128218; Partial-Order Plan</h4>
+                  <p>A <strong>partial-order plan</strong> specifies only the ordering constraints that are <em>necessary</em>. Two actions are left unordered if there is no reason one must precede the other. This gives more flexibility in execution.</p>
+                </div>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Feature</th><th>Total-Order</th><th>Partial-Order</th></tr></thead>
+                  <tbody>
+                    <tr><td>Ordering</td><td>All actions linearly ordered</td><td>Only necessary orderings specified</td></tr>
+                    <tr><td>Flexibility</td><td>Single execution sequence</td><td>Multiple valid linearisations</td></tr>
+                    <tr><td>Search space</td><td>Sequences of actions</td><td>Sets of constraints (plan space)</td></tr>
+                    <tr><td>Strategy</td><td>Eager commitment</td><td><strong>Least commitment</strong></td></tr>
+                    <tr><td>Handles Sussman Anomaly?</td><td>Only with backtracking</td><td>Yes, naturally</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="least-commitment">
+                <h2>2. The Least Commitment Strategy</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Least Commitment Principle</h4>
+                  <p>Delay making ordering or binding decisions until they are forced by a constraint. This avoids premature commitment that could lead to backtracking. POP embodies this principle by leaving actions unordered whenever possible.</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Benefit</h4>
+                  <p>By keeping the plan partially ordered, the planner avoids committing to an ordering that might later prove wrong. This is precisely why POP can handle the <a href="strips.html#sussman-anomaly">Sussman Anomaly</a> without difficulty &mdash; it doesn&rsquo;t force sub-goal actions into a fixed sequence.</p>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="plan-components">
+                <h2>3. Components of a Partial-Order Plan</h2>
+
+                <p>A partial-order plan &pi; is a tuple &langle;A, O, L, OC&rangle;:</p>
+
+                <div class="definition-box">
+                  <h4>&#128218; Plan Components</h4>
+                  <ul>
+                    <li><strong>A &mdash; Actions:</strong> the set of actions in the plan, always including two special actions:
+                      <ul>
+                        <li><em>Start</em> (a<sub>0</sub>): no preconditions; its effects are the initial state fluents</li>
+                        <li><em>Finish</em> (a<sub>&infin;</sub>): its preconditions are the goal fluents; no effects</li>
+                      </ul>
+                    </li>
+                    <li><strong>O &mdash; Ordering Constraints:</strong> a set of pairs a<sub>i</sub> &prec; a<sub>j</sub> meaning &ldquo;a<sub>i</sub> must execute before a<sub>j</sub>&rdquo;. Always includes Start &prec; Finish.</li>
+                    <li><strong>L &mdash; Causal Links:</strong> a set of triples a<sub>i</sub> &xrarr;<sup>p</sup> a<sub>j</sub> meaning &ldquo;action a<sub>i</sub> achieves precondition p for action a<sub>j</sub>&rdquo;.</li>
+                    <li><strong>OC &mdash; Open Preconditions:</strong> preconditions of actions in A that are not yet supported by any causal link.</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#128300; Initial Plan (Before Any Refinement)</h4>
+                  <p>A = {Start, Finish}<br>
+                  O = {Start &prec; Finish}<br>
+                  L = {} (empty)<br>
+                  OC = all preconditions of Finish = the goal literals</p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="pop-algorithm">
+                <h2>4. The POP Algorithm</h2>
+
+                <div class="algorithm-block">
+                  <h4>Partial-Order Planning (POP) Algorithm</h4>
+<pre>function POP(initial_state, goal):
+    plan ← initial plan with Start, Finish
+    // Start effects = initial state; Finish preconditions = goal
+    open_preconditions ← preconditions of Finish
+
+    while open_preconditions ≠ ∅:
+        select an open precondition p of some action a_need
+
+        // Step 1: Find an action a_add that achieves p
+        choose a_add such that p ∈ Add(a_add)
+        // a_add can be an existing action in the plan OR a new action
+
+        if a_add is new:
+            add a_add to plan.actions
+            add Start ≺ a_add ≺ Finish to plan.orderings
+            add preconditions of a_add to open_preconditions
+
+        // Step 2: Add causal link and ordering
+        add causal link a_add →p→ a_need
+        add ordering a_add ≺ a_need
+
+        // Step 3: Resolve threats
+        for each action a_threat in plan.actions:
+            if p ∈ Del(a_threat) and
+               a_threat could be ordered between a_add and a_need:
+                resolve threat by:
+                  PROMOTION:  add ordering a_need ≺ a_threat
+                  or DEMOTION: add ordering a_threat ≺ a_add
+                // Choose whichever does not create a cycle
+
+        remove p from open_preconditions
+
+    if plan is consistent (no cycles, no threats):
+        return plan
+    else:
+        backtrack and try alternative choices</pre>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Non-deterministic Choices</h4>
+                  <p>The POP algorithm has two key choice points requiring backtracking: (1) which open precondition to work on, and (2) which action to use to achieve it. Good heuristics at these choice points dramatically affect performance.</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="threats">
+                <h2>5. Threats and Their Resolution</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Threat (Clobberer)</h4>
+                  <p>An action a<sub>t</sub> <strong>threatens</strong> a causal link a<sub>i</sub> &xrarr;<sup>p</sup> a<sub>j</sub> if:</p>
+                  <ol>
+                    <li>p &isin; Del(a<sub>t</sub>) &mdash; the action deletes the protected proposition</li>
+                    <li>a<sub>t</sub> could possibly be ordered between a<sub>i</sub> and a<sub>j</sub> (i.e., the orderings a<sub>i</sub> &prec; a<sub>t</sub> &prec; a<sub>j</sub> are consistent with existing constraints)</li>
+                  </ol>
+                </div>
+
+                <p>Two standard resolution strategies:</p>
+
+                <div class="definition-box">
+                  <h4>&#128218; Promotion</h4>
+                  <p>Add the ordering constraint a<sub>j</sub> &prec; a<sub>t</sub> &mdash; force the threatening action to come <strong>after</strong> the consumer. This &ldquo;promotes&rdquo; a<sub>j</sub> ahead of the threat.</p>
+                </div>
+
+                <div class="definition-box">
+                  <h4>&#128218; Demotion</h4>
+                  <p>Add the ordering constraint a<sub>t</sub> &prec; a<sub>i</sub> &mdash; force the threatening action to come <strong>before</strong> the producer. This &ldquo;demotes&rdquo; a<sub>t</sub> behind the link&rsquo;s origin.</p>
+                </div>
+
+                <div class="warning-box">
+                  <h4>&#9888; When Neither Works</h4>
+                  <p>If both promotion and demotion would create an ordering cycle, nor can an alternative achiever be found, the algorithm must <strong>backtrack</strong> to an earlier choice point. POP is sound and complete with proper backtracking.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#128300; Threat Example</h4>
+                  <p>Suppose we have causal link: MoveFromTable(B,C) &xrarr;<sup>Clear(B)</sup> MoveFromTable(A,B)</p>
+                  <p>A threatening action might be: MoveFromTable(D,B) which deletes Clear(B).</p>
+                  <ul>
+                    <li><strong>Promotion:</strong> order MoveFromTable(A,B) &prec; MoveFromTable(D,B) &mdash; use B before D covers it</li>
+                    <li><strong>Demotion:</strong> order MoveFromTable(D,B) &prec; MoveFromTable(B,C) &mdash; cover B with D first, but then B&rsquo;s move provides Clear(B) later</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="causal-link-protection">
+                <h2>6. Causal Link Protection</h2>
+
+                <p>Causal links serve as <strong>protected conditions</strong>. The invariant is:</p>
+
+                <div class="theorem-box">
+                  <h4>&#128220; Causal Link Invariant</h4>
+                  <p>For every causal link a<sub>i</sub> &xrarr;<sup>p</sup> a<sub>j</sub> in the plan, no action a<sub>k</sub> with p &isin; Del(a<sub>k</sub>) can be ordered such that a<sub>i</sub> &prec; a<sub>k</sub> &prec; a<sub>j</sub>.</p>
+                </div>
+
+                <p>This invariant guarantees that when any valid linearisation of the partial order is executed, the precondition p will still hold when a<sub>j</sub> is reached. Maintaining this invariant is the primary role of threat resolution.</p>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="worked-example">
+                <h2>7. Worked Example: Sussman Anomaly via POP</h2>
+
+                <div class="example-box">
+                  <h4>&#128300; POP Solving the Sussman Anomaly</h4>
+                  <p><strong>Initial:</strong> On(C,A), OnTable(A), OnTable(B), Clear(C), Clear(B)</p>
+                  <p><strong>Goal:</strong> On(A,B) &and; On(B,C)</p>
+
+                  <p><strong>Step 0: Initial plan</strong></p>
+                  <ul>
+                    <li>Actions: {Start, Finish}</li>
+                    <li>Start effects: On(C,A), OnTable(A), OnTable(B), Clear(C), Clear(B)</li>
+                    <li>Finish preconditions: On(A,B), On(B,C)</li>
+                    <li>Open: {On(A,B)@Finish, On(B,C)@Finish}</li>
+                  </ul>
+
+                  <p><strong>Step 1: Achieve On(A,B)</strong></p>
+                  <ul>
+                    <li>Add new action: MoveFromTable(A,B)</li>
+                    <li>Causal link: MoveFromTable(A,B) &xrarr;<sup>On(A,B)</sup> Finish</li>
+                    <li>New open preconditions: OnTable(A), Clear(A), Clear(B) for MoveFromTable(A,B)</li>
+                  </ul>
+
+                  <p><strong>Step 2: Achieve On(B,C)</strong></p>
+                  <ul>
+                    <li>Add new action: MoveFromTable(B,C)</li>
+                    <li>Causal link: MoveFromTable(B,C) &xrarr;<sup>On(B,C)</sup> Finish</li>
+                    <li>New open: OnTable(B), Clear(B), Clear(C) for MoveFromTable(B,C)</li>
+                    <li>&#9888; <strong>Threat detected:</strong> MoveFromTable(A,B) deletes Clear(B), threatening link Start &xrarr;<sup>Clear(B)</sup> MoveFromTable(B,C)</li>
+                    <li><strong>Resolution (demotion):</strong> order MoveFromTable(B,C) &prec; MoveFromTable(A,B)</li>
+                  </ul>
+
+                  <p><strong>Step 3: Achieve Clear(A) for MoveFromTable(A,B)</strong></p>
+                  <ul>
+                    <li>Clear(A) is not in Start&rsquo;s effects (C is on A!). Need an action.</li>
+                    <li>Add: MoveToTable(C,A) with Add={OnTable(C), Clear(A)}, Del={On(C,A)}</li>
+                    <li>Causal link: MoveToTable(C,A) &xrarr;<sup>Clear(A)</sup> MoveFromTable(A,B)</li>
+                    <li>Open: On(C,A)@MoveToTable(C,A), Clear(C)@MoveToTable(C,A) &mdash; both satisfied by Start</li>
+                  </ul>
+
+                  <p><strong>Step 4: Link remaining open preconditions to Start</strong></p>
+                  <ul>
+                    <li>OnTable(A) &larr; Start &#10003;, OnTable(B) &larr; Start &#10003;, Clear(B) &larr; Start &#10003;, Clear(C) &larr; Start &#10003;</li>
+                  </ul>
+
+                  <p><strong>Final Partial Order:</strong></p>
+                  <ul>
+                    <li>Start &prec; MoveToTable(C,A) &prec; MoveFromTable(B,C) &prec; MoveFromTable(A,B) &prec; Finish</li>
+                  </ul>
+                  <p>One valid linearisation: MoveToTable(C,A) &rarr; MoveFromTable(B,C) &rarr; MoveFromTable(A,B) &#10003;</p>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <ul>
+                  <li><strong>Partial-order plans</strong> only impose necessary ordering constraints &mdash; embodying the <strong>least commitment</strong> principle.</li>
+                  <li>A plan is represented as &langle;Actions, Orderings, Causal Links, Open Preconditions&rangle;.</li>
+                  <li>The <strong>POP algorithm</strong> refines the plan by selecting open preconditions, finding achievers, and resolving threats.</li>
+                  <li><strong>Threats</strong> occur when an action could delete a causally-linked proposition; they are resolved by <strong>promotion</strong> (consumer before threat) or <strong>demotion</strong> (threat before producer).</li>
+                  <li>POP naturally handles problems like the <strong>Sussman Anomaly</strong> that defeat linear planners.</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="chapters/13-planning/partial-order-planning.html">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="strips.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">STRIPS Planning</span></a>
+              <a href="graph-planning.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">GraphPlan</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#total-vs-partial">1. Total vs Partial Order</a></li>
+            <li><a href="#least-commitment">2. Least Commitment</a></li>
+            <li><a href="#plan-components">3. Plan Components</a></li>
+            <li><a href="#pop-algorithm">4. POP Algorithm</a></li>
+            <li><a href="#threats">5. Threats &amp; Resolution</a></li>
+            <li><a href="#causal-link-protection">6. Causal Link Protection</a></li>
+            <li><a href="#worked-example">7. Worked Example</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

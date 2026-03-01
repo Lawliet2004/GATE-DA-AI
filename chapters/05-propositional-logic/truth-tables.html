@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truth Tables - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="00">📘 Ch 0: Introduction</h3>
+                <ul class="chapter-links collapsed"><li><a href="../00-introduction/what-is-ai.html">What is AI?</a></li></ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="01">📘 Ch 1: Intelligent Agents</h3>
+                <ul class="chapter-links collapsed"><li><a href="../01-intelligent-agents/agents-and-environments.html">Agents &amp; Environments</a></li></ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="02">📘 Ch 2: Uninformed Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../02-uninformed-search/breadth-first-search.html">BFS</a></li></ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="03">📘 Ch 3: Informed Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../03-informed-search/a-star-search.html">A* Search</a></li></ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li class="active"><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>Truth Tables</span>
+        </div>
+
+        <article class="theory-content">
+            <h1>Truth Tables</h1>
+
+            <div class="gate-badge">GATE DA — Very High Importance</div>
+
+            <div class="learning-objectives">
+                <h3>🎯 Learning Objectives</h3>
+                <ul>
+                    <li>Construct truth tables systematically for any propositional formula</li>
+                    <li>Know the truth tables for all five connectives by heart</li>
+                    <li>Evaluate compound formulas with multiple variables</li>
+                    <li>Understand that n variables require 2<sup>n</sup> rows</li>
+                </ul>
+            </div>
+
+            <!-- Section 1: Introduction -->
+            <section>
+                <h2>1. What is a Truth Table?</h2>
+                <p>A <strong>truth table</strong> is a tabular method for listing all possible truth value combinations of the variables in a formula and computing the resulting truth value of the formula under each combination.</p>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Truth Table</div>
+                    <p>For a propositional formula with <strong>n</strong> distinct propositional variables, the truth table has <strong>2<sup>n</sup></strong> rows, each corresponding to a unique truth assignment. The columns include each variable, sub-formulas, and the final formula.</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Basic Connective Tables -->
+            <section>
+                <h2>2. Truth Tables for All Five Connectives</h2>
+
+                <h3>2.1 Negation (¬P)</h3>
+                <table class="styled-table">
+                    <thead><tr><th>P</th><th>¬P</th></tr></thead>
+                    <tbody>
+                        <tr><td>T</td><td>F</td></tr>
+                        <tr><td>F</td><td>T</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>2.2 Conjunction (P ∧ Q)</h3>
+                <table class="styled-table">
+                    <thead><tr><th>P</th><th>Q</th><th>P ∧ Q</th></tr></thead>
+                    <tbody>
+                        <tr><td>T</td><td>T</td><td>T</td></tr>
+                        <tr><td>T</td><td>F</td><td>F</td></tr>
+                        <tr><td>F</td><td>T</td><td>F</td></tr>
+                        <tr><td>F</td><td>F</td><td>F</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>2.3 Disjunction (P ∨ Q)</h3>
+                <table class="styled-table">
+                    <thead><tr><th>P</th><th>Q</th><th>P ∨ Q</th></tr></thead>
+                    <tbody>
+                        <tr><td>T</td><td>T</td><td>T</td></tr>
+                        <tr><td>T</td><td>F</td><td>T</td></tr>
+                        <tr><td>F</td><td>T</td><td>T</td></tr>
+                        <tr><td>F</td><td>F</td><td>F</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>2.4 Implication (P → Q)</h3>
+                <table class="styled-table">
+                    <thead><tr><th>P</th><th>Q</th><th>P → Q</th></tr></thead>
+                    <tbody>
+                        <tr><td>T</td><td>T</td><td>T</td></tr>
+                        <tr><td>T</td><td>F</td><td>F</td></tr>
+                        <tr><td>F</td><td>T</td><td>T</td></tr>
+                        <tr><td>F</td><td>F</td><td>T</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="note-box">
+                    <h4>📝 Remember</h4>
+                    <p>Implication is false <strong>only</strong> when the antecedent (P) is true and the consequent (Q) is false. Mnemonic: "A true promise broken only when you promised (T) but didn't deliver (F)."</p>
+                </div>
+
+                <h3>2.5 Biconditional (P ↔ Q)</h3>
+                <table class="styled-table">
+                    <thead><tr><th>P</th><th>Q</th><th>P ↔ Q</th></tr></thead>
+                    <tbody>
+                        <tr><td>T</td><td>T</td><td>T</td></tr>
+                        <tr><td>T</td><td>F</td><td>F</td></tr>
+                        <tr><td>F</td><td>T</td><td>F</td></tr>
+                        <tr><td>F</td><td>F</td><td>T</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Section 3: Systematic Construction -->
+            <section>
+                <h2>3. Systematic Truth Table Construction Method</h2>
+
+                <div class="algorithm-block">
+                    <div class="algo-header">Algorithm: Truth Table Construction</div>
+                    <div class="algo-body">
+                        <ol>
+                            <li><strong>Identify</strong> all distinct propositional variables in the formula.</li>
+                            <li><strong>Create 2<sup>n</sup> rows</strong> for n variables.</li>
+                            <li><strong>Fill variable columns</strong> using alternating pattern:
+                                <ul>
+                                    <li>First variable: T for first half, F for second half</li>
+                                    <li>Second variable: alternate T/F in blocks of 2<sup>n-2</sup></li>
+                                    <li>Last variable: alternate T, F, T, F, ...</li>
+                                </ul>
+                            </li>
+                            <li><strong>Add columns</strong> for each sub-formula, from innermost to outermost.</li>
+                            <li><strong>Compute</strong> each column using the connective definitions.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Worked Examples -->
+            <section>
+                <h2>4. Worked Examples</h2>
+
+                <div class="example-box">
+                    <h4>Example 1: (P → Q) ∧ (Q → R)</h4>
+                    <p>Three variables: P, Q, R → 2³ = 8 rows</p>
+                    <table class="styled-table">
+                        <thead><tr><th>P</th><th>Q</th><th>R</th><th>P → Q</th><th>Q → R</th><th>(P → Q) ∧ (Q → R)</th></tr></thead>
+                        <tbody>
+                            <tr><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>T</td><td>T</td><td>F</td><td>T</td><td>F</td><td><strong>F</strong></td></tr>
+                            <tr><td>T</td><td>F</td><td>T</td><td>F</td><td>T</td><td><strong>F</strong></td></tr>
+                            <tr><td>T</td><td>F</td><td>F</td><td>F</td><td>T</td><td><strong>F</strong></td></tr>
+                            <tr><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>F</td><td>T</td><td>F</td><td>T</td><td>F</td><td><strong>F</strong></td></tr>
+                            <tr><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>F</td><td>F</td><td>F</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                        </tbody>
+                    </table>
+                    <p>The formula is <strong>true in 4 out of 8 rows</strong>, so it is a <em>contingency</em>.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 2: ¬P ∨ (Q ∧ R) ↔ (P → (Q ∧ R))</h4>
+                    <p>Three variables: P, Q, R → 8 rows. We show that this is a tautology.</p>
+                    <table class="styled-table">
+                        <thead><tr><th>P</th><th>Q</th><th>R</th><th>Q ∧ R</th><th>¬P</th><th>¬P ∨ (Q∧R)</th><th>P → (Q∧R)</th><th>LHS ↔ RHS</th></tr></thead>
+                        <tbody>
+                            <tr><td>T</td><td>T</td><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>T</td><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td><td>F</td><td><strong>T</strong></td></tr>
+                            <tr><td>T</td><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td><td><strong>T</strong></td></tr>
+                            <tr><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td><td>F</td><td>F</td><td><strong>T</strong></td></tr>
+                            <tr><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>F</td><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>F</td><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>F</td><td>F</td><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                        </tbody>
+                    </table>
+                    <p>All rows are <strong>T</strong> — this confirms that <span class="formula">¬P ∨ α ≡ P → α</span> (material implication equivalence) is a <strong>tautology</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 3: (P ∨ Q) ∧ (¬P ∨ R) ∧ (¬Q ∨ R)</h4>
+                    <p>This is a CNF formula. Let us evaluate it:</p>
+                    <table class="styled-table">
+                        <thead><tr><th>P</th><th>Q</th><th>R</th><th>P ∨ Q</th><th>¬P ∨ R</th><th>¬Q ∨ R</th><th>Result</th></tr></thead>
+                        <tbody>
+                            <tr><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>T</td><td>T</td><td>F</td><td>T</td><td>F</td><td>F</td><td><strong>F</strong></td></tr>
+                            <tr><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>T</td><td>F</td><td>F</td><td>T</td><td>F</td><td>T</td><td><strong>F</strong></td></tr>
+                            <tr><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td><td><strong>F</strong></td></tr>
+                            <tr><td>F</td><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td><td><strong>F</strong></td></tr>
+                            <tr><td>F</td><td>F</td><td>F</td><td>F</td><td>T</td><td>T</td><td><strong>F</strong></td></tr>
+                        </tbody>
+                    </table>
+                    <p>The formula is <strong>satisfiable</strong> (true in rows 1, 3, 5) but <strong>not a tautology</strong>. The satisfying assignments are: {P=T, Q=T, R=T}, {P=T, Q=F, R=T}, {P=F, Q=T, R=T}. Notice that R must be true whenever the formula is satisfied.</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Counting -->
+            <section>
+                <h2>5. Counting Truth Functions</h2>
+                <div class="theorem-box">
+                    <h4>Theorem: Number of Distinct Boolean Functions</h4>
+                    <p>For <strong>n</strong> propositional variables, the truth table has 2<sup>n</sup> rows. Each row can independently be T or F, so the total number of distinct Boolean functions of n variables is:</p>
+                    <p class="formula">2<sup>(2<sup>n</sup>)</sup></p>
+                    <p>For n = 1: 2<sup>2</sup> = 4 functions. For n = 2: 2<sup>4</sup> = 16 functions. For n = 3: 2<sup>8</sup> = 256 functions.</p>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 GATE Fact</h4>
+                    <p>The 16 binary truth functions for two variables include all possible connectives: AND, OR, NAND, NOR, XOR, XNOR, implication, converse implication, and others. NAND and NOR are each <strong>functionally complete</strong>—every Boolean function can be expressed using only NAND (or only NOR).</p>
+                </div>
+            </section>
+
+            <!-- GATE Tips -->
+            <section>
+                <h2>6. GATE Exam Tips</h2>
+                <div class="warning-box">
+                    <h4>🎯 Tips for GATE Questions</h4>
+                    <ul>
+                        <li><strong>Shortcut for implication:</strong> P → Q ≡ ¬P ∨ Q. Use this to quickly evaluate implications without building the full table.</li>
+                        <li><strong>Shortcut for biconditional:</strong> P ↔ Q gives T when both have same value, F otherwise (like XNOR).</li>
+                        <li><strong>Count satisfying assignments:</strong> GATE NAT questions may ask "How many truth assignments satisfy formula X?" — just count the T rows.</li>
+                        <li><strong>For 4 variables:</strong> 2⁴ = 16 rows. Be systematic to avoid errors.</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="syntax-and-semantics.html" class="nav-btn prev-btn">← Previous: Syntax &amp; Semantics</a>
+            <a href="logical-equivalence.html" class="nav-btn next-btn">Next: Logical Equivalence →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-truth-tables">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-truth-tables">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

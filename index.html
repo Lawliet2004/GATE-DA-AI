@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Master Artificial Intelligence for GATE DA — comprehensive learning platform covering all AI topics for the GATE Data Science &amp; AI exam.">
+  <title>Master AI for GATE DA — Home</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/navigation.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* ---- Dashboard-specific styles ---- */
+    .hero {
+      text-align: center;
+      padding: var(--spacing-3xl) var(--spacing-lg);
+      background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary), var(--color-secondary));
+      color: #fff;
+      border-radius: var(--border-radius-lg);
+      margin-bottom: var(--spacing-2xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero * { position: relative; z-index: 1; }
+    .hero h1 { color: #fff; font-size: 2.5rem; margin-bottom: var(--spacing-sm); border: none; padding: 0; }
+    .hero .subtitle { font-size: var(--font-size-lg); opacity: 0.9; margin-bottom: var(--spacing-xl); }
+    .hero-buttons { display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap; }
+    .hero-buttons .btn { font-size: var(--font-size-md); padding: var(--spacing-md) var(--spacing-xl); }
+    .hero-buttons .btn-light { background: #fff; color: var(--color-primary-dark); border-color: #fff; }
+    .hero-buttons .btn-light:hover { background: var(--bg-secondary); border-color: var(--bg-secondary); text-decoration: none; }
+    .hero-buttons .btn-outline-light { background: transparent; color: #fff; border-color: rgba(255,255,255,0.6); }
+    .hero-buttons .btn-outline-light:hover { background: rgba(255,255,255,0.15); border-color: #fff; text-decoration: none; }
+
+    .section-title { font-size: var(--font-size-2xl); margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-sm); border-bottom: 2px solid var(--border-light); }
+
+    /* Progress dashboard */
+    .progress-dashboard { display: flex; gap: var(--spacing-xl); align-items: flex-start; flex-wrap: wrap; margin-bottom: var(--spacing-2xl); }
+    .progress-overview { text-align: center; min-width: 180px; }
+    .progress-overview .progress-circle {
+      margin: 0 auto var(--spacing-md);
+      background: conic-gradient(var(--color-secondary) calc(var(--pct) * 1%), var(--progress-empty) 0);
+    }
+    .progress-circle-inner {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: var(--bg-primary); display: flex; align-items: center; justify-content: center;
+      font-size: var(--font-size-xl); font-weight: 700; color: var(--color-secondary);
+    }
+    .progress-chapters { flex: 1; min-width: 280px; }
+    .chapter-progress-item { margin-bottom: var(--spacing-md); }
+    .chapter-progress-item .chapter-label { display: flex; justify-content: space-between; font-size: var(--font-size-sm); margin-bottom: var(--spacing-xs); font-weight: 500; }
+    .chapter-progress-item .chapter-label span:last-child { color: var(--text-muted); }
+
+    /* Chapter card extras */
+    .chapter-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+    .chapter-card:hover { text-decoration: none; color: inherit; }
+    .chapter-card .card-icon { font-size: 2.5rem; margin-bottom: var(--spacing-sm); }
+    .chapter-card .card-num { font-size: var(--font-size-xs); font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .chapter-card .card-title { font-size: var(--font-size-lg); font-weight: 700; margin: var(--spacing-xs) 0; }
+    .chapter-card .card-desc { font-size: var(--font-size-sm); color: var(--text-secondary); flex: 1; margin-bottom: var(--spacing-md); }
+    .chapter-card .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+    .chapter-card .topic-count { font-size: var(--font-size-xs); color: var(--text-muted); }
+
+    /* Quick stats */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-2xl); }
+    .stat-card { text-align: center; padding: var(--spacing-lg); }
+    .stat-card .stat-value { font-size: var(--font-size-2xl); font-weight: 700; color: var(--color-primary); }
+    .stat-card .stat-label { font-size: var(--font-size-sm); color: var(--text-muted); margin-top: var(--spacing-xs); }
+
+    /* GATE info box */
+    .gate-info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-2xl); }
+    .gate-info-item { padding: var(--spacing-lg); }
+    .gate-info-item h4 { margin-top: 0; font-size: var(--font-size-md); color: var(--color-primary); }
+    .gate-info-item p, .gate-info-item ul { font-size: var(--font-size-sm); margin-bottom: 0; }
+
+    /* Bookmarks */
+    .bookmark-list { list-style: none; padding: 0; margin: 0; }
+    .bookmark-list li { padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--border-light); }
+    .bookmark-list li:last-child { border-bottom: none; }
+    .bookmark-list a { font-weight: 500; }
+    .bookmark-list .bm-date { font-size: var(--font-size-xs); color: var(--text-muted); margin-left: var(--spacing-sm); }
+
+    /* Discoveries */
+    .discovery-list { display: flex; flex-direction: column; gap: var(--spacing-md); }
+    .discovery-item { padding: var(--spacing-md) var(--spacing-lg); }
+    .discovery-item h4 { margin-top: 0; font-size: var(--font-size-md); }
+    .discovery-item .disc-meta { font-size: var(--font-size-xs); color: var(--text-muted); margin-bottom: var(--spacing-xs); }
+    .discovery-item p { font-size: var(--font-size-sm); margin-bottom: 0; }
+
+    /* Empty state */
+    .empty-state { text-align: center; color: var(--text-muted); padding: var(--spacing-xl); font-size: var(--font-size-sm); }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">☰</button>
+        <a href="index.html" class="site-logo">
+          <span class="logo-icon">🧠</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" placeholder="Search topics… (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">🌙</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <!-- Ch 00 — Introduction to AI -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">00</span> Introduction to AI
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/00-introduction/what-is-ai.html" class="sidebar-link">
+              <span class="link-check"></span> What is AI?
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/00-introduction/history-of-ai.html" class="sidebar-link">
+              <span class="link-check"></span> History of AI
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/00-introduction/types-of-ai.html" class="sidebar-link">
+              <span class="link-check"></span> Types of AI
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link">
+              <span class="link-check"></span> AI vs ML vs DL
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/00-introduction/gate-da-exam-overview.html" class="sidebar-link">
+              <span class="link-check"></span> GATE DA Exam Overview
+              <span class="link-type notes">Notes</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 01 — Intelligent Agents -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">01</span> Intelligent Agents
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/01-intelligent-agents/agents-and-environments.html" class="sidebar-link">
+              <span class="link-check"></span> Agents &amp; Environments
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/01-intelligent-agents/rationality.html" class="sidebar-link">
+              <span class="link-check"></span> Rationality
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/01-intelligent-agents/task-environment-peas.html" class="sidebar-link">
+              <span class="link-check"></span> Task Environment (PEAS)
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/01-intelligent-agents/agent-types.html" class="sidebar-link">
+              <span class="link-check"></span> Agent Types
+              <span class="link-type theory">Theory</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 02 — Uninformed Search -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">02</span> Uninformed Search
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/02-uninformed-search/problem-formulation.html" class="sidebar-link">
+              <span class="link-check"></span> Problem Formulation
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/02-uninformed-search/state-space-representation.html" class="sidebar-link">
+              <span class="link-check"></span> State Space Representation
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/02-uninformed-search/breadth-first-search.html" class="sidebar-link">
+              <span class="link-check"></span> Breadth-First Search
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/02-uninformed-search/depth-first-search.html" class="sidebar-link">
+              <span class="link-check"></span> Depth-First Search
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/02-uninformed-search/depth-limited-search.html" class="sidebar-link">
+              <span class="link-check"></span> Depth-Limited Search
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/02-uninformed-search/iterative-deepening-dfs.html" class="sidebar-link">
+              <span class="link-check"></span> Iterative Deepening DFS
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/02-uninformed-search/uniform-cost-search.html" class="sidebar-link">
+              <span class="link-check"></span> Uniform-Cost Search
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/02-uninformed-search/bidirectional-search.html" class="sidebar-link">
+              <span class="link-check"></span> Bidirectional Search
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/02-uninformed-search/comparison-of-uninformed-strategies.html" class="sidebar-link">
+              <span class="link-check"></span> Comparison of Strategies
+              <span class="link-type notes">Notes</span>
+            </a>
+            <a href="chapters/02-uninformed-search/complexity-analysis.html" class="sidebar-link">
+              <span class="link-check"></span> Complexity Analysis
+              <span class="link-type theory">Theory</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 03 — Informed Search -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">03</span> Informed Search
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/03-informed-search/heuristic-functions.html" class="sidebar-link">
+              <span class="link-check"></span> Heuristic Functions
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/03-informed-search/greedy-best-first-search.html" class="sidebar-link">
+              <span class="link-check"></span> Greedy Best-First Search
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/03-informed-search/a-star-search.html" class="sidebar-link">
+              <span class="link-check"></span> A* Search
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/03-informed-search/admissibility-and-consistency.html" class="sidebar-link">
+              <span class="link-check"></span> Admissibility &amp; Consistency
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/03-informed-search/ida-star.html" class="sidebar-link">
+              <span class="link-check"></span> IDA*
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/03-informed-search/rbfs.html" class="sidebar-link">
+              <span class="link-check"></span> RBFS
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/03-informed-search/sma-star.html" class="sidebar-link">
+              <span class="link-check"></span> SMA*
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/03-informed-search/heuristic-design-techniques.html" class="sidebar-link">
+              <span class="link-check"></span> Heuristic Design Techniques
+              <span class="link-type practical">Practical</span>
+            </a>
+            <a href="chapters/03-informed-search/local-search-hill-climbing.html" class="sidebar-link">
+              <span class="link-check"></span> Local Search &amp; Hill Climbing
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/03-informed-search/simulated-annealing.html" class="sidebar-link">
+              <span class="link-check"></span> Simulated Annealing
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/03-informed-search/genetic-algorithms.html" class="sidebar-link">
+              <span class="link-check"></span> Genetic Algorithms
+              <span class="link-type theory">Theory</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 04 — Adversarial Search -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">04</span> Adversarial Search
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/04-adversarial-search/game-theory-basics.html" class="sidebar-link">
+              <span class="link-check"></span> Game Theory Basics
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/04-adversarial-search/minimax-algorithm.html" class="sidebar-link">
+              <span class="link-check"></span> Minimax Algorithm
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/04-adversarial-search/alpha-beta-pruning.html" class="sidebar-link">
+              <span class="link-check"></span> Alpha-Beta Pruning
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/04-adversarial-search/move-ordering.html" class="sidebar-link">
+              <span class="link-check"></span> Move Ordering
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/04-adversarial-search/evaluation-functions.html" class="sidebar-link">
+              <span class="link-check"></span> Evaluation Functions
+              <span class="link-type practical">Practical</span>
+            </a>
+            <a href="chapters/04-adversarial-search/stochastic-games.html" class="sidebar-link">
+              <span class="link-check"></span> Stochastic Games
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/04-adversarial-search/partially-observable-games.html" class="sidebar-link">
+              <span class="link-check"></span> Partially Observable Games
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/04-adversarial-search/monte-carlo-tree-search.html" class="sidebar-link">
+              <span class="link-check"></span> Monte Carlo Tree Search
+              <span class="link-type theory">Theory</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 05 — Propositional Logic -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">05</span> Propositional Logic
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/05-propositional-logic/syntax-and-semantics.html" class="sidebar-link">
+              <span class="link-check"></span> Syntax &amp; Semantics
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/05-propositional-logic/logical-connectives.html" class="sidebar-link">
+              <span class="link-check"></span> Logical Connectives
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/05-propositional-logic/truth-tables.html" class="sidebar-link">
+              <span class="link-check"></span> Truth Tables
+              <span class="link-type practical">Practical</span>
+            </a>
+            <a href="chapters/05-propositional-logic/logical-equivalences.html" class="sidebar-link">
+              <span class="link-check"></span> Logical Equivalences
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/05-propositional-logic/normal-forms.html" class="sidebar-link">
+              <span class="link-check"></span> Normal Forms (CNF/DNF)
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/05-propositional-logic/inference-rules.html" class="sidebar-link">
+              <span class="link-check"></span> Inference Rules
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/05-propositional-logic/propositional-resolution.html" class="sidebar-link">
+              <span class="link-check"></span> Propositional Resolution
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/05-propositional-logic/forward-backward-chaining.html" class="sidebar-link">
+              <span class="link-check"></span> Forward &amp; Backward Chaining
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/05-propositional-logic/satisfiability-sat.html" class="sidebar-link">
+              <span class="link-check"></span> Satisfiability (SAT)
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/05-propositional-logic/horn-clauses.html" class="sidebar-link">
+              <span class="link-check"></span> Horn Clauses
+              <span class="link-type theory">Theory</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 06 — Predicate Logic -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">06</span> Predicate Logic
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link">
+              <span class="link-check"></span> First-Order Logic Syntax
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/06-predicate-logic/quantifiers.html" class="sidebar-link">
+              <span class="link-check"></span> Quantifiers
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/06-predicate-logic/predicates-functions-constants.html" class="sidebar-link">
+              <span class="link-check"></span> Predicates, Functions &amp; Constants
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/06-predicate-logic/unification.html" class="sidebar-link">
+              <span class="link-check"></span> Unification
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/06-predicate-logic/skolemization.html" class="sidebar-link">
+              <span class="link-check"></span> Skolemization
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/06-predicate-logic/first-order-inference.html" class="sidebar-link">
+              <span class="link-check"></span> First-Order Inference
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/06-predicate-logic/generalized-modus-ponens.html" class="sidebar-link">
+              <span class="link-check"></span> Generalized Modus Ponens
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/06-predicate-logic/resolution-in-fol.html" class="sidebar-link">
+              <span class="link-check"></span> Resolution in FOL
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/06-predicate-logic/knowledge-representation-fol.html" class="sidebar-link">
+              <span class="link-check"></span> Knowledge Representation (FOL)
+              <span class="link-type practical">Practical</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 07 — Reasoning Under Uncertainty -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">07</span> Reasoning Under Uncertainty
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/07-reasoning-under-uncertainty/probability-review.html" class="sidebar-link">
+              <span class="link-check"></span> Probability Review
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/conditional-independence.html" class="sidebar-link">
+              <span class="link-check"></span> Conditional Independence
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/bayesian-networks.html" class="sidebar-link">
+              <span class="link-check"></span> Bayesian Networks
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/conditional-independence-in-bn.html" class="sidebar-link">
+              <span class="link-check"></span> Conditional Independence in BN
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/exact-inference-enumeration.html" class="sidebar-link">
+              <span class="link-check"></span> Exact Inference (Enumeration)
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/variable-elimination.html" class="sidebar-link">
+              <span class="link-check"></span> Variable Elimination
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/variable-elimination-complexity.html" class="sidebar-link">
+              <span class="link-check"></span> Variable Elimination Complexity
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/approximate-inference-overview.html" class="sidebar-link">
+              <span class="link-check"></span> Approximate Inference Overview
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/prior-sampling.html" class="sidebar-link">
+              <span class="link-check"></span> Prior Sampling
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/rejection-sampling.html" class="sidebar-link">
+              <span class="link-check"></span> Rejection Sampling
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/likelihood-weighting.html" class="sidebar-link">
+              <span class="link-check"></span> Likelihood Weighting
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/gibbs-sampling.html" class="sidebar-link">
+              <span class="link-check"></span> Gibbs Sampling
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/markov-chain-monte-carlo.html" class="sidebar-link">
+              <span class="link-check"></span> Markov Chain Monte Carlo
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/hidden-markov-models.html" class="sidebar-link">
+              <span class="link-check"></span> Hidden Markov Models
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/07-reasoning-under-uncertainty/particle-filtering.html" class="sidebar-link">
+              <span class="link-check"></span> Particle Filtering
+              <span class="link-type theory">Theory</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 08 — ML Foundations -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">08</span> ML Foundations
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link">
+              <span class="link-check"></span> ML Paradigms
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/08-machine-learning-foundations/bias-variance-tradeoff.html" class="sidebar-link">
+              <span class="link-check"></span> Bias-Variance Tradeoff
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/08-machine-learning-foundations/overfitting-underfitting.html" class="sidebar-link">
+              <span class="link-check"></span> Overfitting &amp; Underfitting
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/08-machine-learning-foundations/cross-validation.html" class="sidebar-link">
+              <span class="link-check"></span> Cross-Validation
+              <span class="link-type practical">Practical</span>
+            </a>
+            <a href="chapters/08-machine-learning-foundations/evaluation-metrics.html" class="sidebar-link">
+              <span class="link-check"></span> Evaluation Metrics
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/08-machine-learning-foundations/feature-engineering.html" class="sidebar-link">
+              <span class="link-check"></span> Feature Engineering
+              <span class="link-type practical">Practical</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 09 — Neural Networks & Deep Learning -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">09</span> Neural Networks &amp; DL
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/09-neural-networks-deep-learning/perceptron.html" class="sidebar-link">
+              <span class="link-check"></span> Perceptron
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/09-neural-networks-deep-learning/multilayer-perceptron.html" class="sidebar-link">
+              <span class="link-check"></span> Multilayer Perceptron
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/09-neural-networks-deep-learning/backpropagation.html" class="sidebar-link">
+              <span class="link-check"></span> Backpropagation
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/09-neural-networks-deep-learning/activation-functions.html" class="sidebar-link">
+              <span class="link-check"></span> Activation Functions
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/09-neural-networks-deep-learning/optimization-algorithms.html" class="sidebar-link">
+              <span class="link-check"></span> Optimization Algorithms
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/09-neural-networks-deep-learning/convolutional-neural-networks.html" class="sidebar-link">
+              <span class="link-check"></span> CNNs
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/09-neural-networks-deep-learning/recurrent-neural-networks.html" class="sidebar-link">
+              <span class="link-check"></span> RNNs
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/09-neural-networks-deep-learning/lstm-gru.html" class="sidebar-link">
+              <span class="link-check"></span> LSTM &amp; GRU
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/09-neural-networks-deep-learning/attention-mechanism.html" class="sidebar-link">
+              <span class="link-check"></span> Attention Mechanism
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/09-neural-networks-deep-learning/transformers.html" class="sidebar-link">
+              <span class="link-check"></span> Transformers
+              <span class="link-type theory">Theory</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 10 — NLP -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">10</span> Natural Language Processing
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/10-natural-language-processing/text-preprocessing.html" class="sidebar-link">
+              <span class="link-check"></span> Text Preprocessing
+              <span class="link-type practical">Practical</span>
+            </a>
+            <a href="chapters/10-natural-language-processing/word-embeddings.html" class="sidebar-link">
+              <span class="link-check"></span> Word Embeddings
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/10-natural-language-processing/language-models.html" class="sidebar-link">
+              <span class="link-check"></span> Language Models
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/10-natural-language-processing/large-language-models.html" class="sidebar-link">
+              <span class="link-check"></span> Large Language Models
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/10-natural-language-processing/gpt-architecture.html" class="sidebar-link">
+              <span class="link-check"></span> GPT Architecture
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/10-natural-language-processing/bert-and-variants.html" class="sidebar-link">
+              <span class="link-check"></span> BERT &amp; Variants
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/10-natural-language-processing/prompt-engineering.html" class="sidebar-link">
+              <span class="link-check"></span> Prompt Engineering
+              <span class="link-type practical">Practical</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 11 — Computer Vision -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">11</span> Computer Vision
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/11-computer-vision/image-fundamentals.html" class="sidebar-link">
+              <span class="link-check"></span> Image Fundamentals
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/11-computer-vision/cnn-architectures.html" class="sidebar-link">
+              <span class="link-check"></span> CNN Architectures
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/11-computer-vision/object-detection.html" class="sidebar-link">
+              <span class="link-check"></span> Object Detection
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/11-computer-vision/image-segmentation.html" class="sidebar-link">
+              <span class="link-check"></span> Image Segmentation
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/11-computer-vision/generative-models-vision.html" class="sidebar-link">
+              <span class="link-check"></span> Generative Models (Vision)
+              <span class="link-type theory">Theory</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 12 — Reinforcement Learning -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">12</span> Reinforcement Learning
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/12-reinforcement-learning/mdp.html" class="sidebar-link">
+              <span class="link-check"></span> Markov Decision Processes
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/12-reinforcement-learning/value-iteration.html" class="sidebar-link">
+              <span class="link-check"></span> Value Iteration
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/12-reinforcement-learning/policy-iteration.html" class="sidebar-link">
+              <span class="link-check"></span> Policy Iteration
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/12-reinforcement-learning/q-learning.html" class="sidebar-link">
+              <span class="link-check"></span> Q-Learning
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/12-reinforcement-learning/deep-reinforcement-learning.html" class="sidebar-link">
+              <span class="link-check"></span> Deep Reinforcement Learning
+              <span class="link-type theory">Theory</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 13 — Planning -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">13</span> Planning
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/13-planning/classical-planning.html" class="sidebar-link">
+              <span class="link-check"></span> Classical Planning
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/13-planning/strips.html" class="sidebar-link">
+              <span class="link-check"></span> STRIPS
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/13-planning/partial-order-planning.html" class="sidebar-link">
+              <span class="link-check"></span> Partial-Order Planning
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/13-planning/graph-planning.html" class="sidebar-link">
+              <span class="link-check"></span> Graph Planning
+              <span class="link-type theory">Theory</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 14 — Constraint Satisfaction -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">14</span> Constraint Satisfaction
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/14-constraint-satisfaction/csp-formulation.html" class="sidebar-link">
+              <span class="link-check"></span> CSP Formulation
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/14-constraint-satisfaction/backtracking-csp.html" class="sidebar-link">
+              <span class="link-check"></span> Backtracking for CSP
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/14-constraint-satisfaction/arc-consistency.html" class="sidebar-link">
+              <span class="link-check"></span> Arc Consistency
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/14-constraint-satisfaction/constraint-propagation.html" class="sidebar-link">
+              <span class="link-check"></span> Constraint Propagation
+              <span class="link-type theory">Theory</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 15 — Advanced Topics -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">15</span> Advanced Topics
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/15-advanced-topics/explainable-ai.html" class="sidebar-link">
+              <span class="link-check"></span> Explainable AI
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/15-advanced-topics/ai-ethics-fairness.html" class="sidebar-link">
+              <span class="link-check"></span> AI Ethics &amp; Fairness
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/15-advanced-topics/federated-learning.html" class="sidebar-link">
+              <span class="link-check"></span> Federated Learning
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/15-advanced-topics/neuromorphic-computing.html" class="sidebar-link">
+              <span class="link-check"></span> Neuromorphic Computing
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/15-advanced-topics/quantum-machine-learning.html" class="sidebar-link">
+              <span class="link-check"></span> Quantum Machine Learning
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/15-advanced-topics/ai-safety-alignment.html" class="sidebar-link">
+              <span class="link-check"></span> AI Safety &amp; Alignment
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/15-advanced-topics/multimodal-ai.html" class="sidebar-link">
+              <span class="link-check"></span> Multimodal AI
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/15-advanced-topics/autonomous-systems.html" class="sidebar-link">
+              <span class="link-check"></span> Autonomous Systems
+              <span class="link-type theory">Theory</span>
+            </a>
+            <a href="chapters/15-advanced-topics/recent-breakthroughs.html" class="sidebar-link">
+              <span class="link-check"></span> Recent Breakthroughs
+              <span class="link-type notes">Notes</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Ch 16 — GATE DA Preparation -->
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title">
+              <span class="chapter-num">16</span> GATE DA Preparation
+            </div>
+            <span class="expand-icon">▼</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="chapters/16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link">
+              <span class="link-check"></span> Exam Pattern &amp; Strategy
+              <span class="link-type notes">Notes</span>
+            </a>
+            <a href="chapters/16-gate-da-preparation/topic-wise-weightage.html" class="sidebar-link">
+              <span class="link-check"></span> Topic-wise Weightage
+              <span class="link-type notes">Notes</span>
+            </a>
+            <a href="chapters/16-gate-da-preparation/previous-year-compilation.html" class="sidebar-link">
+              <span class="link-check"></span> Previous Year Compilation
+              <span class="link-type quiz">Quiz</span>
+            </a>
+            <a href="chapters/16-gate-da-preparation/formula-sheet.html" class="sidebar-link">
+              <span class="link-check"></span> Formula Sheet
+              <span class="link-type notes">Notes</span>
+            </a>
+            <a href="chapters/16-gate-da-preparation/common-mistakes.html" class="sidebar-link">
+              <span class="link-check"></span> Common Mistakes
+              <span class="link-type notes">Notes</span>
+            </a>
+            <a href="chapters/16-gate-da-preparation/final-revision-checklist.html" class="sidebar-link">
+              <span class="link-check"></span> Final Revision Checklist
+              <span class="link-type notes">Notes</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- ===== HERO SECTION ===== -->
+        <section class="hero fade-in">
+          <h1>🧠 Master AI for GATE DA</h1>
+          <p class="subtitle">Your complete, interactive guide to Artificial Intelligence — from fundamentals to exam-ready mastery.</p>
+          <div class="hero-buttons">
+            <a href="chapters/00-introduction/what-is-ai.html" class="btn btn-light btn-lg btn-press">🚀 Start Learning</a>
+            <a href="#" class="btn btn-outline-light btn-lg btn-press" id="resumeBtn">📖 Resume Learning</a>
+          </div>
+        </section>
+
+        <!-- ===== QUICK STATS ===== -->
+        <section class="fade-in">
+          <h2 class="section-title">📊 Quick Stats</h2>
+          <div class="stats-grid">
+            <div class="card stat-card card-hover">
+              <div class="stat-value">17</div>
+              <div class="stat-label">Chapters</div>
+            </div>
+            <div class="card stat-card card-hover">
+              <div class="stat-value">118</div>
+              <div class="stat-label">Topics</div>
+            </div>
+            <div class="card stat-card card-hover">
+              <div class="stat-value" id="statCompleted">0</div>
+              <div class="stat-label">Completed</div>
+            </div>
+            <div class="card stat-card card-hover">
+              <div class="stat-value" id="statBookmarks">0</div>
+              <div class="stat-label">Bookmarks</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== PROGRESS DASHBOARD ===== -->
+        <section class="fade-in">
+          <h2 class="section-title">📈 Progress Dashboard</h2>
+          <div class="progress-dashboard">
+            <div class="progress-overview">
+              <div class="progress-circle" id="overallCircle" style="--pct:0">
+                <div class="progress-circle-inner" id="overallPct">0%</div>
+              </div>
+              <div class="text-sm text-muted">Overall Progress</div>
+            </div>
+            <div class="progress-chapters" id="chapterProgressBars">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== CHAPTER GRID ===== -->
+        <section class="fade-in">
+          <h2 class="section-title">📚 Chapters</h2>
+          <div class="card-grid stagger-children" id="chapterGrid">
+
+            <!-- Ch 00 -->
+            <a href="chapters/00-introduction/what-is-ai.html" class="card chapter-card card-hover">
+              <div class="card-icon">🌟</div>
+              <div class="card-num">Chapter 00</div>
+              <div class="card-title">Introduction to AI</div>
+              <div class="card-desc">What is AI, its history, types, and how it differs from ML and DL. Overview of the GATE DA exam.</div>
+              <div class="card-footer">
+                <span class="topic-count">5 topics</span>
+                <span class="gate-badge medium">Medium</span>
+              </div>
+            </a>
+
+            <!-- Ch 01 -->
+            <a href="chapters/01-intelligent-agents/agents-and-environments.html" class="card chapter-card card-hover">
+              <div class="card-icon">🤖</div>
+              <div class="card-num">Chapter 01</div>
+              <div class="card-title">Intelligent Agents</div>
+              <div class="card-desc">Agents, environments, rationality, PEAS framework, and different agent architectures.</div>
+              <div class="card-footer">
+                <span class="topic-count">4 topics</span>
+                <span class="gate-badge high">High</span>
+              </div>
+            </a>
+
+            <!-- Ch 02 -->
+            <a href="chapters/02-uninformed-search/problem-formulation.html" class="card chapter-card card-hover">
+              <div class="card-icon">🔍</div>
+              <div class="card-num">Chapter 02</div>
+              <div class="card-title">Uninformed Search</div>
+              <div class="card-desc">BFS, DFS, UCS, iterative deepening, bidirectional search, and complexity analysis of blind strategies.</div>
+              <div class="card-footer">
+                <span class="topic-count">10 topics</span>
+                <span class="gate-badge high">High</span>
+              </div>
+            </a>
+
+            <!-- Ch 03 -->
+            <a href="chapters/03-informed-search/heuristic-functions.html" class="card chapter-card card-hover">
+              <div class="card-icon">🧭</div>
+              <div class="card-num">Chapter 03</div>
+              <div class="card-title">Informed Search</div>
+              <div class="card-desc">Heuristics, A*, IDA*, RBFS, admissibility, consistency, hill climbing, simulated annealing, and genetic algorithms.</div>
+              <div class="card-footer">
+                <span class="topic-count">11 topics</span>
+                <span class="gate-badge high">High</span>
+              </div>
+            </a>
+
+            <!-- Ch 04 -->
+            <a href="chapters/04-adversarial-search/game-theory-basics.html" class="card chapter-card card-hover">
+              <div class="card-icon">♟️</div>
+              <div class="card-num">Chapter 04</div>
+              <div class="card-title">Adversarial Search</div>
+              <div class="card-desc">Game trees, Minimax, alpha-beta pruning, evaluation functions, stochastic and partially observable games.</div>
+              <div class="card-footer">
+                <span class="topic-count">8 topics</span>
+                <span class="gate-badge high">High</span>
+              </div>
+            </a>
+
+            <!-- Ch 05 -->
+            <a href="chapters/05-propositional-logic/syntax-and-semantics.html" class="card chapter-card card-hover">
+              <div class="card-icon">🔣</div>
+              <div class="card-num">Chapter 05</div>
+              <div class="card-title">Propositional Logic</div>
+              <div class="card-desc">Syntax, semantics, truth tables, normal forms, inference rules, resolution, SAT, and Horn clauses.</div>
+              <div class="card-footer">
+                <span class="topic-count">10 topics</span>
+                <span class="gate-badge high">High</span>
+              </div>
+            </a>
+
+            <!-- Ch 06 -->
+            <a href="chapters/06-predicate-logic/first-order-logic-syntax.html" class="card chapter-card card-hover">
+              <div class="card-icon">📐</div>
+              <div class="card-num">Chapter 06</div>
+              <div class="card-title">Predicate Logic</div>
+              <div class="card-desc">FOL syntax, quantifiers, unification, skolemization, first-order inference, and resolution in FOL.</div>
+              <div class="card-footer">
+                <span class="topic-count">9 topics</span>
+                <span class="gate-badge high">High</span>
+              </div>
+            </a>
+
+            <!-- Ch 07 -->
+            <a href="chapters/07-reasoning-under-uncertainty/probability-review.html" class="card chapter-card card-hover">
+              <div class="card-icon">🎲</div>
+              <div class="card-num">Chapter 07</div>
+              <div class="card-title">Reasoning Under Uncertainty</div>
+              <div class="card-desc">Probability, Bayesian networks, exact &amp; approximate inference, HMMs, MCMC, and particle filtering.</div>
+              <div class="card-footer">
+                <span class="topic-count">15 topics</span>
+                <span class="gate-badge high">High</span>
+              </div>
+            </a>
+
+            <!-- Ch 08 -->
+            <a href="chapters/08-machine-learning-foundations/ml-paradigms.html" class="card chapter-card card-hover">
+              <div class="card-icon">📊</div>
+              <div class="card-num">Chapter 08</div>
+              <div class="card-title">ML Foundations</div>
+              <div class="card-desc">ML paradigms, bias-variance tradeoff, overfitting, cross-validation, evaluation metrics, and feature engineering.</div>
+              <div class="card-footer">
+                <span class="topic-count">6 topics</span>
+                <span class="gate-badge high">High</span>
+              </div>
+            </a>
+
+            <!-- Ch 09 -->
+            <a href="chapters/09-neural-networks-deep-learning/perceptron.html" class="card chapter-card card-hover">
+              <div class="card-icon">🧬</div>
+              <div class="card-num">Chapter 09</div>
+              <div class="card-title">Neural Networks &amp; Deep Learning</div>
+              <div class="card-desc">Perceptrons, MLPs, backpropagation, CNNs, RNNs, LSTMs, attention mechanisms, and transformers.</div>
+              <div class="card-footer">
+                <span class="topic-count">10 topics</span>
+                <span class="gate-badge high">High</span>
+              </div>
+            </a>
+
+            <!-- Ch 10 -->
+            <a href="chapters/10-natural-language-processing/text-preprocessing.html" class="card chapter-card card-hover">
+              <div class="card-icon">💬</div>
+              <div class="card-num">Chapter 10</div>
+              <div class="card-title">Natural Language Processing</div>
+              <div class="card-desc">Text preprocessing, word embeddings, language models, LLMs, GPT, BERT, and prompt engineering.</div>
+              <div class="card-footer">
+                <span class="topic-count">7 topics</span>
+                <span class="gate-badge medium">Medium</span>
+              </div>
+            </a>
+
+            <!-- Ch 11 -->
+            <a href="chapters/11-computer-vision/image-fundamentals.html" class="card chapter-card card-hover">
+              <div class="card-icon">👁️</div>
+              <div class="card-num">Chapter 11</div>
+              <div class="card-title">Computer Vision</div>
+              <div class="card-desc">Image fundamentals, CNN architectures, object detection, image segmentation, and generative models.</div>
+              <div class="card-footer">
+                <span class="topic-count">5 topics</span>
+                <span class="gate-badge medium">Medium</span>
+              </div>
+            </a>
+
+            <!-- Ch 12 -->
+            <a href="chapters/12-reinforcement-learning/mdp.html" class="card chapter-card card-hover">
+              <div class="card-icon">🎮</div>
+              <div class="card-num">Chapter 12</div>
+              <div class="card-title">Reinforcement Learning</div>
+              <div class="card-desc">MDPs, value iteration, policy iteration, Q-learning, and deep reinforcement learning.</div>
+              <div class="card-footer">
+                <span class="topic-count">5 topics</span>
+                <span class="gate-badge medium">Medium</span>
+              </div>
+            </a>
+
+            <!-- Ch 13 -->
+            <a href="chapters/13-planning/classical-planning.html" class="card chapter-card card-hover">
+              <div class="card-icon">🗺️</div>
+              <div class="card-num">Chapter 13</div>
+              <div class="card-title">Planning</div>
+              <div class="card-desc">Classical planning, STRIPS representation, partial-order planning, and graph planning.</div>
+              <div class="card-footer">
+                <span class="topic-count">4 topics</span>
+                <span class="gate-badge medium">Medium</span>
+              </div>
+            </a>
+
+            <!-- Ch 14 -->
+            <a href="chapters/14-constraint-satisfaction/csp-formulation.html" class="card chapter-card card-hover">
+              <div class="card-icon">🧩</div>
+              <div class="card-num">Chapter 14</div>
+              <div class="card-title">Constraint Satisfaction</div>
+              <div class="card-desc">CSP formulation, backtracking search, arc consistency, and constraint propagation techniques.</div>
+              <div class="card-footer">
+                <span class="topic-count">4 topics</span>
+                <span class="gate-badge medium">Medium</span>
+              </div>
+            </a>
+
+            <!-- Ch 15 -->
+            <a href="chapters/15-advanced-topics/explainable-ai.html" class="card chapter-card card-hover">
+              <div class="card-icon">🚀</div>
+              <div class="card-num">Chapter 15</div>
+              <div class="card-title">Advanced Topics</div>
+              <div class="card-desc">Explainable AI, ethics, federated learning, quantum ML, AI safety, multimodal AI, and recent breakthroughs.</div>
+              <div class="card-footer">
+                <span class="topic-count">9 topics</span>
+                <span class="gate-badge low">Low</span>
+              </div>
+            </a>
+
+            <!-- Ch 16 -->
+            <a href="chapters/16-gate-da-preparation/exam-pattern-strategy.html" class="card chapter-card card-hover">
+              <div class="card-icon">🎯</div>
+              <div class="card-num">Chapter 16</div>
+              <div class="card-title">GATE DA Preparation</div>
+              <div class="card-desc">Exam pattern, topic-wise weightage, previous year questions, formula sheet, common mistakes, and revision checklist.</div>
+              <div class="card-footer">
+                <span class="topic-count">6 topics</span>
+                <span class="gate-badge high">High</span>
+              </div>
+            </a>
+
+          </div>
+        </section>
+
+        <!-- ===== GATE DA QUICK INFO ===== -->
+        <section class="fade-in">
+          <h2 class="section-title">🎯 GATE DA Quick Info</h2>
+          <div class="gate-info-grid">
+            <div class="card gate-info-item card-hover">
+              <h4>📝 Exam Pattern</h4>
+              <p>65 questions, 100 marks, 3 hours. Mix of MCQ and NAT (Numerical Answer Type).</p>
+            </div>
+            <div class="card gate-info-item card-hover">
+              <h4>📊 AI Weightage</h4>
+              <p>Artificial Intelligence carries approximately <strong>15–20 marks</strong> in the GATE DA paper.</p>
+            </div>
+            <div class="card gate-info-item card-hover">
+              <h4>🔥 High-Priority Topics</h4>
+              <ul>
+                <li>Search Algorithms (BFS, DFS, A*)</li>
+                <li>Logic &amp; Inference</li>
+                <li>Bayesian Networks</li>
+                <li>ML Fundamentals</li>
+                <li>Neural Networks</li>
+              </ul>
+            </div>
+            <div class="card gate-info-item card-hover">
+              <h4>💡 Preparation Tips</h4>
+              <ul>
+                <li>Master fundamentals before advanced topics</li>
+                <li>Practice previous year GATE questions</li>
+                <li>Focus on numerical problem solving</li>
+                <li>Use the formula sheet for quick revision</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== BOOKMARKS ===== -->
+        <section class="fade-in">
+          <h2 class="section-title">⭐ Your Bookmarks</h2>
+          <div class="card" id="bookmarksContainer">
+            <ul class="bookmark-list" id="bookmarkList">
+              <!-- Rendered by JS -->
+            </ul>
+            <div class="empty-state" id="bookmarksEmpty">No bookmarks yet. Bookmark pages while studying to find them quickly here.</div>
+          </div>
+        </section>
+
+        <!-- ===== RECENT AI DISCOVERIES ===== -->
+        <section class="fade-in">
+          <h2 class="section-title">🔬 Recent AI Discoveries</h2>
+          <div class="discovery-list">
+            <div class="card discovery-item card-hover">
+              <div class="disc-meta">February 2026 — Reasoning</div>
+              <h4>Chain-of-Thought Distillation</h4>
+              <p>Researchers demonstrate that smaller models can match large-model reasoning via chain-of-thought distillation, reducing compute requirements by 10×.</p>
+            </div>
+            <div class="card discovery-item card-hover">
+              <div class="disc-meta">January 2026 — Computer Vision</div>
+              <h4>Video World Models</h4>
+              <p>New video generation models learn physics priors from video data, enabling robots to plan actions by "imagining" outcomes before acting.</p>
+            </div>
+            <div class="card discovery-item card-hover">
+              <div class="disc-meta">December 2025 — NLP</div>
+              <h4>Multilingual Zero-Shot Transfer</h4>
+              <p>Breakthrough in cross-lingual transfer learning achieves near-native accuracy in 100+ languages using a single model with no target-language training data.</p>
+            </div>
+            <div class="card discovery-item card-hover">
+              <div class="disc-meta">November 2025 — Reinforcement Learning</div>
+              <h4>Efficient RL with World Models</h4>
+              <p>A model-based RL agent masters Atari games 50× faster than previous methods by learning a compressed world model and planning inside it.</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/progress-tracker.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/animations.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      /* ---- Render chapter progress bars ---- */
+      const barsContainer = document.getElementById('chapterProgressBars');
+      if (barsContainer && typeof ProgressTracker !== 'undefined') {
+        const chapters = ProgressTracker.chapterTopics;
+        Object.keys(chapters).forEach(function (key) {
+          const ch = chapters[key];
+          const pct = ProgressTracker.getChapterProgress(key);
+
+          const item = document.createElement('div');
+          item.className = 'chapter-progress-item';
+          item.innerHTML =
+            '<div class="chapter-label"><span>' + key + ' — ' + ch.name + '</span><span>' + pct + '%</span></div>' +
+            '<div class="progress-bar-container"><div class="progress-bar-fill progress-animate" style="width:' + pct + '%"></div></div>';
+          barsContainer.appendChild(item);
+        });
+      }
+
+      /* ---- Overall progress circle ---- */
+      if (typeof ProgressTracker !== 'undefined') {
+        var overallPct = ProgressTracker.getOverallProgress();
+        var circle = document.getElementById('overallCircle');
+        var pctLabel = document.getElementById('overallPct');
+        if (circle) circle.style.setProperty('--pct', overallPct);
+        if (pctLabel) pctLabel.textContent = overallPct + '%';
+
+        /* Stats: completed topics */
+        var completed = Utils.getJSON(ProgressTracker.COMPLETED_KEY, []);
+        var statCompleted = document.getElementById('statCompleted');
+        if (statCompleted) statCompleted.textContent = completed.length;
+      }
+
+      /* ---- Bookmarks ---- */
+      if (typeof ProgressTracker !== 'undefined') {
+        var bookmarks = Utils.getJSON(ProgressTracker.BOOKMARKS_KEY, []);
+        var list = document.getElementById('bookmarkList');
+        var emptyMsg = document.getElementById('bookmarksEmpty');
+        var statBm = document.getElementById('statBookmarks');
+
+        if (statBm) statBm.textContent = bookmarks.length;
+
+        if (bookmarks.length > 0 && list) {
+          emptyMsg.style.display = 'none';
+          bookmarks.forEach(function (bm) {
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.href = bm.page;
+            a.textContent = bm.title || bm.page;
+            li.appendChild(a);
+            if (bm.date) {
+              var span = document.createElement('span');
+              span.className = 'bm-date';
+              span.textContent = new Date(bm.date).toLocaleDateString();
+              li.appendChild(span);
+            }
+            list.appendChild(li);
+          });
+        }
+      }
+
+      /* ---- Resume button → last visited page ---- */
+      var resumeBtn = document.getElementById('resumeBtn');
+      if (resumeBtn) {
+        var lastVisited = Utils.getJSON('ai-last-visited', null);
+        if (lastVisited) {
+          resumeBtn.href = lastVisited;
+          resumeBtn.title = 'Continue: ' + lastVisited.split('/').pop();
+        } else {
+          resumeBtn.href = 'chapters/00-introduction/what-is-ai.html';
+          resumeBtn.title = 'Start from the beginning';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Depth-First Search (DFS) — LIFO stack algorithm, pseudocode, step-by-step trace, not complete, not optimal, time O(b^m), space O(bm) for GATE DA.">
+  <title>Depth-First Search (DFS) — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a><a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a><a href="../01-intelligent-agents/notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+            <a href="state-space-representation.html" class="sidebar-link"><span class="link-check"></span> State Space<span class="link-type theory">Theory</span></a>
+            <a href="breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-first-search.html" class="sidebar-link active"><span class="link-check"></span> DFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-limited-search.html" class="sidebar-link"><span class="link-check"></span> Depth-Limited<span class="link-type theory">Theory</span></a>
+            <a href="iterative-deepening-dfs.html" class="sidebar-link"><span class="link-check"></span> IDDFS<span class="link-type theory">Theory</span></a>
+            <a href="uniform-cost-search.html" class="sidebar-link"><span class="link-check"></span> UCS<span class="link-type theory">Theory</span></a>
+            <a href="bidirectional-search.html" class="sidebar-link"><span class="link-check"></span> Bidirectional<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-uninformed-strategies.html" class="sidebar-link"><span class="link-check"></span> Comparison<span class="link-type theory">Theory</span></a>
+            <a href="complexity-analysis.html" class="sidebar-link"><span class="link-check"></span> Complexity<span class="link-type theory">Theory</span></a>
+            <a href="practical-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uninformed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="problem-formulation.html">Chapter 2: Uninformed Search</a> &raquo; <span class="current">Depth-First Search</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch02-dfs">
+
+            <h1>Depth-First Search (DFS)</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch02-dfs" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="state-space-representation.html">State Space Representation</a> &mdash; Frontier, expanding nodes</li>
+              <li><a href="breadth-first-search.html">BFS</a> &mdash; Comparison with level-by-level strategy</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Implement DFS using a <strong>LIFO stack</strong> or recursion</li>
+              <li>Trace DFS execution step-by-step on example graphs</li>
+              <li>Understand DFS is <strong>not complete</strong> (in infinite/cyclic spaces) and <strong>not optimal</strong></li>
+              <li>Analyze time O(b<sup>m</sup>) and the key advantage: space O(bm)</li>
+              <li>Describe the <strong>backtracking search</strong> variant</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <section id="intuition">
+                <h2>1. Intuition</h2>
+                <p>DFS dives as deep as possible along each branch before backtracking. Think of exploring a maze by always taking the leftmost path until you hit a dead end, then going back to the last junction and trying the next path.</p>
+                <p>DFS uses a <strong>LIFO stack</strong> (Last-In, First-Out) for the frontier. The most recently generated node is expanded first, driving the search deeper into the tree.</p>
+              </section>
+
+              <section id="algorithm">
+                <h2>2. DFS Algorithm</h2>
+
+                <h3>Iterative Version (Stack)</h3>
+                <pre><code>function DFS(problem):
+    frontier = Stack(Node(problem.INITIAL-STATE))
+    explored = {}
+    loop:
+        if frontier is empty: return FAILURE
+        node = frontier.POP()
+        if problem.GOAL-TEST(node.STATE): return SOLUTION(node)
+        add node.STATE to explored
+        for each child in EXPAND(problem, node):
+            if child.STATE not in explored:
+                frontier.PUSH(child)</code></pre>
+
+                <h3>Recursive Version</h3>
+                <pre><code>function RECURSIVE-DFS(node, problem, explored):
+    if problem.GOAL-TEST(node.STATE): return SOLUTION(node)
+    add node.STATE to explored
+    for each child in EXPAND(problem, node):
+        if child.STATE not in explored:
+            result = RECURSIVE-DFS(child, problem, explored)
+            if result ≠ FAILURE: return result
+    return FAILURE</code></pre>
+
+                <div class="note-box">
+                  <div class="box-title">Stack vs. Recursion</div>
+                  <p>The recursive version uses the <strong>call stack</strong> as the implicit frontier. Both approaches are equivalent in behavior. The recursive version is more elegant; the iterative version avoids stack overflow for very deep searches.</p>
+                </div>
+              </section>
+
+              <section id="trace-example">
+                <h2>3. Step-by-Step Trace</h2>
+                <p>Same graph as BFS example:</p>
+                <pre><code>        S
+       / \
+      A   B
+     / \   \
+    C   D   E
+        |
+        G (goal)</code></pre>
+                <p>Children generated left-to-right: A before B, C before D.</p>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Step</th><th>Pop (Expand)</th><th>Stack (top &rarr; bottom)</th><th>Explored</th></tr></thead>
+                    <tbody>
+                      <tr><td>0</td><td>&mdash;</td><td>[S]</td><td>{}</td></tr>
+                      <tr><td>1</td><td>S</td><td>[B, A]</td><td>{S}</td></tr>
+                      <tr><td>2</td><td>A</td><td>[B, D, C]</td><td>{S, A}</td></tr>
+                      <tr><td>3</td><td>C</td><td>[B, D] (C has no children)</td><td>{S, A, C}</td></tr>
+                      <tr><td>4</td><td>D</td><td>[B, G]</td><td>{S, A, C, D}</td></tr>
+                      <tr><td>5</td><td>G</td><td>GOAL TEST &rarr; <strong>SUCCESS!</strong></td><td>{S, A, C, D, G}</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>Solution:</strong> S &rarr; A &rarr; D &rarr; G (cost = 3). In this case, DFS found the same solution as BFS. But this is not guaranteed in general!</p>
+              </section>
+
+              <section id="properties">
+                <h2>4. Properties of DFS</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Property</th><th>Value</th><th>Explanation</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Complete?</strong></td><td>No (tree search)</td><td>DFS can get stuck in infinite branches or cycles. Graph search DFS is complete for finite state spaces.</td></tr>
+                      <tr><td><strong>Optimal?</strong></td><td>No</td><td>DFS may find a deep solution before a shallow one. It returns the <em>first</em> goal found, not the shallowest or cheapest.</td></tr>
+                      <tr><td><strong>Time</strong></td><td>O(b<sup>m</sup>)</td><td>m = maximum depth of the search tree. DFS may explore the entire tree. Terrible if m &Gt; d.</td></tr>
+                      <tr><td><strong>Space</strong></td><td>O(bm)</td><td>Only stores the current path + siblings at each level. <strong>This is the key advantage!</strong> Linear in depth, not exponential.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Why O(bm) Space?</div>
+                  <p>At each depth level, DFS stores at most b sibling nodes (the unexpanded children of the current path). Along a path of length m, this gives b &times; m = O(bm) nodes. Compare with BFS&rsquo;s O(b<sup>d</sup>)&mdash;for b=10, m=12, DFS uses ~120 nodes vs. BFS&rsquo;s 10<sup>12</sup>!</p>
+                </div>
+              </section>
+
+              <section id="backtracking">
+                <h2>5. Backtracking Search</h2>
+                <p><strong>Backtracking search</strong> is a memory-optimized variant of DFS that generates only <strong>one successor at a time</strong> rather than all successors. When it needs to backtrack, it generates the next sibling.</p>
+                <p>Space complexity: <strong>O(m)</strong>&mdash;only the current path is stored. This is even better than standard DFS&rsquo;s O(bm). Used in constraint satisfaction and game-tree search.</p>
+              </section>
+
+              <section id="when-to-use">
+                <h2>6. When DFS is Preferred</h2>
+                <ul>
+                  <li><strong>Memory-constrained problems:</strong> When the state space is too large for BFS to store the frontier.</li>
+                  <li><strong>Many solutions exist:</strong> If any solution is acceptable (not just the optimal one), DFS often finds one quickly.</li>
+                  <li><strong>Tree-structured problems:</strong> No cycles, so DFS is complete and only explores each branch once.</li>
+                  <li><strong>Deep solutions:</strong> If solutions tend to be deep, DFS reaches them faster than BFS.</li>
+                </ul>
+              </section>
+
+              <section id="worked-examples">
+                <h2>7. More Worked Examples</h2>
+
+                <h3>Example 2: DFS Gets Stuck in an Infinite Branch</h3>
+                <p>Tree: S has children A, B. A has children A1, A2, A3, &hellip; (infinite branch). B has child G (goal).</p>
+                <p>DFS (left-to-right): Expands S, pushes B and A (A on top). Pops A, pushes A3, A2, A1. Pops A1, pushes its children&hellip; DFS goes down the infinite left branch <strong>forever</strong> and never reaches G via B.</p>
+
+                <h3>Example 3: DFS Returns a Non-Optimal Solution</h3>
+                <p>Tree: S&rarr;A&rarr;B&rarr;G (depth 3, cost 3) and S&rarr;G (depth 1, cost 1). DFS with left-to-right ordering: expands S, pushes G and A (A on top). Pops A, eventually finds G at depth 3 instead of the depth-1 goal.</p>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section"><ul>
+                  <li>DFS uses a <strong>LIFO stack</strong> and goes as deep as possible before backtracking.</li>
+                  <li><strong>Not complete</strong> (infinite loops possible) and <strong>not optimal</strong>.</li>
+                  <li>Time: <strong>O(b<sup>m</sup>)</strong> &mdash; can be much worse than BFS if m &Gt; d.</li>
+                  <li><strong>Space: O(bm)</strong> &mdash; the big advantage! Linear in depth.</li>
+                  <li>Backtracking variant uses only O(m) space.</li>
+                  <li>Preferred when memory is limited and solutions are deep.</li>
+                </ul></div>
+              </section>
+
+              <section id="references"><h2>References</h2><ul><li>Russell &amp; Norvig, <em>AIMA</em>, Chapter 3.4.3.</li></ul></section>
+            </div>
+
+            <button class="complete-btn" data-page="ch02-dfs">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="breadth-first-search.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Breadth-First Search</span></a>
+              <a href="depth-limited-search.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Depth-Limited Search</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#intuition">1. Intuition</a></li>
+            <li><a href="#algorithm">2. Algorithm</a></li>
+            <li><a href="#trace-example">3. Step-by-Step Trace</a></li>
+            <li><a href="#properties">4. Properties</a></li>
+            <li><a href="#backtracking">5. Backtracking</a></li>
+            <li><a href="#when-to-use">6. When to Use DFS</a></li>
+            <li><a href="#worked-examples">7. Worked Examples</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

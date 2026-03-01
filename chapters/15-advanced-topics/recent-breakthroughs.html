@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Recent AI Breakthroughs — LLMs, diffusion models, AlphaFold, scaling laws, emergent abilities, chain-of-thought reasoning for GATE DA.">
+  <title>Recent AI Breakthroughs — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-ethics-fairness.html" class="sidebar-link"><span class="link-check"></span> AI Ethics &amp; Fairness<span class="link-type theory">Theory</span></a>
+            <a href="federated-learning.html" class="sidebar-link"><span class="link-check"></span> Federated Learning<span class="link-type theory">Theory</span></a>
+            <a href="neuromorphic-computing.html" class="sidebar-link"><span class="link-check"></span> Neuromorphic Computing<span class="link-type theory">Theory</span></a>
+            <a href="quantum-machine-learning.html" class="sidebar-link"><span class="link-check"></span> Quantum ML<span class="link-type theory">Theory</span></a>
+            <a href="ai-safety-alignment.html" class="sidebar-link"><span class="link-check"></span> AI Safety &amp; Alignment<span class="link-type theory">Theory</span></a>
+            <a href="multimodal-ai.html" class="sidebar-link"><span class="link-check"></span> Multimodal AI<span class="link-type theory">Theory</span></a>
+            <a href="autonomous-systems.html" class="sidebar-link"><span class="link-check"></span> Autonomous Systems<span class="link-type theory">Theory</span></a>
+            <a href="recent-breakthroughs.html" class="sidebar-link active"><span class="link-check"></span> Recent Breakthroughs<span class="link-type theory">Theory</span></a>
+            <a href="notes-advanced.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-advanced.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="explainable-ai.html">Chapter 15: Advanced Topics</a> &raquo; <span class="current">Recent AI Breakthroughs</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch15-recent-breakthroughs">
+
+            <h1>Recent AI Breakthroughs</h1>
+
+            <div class="note-box">
+              <strong>Chapter Context:</strong> The field of AI has seen unprecedented progress in recent years. This page surveys the most significant breakthroughs that are reshaping the landscape — from large language models to protein folding to generative art. Understanding these developments provides context for where AI is headed and what may appear in future GATE DA syllabi.
+            </div>
+
+            <!-- ============================================================ -->
+            <h2 id="scaling-laws">Scaling Laws &amp; Foundation Models</h2>
+
+            <div class="definition-box">
+              <strong>Scaling Laws:</strong> Empirical relationships showing that model performance (measured by loss) improves predictably as a power law with increases in model size (parameters N), dataset size (D), and compute budget (C). First formalized by Kaplan et al. (2020) for language models.
+            </div>
+
+            <p>The <strong>Chinchilla scaling law</strong> (Hoffmann et al., 2022) refined earlier estimates, showing that for compute-optimal training, both model size and training data should be scaled equally. A model with N parameters should be trained on roughly 20N tokens.</p>
+
+            <div class="example-box">
+              <strong>Example — Scaling in Practice:</strong>
+              <table>
+                <thead><tr><th>Model</th><th>Parameters</th><th>Training Tokens</th><th>Year</th></tr></thead>
+                <tbody>
+                  <tr><td>GPT-2</td><td>1.5B</td><td>~40B</td><td>2019</td></tr>
+                  <tr><td>GPT-3</td><td>175B</td><td>~300B</td><td>2020</td></tr>
+                  <tr><td>Chinchilla</td><td>70B</td><td>1.4T</td><td>2022</td></tr>
+                  <tr><td>LLaMA 2</td><td>70B</td><td>2T</td><td>2023</td></tr>
+                  <tr><td>GPT-4</td><td>~1.8T (MoE)</td><td>~13T</td><td>2023</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="definition-box">
+              <strong>Foundation Model:</strong> A large model trained on broad data at scale that can be adapted (fine-tuned) to a wide range of downstream tasks. The term was coined by Stanford's Center for Research on Foundation Models (CRFM) in 2021.
+            </div>
+
+            <h3>Key Insight</h3>
+            <p>The paradigm shift: instead of training task-specific models from scratch, we pre-train a massive general-purpose model and adapt it. This <strong>pre-train → fine-tune → prompt</strong> pipeline now dominates NLP, vision, and multimodal AI.</p>
+
+            <!-- ============================================================ -->
+            <h2 id="llms">Large Language Models (LLMs)</h2>
+
+            <p>LLMs are transformer-based models trained on massive text corpora to predict the next token. They demonstrate remarkable few-shot and zero-shot capabilities.</p>
+
+            <div class="example-box">
+              <strong>Key LLM Milestones:</strong>
+              <ul>
+                <li><strong>GPT-3 (2020):</strong> 175B parameters; demonstrated that scale alone enables in-context learning — the model performs tasks given only a few examples in the prompt, without gradient updates.</li>
+                <li><strong>InstructGPT / ChatGPT (2022):</strong> Applied RLHF (Reinforcement Learning from Human Feedback) to align GPT-3.5 with human intent, producing a conversational assistant.</li>
+                <li><strong>GPT-4 (2023):</strong> Multimodal (text + image input); passes professional exams (bar exam 90th percentile, SAT 99th percentile); likely a Mixture-of-Experts architecture.</li>
+                <li><strong>LLaMA / LLaMA 2 (2023):</strong> Meta's open-weight models; proved that smaller, well-trained models can match larger ones (Chinchilla-optimal training).</li>
+                <li><strong>Gemini (2023):</strong> Google's natively multimodal model family (Ultra, Pro, Nano) — processes text, images, audio, video, and code.</li>
+              </ul>
+            </div>
+
+            <h3>Emergent Abilities</h3>
+
+            <div class="definition-box">
+              <strong>Emergent Abilities:</strong> Capabilities that appear suddenly as model scale increases past a threshold, not present in smaller models. Examples include multi-step arithmetic, chain-of-thought reasoning, and word unscrambling. (Note: recent work debates whether emergence is an artifact of evaluation metrics rather than a true phase transition.)
+            </div>
+
+            <div class="warning-box">
+              <strong>Controversy:</strong> Schaeffer et al. (2023) argued that apparent emergence may be due to non-linear evaluation metrics rather than discontinuous changes in model behavior. Using linear or continuous metrics, the performance curves often look smooth.
+            </div>
+
+            <!-- ============================================================ -->
+            <h2 id="chain-of-thought">Chain-of-Thought Reasoning</h2>
+
+            <div class="definition-box">
+              <strong>Chain-of-Thought (CoT) Prompting:</strong> A technique where the model is prompted to produce intermediate reasoning steps before arriving at a final answer. Introduced by Wei et al. (2022), it dramatically improves performance on arithmetic, commonsense, and symbolic reasoning tasks.
+            </div>
+
+            <div class="example-box">
+              <strong>Example — CoT Prompt:</strong>
+              <pre><code>Q: Roger has 5 tennis balls. He buys 2 more cans of 3 balls each.
+   How many tennis balls does he have now?
+A: Roger started with 5 balls. 2 cans of 3 balls each is 2 × 3 = 6.
+   5 + 6 = 11. The answer is 11.</code></pre>
+              <p>By including worked examples with explicit reasoning, the model learns to generate its own step-by-step solutions.</p>
+            </div>
+
+            <h3>Variants of CoT</h3>
+            <ul>
+              <li><strong>Zero-shot CoT:</strong> Simply appending "Let's think step by step" to the prompt (Kojima et al., 2022).</li>
+              <li><strong>Self-Consistency:</strong> Sample multiple reasoning paths and take the majority vote (Wang et al., 2022).</li>
+              <li><strong>Tree-of-Thought:</strong> Explore multiple reasoning branches and evaluate which to pursue (Yao et al., 2023).</li>
+              <li><strong>Graph-of-Thought:</strong> Generalizes reasoning to arbitrary graph structures (Besta et al., 2023).</li>
+            </ul>
+
+            <!-- ============================================================ -->
+            <h2 id="diffusion-models">Diffusion Models &amp; Generative AI</h2>
+
+            <div class="definition-box">
+              <strong>Diffusion Model:</strong> A generative model that learns to reverse a gradual noising process. Starting from pure Gaussian noise, the model iteratively denoises to produce a data sample. Mathematically, the forward process adds noise: q(x_t | x_{t-1}) = N(x_t; √(1-β_t) x_{t-1}, β_t I), and the model learns the reverse: p_θ(x_{t-1} | x_t).
+            </div>
+
+            <div class="example-box">
+              <strong>Key Diffusion Model Systems:</strong>
+              <ul>
+                <li><strong>DALL-E 2 (2022):</strong> Uses CLIP text embeddings + diffusion prior + decoder diffusion model.</li>
+                <li><strong>Stable Diffusion (2022):</strong> Operates in latent space (latent diffusion model, LDM) for efficiency. Open-source, enabling widespread community adoption.</li>
+                <li><strong>DALL-E 3 (2023):</strong> Improved text understanding via better captioning during training.</li>
+                <li><strong>Midjourney:</strong> Commercial system known for artistic quality.</li>
+                <li><strong>Sora (2024):</strong> OpenAI's video generation model, extending diffusion to temporal sequences.</li>
+              </ul>
+            </div>
+
+            <h3>Why Diffusion Beats GANs</h3>
+            <ul>
+              <li><strong>Training stability:</strong> No adversarial min-max optimization; direct likelihood-based training.</li>
+              <li><strong>Mode coverage:</strong> Diffusion models cover the full data distribution better (fewer mode collapse issues).</li>
+              <li><strong>Controllability:</strong> Classifier-free guidance allows precise control over generation.</li>
+              <li><strong>Quality:</strong> Achieves state-of-the-art FID scores on ImageNet.</li>
+            </ul>
+
+            <!-- ============================================================ -->
+            <h2 id="alphafold">AlphaFold &amp; AI for Science</h2>
+
+            <div class="definition-box">
+              <strong>AlphaFold 2 (2020):</strong> DeepMind's neural network that predicts 3D protein structures from amino acid sequences with near-experimental accuracy. It effectively solved the 50-year-old "protein folding problem," achieving &lt;1 Å RMSD on many targets at CASP14.
+            </div>
+
+            <p>The architecture combines:</p>
+            <ul>
+              <li><strong>Evoformer:</strong> A novel transformer module that jointly processes multiple sequence alignments (MSAs) and pair representations.</li>
+              <li><strong>Structure Module:</strong> Iteratively refines 3D coordinates using invariant point attention.</li>
+              <li><strong>Recycling:</strong> The entire network is run multiple times, feeding outputs back as inputs.</li>
+            </ul>
+
+            <div class="example-box">
+              <strong>Impact:</strong> AlphaFold DB now contains predicted structures for &gt;200 million proteins (nearly all known proteins). This has accelerated drug discovery, enzyme engineering, and structural biology research immeasurably.
+            </div>
+
+            <h3>Other AI-for-Science Breakthroughs</h3>
+            <ul>
+              <li><strong>AlphaFold 3 (2024):</strong> Predicts structures of protein complexes, DNA, RNA, ligands, and ions.</li>
+              <li><strong>GNoME (2023):</strong> DeepMind's graph neural network discovered 2.2 million new crystal structures for materials science.</li>
+              <li><strong>FunSearch (2023):</strong> LLM-powered evolutionary search found new mathematical constructions, surpassing known bounds for the cap set problem.</li>
+              <li><strong>Weather forecasting:</strong> GraphCast and Pangu-Weather outperform traditional numerical weather prediction models.</li>
+            </ul>
+
+            <!-- ============================================================ -->
+            <h2 id="rlhf">RLHF &amp; Alignment Techniques</h2>
+
+            <div class="definition-box">
+              <strong>RLHF (Reinforcement Learning from Human Feedback):</strong> A training paradigm where a language model is fine-tuned using a reward model trained on human preference data. The pipeline: (1) Supervised fine-tuning on demonstrations, (2) Train reward model on comparison data, (3) Optimize policy via PPO against the reward model.
+            </div>
+
+            <div class="example-box">
+              <strong>RLHF Pipeline:</strong>
+              <ol>
+                <li><strong>SFT:</strong> Fine-tune base LLM on high-quality instruction-response pairs.</li>
+                <li><strong>Reward Model:</strong> Given two responses, human annotators indicate preference. Train a model R(prompt, response) → scalar.</li>
+                <li><strong>PPO Optimization:</strong> Maximize E[R(x, y)] - β · KL[π_θ || π_ref] where π_ref is the SFT model (KL penalty prevents reward hacking).</li>
+              </ol>
+            </div>
+
+            <h3>Beyond RLHF</h3>
+            <ul>
+              <li><strong>DPO (Direct Preference Optimization):</strong> Eliminates the separate reward model by directly optimizing the policy on preference data. Simpler and more stable.</li>
+              <li><strong>Constitutional AI (CAI):</strong> Uses principles ("constitution") for self-critique and revision, reducing dependence on human labelers.</li>
+              <li><strong>RLAIF:</strong> Replaces human feedback with AI feedback using a stronger model as judge.</li>
+            </ul>
+
+            <!-- ============================================================ -->
+            <h2 id="open-source">Open-Source AI Movement</h2>
+
+            <p>A major trend has been the democratization of powerful AI models through open-source releases:</p>
+
+            <div class="example-box">
+              <strong>Notable Open Models:</strong>
+              <table>
+                <thead><tr><th>Model</th><th>Organization</th><th>Parameters</th><th>Key Feature</th></tr></thead>
+                <tbody>
+                  <tr><td>LLaMA / LLaMA 2</td><td>Meta</td><td>7B–70B</td><td>Commercial license, competitive with GPT-3.5</td></tr>
+                  <tr><td>Mistral / Mixtral</td><td>Mistral AI</td><td>7B / 8×7B MoE</td><td>Efficient MoE architecture</td></tr>
+                  <tr><td>Falcon</td><td>TII</td><td>7B–180B</td><td>High-quality web data curation</td></tr>
+                  <tr><td>Stable Diffusion</td><td>Stability AI</td><td>~1B</td><td>Open latent diffusion for images</td></tr>
+                  <tr><td>Whisper</td><td>OpenAI</td><td>~1.5B</td><td>Robust speech recognition</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="note-box">
+              <strong>Impact:</strong> Open models have enabled: (1) academic research without massive compute budgets, (2) fine-tuning for domain-specific tasks (medical, legal, code), (3) on-device deployment for privacy, and (4) community-driven improvements and safety research.
+            </div>
+
+            <!-- ============================================================ -->
+            <h2 id="multimodal-breakthroughs">Multimodal &amp; Embodied AI</h2>
+
+            <div class="example-box">
+              <strong>Key Multimodal Developments:</strong>
+              <ul>
+                <li><strong>GPT-4V (2023):</strong> Accepts image inputs alongside text; can analyze charts, diagrams, photos, and handwritten math.</li>
+                <li><strong>Gemini (2023):</strong> Natively multimodal — trained jointly on text, code, images, audio, video from the ground up.</li>
+                <li><strong>LLaVA (2023):</strong> Open-source vision-language model that connects a CLIP vision encoder with LLaMA via a projection layer.</li>
+                <li><strong>RT-2 (2023):</strong> Google's Robotics Transformer 2 — a vision-language-action model that translates natural language instructions into robot actions.</li>
+              </ul>
+            </div>
+
+            <h3>Embodied AI &amp; Robotics</h3>
+            <p>Foundation models are increasingly being deployed in physical robots:</p>
+            <ul>
+              <li><strong>SayCan:</strong> Grounds LLM reasoning in robot affordances (what the robot can physically do).</li>
+              <li><strong>PaLM-E:</strong> Embodies a vision-language model with sensor data for robotic planning.</li>
+              <li><strong>Figure 01 / Tesla Optimus:</strong> Humanoid robots leveraging large models for general-purpose manipulation.</li>
+            </ul>
+
+            <!-- ============================================================ -->
+            <h2 id="code-generation">Code Generation &amp; AI Assistants</h2>
+
+            <div class="definition-box">
+              <strong>Code LLM:</strong> A language model specifically trained or fine-tuned on source code and related text (documentation, Stack Overflow, GitHub). These models can generate, complete, debug, and explain code.
+            </div>
+
+            <div class="example-box">
+              <strong>Major Code AI Systems:</strong>
+              <ul>
+                <li><strong>Codex / GitHub Copilot (2021):</strong> GPT-3 fine-tuned on code; powers autocomplete in IDEs.</li>
+                <li><strong>AlphaCode (2022):</strong> DeepMind's system that generates solutions for competitive programming problems, performing at ~50th percentile of human competitors.</li>
+                <li><strong>Code LLaMA (2023):</strong> Meta's open code model, based on LLaMA 2 with extended code training.</li>
+                <li><strong>StarCoder (2023):</strong> BigCode's open model trained on The Stack (permissively licensed code).</li>
+                <li><strong>Devin (2024):</strong> Cognition Labs' AI software engineer that can plan, code, debug, and deploy autonomously.</li>
+              </ul>
+            </div>
+
+            <div class="note-box">
+              <strong>HumanEval Benchmark:</strong> Measures functional correctness of generated code. GPT-4 achieves ~67% pass@1 (first attempt correct), up from Codex's ~29%. With best-of-100 sampling, pass rates exceed 90%.
+            </div>
+
+            <!-- ============================================================ -->
+            <h2 id="efficiency">Efficient AI &amp; Democratization</h2>
+
+            <p>Making large models accessible on consumer hardware has been a key research direction:</p>
+
+            <div class="example-box">
+              <strong>Key Efficiency Techniques:</strong>
+              <ul>
+                <li><strong>Quantization (GPTQ, GGML, AWQ):</strong> Reduce model weights from FP16 to INT4/INT8 with minimal quality loss. A 70B parameter model can run on a single GPU.</li>
+                <li><strong>LoRA (Low-Rank Adaptation):</strong> Fine-tune models by adding small trainable matrices (rank r ≪ d) to frozen pretrained weights. Reduces trainable parameters by 10,000×.</li>
+                <li><strong>QLoRA:</strong> Combines 4-bit quantization with LoRA, enabling fine-tuning of 65B models on a single 48GB GPU.</li>
+                <li><strong>Flash Attention:</strong> IO-aware attention algorithm that is 2-4× faster and uses O(N) memory instead of O(N²).</li>
+                <li><strong>Mixture of Experts (MoE):</strong> Only a subset of parameters are activated per token. Mixtral 8×7B has 47B total but only uses ~13B per forward pass.</li>
+              </ul>
+            </div>
+
+            <div class="warning-box">
+              <strong>Environmental Concern:</strong> Training GPT-4 is estimated to have consumed ~50 GWh of electricity and emitted thousands of tonnes of CO₂. Efficiency research is critical for sustainable AI development.
+            </div>
+
+            <!-- ============================================================ -->
+            <h2 id="gate-relevance">GATE DA Relevance</h2>
+
+            <div class="note-box">
+              <strong>Exam Tip:</strong> While cutting-edge breakthroughs may not be directly tested, GATE DA increasingly includes questions on:
+              <ul>
+                <li>Transformer architecture and self-attention mechanisms</li>
+                <li>Pre-training and fine-tuning paradigms</li>
+                <li>Basic understanding of generative models (GANs, VAEs, diffusion)</li>
+                <li>Evaluation metrics (FID for images, perplexity for language)</li>
+                <li>Ethical considerations and bias in ML systems</li>
+              </ul>
+              Understanding the conceptual foundations behind these breakthroughs will help you tackle novel question formats.
+            </div>
+
+            <div class="example-box">
+              <strong>Potential GATE Questions:</strong>
+              <ul>
+                <li>"Which technique is used to align language models with human preferences?" → RLHF</li>
+                <li>"In a Mixture of Experts model with 8 experts where 2 are active per token, what fraction of parameters is used per forward pass?" → 2/8 = 25%</li>
+                <li>"What is the key advantage of LoRA over full fine-tuning?" → Drastically fewer trainable parameters while maintaining performance</li>
+              </ul>
+            </div>
+
+          </article>
+
+          <aside class="page-toc" aria-label="On this page">
+            <div class="toc-header">On This Page</div>
+            <ul id="toc-links"></ul>
+          </aside>
+        </div>
+
+        <nav class="nav-buttons" aria-label="Page navigation">
+          <a href="autonomous-systems.html" class="btn btn-nav btn-prev">&larr; Previous: Autonomous Systems</a>
+          <a href="notes-advanced.html" class="btn btn-nav btn-next">Next: Quick Notes &rarr;</a>
+        </nav>
+        <div class="page-actions"><button class="btn btn-sm btn-bookmark" data-page="ch15-recent-breakthroughs">&#128278; Bookmark</button><button class="btn btn-sm btn-complete" data-page="ch15-recent-breakthroughs">&#9989; Mark Complete</button></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

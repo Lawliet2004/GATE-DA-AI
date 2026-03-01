@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Resolution in FOL — Clausal form conversion, Skolemization, resolution with unification, refutation completeness, full worked proof for GATE DA.">
+  <title>Resolution in FOL — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a>
+            <a href="fol-semantics.html" class="sidebar-link"><span class="link-check"></span> FOL Semantics<span class="link-type theory">Theory</span></a>
+            <a href="quantifier-rules.html" class="sidebar-link"><span class="link-check"></span> Quantifier Rules<span class="link-type theory">Theory</span></a>
+            <a href="fol-inference-rules.html" class="sidebar-link"><span class="link-check"></span> FOL Inference Rules<span class="link-type theory">Theory</span></a>
+            <a href="unification.html" class="sidebar-link"><span class="link-check"></span> Unification<span class="link-type theory">Theory</span></a>
+            <a href="resolution-in-fol.html" class="sidebar-link active"><span class="link-check"></span> Resolution in FOL<span class="link-type theory">Theory</span></a>
+            <a href="forward-and-backward-chaining.html" class="sidebar-link"><span class="link-check"></span> Forward &amp; Backward Chaining<span class="link-type theory">Theory</span></a>
+            <a href="knowledge-engineering.html" class="sidebar-link"><span class="link-check"></span> Knowledge Engineering<span class="link-type theory">Theory</span></a>
+            <a href="limitations-of-fol.html" class="sidebar-link"><span class="link-check"></span> Limitations of FOL<span class="link-type theory">Theory</span></a>
+            <a href="practical-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Practice Exercises<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-predicate.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="first-order-logic-syntax.html">Chapter 6: Predicate Logic</a> &raquo; <span class="current">Resolution in FOL</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch06-resolution-fol">
+
+            <h1>Resolution in First-Order Logic</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch06-resolution-fol" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="unification.html">Unification</a> &mdash; MGU, substitution</li>
+                <li><a href="quantifier-rules.html">Quantifier Rules</a> &mdash; prenex normal form, negation</li>
+                <li><a href="../05-propositional-logic/syntax-and-semantics.html">Propositional Resolution</a></li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Convert any FOL sentence to clausal (CNF) form</li>
+                <li>Perform Skolemization (replacing &exist; with Skolem constants/functions)</li>
+                <li>Apply the resolution rule with unification</li>
+                <li>Prove statements by refutation (resolution-refutation)</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="clausal-form">
+                <h2>1. Converting to Clausal Form</h2>
+                <p>To use resolution in FOL, every formula must be converted to <strong>clausal form</strong> (a conjunction of clauses, each clause being a disjunction of literals). The 7-step process:</p>
+
+                <div class="algorithm-block">
+                  <div class="box-title">Steps to Clausal Form</div>
+                  <ol>
+                    <li><strong>Eliminate &harr;:</strong> &alpha; &harr; &beta; &nbsp;&rArr;&nbsp; (&alpha; &rarr; &beta;) &and; (&beta; &rarr; &alpha;)</li>
+                    <li><strong>Eliminate &rarr;:</strong> &alpha; &rarr; &beta; &nbsp;&rArr;&nbsp; &not;&alpha; &or; &beta;</li>
+                    <li><strong>Move &not; inward</strong> (using De Morgan&rsquo;s + quantifier negation):
+                      <ul>
+                        <li>&not;(&alpha; &and; &beta;) &rArr; &not;&alpha; &or; &not;&beta;</li>
+                        <li>&not;(&alpha; &or; &beta;) &rArr; &not;&alpha; &and; &not;&beta;</li>
+                        <li>&not;&forall;x &alpha; &rArr; &exist;x &not;&alpha;</li>
+                        <li>&not;&exist;x &alpha; &rArr; &forall;x &not;&alpha;</li>
+                        <li>&not;&not;&alpha; &rArr; &alpha;</li>
+                      </ul>
+                    </li>
+                    <li><strong>Standardize variables:</strong> rename so each quantifier uses a unique variable.</li>
+                    <li><strong>Skolemize:</strong> remove &exist; quantifiers (see below).</li>
+                    <li><strong>Drop &forall;:</strong> all remaining variables are implicitly universally quantified.</li>
+                    <li><strong>Distribute &or; over &and;:</strong> &alpha; &or; (&beta; &and; &gamma;) &rArr; (&alpha; &or; &beta;) &and; (&alpha; &or; &gamma;)</li>
+                  </ol>
+                </div>
+              </section>
+
+              <section id="skolemization">
+                <h2>2. Skolemization</h2>
+                <div class="definition-box">
+                  <div class="box-title">Skolemization Rules</div>
+                  <p>For each existentially quantified variable:</p>
+                  <ul>
+                    <li>If &exist;x appears with <strong>no universally quantified variables in scope</strong>, replace x with a <strong>Skolem constant</strong> (e.g., c, A, sk<sub>0</sub>).</li>
+                    <li>If &exist;x appears within the scope of &forall;y<sub>1</sub>&hellip;&forall;y<sub>k</sub>, replace x with a <strong>Skolem function</strong> f(y<sub>1</sub>,&hellip;,y<sub>k</sub>).</li>
+                  </ul>
+                  <p>Then delete the &exist;x quantifier.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Skolemization Examples</div>
+                  <ul>
+                    <li>&exist;x P(x) &rArr; P(c) &emsp; [Skolem constant c]</li>
+                    <li>&forall;x &exist;y Loves(x,y) &rArr; &forall;x Loves(x, f(x)) &emsp; [Skolem function f]</li>
+                    <li>&forall;x &forall;y &exist;z Between(x,y,z) &rArr; &forall;x &forall;y Between(x, y, g(x,y)) &emsp; [Skolem function g(x,y)]</li>
+                  </ul>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Key Point</div>
+                  <p>Skolemization <strong>preserves satisfiability</strong> but does NOT preserve logical equivalence. The original and Skolemized formulas are equisatisfiable: one is satisfiable iff the other is. For resolution-refutation proofs, this suffices.</p>
+                </div>
+              </section>
+
+              <section id="resolution-rule">
+                <h2>3. The Resolution Rule with Unification</h2>
+                <div class="definition-box">
+                  <div class="box-title">First-Order Resolution</div>
+                  <p>Given two clauses C<sub>1</sub> and C<sub>2</sub> (with no shared variables &mdash; standardize apart first):</p>
+                  <p>If literal l<sub>1</sub> &isin; C<sub>1</sub> and literal &not;l<sub>2</sub> &isin; C<sub>2</sub> (or l<sub>2</sub> &isin; C<sub>2</sub> and &not;l<sub>1</sub> &isin; C<sub>1</sub>), and &theta; = MGU(l<sub>1</sub>, l<sub>2</sub>), then the <strong>resolvent</strong> is:</p>
+                  <div class="formula">(C<sub>1</sub>&theta; &minus; {l<sub>1</sub>&theta;}) &cup; (C<sub>2</sub>&theta; &minus; {&not;l<sub>2</sub>&theta;})</div>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Resolution Step Example</div>
+                  <p>C<sub>1</sub>: &not;Human(x) &or; Mortal(x) &emsp; [from &forall;x (Human(x)&rarr;Mortal(x))]</p>
+                  <p>C<sub>2</sub>: Human(Socrates)</p>
+                  <p>Unify Human(x) with Human(Socrates): &theta; = {x/Socrates}</p>
+                  <p>Resolvent: Mortal(Socrates) &check;</p>
+                </div>
+              </section>
+
+              <section id="refutation">
+                <h2>4. Proof by Refutation</h2>
+                <div class="definition-box">
+                  <div class="box-title">Resolution-Refutation Procedure</div>
+                  <p>To prove KB &vDash; &alpha;:</p>
+                  <ol>
+                    <li>Add &not;&alpha; to the knowledge base (negate the goal).</li>
+                    <li>Convert everything to clausal form.</li>
+                    <li>Repeatedly apply resolution to derive new clauses.</li>
+                    <li>If the <strong>empty clause &#9633;</strong> is derived, then KB &vDash; &alpha;.</li>
+                  </ol>
+                </div>
+
+                <div class="theorem-box">
+                  <div class="box-title">Refutation Completeness</div>
+                  <p>First-order resolution is <strong>refutation complete</strong>: if a set of clauses is unsatisfiable, resolution will eventually derive the empty clause. (However, if the set is satisfiable, the procedure may run forever &mdash; reflecting the semi-decidability of FOL.)</p>
+                </div>
+              </section>
+
+              <section id="full-example">
+                <h2>5. Full Worked Example: Proof by Resolution</h2>
+                <div class="example-box">
+                  <div class="box-title">Prove: &ldquo;Fido is mortal&rdquo;</div>
+                  <p><strong>KB:</strong></p>
+                  <ol>
+                    <li>&forall;x (Dog(x) &rarr; Animal(x)) &emsp; [All dogs are animals]</li>
+                    <li>&forall;x (Animal(x) &rarr; Mortal(x)) &emsp; [All animals are mortal]</li>
+                    <li>Dog(Fido) &emsp; [Fido is a dog]</li>
+                  </ol>
+                  <p><strong>Goal:</strong> Mortal(Fido)</p>
+                  <p><strong>Step 1:</strong> Negate goal &rArr; &not;Mortal(Fido)</p>
+                  <p><strong>Step 2:</strong> Convert to clauses:</p>
+                  <ul>
+                    <li>C1: &not;Dog(x) &or; Animal(x)</li>
+                    <li>C2: &not;Animal(y) &or; Mortal(y)</li>
+                    <li>C3: Dog(Fido)</li>
+                    <li>C4: &not;Mortal(Fido) &emsp; [negated goal]</li>
+                  </ul>
+                  <p><strong>Step 3:</strong> Resolution steps:</p>
+                  <ol start="5">
+                    <li>Resolve C2 and C4: unify Mortal(y) with Mortal(Fido), &theta;={y/Fido} &rArr; <strong>C5: &not;Animal(Fido)</strong></li>
+                    <li>Resolve C1 and C5: unify Animal(x) with Animal(Fido), &theta;={x/Fido} &rArr; <strong>C6: &not;Dog(Fido)</strong></li>
+                    <li>Resolve C3 and C6: unify Dog(Fido) with Dog(Fido), &theta;={} &rArr; <strong>&#9633; (empty clause)</strong></li>
+                  </ol>
+                  <p>Empty clause derived &rArr; <strong>Mortal(Fido) is proved</strong>. &square;</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>Clausal form conversion: eliminate &rarr;/&harr;, push &not; in, standardize, Skolemize, drop &forall;, distribute.</li>
+                    <li>Skolemization replaces &exist; with constants (no &forall; scope) or functions (with &forall; scope).</li>
+                    <li>Resolution in FOL = propositional resolution + unification.</li>
+                    <li>Proof by refutation: negate the goal, derive empty clause &#9633;.</li>
+                    <li>Resolution is refutation-complete for FOL.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>AIMA</em>, 4th Ed. &mdash; Section 9.5</li>
+                  <li>Robinson, J.A. (1965). &ldquo;A Machine-Oriented Logic Based on the Resolution Principle.&rdquo;</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="ch06-resolution-fol">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="unification.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Unification</span></a>
+              <a href="forward-and-backward-chaining.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Forward &amp; Backward Chaining</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#clausal-form">1. Clausal Form</a></li>
+            <li><a href="#skolemization">2. Skolemization</a></li>
+            <li><a href="#resolution-rule">3. Resolution Rule</a></li>
+            <li><a href="#refutation">4. Proof by Refutation</a></li>
+            <li><a href="#full-example">5. Full Worked Example</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

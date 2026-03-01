@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quick-revision notes for Intelligent Agents — compact summary of definitions, PEAS, environment properties, agent types, and GATE DA formulas.">
+  <title>Chapter Notes: Intelligent Agents — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+            <a href="rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a>
+            <a href="task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a>
+            <a href="agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a>
+            <a href="practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a>
+            <a href="notes-agents.html" class="sidebar-link active"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="agents-and-environments.html">Chapter 1: Intelligent Agents</a> &raquo;
+          <span class="current">Chapter Notes</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch01-notes">
+
+            <!-- Page Header -->
+            <h1>&#128221; Quick-Revision Notes: Intelligent Agents</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch01-notes" title="Bookmark this page">&#9733; Bookmark</button>
+              <button class="print-btn" onclick="window.print()" style="padding:var(--spacing-xs) var(--spacing-md); background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:var(--border-radius); cursor:pointer; font-size:0.85rem;">&#128424; Print Notes</button>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: Key Definitions -->
+              <section id="definitions">
+                <h2>1. Key Definitions (Numbered)</h2>
+
+                <ol class="formula-list">
+                  <li><strong>Agent:</strong> An entity that perceives its environment through <em>sensors</em> and acts upon it through <em>actuators</em>.</li>
+                  <li><strong>Percept:</strong> The agent&rsquo;s sensory input at a single instant.</li>
+                  <li><strong>Percept sequence:</strong> The complete history of all percepts ever received.</li>
+                  <li><strong>Agent function:</strong> A mathematical mapping from every possible percept sequence to an action: <strong>f : P* &rarr; A</strong>.</li>
+                  <li><strong>Agent program:</strong> A concrete software/hardware implementation of the agent function (runs on an architecture).</li>
+                  <li><strong>Rational agent:</strong> Selects the action that <em>maximizes expected performance</em>, given its percept sequence and built-in knowledge.</li>
+                  <li><strong>Omniscient agent:</strong> Knows the <em>actual</em> outcome of every action&mdash;<strong>impossible</strong> in practice; distinct from rational.</li>
+                  <li><strong>Performance measure:</strong> An external criterion for evaluating how successful an agent is in its environment.</li>
+                  <li><strong>Task environment:</strong> The complete specification: Performance measure, Environment, Actuators, Sensors (PEAS).</li>
+                  <li><strong>Autonomy:</strong> An agent is autonomous to the extent that its behavior depends on its <em>own experience</em> rather than solely on built-in knowledge.</li>
+                </ol>
+              </section>
+
+              <!-- Section 2: PEAS Quick Reference -->
+              <section id="peas">
+                <h2>2. PEAS Quick Reference</h2>
+
+                <div class="mnemonic-box">
+                  <div class="box-title">&#128161; Mnemonic: PEAS</div>
+                  <p><strong>P</strong>erformance &bull; <strong>E</strong>nvironment &bull; <strong>A</strong>ctuators &bull; <strong>S</strong>ensors</p>
+                  <p><em>&ldquo;People Eat Apples Slowly&rdquo;</em></p>
+                </div>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Agent System</th>
+                        <th>Performance</th>
+                        <th>Environment</th>
+                        <th>Actuators</th>
+                        <th>Sensors</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Taxi Driver</td>
+                        <td>Safety, speed, comfort, profit</td>
+                        <td>Roads, traffic, pedestrians, weather</td>
+                        <td>Steering, brakes, accelerator, horn, signals</td>
+                        <td>Cameras, LIDAR, GPS, speedometer</td>
+                      </tr>
+                      <tr>
+                        <td>Medical Diagnosis</td>
+                        <td>Correct diagnosis, minimize cost</td>
+                        <td>Hospital, patient, staff</td>
+                        <td>Display diagnosis, prescriptions, tests</td>
+                        <td>Keyboard input, medical images, lab results</td>
+                      </tr>
+                      <tr>
+                        <td>Vacuum Robot</td>
+                        <td>Cleanliness, efficiency, battery life</td>
+                        <td>Room, floor, obstacles, dirt</td>
+                        <td>Wheels, vacuum, brush</td>
+                        <td>Dirt sensor, bump sensor, infrared</td>
+                      </tr>
+                      <tr>
+                        <td>Spam Filter</td>
+                        <td>Precision, recall, user satisfaction</td>
+                        <td>Email server, messages</td>
+                        <td>Mark spam/ham, quarantine</td>
+                        <td>Email headers, body text, attachments</td>
+                      </tr>
+                      <tr>
+                        <td>Chess Program</td>
+                        <td>Win rate, Elo rating</td>
+                        <td>Chessboard, opponent, clock</td>
+                        <td>Move pieces on display</td>
+                        <td>Board state via API/camera</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 3: Environment Properties (ODESSA) -->
+              <section id="environment-properties">
+                <h2>3. Environment Properties — ODESSA Mnemonic</h2>
+
+                <div class="mnemonic-box">
+                  <div class="box-title">&#128161; Mnemonic: ODESSA</div>
+                  <p><strong>O</strong>bservable &bull; <strong>D</strong>eterministic &bull; <strong>E</strong>pisodic &bull; <strong>S</strong>tatic &bull; di<strong>S</strong>crete &bull; <strong>A</strong>gents</p>
+                  <p><em>&ldquo;Old Dogs Eat Sausages, Steaks, and Apples&rdquo;</em></p>
+                </div>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Property</th>
+                        <th>Values</th>
+                        <th>What It Means</th>
+                        <th>Example (Fully)</th>
+                        <th>Example (Partially/No)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Observable</strong></td>
+                        <td>Fully / Partially / Unobservable</td>
+                        <td>Can agent perceive entire environment state?</td>
+                        <td>Chess (board visible)</td>
+                        <td>Poker (hidden cards)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Deterministic</strong></td>
+                        <td>Deterministic / Stochastic / Non-deterministic</td>
+                        <td>Is next state fully determined by current state + action?</td>
+                        <td>Chess</td>
+                        <td>Backgammon (dice)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Episodic</strong></td>
+                        <td>Episodic / Sequential</td>
+                        <td>Is each action independent, or do earlier actions affect later ones?</td>
+                        <td>Image classification</td>
+                        <td>Chess (whole game)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Static</strong></td>
+                        <td>Static / Dynamic / Semidynamic</td>
+                        <td>Does environment change while agent deliberates?</td>
+                        <td>Crossword puzzle</td>
+                        <td>Self-driving car (dynamic)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Discrete</strong></td>
+                        <td>Discrete / Continuous</td>
+                        <td>Are states, time, percepts, and actions countable?</td>
+                        <td>Chess (finite states)</td>
+                        <td>Robot navigation (continuous)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Agents</strong></td>
+                        <td>Single-agent / Multi-agent (competitive/cooperative)</td>
+                        <td>How many agents interact in the environment?</td>
+                        <td>Crossword (single)</td>
+                        <td>Poker (competitive multi)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Stochastic vs. Non-deterministic</div>
+                  <p><strong>Stochastic:</strong> Outcomes have <em>quantified probabilities</em> (e.g., dice roll: P(6)=1/6).<br>
+                  <strong>Non-deterministic:</strong> Multiple outcomes are possible but <em>no probabilities</em> are assigned.</p>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Semidynamic Environments</div>
+                  <p>Environment doesn&rsquo;t change, but the agent&rsquo;s <em>performance score</em> changes with time. Example: Chess with a clock (board is static, but time ticks).</p>
+                </div>
+              </section>
+
+              <!-- Section 4: Master Environment Table -->
+              <section id="master-table">
+                <h2>4. Master Environment Comparison Table</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table" style="font-size:0.82rem;">
+                    <thead>
+                      <tr>
+                        <th>Environment</th>
+                        <th>Observable</th>
+                        <th>Deterministic</th>
+                        <th>Episodic</th>
+                        <th>Static</th>
+                        <th>Discrete</th>
+                        <th>Agents</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Crossword</td><td>Fully</td><td>Deterministic</td><td>Sequential</td><td>Static</td><td>Discrete</td><td>Single</td></tr>
+                      <tr><td>Chess (w/ clock)</td><td>Fully</td><td>Deterministic</td><td>Sequential</td><td>Semidynamic</td><td>Discrete</td><td>Multi (comp.)</td></tr>
+                      <tr><td>Backgammon</td><td>Fully</td><td>Stochastic</td><td>Sequential</td><td>Static</td><td>Discrete</td><td>Multi (comp.)</td></tr>
+                      <tr><td>Poker</td><td>Partially</td><td>Stochastic</td><td>Sequential</td><td>Static</td><td>Discrete</td><td>Multi (comp.)</td></tr>
+                      <tr><td>Image Classification</td><td>Fully</td><td>Deterministic</td><td>Episodic</td><td>Static</td><td>Discrete</td><td>Single</td></tr>
+                      <tr><td>Self-Driving Car</td><td>Partially</td><td>Stochastic</td><td>Sequential</td><td>Dynamic</td><td>Continuous</td><td>Multi (mixed)</td></tr>
+                      <tr><td>Vacuum (simple)</td><td>Fully</td><td>Deterministic</td><td>Sequential</td><td>Static</td><td>Discrete</td><td>Single</td></tr>
+                      <tr><td>Medical Diagnosis</td><td>Partially</td><td>Stochastic</td><td>Sequential</td><td>Dynamic</td><td>Continuous</td><td>Single</td></tr>
+                      <tr><td>Spam Filter</td><td>Partially</td><td>Stochastic</td><td>Episodic</td><td>Static</td><td>Discrete</td><td>Single</td></tr>
+                      <tr><td>Internet Shopping</td><td>Partially</td><td>Stochastic</td><td>Sequential</td><td>Semidynamic</td><td>Discrete</td><td>Multi (mixed)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 5: Agent Types Comparison -->
+              <section id="agent-types">
+                <h2>5. Agent Types Comparison</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Agent Type</th>
+                        <th>State Maintained</th>
+                        <th>Decision Mechanism</th>
+                        <th>Limitations</th>
+                        <th>Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Simple Reflex</strong></td>
+                        <td>None</td>
+                        <td>Condition &rarr; Action rules</td>
+                        <td>Fails in partially observable envs; no memory</td>
+                        <td>Thermostat</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Model-Based Reflex</strong></td>
+                        <td>Internal model of world</td>
+                        <td>Rules + internal state</td>
+                        <td>Model may be inaccurate</td>
+                        <td>Anti-lock brakes</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Goal-Based</strong></td>
+                        <td>Model + goal</td>
+                        <td>Search / planning</td>
+                        <td>No trade-offs; binary goal (achieved or not)</td>
+                        <td>GPS navigation</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Utility-Based</strong></td>
+                        <td>Model + utility function</td>
+                        <td>Maximize expected utility</td>
+                        <td>Complex; utility function design is hard</td>
+                        <td>Self-driving car</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Learning</strong></td>
+                        <td>Model + learning element</td>
+                        <td>Improve via experience (critic feedback)</td>
+                        <td>Initial performance may be low</td>
+                        <td>AlphaGo, spam filter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Hierarchy Reminder</div>
+                  <p>Simple Reflex &sub; Model-Based &sub; Goal-Based &sub; Utility-Based &sub; Learning Agent. Each type <strong>adds capabilities</strong> over the previous one.</p>
+                </div>
+              </section>
+
+              <!-- Section 6: Four Factors of Rationality -->
+              <section id="rationality">
+                <h2>6. Four Factors of Rationality</h2>
+
+                <div class="quick-facts">
+                  <h4>&#9889; Quick Facts for GATE</h4>
+                  <ol>
+                    <li><strong>Performance measure</strong> &mdash; defines success</li>
+                    <li><strong>Prior knowledge</strong> of the environment</li>
+                    <li><strong>Available actions</strong> the agent can perform</li>
+                    <li><strong>Percept sequence</strong> received so far</li>
+                  </ol>
+                  <p>A rational agent selects the action that <strong>maximizes expected performance</strong>, given factors 1&ndash;4.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Common GATE Trap</div>
+                  <p>Rational &ne; Omniscient. A rational agent makes the <em>best decision given available information</em>. It can still fail if the outcome is unpredictable. Rationality requires <strong>information gathering</strong> (exploration) when uncertain.</p>
+                </div>
+              </section>
+
+              <!-- Section 7: Key Formulas & Concepts -->
+              <section id="formulas">
+                <h2>7. Key Formulas &amp; Concepts</h2>
+
+                <div class="formula-list">
+                  <ul>
+                    <li><strong>Agent function:</strong> f : P* &rarr; A</li>
+                    <li><strong>Agent program = Agent function + Architecture</strong></li>
+                    <li><strong>Table-driven agent:</strong> Stores all |P*| entries. For n percept values over t time steps: |P*| = &sum; n<sup>i</sup> for i=1..t &mdash; grows <em>exponentially</em>, hence impractical.</li>
+                    <li><strong>Performance score</strong> (vacuum world): +1 per clean square per time step.</li>
+                    <li><strong>Transition model</strong> (model-based): state&prime; = f(state, action)</li>
+                    <li><strong>Sensor model:</strong> Maps true world state to percept the agent receives</li>
+                    <li><strong>Utility function:</strong> U : States &rarr; &real; &mdash; maps states to real-valued happiness scores</li>
+                    <li><strong>Expected utility:</strong> EU(a) = &sum;<sub>s&prime;</sub> P(s&prime;|a) &sdot; U(s&prime;)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 8: GATE Quick Facts -->
+              <section id="gate-facts">
+                <h2>8. GATE Quick Facts</h2>
+
+                <div class="quick-facts">
+                  <h4>&#127919; Most Frequently Tested Concepts</h4>
+                  <ul>
+                    <li>Classifying environments using the 6 ODESSA properties</li>
+                    <li>Identifying the correct agent type for a given scenario</li>
+                    <li>Distinguishing rational vs. omniscient agents</li>
+                    <li>PEAS analysis for a described system</li>
+                    <li>Why table-driven agents are impractical (exponential storage)</li>
+                    <li>Model-based vs. simple reflex in partially observable environments</li>
+                    <li>Learning agent components: performance element, critic, learning element, problem generator</li>
+                  </ul>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Common Mistakes in GATE</div>
+                  <ul>
+                    <li>Confusing &ldquo;stochastic&rdquo; with &ldquo;non-deterministic&rdquo;&mdash;stochastic has <em>quantified probabilities</em></li>
+                    <li>Saying chess is &ldquo;static&rdquo; when played with a clock (it&rsquo;s <em>semidynamic</em>)</li>
+                    <li>Calling a spam filter &ldquo;sequential&rdquo;&mdash;each email is classified independently (&ldquo;episodic&rdquo;)</li>
+                    <li>Thinking goal-based agents have utility functions (they only have binary goals)</li>
+                    <li>Forgetting that simple reflex agents <strong>cannot handle partial observability</strong></li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 9: Learning Agent Components -->
+              <section id="learning-agent">
+                <h2>9. Learning Agent — Four Components</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Component</th>
+                        <th>Role</th>
+                        <th>Analogy (Student)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>Performance Element</strong></td><td>Selects actions (the &ldquo;current agent&rdquo;)</td><td>Taking the exam</td></tr>
+                      <tr><td><strong>Critic</strong></td><td>Evaluates behavior against performance standard</td><td>Teacher grading the exam</td></tr>
+                      <tr><td><strong>Learning Element</strong></td><td>Modifies performance element to improve</td><td>Studying mistakes for next exam</td></tr>
+                      <tr><td><strong>Problem Generator</strong></td><td>Suggests exploratory actions for new experiences</td><td>Choosing harder practice problems</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 10: One-Page Summary -->
+              <section id="summary">
+                <h2>10. One-Page Summary</h2>
+
+                <div class="summary-section">
+                  <ul>
+                    <li>An <strong>agent</strong> perceives via sensors, acts via actuators, and is described by an agent function f : P* &rarr; A.</li>
+                    <li>A <strong>rational agent</strong> maximizes expected performance given its percept sequence&mdash;it is NOT omniscient.</li>
+                    <li>Specify any AI problem using <strong>PEAS</strong>: Performance, Environment, Actuators, Sensors.</li>
+                    <li>Classify environments with <strong>ODESSA</strong>: Observable, Deterministic, Episodic, Static, diScrete, Agents.</li>
+                    <li>Five agent types form a hierarchy: Simple Reflex &rarr; Model-Based &rarr; Goal-Based &rarr; Utility-Based &rarr; Learning.</li>
+                    <li>Simple reflex agents fail under <em>partial observability</em>; model-based agents add <em>internal state</em>.</li>
+                    <li>Goal-based agents use <em>search/planning</em>; utility-based agents handle <em>trade-offs</em> with a utility function.</li>
+                    <li>Learning agents continually improve through the <em>critic &rarr; learning element &rarr; performance element</em> feedback loop.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch01-notes">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="practical-agent-simulation.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Agent Simulation</span>
+              </a>
+              <a href="quiz-agents.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Chapter Quiz</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#definitions">1. Key Definitions</a></li>
+              <li><a href="#peas">2. PEAS Reference</a></li>
+              <li><a href="#environment-properties">3. Environment Properties</a></li>
+              <li><a href="#master-table">4. Master Table</a></li>
+              <li><a href="#agent-types">5. Agent Types</a></li>
+              <li><a href="#rationality">6. Rationality Factors</a></li>
+              <li><a href="#formulas">7. Formulas &amp; Concepts</a></li>
+              <li><a href="#gate-facts">8. GATE Quick Facts</a></li>
+              <li><a href="#learning-agent">9. Learning Agent</a></li>
+              <li><a href="#summary">10. One-Page Summary</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

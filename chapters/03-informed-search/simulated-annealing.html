@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulated Annealing — temperature schedules, acceptance probability, pseudocode, convergence, cooling schedules, and worked examples for GATE DA AI preparation.">
+  <title>Simulated Annealing — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a><a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Overview<span class="link-type notes">Notes</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a><a href="../01-intelligent-agents/notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/uniform-cost-search.html" class="sidebar-link"><span class="link-check"></span> UCS<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA*<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="sma-star.html" class="sidebar-link"><span class="link-check"></span> SMA*<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded<span class="link-type theory">Theory</span></a>
+            <a href="local-search-hill-climbing.html" class="sidebar-link"><span class="link-check"></span> Hill Climbing<span class="link-type theory">Theory</span></a>
+            <a href="simulated-annealing.html" class="sidebar-link active"><span class="link-check"></span> Simulated Annealing<span class="link-type theory">Theory</span></a>
+            <a href="genetic-algorithms.html" class="sidebar-link"><span class="link-check"></span> Genetic Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> A* Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="heuristic-functions.html">Ch 3: Informed Search</a> &raquo;
+          <span class="current">Simulated Annealing</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch03-simulated-annealing">
+
+            <h1>Simulated Annealing</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch03-simulated-annealing" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="local-search-hill-climbing.html">Hill Climbing</a> &mdash; local search paradigm, local maxima problem</li>
+                <li>Basic probability &mdash; understanding of e<sup>x</sup> and random sampling</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand simulated annealing as hill climbing that can go &ldquo;downhill&rdquo;</li>
+                <li>Explain the acceptance probability e<sup>&Delta;E/T</sup></li>
+                <li>Write the SA pseudocode</li>
+                <li>Compare cooling schedules: linear, geometric, logarithmic</li>
+                <li>Analyze convergence guarantees</li>
+                <li>Apply SA to an optimization example</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: Physical Analogy -->
+              <section id="analogy">
+                <h2>1. Physical Analogy: Metallurgical Annealing</h2>
+                <p>In metallurgy, <strong>annealing</strong> is the process of heating metal to a high temperature and then <em>slowly</em> cooling it. At high temperatures, atoms move freely and can escape unfavorable configurations. As the temperature decreases, atoms settle into a low-energy crystalline structure &mdash; ideally the <strong>global minimum energy state</strong>.</p>
+
+                <div class="key-concept">
+                  <h4>From Physics to Optimization</h4>
+                  <p>Simulated Annealing (SA) applies this idea to optimization. The &ldquo;energy&rdquo; is the objective function value. The &ldquo;temperature&rdquo; controls how willing the algorithm is to accept <strong>worse</strong> moves. At high temperature, SA explores broadly (accepting bad moves). As temperature decreases, SA becomes more selective, converging to a local (hopefully global) optimum.</p>
+                </div>
+
+                <p>SA was introduced by Kirkpatrick, Gelatt, and Vecchi (1983), inspired by the Metropolis algorithm from statistical mechanics (1953).</p>
+              </section>
+
+              <!-- Section 2: Algorithm -->
+              <section id="algorithm">
+                <h2>2. The SA Algorithm</h2>
+                <p>SA is a modification of hill climbing. The key difference: when a random neighbor is <strong>worse</strong> than the current state, SA doesn&rsquo;t always reject it. Instead, it accepts the worse move with a probability that depends on:</p>
+                <ul>
+                  <li><strong>&Delta;E</strong> = VALUE(neighbor) &minus; VALUE(current) — how much worse the move is</li>
+                  <li><strong>T</strong> = current temperature — how &ldquo;hot&rdquo; the system is</li>
+                </ul>
+
+                <h3>2.1 Acceptance Probability</h3>
+                <p>For a <strong>maximization</strong> problem (we want to increase VALUE):</p>
+                <ul>
+                  <li>If &Delta;E &ge; 0 (neighbor is better or equal): <strong>always accept</strong>.</li>
+                  <li>If &Delta;E &lt; 0 (neighbor is worse): accept with probability <strong>P = e<sup>&Delta;E / T</sup></strong>.</li>
+                </ul>
+
+                <div class="key-concept">
+                  <h4>Understanding P = e<sup>&Delta;E / T</sup></h4>
+                  <p>Since &Delta;E &lt; 0 (a bad move), &Delta;E/T is negative, so P is between 0 and 1.</p>
+                  <ul>
+                    <li><strong>High T:</strong> &Delta;E/T &asymp; 0, so P &asymp; e<sup>0</sup> = 1. Almost all moves accepted. (Random walk.)</li>
+                    <li><strong>Low T:</strong> &Delta;E/T is a large negative number, so P &asymp; 0. Bad moves rarely accepted. (Hill climbing.)</li>
+                    <li><strong>Small |&Delta;E|:</strong> Slightly worse moves are accepted more easily than very bad moves.</li>
+                  </ul>
+                </div>
+
+                <h3>2.2 Full Pseudocode</h3>
+                <pre><code>function SIMULATED-ANNEALING(problem, schedule):
+    // schedule: a mapping from time t to temperature T
+    current = problem.initial_state
+    best = current                         // track overall best
+
+    for t = 1 to ∞:
+        T = schedule(t)
+        if T == 0:
+            return best                    // frozen — return best found
+
+        neighbor = RANDOM-NEIGHBOR(current)
+        ΔE = VALUE(neighbor) - VALUE(current)
+
+        if ΔE > 0:                         // neighbor is better
+            current = neighbor
+        else:                              // neighbor is worse
+            // Accept with probability e^(ΔE/T)
+            if RANDOM(0,1) < e^(ΔE / T):
+                current = neighbor
+
+        if VALUE(current) > VALUE(best):
+            best = current
+
+    return best</code></pre>
+
+                <div class="note-box">
+                  <h4>&#128221; Minimization Version</h4>
+                  <p>For minimization problems (minimize cost), flip the sign: &Delta;E = COST(current) &minus; COST(neighbor). If &Delta;E &gt; 0, the move is an improvement. If &Delta;E &lt; 0, accept with probability e<sup>&Delta;E / T</sup>. Equivalently, use P = e<sup>&minus;|&Delta;E| / T</sup> when the move is worse.</p>
+                </div>
+              </section>
+
+              <!-- Section 3: Cooling Schedules -->
+              <section id="cooling">
+                <h2>3. Cooling Schedules</h2>
+                <p>The <strong>cooling schedule</strong> determines how temperature decreases over time. It critically affects SA&rsquo;s performance.</p>
+
+                <div class="table-responsive">
+                  <table class="styled-table">
+                    <thead>
+                      <tr><th>Schedule</th><th>Formula</th><th>Cooling Rate</th><th>Properties</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Linear</strong></td>
+                        <td>T(t) = T₀ &minus; &alpha;&middot;t</td>
+                        <td>Constant decrease per step</td>
+                        <td>Simple; may cool too fast. T reaches 0 at t = T₀/&alpha;.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Geometric</strong></td>
+                        <td>T(t) = T₀ &middot; &alpha;<sup>t</sup>, where 0 &lt; &alpha; &lt; 1</td>
+                        <td>Multiplicative; typically &alpha; = 0.95&ndash;0.99</td>
+                        <td>Most commonly used. Good balance of exploration and exploitation. T &rarr; 0 asymptotically.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Logarithmic</strong></td>
+                        <td>T(t) = c / ln(1 + t)</td>
+                        <td>Very slow decrease</td>
+                        <td>Theoretically guaranteed to find global optimum (but impractically slow).</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Geometric Cooling Example</div>
+                  <p>T₀ = 100, &alpha; = 0.95:</p>
+                  <pre><code>t=0:  T = 100.0
+t=10: T = 100 × 0.95^10  = 59.87
+t=20: T = 100 × 0.95^20  = 35.85
+t=50: T = 100 × 0.95^50  = 7.69
+t=100: T = 100 × 0.95^100 = 0.59
+t=150: T = 100 × 0.95^150 = 0.05  (nearly frozen)</code></pre>
+                </div>
+              </section>
+
+              <!-- Section 4: Convergence -->
+              <section id="convergence">
+                <h2>4. Convergence Guarantee</h2>
+                <p>A famous theoretical result states that SA <strong>converges to the global optimum with probability 1</strong> if the cooling schedule is sufficiently slow. Specifically:</p>
+
+                <div class="key-concept">
+                  <h4>Convergence Theorem</h4>
+                  <p>If T(t) &ge; c / ln(1 + t) for some constant c &ge; &Delta;E<sub>max</sub> (the largest energy barrier), then SA is guaranteed to reach the global optimum as t &rarr; &infin;.</p>
+                </div>
+
+                <p>In practice, logarithmic cooling is too slow. The geometric schedule T(t) = T₀&middot;&alpha;<sup>t</sup> does <em>not</em> theoretically guarantee convergence, but works well empirically. The art of SA is choosing the right T₀, &alpha;, and stopping criterion for a given problem.</p>
+
+                <h3>4.1 SA vs Hill Climbing</h3>
+                <div class="table-responsive">
+                  <table class="styled-table">
+                    <thead>
+                      <tr><th>Property</th><th>Hill Climbing</th><th>Simulated Annealing</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Accepts worse moves?</td><td>Never</td><td>Yes, with probability e<sup>&Delta;E/T</sup></td></tr>
+                      <tr><td>Escapes local optima?</td><td>No</td><td>Yes (at high T)</td></tr>
+                      <tr><td>Deterministic?</td><td>Yes (steepest ascent)</td><td>No (stochastic)</td></tr>
+                      <tr><td>Convergence guarantee?</td><td>No (local optimum only)</td><td>Yes (with log cooling; theoretical)</td></tr>
+                      <tr><td>Parameters to tune?</td><td>None</td><td>T₀, cooling rate, stopping criterion</td></tr>
+                      <tr><td>Memory</td><td>O(1)</td><td>O(1)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 5: Worked Example -->
+              <section id="worked-example">
+                <h2>5. Worked Example: Minimizing a Function</h2>
+                <div class="example-box">
+                  <div class="box-title">Example: Optimize f(x) = &minus;(x&minus;3)&sup2; + 10</div>
+                  <p>Goal: <strong>maximize</strong> f(x). Global max at x = 3, f(3) = 10. Neighbor: x &plusmn; random step in [&minus;2, 2].</p>
+                  <p>Settings: T₀ = 10, geometric cooling &alpha; = 0.8.</p>
+
+                  <pre><code>Step 0: x = 7, f(7) = -(7-3)² + 10 = -6.   T = 10.
+  Neighbor: x' = 5.5, f(5.5) = -(2.5)² + 10 = 3.75
+  ΔE = 3.75 - (-6) = 9.75 > 0. Accept. x = 5.5
+
+Step 1: T = 10 × 0.8 = 8.
+  Neighbor: x' = 6.8, f(6.8) = -(3.8)² + 10 = -4.44
+  ΔE = -4.44 - 3.75 = -8.19 < 0.
+  P = e^(-8.19/8) = e^(-1.024) ≈ 0.359. Roll: 0.22 < 0.359. Accept! x = 6.8
+
+Step 2: T = 8 × 0.8 = 6.4.
+  Neighbor: x' = 4.9, f(4.9) = -(1.9)² + 10 = 6.39
+  ΔE = 6.39 - (-4.44) = 10.83 > 0. Accept. x = 4.9
+
+Step 3: T = 6.4 × 0.8 = 5.12.
+  Neighbor: x' = 3.1, f(3.1) = -(0.1)² + 10 = 9.99
+  ΔE = 9.99 - 6.39 = 3.6 > 0. Accept. x = 3.1
+
+Step 4: T = 5.12 × 0.8 = 4.096.
+  Neighbor: x' = 4.5, f(4.5) = -(1.5)² + 10 = 7.75
+  ΔE = 7.75 - 9.99 = -2.24 < 0.
+  P = e^(-2.24/4.096) = e^(-0.547) ≈ 0.578. Roll: 0.81 > 0.578. Reject.
+
+Step 5: T = 4.096 × 0.8 = 3.277.
+  Neighbor: x' = 2.8, f(2.8) = -(0.2)² + 10 = 9.96
+  ΔE = 9.96 - 9.99 = -0.03 < 0.
+  P = e^(-0.03/3.277) ≈ 0.991. Roll: 0.15 < 0.991. Accept. x = 2.8
+
+...continues, converging around x ≈ 3.</code></pre>
+                  <p>Notice how at Step 1, SA accepted a <em>worse</em> move (from f=3.75 to f=&minus;4.44). This is the key mechanism that lets SA escape local optima. As T decreases, such large downhill moves become exponentially less likely.</p>
+                </div>
+              </section>
+
+              <!-- Section 6: GATE-Relevant Analysis -->
+              <section id="gate-analysis">
+                <h2>6. GATE-Relevant: Acceptance Probability Calculations</h2>
+                <p>GATE questions often ask you to compute the acceptance probability given specific values.</p>
+
+                <div class="example-box">
+                  <div class="box-title">Typical GATE-Style Question</div>
+                  <p><strong>Q:</strong> In simulated annealing (maximization), current state has value 50, neighbor has value 45, temperature T = 10. What is the probability of accepting the neighbor?</p>
+                  <p><strong>A:</strong> &Delta;E = 45 &minus; 50 = &minus;5. P = e<sup>&minus;5/10</sup> = e<sup>&minus;0.5</sup> &asymp; <strong>0.6065</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Another Example</div>
+                  <p><strong>Q:</strong> Same as above but T = 2. P = ?</p>
+                  <p><strong>A:</strong> &Delta;E = &minus;5. P = e<sup>&minus;5/2</sup> = e<sup>&minus;2.5</sup> &asymp; <strong>0.0821</strong>.</p>
+                  <p>Much lower! At lower temperature, bad moves are rarely accepted.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Key Insight for GATE</div>
+                  <p><strong>Q:</strong> At what temperature will a &Delta;E = &minus;10 move be accepted with probability 0.5?</p>
+                  <p><strong>A:</strong> 0.5 = e<sup>&minus;10/T</sup> &rArr; ln(0.5) = &minus;10/T &rArr; &minus;0.693 = &minus;10/T &rArr; T = 10/0.693 &asymp; <strong>14.43</strong>.</p>
+                </div>
+              </section>
+
+              <!-- Section 7: Applications -->
+              <section id="applications">
+                <h2>7. Common Applications</h2>
+                <ul>
+                  <li><strong>Travelling Salesman Problem (TSP)</strong> &mdash; neighbor: swap two cities in the tour</li>
+                  <li><strong>VLSI circuit layout</strong> &mdash; the original application (Kirkpatrick et al.)</li>
+                  <li><strong>Job scheduling</strong> &mdash; minimize makespan or tardiness</li>
+                  <li><strong>Protein folding</strong> &mdash; minimize free energy</li>
+                  <li><strong>N-Queens</strong> &mdash; minimize attacking pairs</li>
+                  <li><strong>Graph partitioning</strong> &mdash; minimize edge cuts</li>
+                </ul>
+              </section>
+
+              <!-- Section 8: Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>SA = hill climbing + stochastic acceptance of worse moves (controlled by temperature).</li>
+                    <li>Acceptance probability for bad moves: <strong>P = e<sup>&Delta;E/T</sup></strong>.</li>
+                    <li>High T &rarr; random walk (exploration). Low T &rarr; hill climbing (exploitation).</li>
+                    <li>Cooling schedules: linear (simple), <strong>geometric</strong> (most practical), logarithmic (theoretical guarantee).</li>
+                    <li>Guaranteed to find global optimum with logarithmic cooling (impractically slow in general).</li>
+                    <li>O(1) space. One of the most widely used metaheuristics.</li>
+                    <li>GATE focus: compute P given &Delta;E and T; understand when/why SA outperforms hill climbing.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- References -->
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Kirkpatrick, S., Gelatt, C.D., Vecchi, M.P. (1983). &ldquo;Optimization by Simulated Annealing.&rdquo; <em>Science</em>, 220(4598), 671&ndash;680.</li>
+                  <li>Russell &amp; Norvig, <em>Artificial Intelligence: A Modern Approach</em>, 4th Ed. &mdash; Section 4.1.2.</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch03-simulated-annealing">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="local-search-hill-climbing.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Hill Climbing</span></a>
+              <a href="genetic-algorithms.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Genetic Algorithms</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#analogy">1. Physical Analogy</a></li>
+              <li><a href="#algorithm">2. The SA Algorithm</a></li>
+              <li><a href="#cooling">3. Cooling Schedules</a></li>
+              <li><a href="#convergence">4. Convergence</a></li>
+              <li><a href="#worked-example">5. Worked Example</a></li>
+              <li><a href="#gate-analysis">6. GATE Analysis</a></li>
+              <li><a href="#applications">7. Applications</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Planning Quick Notes — compact cheatsheet covering STRIPS notation, algorithm comparison, mutex types, blocks world reference, GATE tips for planning.">
+  <title>Planning Quick Notes — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a>
+            <a href="strips.html" class="sidebar-link"><span class="link-check"></span> STRIPS<span class="link-type theory">Theory</span></a>
+            <a href="partial-order-planning.html" class="sidebar-link"><span class="link-check"></span> Partial-Order Planning<span class="link-type theory">Theory</span></a>
+            <a href="graph-planning.html" class="sidebar-link"><span class="link-check"></span> GraphPlan<span class="link-type theory">Theory</span></a>
+            <a href="notes-planning.html" class="sidebar-link active"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-planning.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="classical-planning.html">Chapter 13: Planning</a> &raquo; <span class="current">Quick Notes</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch13-notes-planning">
+
+            <h1>&#128221; Planning &mdash; Quick Notes</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Cheatsheet</span>
+              <button class="bookmark-btn" data-page="chapters/13-planning/notes-planning.html" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="notes-content">
+
+              <!-- 1. STRIPS Notation Summary -->
+              <section id="strips-summary">
+                <h2>1. STRIPS Notation Summary</h2>
+                <div class="notes-card">
+                  <table class="comparison-table" style="font-size:0.92rem;">
+                    <thead><tr><th style="width:28%;">Component</th><th>Description</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>State</strong></td><td>Set of ground atomic propositions (fluents) that are true. CWA: everything else is false.</td></tr>
+                      <tr><td><strong>Preconditions</strong></td><td>Conjunction of positive literals that must be true for the action to be applicable.</td></tr>
+                      <tr><td><strong>Add List (effects+)</strong></td><td>Literals that become true after the action. Also called positive effects.</td></tr>
+                      <tr><td><strong>Delete List (effects&minus;)</strong></td><td>Literals that become false after the action. Also called negative effects.</td></tr>
+                      <tr><td><strong>Result(s, a)</strong></td><td>(s &minus; Del(a)) &cup; Add(a) &mdash; delete first, then add.</td></tr>
+                      <tr><td><strong>Applicable</strong></td><td>Action a is applicable in state s iff Precond(a) &sube; s.</td></tr>
+                      <tr><td><strong>Frame Assumption</strong></td><td>Fluents not in Add or Delete lists are unchanged.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- 2. Algorithm Comparison -->
+              <section id="algorithm-comparison">
+                <h2>2. Planning Algorithm Comparison</h2>
+                <div class="notes-card">
+                  <table class="comparison-table" style="font-size:0.85rem;">
+                    <thead><tr><th>Algorithm</th><th>Approach</th><th>Direction</th><th>Complete?</th><th>Optimal?</th><th>Key Feature</th></tr></thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Forward Search</strong></td>
+                        <td>State-space</td><td>s<sub>0</sub> &rarr; goal</td><td>Yes</td><td>With A*</td>
+                        <td>Simple; large branching factor</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Backward Search</strong></td>
+                        <td>State-space</td><td>goal &rarr; s<sub>0</sub></td><td>Yes</td><td>With A*</td>
+                        <td>Only relevant actions; smaller branching</td>
+                      </tr>
+                      <tr>
+                        <td><strong>STRIPS (Goal Stack)</strong></td>
+                        <td>Means-ends</td><td>goal &rarr; s<sub>0</sub></td><td>No</td><td>No</td>
+                        <td>Simple but fails on Sussman Anomaly</td>
+                      </tr>
+                      <tr>
+                        <td><strong>POP</strong></td>
+                        <td>Plan-space</td><td>Refinement</td><td>Yes</td><td>No*</td>
+                        <td>Least commitment; handles sub-goal interaction</td>
+                      </tr>
+                      <tr>
+                        <td><strong>GraphPlan</strong></td>
+                        <td>Planning graph</td><td>Expand + backward extract</td><td>Yes</td><td>Shortest parallel plan</td>
+                        <td>Mutex detection; level-off termination</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p style="font-size:0.85rem; margin-top:0.5rem;">* POP can be made optimal with appropriate cost tracking, but standard POP is satisficing.</p>
+                </div>
+              </section>
+
+              <!-- 3. Mutex Types -->
+              <section id="mutex-types">
+                <h2>3. Mutex Types (GraphPlan)</h2>
+                <div class="notes-card">
+                  <table class="comparison-table" style="font-size:0.88rem;">
+                    <thead><tr><th>Mutex Type</th><th>Level</th><th>Condition</th><th>Static?</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Inconsistent Effects</strong></td><td>Action</td><td>Add(a<sub>1</sub>) &cap; Del(a<sub>2</sub>) &ne; &empty;</td><td>Yes</td></tr>
+                      <tr><td><strong>Interference</strong></td><td>Action</td><td>Del(a<sub>1</sub>) &cap; Precond(a<sub>2</sub>) &ne; &empty;</td><td>Yes</td></tr>
+                      <tr><td><strong>Competing Needs</strong></td><td>Action</td><td>Preconditions of a<sub>1</sub>, a<sub>2</sub> are mutex in P<sub>i</sub></td><td>No</td></tr>
+                      <tr><td><strong>Inconsistent Support</strong></td><td>Proposition</td><td>All achiever pairs are mutex in A<sub>i</sub></td><td>No</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="warning-box" style="margin-top:0.75rem;">
+                    <h4>&#9888; Remember</h4>
+                    <p>Static mutexes (inconsistent effects, interference) never disappear. Derived mutexes (competing needs, inconsistent support) may vanish as the graph grows &mdash; mutexes shrink monotonically.</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 4. Blocks World Quick Reference -->
+              <section id="blocks-world">
+                <h2>4. Blocks World Quick Reference</h2>
+                <div class="notes-card">
+                  <p><strong>Common Predicates:</strong> On(x,y), OnTable(x), Clear(x), Holding(x), HandEmpty</p>
+                  <table class="comparison-table" style="font-size:0.88rem;">
+                    <thead><tr><th>Operator</th><th>Preconditions</th><th>Add</th><th>Delete</th></tr></thead>
+                    <tbody>
+                      <tr><td>MoveToBlock(b,x,y)</td><td>On(b,x), Clear(b), Clear(y)</td><td>On(b,y), Clear(x)</td><td>On(b,x), Clear(y)</td></tr>
+                      <tr><td>MoveToTable(b,x)</td><td>On(b,x), Clear(b)</td><td>OnTable(b), Clear(x)</td><td>On(b,x)</td></tr>
+                      <tr><td>MoveFromTable(b,y)</td><td>OnTable(b), Clear(b), Clear(y)</td><td>On(b,y)</td><td>OnTable(b), Clear(y)</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- 5. POP Quick Reference -->
+              <section id="pop-reference">
+                <h2>5. POP Quick Reference</h2>
+                <div class="notes-card">
+                  <p><strong>Plan = &langle;A, O, L, OC&rangle;</strong></p>
+                  <ul style="font-size:0.92rem;">
+                    <li><strong>A</strong> &mdash; Actions (includes Start &amp; Finish)</li>
+                    <li><strong>O</strong> &mdash; Ordering constraints (a<sub>i</sub> &prec; a<sub>j</sub>)</li>
+                    <li><strong>L</strong> &mdash; Causal links (a<sub>i</sub> &xrarr;<sup>p</sup> a<sub>j</sub>)</li>
+                    <li><strong>OC</strong> &mdash; Open preconditions (not yet supported)</li>
+                  </ul>
+                  <p><strong>Threats:</strong> action a<sub>t</sub> threatens link a<sub>i</sub> &xrarr;<sup>p</sup> a<sub>j</sub> if p &isin; Del(a<sub>t</sub>) and a<sub>t</sub> can be between a<sub>i</sub> and a<sub>j</sub>.</p>
+                  <p><strong>Resolution:</strong></p>
+                  <ul style="font-size:0.92rem;">
+                    <li><strong>Promotion:</strong> a<sub>j</sub> &prec; a<sub>t</sub> (consumer before threat)</li>
+                    <li><strong>Demotion:</strong> a<sub>t</sub> &prec; a<sub>i</sub> (threat before producer)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- 6. Key Definitions -->
+              <section id="key-definitions">
+                <h2>6. Key Definitions</h2>
+                <div class="notes-card">
+                  <table class="comparison-table" style="font-size:0.90rem;">
+                    <thead><tr><th style="width:30%;">Term</th><th>Definition</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Closed-World Assumption</strong></td><td>Any fluent not stated is false.</td></tr>
+                      <tr><td><strong>Frame Problem</strong></td><td>How to represent that most things don&rsquo;t change when an action occurs.</td></tr>
+                      <tr><td><strong>STRIPS Assumption</strong></td><td>Only add/delete list fluents change; everything else persists.</td></tr>
+                      <tr><td><strong>Sussman Anomaly</strong></td><td>A problem where linear planners fail because sub-goals interact negatively.</td></tr>
+                      <tr><td><strong>Least Commitment</strong></td><td>Delay ordering/binding decisions until forced. POP embodies this principle.</td></tr>
+                      <tr><td><strong>Causal Link</strong></td><td>a<sub>i</sub> &xrarr;<sup>p</sup> a<sub>j</sub>: action a<sub>i</sub> achieves precondition p for a<sub>j</sub>.</td></tr>
+                      <tr><td><strong>Level-Off</strong></td><td>Planning graph property: layers stabilise (P<sub>k</sub> = P<sub>k+1</sub>, same mutexes). Guarantees GraphPlan termination.</td></tr>
+                      <tr><td><strong>Relaxed Plan</strong></td><td>Plan in the problem with delete effects removed. Used for heuristic computation.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- 7. Heuristics Summary -->
+              <section id="heuristics-summary">
+                <h2>7. Planning Heuristics</h2>
+                <div class="notes-card">
+                  <table class="comparison-table" style="font-size:0.88rem;">
+                    <thead><tr><th>Heuristic</th><th>Admissible?</th><th>Description</th></tr></thead>
+                    <tbody>
+                      <tr><td>h<sub>max</sub></td><td>Yes</td><td>Cost of the hardest single goal fluent</td></tr>
+                      <tr><td>h<sub>add</sub></td><td>No</td><td>Sum of individual goal fluent costs (ignores positive interaction)</td></tr>
+                      <tr><td>h<sup>FF</sup></td><td>No</td><td>Length of relaxed plan from relaxed planning graph</td></tr>
+                      <tr><td>h<sup>LM-cut</sup></td><td>Yes</td><td>Landmark-based cost partitioning lower bound</td></tr>
+                      <tr><td>h<sub>max-level</sub></td><td>Yes</td><td>Max first-appearance level of any goal in planning graph</td></tr>
+                      <tr><td>h<sub>set-level</sub></td><td>Yes</td><td>First level all goals appear non-mutex</td></tr>
+                      <tr><td>h<sub>sum-level</sub></td><td>No</td><td>Sum of first-appearance levels of goals</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- 8. Common GATE Questions -->
+              <section id="gate-patterns">
+                <h2>8. Common GATE Questions on Planning</h2>
+                <div class="notes-card">
+                  <ul style="font-size:0.92rem;">
+                    <li><strong>Given a STRIPS operator, compute the resulting state</strong> after applying it to a given state. Just apply: Result(s,a) = (s &minus; Del(a)) &cup; Add(a).</li>
+                    <li><strong>Identify mutex actions/propositions</strong> in a given planning graph layer. Check all four mutex conditions systematically.</li>
+                    <li><strong>Sussman Anomaly:</strong> explain why a given ordering fails; provide the correct interleaved plan.</li>
+                    <li><strong>Determine if an action is applicable</strong> in a given state. Check Precond(a) &sube; s.</li>
+                    <li><strong>POP threat resolution:</strong> given a causal link and a threatening action, specify promotion and demotion orderings.</li>
+                    <li><strong>Planning graph layer construction:</strong> build the next proposition/action layer and identify new mutexes.</li>
+                    <li><strong>True/False conceptual questions:</strong> &ldquo;STRIPS goal-stack planning is complete&rdquo; (False), &ldquo;GraphPlan always terminates&rdquo; (True), etc.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- 9. Tips -->
+              <section id="tips">
+                <h2>9. Tips &amp; Common Mistakes</h2>
+                <div class="notes-card">
+                  <ul style="font-size:0.92rem;">
+                    <li>When applying STRIPS actions, always <strong>delete before adding</strong>. If a fluent is in both lists, it ends up <strong>true</strong>.</li>
+                    <li>In POP, <strong>Start</strong> has no preconditions and its effects = initial state. <strong>Finish</strong> has the goal as preconditions and no effects.</li>
+                    <li>Don&rsquo;t confuse <strong>interference</strong> (delete vs. precondition) with <strong>inconsistent effects</strong> (delete vs. add).</li>
+                    <li>The planning graph <strong>over-approximates</strong> reachable propositions. Just because a proposition appears doesn&rsquo;t mean it&rsquo;s actually achievable &mdash; mutex checking tightens this.</li>
+                    <li>In the blocks world, always check <strong>Clear</strong> predicates carefully. Forgetting to update them is the most common error.</li>
+                    <li>GraphPlan finds the shortest <strong>parallel</strong> plan (minimum number of time steps), not necessarily the fewest total actions.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="chapters/13-planning/notes-planning.html">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="graph-planning.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">GraphPlan</span></a>
+              <a href="quiz-planning.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Chapter Quiz</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#strips-summary">1. STRIPS Notation</a></li>
+            <li><a href="#algorithm-comparison">2. Algorithm Comparison</a></li>
+            <li><a href="#mutex-types">3. Mutex Types</a></li>
+            <li><a href="#blocks-world">4. Blocks World Reference</a></li>
+            <li><a href="#pop-reference">5. POP Reference</a></li>
+            <li><a href="#key-definitions">6. Key Definitions</a></li>
+            <li><a href="#heuristics-summary">7. Planning Heuristics</a></li>
+            <li><a href="#gate-patterns">8. Common GATE Questions</a></li>
+            <li><a href="#tips">9. Tips &amp; Mistakes</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

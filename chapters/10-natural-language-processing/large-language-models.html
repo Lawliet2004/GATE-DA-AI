@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Large Language Models — scaling laws, pretraining, fine-tuning, emergent abilities, in-context learning, RLHF, and instruction tuning for GATE DA preparation.">
+  <title>Large Language Models — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a>
+            <a href="word-embeddings.html" class="sidebar-link"><span class="link-check"></span> Word Embeddings<span class="link-type theory">Theory</span></a>
+            <a href="language-models.html" class="sidebar-link"><span class="link-check"></span> Language Models<span class="link-type theory">Theory</span></a>
+            <a href="large-language-models.html" class="sidebar-link active"><span class="link-check"></span> Large Language Models<span class="link-type theory">Theory</span></a>
+            <a href="gpt-architecture.html" class="sidebar-link"><span class="link-check"></span> GPT Architecture<span class="link-type theory">Theory</span></a>
+            <a href="bert-and-variants.html" class="sidebar-link"><span class="link-check"></span> BERT &amp; Variants<span class="link-type theory">Theory</span></a>
+            <a href="prompt-engineering.html" class="sidebar-link"><span class="link-check"></span> Prompt Engineering<span class="link-type theory">Theory</span></a>
+            <a href="notes-nlp.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-nlp.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="text-preprocessing.html">Chapter 10: Natural Language Processing</a> &raquo; <span class="current">Large Language Models</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch10-large-language-models">
+
+            <h1>Large Language Models (LLMs)</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge low">GATE Relevance: Low</span>
+              <button class="bookmark-btn" data-page="ch10-large-language-models" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="language-models.html">Language Models</a> &mdash; n-gram models, neural LMs</li>
+                <li><a href="../09-neural-networks-deep-learning/neural-network-basics.html">Neural Network Basics</a> &mdash; transformers, attention</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand scaling laws and why larger models perform better</li>
+                <li>Distinguish pretraining from fine-tuning paradigms</li>
+                <li>Explain emergent abilities that appear at scale</li>
+                <li>Describe in-context learning and how LLMs use examples at inference time</li>
+                <li>Understand RLHF and instruction tuning for alignment</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="overview">
+              <h2>1. What Makes a Language Model &ldquo;Large&rdquo;?</h2>
+              <p>A <strong>Large Language Model (LLM)</strong> is a neural language model with billions of parameters, trained on massive text corpora (hundreds of gigabytes to terabytes). The &ldquo;large&rdquo; in LLM refers to three dimensions of scale:</p>
+              <ul>
+                <li><strong>Model size:</strong> Number of parameters (weights). GPT-3 has 175 billion parameters; GPT-4 is estimated to be even larger.</li>
+                <li><strong>Training data:</strong> Volume of text used for pretraining. GPT-3 was trained on ~570 GB of filtered text.</li>
+                <li><strong>Compute:</strong> Total floating-point operations during training, often measured in petaFLOP-days.</li>
+              </ul>
+              <div class="definition-box">
+                <strong>Key models timeline:</strong> GPT-1 (2018, 117M params) &rarr; BERT (2018, 340M) &rarr; GPT-2 (2019, 1.5B) &rarr; GPT-3 (2020, 175B) &rarr; PaLM (2022, 540B) &rarr; GPT-4 (2023) &rarr; Gemini, Claude, Llama series (2023&ndash;2025).
+              </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="scaling-laws">
+              <h2>2. Scaling Laws</h2>
+              <p>Kaplan et al. (2020) discovered that LLM performance (measured by cross-entropy loss L) follows power-law relationships:</p>
+              <p style="text-align:center; font-size:1.1rem;">L(N) &propto; N<sup>&minus;α<sub>N</sub></sup> &nbsp;&nbsp;&nbsp; L(D) &propto; D<sup>&minus;α<sub>D</sub></sup> &nbsp;&nbsp;&nbsp; L(C) &propto; C<sup>&minus;α<sub>C</sub></sup></p>
+              <p>where N = number of parameters, D = dataset size, C = compute budget, and α values are positive constants (~0.076, 0.095, 0.050 respectively).</p>
+              <p><strong>Key implications:</strong></p>
+              <ul>
+                <li>Performance improves smoothly and predictably with scale &mdash; no plateau in sight within current ranges.</li>
+                <li>All three factors (N, D, C) must scale together. Increasing model size without proportionally increasing data leads to overfitting.</li>
+                <li><strong>Chinchilla scaling (Hoffmann et al., 2022):</strong> The optimal allocation scales N and D equally. A 70B parameter model trained on 1.4 trillion tokens outperforms a 280B model trained on fewer tokens with the same compute budget.</li>
+              </ul>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="pretraining">
+              <h2>3. Pretraining</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> Pretraining is the initial phase where the LLM learns language patterns from a massive unlabeled text corpus using self-supervised objectives.
+              </div>
+              <p><strong>Common pretraining objectives:</strong></p>
+              <ul>
+                <li><strong>Causal language modeling (CLM):</strong> Predict the next token given all previous tokens. Used by GPT family. Loss = &minus;&sum; log P(w<sub>t</sub> | w<sub>&lt;t</sub>).</li>
+                <li><strong>Masked language modeling (MLM):</strong> Randomly mask 15% of tokens and predict them from bidirectional context. Used by BERT.</li>
+                <li><strong>Prefix language modeling:</strong> Encode a prefix bidirectionally, then generate autoregressively. Used by some encoder-decoder models.</li>
+              </ul>
+              <p><strong>Training data sources:</strong> Web crawls (Common Crawl), books, Wikipedia, code repositories (GitHub), scientific papers, forums. Careful filtering and deduplication is critical.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="fine-tuning">
+              <h2>4. Fine-tuning</h2>
+              <p>After pretraining, the model is adapted to specific tasks or behaviors:</p>
+
+              <h3>4.1 Supervised Fine-tuning (SFT)</h3>
+              <p>Train on a curated dataset of (instruction, response) pairs. The model learns to follow instructions rather than just predict the next word.</p>
+              <p style="text-align:center;">L<sub>SFT</sub> = &minus;&sum; log P(response<sub>t</sub> | instruction, response<sub>&lt;t</sub>)</p>
+
+              <h3>4.2 Parameter-Efficient Fine-tuning (PEFT)</h3>
+              <p>Instead of updating all parameters, modify only a small subset:</p>
+              <ul>
+                <li><strong>LoRA (Low-Rank Adaptation):</strong> Add low-rank matrices ΔW = BA to attention weights, where B ∈ ℝ<sup>d&times;r</sup> and A ∈ ℝ<sup>r&times;d</sup> with r ≪ d. Only train A and B (0.1&ndash;1% of total parameters).</li>
+                <li><strong>Prefix tuning:</strong> Prepend learnable vectors to the key/value matrices in attention.</li>
+                <li><strong>Adapter layers:</strong> Insert small trainable bottleneck layers between frozen transformer blocks.</li>
+              </ul>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="emergent-abilities">
+              <h2>5. Emergent Abilities</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> Emergent abilities are capabilities that appear suddenly when a model reaches a certain scale threshold &mdash; they are absent in smaller models but present in larger ones, without being explicitly trained.
+              </div>
+              <p><strong>Examples of emergent abilities:</strong></p>
+              <ul>
+                <li><strong>Multi-step reasoning:</strong> Chain-of-thought reasoning appears around 100B+ parameters.</li>
+                <li><strong>Arithmetic:</strong> 3-digit addition emerges at scale but is absent in smaller models.</li>
+                <li><strong>Word unscrambling:</strong> Anagram solving appears spontaneously at sufficient scale.</li>
+                <li><strong>Code generation:</strong> Writing functional code from natural language descriptions.</li>
+              </ul>
+              <p><strong>Debate:</strong> Some researchers (Schaeffer et al., 2023) argue that emergence may be an artifact of evaluation metrics rather than a fundamental phase transition in capability.</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="in-context-learning">
+              <h2>6. In-Context Learning</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> In-context learning (ICL) is the ability of LLMs to perform new tasks at inference time by conditioning on a few examples provided in the prompt, without any gradient updates.
+              </div>
+              <p><strong>Types of in-context learning:</strong></p>
+              <ul>
+                <li><strong>Zero-shot:</strong> Only a task description is given, no examples. &ldquo;Translate the following English text to French: &hellip;&rdquo;</li>
+                <li><strong>One-shot:</strong> One example is provided before the query.</li>
+                <li><strong>Few-shot:</strong> Multiple examples (typically 3&ndash;10) are provided in the prompt.</li>
+              </ul>
+              <div class="example-box">
+                <h4>Example: Few-shot Classification</h4>
+                <p><strong>Prompt:</strong></p>
+                <p style="font-family:monospace; background:var(--bg-secondary); padding:var(--spacing-md); border-radius:var(--border-radius);">
+                  Classify the sentiment:<br>
+                  &ldquo;I love this movie&rdquo; → Positive<br>
+                  &ldquo;Terrible waste of time&rdquo; → Negative<br>
+                  &ldquo;It was okay, nothing special&rdquo; → Neutral<br>
+                  &ldquo;Absolutely fantastic performance&rdquo; →
+                </p>
+                <p><strong>Expected output:</strong> Positive</p>
+              </div>
+              <p>The mechanism behind ICL is still debated. Hypotheses include implicit gradient descent in the forward pass (Dai et al., 2023) and Bayesian inference over pretraining distributions.</p>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="rlhf">
+              <h2>7. RLHF (Reinforcement Learning from Human Feedback)</h2>
+              <p>RLHF aligns the model with human preferences through a three-step process:</p>
+              <ol>
+                <li><strong>Step 1 &mdash; Supervised Fine-tuning (SFT):</strong> Fine-tune the pretrained model on high-quality (prompt, response) pairs.</li>
+                <li><strong>Step 2 &mdash; Reward Model Training:</strong> Collect human rankings of model outputs. Given a prompt, humans rank multiple responses from best to worst. Train a reward model R(prompt, response) &rarr; scalar score using these preferences.</li>
+                <li><strong>Step 3 &mdash; RL Optimization:</strong> Use Proximal Policy Optimization (PPO) to fine-tune the SFT model to maximize the reward R while staying close to the SFT model (KL divergence penalty):</li>
+              </ol>
+              <p style="text-align:center;">maximize 𝔼[R(x, y)] &minus; β &middot; D<sub>KL</sub>(π<sub>RL</sub> ‖ π<sub>SFT</sub>)</p>
+              <p>where π<sub>RL</sub> is the RL-tuned policy and π<sub>SFT</sub> is the supervised fine-tuned policy.</p>
+
+              <h3>7.1 Instruction Tuning</h3>
+              <p>A simpler alternative to full RLHF: fine-tune on a diverse collection of tasks formatted as instructions. FLAN (Wei et al., 2022) showed that instruction tuning on 60+ NLP tasks significantly improves zero-shot performance on unseen tasks.</p>
+              <p><strong>DPO (Direct Preference Optimization):</strong> An alternative to PPO that directly optimizes for human preferences without training a separate reward model, simplifying the RLHF pipeline.</p>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="summary">
+              <h2>8. Summary</h2>
+              <div class="summary-section">
+                <ul>
+                  <li><strong>LLMs</strong> are neural LMs with billions of parameters trained on massive corpora.</li>
+                  <li><strong>Scaling laws:</strong> Loss follows power laws in model size, data, and compute.</li>
+                  <li><strong>Pretraining:</strong> Self-supervised (CLM or MLM) on unlabeled text.</li>
+                  <li><strong>Fine-tuning:</strong> SFT on instruction data; PEFT (LoRA) for efficiency.</li>
+                  <li><strong>Emergent abilities:</strong> Appear at scale thresholds (reasoning, code generation).</li>
+                  <li><strong>In-context learning:</strong> Zero/few-shot task performance without gradient updates.</li>
+                  <li><strong>RLHF:</strong> 3-step alignment (SFT → reward model → PPO) to match human preferences.</li>
+                  <li><strong>Instruction tuning:</strong> Simpler alternative; train on diverse instruction-response pairs.</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch10-large-language-models">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="language-models.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Language Models</span></a>
+              <a href="gpt-architecture.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">GPT Architecture</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#overview">1. What Makes a Model Large?</a></li>
+            <li><a href="#scaling-laws">2. Scaling Laws</a></li>
+            <li><a href="#pretraining">3. Pretraining</a></li>
+            <li><a href="#fine-tuning">4. Fine-tuning</a></li>
+            <li><a href="#emergent-abilities">5. Emergent Abilities</a></li>
+            <li><a href="#in-context-learning">6. In-Context Learning</a></li>
+            <li><a href="#rlhf">7. RLHF</a></li>
+            <li><a href="#summary">8. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

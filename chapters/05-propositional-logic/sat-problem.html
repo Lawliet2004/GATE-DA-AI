@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAT Problem - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li class="active"><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>SAT Problem</span>
+        </div>
+
+        <article class="theory-content">
+            <h1>Boolean Satisfiability Problem (SAT)</h1>
+
+            <div class="gate-badge">GATE DA — High Importance</div>
+
+            <div class="learning-objectives">
+                <h3>🎯 Learning Objectives</h3>
+                <ul>
+                    <li>Define the SAT problem formally</li>
+                    <li>Understand Cook's theorem and NP-completeness of SAT</li>
+                    <li>Learn the DPLL algorithm for SAT solving</li>
+                    <li>Distinguish between 2-SAT (polynomial) and 3-SAT (NP-complete)</li>
+                </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section>
+                <h2>1. The SAT Problem</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Boolean Satisfiability Problem (SAT)</div>
+                    <p>Given a propositional formula φ (typically in CNF), determine whether there exists a truth assignment to its variables that makes φ <strong>true</strong> (i.e., whether φ is <em>satisfiable</em>).</p>
+                    <p class="formula">SAT: Given φ in CNF, does there exist v such that v(φ) = True?</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example</h4>
+                    <p>φ = (P ∨ Q) ∧ (¬P ∨ R) ∧ (¬Q ∨ ¬R)</p>
+                    <p>Is φ satisfiable? Try v(P)=T, v(Q)=T, v(R)=T:</p>
+                    <ul>
+                        <li>(T ∨ T) = T ✅</li>
+                        <li>(F ∨ T) = T ✅</li>
+                        <li>(F ∨ F) = F ❌</li>
+                    </ul>
+                    <p>This assignment doesn't work. Try v(P)=T, v(Q)=F, v(R)=T:</p>
+                    <ul>
+                        <li>(T ∨ F) = T ✅</li>
+                        <li>(F ∨ T) = T ✅</li>
+                        <li>(T ∨ F) = T ✅</li>
+                    </ul>
+                    <p>This works! φ is <strong>satisfiable</strong>. ✅</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Cook's Theorem -->
+            <section>
+                <h2>2. Cook's Theorem: SAT is NP-Complete</h2>
+
+                <div class="theorem-box">
+                    <h4>Cook-Levin Theorem (1971)</h4>
+                    <p>The Boolean Satisfiability Problem (SAT) is <strong>NP-complete</strong>. This means:</p>
+                    <ol>
+                        <li><strong>SAT ∈ NP:</strong> Given a truth assignment, we can verify in polynomial time whether it satisfies the formula.</li>
+                        <li><strong>SAT is NP-hard:</strong> Every problem in NP can be reduced to SAT in polynomial time.</li>
+                    </ol>
+                    <p>This was the <em>first</em> problem shown to be NP-complete and is a cornerstone of computational complexity theory.</p>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 Implications</h4>
+                    <ul>
+                        <li>No known polynomial-time algorithm for SAT (unless P = NP).</li>
+                        <li>A brute-force approach checks all 2<sup>n</sup> assignments → exponential time.</li>
+                        <li>Despite NP-completeness, modern SAT solvers handle millions of variables using clever heuristics.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 3: Variants -->
+            <section>
+                <h2>3. SAT Variants: k-SAT</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: k-SAT</div>
+                    <p><strong>k-SAT</strong> is the restriction of SAT where each clause has <strong>exactly k literals</strong>.</p>
+                </div>
+
+                <h3>3.1 2-SAT — Polynomial Time!</h3>
+                <div class="theorem-box">
+                    <h4>Theorem: 2-SAT ∈ P</h4>
+                    <p>2-SAT (every clause has exactly 2 literals) can be solved in <strong>O(n + m)</strong> time, where n = number of variables and m = number of clauses. The algorithm uses <strong>implication graphs</strong> and <strong>strongly connected components (SCC)</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>2-SAT Example</h4>
+                    <p>φ = (P ∨ Q) ∧ (¬P ∨ R) ∧ (¬Q ∨ ¬R)</p>
+                    <p>Each clause has 2 literals. A clause (a ∨ b) is equivalent to (¬a → b) ∧ (¬b → a).</p>
+                    <p>Build implication graph: ¬P→Q, ¬Q→P, P→R, ¬R→¬P, Q→¬R, R→¬Q</p>
+                    <p>Find SCCs and check consistent assignment: satisfiable with P=T, Q=F, R=T.</p>
+                </div>
+
+                <h3>3.2 3-SAT — NP-Complete</h3>
+                <div class="theorem-box">
+                    <h4>Theorem: 3-SAT is NP-Complete</h4>
+                    <p>3-SAT (every clause has exactly 3 literals) is NP-complete. In fact, any SAT instance can be reduced to a 3-SAT instance in polynomial time. This makes 3-SAT the "standard" NP-complete problem for reductions.</p>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 Complexity Summary for GATE</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>Problem</th><th>Complexity</th></tr></thead>
+                        <tbody>
+                            <tr><td>1-SAT</td><td>O(n) — trivial</td></tr>
+                            <tr><td>2-SAT</td><td>O(n + m) — polynomial</td></tr>
+                            <tr><td>3-SAT</td><td>NP-complete</td></tr>
+                            <tr><td>k-SAT (k ≥ 3)</td><td>NP-complete</td></tr>
+                            <tr><td>General SAT</td><td>NP-complete</td></tr>
+                            <tr><td>Horn-SAT</td><td>O(n) — linear</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 4: DPLL -->
+            <section>
+                <h2>4. DPLL Algorithm</h2>
+
+                <p>The <strong>Davis-Putnam-Logemann-Loveland (DPLL)</strong> algorithm (1962) is the foundation of all modern SAT solvers. It's a systematic backtracking search with two key optimizations.</p>
+
+                <div class="algorithm-block">
+                    <div class="algo-header">Algorithm: DPLL</div>
+                    <div class="algo-body">
+<pre>
+function DPLL(clauses, assignment):
+    // Unit Propagation
+    while there exists a unit clause {l} in clauses:
+        assignment ← assignment ∪ {l = True}
+        clauses ← simplify(clauses, l)
+    
+    // Pure Literal Elimination
+    for each literal l that appears only positive (or only negative):
+        assignment ← assignment ∪ {l = True}  // (or ¬l if only negative)
+        clauses ← simplify(clauses, l)
+    
+    // Success / Failure
+    if clauses is empty:
+        return TRUE (satisfiable)
+    if empty clause □ ∈ clauses:
+        return FALSE (conflict)
+    
+    // Choose a variable and branch
+    P ← choose an unassigned variable
+    return DPLL(clauses ∪ {{P}}, assignment) 
+        OR DPLL(clauses ∪ {{¬P}}, assignment)
+
+function simplify(clauses, l):
+    // Remove all clauses containing l (they are satisfied)
+    // Remove ¬l from all remaining clauses
+    return modified clauses
+</pre>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 DPLL Key Ideas</h4>
+                    <ul>
+                        <li><strong>Unit Propagation:</strong> If a clause has only one literal, that literal must be true. Propagate this assignment.</li>
+                        <li><strong>Pure Literal Elimination:</strong> If a variable always appears with the same polarity, assign it to satisfy those clauses.</li>
+                        <li><strong>Branching:</strong> Pick an unassigned variable and try both values recursively.</li>
+                        <li><strong>Worst case:</strong> Still exponential, but pruning makes it practical for many instances.</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: DPLL on (P ∨ Q) ∧ (¬P ∨ R) ∧ (¬R)</h4>
+                    <ol>
+                        <li><strong>Unit propagation:</strong> {¬R} is a unit clause → set R = False</li>
+                        <li>Simplify: Remove {¬R} (satisfied). Remove R from {¬P ∨ R} → {¬P}</li>
+                        <li>Clauses now: {P ∨ Q}, {¬P}</li>
+                        <li><strong>Unit propagation:</strong> {¬P} is unit → set P = False</li>
+                        <li>Simplify: Remove {¬P} (satisfied). Remove P from {P ∨ Q} → {Q}</li>
+                        <li><strong>Unit propagation:</strong> {Q} is unit → set Q = True</li>
+                        <li>Simplify: Remove {Q} (satisfied). Clauses empty!</li>
+                        <li>Return TRUE. Assignment: P=F, Q=T, R=F ✅</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 5: GATE -->
+            <section>
+                <h2>5. GATE Exam Tips</h2>
+                <div class="warning-box">
+                    <h4>🎯 Key Points</h4>
+                    <ul>
+                        <li>Know that <strong>SAT is NP-complete</strong> (Cook's theorem).</li>
+                        <li>Remember <strong>2-SAT ∈ P</strong> but <strong>3-SAT is NP-complete</strong>. The boundary is sharp!</li>
+                        <li>GATE may ask to <strong>trace DPLL</strong> on small instances — practice unit propagation.</li>
+                        <li><strong>Horn-SAT</strong> is solvable in linear time — special case to remember.</li>
+                        <li>Understand that SAT is a <strong>decision problem</strong> (yes/no), not an optimization problem.</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="horn-clauses.html" class="nav-btn prev-btn">← Previous: Horn Clauses</a>
+            <a href="knowledge-representation.html" class="nav-btn next-btn">Next: Knowledge Representation →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-sat-problem">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-sat-problem">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

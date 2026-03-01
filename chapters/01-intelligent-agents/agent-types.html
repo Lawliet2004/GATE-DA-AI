@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Agent Types and Architectures — Five main agent types: simple reflex, model-based reflex, goal-based, utility-based, and learning agents with comparisons for GATE DA.">
+  <title>Agent Types &amp; Architectures — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+            <a href="rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a>
+            <a href="task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a>
+            <a href="agent-types.html" class="sidebar-link active"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a>
+            <a href="practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a>
+            <a href="notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="agents-and-environments.html">Chapter 1: Intelligent Agents</a> &raquo;
+          <span class="current">Agent Types</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch01-agent-types">
+
+            <!-- Page Header -->
+            <h1>Agent Types &amp; Architectures</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch01-agent-types" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="agents-and-environments.html">Agents &amp; Environments</a> &mdash; Agent function vs. agent program</li>
+                <li><a href="rationality.html">Rationality</a> &mdash; Performance measure, rational behavior</li>
+                <li><a href="task-environment-peas.html">PEAS Framework</a> &mdash; Environment properties</li>
+              </ul>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Describe the five main agent architectures and their key components</li>
+                <li>Explain why the table-driven agent is impractical</li>
+                <li>Compare agent types and know when to use each one</li>
+                <li>Identify agent types from descriptions in GATE questions</li>
+                <li>Understand how the learning agent generalizes all other types</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: Overview -->
+              <section id="overview">
+                <h2>1. Overview of Agent Architectures</h2>
+
+                <p>Russell &amp; Norvig describe five basic agent architectures, arranged from simplest to most general. Each successive type addresses limitations of the previous one. Think of them as a progression from simple reactive rules to full learning systems.</p>
+
+                <ol>
+                  <li><strong>Simple Reflex Agent</strong> &mdash; Condition-action rules on current percept</li>
+                  <li><strong>Model-Based Reflex Agent</strong> &mdash; Maintains internal state to handle partial observability</li>
+                  <li><strong>Goal-Based Agent</strong> &mdash; Uses goals to plan actions via search</li>
+                  <li><strong>Utility-Based Agent</strong> &mdash; Uses a utility function for optimal decision-making</li>
+                  <li><strong>Learning Agent</strong> &mdash; Improves its own performance from experience</li>
+                </ol>
+
+                <div class="note-box">
+                  <div class="box-title">Table-Driven Agent (Why It Fails)</div>
+                  <p>Before studying practical agent types, recall the <strong>table-driven agent</strong>: it stores one action for every possible percept sequence. For a camera producing 600&times;480 pixels with 24-bit color at 30 fps, a single second generates a percept sequence of astronomical size. Storing such a table is impossible. The agent types below are <em>practical alternatives</em> that compress the agent function into manageable code.</p>
+                </div>
+              </section>
+
+              <!-- Section 2: Simple Reflex Agent -->
+              <section id="simple-reflex">
+                <h2>2. Simple Reflex Agents</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Simple Reflex Agent</div>
+                  <p>A simple reflex agent selects actions based <strong>only on the current percept</strong>, ignoring the rest of the percept history. It uses <strong>condition-action rules</strong> (also called <em>if-then</em> rules, <em>situation-action rules</em>, or <em>productions</em>).</p>
+                </div>
+
+                <h3>How It Works</h3>
+                <p>The agent has a set of rules like:</p>
+                <pre><code>if condition then action</code></pre>
+                <p>For each percept, the agent checks which rule matches and executes the corresponding action.</p>
+
+                <h3>Pseudocode</h3>
+                <pre><code>function SIMPLE-REFLEX-AGENT(percept):
+    state = INTERPRET-INPUT(percept)
+    rule = RULE-MATCH(state, rules)
+    action = rule.ACTION
+    return action</code></pre>
+
+                <h3>Architecture Diagram (Textual)</h3>
+                <div class="note-box">
+                  <div class="box-title">Simple Reflex Agent Structure</div>
+                  <p style="font-family:monospace; white-space:pre; line-height:1.6;">
+Environment &rarr; [Sensors] &rarr; What the world is like now
+                                  &darr;
+                          [Condition-Action Rules]
+                                  &darr;
+                          What action I should do now
+                                  &darr;
+              [Actuators] &larr; Action &rarr; Environment</p>
+                </div>
+
+                <h3>Strengths &amp; Weaknesses</h3>
+                <ul>
+                  <li><strong>&#10004; Simple:</strong> Easy to implement and fast to execute.</li>
+                  <li><strong>&#10004; Works well</strong> in fully observable environments with simple mappings.</li>
+                  <li><strong>&#10008; No memory:</strong> Cannot handle partially observable environments (doesn&rsquo;t remember what it can&rsquo;t currently see).</li>
+                  <li><strong>&#10008; No planning:</strong> Cannot look ahead or consider consequences of actions.</li>
+                  <li><strong>&#10008; Infinite loops:</strong> May get stuck in loops if the environment is not fully observable (e.g., a vacuum cleaner oscillating forever).</li>
+                </ul>
+
+                <p><strong>Best for:</strong> Fully observable, deterministic, episodic environments. Example: thermostat, simple vacuum-cleaner world.</p>
+              </section>
+
+              <!-- Section 3: Model-Based Reflex Agent -->
+              <section id="model-based">
+                <h2>3. Model-Based Reflex Agents</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Model-Based Reflex Agent</div>
+                  <p>A model-based reflex agent maintains an <strong>internal state</strong> that tracks aspects of the world it cannot currently observe. It uses a <strong>model</strong> of the world (knowledge of how the world evolves and how its actions affect the world) to update this internal state.</p>
+                </div>
+
+                <h3>Two Key Models</h3>
+                <ul>
+                  <li><strong>Transition model:</strong> How the world changes over time (with or without the agent&rsquo;s actions). &ldquo;If I turn the steering wheel left, the car turns left.&rdquo;</li>
+                  <li><strong>Sensor model:</strong> How the state of the world is reflected in the agent&rsquo;s percepts. &ldquo;When it rains, the camera images become blurry.&rdquo;</li>
+                </ul>
+
+                <h3>Pseudocode</h3>
+                <pre><code>function MODEL-BASED-REFLEX-AGENT(percept):
+    state = UPDATE-STATE(state, action, percept, model)
+    rule = RULE-MATCH(state, rules)
+    action = rule.ACTION
+    return action</code></pre>
+
+                <h3>Architecture Diagram (Textual)</h3>
+                <div class="note-box">
+                  <div class="box-title">Model-Based Reflex Agent Structure</div>
+                  <p style="font-family:monospace; white-space:pre; line-height:1.6;">
+Environment &rarr; [Sensors] &rarr; What the world is like now
+                                  &darr;
+                 [State] &larr;&mdash;&mdash; How the world evolves
+                    |            What my actions do
+                    &darr;
+            [Condition-Action Rules]
+                    &darr;
+            What action I should do now
+                    &darr;
+          [Actuators] &rarr; Environment</p>
+                </div>
+
+                <h3>Strengths &amp; Weaknesses</h3>
+                <ul>
+                  <li><strong>&#10004; Handles partial observability:</strong> Can remember what was behind it, in previously visited rooms, etc.</li>
+                  <li><strong>&#10004; More robust</strong> than simple reflex in changing environments.</li>
+                  <li><strong>&#10008; Still uses condition-action rules:</strong> No ability to plan ahead or reason about goals.</li>
+                  <li><strong>&#10008; Model accuracy:</strong> If the internal model is inaccurate, the agent&rsquo;s state estimate diverges from reality.</li>
+                </ul>
+
+                <p><strong>Best for:</strong> Partially observable environments where condition-action rules still suffice. Example: a robot that remembers previously visited rooms.</p>
+              </section>
+
+              <!-- Section 4: Goal-Based Agent -->
+              <section id="goal-based">
+                <h2>4. Goal-Based Agents</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Goal-Based Agent</div>
+                  <p>A goal-based agent has explicit <strong>goal information</strong> describing desirable states. It selects actions by considering what will happen in the future (using search and planning algorithms) and choosing actions that achieve its goals.</p>
+                </div>
+
+                <h3>Key Difference from Reflex Agents</h3>
+                <p>Reflex agents map percepts directly to actions. Goal-based agents ask: &ldquo;Will this action bring me closer to my goal?&rdquo; This requires <strong>search</strong> (exploring possible future states) and <strong>planning</strong> (constructing a sequence of actions).</p>
+
+                <h3>Architecture Diagram (Textual)</h3>
+                <div class="note-box">
+                  <div class="box-title">Goal-Based Agent Structure</div>
+                  <p style="font-family:monospace; white-space:pre; line-height:1.6;">
+Environment &rarr; [Sensors] &rarr; What the world is like now
+                                  &darr;
+            [State] &larr;&mdash;&mdash; How the world evolves
+                |                What my actions do
+                &darr;
+     What it will be like if I do action A?
+                &darr;
+            [Goals] &mdash; What am I trying to achieve?
+                &darr;
+          What action I should do now
+                &darr;
+          [Actuators] &rarr; Environment</p>
+                </div>
+
+                <h3>Strengths &amp; Weaknesses</h3>
+                <ul>
+                  <li><strong>&#10004; Flexible:</strong> Adapts easily to new goals without rewriting rules. Just change the goal.</li>
+                  <li><strong>&#10004; Can plan ahead:</strong> Uses search/planning to find action sequences.</li>
+                  <li><strong>&#10008; Binary goals:</strong> Goals are either achieved or not&mdash;no way to compare &ldquo;how well&rdquo; different actions perform.</li>
+                  <li><strong>&#10008; May be slow:</strong> Search can be expensive in large state spaces.</li>
+                </ul>
+
+                <p><strong>Best for:</strong> Environments where planning is needed and goals are clearly defined. Example: GPS navigation (goal = reach destination), puzzle solving.</p>
+              </section>
+
+              <!-- Section 5: Utility-Based Agent -->
+              <section id="utility-based">
+                <h2>5. Utility-Based Agents</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Utility-Based Agent</div>
+                  <p>A utility-based agent has a <strong>utility function</strong> that maps each state (or sequence of states) to a real number indicating how &ldquo;happy&rdquo; or desirable that state is. The agent selects the action that <strong>maximizes expected utility</strong>.</p>
+                </div>
+
+                <h3>Why Utility Goes Beyond Goals</h3>
+                <p>Goals are binary (achieved or not). Utility allows <strong>trade-offs</strong>:</p>
+                <ul>
+                  <li>A taxi driver reaching the destination faster is better than slower (goal-based says both achieve the goal equally).</li>
+                  <li>A safer route with slightly longer travel time may have <em>higher utility</em> than a shorter but dangerous route.</li>
+                  <li>When conflicting goals exist (safety vs. speed), utility provides a principled way to balance them.</li>
+                </ul>
+
+                <h3>Architecture Diagram (Textual)</h3>
+                <div class="note-box">
+                  <div class="box-title">Utility-Based Agent Structure</div>
+                  <p style="font-family:monospace; white-space:pre; line-height:1.6;">
+Environment &rarr; [Sensors] &rarr; What the world is like now
+                                  &darr;
+            [State] &larr;&mdash;&mdash; How the world evolves
+                |                What my actions do
+                &darr;
+     What it will be like if I do action A?
+                &darr;
+         [Utility Function] &mdash; How happy will I be in that state?
+                &darr;
+          What action I should do now
+                &darr;
+          [Actuators] &rarr; Environment</p>
+                </div>
+
+                <h3>Strengths &amp; Weaknesses</h3>
+                <ul>
+                  <li><strong>&#10004; Optimal decisions:</strong> Handles trade-offs, conflicting goals, and uncertainty.</li>
+                  <li><strong>&#10004; Works with stochastic environments:</strong> Can compute expected utility over probabilistic outcomes.</li>
+                  <li><strong>&#10008; Computational cost:</strong> Computing expected utility over all possible outcomes can be expensive.</li>
+                  <li><strong>&#10008; Designing the utility function:</strong> Choosing the right utility function is challenging.</li>
+                </ul>
+
+                <p><strong>Best for:</strong> Complex environments with uncertainty and conflicting objectives. Example: self-driving car (trading off speed, safety, comfort), stock trading, medical treatment planning.</p>
+              </section>
+
+              <!-- Section 6: Learning Agent -->
+              <section id="learning-agent">
+                <h2>6. Learning Agents</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Learning Agent</div>
+                  <p>A learning agent can <strong>improve its behavior over time</strong> by learning from experience. It consists of four conceptual components.</p>
+                </div>
+
+                <h3>Four Components of a Learning Agent</h3>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Component</th><th>Function</th><th>Analogy</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Performance Element</strong></td>
+                        <td>Selects actions based on current knowledge. This is the &ldquo;agent&rdquo; we have discussed so far (could be simple reflex, model-based, goal-based, or utility-based).</td>
+                        <td>The driver</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Critic</strong></td>
+                        <td>Evaluates how well the agent is doing (based on a fixed performance standard). Provides feedback to the learning element.</td>
+                        <td>The driving instructor observing your driving</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Learning Element</strong></td>
+                        <td>Uses feedback from the critic to improve the performance element. Modifies rules, models, goals, or utility functions.</td>
+                        <td>Your ability to learn from mistakes</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Problem Generator</strong></td>
+                        <td>Suggests exploratory actions that may lead to new experiences. Balances exploration vs. exploitation.</td>
+                        <td>The instructor suggesting you try parallel parking in a busy street to challenge yourself</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>Architecture Diagram (Textual)</h3>
+                <div class="note-box">
+                  <div class="box-title">Learning Agent Structure</div>
+                  <p style="font-family:monospace; white-space:pre; line-height:1.6;">
+                     [Critic] &larr;&mdash;&mdash; Performance standard
+                        |
+                    feedback
+                        &darr;
+[Problem Generator] &rarr; [Learning Element]
+        |                       |
+   exploratory            changes/knowledge
+    actions                     &darr;
+        |              [Performance Element]
+        &darr;                     |
+     Environment &larr; [Actuators] &larr; action
+        |
+     [Sensors] &rarr; percept &rarr; [Performance Element]</p>
+                </div>
+
+                <h3>Strengths &amp; Weaknesses</h3>
+                <ul>
+                  <li><strong>&#10004; Adapts:</strong> Improves performance in unknown or changing environments.</li>
+                  <li><strong>&#10004; General:</strong> Can improve any of the other agent types.</li>
+                  <li><strong>&#10004; Handles initial ignorance:</strong> Can start with no knowledge and learn from experience.</li>
+                  <li><strong>&#10008; Needs training data/experience:</strong> Initial performance may be poor.</li>
+                  <li><strong>&#10008; Complexity:</strong> Learning algorithms can be computationally expensive.</li>
+                </ul>
+              </section>
+
+              <!-- Section 7: Comparison Table -->
+              <section id="comparison-table">
+                <h2>7. Comparison of All Five Agent Types</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Feature</th>
+                        <th>Simple Reflex</th>
+                        <th>Model-Based</th>
+                        <th>Goal-Based</th>
+                        <th>Utility-Based</th>
+                        <th>Learning</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Uses current percept only</td>
+                        <td>&#10004;</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                      </tr>
+                      <tr>
+                        <td>Has internal state</td>
+                        <td>&#10008;</td>
+                        <td>&#10004;</td>
+                        <td>&#10004;</td>
+                        <td>&#10004;</td>
+                        <td>&#10004;</td>
+                      </tr>
+                      <tr>
+                        <td>Has explicit goals</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                        <td>&#10004;</td>
+                        <td>Implicit in utility</td>
+                        <td>&#10004;</td>
+                      </tr>
+                      <tr>
+                        <td>Has utility function</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                        <td>&#10004;</td>
+                        <td>Possible</td>
+                      </tr>
+                      <tr>
+                        <td>Can learn</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                        <td>&#10004;</td>
+                      </tr>
+                      <tr>
+                        <td>Handles partial observability</td>
+                        <td>&#10008;</td>
+                        <td>&#10004;</td>
+                        <td>&#10004;</td>
+                        <td>&#10004;</td>
+                        <td>&#10004;</td>
+                      </tr>
+                      <tr>
+                        <td>Plans ahead</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                        <td>&#10004;</td>
+                        <td>&#10004;</td>
+                        <td>&#10004;</td>
+                      </tr>
+                      <tr>
+                        <td>Handles trade-offs</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                        <td>&#10008;</td>
+                        <td>&#10004;</td>
+                        <td>&#10004;</td>
+                      </tr>
+                      <tr>
+                        <td>Complexity</td>
+                        <td>Lowest</td>
+                        <td>Low</td>
+                        <td>Medium</td>
+                        <td>High</td>
+                        <td>Highest</td>
+                      </tr>
+                      <tr>
+                        <td>Example</td>
+                        <td>Thermostat</td>
+                        <td>Vacuum with memory</td>
+                        <td>GPS navigation</td>
+                        <td>Self-driving car</td>
+                        <td>AlphaGo</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 8: When to Use Which -->
+              <section id="when-to-use">
+                <h2>8. When to Use Which Agent Type</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Environment Properties</th><th>Recommended Agent Type</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Fully observable, deterministic, simple</td><td>Simple Reflex Agent</td></tr>
+                      <tr><td>Partially observable</td><td>Model-Based Reflex Agent (at minimum)</td></tr>
+                      <tr><td>Complex, requires planning</td><td>Goal-Based Agent</td></tr>
+                      <tr><td>Stochastic, conflicting objectives, trade-offs needed</td><td>Utility-Based Agent</td></tr>
+                      <tr><td>Unknown environment, need to improve over time</td><td>Learning Agent</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 9: Worked Examples -->
+              <section id="worked-examples">
+                <h2>9. Worked Examples</h2>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 1: Classifying a Spam Filter</div>
+                  <p><strong>Question:</strong> A spam filter that learns from user-labeled emails (spam/not spam) and improves over time. What type of agent is it?</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Does it learn?</strong> Yes&mdash;it improves from user feedback. This makes it a <strong>learning agent</strong>.</li>
+                    <li><strong>What is the performance element?</strong> A classifier (e.g., Naive Bayes) that maps email features to spam/not-spam. This acts as a simple reflex on each email (episodic).</li>
+                    <li><strong>What is the critic?</strong> The user&rsquo;s corrections (marking emails as spam or not-spam).</li>
+                    <li><strong>What is the learning element?</strong> The algorithm that updates the classifier&rsquo;s parameters based on corrected labels.</li>
+                    <li><strong>What is the problem generator?</strong> The system might occasionally present uncertain emails to the user for labeling (active learning).</li>
+                  </ol>
+                  <p><strong>Answer:</strong> <strong>Learning agent</strong> whose performance element is a simple reflex classifier.</p>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 2: Identifying a Roomba Vacuum</div>
+                  <p><strong>Question:</strong> A Roomba vacuum cleaner has bump sensors, cliff sensors, and an internal map of rooms it has visited. It navigates systematically to cover all areas. Classify its agent type.</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Has internal state?</strong> Yes&mdash;it maintains a map of visited areas. This rules out Simple Reflex.</li>
+                    <li><strong>Has a goal?</strong> Yes&mdash;&ldquo;clean the entire floor&rdquo; is an explicit goal. It plans a path to systematically cover all areas.</li>
+                    <li><strong>Has a utility function?</strong> Modern Roombas optimize coverage time, battery usage, and avoid re-cleaning&mdash;suggesting utility-like optimization.</li>
+                    <li><strong>Can it learn?</strong> Some models learn the floor layout over multiple runs and improve their cleaning path.</li>
+                  </ol>
+                  <p><strong>Answer:</strong> At minimum a <strong>model-based, goal-based agent</strong>. Advanced models are <strong>utility-based learning agents</strong>.</p>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 3: AlphaGo Agent Classification</div>
+                  <p><strong>Question:</strong> DeepMind&rsquo;s AlphaGo learned to play Go by training on human games and then playing against itself. Classify its agent type and identify the four learning components.</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Agent type:</strong> <strong>Learning agent</strong> with a utility-based performance element.</li>
+                    <li><strong>Performance element:</strong> A combination of neural networks (policy network for move selection + value network for board evaluation) and Monte Carlo Tree Search. This acts as a utility-based agent that evaluates future positions.</li>
+                    <li><strong>Critic:</strong> The game outcome (win/loss) serves as the performance feedback.</li>
+                    <li><strong>Learning element:</strong> Supervised learning from human games (initial training) + reinforcement learning from self-play (improvement).</li>
+                    <li><strong>Problem generator:</strong> Self-play generates new game situations. Random exploration in MCTS ensures diverse experiences.</li>
+                  </ol>
+                </div>
+              </section>
+
+              <!-- Section 10: GATE Practice -->
+              <section id="gate-practice">
+                <h2>10. GATE-Style Questions</h2>
+
+                <div class="example-box">
+                  <div class="box-title">GATE Practice Question 1 (1 mark)</div>
+                  <p><strong>Question:</strong> Which agent type is most suitable for a fully observable, deterministic environment where the mapping from percepts to actions is simple?</p>
+                  <p>(A) Goal-based agent &nbsp;&nbsp; (B) Utility-based agent &nbsp;&nbsp; (C) Simple reflex agent &nbsp;&nbsp; (D) Learning agent</p>
+                  <p><strong>Answer:</strong> (C). A simple reflex agent works well when the environment is fully observable and deterministic and the action mapping is straightforward. More complex agent types would be overkill.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">GATE Practice Question 2 (2 marks)</div>
+                  <p><strong>Question:</strong> In a learning agent, which component is responsible for suggesting exploratory actions that may yield new information about the environment?</p>
+                  <p>(A) Critic &nbsp;&nbsp; (B) Performance element &nbsp;&nbsp; (C) Learning element &nbsp;&nbsp; (D) Problem generator</p>
+                  <p><strong>Answer:</strong> (D). The problem generator suggests actions that lead to new, informative experiences. The critic provides feedback, the performance element selects the best known action, and the learning element modifies the performance element based on feedback.</p>
+                </div>
+              </section>
+
+              <!-- Section 11: Common Mistakes -->
+              <section id="common-mistakes">
+                <h2>11. Common Mistakes &amp; Misconceptions</h2>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 1: Thinking Agent Types Are Mutually Exclusive</div>
+                  <p>A learning agent <em>contains</em> one of the other agent types as its performance element. A utility-based agent incorporates goal information. These form a <strong>hierarchy</strong>, not mutually exclusive categories.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 2: Confusing Goal-Based and Utility-Based</div>
+                  <p>Goal-based agents have binary goals (achieved or not). Utility-based agents assign a <em>degree of happiness</em> to each state. If a question mentions trade-offs, competing objectives, or maximizing expected value, the answer is utility-based, not goal-based.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 3: Forgetting the Four Components of Learning Agents</div>
+                  <p>GATE frequently tests the four components: <strong>performance element, critic, learning element, problem generator</strong>. Don&rsquo;t confuse the critic (evaluates performance) with the learning element (improves the agent).</p>
+                </div>
+              </section>
+
+              <!-- Section 12: Summary -->
+              <section id="summary" class="summary-section">
+                <h2>&#128218; Summary</h2>
+                <ul>
+                  <li>Five agent types form a progression: <strong>Simple Reflex &rarr; Model-Based &rarr; Goal-Based &rarr; Utility-Based &rarr; Learning</strong>.</li>
+                  <li><strong>Simple reflex:</strong> Condition-action rules on current percept. No memory, no planning.</li>
+                  <li><strong>Model-based:</strong> Maintains internal state using transition and sensor models.</li>
+                  <li><strong>Goal-based:</strong> Uses search/planning to achieve explicit goals.</li>
+                  <li><strong>Utility-based:</strong> Maximizes expected utility for optimal trade-off decisions.</li>
+                  <li><strong>Learning:</strong> Improves from experience using four components (performance element, critic, learning element, problem generator).</li>
+                  <li>The table-driven agent is theoretically complete but practically impossible.</li>
+                  <li>Agent types are <strong>hierarchical</strong>: each builds on the previous.</li>
+                </ul>
+              </section>
+
+              <!-- Section 13: References -->
+              <section id="references" class="references-section">
+                <h2>References</h2>
+                <ol>
+                  <li>Russell, S. &amp; Norvig, P. (2020). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson. &mdash; Chapter 2, Sections 2.4.</li>
+                  <li>Wooldridge, M. (2009). <em>An Introduction to MultiAgent Systems</em>. Wiley. &mdash; Chapter 2.</li>
+                </ol>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch01-agent-types">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="task-environment-peas.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">PEAS Framework</span>
+              </a>
+              <a href="practical-agent-simulation.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Agent Simulation</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#overview">1. Overview</a></li>
+              <li><a href="#simple-reflex">2. Simple Reflex Agents</a></li>
+              <li><a href="#model-based">3. Model-Based Reflex Agents</a></li>
+              <li><a href="#goal-based">4. Goal-Based Agents</a></li>
+              <li><a href="#utility-based">5. Utility-Based Agents</a></li>
+              <li><a href="#learning-agent">6. Learning Agents</a></li>
+              <li><a href="#comparison-table">7. Comparison Table</a></li>
+              <li><a href="#when-to-use">8. When to Use Which</a></li>
+              <li><a href="#worked-examples">9. Worked Examples</a></li>
+              <li><a href="#gate-practice">10. GATE Practice</a></li>
+              <li><a href="#common-mistakes">11. Common Mistakes</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

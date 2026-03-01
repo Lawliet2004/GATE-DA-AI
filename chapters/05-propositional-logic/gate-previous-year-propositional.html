@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GATE Previous Year Questions - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li class="active"><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>GATE Previous Year Questions</span>
+        </div>
+
+        <article class="theory-content">
+            <h1>📝 GATE Previous Year Questions: Propositional Logic</h1>
+
+            <div class="note-box">
+                <h4>📝 About This Section</h4>
+                <p>These are questions from GATE CS and GATE DA exams on propositional logic topics. Each question includes a detailed step-by-step solution.</p>
+            </div>
+
+            <!-- Question 1 -->
+            <section class="gate-question">
+                <h2>Question 1</h2>
+                <div class="gate-tag">GATE CS 2019 — 2 Marks</div>
+                <div class="example-box">
+                    <h4>Problem</h4>
+                    <p>Which one of the following is a <strong>tautology</strong>?</p>
+                    <ol type="A">
+                        <li>P ∨ Q → P ∧ Q</li>
+                        <li>P ∧ Q → P ∨ Q</li>
+                        <li>P ∨ Q → P</li>
+                        <li>P → P ∧ Q</li>
+                    </ol>
+                </div>
+                <div class="theorem-box">
+                    <h4>Solution</h4>
+                    <p><strong>Test each option by trying to falsify it</strong> (set → to false: antecedent T, consequent F).</p>
+                    
+                    <p><strong>(A) P ∨ Q → P ∧ Q:</strong> Set P=T, Q=F. LHS: T∨F = T. RHS: T∧F = F. So T→F = F. Not a tautology. ❌</p>
+                    
+                    <p><strong>(B) P ∧ Q → P ∨ Q:</strong> Try to falsify: need P∧Q = T and P∨Q = F. But if P∧Q = T then both P,Q are T, so P∨Q = T. Contradiction! Cannot be falsified → <strong>Tautology</strong>. ✅</p>
+                    
+                    <p><strong>(C) P ∨ Q → P:</strong> Set P=F, Q=T. LHS: F∨T = T. RHS: F. So T→F = F. Not a tautology. ❌</p>
+                    
+                    <p><strong>(D) P → P ∧ Q:</strong> Set P=T, Q=F. LHS: T. RHS: T∧F = F. So T→F = F. Not a tautology. ❌</p>
+                    
+                    <p><strong>Answer: (B)</strong></p>
+                    <p><em>Key insight: If a conjunction is true, the disjunction of the same variables must be true.</em></p>
+                </div>
+            </section>
+
+            <!-- Question 2 -->
+            <section class="gate-question">
+                <h2>Question 2</h2>
+                <div class="gate-tag">GATE CS 2020 — 2 Marks</div>
+                <div class="example-box">
+                    <h4>Problem</h4>
+                    <p>Let p and q be two propositions. The number of truth assignments for which <strong>(p → q) ↔ (¬q → ¬p)</strong> evaluates to <strong>True</strong> is ______ .</p>
+                </div>
+                <div class="theorem-box">
+                    <h4>Solution</h4>
+                    <p>We know that (p → q) ≡ (¬q → ¬p) — this is the <strong>contrapositive</strong> equivalence.</p>
+                    <p>Since they are logically equivalent, (p → q) ↔ (¬q → ¬p) is a <strong>tautology</strong>.</p>
+                    <p>With 2 variables, there are 2² = 4 possible truth assignments.</p>
+                    <p>Since the formula is a tautology, it is true in ALL assignments.</p>
+                    <p><strong>Answer: 4</strong></p>
+                </div>
+            </section>
+
+            <!-- Question 3 -->
+            <section class="gate-question">
+                <h2>Question 3</h2>
+                <div class="gate-tag">GATE CS 2017 — 2 Marks</div>
+                <div class="example-box">
+                    <h4>Problem</h4>
+                    <p>The number of models (satisfying truth assignments) of the formula:</p>
+                    <p class="formula">(P ∨ Q ∨ ¬R) ∧ (P ∨ ¬Q) ∧ (¬P)</p>
+                    <p>is ______ .</p>
+                </div>
+                <div class="theorem-box">
+                    <h4>Solution</h4>
+                    <p><strong>Step 1:</strong> From clause (¬P): <strong>P = False</strong>.</p>
+                    <p><strong>Step 2:</strong> Substitute P=F into (P ∨ ¬Q): F ∨ ¬Q = ¬Q. So <strong>Q = False</strong>.</p>
+                    <p><strong>Step 3:</strong> Substitute P=F, Q=F into (P ∨ Q ∨ ¬R): F ∨ F ∨ ¬R = ¬R. So <strong>R = False</strong>.</p>
+                    <p>The only satisfying assignment is P=F, Q=F, R=F. Let us verify:</p>
+                    <ul>
+                        <li>(F ∨ F ∨ T) = T ✅</li>
+                        <li>(F ∨ T) = T ✅</li>
+                        <li>(T) = T ✅</li>
+                    </ul>
+                    <p><strong>Answer: 1</strong></p>
+                </div>
+            </section>
+
+            <!-- Question 4 -->
+            <section class="gate-question">
+                <h2>Question 4</h2>
+                <div class="gate-tag">GATE CS 2015 — 1 Mark</div>
+                <div class="example-box">
+                    <h4>Problem</h4>
+                    <p>Which one of the following is <strong>NOT</strong> logically equivalent to ¬∃x(¬P(x) ∧ Q(x))?</p>
+                    <p><em>Note: While this involves quantifiers, the propositional logic manipulation is key. We treat it at the propositional level inside the quantifier.</em></p>
+                    <ol type="A">
+                        <li>∀x(P(x) ∨ ¬Q(x))</li>
+                        <li>∀x(¬Q(x) → ¬P(x))</li>
+                        <li>∀x(P(x) ← Q(x))</li>
+                        <li>∀x(¬P(x) → ¬Q(x))</li>
+                    </ol>
+                </div>
+                <div class="theorem-box">
+                    <h4>Solution</h4>
+                    <p>Starting: ¬∃x(¬P(x) ∧ Q(x)) = ∀x ¬(¬P(x) ∧ Q(x)) = ∀x (P(x) ∨ ¬Q(x))</p>
+                    <p>This is <strong>∀x(Q(x) → P(x))</strong> using material implication.</p>
+                    
+                    <p><strong>(A) ∀x(P(x) ∨ ¬Q(x)):</strong> Direct De Morgan's result. Equivalent. ✅</p>
+                    <p><strong>(B) ∀x(¬Q(x) → ¬P(x)):</strong> ¬Q → ¬P is the <strong>inverse</strong> of Q → P, NOT equivalent. This is the contrapositive of P → Q, not Q → P. ❌</p>
+                    <p><strong>(C) ∀x(P(x) ← Q(x)):</strong> P ← Q means Q → P. Equivalent. ✅</p>
+                    <p><strong>(D) ∀x(¬P(x) → ¬Q(x)):</strong> ¬P → ¬Q is the <strong>contrapositive</strong> of Q → P. Equivalent. ✅</p>
+                    
+                    <p><strong>Answer: (B)</strong></p>
+                </div>
+            </section>
+
+            <!-- Question 5 -->
+            <section class="gate-question">
+                <h2>Question 5</h2>
+                <div class="gate-tag">GATE CS 2018 — 2 Marks</div>
+                <div class="example-box">
+                    <h4>Problem</h4>
+                    <p>Consider the following propositional statements:</p>
+                    <p>P₁: ((A ∧ B) → C)) ≡ ((A → C) ∧ (B → C))</p>
+                    <p>P₂: ((A ∨ B) → C)) ≡ ((A → C) ∧ (B → C))</p>
+                    <p>Which of the above statements is/are tautologies?</p>
+                    <ol type="A">
+                        <li>P₁ only</li>
+                        <li>P₂ only</li>
+                        <li>Both P₁ and P₂</li>
+                        <li>Neither P₁ nor P₂</li>
+                    </ol>
+                </div>
+                <div class="theorem-box">
+                    <h4>Solution</h4>
+                    <p><strong>Check P₁:</strong> (A ∧ B) → C ≡ (A → C) ∧ (B → C)?</p>
+                    <p>LHS = ¬(A ∧ B) ∨ C = ¬A ∨ ¬B ∨ C</p>
+                    <p>RHS = (¬A ∨ C) ∧ (¬B ∨ C)</p>
+                    <p>Try A=T, B=T, C=F: LHS = F∨F∨F = F. RHS = (F∨F)∧(F∨F) = F∧F = F. Same ✅</p>
+                    <p>Try A=T, B=F, C=F: LHS = F∨T∨F = T. RHS = (F∨F)∧(T∨F) = F∧T = F. <strong>Different!</strong> ❌</p>
+                    <p>P₁ is <strong>NOT</strong> a tautology.</p>
+                    
+                    <p><strong>Check P₂:</strong> (A ∨ B) → C ≡ (A → C) ∧ (B → C)?</p>
+                    <p>LHS = ¬(A ∨ B) ∨ C = (¬A ∧ ¬B) ∨ C</p>
+                    <p>RHS = (¬A ∨ C) ∧ (¬B ∨ C)</p>
+                    <p>Distribute RHS: (¬A ∨ C) ∧ (¬B ∨ C) = (¬A ∧ ¬B) ∨ C [by factoring C out]</p>
+                    <p>LHS = RHS! P₂ <strong>IS</strong> a tautology. ✅</p>
+                    
+                    <p><strong>Answer: (B) P₂ only</strong></p>
+                </div>
+            </section>
+
+            <!-- Question 6 -->
+            <section class="gate-question">
+                <h2>Question 6</h2>
+                <div class="gate-tag">GATE CS 2016 — 1 Mark</div>
+                <div class="example-box">
+                    <h4>Problem</h4>
+                    <p>Consider the following two statements:</p>
+                    <p>S₁: If it rains then the road is wet. The road is wet. Therefore it rained.</p>
+                    <p>S₂: If it rains then the road is wet. It did not rain. Therefore the road is not wet.</p>
+                    <p>Which of the above arguments is/are logically valid?</p>
+                    <ol type="A">
+                        <li>S₁ only</li>
+                        <li>S₂ only</li>
+                        <li>Both S₁ and S₂</li>
+                        <li>Neither S₁ nor S₂</li>
+                    </ol>
+                </div>
+                <div class="theorem-box">
+                    <h4>Solution</h4>
+                    <p>Let R = "it rains", W = "road is wet".</p>
+                    
+                    <p><strong>S₁:</strong> R → W, W, ∴ R — This is <strong>Affirming the Consequent</strong>, a well-known <strong>logical fallacy</strong>. Invalid! The road could be wet for other reasons (sprinkler, spill, etc.).</p>
+                    
+                    <p><strong>S₂:</strong> R → W, ¬R, ∴ ¬W — This is <strong>Denying the Antecedent</strong>, another <strong>logical fallacy</strong>. Invalid! The road could be wet even if it didn't rain.</p>
+                    
+                    <p><strong>Answer: (D) Neither S₁ nor S₂</strong></p>
+                    <p><em>Remember: Only Modus Ponens (R→W, R ∴ W) and Modus Tollens (R→W, ¬W ∴ ¬R) are valid.</em></p>
+                </div>
+            </section>
+
+            <!-- Question 7 -->
+            <section class="gate-question">
+                <h2>Question 7</h2>
+                <div class="gate-tag">GATE DA 2024 — 2 Marks</div>
+                <div class="example-box">
+                    <h4>Problem</h4>
+                    <p>How many clauses are there in the CNF equivalent of the formula:</p>
+                    <p class="formula">(P ∧ Q) ∨ (R ∧ S)</p>
+                </div>
+                <div class="theorem-box">
+                    <h4>Solution</h4>
+                    <p>Convert to CNF by distributing ∨ over ∧:</p>
+                    <p>(P ∧ Q) ∨ (R ∧ S)</p>
+                    <p>= ((P ∧ Q) ∨ R) ∧ ((P ∧ Q) ∨ S) &nbsp;&nbsp;[distribute ∨ over ∧ on R∧S]</p>
+                    <p>= (P ∨ R) ∧ (Q ∨ R) ∧ (P ∨ S) ∧ (Q ∨ S) &nbsp;&nbsp;[distribute ∨ over ∧ again]</p>
+                    <p>We have <strong>4 clauses</strong>: {P∨R}, {Q∨R}, {P∨S}, {Q∨S}</p>
+                    <p><strong>Answer: 4</strong></p>
+                    <p><em>General rule: distributing an m-term DNF over an n-term DNF can give up to m×n clauses. Here 2×2 = 4.</em></p>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="practical-propositional.html" class="nav-btn prev-btn">← Previous: Practical Interactive Demos</a>
+            <a href="notes-propositional-logic.html" class="nav-btn next-btn">Next: Quick Revision Notes →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-gate-pyq">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-gate-pyq">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

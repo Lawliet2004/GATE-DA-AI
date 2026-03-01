@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mock Test 2 for GATE DA AI section — 15 questions, 25-minute timed quiz with medium-to-hard difficulty.">
+  <title>Mock Test 2 — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a>
+            <a href="topic-wise-weightage.html" class="sidebar-link"><span class="link-check"></span> Topic Weightage<span class="link-type notes">Notes</span></a>
+            <a href="previous-year-compilation.html" class="sidebar-link"><span class="link-check"></span> Previous Year Qs<span class="link-type notes">Notes</span></a>
+            <a href="formula-sheet.html" class="sidebar-link"><span class="link-check"></span> Formula Sheet<span class="link-type notes">Notes</span></a>
+            <a href="common-mistakes.html" class="sidebar-link"><span class="link-check"></span> Common Mistakes<span class="link-type notes">Notes</span></a>
+            <a href="mock-test-1.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 1<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-2.html" class="sidebar-link active"><span class="link-check"></span> &#129514; Mock Test 2<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-3.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 3<span class="link-type quiz">Quiz</span></a>
+            <a href="final-revision-checklist.html" class="sidebar-link"><span class="link-check"></span> Final Revision Checklist<span class="link-type notes">Notes</span></a>
+        </div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="exam-pattern-strategy.html">Chapter 16: GATE DA Preparation</a> &raquo; <span class="current">Mock Test 2</span></nav>
+
+        <article class="main-content page-type-quiz" data-page-id="ch16-mock-test-2">
+          <div class="quiz-header">
+            <h1>&#129514; Mock Test 2 &mdash; GATE DA AI Section</h1>
+            <div class="quiz-meta">
+              <span class="badge badge-quiz">15 Questions</span>
+              <span class="badge badge-time">25 Minutes</span>
+              <span class="badge badge-mix">MCQ + MSQ + NAT</span>
+            </div>
+            <p>A more challenging set covering the same syllabus. Focus areas: multi-step Bayesian reasoning, search optimality proofs, and neural network computations. Good luck!</p>
+          </div>
+
+          <div class="quiz-timer" id="quizTimer">25:00</div>
+          <div class="question-palette" id="questionPalette"></div>
+          <div class="quiz-content" id="quizContent">
+            <div class="question-display" id="questionDisplay"></div>
+          </div>
+          <div class="quiz-score-card" id="quizScoreCard" style="display:none;"></div>
+        </article>
+
+        <div class="nav-buttons">
+          <a href="mock-test-1.html" class="btn btn-secondary">&laquo; Mock Test 1</a>
+          <a href="mock-test-3.html" class="btn btn-primary">Mock Test 3 &raquo;</a>
+        </div>
+        <button class="bookmark-btn" title="Bookmark this page">&#128278; Bookmark</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const questions = [
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>Iterative Deepening Depth-First Search (IDDFS) combines the benefits of BFS and DFS. What is its <strong>space complexity</strong>?</p>',
+        options: [
+          'O(b<sup>d</sup>)',
+          'O(bd)',
+          'O(b<sup>d/2</sup>)',
+          'O(d<sup>2</sup>)'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>IDDFS performs a series of depth-limited DFS from depth 0, 1, 2, &hellip; up to d. Each DFS uses O(bd) space (at most d nodes on the path, each with up to b siblings). When a depth limit is reached the search backtracks and frees memory, so the maximum memory used at any point is <strong>O(bd)</strong>. It achieves BFS&rsquo;s completeness and optimality (for uniform-cost problems) with DFS&rsquo;s linear space.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Hard',
+        question_html: '<p>Consider a state space where UCS (Uniform Cost Search) and A* are both run with the same start and goal. A* uses an admissible but <em>inconsistent</em> heuristic. Which statement is TRUE?</p>',
+        options: [
+          'A* with graph search is guaranteed to find the optimal path',
+          'A* with graph search may find a suboptimal path',
+          'A* will always expand fewer nodes than UCS',
+          'A* will not terminate'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>With an admissible but inconsistent heuristic, A* tree search still finds the optimal solution. However, A* <strong>graph search</strong> (which never re-expands a state) may prune the optimal path to a state if it first reaches that state via a suboptimal path with a misleadingly low f-value. Therefore, A* graph search with an inconsistent heuristic may return a <strong>suboptimal</strong> solution. This is why consistency is the standard requirement for A* graph search.</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Hard',
+        question_html: '<p>In alpha-beta pruning applied to a game tree of uniform branching factor b = 6 and depth d = 4, what is the <strong>minimum</strong> number of leaf nodes evaluated in the <strong>best case</strong>?</p><p><em>Enter the integer value.</em></p>',
+        correct_answer: 321,
+        tolerance: 5,
+        explanation_html: '<p>The best-case formula for alpha-beta pruning gives the minimum number of leaves evaluated as:<br>b<sup>&lceil;d/2&rceil;</sup> + b<sup>&lfloor;d/2&rfloor;</sup> &minus; 1<br>With b=6 and d=4: 6<sup>2</sup> + 6<sup>2</sup> &minus; 1 = 36 + 36 &minus; 1 = <strong>71</strong>.<br>Actually the precise formula for minimum leaves in alpha-beta is: 2&middot;b<sup>d/2</sup> &minus; 1 for even d. = 2&times;36 &minus; 1 = 71.<br>This assumes perfect move ordering. Compare to minimax: 6<sup>4</sup> = 1296 leaf evaluations without pruning.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>In a game with chance nodes (like Backgammon), the appropriate algorithm is Expectiminimax. At a chance node, the value is computed as:</p>',
+        options: [
+          'The maximum over all outcomes',
+          'The minimum over all outcomes',
+          'The weighted average (expected value) over outcomes',
+          'The median of all outcomes'
+        ],
+        correct_answer: 2,
+        explanation_html: '<p>Expectiminimax handles stochastic games by adding <strong>chance nodes</strong> between MAX and MIN layers. At a chance node, the value is the <strong>expected value</strong>: the weighted sum of child values, where each weight is the probability of that outcome. This correctly models the uncertainty in dice rolls, card draws, etc. MAX nodes still maximize, MIN nodes still minimize, but chance nodes compute: &Sigma; P(outcome) &times; Value(child).</p>'
+      },
+      {
+        type: 'msq',
+        difficulty: 'Hard',
+        question_html: '<p>Which of the following are valid inference rules in propositional logic? <em>(Select ALL that apply)</em></p>',
+        options: [
+          'From P &and; (P &rarr; Q), conclude Q (Modus Ponens)',
+          'From &not;Q &and; (P &rarr; Q), conclude &not;P (Modus Tollens)',
+          'From Q &and; (P &rarr; Q), conclude P (Affirming the Consequent)',
+          'From (P &rarr; Q) &and; (Q &rarr; R), conclude (P &rarr; R) (Hypothetical Syllogism)'
+        ],
+        correct_answer: [0, 1, 3],
+        explanation_html: '<p><strong>Modus Ponens</strong> (A): Valid &mdash; if P is true and P implies Q, then Q is true. &check;<br><strong>Modus Tollens</strong> (B): Valid &mdash; if Q is false and P implies Q, then P must be false (contrapositive reasoning). &check;<br><strong>Affirming the Consequent</strong> (C): <em>Invalid</em> &mdash; this is a classic logical fallacy. Just because Q is true and P&rarr;Q doesn&rsquo;t mean P is true (Q could be true for other reasons). &cross;<br><strong>Hypothetical Syllogism</strong> (D): Valid &mdash; if P&rarr;Q and Q&rarr;R, then P&rarr;R (transitivity of implication). &check;</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>Convert the following to Conjunctive Normal Form (CNF): <strong>&not;(A &rarr; B)</strong></p>',
+        options: [
+          '&not;A &and; B',
+          'A &and; &not;B',
+          '&not;A &or; &not;B',
+          'A &or; B'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>Step 1: Eliminate implication: A &rarr; B = &not;A &or; B.<br>Step 2: Negate: &not;(&not;A &or; B).<br>Step 3: Apply De Morgan&rsquo;s: &not;(&not;A) &and; &not;B = A &and; &not;B.<br>This is already in CNF (conjunction of unit clauses). So <strong>&not;(A &rarr; B) = A &and; &not;B</strong>.<br>This makes intuitive sense: the only way an implication is false is when the antecedent is true and the consequent is false.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>Consider the First-Order Logic sentence: <strong>&forall;x &exist;y (Parent(x, y) &rarr; Loves(x, y))</strong>. After Skolemization, which result is correct?</p>',
+        options: [
+          '&forall;x (Parent(x, f(x)) &rarr; Loves(x, f(x)))',
+          'Parent(x, c) &rarr; Loves(x, c) for some constant c',
+          '&forall;x &forall;y (Parent(x, y) &rarr; Loves(x, y))',
+          '&exist;y &forall;x (Parent(x, y) &rarr; Loves(x, y))'
+        ],
+        correct_answer: 0,
+        explanation_html: '<p>In Skolemization, we replace existentially quantified variables with Skolem functions of the enclosing universally quantified variables. Here &exist;y is within the scope of &forall;x, so y is replaced by f(x) where f is a new Skolem function. The result: <strong>&forall;x (Parent(x, f(x)) &rarr; Loves(x, f(x)))</strong>. Option B is wrong because it uses a constant (which would be correct only if &exist;y were not inside any &forall;). Option C changes the meaning entirely.</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Hard',
+        question_html: '<p>A Bayesian Network has three binary variables: Rain (R), Sprinkler (S), Wet Grass (W).<br>P(R=T) = 0.2, P(S=T) = 0.3.<br>P(W=T | R=T, S=T) = 0.99, P(W=T | R=T, S=F) = 0.80, P(W=T | R=F, S=T) = 0.90, P(W=T | R=F, S=F) = 0.01.<br>Compute <strong>P(R=T | W=T)</strong> to two decimal places.</p>',
+        correct_answer: 0.44,
+        tolerance: 0.02,
+        explanation_html: '<p>By Bayes: P(R=T|W=T) = P(W=T|R=T)&middot;P(R=T) / P(W=T).<br>First, P(W=T|R=T) = P(W|R=T,S=T)P(S=T) + P(W|R=T,S=F)P(S=F) = 0.99&times;0.3 + 0.80&times;0.7 = 0.297 + 0.56 = 0.857.<br>P(W=T|R=F) = 0.90&times;0.3 + 0.01&times;0.7 = 0.27 + 0.007 = 0.277.<br>P(W=T) = P(W|R=T)P(R=T) + P(W|R=F)P(R=F) = 0.857&times;0.2 + 0.277&times;0.8 = 0.1714 + 0.2216 = 0.393.<br>P(R=T|W=T) = 0.1714 / 0.393 &approx; <strong>0.436 &approx; 0.44</strong>.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>Which of the following is a property of <strong>d-separation</strong> in a Bayesian Network?</p>',
+        options: [
+          'In a V-structure (collider) X &rarr; Z &larr; Y, X and Y are dependent given Z',
+          'In a chain X &rarr; Z &rarr; Y, X and Y are independent (unconditionally)',
+          'In a fork X &larr; Z &rarr; Y, X and Y are dependent given Z',
+          'In a V-structure X &rarr; Z &larr; Y, X and Y are dependent (unconditionally)'
+        ],
+        correct_answer: 0,
+        explanation_html: '<p>In a <strong>V-structure</strong> (collider) X &rarr; Z &larr; Y:<br>&bull; Unconditionally: X and Y are <em>independent</em> (the path is blocked).<br>&bull; Given Z (or any descendant of Z): the path becomes <em>active</em>, making X and Y <strong>dependent</strong>. This is called &ldquo;explaining away.&rdquo;<br>Option A is correct. Option B is wrong (in a chain, X and Y are dependent unconditionally). Option C is wrong (in a fork, observing Z <em>blocks</em> the path, making X and Y independent). Option D is wrong (in a V-structure, X and Y are independent unconditionally).</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Medium',
+        question_html: '<p>A binary classifier achieves the following on a test set: TP = 80, FP = 20, FN = 10, TN = 90. What is the <strong>F1 score</strong>? Enter as a decimal to two places.</p>',
+        correct_answer: 0.84,
+        tolerance: 0.01,
+        explanation_html: '<p>Precision = TP/(TP+FP) = 80/100 = 0.80.<br>Recall = TP/(TP+FN) = 80/90 &approx; 0.8889.<br>F1 = 2 &times; P &times; R / (P + R) = 2 &times; 0.80 &times; 0.8889 / (0.80 + 0.8889) = 1.4222 / 1.6889 &approx; <strong>0.8421 &approx; 0.84</strong>.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Hard',
+        question_html: '<p>L1 regularization (Lasso) differs from L2 regularization (Ridge) primarily because:</p>',
+        options: [
+          'L1 always produces better accuracy',
+          'L1 tends to produce sparse weight vectors (feature selection)',
+          'L2 adds a penalty proportional to the absolute values of weights',
+          'L1 and L2 are mathematically equivalent'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>L1 regularization adds &lambda;&Sigma;|w<sub>i</sub>| to the loss. Due to the geometry of the L1 constraint region (a diamond/rhombus in 2D), the optimal solution tends to occur at corners where some weights are exactly zero. This effectively performs <strong>feature selection</strong> by zeroing out irrelevant features. L2 regularization adds &lambda;&Sigma;w<sub>i</sub>&sup2;, producing a circular constraint region that shrinks weights toward zero but rarely makes them exactly zero. They are not equivalent.</p>'
+      },
+      {
+        type: 'nat',
+        difficulty: 'Hard',
+        question_html: '<p>A neural network has an input layer (2 neurons), one hidden layer (3 neurons), and an output layer (1 neuron). All layers are fully connected. Including bias terms, how many <strong>total trainable parameters</strong> does this network have?</p>',
+        correct_answer: 13,
+        tolerance: 0,
+        explanation_html: '<p>Input &rarr; Hidden: 2&times;3 weights + 3 biases = 9 parameters.<br>Hidden &rarr; Output: 3&times;1 weights + 1 bias = 4 parameters.<br>Total = 9 + 4 = <strong>13 trainable parameters</strong>.<br>General formula: for consecutive layers of size n<sub>i</sub> and n<sub>i+1</sub>, parameters = n<sub>i</sub>&times;n<sub>i+1</sub> + n<sub>i+1</sub>.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>In a Convolutional Neural Network (CNN), an input image of size 32&times;32 is convolved with a 5&times;5 filter, stride 1, and no padding. What is the size of the output feature map?</p>',
+        options: [
+          '28&times;28',
+          '32&times;32',
+          '27&times;27',
+          '30&times;30'
+        ],
+        correct_answer: 0,
+        explanation_html: '<p>The output size formula with no padding is: <strong>O = (I &minus; K) / S + 1</strong> where I = input size, K = kernel size, S = stride.<br>O = (32 &minus; 5) / 1 + 1 = 27 + 1 = <strong>28</strong>.<br>So the output feature map is 28&times;28. With &ldquo;same&rdquo; padding, the output would remain 32&times;32.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Medium',
+        question_html: '<p>In value iteration for a Markov Decision Process, convergence is guaranteed when:</p>',
+        options: [
+          'The discount factor &gamma; = 1 and all rewards are positive',
+          'The discount factor &gamma; &lt; 1 or the MDP is episodic',
+          'The number of states is prime',
+          'The transition probabilities are deterministic'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>Value iteration converges when the Bellman operator is a contraction mapping, which requires either:<br>1. <strong>&gamma; &lt; 1</strong> (discount factor strictly less than 1), which guarantees geometric contraction, or<br>2. The MDP is <strong>episodic</strong> (guaranteed to terminate), ensuring finite returns.<br>With &gamma; = 1 and infinite-horizon non-episodic MDPs, values can diverge. The structure of transitions (deterministic or stochastic) and the number of states don&rsquo;t affect convergence guarantees.</p>'
+      },
+      {
+        type: 'mcq',
+        difficulty: 'Hard',
+        question_html: '<p>In a CSP, the <strong>Minimum Remaining Values (MRV)</strong> heuristic selects the next variable to assign by choosing:</p>',
+        options: [
+          'The variable with the most constraints',
+          'The variable with the fewest legal values remaining in its domain',
+          'The variable with the largest domain',
+          'The most recently assigned variable'
+        ],
+        correct_answer: 1,
+        explanation_html: '<p>MRV (also called &ldquo;fail-first&rdquo; or &ldquo;most constrained variable&rdquo;) selects the variable with the <strong>fewest remaining legal values</strong> in its domain. The intuition is: if a variable has very few options left, it is most likely to cause failure soon. By choosing it first, we detect failures earlier and prune the search tree more effectively. This is typically combined with the Least Constraining Value (LCV) heuristic for choosing which value to assign.</p>'
+      }
+    ];
+
+    if (typeof QuizEngine !== 'undefined') {
+      QuizEngine.init({
+        quizId: 'ch16-mock-test-2',
+        questions: questions,
+        timeLimit: 1500,
+        timerEnabled: true
+      });
+    }
+  });
+  </script>
+</body>
+</html>

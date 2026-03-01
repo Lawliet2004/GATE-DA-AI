@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Memory-Bounded Search — SMA*, Beam Search, and tradeoffs between optimality and memory for informed search in GATE DA AI preparation.">
+  <title>Memory-Bounded Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div>
+      <div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div>
+      <div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First Search<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link active"><span class="link-check"></span> Memory-Bounded Search<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA* Search<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="weighted-a-star.html" class="sidebar-link"><span class="link-check"></span> Weighted A*<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-informed-strategies.html" class="sidebar-link"><span class="link-check"></span> Strategy Comparison<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> Informed Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE Previous Year<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="heuristic-functions.html">Ch 3: Informed Search</a> &raquo;
+          <span class="current">Memory-Bounded Search</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch03-memory-bounded">
+
+            <h1>Memory-Bounded Search</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch03-memory-bounded" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="a-star-search.html">A* Search</a> &mdash; f(n) = g(n)+h(n), memory problem</li>
+                <li><a href="admissibility-and-consistency.html">Admissibility &amp; Consistency</a></li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand why A* runs out of memory</li>
+                <li>Describe SMA* and Beam Search</li>
+                <li>Analyze the tradeoff between optimality and memory usage</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="problem">
+                <h2>1. The Memory Problem</h2>
+                <p>A* stores <strong>every generated node</strong> in the frontier (open list) and explored set (closed list). For problems like the 15-puzzle, the search tree has roughly 10<sup>13</sup> nodes. Even at 100 bytes per node, this requires about 1 petabyte of memory. A* simply <strong>cannot solve</strong> many real-world problems within available memory.</p>
+                <p>Memory-bounded search algorithms address this by limiting memory usage, trading time (or optimality) for space.</p>
+              </section>
+
+              <section id="sma-star">
+                <h2>2. SMA* (Simplified Memory-Bounded A*)</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">SMA*</div>
+                  <p>SMA* works like A*, but when memory is full, it <strong>drops the worst leaf node</strong> (the one with the highest f-value) from the frontier. Before dropping, it <strong>backs up</strong> the f-value of the forgotten node to its parent, so the parent &ldquo;remembers&rdquo; the best f-value of its forgotten subtree.</p>
+                </div>
+
+                <h3>How It Works</h3>
+                <ol>
+                  <li>Expand the best leaf (lowest f) as normal.</li>
+                  <li>If memory is full, identify the worst leaf (highest f).</li>
+                  <li>Store the forgotten node&rsquo;s f-value in its parent node.</li>
+                  <li>Remove the worst leaf to free memory for the new child.</li>
+                  <li>If SMA* needs to revisit the forgotten subtree later, it re-expands the parent, now with the backed-up f-value reflecting the best known cost.</li>
+                </ol>
+
+                <h3>Properties</h3>
+                <ul>
+                  <li><strong>Complete:</strong> If any solution is reachable within the memory limit</li>
+                  <li><strong>Optimal:</strong> If the optimal solution fits in memory</li>
+                  <li><strong>Space:</strong> Uses exactly the available memory budget</li>
+                  <li><strong>Time:</strong> Can be much worse than A* due to re-expansion of forgotten nodes</li>
+                </ul>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Thrashing</div>
+                  <p>If memory is very tight, SMA* may repeatedly generate and forget the same nodes, leading to <strong>thrashing</strong> &mdash; spending most of its time regenerating forgotten subtrees instead of making progress.</p>
+                </div>
+              </section>
+
+              <section id="beam-search">
+                <h2>3. Beam Search</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Beam Search</div>
+                  <p>Beam search limits the size of the frontier to a fixed number <strong>W</strong> (the beam width). At each level, it keeps only the W best nodes (lowest f-values) and discards the rest.</p>
+                </div>
+
+                <h3>Properties</h3>
+                <ul>
+                  <li><strong>Space:</strong> O(W &times; b) &mdash; drastically reduced</li>
+                  <li><strong>Complete:</strong> <strong>No</strong> &mdash; the optimal solution may be pruned away</li>
+                  <li><strong>Optimal:</strong> <strong>No</strong> &mdash; for the same reason</li>
+                  <li><strong>Practical use:</strong> Very popular in NLP (machine translation, speech recognition) where finding a &ldquo;good enough&rdquo; solution quickly is more important than guaranteed optimality</li>
+                </ul>
+
+                <p>With W=1, beam search becomes <strong>hill climbing</strong> (greedy local search). With W=&infin;, it becomes standard best-first search.</p>
+              </section>
+
+              <section id="tradeoffs">
+                <h2>4. Tradeoff Summary</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Algorithm</th><th>Memory</th><th>Optimal?</th><th>Complete?</th><th>Notes</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>A*</td><td>Exponential</td><td>Yes</td><td>Yes</td><td>Best quality, worst memory</td></tr>
+                      <tr><td>IDA*</td><td>O(bd)</td><td>Yes</td><td>Yes</td><td>Good for integer costs (see next page)</td></tr>
+                      <tr><td>RBFS</td><td>O(bd)</td><td>Yes</td><td>Yes</td><td>Linear space, more overhead</td></tr>
+                      <tr><td>SMA*</td><td>User-set limit</td><td>If fits</td><td>If fits</td><td>Flexible but may thrash</td></tr>
+                      <tr><td>Beam</td><td>O(Wb)</td><td>No</td><td>No</td><td>Fast, practical, not guaranteed</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section id="worked-examples">
+                <h2>5. Worked Examples</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Example 1: SMA* with Memory Limit of 4 Nodes</div>
+                  <pre><code>Tree: S→A(f=3), S→B(f=5), A→C(f=4), A→D(f=6), C→G(f=5)
+Memory limit: 4 nodes</code></pre>
+                  <p><strong>Step 1:</strong> Insert S (1 node). Expand S → {A:3, B:5}. Memory: {S, A, B} (3 nodes).</p>
+                  <p><strong>Step 2:</strong> Expand A (f=3) → {C:4, D:6}. Memory would be {S, A, B, C, D} (5 nodes) → exceeds limit!</p>
+                  <p>Drop worst leaf: D (f=6). Back up f=6 to A's memory. Memory: {S, A, B, C} (4 nodes). A now records &ldquo;forgotten child had f=6.&rdquo;</p>
+                  <p><strong>Step 3:</strong> Expand C (f=4) → {G:5}. Memory would be 5 nodes. Drop worst leaf: B (f=5). Back up to S. Memory: {S, A, C, G} (4 nodes).</p>
+                  <p><strong>Step 4:</strong> Expand G (f=5) → <strong>Goal!</strong> Path: S→A→C→G.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 2: Beam Search with W=2</div>
+                  <pre><code>Level 0: S (f=10)
+Level 1: A(f=6), B(f=8), C(f=12)
+Level 2 from A: D(f=5), E(f=9)
+Level 2 from B: F(f=4), G(goal, f=7)</code></pre>
+                  <p><strong>W=2:</strong> At Level 1, keep best 2: {A:6, B:8}. Discard C:12.</p>
+                  <p>At Level 2: From A → {D:5, E:9}; from B → {F:4, G:7}. All candidates: {D:5, E:9, F:4, G:7}. Keep best 2: {F:4, D:5}. G is discarded!</p>
+                  <p>Continue expanding F and D &mdash; they may or may not lead to the goal. The optimal path through G was <strong>lost</strong> because beam search discarded it.</p>
+                  <p><strong>With W=3:</strong> We&rsquo;d keep {F:4, D:5, G:7} at Level 2, and G would be found as the goal. Wider beam = better chance of finding the optimal solution, at the cost of more memory.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>A*&rsquo;s main limitation is exponential memory usage.</li>
+                    <li>SMA* drops the worst node when memory is full, backing up its f-value.</li>
+                    <li>Beam search keeps only W nodes per level &mdash; fast but incomplete and non-optimal.</li>
+                    <li>IDA* and RBFS (covered next) achieve linear space with optimality guarantees.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul><li>Russell &amp; Norvig, <em>AIMA</em> 4th Ed. &mdash; Section 3.5.3&ndash;3.5.5</li></ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch03-memory-bounded">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="admissibility-and-consistency.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Admissibility &amp; Consistency</span></a>
+              <a href="ida-star.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">IDA* Search</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#problem">1. Memory Problem</a></li>
+              <li><a href="#sma-star">2. SMA*</a></li>
+              <li><a href="#beam-search">3. Beam Search</a></li>
+              <li><a href="#tradeoffs">4. Tradeoff Summary</a></li>
+              <li><a href="#worked-examples">5. Worked Examples</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

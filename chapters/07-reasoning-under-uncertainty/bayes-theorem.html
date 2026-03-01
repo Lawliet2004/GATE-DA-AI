@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bayes' Theorem — prior, likelihood, posterior, evidence, law of total probability, 5+ worked examples including medical diagnosis &amp; spam filter for GATE DA.">
+  <title>Bayes' Theorem — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link active"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo;
+          <span class="current">Bayes' Theorem</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch07-bayes-theorem">
+
+            <h1>Bayes' Theorem</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: Very High</span>
+              <button class="bookmark-btn" data-page="ch07-bayes-theorem" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="probability-basics.html">Probability Basics</a></li>
+              <li><a href="conditional-probability.html">Conditional Probability</a> &mdash; P(A|B), multiplication rule</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>State and derive Bayes' theorem</li>
+              <li>Identify prior, likelihood, posterior, and evidence</li>
+              <li>Apply the law of total probability to compute the denominator</li>
+              <li>Solve 5+ worked examples including GATE previous year problems</li>
+            </ul></div>
+
+            <div class="content-body">
+
+              <!-- Section 1 -->
+              <section id="formula">
+                <h2>1. Bayes' Formula</h2>
+
+                <div class="theorem-box">
+                  <h4>Bayes' Theorem</h4>
+                  <div class="formula">
+                    P(H|E) = P(E|H) &times; P(H) / P(E)
+                  </div>
+                  <p>Where:</p>
+                  <ul>
+                    <li><strong>P(H)</strong> &mdash; Prior probability of hypothesis H</li>
+                    <li><strong>P(E|H)</strong> &mdash; Likelihood of evidence E given H</li>
+                    <li><strong>P(H|E)</strong> &mdash; Posterior probability of H given E</li>
+                    <li><strong>P(E)</strong> &mdash; Evidence (marginal likelihood), computed via total probability</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <h4>Intuition</h4>
+                  <p>Bayes' theorem lets us <strong>update our belief</strong> about a hypothesis after observing new evidence. The prior captures what we believed before; the posterior captures what we believe after.</p>
+                </div>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="total-probability">
+                <h2>2. Law of Total Probability</h2>
+
+                <div class="theorem-box">
+                  <h4>Law of Total Probability</h4>
+                  <p>If H<sub>1</sub>, H<sub>2</sub>, &hellip;, H<sub>n</sub> are mutually exclusive and exhaustive:</p>
+                  <div class="formula">
+                    P(E) = &sum;<sub>i=1</sub><sup>n</sup> P(E|H<sub>i</sub>) &times; P(H<sub>i</sub>)
+                  </div>
+                </div>
+
+                <p>This is how we compute the denominator in Bayes' theorem when P(E) is not given directly.</p>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="worked-examples">
+                <h2>3. Worked Examples</h2>
+
+                <div class="example-box">
+                  <h4>Example 1 &mdash; Medical Diagnosis <span class="gate-tag">Classic GATE</span></h4>
+                  <p>A disease affects 1% of the population. A test has 99% sensitivity (true positive rate) and 95% specificity (true negative rate). If a person tests positive, what is P(disease)?</p>
+                  <p><strong>Solution:</strong></p>
+                  <ul>
+                    <li>P(D) = 0.01, P(D<sup>c</sup>) = 0.99</li>
+                    <li>P(+|D) = 0.99, P(+|D<sup>c</sup>) = 1 &minus; 0.95 = 0.05</li>
+                  </ul>
+                  <p>P(+) = P(+|D)P(D) + P(+|D<sup>c</sup>)P(D<sup>c</sup>) = 0.99 &times; 0.01 + 0.05 &times; 0.99 = 0.0099 + 0.0495 = 0.0594</p>
+                  <p>P(D|+) = (0.99 &times; 0.01) / 0.0594 = 0.0099 / 0.0594 = <strong>0.1667 &asymp; 16.67%</strong></p>
+                  <p class="warning-box"><strong>Insight:</strong> Even with a highly accurate test, if the disease is rare, most positive results are false positives! This is the <strong>base rate fallacy</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 2 &mdash; Spam Filter</h4>
+                  <p>60% of emails are spam. The word "free" appears in 80% of spam and 10% of non-spam. P(spam | "free" appears)?</p>
+                  <p><strong>Solution:</strong><br>
+                  P(S) = 0.6, P(S<sup>c</sup>) = 0.4, P(F|S) = 0.8, P(F|S<sup>c</sup>) = 0.1<br>
+                  P(F) = 0.8 &times; 0.6 + 0.1 &times; 0.4 = 0.48 + 0.04 = 0.52<br>
+                  P(S|F) = (0.8 &times; 0.6) / 0.52 = 0.48 / 0.52 = <strong>12/13 &asymp; 0.923</strong></p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 3 &mdash; Three Factories <span class="gate-tag">GATE 2017</span></h4>
+                  <p>Factory A produces 50% of items, B produces 30%, C produces 20%. Defective rates: A = 2%, B = 3%, C = 5%. An item is found defective. P(from factory A)?</p>
+                  <p><strong>Solution:</strong><br>
+                  P(D) = 0.02(0.5) + 0.03(0.3) + 0.05(0.2) = 0.01 + 0.009 + 0.01 = 0.029<br>
+                  P(A|D) = (0.02 &times; 0.5) / 0.029 = 0.01 / 0.029 = <strong>10/29 &asymp; 0.3448</strong></p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 4 &mdash; Two Coins <span class="gate-tag">GATE Style</span></h4>
+                  <p>A fair coin and a biased coin (P(H) = 0.75) are in a bag. One coin is chosen at random and tossed twice, showing HH. P(biased coin was chosen)?</p>
+                  <p><strong>Solution:</strong><br>
+                  P(Fair) = P(Biased) = 0.5<br>
+                  P(HH|Fair) = 0.5<sup>2</sup> = 0.25<br>
+                  P(HH|Biased) = 0.75<sup>2</sup> = 0.5625<br>
+                  P(HH) = 0.25(0.5) + 0.5625(0.5) = 0.125 + 0.28125 = 0.40625<br>
+                  P(Biased|HH) = 0.28125 / 0.40625 = <strong>9/13 &asymp; 0.6923</strong></p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 5 &mdash; Box Problem <span class="gate-tag">GATE 2020</span></h4>
+                  <p>Box 1 has 4 red and 6 blue balls. Box 2 has 7 red and 3 blue. A box is chosen with equal probability, and a ball drawn is red. P(Box 1)?</p>
+                  <p><strong>Solution:</strong><br>
+                  P(R|B1) = 4/10 = 0.4, P(R|B2) = 7/10 = 0.7<br>
+                  P(R) = 0.4(0.5) + 0.7(0.5) = 0.2 + 0.35 = 0.55<br>
+                  P(B1|R) = (0.4 &times; 0.5) / 0.55 = 0.2 / 0.55 = <strong>4/11 &asymp; 0.3636</strong></p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 6 &mdash; Sequential Update <span class="gate-tag">Advanced</span></h4>
+                  <p>A coin is either fair (H<sub>1</sub>) or double-headed (H<sub>2</sub>), equally likely. We observe Head on the first toss. What is the posterior? Now we observe Head again. Update.</p>
+                  <p><strong>After 1st Head:</strong><br>
+                  P(H<sub>1</sub>|H) = [0.5 &times; 0.5] / [0.5 &times; 0.5 + 1 &times; 0.5] = 0.25 / 0.75 = <strong>1/3</strong><br>
+                  P(H<sub>2</sub>|H) = <strong>2/3</strong></p>
+                  <p><strong>After 2nd Head</strong> (use posterior from step 1 as new prior):<br>
+                  P(H<sub>1</sub>|HH) = [0.5 &times; 1/3] / [0.5 &times; 1/3 + 1 &times; 2/3] = (1/6) / (5/6) = <strong>1/5</strong><br>
+                  P(H<sub>2</sub>|HH) = <strong>4/5</strong></p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="gate-tips">
+                <h2>4. GATE Problem-Solving Tips</h2>
+                <div class="warning-box">
+                  <h4>Common Mistakes to Avoid</h4>
+                  <ul>
+                    <li><strong>Confusing P(A|B) with P(B|A):</strong> Always identify which is the prior and which is the likelihood carefully.</li>
+                    <li><strong>Forgetting the denominator:</strong> P(E) must be computed via total probability in most problems.</li>
+                    <li><strong>Base rate neglect:</strong> A high sensitivity does NOT mean a high posterior if the prior is very low.</li>
+                    <li><strong>Not checking if hypotheses are exhaustive:</strong> Ensure all cases are covered.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>Bayes' theorem:</strong> P(H|E) = P(E|H)P(H) / P(E)</li>
+                    <li><strong>Total probability:</strong> P(E) = &sum; P(E|H<sub>i</sub>)P(H<sub>i</sub>)</li>
+                    <li>The posterior is proportional to the likelihood times the prior</li>
+                    <li>Bayes' theorem enables <strong>belief updating</strong> — the foundation of Bayesian reasoning in AI</li>
+                    <li>Expect 1-2 Bayes' theorem questions in GATE DA every year</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-bayes-theorem">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="conditional-probability.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Conditional Probability</span>
+              </a>
+              <a href="independence.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Independence</span>
+              </a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#formula">1. Bayes' Formula</a></li>
+              <li><a href="#total-probability">2. Law of Total Probability</a></li>
+              <li><a href="#worked-examples">3. Worked Examples</a></li>
+              <li><a href="#gate-tips">4. GATE Tips</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Genetic Algorithms — population, fitness, selection, crossover, mutation, schema theorem, 8-queens example, and GATE DA AI preparation.">
+  <title>Genetic Algorithms — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a><a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Overview<span class="link-type notes">Notes</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a><a href="../01-intelligent-agents/notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/uniform-cost-search.html" class="sidebar-link"><span class="link-check"></span> UCS<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA*<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="sma-star.html" class="sidebar-link"><span class="link-check"></span> SMA*<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded<span class="link-type theory">Theory</span></a>
+            <a href="local-search-hill-climbing.html" class="sidebar-link"><span class="link-check"></span> Hill Climbing<span class="link-type theory">Theory</span></a>
+            <a href="simulated-annealing.html" class="sidebar-link"><span class="link-check"></span> Simulated Annealing<span class="link-type theory">Theory</span></a>
+            <a href="genetic-algorithms.html" class="sidebar-link active"><span class="link-check"></span> Genetic Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> A* Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="heuristic-functions.html">Ch 3: Informed Search</a> &raquo;
+          <span class="current">Genetic Algorithms</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch03-genetic-algorithms">
+
+            <h1>Genetic Algorithms</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge low">GATE Relevance: Low-Medium</span>
+              <button class="bookmark-btn" data-page="ch03-genetic-algorithms" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="local-search-hill-climbing.html">Hill Climbing</a> &mdash; local search paradigm, objective functions</li>
+                <li><a href="simulated-annealing.html">Simulated Annealing</a> &mdash; stochastic optimization</li>
+                <li>Basic probability &mdash; roulette wheel selection</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand the GA framework: population, fitness, selection, crossover, mutation</li>
+                <li>Compare encoding schemes: binary and permutation</li>
+                <li>Apply selection methods: roulette wheel, tournament</li>
+                <li>Implement crossover and mutation operators</li>
+                <li>Write GA pseudocode</li>
+                <li>Understand the Schema Theorem (basics)</li>
+                <li>Solve the 8-queens problem with a GA</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: Overview -->
+              <section id="overview">
+                <h2>1. Overview</h2>
+                <p>A <strong>Genetic Algorithm (GA)</strong> is a population-based search method inspired by natural evolution. Instead of improving a single state (like hill climbing or SA), a GA maintains a <strong>population</strong> of candidate solutions and evolves them over generations using operators inspired by biology: <strong>selection</strong>, <strong>crossover</strong> (recombination), and <strong>mutation</strong>.</p>
+
+                <div class="key-concept">
+                  <h4>Core Idea</h4>
+                  <p>Survival of the fittest: good solutions are more likely to be selected as parents. Crossover combines parts of two parents to create offspring that may inherit good traits from both. Mutation introduces random variation to maintain diversity and escape local optima.</p>
+                </div>
+
+                <p>GAs were popularized by John Holland in the 1970s and have been applied to scheduling, design optimization, neural network training, game playing, and many other domains.</p>
+
+                <h3>1.1 GA vs Other Local Search Methods</h3>
+                <ul>
+                  <li><strong>Hill climbing / SA:</strong> single-state search. GA: population-based (parallel exploration).</li>
+                  <li><strong>SA:</strong> escapes local optima via random bad moves. GA: escapes via crossover and diversity.</li>
+                  <li><strong>GA strength:</strong> combines building blocks from different solutions (crossover).</li>
+                  <li><strong>GA weakness:</strong> many parameters to tune; slower per generation; no optimality guarantee.</li>
+                </ul>
+              </section>
+
+              <!-- Section 2: Encoding -->
+              <section id="encoding">
+                <h2>2. Encoding (Representation)</h2>
+                <p>Each candidate solution is represented as a <strong>chromosome</strong> (or individual). The encoding determines how solutions are represented as strings that the GA operators can manipulate.</p>
+
+                <h3>2.1 Binary Encoding</h3>
+                <p>The most common encoding. Each chromosome is a binary string of fixed length.</p>
+                <pre><code>Example: Maximize f(x) where x ∈ [0, 31].
+Encoding: 5-bit binary string.
+  x = 13  →  chromosome: [0, 1, 1, 0, 1]
+  x = 25  →  chromosome: [1, 1, 0, 0, 1]</code></pre>
+
+                <h3>2.2 Permutation Encoding</h3>
+                <p>Used for ordering problems (e.g., TSP, N-Queens).</p>
+                <pre><code>8-Queens: chromosome = [3, 1, 6, 2, 8, 4, 7, 5]
+  Meaning: queen in column 1 is in row 3,
+           queen in column 2 is in row 1, etc.</code></pre>
+
+                <h3>2.3 Other Encodings</h3>
+                <ul>
+                  <li><strong>Integer encoding</strong> &mdash; each gene is an integer (e.g., for feature selection)</li>
+                  <li><strong>Real-valued encoding</strong> &mdash; each gene is a floating-point number (for continuous optimization)</li>
+                  <li><strong>Tree encoding</strong> &mdash; used in genetic programming (evolving programs)</li>
+                </ul>
+              </section>
+
+              <!-- Section 3: Fitness Function -->
+              <section id="fitness">
+                <h2>3. Fitness Function</h2>
+                <p>The <strong>fitness function</strong> evaluates how good a chromosome is. It maps each individual to a non-negative real number. Higher fitness = better solution.</p>
+
+                <div class="example-box">
+                  <div class="box-title">Fitness Examples</div>
+                  <ul>
+                    <li><strong>Maximization of f(x):</strong> fitness = f(x) (directly)</li>
+                    <li><strong>8-Queens:</strong> fitness = 28 &minus; (number of attacking pairs). Max fitness = 28 (no attacks among 8 queens: C(8,2) = 28 pairs, all non-attacking).</li>
+                    <li><strong>TSP:</strong> fitness = 1 / tour_length (shorter tour = higher fitness)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 4: Selection -->
+              <section id="selection">
+                <h2>4. Selection Methods</h2>
+                <p>Selection determines which individuals become parents for the next generation. Fitter individuals should have a higher chance of being selected.</p>
+
+                <h3>4.1 Roulette Wheel Selection (Fitness-Proportionate)</h3>
+                <p>Each individual gets a &ldquo;slice&rdquo; of a roulette wheel proportional to its fitness. Spin the wheel to select a parent.</p>
+                <pre><code>Population (4 individuals):
+  A: fitness = 10   →  P(A) = 10/(10+20+30+40) = 10/100 = 0.10
+  B: fitness = 20   →  P(B) = 20/100 = 0.20
+  C: fitness = 30   →  P(C) = 30/100 = 0.30
+  D: fitness = 40   →  P(D) = 40/100 = 0.40
+
+Cumulative: A=[0, 0.10], B=(0.10, 0.30], C=(0.30, 0.60], D=(0.60, 1.00]
+Random number 0.45 → selects C.
+Random number 0.85 → selects D.</code></pre>
+
+                <div class="warning-box">
+                  <h4>&#9888; Problem with Roulette Wheel</h4>
+                  <p>If one individual has very high fitness compared to others, it dominates selection (premature convergence). If all fitnesses are similar, selection is nearly random (slow convergence). Scaling or ranking can mitigate this.</p>
+                </div>
+
+                <h3>4.2 Tournament Selection</h3>
+                <p>Randomly pick <em>k</em> individuals (a &ldquo;tournament&rdquo;). The fittest of the <em>k</em> wins and becomes a parent. Repeat for each parent needed.</p>
+                <pre><code>Tournament size k = 3:
+  Randomly pick B (fitness 20), D (fitness 40), A (fitness 10).
+  Winner: D (highest fitness).
+
+Tournament size k = 2:
+  Randomly pick A (fitness 10), C (fitness 30).
+  Winner: C.</code></pre>
+                <p><strong>Advantages:</strong> Simple, no need to compute total fitness, adjustable selection pressure via <em>k</em>.</p>
+
+                <h3>4.3 Comparison</h3>
+                <div class="table-responsive">
+                  <table class="styled-table">
+                    <thead>
+                      <tr><th>Method</th><th>Selection Pressure</th><th>Complexity</th><th>Notes</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Roulette Wheel</td><td>Proportional to fitness</td><td>O(n)</td><td>Can cause premature convergence</td></tr>
+                      <tr><td>Tournament (k)</td><td>Adjustable via k</td><td>O(k) per selection</td><td>Most commonly used in practice</td></tr>
+                      <tr><td>Rank Selection</td><td>Based on rank, not fitness value</td><td>O(n log n)</td><td>Avoids fitness scaling issues</td></tr>
+                      <tr><td>Elitism</td><td>Top individuals survive</td><td>O(n log n)</td><td>Used alongside other methods</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 5: Crossover -->
+              <section id="crossover">
+                <h2>5. Crossover Operators</h2>
+                <p>Crossover combines two parent chromosomes to produce offspring. It is the primary mechanism for exploring new regions of the search space.</p>
+
+                <h3>5.1 Single-Point Crossover</h3>
+                <p>Choose a random crossover point. Offspring 1 gets parent 1&rsquo;s genes before the point and parent 2&rsquo;s genes after. Offspring 2 gets the reverse.</p>
+                <pre><code>Parent 1: [1 0 1 | 1 0 0 1]    crossover point after position 3
+Parent 2: [0 1 0 | 0 1 1 0]
+
+Child 1:  [1 0 1 | 0 1 1 0]    (P1 left + P2 right)
+Child 2:  [0 1 0 | 1 0 0 1]    (P2 left + P1 right)</code></pre>
+
+                <h3>5.2 Two-Point Crossover</h3>
+                <p>Choose two random crossover points. The segment between them is swapped.</p>
+                <pre><code>Parent 1: [1 0 | 1 1 0 | 0 1]    points at positions 2 and 5
+Parent 2: [0 1 | 0 0 1 | 1 0]
+
+Child 1:  [1 0 | 0 0 1 | 0 1]   (P1 outer + P2 middle)
+Child 2:  [0 1 | 1 1 0 | 1 0]   (P2 outer + P1 middle)</code></pre>
+
+                <h3>5.3 Uniform Crossover</h3>
+                <p>For each gene position, randomly choose which parent contributes (e.g., flip a coin).</p>
+                <pre><code>Parent 1: [1 0 1 1 0 0 1]
+Parent 2: [0 1 0 0 1 1 0]
+Mask:     [1 0 1 0 0 1 0]   (1 = take from P1, 0 = take from P2)
+
+Child:    [1 1 1 0 1 0 0]</code></pre>
+
+                <h3>5.4 Order Crossover (OX) &mdash; for Permutations</h3>
+                <p>Used when chromosomes are permutations (e.g., TSP, N-Queens). Standard crossover would produce invalid permutations (repeated values).</p>
+                <pre><code>Parent 1: [3 1 6 | 2 8 4 | 7 5]    segment [2, 8, 4]
+Parent 2: [5 4 2 | 7 1 3 | 8 6]
+
+Step 1: Copy segment from P1 to child:
+  Child:  [_ _ _ | 2 8 4 | _ _]
+
+Step 2: Fill remaining positions with P2's order (skip already used):
+  P2 order: 5, 4, 2, 7, 1, 3, 8, 6  →  remove {2, 8, 4}  →  5, 7, 1, 3, 6
+  Fill from after segment: positions 7,8,1,2,3:
+  Child:  [1 3 6 | 2 8 4 | 5 7]</code></pre>
+              </section>
+
+              <!-- Section 6: Mutation -->
+              <section id="mutation">
+                <h2>6. Mutation Operators</h2>
+                <p>Mutation introduces small random changes to maintain <strong>genetic diversity</strong> and prevent premature convergence. It applies with a small probability (typically 0.001 &ndash; 0.05 per gene).</p>
+
+                <h3>6.1 Bit-Flip Mutation (Binary Encoding)</h3>
+                <pre><code>Before: [1 0 1 1 0 0 1]
+                    ^         (mutation at position 3)
+After:  [1 0 0 1 0 0 1]</code></pre>
+
+                <h3>6.2 Swap Mutation (Permutation Encoding)</h3>
+                <pre><code>Before: [3 1 6 2 8 4 7 5]
+Swap positions 2 and 5:
+After:  [3 8 6 2 1 4 7 5]</code></pre>
+
+                <h3>6.3 Inversion Mutation (Permutation)</h3>
+                <pre><code>Before: [3 1 6 2 8 4 7 5]
+Reverse segment [positions 3-6]:
+After:  [3 1 4 8 2 6 7 5]</code></pre>
+
+                <h3>6.4 Gaussian Mutation (Real-Valued)</h3>
+                <p>Add a random value from a Gaussian distribution N(0, &sigma;) to a gene.</p>
+              </section>
+
+              <!-- Section 7: Pseudocode -->
+              <section id="pseudocode">
+                <h2>7. GA Pseudocode</h2>
+                <pre><code>function GENETIC-ALGORITHM(problem, pop_size, p_crossover, p_mutation, max_gen):
+    // Initialize random population
+    population = [RANDOM-INDIVIDUAL() for i in 1..pop_size]
+
+    for generation = 1 to max_gen:
+        // Evaluate fitness
+        fitnesses = [FITNESS(individual) for individual in population]
+
+        // Check termination
+        best = individual with max fitness
+        if FITNESS(best) == optimal_fitness:
+            return best
+
+        // Create new population
+        new_population = []
+
+        // Elitism: keep the best individual(s)
+        new_population.add(best)
+
+        while |new_population| < pop_size:
+            // Selection
+            parent1 = SELECT(population, fitnesses)
+            parent2 = SELECT(population, fitnesses)
+
+            // Crossover
+            if RANDOM() < p_crossover:
+                child1, child2 = CROSSOVER(parent1, parent2)
+            else:
+                child1, child2 = parent1, parent2
+
+            // Mutation
+            child1 = MUTATE(child1, p_mutation)
+            child2 = MUTATE(child2, p_mutation)
+
+            new_population.add(child1)
+            if |new_population| < pop_size:
+                new_population.add(child2)
+
+        population = new_population
+
+    return best individual in final population</code></pre>
+
+                <div class="note-box">
+                  <h4>&#128221; Typical Parameter Values</h4>
+                  <ul>
+                    <li>Population size: 50 &ndash; 200</li>
+                    <li>Crossover probability: 0.6 &ndash; 0.9</li>
+                    <li>Mutation probability: 0.001 &ndash; 0.05 per gene</li>
+                    <li>Tournament size: 2 &ndash; 7</li>
+                    <li>Elitism: keep top 1 &ndash; 5 individuals</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 8: Schema Theorem -->
+              <section id="schema-theorem">
+                <h2>8. Schema Theorem (Basics)</h2>
+                <p>Holland&rsquo;s <strong>Schema Theorem</strong> provides a theoretical foundation for why GAs work. A <strong>schema</strong> is a template with fixed and wildcard (*) positions.</p>
+
+                <pre><code>Schema: [1 * 0 * 1 * 0]
+Matches: [1 0 0 0 1 0 0], [1 1 0 1 1 1 0], etc.
+
+Defining length δ(H) = distance between first and last fixed positions.
+  For [1 * 0 * 1 * 0]: first fixed = position 1, last = position 7. δ = 6.
+
+Order o(H) = number of fixed positions.
+  For [1 * 0 * 1 * 0]: o = 4.</code></pre>
+
+                <div class="key-concept">
+                  <h4>Schema Theorem (Informal)</h4>
+                  <p>Short, low-order schemas with above-average fitness increase exponentially in frequency across generations. These are called <strong>building blocks</strong>. GAs work by assembling good building blocks into complete solutions.</p>
+                  <p>Formally: E[m(H, t+1)] &ge; m(H, t) &middot; f(H)/f&#x0305; &middot; [1 &minus; p<sub>c</sub>&middot;&delta;(H)/(L&minus;1)] &middot; [1 &minus; p<sub>m</sub>]<sup>o(H)</sup></p>
+                  <p>where m(H,t) = number of individuals matching schema H at generation t, f(H) = average fitness of schema H, f&#x0305; = population average fitness, L = chromosome length.</p>
+                </div>
+
+                <p><strong>Implications:</strong></p>
+                <ul>
+                  <li>Above-average schemas grow; below-average schemas shrink.</li>
+                  <li>Short schemas (small &delta;) are less likely to be disrupted by crossover.</li>
+                  <li>Low-order schemas (small o) are less likely to be disrupted by mutation.</li>
+                  <li>GAs implicitly evaluate an exponential number of schemas in polynomial time (&ldquo;implicit parallelism&rdquo;).</li>
+                </ul>
+              </section>
+
+              <!-- Section 9: 8-Queens GA Example -->
+              <section id="eight-queens">
+                <h2>9. 8-Queens with a Genetic Algorithm</h2>
+
+                <h3>9.1 Setup</h3>
+                <ul>
+                  <li><strong>Encoding:</strong> permutation [r₁, r₂, &hellip;, r₈] &mdash; queen in column i is in row rᵢ</li>
+                  <li><strong>Fitness:</strong> 28 &minus; (attacking pairs). Goal: fitness = 28.</li>
+                  <li><strong>Selection:</strong> tournament (k=3)</li>
+                  <li><strong>Crossover:</strong> order crossover (OX)</li>
+                  <li><strong>Mutation:</strong> swap mutation (swap two random positions), p<sub>m</sub> = 0.05</li>
+                  <li><strong>Population size:</strong> 8</li>
+                </ul>
+
+                <div class="example-box">
+                  <div class="box-title">Generation 0 (Initial Population)</div>
+                  <pre><code>Individual  Chromosome         Attacks  Fitness
+   A        [5, 3, 1, 6, 8, 2, 4, 7]    2       26
+   B        [3, 6, 2, 7, 1, 4, 8, 5]    3       25
+   C        [8, 2, 4, 1, 7, 5, 3, 6]    1       27
+   D        [2, 5, 7, 4, 1, 8, 6, 3]    4       24
+   E        [4, 7, 3, 8, 2, 5, 1, 6]    2       26
+   F        [1, 4, 6, 3, 5, 8, 2, 7]    3       25
+   G        [6, 1, 5, 2, 8, 3, 7, 4]    2       26
+   H        [7, 8, 2, 5, 3, 1, 6, 4]    5       23</code></pre>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Selection &amp; Crossover (One Pair)</div>
+                  <p><strong>Tournament 1</strong> (k=3): pick C (27), D (24), H (23). Winner: <strong>C</strong> [8,2,4,1,7,5,3,6].</p>
+                  <p><strong>Tournament 2</strong> (k=3): pick A (26), E (26), B (25). Winner: <strong>A</strong> [5,3,1,6,8,2,4,7].</p>
+                  <p><strong>Order Crossover (positions 3&ndash;5 from C):</strong></p>
+                  <pre><code>Parent C: [8 2 | 4 1 7 | 5 3 6]    copy segment [4, 1, 7]
+Parent A: [5 3 | 1 6 8 | 2 4 7]
+
+Child: [_ _ | 4 1 7 | _ _ _]
+A's order (skip 4,1,7): 5, 3, 6, 8, 2
+Fill: positions 6,7,8,1,2 → [8 2 | 4 1 7 | 5 3 6]
+Hmm, let me recalculate:
+  Remaining from A's order: 5, 3, 6, 8, 2
+  Fill after segment: pos 6→5, pos 7→3, pos 8→6, pos 1→8, pos 2→2
+  Child: [8 2 | 4 1 7 | 5 3 6]  (same as C in this case!)
+
+With different crossover points, more mixing occurs.</code></pre>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Mutation</div>
+                  <pre><code>Child before mutation: [8, 2, 4, 1, 7, 5, 3, 6]
+Swap mutation (positions 1 and 6):
+Child after mutation:  [5, 2, 4, 1, 7, 8, 3, 6]
+New attacks: 3, fitness = 25 (worse, but adds diversity)</code></pre>
+                </div>
+
+                <p>After many generations, the population converges toward fitness 28 (zero attacking pairs). Typical GAs solve 8-queens in 10&ndash;50 generations with population size 100.</p>
+              </section>
+
+              <!-- Section 10: Comparison -->
+              <section id="comparison">
+                <h2>10. Comparison with Other Local Search Methods</h2>
+                <div class="table-responsive">
+                  <table class="styled-table">
+                    <thead>
+                      <tr><th>Property</th><th>Hill Climbing</th><th>Simulated Annealing</th><th>Genetic Algorithm</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>States maintained</strong></td><td>1</td><td>1</td><td>Population (many)</td></tr>
+                      <tr><td><strong>Escapes local optima?</strong></td><td>No (except random restart)</td><td>Yes (temperature)</td><td>Yes (crossover + diversity)</td></tr>
+                      <tr><td><strong>Key mechanism</strong></td><td>Best neighbor</td><td>Accept bad moves probabilistically</td><td>Combine good building blocks</td></tr>
+                      <tr><td><strong>Memory</strong></td><td>O(1)</td><td>O(1)</td><td>O(pop_size &times; chromosome_length)</td></tr>
+                      <tr><td><strong>Parameters</strong></td><td>None</td><td>T₀, &alpha;</td><td>pop_size, p_c, p_m, selection, etc.</td></tr>
+                      <tr><td><strong>Parallelizable?</strong></td><td>No</td><td>No</td><td>Yes (evaluate population in parallel)</td></tr>
+                      <tr><td><strong>Best for</strong></td><td>Simple/fast baseline</td><td>Single-objective continuous</td><td>Complex, multi-modal, combinatorial</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 11: Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>GAs maintain a <strong>population</strong> of candidate solutions and evolve them over generations.</li>
+                    <li><strong>Encoding:</strong> binary, permutation, real-valued, etc.</li>
+                    <li><strong>Selection:</strong> roulette wheel (fitness-proportionate) or tournament (most common).</li>
+                    <li><strong>Crossover:</strong> single-point, two-point, uniform (binary); order crossover (permutation). Primary exploration mechanism.</li>
+                    <li><strong>Mutation:</strong> bit-flip (binary), swap/inversion (permutation). Maintains diversity.</li>
+                    <li><strong>Schema Theorem:</strong> short, low-order, above-average schemas grow exponentially &mdash; GAs combine building blocks.</li>
+                    <li>GAs are versatile but require careful parameter tuning and are slower per iteration than single-state methods.</li>
+                    <li>GATE focus: understand operators, compute fitness, apply roulette wheel selection, trace one generation.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- References -->
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Holland, J.H. (1975). <em>Adaptation in Natural and Artificial Systems.</em></li>
+                  <li>Goldberg, D.E. (1989). <em>Genetic Algorithms in Search, Optimization, and Machine Learning.</em></li>
+                  <li>Russell &amp; Norvig, <em>Artificial Intelligence: A Modern Approach</em>, 4th Ed. &mdash; Section 4.1.4.</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch03-genetic-algorithms">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="simulated-annealing.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Simulated Annealing</span></a>
+              <a href="pattern-databases.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Pattern Databases</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#overview">1. Overview</a></li>
+              <li><a href="#encoding">2. Encoding</a></li>
+              <li><a href="#fitness">3. Fitness Function</a></li>
+              <li><a href="#selection">4. Selection</a></li>
+              <li><a href="#crossover">5. Crossover</a></li>
+              <li><a href="#mutation">6. Mutation</a></li>
+              <li><a href="#pseudocode">7. Pseudocode</a></li>
+              <li><a href="#schema-theorem">8. Schema Theorem</a></li>
+              <li><a href="#eight-queens">9. 8-Queens Example</a></li>
+              <li><a href="#comparison">10. Comparison</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

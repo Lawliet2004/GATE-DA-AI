@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Probability Fundamentals — sample space, events, axioms, addition &amp; complement rules, permutations, combinations, worked examples for GATE DA preparation.">
+  <title>Probability Basics — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link active"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo;
+          <span class="current">Probability Basics</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch07-probability-basics">
+
+            <h1>Probability Fundamentals</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch07-probability-basics" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li>Basic set theory (unions, intersections, complements)</li>
+              <li>Arithmetic and algebraic manipulation</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Define sample space, events, and the axioms of probability</li>
+              <li>Apply addition and complement rules to compute event probabilities</li>
+              <li>Use permutations and combinations for counting-based problems</li>
+              <li>Solve GATE-style numerical probability problems</li>
+            </ul></div>
+
+            <div class="content-body">
+
+              <!-- Section 1 -->
+              <section id="sample-space-events">
+                <h2>1. Sample Space and Events</h2>
+
+                <div class="definition-box">
+                  <h4>Sample Space (S or &Omega;)</h4>
+                  <p>The <strong>sample space</strong> is the set of all possible outcomes of a random experiment.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example &mdash; Dice Roll</h4>
+                  <p>Rolling a single fair die: S = {1, 2, 3, 4, 5, 6}. Each outcome is equally likely with probability 1/6.</p>
+                </div>
+
+                <div class="definition-box">
+                  <h4>Event</h4>
+                  <p>An <strong>event</strong> is any subset of the sample space. For example, "rolling an even number" is the event E = {2, 4, 6}.</p>
+                </div>
+
+                <p>Events can be combined using set operations:</p>
+                <ul>
+                  <li><strong>Union (A &cup; B):</strong> A or B (or both) occurs</li>
+                  <li><strong>Intersection (A &cap; B):</strong> Both A and B occur</li>
+                  <li><strong>Complement (A<sup>c</sup>):</strong> A does not occur</li>
+                  <li><strong>Mutually exclusive:</strong> A &cap; B = &empty;</li>
+                </ul>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="axioms">
+                <h2>2. Axioms of Probability (Kolmogorov)</h2>
+
+                <div class="theorem-box">
+                  <h4>Kolmogorov Axioms</h4>
+                  <ol>
+                    <li><strong>Non-negativity:</strong> P(A) &ge; 0 for every event A</li>
+                    <li><strong>Normalization:</strong> P(S) = 1</li>
+                    <li><strong>Countable additivity:</strong> For mutually exclusive events A<sub>1</sub>, A<sub>2</sub>, &hellip;<br>
+                      P(A<sub>1</sub> &cup; A<sub>2</sub> &cup; &hellip;) = P(A<sub>1</sub>) + P(A<sub>2</sub>) + &hellip;</li>
+                  </ol>
+                </div>
+
+                <div class="note-box">
+                  <h4>Key Consequences</h4>
+                  <ul>
+                    <li>0 &le; P(A) &le; 1 for every event A</li>
+                    <li>P(&empty;) = 0</li>
+                    <li>P(A<sup>c</sup>) = 1 &minus; P(A)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="rules">
+                <h2>3. Addition Rule and Complement Rule</h2>
+
+                <div class="formula">
+                  <strong>General Addition Rule:</strong><br>
+                  P(A &cup; B) = P(A) + P(B) &minus; P(A &cap; B)
+                </div>
+
+                <p>When A and B are mutually exclusive (A &cap; B = &empty;):</p>
+                <div class="formula">
+                  P(A &cup; B) = P(A) + P(B)
+                </div>
+
+                <div class="formula">
+                  <strong>Complement Rule:</strong><br>
+                  P(A<sup>c</sup>) = 1 &minus; P(A)
+                </div>
+
+                <div class="warning-box">
+                  <h4>Common GATE Trap</h4>
+                  <p>Students often forget to subtract P(A &cap; B) in the addition rule. Always check if events overlap before adding probabilities directly.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 1 &mdash; Cards</h4>
+                  <p>A card is drawn from a standard 52-card deck. Find P(Heart &cup; King).</p>
+                  <p><strong>Solution:</strong> P(Heart) = 13/52, P(King) = 4/52, P(Heart &cap; King) = 1/52 (King of Hearts).<br>
+                  P(Heart &cup; King) = 13/52 + 4/52 &minus; 1/52 = <strong>16/52 = 4/13</strong>.</p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="counting">
+                <h2>4. Counting: Permutations and Combinations</h2>
+
+                <div class="definition-box">
+                  <h4>Permutation</h4>
+                  <p>The number of ways to arrange r objects from n distinct objects (order matters):</p>
+                  <div class="formula">P(n, r) = n! / (n &minus; r)!</div>
+                </div>
+
+                <div class="definition-box">
+                  <h4>Combination</h4>
+                  <p>The number of ways to choose r objects from n distinct objects (order does not matter):</p>
+                  <div class="formula">C(n, r) = n! / [r! &times; (n &minus; r)!]</div>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 2 &mdash; Committee Selection</h4>
+                  <p>A committee of 3 is chosen from 10 people. How many ways?</p>
+                  <p><strong>Solution:</strong> C(10, 3) = 10! / (3! &times; 7!) = (10 &times; 9 &times; 8) / (3 &times; 2 &times; 1) = <strong>120</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 3 &mdash; Word Arrangements</h4>
+                  <p>How many distinct arrangements of the letters in "GATE"?</p>
+                  <p><strong>Solution:</strong> 4 distinct letters &rArr; P(4, 4) = 4! = <strong>24</strong>.</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="worked-examples">
+                <h2>5. Worked Examples</h2>
+
+                <div class="example-box">
+                  <h4>Example 4 &mdash; Two Dice <span class="gate-tag">GATE Style NAT</span></h4>
+                  <p>Two fair dice are rolled. What is the probability that the sum is 7?</p>
+                  <p><strong>Solution:</strong> Total outcomes = 6 &times; 6 = 36. Favourable outcomes: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) = 6.<br>
+                  P(sum = 7) = 6/36 = <strong>1/6 &asymp; 0.1667</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 5 &mdash; At Least One <span class="gate-tag">GATE Style MCQ</span></h4>
+                  <p>Three coins are tossed. What is P(at least one head)?</p>
+                  <p><strong>Solution:</strong> Use complement: P(at least one head) = 1 &minus; P(no heads) = 1 &minus; P(TTT) = 1 &minus; (1/2)<sup>3</sup> = 1 &minus; 1/8 = <strong>7/8</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 6 &mdash; Birthday Problem (Simplified)</h4>
+                  <p>In a group of 3 people, find P(at least two share a birthday) assuming 365 equally likely days.</p>
+                  <p><strong>Solution:</strong> P(no shared birthday) = (365/365) &times; (364/365) &times; (363/365) &asymp; 0.9918.<br>
+                  P(at least one shared) = 1 &minus; 0.9918 = <strong>&asymp; 0.0082</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 7 &mdash; Defective Items <span class="gate-tag">GATE 2019</span></h4>
+                  <p>A lot contains 10 items, of which 3 are defective. If 4 items are drawn at random without replacement, what is P(exactly 2 defective)?</p>
+                  <p><strong>Solution:</strong> Using hypergeometric distribution:<br>
+                  P = C(3,2) &times; C(7,2) / C(10,4) = (3 &times; 21) / 210 = 63/210 = <strong>3/10 = 0.30</strong>.</p>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li>A <strong>sample space</strong> S contains all possible experiment outcomes; an <strong>event</strong> is a subset of S.</li>
+                    <li>Kolmogorov axioms: non-negativity, normalization, and countable additivity.</li>
+                    <li><strong>Addition rule:</strong> P(A &cup; B) = P(A) + P(B) &minus; P(A &cap; B).</li>
+                    <li><strong>Complement rule:</strong> P(A<sup>c</sup>) = 1 &minus; P(A).</li>
+                    <li>Use <strong>permutations</strong> when order matters, <strong>combinations</strong> when it does not.</li>
+                    <li>"At least one" problems &mdash; always consider the complement approach.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-probability-basics">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="../06-predicate-logic/quiz-predicate-logic.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Quiz: Predicate Logic</span>
+              </a>
+              <a href="conditional-probability.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Conditional Probability</span>
+              </a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#sample-space-events">1. Sample Space &amp; Events</a></li>
+              <li><a href="#axioms">2. Axioms of Probability</a></li>
+              <li><a href="#rules">3. Addition &amp; Complement Rules</a></li>
+              <li><a href="#counting">4. Counting</a></li>
+              <li><a href="#worked-examples">5. Worked Examples</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Markov Decision Processes (MDPs) — RL formalism, agent-environment loop, states, actions, rewards, Bellman equations, optimal value functions for GATE DA.">
+  <title>Markov Decision Processes — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="mdp.html" class="sidebar-link active"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="value-iteration.html" class="sidebar-link"><span class="link-check"></span> Value Iteration<span class="link-type theory">Theory</span></a>
+            <a href="policy-iteration.html" class="sidebar-link"><span class="link-check"></span> Policy Iteration<span class="link-type theory">Theory</span></a>
+            <a href="q-learning.html" class="sidebar-link"><span class="link-check"></span> Q-Learning<span class="link-type theory">Theory</span></a>
+            <a href="deep-reinforcement-learning.html" class="sidebar-link"><span class="link-check"></span> Deep RL<span class="link-type theory">Theory</span></a>
+            <a href="practical-rl.html" class="sidebar-link"><span class="link-check"></span> &#128300; Practical<span class="link-type practical">Demo</span></a>
+            <a href="notes-rl.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-rl.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="mdp.html">Chapter 12: Reinforcement Learning</a> &raquo; <span class="current">Markov Decision Processes</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch12-mdp">
+
+            <h1>Markov Decision Processes (MDPs)</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch12-mdp" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Understand the <strong>agent-environment interaction loop</strong> in reinforcement learning</li>
+              <li>Define an MDP formally as a tuple (S, A, P, R, &gamma;)</li>
+              <li>Explain the <strong>Markov property</strong> and why it simplifies decision-making</li>
+              <li>Derive the <strong>Bellman expectation equations</strong> for V<sup>&pi;</sup> and Q<sup>&pi;</sup></li>
+              <li>Write down the <strong>Bellman optimality equations</strong> for V* and Q*</li>
+              <li>Compute returns and value functions on small grid-world examples</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: RL Framework -->
+              <section id="rl-framework">
+                <h2>1. The Reinforcement Learning Framework</h2>
+                <p>Reinforcement Learning (RL) is a computational approach to learning from <strong>interaction</strong>. Unlike supervised learning where labelled examples are provided, an RL agent must discover good behaviour through <strong>trial and error</strong>, receiving numerical reward signals from the environment.</p>
+
+                <div class="definition-box">
+                  <h4>&#128218; Reinforcement Learning</h4>
+                  <p>An agent interacts with an environment over a sequence of discrete time steps t = 0, 1, 2, &hellip; At each step t the agent:</p>
+                  <ol>
+                    <li>Observes the current state S<sub>t</sub> &in; S</li>
+                    <li>Selects an action A<sub>t</sub> &in; A(S<sub>t</sub>)</li>
+                    <li>Receives a reward R<sub>t+1</sub> &in; &real;</li>
+                    <li>Transitions to a new state S<sub>t+1</sub></li>
+                  </ol>
+                </div>
+
+                <p>This creates a trajectory: S<sub>0</sub>, A<sub>0</sub>, R<sub>1</sub>, S<sub>1</sub>, A<sub>1</sub>, R<sub>2</sub>, S<sub>2</sub>, &hellip;</p>
+
+                <div class="note-box">
+                  <h4>&#128161; Key Insight</h4>
+                  <p>The agent&rsquo;s goal is not to maximise immediate reward but to maximise the <strong>cumulative reward</strong> over time. This creates the fundamental trade-off between <strong>exploration</strong> (trying new actions) and <strong>exploitation</strong> (using known good actions).</p>
+                </div>
+              </section>
+
+              <!-- Section 2: Markov Property -->
+              <section id="markov-property">
+                <h2>2. The Markov Property</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Markov Property</h4>
+                  <p>A state S<sub>t</sub> is <strong>Markov</strong> if and only if:</p>
+                  <p style="text-align:center; font-size:1.1em;">P(S<sub>t+1</sub> | S<sub>t</sub>) = P(S<sub>t+1</sub> | S<sub>1</sub>, S<sub>2</sub>, &hellip;, S<sub>t</sub>)</p>
+                  <p>The future depends only on the <strong>current state</strong>, not on the history of states that preceded it. The state captures all relevant information from the past.</p>
+                </div>
+
+                <p>The Markov property is a critical simplifying assumption. It means we don&rsquo;t need to remember the entire history of interactions &mdash; the current state is a <strong>sufficient statistic</strong> for predicting what happens next.</p>
+
+                <div class="example-box">
+                  <h4>&#128221; Example: Chess as a Markov Process</h4>
+                  <p>The current board position in chess is Markov &mdash; knowing the current position of all pieces is sufficient to determine all legal moves and evaluate the position. The sequence of moves that led to this position doesn&rsquo;t matter for future play (ignoring draw-by-repetition rules).</p>
+                </div>
+              </section>
+
+              <!-- Section 3: Formal MDP Definition -->
+              <section id="mdp-definition">
+                <h2>3. Formal MDP Definition</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Markov Decision Process (MDP)</h4>
+                  <p>An MDP is a 5-tuple &langle;S, A, P, R, &gamma;&rangle; where:</p>
+                  <ul>
+                    <li><strong>S</strong> &mdash; a finite set of <strong>states</strong></li>
+                    <li><strong>A</strong> &mdash; a finite set of <strong>actions</strong> (or A(s) for state-dependent actions)</li>
+                    <li><strong>P</strong> &mdash; <strong>transition function</strong>: P(s&prime; | s, a) = probability of reaching state s&prime; from state s by taking action a</li>
+                    <li><strong>R</strong> &mdash; <strong>reward function</strong>: R(s, a, s&prime;) = immediate reward received after transitioning from s to s&prime; via action a</li>
+                    <li><strong>&gamma;</strong> &in; [0, 1] &mdash; <strong>discount factor</strong></li>
+                  </ul>
+                </div>
+
+                <h3>3.1 Transition Function</h3>
+                <p>The transition function P defines the <strong>dynamics</strong> of the environment. For any state s &in; S and action a &in; A:</p>
+                <p style="text-align:center; font-size:1.05em;">&#8721;<sub>s&prime; &in; S</sub> P(s&prime; | s, a) = 1</p>
+                <p>This means from any state-action pair, the probabilities of transitioning to all possible next states must sum to 1.</p>
+
+                <h3>3.2 Reward Function</h3>
+                <p>The reward function can take several forms depending on the formulation:</p>
+                <ul>
+                  <li><strong>R(s, a, s&prime;)</strong> &mdash; depends on current state, action, and next state</li>
+                  <li><strong>R(s, a)</strong> &mdash; depends only on current state and action (expected over next states)</li>
+                  <li><strong>R(s)</strong> &mdash; depends only on the current state</li>
+                </ul>
+
+                <h3>3.3 Discount Factor &gamma;</h3>
+
+                <div class="warning-box">
+                  <h4>&#9888; Why Do We Need Discounting?</h4>
+                  <ul>
+                    <li><strong>Mathematical convenience:</strong> Ensures the infinite sum of rewards converges (for &gamma; &lt; 1)</li>
+                    <li><strong>Economic interpretation:</strong> A reward now is worth more than the same reward in the future</li>
+                    <li><strong>Uncertainty:</strong> The agent may not survive forever; &gamma; can model the probability of continuing</li>
+                    <li><strong>&gamma; = 0:</strong> Myopic agent &mdash; only cares about immediate reward</li>
+                    <li><strong>&gamma; = 1:</strong> Far-sighted agent &mdash; all future rewards weighted equally (only valid for episodic tasks)</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#128221; Example: Simple 3-State MDP</h4>
+                  <p>Consider an MDP with S = {s<sub>1</sub>, s<sub>2</sub>, s<sub>3</sub>}, A = {a, b}, and &gamma; = 0.9:</p>
+                  <table class="comparison-table">
+                    <thead><tr><th>From State</th><th>Action</th><th>To State</th><th>P(s&prime;|s,a)</th><th>R(s,a,s&prime;)</th></tr></thead>
+                    <tbody>
+                      <tr><td>s<sub>1</sub></td><td>a</td><td>s<sub>1</sub></td><td>0.2</td><td>+5</td></tr>
+                      <tr><td>s<sub>1</sub></td><td>a</td><td>s<sub>2</sub></td><td>0.8</td><td>+10</td></tr>
+                      <tr><td>s<sub>1</sub></td><td>b</td><td>s<sub>3</sub></td><td>1.0</td><td>&minus;1</td></tr>
+                      <tr><td>s<sub>2</sub></td><td>a</td><td>s<sub>1</sub></td><td>0.5</td><td>+2</td></tr>
+                      <tr><td>s<sub>2</sub></td><td>a</td><td>s<sub>2</sub></td><td>0.5</td><td>+2</td></tr>
+                      <tr><td>s<sub>3</sub></td><td>a</td><td>s<sub>3</sub></td><td>1.0</td><td>0</td></tr>
+                    </tbody>
+                  </table>
+                  <p>Here s<sub>3</sub> is a terminal/absorbing state with zero reward.</p>
+                </div>
+              </section>
+
+              <!-- Section 4: Return and Cumulative Reward -->
+              <section id="return">
+                <h2>4. Return (Cumulative Reward)</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Return G<sub>t</sub></h4>
+                  <p>The <strong>return</strong> G<sub>t</sub> is the total discounted reward from time step t onward:</p>
+                  <p style="text-align:center; font-size:1.15em;">G<sub>t</sub> = R<sub>t+1</sub> + &gamma;R<sub>t+2</sub> + &gamma;&sup2;R<sub>t+3</sub> + &hellip; = &#8721;<sub>k=0</sub><sup>&infin;</sup> &gamma;<sup>k</sup> R<sub>t+k+1</sub></p>
+                </div>
+
+                <p>A key <strong>recursive relationship</strong> that is fundamental to all RL algorithms:</p>
+                <p style="text-align:center; font-size:1.1em; background:var(--bg-secondary); padding:0.75rem; border-radius:8px;">G<sub>t</sub> = R<sub>t+1</sub> + &gamma; G<sub>t+1</sub></p>
+
+                <div class="example-box">
+                  <h4>&#128221; Worked Example: Computing Return</h4>
+                  <p>Suppose &gamma; = 0.5 and a trajectory gives rewards: R<sub>1</sub>=2, R<sub>2</sub>=3, R<sub>3</sub>=5, R<sub>4</sub>=1 (then terminal).</p>
+                  <p>G<sub>0</sub> = 2 + 0.5&times;3 + 0.25&times;5 + 0.125&times;1 = 2 + 1.5 + 1.25 + 0.125 = <strong>4.875</strong></p>
+                  <p>G<sub>1</sub> = 3 + 0.5&times;5 + 0.25&times;1 = 3 + 2.5 + 0.25 = <strong>5.75</strong></p>
+                  <p>Verify recursion: G<sub>0</sub> = R<sub>1</sub> + &gamma; G<sub>1</sub> = 2 + 0.5 &times; 5.75 = 2 + 2.875 = 4.875 &#9989;</p>
+                </div>
+              </section>
+
+              <!-- Section 5: Policy -->
+              <section id="policy">
+                <h2>5. Policy &pi;</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Policy</h4>
+                  <p>A <strong>policy</strong> &pi; defines the agent&rsquo;s behaviour. It is a mapping from states to actions (or distributions over actions).</p>
+                  <ul>
+                    <li><strong>Deterministic policy:</strong> &pi;(s) = a &mdash; maps each state to a single action</li>
+                    <li><strong>Stochastic policy:</strong> &pi;(a | s) = P(A<sub>t</sub> = a | S<sub>t</sub> = s) &mdash; gives a probability distribution over actions for each state</li>
+                  </ul>
+                </div>
+
+                <p>The goal of RL is to find an <strong>optimal policy</strong> &pi;* that maximises the expected return from every state.</p>
+              </section>
+
+              <!-- Section 6: Value Functions -->
+              <section id="value-functions">
+                <h2>6. Value Functions</h2>
+
+                <h3>6.1 State-Value Function V<sup>&pi;</sup>(s)</h3>
+                <div class="definition-box">
+                  <h4>&#128218; State-Value Function</h4>
+                  <p>The state-value function V<sup>&pi;</sup>(s) gives the <strong>expected return</strong> starting from state s and following policy &pi;:</p>
+                  <p style="text-align:center; font-size:1.1em;">V<sup>&pi;</sup>(s) = E<sub>&pi;</sub>[G<sub>t</sub> | S<sub>t</sub> = s] = E<sub>&pi;</sub>[&#8721;<sub>k=0</sub><sup>&infin;</sup> &gamma;<sup>k</sup> R<sub>t+k+1</sub> | S<sub>t</sub> = s]</p>
+                </div>
+
+                <h3>6.2 Action-Value Function Q<sup>&pi;</sup>(s, a)</h3>
+                <div class="definition-box">
+                  <h4>&#128218; Action-Value Function</h4>
+                  <p>The action-value function Q<sup>&pi;</sup>(s, a) gives the expected return starting from state s, taking action a, then following policy &pi;:</p>
+                  <p style="text-align:center; font-size:1.1em;">Q<sup>&pi;</sup>(s, a) = E<sub>&pi;</sub>[G<sub>t</sub> | S<sub>t</sub> = s, A<sub>t</sub> = a]</p>
+                </div>
+
+                <h3>6.3 Relationship between V and Q</h3>
+                <p style="text-align:center; font-size:1.05em; background:var(--bg-secondary); padding:0.75rem; border-radius:8px;">V<sup>&pi;</sup>(s) = &#8721;<sub>a &in; A</sub> &pi;(a | s) &middot; Q<sup>&pi;</sup>(s, a)</p>
+                <p>The value of a state is the weighted average of Q-values, weighted by the policy&rsquo;s action probabilities.</p>
+              </section>
+
+              <!-- Section 7: Bellman Equations -->
+              <section id="bellman-equations">
+                <h2>7. Bellman Expectation Equations</h2>
+
+                <div class="theorem-box">
+                  <h4>&#128295; Bellman Expectation Equation for V<sup>&pi;</sup></h4>
+                  <p style="font-size:1.05em;">V<sup>&pi;</sup>(s) = &#8721;<sub>a</sub> &pi;(a|s) &#8721;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; V<sup>&pi;</sup>(s&prime;)]</p>
+                  <p>The value of state s under policy &pi; equals the expected immediate reward plus the discounted value of the next state, averaged over all actions and transitions.</p>
+                </div>
+
+                <div class="theorem-box">
+                  <h4>&#128295; Bellman Expectation Equation for Q<sup>&pi;</sup></h4>
+                  <p style="font-size:1.05em;">Q<sup>&pi;</sup>(s,a) = &#8721;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; &#8721;<sub>a&prime;</sub> &pi;(a&prime;|s&prime;) Q<sup>&pi;</sup>(s&prime;,a&prime;)]</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Backup Diagrams</h4>
+                  <p>The Bellman equations can be visualised as <strong>backup diagrams</strong> showing how value information flows backward from successor states. For V<sup>&pi;</sup>, the diagram has a state node at the top, branching into action nodes (weighted by &pi;), each branching into next-state nodes (weighted by P), which connect back to state values.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#128221; Worked Example: Bellman Equation on a 2&times;2 Grid</h4>
+                  <p>Consider a 2&times;2 grid world with states {(0,0), (0,1), (1,0), (1,1)}. The goal is (1,1) with reward +10. All other transitions give reward &minus;1. &gamma; = 0.9. The agent moves deterministically in the chosen direction (up, down, left, right) and stays in place if hitting a wall.</p>
+                  <p>Under a uniform random policy &pi;(a|s) = 0.25 for each action, the Bellman equation for state (0,0):</p>
+                  <p>V<sup>&pi;</sup>(0,0) = 0.25 &times; [&minus;1 + 0.9&middot;V<sup>&pi;</sup>(0,0)] &nbsp;(hit wall, stay)<br>
+                  &nbsp;&nbsp;&nbsp; + 0.25 &times; [&minus;1 + 0.9&middot;V<sup>&pi;</sup>(0,1)] &nbsp;(move right)<br>
+                  &nbsp;&nbsp;&nbsp; + 0.25 &times; [&minus;1 + 0.9&middot;V<sup>&pi;</sup>(1,0)] &nbsp;(move down)<br>
+                  &nbsp;&nbsp;&nbsp; + 0.25 &times; [&minus;1 + 0.9&middot;V<sup>&pi;</sup>(0,0)] &nbsp;(hit wall, stay)</p>
+                  <p>This gives a system of 4 linear equations in 4 unknowns that can be solved simultaneously.</p>
+                </div>
+              </section>
+
+              <!-- Section 8: Optimal Value Functions -->
+              <section id="optimal-value">
+                <h2>8. Optimal Value Functions &amp; Bellman Optimality Equations</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Optimal Value Functions</h4>
+                  <p>The <strong>optimal state-value function</strong> V*(s) gives the maximum expected return achievable from state s over all policies:</p>
+                  <p style="text-align:center; font-size:1.1em;">V*(s) = max<sub>&pi;</sub> V<sup>&pi;</sup>(s), &nbsp; &forall; s &in; S</p>
+                  <p>The <strong>optimal action-value function</strong> Q*(s,a):</p>
+                  <p style="text-align:center; font-size:1.1em;">Q*(s,a) = max<sub>&pi;</sub> Q<sup>&pi;</sup>(s,a), &nbsp; &forall; s &in; S, a &in; A</p>
+                </div>
+
+                <div class="theorem-box">
+                  <h4>&#128295; Bellman Optimality Equation for V*</h4>
+                  <p style="font-size:1.05em;">V*(s) = max<sub>a &in; A</sub> &#8721;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; V*(s&prime;)]</p>
+                  <p>The optimal value of a state is the value of the <strong>best action</strong> from that state.</p>
+                </div>
+
+                <div class="theorem-box">
+                  <h4>&#128295; Bellman Optimality Equation for Q*</h4>
+                  <p style="font-size:1.05em;">Q*(s,a) = &#8721;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; max<sub>a&prime;</sub> Q*(s&prime;,a&prime;)]</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Why Are Bellman Optimality Equations Non-Linear?</h4>
+                  <p>Unlike the Bellman expectation equations (which are linear for a fixed &pi;), the optimality equations contain a <strong>max</strong> operator, making them non-linear. This means they generally cannot be solved in closed form and require <strong>iterative methods</strong> like value iteration or policy iteration.</p>
+                </div>
+
+                <p>Once V* is known, the optimal policy is extracted greedily:</p>
+                <p style="text-align:center; font-size:1.05em;">&pi;*(s) = argmax<sub>a</sub> &#8721;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; V*(s&prime;)]</p>
+
+                <p>Once Q* is known, the optimal policy is even simpler:</p>
+                <p style="text-align:center; font-size:1.05em;">&pi;*(s) = argmax<sub>a</sub> Q*(s,a)</p>
+              </section>
+
+              <!-- Section 9: Grid World Example -->
+              <section id="grid-world">
+                <h2>9. Complete Worked Example: 3&times;3 Grid World</h2>
+
+                <div class="example-box">
+                  <h4>&#128221; Grid World Setup</h4>
+                  <p>A 3&times;3 grid world with:</p>
+                  <ul>
+                    <li>States: 9 cells labelled (0,0) to (2,2)</li>
+                    <li>Actions: {Up, Down, Left, Right}</li>
+                    <li>Goal state: (2,2) with reward +1 (terminal)</li>
+                    <li>Pit state: (1,1) with reward &minus;1 (terminal)</li>
+                    <li>All other transitions: reward &minus;0.04 (living penalty)</li>
+                    <li>Transition: deterministic (probability 1.0)</li>
+                    <li>Hitting a wall: agent stays in place, still gets &minus;0.04</li>
+                    <li>&gamma; = 0.9</li>
+                  </ul>
+                  <pre><code>Grid layout:
+  (0,0) (0,1) (0,2)
+  (1,0) [PIT] (1,2)
+  (2,0) (2,1) [GOAL]
+
+Optimal policy (intuitive):
+  (0,0)&rarr;Right  (0,1)&rarr;Right  (0,2)&rarr;Down
+  (1,0)&rarr;Up     [PIT]         (1,2)&rarr;Down
+  (2,0)&rarr;Right  (2,1)&rarr;Right  [GOAL]</code></pre>
+                  <p>We will solve this MDP using value iteration in the next section. The key insight: the living penalty &minus;0.04 encourages the agent to reach the goal quickly, while the pit provides a negative outcome to avoid.</p>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section"><ul>
+                  <li>RL involves an <strong>agent</strong> learning from <strong>interaction</strong> with an environment</li>
+                  <li>An <strong>MDP</strong> is defined by &langle;S, A, P, R, &gamma;&rangle;</li>
+                  <li>The <strong>Markov property</strong>: the future depends only on the current state</li>
+                  <li>The <strong>return</strong> G<sub>t</sub> = &#8721; &gamma;<sup>k</sup> R<sub>t+k+1</sub> is the total discounted reward</li>
+                  <li>A <strong>policy</strong> &pi;(a|s) maps states to action probabilities</li>
+                  <li><strong>V<sup>&pi;</sup>(s)</strong> = expected return from s following &pi;; <strong>Q<sup>&pi;</sup>(s,a)</strong> = expected return from (s,a) following &pi;</li>
+                  <li><strong>Bellman expectation equations</strong> recursively relate values; they are linear for fixed &pi;</li>
+                  <li><strong>Bellman optimality equations</strong> use max over actions; they are non-linear</li>
+                  <li>The optimal policy is greedy w.r.t. V* or Q*</li>
+                </ul></div>
+              </section>
+
+              <section id="references"><h2>References</h2><ul>
+                <li>Sutton &amp; Barto, <em>Reinforcement Learning: An Introduction</em>, Chapter 3</li>
+                <li>Russell &amp; Norvig, <em>AIMA</em>, Chapter 17</li>
+              </ul></section>
+            </div>
+
+            <button class="complete-btn" data-page="ch12-mdp">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="../11-computer-vision/quiz-cv.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">CV Quiz</span></a>
+              <a href="value-iteration.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Value Iteration</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#rl-framework">1. RL Framework</a></li>
+            <li><a href="#markov-property">2. Markov Property</a></li>
+            <li><a href="#mdp-definition">3. MDP Definition</a></li>
+            <li><a href="#return">4. Return</a></li>
+            <li><a href="#policy">5. Policy</a></li>
+            <li><a href="#value-functions">6. Value Functions</a></li>
+            <li><a href="#bellman-equations">7. Bellman Equations</a></li>
+            <li><a href="#optimal-value">8. Optimal Values</a></li>
+            <li><a href="#grid-world">9. Grid World Example</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

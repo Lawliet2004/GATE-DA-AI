@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FOL Semantics — Interpretations, domains, truth under an interpretation, satisfiability, validity, logical consequence, model theory basics for GATE DA.">
+  <title>FOL Semantics — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a>
+            <a href="fol-semantics.html" class="sidebar-link active"><span class="link-check"></span> FOL Semantics<span class="link-type theory">Theory</span></a>
+            <a href="quantifier-rules.html" class="sidebar-link"><span class="link-check"></span> Quantifier Rules<span class="link-type theory">Theory</span></a>
+            <a href="fol-inference-rules.html" class="sidebar-link"><span class="link-check"></span> FOL Inference Rules<span class="link-type theory">Theory</span></a>
+            <a href="unification.html" class="sidebar-link"><span class="link-check"></span> Unification<span class="link-type theory">Theory</span></a>
+            <a href="resolution-in-fol.html" class="sidebar-link"><span class="link-check"></span> Resolution in FOL<span class="link-type theory">Theory</span></a>
+            <a href="forward-and-backward-chaining.html" class="sidebar-link"><span class="link-check"></span> Forward &amp; Backward Chaining<span class="link-type theory">Theory</span></a>
+            <a href="knowledge-engineering.html" class="sidebar-link"><span class="link-check"></span> Knowledge Engineering<span class="link-type theory">Theory</span></a>
+            <a href="limitations-of-fol.html" class="sidebar-link"><span class="link-check"></span> Limitations of FOL<span class="link-type theory">Theory</span></a>
+            <a href="practical-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Practice Exercises<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-predicate.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="first-order-logic-syntax.html">Chapter 6: Predicate Logic</a> &raquo; <span class="current">FOL Semantics</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch06-fol-semantics">
+
+            <h1>FOL Semantics &mdash; Meaning and Interpretation</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch06-fol-semantics" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="first-order-logic-syntax.html">FOL Syntax</a> &mdash; terms, atoms, WFFs, quantifiers</li>
+                <li><a href="../05-propositional-logic/syntax-and-semantics.html">Propositional Logic Semantics</a> &mdash; truth tables, models</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Define an interpretation (structure) for FOL: domain + assignments</li>
+                <li>Evaluate truth of FOL formulas under a given interpretation</li>
+                <li>Distinguish satisfiable, valid, and unsatisfiable formulas</li>
+                <li>Understand logical consequence (&phi; &vDash; &psi;) in FOL</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="interpretation">
+                <h2>1. Interpretations (Structures)</h2>
+                <div class="definition-box">
+                  <div class="box-title">Definition &mdash; Interpretation</div>
+                  <p>An <strong>interpretation</strong> (or <strong>structure</strong>) I for a FOL language consists of:</p>
+                  <ol>
+                    <li><strong>Domain D</strong> &mdash; a non-empty set of objects (the &ldquo;universe of discourse&rdquo;).</li>
+                    <li><strong>Constant assignment</strong> &mdash; each constant symbol c is mapped to an element c<sup>I</sup> &isin; D.</li>
+                    <li><strong>Predicate assignment</strong> &mdash; each n-ary predicate P is mapped to a relation P<sup>I</sup> &sube; D<sup>n</sup>.</li>
+                    <li><strong>Function assignment</strong> &mdash; each n-ary function f is mapped to a total function f<sup>I</sup> : D<sup>n</sup> &rarr; D.</li>
+                  </ol>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Variable Assignment</div>
+                  <p>A <strong>variable assignment</strong> &sigma; is a function that maps each variable to an element of D: &sigma; : Variables &rarr; D.</p>
+                  <p>We write &sigma;[x &mapsto; d] for the assignment identical to &sigma; except that x maps to d.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example Interpretation</div>
+                  <p>Language: constants {a, b}, predicate P (arity 1), function f (arity 1).</p>
+                  <ul>
+                    <li><strong>D</strong> = {1, 2, 3}</li>
+                    <li>a<sup>I</sup> = 1, &ensp; b<sup>I</sup> = 2</li>
+                    <li>P<sup>I</sup> = {1, 3} &ensp; (P is true for 1 and 3)</li>
+                    <li>f<sup>I</sup>(1) = 2, &ensp; f<sup>I</sup>(2) = 3, &ensp; f<sup>I</sup>(3) = 1</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="truth-conditions">
+                <h2>2. Truth Under an Interpretation</h2>
+                <p>Given interpretation I with domain D and variable assignment &sigma;, the truth value of a formula &phi; is defined recursively:</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Truth of Terms and Atoms</div>
+                  <ul>
+                    <li><strong>Term evaluation:</strong> val(c) = c<sup>I</sup>; val(x) = &sigma;(x); val(f(t<sub>1</sub>,&hellip;,t<sub>n</sub>)) = f<sup>I</sup>(val(t<sub>1</sub>),&hellip;,val(t<sub>n</sub>)).</li>
+                    <li><strong>Atom:</strong> I,&sigma; &vDash; P(t<sub>1</sub>,&hellip;,t<sub>n</sub>) iff (val(t<sub>1</sub>),&hellip;,val(t<sub>n</sub>)) &isin; P<sup>I</sup></li>
+                  </ul>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Truth of Compound Formulas</div>
+                  <ul>
+                    <li>I,&sigma; &vDash; &not;&phi; &nbsp; iff &nbsp; I,&sigma; &nvDash; &phi;</li>
+                    <li>I,&sigma; &vDash; &phi; &and; &psi; &nbsp; iff &nbsp; I,&sigma; &vDash; &phi; and I,&sigma; &vDash; &psi;</li>
+                    <li>I,&sigma; &vDash; &phi; &or; &psi; &nbsp; iff &nbsp; I,&sigma; &vDash; &phi; or I,&sigma; &vDash; &psi;</li>
+                    <li>I,&sigma; &vDash; &phi; &rarr; &psi; &nbsp; iff &nbsp; I,&sigma; &nvDash; &phi; or I,&sigma; &vDash; &psi;</li>
+                    <li>I,&sigma; &vDash; <strong>&forall;x &phi;</strong> &nbsp; iff &nbsp; for <em>every</em> d &isin; D: I,&sigma;[x&mapsto;d] &vDash; &phi;</li>
+                    <li>I,&sigma; &vDash; <strong>&exist;x &phi;</strong> &nbsp; iff &nbsp; for <em>some</em> d &isin; D: I,&sigma;[x&mapsto;d] &vDash; &phi;</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="sat-val-consequence">
+                <h2>3. Satisfiability, Validity, Logical Consequence</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Key Semantic Concepts</div>
+                  <table>
+                    <thead><tr><th>Concept</th><th>Definition</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Satisfiable</strong></td><td>&phi; is satisfiable if there exists an interpretation I and assignment &sigma; such that I,&sigma; &vDash; &phi;</td></tr>
+                      <tr><td><strong>Valid (Tautology)</strong></td><td>&phi; is valid (&vDash; &phi;) if for <em>every</em> interpretation I and <em>every</em> &sigma;: I,&sigma; &vDash; &phi;</td></tr>
+                      <tr><td><strong>Unsatisfiable</strong></td><td>&phi; is unsatisfiable if no interpretation makes it true</td></tr>
+                      <tr><td><strong>Logical Consequence</strong></td><td>&Gamma; &vDash; &phi; if every interpretation satisfying all formulas in &Gamma; also satisfies &phi;</td></tr>
+                      <tr><td><strong>Logical Equivalence</strong></td><td>&phi; &equiv; &psi; if &phi; &vDash; &psi; and &psi; &vDash; &phi;</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="theorem-box">
+                  <div class="box-title">Theorem &mdash; Validity and Unsatisfiability</div>
+                  <p>&phi; is valid &nbsp; iff &nbsp; &not;&phi; is unsatisfiable.</p>
+                  <p><strong>Proof sketch:</strong> &phi; is valid means I,&sigma; &vDash; &phi; for all I,&sigma;. So I,&sigma; &nvDash; &not;&phi; for all I,&sigma;. Hence &not;&phi; has no satisfying interpretation, i.e., &not;&phi; is unsatisfiable. &square;</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">FOL vs. Propositional Logic</div>
+                  <p>In propositional logic, validity is <strong>decidable</strong> (truth tables). In FOL, validity is only <strong>semi-decidable</strong>: if &phi; is valid, a proof can be found; if &phi; is not valid, the search may never terminate. This is a consequence of Church&rsquo;s theorem.</p>
+                </div>
+              </section>
+
+              <section id="model-theory">
+                <h2>4. Model Theory Basics</h2>
+                <div class="definition-box">
+                  <div class="box-title">Model</div>
+                  <p>An interpretation I is a <strong>model</strong> of a sentence &phi; (or a set of sentences &Gamma;) if I &vDash; &phi; (or I &vDash; every &gamma; &isin; &Gamma;).</p>
+                </div>
+
+                <p>Key results from model theory relevant to AI:</p>
+                <ul>
+                  <li><strong>Compactness Theorem:</strong> A set of sentences &Gamma; has a model iff every finite subset of &Gamma; has a model.</li>
+                  <li><strong>L&ouml;wenheim&ndash;Skolem Theorem:</strong> If a countable set of FOL sentences has an infinite model, it has a model of every infinite cardinality.</li>
+                </ul>
+
+                <div class="note-box">
+                  <div class="box-title">GATE Relevance</div>
+                  <p>GATE typically tests your ability to evaluate formulas under small given interpretations and determine satisfiability/validity. Deep model theory is rarely tested, but understanding models is crucial.</p>
+                </div>
+              </section>
+
+              <section id="worked-examples">
+                <h2>5. Worked Examples</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Example 1 &mdash; Evaluating &forall;x P(x) &rarr; P(a)</div>
+                  <p><strong>Claim:</strong> This formula is valid (true in every interpretation).</p>
+                  <p><strong>Proof:</strong> Let I be any interpretation with domain D. Let a<sup>I</sup> = d<sub>0</sub> &isin; D.</p>
+                  <ul>
+                    <li><strong>Case 1:</strong> I &vDash; &forall;x P(x). Then P holds for every element of D, including d<sub>0</sub>. So I &vDash; P(a). The implication is T &rarr; T = T.</li>
+                    <li><strong>Case 2:</strong> I &nvDash; &forall;x P(x). Then the antecedent is false, so the implication is vacuously true (F &rarr; anything = T).</li>
+                  </ul>
+                  <p>In both cases the formula is true. &therefore; It is <strong>valid</strong>. &square;</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 2 &mdash; Evaluating under a Specific Interpretation</div>
+                  <p><strong>Given:</strong> D = {1, 2}, &ensp; a<sup>I</sup> = 1, &ensp; P<sup>I</sup> = {1}, &ensp; Q<sup>I</sup> = {2}</p>
+                  <p><strong>Formula:</strong> &forall;x (P(x) &or; Q(x))</p>
+                  <p><strong>Evaluation:</strong></p>
+                  <ul>
+                    <li>x = 1: P(1) &or; Q(1) = T &or; F = T &check;</li>
+                    <li>x = 2: P(2) &or; Q(2) = F &or; T = T &check;</li>
+                  </ul>
+                  <p>Both elements satisfy P(x) &or; Q(x), so &forall;x (P(x) &or; Q(x)) is <strong>true</strong> under this interpretation.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 3 &mdash; Showing a Formula is NOT Valid</div>
+                  <p><strong>Formula:</strong> &exist;x P(x) &rarr; &forall;x P(x)</p>
+                  <p><strong>Counter-interpretation:</strong> D = {1, 2}, P<sup>I</sup> = {1}.</p>
+                  <ul>
+                    <li>&exist;x P(x): True (P(1) is true).</li>
+                    <li>&forall;x P(x): False (P(2) is false).</li>
+                    <li>T &rarr; F = F.</li>
+                  </ul>
+                  <p>The formula is false in this interpretation, so it is <strong>not valid</strong>. However, it is satisfiable (e.g., D = {1}, P<sup>I</sup> = {1} makes it true).</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>An <strong>interpretation</strong> specifies a domain D plus mappings for constants, predicates, and functions.</li>
+                    <li>Truth of quantified formulas: &forall;x checks <em>all</em> domain elements; &exist;x checks <em>at least one</em>.</li>
+                    <li>Valid &hArr; true in all interpretations &hArr; &not;&phi; is unsatisfiable.</li>
+                    <li>&Gamma; &vDash; &phi; means &phi; is true in every model of &Gamma;.</li>
+                    <li>FOL validity is semi-decidable (not decidable) &mdash; unlike propositional logic.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>AIMA</em>, 4th Ed. &mdash; Section 8.2</li>
+                  <li>Enderton, H.B. <em>A Mathematical Introduction to Logic</em>, 2nd Ed. &mdash; Chapter 2</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="ch06-fol-semantics">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="first-order-logic-syntax.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">FOL Syntax</span></a>
+              <a href="quantifier-rules.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Quantifier Rules</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#interpretation">1. Interpretations</a></li>
+            <li><a href="#truth-conditions">2. Truth Conditions</a></li>
+            <li><a href="#sat-val-consequence">3. Satisfiability &amp; Validity</a></li>
+            <li><a href="#model-theory">4. Model Theory Basics</a></li>
+            <li><a href="#worked-examples">5. Worked Examples</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

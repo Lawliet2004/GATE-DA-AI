@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quick revision notes for Chapter 7 — all key formulas, distributions, Bayesian networks, HMM, MDP cheat sheet for GATE DA preparation.">
+  <title>Chapter Notes: Uncertainty — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link active"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo; <span class="current">Chapter Notes</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch07-notes">
+
+            <h1>Chapter 7: Quick Revision Notes</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">Revision Cheat Sheet</span>
+              <button class="bookmark-btn" data-page="ch07-notes" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="content-body">
+
+              <section id="probability-formulas">
+                <h2>1. Probability &amp; Bayes</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>Addition:</strong> P(A &cup; B) = P(A) + P(B) &minus; P(A &cap; B)</li>
+                    <li><strong>Conditional:</strong> P(A|B) = P(A &cap; B) / P(B)</li>
+                    <li><strong>Chain rule:</strong> P(A,B,C) = P(A) P(B|A) P(C|A,B)</li>
+                    <li><strong>Bayes:</strong> P(A|B) = P(B|A) P(A) / P(B)</li>
+                    <li><strong>Total probability:</strong> P(B) = &sum;<sub>i</sub> P(B|A<sub>i</sub>) P(A<sub>i</sub>)</li>
+                    <li><strong>Independence:</strong> P(A &cap; B) = P(A) P(B)</li>
+                    <li><strong>Cond. independence:</strong> P(A,B|C) = P(A|C) P(B|C)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="distributions">
+                <h2>2. Common Distributions</h2>
+                <div class="note-box">
+                  <table style="border-collapse:collapse; width:100%; font-size:0.9rem;">
+                    <tr><th style="padding:6px; border:1px solid var(--border-color);">Distribution</th><th style="padding:6px; border:1px solid var(--border-color);">PMF/PDF</th><th style="padding:6px; border:1px solid var(--border-color);">E[X]</th><th style="padding:6px; border:1px solid var(--border-color);">Var(X)</th></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">Bernoulli(p)</td><td style="padding:6px; border:1px solid var(--border-color);">p<sup>x</sup>(1&minus;p)<sup>1&minus;x</sup></td><td style="padding:6px; border:1px solid var(--border-color);">p</td><td style="padding:6px; border:1px solid var(--border-color);">p(1&minus;p)</td></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">Binomial(n,p)</td><td style="padding:6px; border:1px solid var(--border-color);">C(n,k)p<sup>k</sup>(1&minus;p)<sup>n&minus;k</sup></td><td style="padding:6px; border:1px solid var(--border-color);">np</td><td style="padding:6px; border:1px solid var(--border-color);">np(1&minus;p)</td></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">Poisson(&lambda;)</td><td style="padding:6px; border:1px solid var(--border-color);">e<sup>&minus;&lambda;</sup>&lambda;<sup>k</sup>/k!</td><td style="padding:6px; border:1px solid var(--border-color);">&lambda;</td><td style="padding:6px; border:1px solid var(--border-color);">&lambda;</td></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">Uniform(a,b)</td><td style="padding:6px; border:1px solid var(--border-color);">1/(b&minus;a)</td><td style="padding:6px; border:1px solid var(--border-color);">(a+b)/2</td><td style="padding:6px; border:1px solid var(--border-color);">(b&minus;a)<sup>2</sup>/12</td></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">Normal(&mu;,&sigma;<sup>2</sup>)</td><td style="padding:6px; border:1px solid var(--border-color);">(2&pi;&sigma;<sup>2</sup>)<sup>&minus;1/2</sup> exp(&hellip;)</td><td style="padding:6px; border:1px solid var(--border-color);">&mu;</td><td style="padding:6px; border:1px solid var(--border-color);">&sigma;<sup>2</sup></td></tr>
+                    <tr><td style="padding:6px; border:1px solid var(--border-color);">Exponential(&lambda;)</td><td style="padding:6px; border:1px solid var(--border-color);">&lambda;e<sup>&minus;&lambda;x</sup></td><td style="padding:6px; border:1px solid var(--border-color);">1/&lambda;</td><td style="padding:6px; border:1px solid var(--border-color);">1/&lambda;<sup>2</sup></td></tr>
+                  </table>
+                </div>
+              </section>
+
+              <section id="bn-rules">
+                <h2>3. Bayesian Networks</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>Joint:</strong> P(X<sub>1</sub>,&hellip;,X<sub>n</sub>) = &prod; P(X<sub>i</sub> | Parents(X<sub>i</sub>))</li>
+                    <li><strong>D-Separation:</strong> Chain/Fork &mdash; blocked when middle observed. Collider &mdash; blocked when NOT observed (or descendant not observed).</li>
+                    <li><strong>Markov blanket:</strong> parents + children + co-parents</li>
+                    <li><strong>Naive Bayes:</strong> C* = argmax<sub>c</sub> P(c) &prod; P(x<sub>i</sub>|c)</li>
+                    <li><strong>Laplace smoothing:</strong> (count + 1) / (total + |V|)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="hmm-formulas">
+                <h2>4. HMM Key Formulas</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>Forward:</strong> &alpha;<sub>t+1</sub>(j) = [&sum;<sub>i</sub> &alpha;<sub>t</sub>(i) a<sub>ij</sub>] b<sub>j</sub>(o<sub>t+1</sub>)</li>
+                    <li><strong>Viterbi:</strong> &delta;<sub>t+1</sub>(j) = max<sub>i</sub>[&delta;<sub>t</sub>(i) a<sub>ij</sub>] b<sub>j</sub>(o<sub>t+1</sub>)</li>
+                    <li><strong>Complexity:</strong> O(T &middot; N<sup>2</sup>) for both</li>
+                    <li><strong>Three problems:</strong> Evaluation (Forward), Decoding (Viterbi), Learning (Baum-Welch)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="mdp-formulas">
+                <h2>5. MDP Key Formulas</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>Bellman optimality:</strong> V*(s) = max<sub>a</sub> &sum;<sub>s'</sub> T(s,a,s')[R(s,a,s') + &gamma;V*(s')]</li>
+                    <li><strong>Value iteration:</strong> Update V until convergence</li>
+                    <li><strong>Policy iteration:</strong> Evaluate &rarr; Improve &rarr; Repeat</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="info-theory-formulas">
+                <h2>6. Information Theory</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>Entropy:</strong> H(X) = &minus;&sum; p<sub>i</sub> log<sub>2</sub> p<sub>i</sub></li>
+                    <li><strong>Cross-entropy:</strong> H(P,Q) = &minus;&sum; P(x) log Q(x)</li>
+                    <li><strong>KL divergence:</strong> D<sub>KL</sub>(P||Q) = &sum; P(x) log(P(x)/Q(x)). NOT symmetric.</li>
+                    <li><strong>Mutual info:</strong> I(X;Y) = H(X) &minus; H(X|Y)</li>
+                    <li><strong>Info gain:</strong> IG(S,A) = H(S) &minus; &sum; (|S<sub>v</sub>|/|S|) H(S<sub>v</sub>)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="mle-map-formulas">
+                <h2>7. MLE &amp; MAP</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>MLE:</strong> &theta;&#770; = argmax &sum; log P(x<sub>i</sub>|&theta;)</li>
+                    <li><strong>Bernoulli MLE:</strong> p&#770; = k/n</li>
+                    <li><strong>Gaussian MLE:</strong> &mu;&#770; = x&#772;, &sigma;&#770;<sup>2</sup> = (1/n)&sum;(x<sub>i</sub>&minus;x&#772;)<sup>2</sup></li>
+                    <li><strong>MAP:</strong> &theta;&#770; = argmax [log P(D|&theta;) + log P(&theta;)]</li>
+                    <li><strong>Uniform prior &rArr; MAP = MLE</strong></li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-notes">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="gate-previous-year-uncertainty.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">GATE PYQs</span></a>
+              <a href="quiz-uncertainty.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Chapter Quiz</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#probability-formulas">1. Probability &amp; Bayes</a></li>
+            <li><a href="#distributions">2. Distributions</a></li>
+            <li><a href="#bn-rules">3. Bayesian Networks</a></li>
+            <li><a href="#hmm-formulas">4. HMM Formulas</a></li>
+            <li><a href="#mdp-formulas">5. MDP Formulas</a></li>
+            <li><a href="#info-theory-formulas">6. Information Theory</a></li>
+            <li><a href="#mle-map-formulas">7. MLE &amp; MAP</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

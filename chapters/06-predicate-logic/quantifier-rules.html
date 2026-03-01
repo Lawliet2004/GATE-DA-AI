@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quantifier Rules and Equivalences — negation, distribution, restricted quantification, nested quantifiers with worked examples for GATE DA.">
+  <title>Quantifier Rules &amp; Equivalences — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a>
+            <a href="fol-semantics.html" class="sidebar-link"><span class="link-check"></span> FOL Semantics<span class="link-type theory">Theory</span></a>
+            <a href="quantifier-rules.html" class="sidebar-link active"><span class="link-check"></span> Quantifier Rules<span class="link-type theory">Theory</span></a>
+            <a href="fol-inference-rules.html" class="sidebar-link"><span class="link-check"></span> FOL Inference Rules<span class="link-type theory">Theory</span></a>
+            <a href="unification.html" class="sidebar-link"><span class="link-check"></span> Unification<span class="link-type theory">Theory</span></a>
+            <a href="resolution-in-fol.html" class="sidebar-link"><span class="link-check"></span> Resolution in FOL<span class="link-type theory">Theory</span></a>
+            <a href="forward-and-backward-chaining.html" class="sidebar-link"><span class="link-check"></span> Forward &amp; Backward Chaining<span class="link-type theory">Theory</span></a>
+            <a href="knowledge-engineering.html" class="sidebar-link"><span class="link-check"></span> Knowledge Engineering<span class="link-type theory">Theory</span></a>
+            <a href="limitations-of-fol.html" class="sidebar-link"><span class="link-check"></span> Limitations of FOL<span class="link-type theory">Theory</span></a>
+            <a href="practical-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Practice Exercises<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-predicate.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="first-order-logic-syntax.html">Chapter 6: Predicate Logic</a> &raquo; <span class="current">Quantifier Rules &amp; Equivalences</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch06-quantifier-rules">
+
+            <h1>Quantifier Rules &amp; Equivalences</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch06-quantifier-rules" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="first-order-logic-syntax.html">FOL Syntax</a> &mdash; quantifiers &forall;, &exist;, WFFs</li>
+                <li><a href="fol-semantics.html">FOL Semantics</a> &mdash; truth under interpretations</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Apply quantifier negation rules (De Morgan&rsquo;s laws for quantifiers)</li>
+                <li>Understand distributivity of quantifiers over &and; and &or;</li>
+                <li>Master nested quantifier semantics (&forall;x&exist;y vs &exist;y&forall;x)</li>
+                <li>Translate restricted quantification properly</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="negation">
+                <h2>1. Quantifier Negation (De Morgan&rsquo;s for Quantifiers)</h2>
+                <div class="theorem-box">
+                  <div class="box-title">Quantifier Negation Laws</div>
+                  <p>These are the most frequently tested equivalences in GATE:</p>
+                  <div class="formula">&not;&forall;x P(x) &nbsp; &equiv; &nbsp; &exist;x &not;P(x)</div>
+                  <div class="formula">&not;&exist;x P(x) &nbsp; &equiv; &nbsp; &forall;x &not;P(x)</div>
+                  <p><strong>Intuition:</strong> &ldquo;Not everything has property P&rdquo; means &ldquo;something lacks P.&rdquo; &ldquo;Nothing has P&rdquo; means &ldquo;everything lacks P.&rdquo;</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Pushing Negation Inward</div>
+                  <p>Negate: &forall;x (P(x) &rarr; Q(x))</p>
+                  <ol>
+                    <li>&not;&forall;x (P(x) &rarr; Q(x))</li>
+                    <li>&equiv; &exist;x &not;(P(x) &rarr; Q(x))</li>
+                    <li>&equiv; &exist;x &not;(&not;P(x) &or; Q(x)) &emsp; [since &alpha; &rarr; &beta; &equiv; &not;&alpha; &or; &beta;]</li>
+                    <li>&equiv; &exist;x (P(x) &and; &not;Q(x)) &emsp; [De Morgan&rsquo;s]</li>
+                  </ol>
+                  <p>English: &ldquo;There exists an x with property P but not Q.&rdquo;</p>
+                </div>
+              </section>
+
+              <section id="distribution">
+                <h2>2. Quantifier Distribution over &and; and &or;</h2>
+                <div class="theorem-box">
+                  <div class="box-title">Distribution Laws</div>
+                  <table>
+                    <thead><tr><th>Equivalence</th><th>Valid?</th></tr></thead>
+                    <tbody>
+                      <tr><td>&forall;x (P(x) &and; Q(x)) &equiv; &forall;x P(x) &and; &forall;x Q(x)</td><td><strong>Yes &check;</strong></td></tr>
+                      <tr><td>&exist;x (P(x) &or; Q(x)) &equiv; &exist;x P(x) &or; &exist;x Q(x)</td><td><strong>Yes &check;</strong></td></tr>
+                      <tr><td>&forall;x (P(x) &or; Q(x)) &equiv; &forall;x P(x) &or; &forall;x Q(x)</td><td><strong>No &cross;</strong></td></tr>
+                      <tr><td>&exist;x (P(x) &and; Q(x)) &equiv; &exist;x P(x) &and; &exist;x Q(x)</td><td><strong>No &cross;</strong></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Common GATE Trap</div>
+                  <p>While &forall; distributes over &and; and &exist; distributes over &or;, the reverse directions do <strong>not</strong> hold:</p>
+                  <ul>
+                    <li>&forall;x P(x) &or; &forall;x Q(x) &rArr; &forall;x (P(x) &or; Q(x)) &emsp; (one direction only!)</li>
+                    <li>&exist;x (P(x) &and; Q(x)) &rArr; &exist;x P(x) &and; &exist;x Q(x) &emsp; (one direction only!)</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Counter-example for &forall; over &or;</div>
+                  <p>D = {1, 2}, P<sup>I</sup> = {1}, Q<sup>I</sup> = {2}.</p>
+                  <ul>
+                    <li>&forall;x (P(x) &or; Q(x)): x=1: T&or;F=T; x=2: F&or;T=T. &rArr; <strong>True</strong></li>
+                    <li>&forall;x P(x) &or; &forall;x Q(x): F &or; F = <strong>False</strong></li>
+                  </ul>
+                  <p>So &forall;x (P(x) &or; Q(x)) &nequiv; &forall;x P(x) &or; &forall;x Q(x). &square;</p>
+                </div>
+              </section>
+
+              <section id="restricted">
+                <h2>3. Restricted Quantification</h2>
+                <div class="definition-box">
+                  <div class="box-title">Restricted Quantifiers</div>
+                  <p>Often we want to quantify over a <em>subset</em> of the domain. The standard patterns:</p>
+                  <ul>
+                    <li><strong>&forall;x : C(x), P(x)</strong> &nbsp;&equiv;&nbsp; &forall;x (C(x) &rarr; P(x)) &mdash; &ldquo;For all x satisfying C, P holds&rdquo;</li>
+                    <li><strong>&exist;x : C(x), P(x)</strong> &nbsp;&equiv;&nbsp; &exist;x (C(x) &and; P(x)) &mdash; &ldquo;There is an x satisfying C such that P holds&rdquo;</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; &ldquo;Every prime greater than 2 is odd&rdquo;</div>
+                  <p>&forall;x ((Prime(x) &and; GreaterThan(x, 2)) &rarr; Odd(x))</p>
+                  <p>Using restricted quantification notation: &forall;x : Prime(x) &and; GT(x,2), &ensp; Odd(x)</p>
+                </div>
+              </section>
+
+              <section id="nested">
+                <h2>4. Nested Quantifiers</h2>
+                <p>The <strong>order</strong> of quantifiers is critical when mixing &forall; and &exist;.</p>
+
+                <div class="theorem-box">
+                  <div class="box-title">Quantifier Order Matters</div>
+                  <table>
+                    <thead><tr><th>Formula</th><th>English Meaning</th></tr></thead>
+                    <tbody>
+                      <tr><td>&forall;x &forall;y L(x,y)</td><td>Everyone loves everyone</td></tr>
+                      <tr><td>&forall;x &exist;y L(x,y)</td><td>Everyone loves someone (possibly different)</td></tr>
+                      <tr><td>&exist;y &forall;x L(x,y)</td><td>There is someone whom everyone loves</td></tr>
+                      <tr><td>&exist;x &exist;y L(x,y)</td><td>Someone loves someone</td></tr>
+                      <tr><td>&exist;x &forall;y L(x,y)</td><td>There is someone who loves everyone</td></tr>
+                      <tr><td>&forall;y &exist;x L(x,y)</td><td>Everyone is loved by someone</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="theorem-box">
+                  <div class="box-title">Key Relationships</div>
+                  <ul>
+                    <li><strong>&exist;y &forall;x P(x,y) &rArr; &forall;x &exist;y P(x,y)</strong> &ensp; (but NOT the converse!)</li>
+                    <li>Same-type quantifiers commute: &forall;x &forall;y &equiv; &forall;y &forall;x, and &exist;x &exist;y &equiv; &exist;y &exist;x.</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Showing &forall;x&exist;y &nRightarrow; &exist;y&forall;x</div>
+                  <p>D = {1, 2}, L(x,y) means &ldquo;x &lt; y is false&rdquo;. Define L<sup>I</sup> = {(1,2), (2,3)} &mdash; wait, 3 &notin; D. Better:</p>
+                  <p>D = Z (integers), P(x,y) iff y = x+1. Then:</p>
+                  <ul>
+                    <li>&forall;x &exist;y (y = x+1): True &mdash; for every integer, there is a successor.</li>
+                    <li>&exist;y &forall;x (y = x+1): False &mdash; no single y equals x+1 for every x.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="more-equivalences">
+                <h2>5. Additional Useful Equivalences</h2>
+                <div class="definition-box">
+                  <div class="box-title">Quantifier Scope and Connectives</div>
+                  <p>When &phi; does not contain x free:</p>
+                  <ul>
+                    <li>&forall;x &phi; &equiv; &phi; &emsp; (&forall; over formula without x is vacuous)</li>
+                    <li>&exist;x &phi; &equiv; &phi; &emsp; (same)</li>
+                    <li>&forall;x (P(x) &or; &phi;) &equiv; &forall;x P(x) &or; &phi;</li>
+                    <li>&exist;x (P(x) &and; &phi;) &equiv; &exist;x P(x) &and; &phi;</li>
+                    <li>&forall;x (P(x) &and; &phi;) &equiv; &forall;x P(x) &and; &phi;</li>
+                    <li>&exist;x (P(x) &or; &phi;) &equiv; &exist;x P(x) &or; &phi;</li>
+                  </ul>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Prenex Normal Form</div>
+                  <p>Any FOL formula can be converted to <strong>prenex normal form</strong>: Q<sub>1</sub>x<sub>1</sub> Q<sub>2</sub>x<sub>2</sub> &hellip; Q<sub>n</sub>x<sub>n</sub> &phi;, where each Q<sub>i</sub> is &forall; or &exist;, and &phi; is quantifier-free (the <strong>matrix</strong>).</p>
+                  <p><strong>Steps:</strong> Rename bound variables to be unique &rarr; eliminate &rarr; and &harr; &rarr; push &not; inward (flipping quantifiers) &rarr; pull quantifiers to the front.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example &mdash; Convert to Prenex Normal Form</div>
+                  <p><strong>Formula:</strong> &forall;x P(x) &rarr; &exist;x Q(x)</p>
+                  <ol>
+                    <li>Rename: &forall;x P(x) &rarr; &exist;y Q(y) &emsp; (avoid variable clash)</li>
+                    <li>Eliminate &rarr;: &not;&forall;x P(x) &or; &exist;y Q(y)</li>
+                    <li>Push &not; in: &exist;x &not;P(x) &or; &exist;y Q(y)</li>
+                    <li>Pull quantifiers: &exist;x &exist;y (&not;P(x) &or; Q(y)) &emsp; &check; Prenex form</li>
+                  </ol>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>&not;&forall;x P(x) &equiv; &exist;x &not;P(x) and &not;&exist;x P(x) &equiv; &forall;x &not;P(x) &mdash; most important equivalences.</li>
+                    <li>&forall; distributes over &and;; &exist; distributes over &or;. The converse directions are only implications, not equivalences.</li>
+                    <li>Quantifier order matters: &forall;x&exist;y &ne; &exist;y&forall;x in general. But &exist;y&forall;x &rArr; &forall;x&exist;y.</li>
+                    <li>Same-type quantifiers commute freely.</li>
+                    <li>Any FOL formula can be converted to prenex normal form.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>AIMA</em>, 4th Ed. &mdash; Section 8.2</li>
+                  <li>Ben-Ari, M. <em>Mathematical Logic for Computer Science</em>, 3rd Ed.</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="ch06-quantifier-rules">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="fol-semantics.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">FOL Semantics</span></a>
+              <a href="fol-inference-rules.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">FOL Inference Rules</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#negation">1. Negation Laws</a></li>
+            <li><a href="#distribution">2. Distribution</a></li>
+            <li><a href="#restricted">3. Restricted Quantification</a></li>
+            <li><a href="#nested">4. Nested Quantifiers</a></li>
+            <li><a href="#more-equivalences">5. More Equivalences</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

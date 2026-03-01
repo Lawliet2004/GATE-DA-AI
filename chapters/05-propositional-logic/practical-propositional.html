@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical: Interactive Demos - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li class="active"><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>Practical: Interactive Demos</span>
+        </div>
+
+        <article class="theory-content practical-page">
+            <h1>🧪 Practical: Interactive Propositional Logic Demos</h1>
+
+            <div class="learning-objectives">
+                <h3>🎯 What You'll Do</h3>
+                <ul>
+                    <li>Build and explore truth tables interactively</li>
+                    <li>Evaluate propositional formulas under custom assignments</li>
+                    <li>Practice with connectives and precedence</li>
+                </ul>
+            </div>
+
+            <!-- Demo 1: Truth Table Generator -->
+            <section>
+                <h2>1. Truth Table Generator</h2>
+                <p>Enter a propositional formula using variables (P, Q, R, S) and connectives. The tool will generate the complete truth table.</p>
+
+                <div class="demo-container" id="truth-table-demo">
+                    <div class="demo-controls">
+                        <label for="tt-formula">Formula:</label>
+                        <input type="text" id="tt-formula" class="demo-input" placeholder="e.g., (P → Q) ∧ (Q → R)" value="(P → Q) ∧ ¬Q">
+                        <div class="demo-help">
+                            <p>Syntax: Use P, Q, R, S for variables. Connectives: <strong>¬</strong> (NOT), <strong>∧</strong> (AND), <strong>∨</strong> (OR), <strong>→</strong> (IMPLIES), <strong>↔</strong> (IFF)</p>
+                            <p>You can also use: <strong>!</strong> for ¬, <strong>&amp;</strong> for ∧, <strong>|</strong> for ∨, <strong>-&gt;</strong> for →, <strong>&lt;-&gt;</strong> for ↔</p>
+                        </div>
+                        <button class="demo-btn" id="generate-tt-btn" onclick="generateTruthTable()">Generate Truth Table</button>
+                    </div>
+                    <div class="demo-output" id="tt-output">
+                        <p class="demo-placeholder">Click "Generate Truth Table" to see the result.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Demo 2: Formula Evaluator -->
+            <section>
+                <h2>2. Formula Evaluator</h2>
+                <p>Set specific truth values for variables and evaluate a formula step by step.</p>
+
+                <div class="demo-container" id="evaluator-demo">
+                    <div class="demo-controls">
+                        <label for="eval-formula">Formula:</label>
+                        <input type="text" id="eval-formula" class="demo-input" placeholder="e.g., (P ∧ Q) → R" value="(P → Q) ∧ (Q → R) → (P → R)">
+                        
+                        <div class="variable-toggles">
+                            <h4>Set Variable Values:</h4>
+                            <div class="toggle-group">
+                                <label class="toggle-label">
+                                    P: <select id="val-P" class="var-select">
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                </label>
+                                <label class="toggle-label">
+                                    Q: <select id="val-Q" class="var-select">
+                                        <option value="true">True</option>
+                                        <option value="false" selected>False</option>
+                                    </select>
+                                </label>
+                                <label class="toggle-label">
+                                    R: <select id="val-R" class="var-select">
+                                        <option value="true">True</option>
+                                        <option value="false" selected>False</option>
+                                    </select>
+                                </label>
+                                <label class="toggle-label">
+                                    S: <select id="val-S" class="var-select">
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="demo-btn" id="evaluate-btn" onclick="evaluateFormula()">Evaluate</button>
+                    </div>
+                    <div class="demo-output" id="eval-output">
+                        <p class="demo-placeholder">Click "Evaluate" to see the step-by-step evaluation.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Demo 3: Equivalence Checker -->
+            <section>
+                <h2>3. Equivalence Checker</h2>
+                <p>Enter two formulas and check if they are logically equivalent (have the same truth table).</p>
+
+                <div class="demo-container" id="equiv-demo">
+                    <div class="demo-controls">
+                        <label for="equiv-formula1">Formula 1:</label>
+                        <input type="text" id="equiv-formula1" class="demo-input" placeholder="e.g., P → Q" value="P → Q">
+                        <label for="equiv-formula2">Formula 2:</label>
+                        <input type="text" id="equiv-formula2" class="demo-input" placeholder="e.g., ¬P ∨ Q" value="¬P ∨ Q">
+                        <button class="demo-btn" id="check-equiv-btn" onclick="checkEquivalence()">Check Equivalence</button>
+                    </div>
+                    <div class="demo-output" id="equiv-output">
+                        <p class="demo-placeholder">Click "Check Equivalence" to compare the two formulas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practice Exercises -->
+            <section>
+                <h2>4. Practice Exercises</h2>
+                <p>Use the tools above to solve these exercises:</p>
+
+                <div class="example-box">
+                    <h4>Exercise 1: Truth Table Classification</h4>
+                    <p>Generate truth tables for each formula and classify as tautology, contradiction, or contingency:</p>
+                    <ol>
+                        <li>P ∨ ¬P</li>
+                        <li>P ∧ ¬P</li>
+                        <li>(P → Q) ↔ (¬Q → ¬P)</li>
+                        <li>P → (Q → P)</li>
+                        <li>(P → Q) → (¬P → ¬Q)</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>Exercise 2: Equivalence Verification</h4>
+                    <p>Use the equivalence checker to verify:</p>
+                    <ol>
+                        <li>¬(P ∧ Q) ≡ ¬P ∨ ¬Q (De Morgan's)</li>
+                        <li>P → Q ≡ ¬P ∨ Q (Material Implication)</li>
+                        <li>P ↔ Q ≡ (P → Q) ∧ (Q → P)</li>
+                        <li>P ∨ (Q ∧ R) ≡ (P ∨ Q) ∧ (P ∨ R) (Distribution)</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>Exercise 3: SAT Counting</h4>
+                    <p>For each formula, count the number of satisfying assignments using the truth table:</p>
+                    <ol>
+                        <li>(P ∨ Q) ∧ (¬P ∨ R) — how many of the 8 assignments satisfy it?</li>
+                        <li>(P → Q) ∧ (Q → R) ∧ (R → P) — how many satisfying assignments?</li>
+                        <li>P ↔ Q ↔ R — how many?</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Quick Reference -->
+            <section>
+                <h2>5. Quick Reference: Connective Symbols</h2>
+                <table class="styled-table">
+                    <thead><tr><th>Connective</th><th>Symbol</th><th>Keyboard Shortcut</th><th>Meaning</th></tr></thead>
+                    <tbody>
+                        <tr><td>NOT</td><td>¬</td><td>!</td><td>Negation</td></tr>
+                        <tr><td>AND</td><td>∧</td><td>&amp;</td><td>Conjunction</td></tr>
+                        <tr><td>OR</td><td>∨</td><td>|</td><td>Disjunction</td></tr>
+                        <tr><td>IMPLIES</td><td>→</td><td>-&gt;</td><td>Implication</td></tr>
+                        <tr><td>IFF</td><td>↔</td><td>&lt;-&gt;</td><td>Biconditional</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="knowledge-representation.html" class="nav-btn prev-btn">← Previous: Knowledge Representation</a>
+            <a href="gate-previous-year-propositional.html" class="nav-btn next-btn">Next: GATE Previous Year Questions →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-practical-propositional">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-practical-propositional">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+    <script src="../../js/interactive-demos.js"></script>
+
+    <script>
+        // Truth Table Generator
+        function generateTruthTable() {
+            const formulaInput = document.getElementById('tt-formula').value.trim();
+            const output = document.getElementById('tt-output');
+            
+            if (!formulaInput) {
+                output.innerHTML = '<p class="error">Please enter a formula.</p>';
+                return;
+            }
+
+            try {
+                // Extract variables
+                const vars = [...new Set(formulaInput.match(/[P-S]/g))].sort();
+                const n = vars.length;
+                const rows = Math.pow(2, n);
+
+                // Normalize formula for evaluation
+                let formula = formulaInput
+                    .replace(/↔/g, '===')
+                    .replace(/<->/g, '===')
+                    .replace(/→/g, '>=')
+                    .replace(/->/g, '>=')
+                    .replace(/∧/g, '&&')
+                    .replace(/&(?!&)/g, '&&')
+                    .replace(/∨/g, '||')
+                    .replace(/\|(?!\|)/g, '||')
+                    .replace(/¬/g, '!')
+                    .replace(/>=/g, '? true : '); // P → Q becomes !P || Q workaround
+
+                // Better approach: replace → with logical impl
+                formula = formulaInput
+                    .replace(/↔/g, ' IFF ')
+                    .replace(/<->/g, ' IFF ')
+                    .replace(/→/g, ' IMPL ')
+                    .replace(/->/g, ' IMPL ')
+                    .replace(/∧/g, ' && ')
+                    .replace(/&(?!&)/g, ' && ')
+                    .replace(/∨/g, ' || ')
+                    .replace(/\|(?!\|)/g, ' || ')
+                    .replace(/¬/g, '!');
+
+                let html = '<table class="styled-table"><thead><tr>';
+                vars.forEach(v => html += `<th>${v}</th>`);
+                html += `<th>${formulaInput}</th></tr></thead><tbody>`;
+
+                let trueCount = 0;
+
+                for (let i = 0; i < rows; i++) {
+                    html += '<tr>';
+                    let evalFormula = formula;
+                    
+                    vars.forEach((v, idx) => {
+                        const val = Boolean((i >> (n - 1 - idx)) & 1) ? false : true;
+                        html += `<td>${val ? 'T' : 'F'}</td>`;
+                        const re = new RegExp(v, 'g');
+                        evalFormula = evalFormula.replace(re, val.toString());
+                    });
+
+                    // Handle IMPL and IFF
+                    evalFormula = evalFormula.replace(/true\s+IMPL\s+true/g, 'true');
+                    evalFormula = evalFormula.replace(/true\s+IMPL\s+false/g, 'false');
+                    evalFormula = evalFormula.replace(/false\s+IMPL\s+true/g, 'true');
+                    evalFormula = evalFormula.replace(/false\s+IMPL\s+false/g, 'true');
+                    
+                    // Iteratively resolve IMPL (right-associative)
+                    let maxIter = 20;
+                    while (evalFormula.includes('IMPL') && maxIter-- > 0) {
+                        evalFormula = evalFormula.replace(/(true|false)\s+IMPL\s+(true|false)/g, (m, a, b) => {
+                            return (a === 'true' && b === 'false') ? 'false' : 'true';
+                        });
+                        try { evalFormula = String(eval(evalFormula.replace(/IFF/g, '==='))); } catch(e) {}
+                    }
+
+                    evalFormula = evalFormula.replace(/IFF/g, '===');
+
+                    let result;
+                    try {
+                        result = eval(evalFormula);
+                    } catch(e) {
+                        result = '?';
+                    }
+
+                    if (result === true) trueCount++;
+                    html += `<td><strong>${result === true ? 'T' : result === false ? 'F' : '?'}</strong></td></tr>`;
+                }
+
+                html += '</tbody></table>';
+                
+                // Classification
+                let classification = '';
+                if (trueCount === rows) classification = '🟢 <strong>Tautology</strong> — true in all ' + rows + ' interpretations.';
+                else if (trueCount === 0) classification = '🔴 <strong>Contradiction</strong> — false in all ' + rows + ' interpretations.';
+                else classification = `🟡 <strong>Contingency</strong> — true in ${trueCount}/${rows} interpretations (satisfiable).`;
+                
+                output.innerHTML = html + `<p style="margin-top:1rem">${classification}</p>`;
+            } catch(e) {
+                output.innerHTML = `<p class="error">Error parsing formula: ${e.message}. Please check syntax.</p>`;
+            }
+        }
+
+        // Formula Evaluator
+        function evaluateFormula() {
+            const formulaInput = document.getElementById('eval-formula').value.trim();
+            const output = document.getElementById('eval-output');
+            
+            const vals = {
+                P: document.getElementById('val-P').value === 'true',
+                Q: document.getElementById('val-Q').value === 'true',
+                R: document.getElementById('val-R').value === 'true',
+                S: document.getElementById('val-S').value === 'true'
+            };
+
+            let html = '<h4>Evaluation Steps:</h4>';
+            html += `<p><strong>Assignment:</strong> P=${vals.P ? 'T' : 'F'}, Q=${vals.Q ? 'T' : 'F'}, R=${vals.R ? 'T' : 'F'}, S=${vals.S ? 'T' : 'F'}</p>`;
+            html += `<p><strong>Formula:</strong> ${formulaInput}</p>`;
+
+            // Substitute values
+            let step = formulaInput;
+            ['P', 'Q', 'R', 'S'].forEach(v => {
+                step = step.replace(new RegExp(v, 'g'), vals[v] ? 'T' : 'F');
+            });
+            html += `<p><strong>After substitution:</strong> ${step}</p>`;
+
+            // Try to evaluate
+            let evalStr = step
+                .replace(/T/g, 'true').replace(/F/g, 'false')
+                .replace(/¬/g, '!').replace(/!/g, '!')
+                .replace(/∧/g, '&&').replace(/∨/g, '||');
+            
+            // Handle → and ↔
+            let maxIter = 50;
+            while ((evalStr.includes('→') || evalStr.includes('↔')) && maxIter-- > 0) {
+                evalStr = evalStr.replace(/(true|false)\s*↔\s*(true|false)/, (m, a, b) => String(a === b));
+                evalStr = evalStr.replace(/(true|false)\s*→\s*(true|false)/, (m, a, b) => {
+                    return (a === 'true' && b === 'false') ? 'false' : 'true';
+                });
+            }
+
+            try {
+                const result = eval(evalStr);
+                html += `<p><strong>Result: <span style="color:${result ? 'green' : 'red'};font-size:1.2em">${result ? 'TRUE ✅' : 'FALSE ❌'}</span></strong></p>`;
+            } catch(e) {
+                html += `<p class="error">Could not evaluate. Check formula syntax.</p>`;
+            }
+            
+            output.innerHTML = html;
+        }
+
+        // Equivalence Checker
+        function checkEquivalence() {
+            const f1 = document.getElementById('equiv-formula1').value.trim();
+            const f2 = document.getElementById('equiv-formula2').value.trim();
+            const output = document.getElementById('equiv-output');
+
+            const allVars = [...new Set((f1 + f2).match(/[P-S]/g))].sort();
+            const n = allVars.length;
+            const rows = Math.pow(2, n);
+
+            function evalFormula(formula, assignment) {
+                let f = formula;
+                allVars.forEach(v => {
+                    f = f.replace(new RegExp(v, 'g'), assignment[v] ? 'true' : 'false');
+                });
+                f = f.replace(/¬/g, '!').replace(/∧/g, '&&').replace(/∨/g, '||');
+                let maxIter = 50;
+                while ((f.includes('→') || f.includes('↔')) && maxIter-- > 0) {
+                    f = f.replace(/(true|false)\s*↔\s*(true|false)/, (m, a, b) => String(a === b));
+                    f = f.replace(/(true|false)\s*→\s*(true|false)/, (m, a, b) => {
+                        return (a === 'true' && b === 'false') ? 'false' : 'true';
+                    });
+                }
+                return eval(f);
+            }
+
+            let equivalent = true;
+            let html = '<table class="styled-table"><thead><tr>';
+            allVars.forEach(v => html += `<th>${v}</th>`);
+            html += `<th>${f1}</th><th>${f2}</th><th>Match?</th></tr></thead><tbody>`;
+
+            for (let i = 0; i < rows; i++) {
+                const assignment = {};
+                html += '<tr>';
+                allVars.forEach((v, idx) => {
+                    assignment[v] = !Boolean((i >> (n - 1 - idx)) & 1);
+                    html += `<td>${assignment[v] ? 'T' : 'F'}</td>`;
+                });
+
+                try {
+                    const r1 = evalFormula(f1, assignment);
+                    const r2 = evalFormula(f2, assignment);
+                    const match = r1 === r2;
+                    if (!match) equivalent = false;
+                    html += `<td>${r1 ? 'T' : 'F'}</td><td>${r2 ? 'T' : 'F'}</td>`;
+                    html += `<td>${match ? '✅' : '❌'}</td></tr>`;
+                } catch(e) {
+                    html += '<td>?</td><td>?</td><td>?</td></tr>';
+                    equivalent = false;
+                }
+            }
+
+            html += '</tbody></table>';
+            html += equivalent 
+                ? '<p style="color:green;font-weight:bold;font-size:1.2em">✅ The formulas ARE logically equivalent!</p>'
+                : '<p style="color:red;font-weight:bold;font-size:1.2em">❌ The formulas are NOT logically equivalent.</p>';
+
+            output.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

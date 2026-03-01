@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Joint Distributions — joint PMF/PDF, marginal distributions, covariance, correlation, multivariate Gaussian introduction for GATE DA preparation.">
+  <title>Joint Distributions — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link active"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo;
+          <span class="current">Joint Distributions</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch07-joint-distributions">
+
+            <h1>Joint Distributions</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch07-joint-distributions" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="random-variables.html">Random Variables &amp; Distributions</a></li>
+              <li><a href="independence.html">Independence</a></li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Define joint PMF and joint PDF</li>
+              <li>Compute marginal distributions from joint distributions</li>
+              <li>Calculate covariance and correlation coefficient</li>
+              <li>Understand the multivariate Gaussian at a high level</li>
+            </ul></div>
+
+            <div class="content-body">
+
+              <section id="joint-pmf-pdf">
+                <h2>1. Joint PMF and PDF</h2>
+                <div class="definition-box">
+                  <h4>Joint PMF (Discrete)</h4>
+                  <div class="formula">p(x, y) = P(X = x, Y = y), &nbsp; &sum;<sub>x</sub>&sum;<sub>y</sub> p(x, y) = 1</div>
+                </div>
+                <div class="definition-box">
+                  <h4>Joint PDF (Continuous)</h4>
+                  <div class="formula">f(x, y) &ge; 0, &nbsp; &int;&int; f(x, y) dx dy = 1</div>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 1 &mdash; Joint PMF Table</h4>
+                  <p>Two dice are rolled. X = min(die1, die2), Y = max(die1, die2). The joint PMF table has 21 unique (x, y) pairs with x &le; y.</p>
+                  <p>For x = y = 3: only one outcome (3,3), so p(3,3) = 1/36.<br>
+                  For x = 2, y = 5: outcomes (2,5) and (5,2), so p(2,5) = 2/36 = 1/18.</p>
+                </div>
+              </section>
+
+              <section id="marginal">
+                <h2>2. Marginal Distributions</h2>
+                <div class="theorem-box">
+                  <h4>Marginalization</h4>
+                  <div class="formula">p<sub>X</sub>(x) = &sum;<sub>y</sub> p(x, y) &nbsp; | &nbsp; f<sub>X</sub>(x) = &int; f(x, y) dy</div>
+                  <p>To get the marginal of one variable, sum (or integrate) out the other variable.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 2 &mdash; Marginal from Table <span class="gate-tag">GATE Style</span></h4>
+                  <p>Given joint PMF table for X &isin; {0,1} and Y &isin; {0,1}:</p>
+                  <table style="border-collapse:collapse; margin:var(--spacing-sm) 0; text-align:center;">
+                    <tr><th style="padding:8px; border:1px solid var(--border-color);"></th><th style="padding:8px; border:1px solid var(--border-color);">Y=0</th><th style="padding:8px; border:1px solid var(--border-color);">Y=1</th></tr>
+                    <tr><td style="padding:8px; border:1px solid var(--border-color);"><strong>X=0</strong></td><td style="padding:8px; border:1px solid var(--border-color);">0.2</td><td style="padding:8px; border:1px solid var(--border-color);">0.1</td></tr>
+                    <tr><td style="padding:8px; border:1px solid var(--border-color);"><strong>X=1</strong></td><td style="padding:8px; border:1px solid var(--border-color);">0.3</td><td style="padding:8px; border:1px solid var(--border-color);">0.4</td></tr>
+                  </table>
+                  <p>P(X = 0) = 0.2 + 0.1 = 0.3, P(X = 1) = 0.3 + 0.4 = 0.7<br>
+                  P(Y = 0) = 0.2 + 0.3 = 0.5, P(Y = 1) = 0.1 + 0.4 = 0.5</p>
+                </div>
+              </section>
+
+              <section id="covariance-correlation">
+                <h2>3. Covariance and Correlation</h2>
+                <div class="definition-box">
+                  <h4>Covariance</h4>
+                  <div class="formula">Cov(X, Y) = E[XY] &minus; E[X]E[Y]</div>
+                  <p>If Cov(X, Y) = 0, X and Y are <strong>uncorrelated</strong> (but not necessarily independent!).</p>
+                </div>
+
+                <div class="definition-box">
+                  <h4>Correlation Coefficient</h4>
+                  <div class="formula">&rho;(X, Y) = Cov(X, Y) / (&sigma;<sub>X</sub> &middot; &sigma;<sub>Y</sub>), &nbsp; &minus;1 &le; &rho; &le; 1</div>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 3 &mdash; Computing Covariance</h4>
+                  <p>Using the joint table from Example 2:<br>
+                  E[X] = 0(0.3) + 1(0.7) = 0.7, &nbsp; E[Y] = 0(0.5) + 1(0.5) = 0.5<br>
+                  E[XY] = 0&middot;0(0.2) + 0&middot;1(0.1) + 1&middot;0(0.3) + 1&middot;1(0.4) = 0.4<br>
+                  Cov(X,Y) = 0.4 &minus; 0.7 &times; 0.5 = 0.4 &minus; 0.35 = <strong>0.05</strong></p>
+                </div>
+
+                <div class="warning-box">
+                  <h4>Uncorrelated &ne; Independent</h4>
+                  <p>If X ~ Uniform(&minus;1,1) and Y = X<sup>2</sup>, then Cov(X,Y) = 0 but X and Y are clearly dependent. Zero correlation only implies independence for <strong>jointly Gaussian</strong> variables.</p>
+                </div>
+              </section>
+
+              <section id="multivariate-gaussian">
+                <h2>4. Multivariate Gaussian (Overview)</h2>
+                <div class="theorem-box">
+                  <h4>Multivariate Normal Distribution</h4>
+                  <div class="formula">f(x) = (1 / ((2&pi;)<sup>d/2</sup> |&Sigma;|<sup>1/2</sup>)) exp(&minus;&frac12;(x &minus; &mu;)<sup>T</sup> &Sigma;<sup>&minus;1</sup>(x &minus; &mu;))</div>
+                  <p>Parameterised by mean vector &mu; &isin; &reals;<sup>d</sup> and covariance matrix &Sigma; &isin; &reals;<sup>d&times;d</sup>.</p>
+                </div>
+                <div class="note-box">
+                  <h4>Key Properties</h4>
+                  <ul>
+                    <li>Marginals are also Gaussian</li>
+                    <li>Conditionals are also Gaussian</li>
+                    <li>Uncorrelated &hArr; Independent (only for jointly Gaussian)</li>
+                    <li>Used extensively in Gaussian processes, Kalman filters, and many ML models</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li>Joint distributions describe the probability over multiple variables simultaneously</li>
+                    <li>Marginal distributions obtained by summing/integrating out variables</li>
+                    <li>Cov(X,Y) measures linear relationship; &rho; normalizes to [&minus;1, 1]</li>
+                    <li>Multivariate Gaussian: fully specified by mean vector and covariance matrix</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-joint-distributions">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="random-variables.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Random Variables</span>
+              </a>
+              <a href="bayesian-networks-intro.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Bayesian Networks Intro</span>
+              </a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#joint-pmf-pdf">1. Joint PMF &amp; PDF</a></li>
+              <li><a href="#marginal">2. Marginal Distributions</a></li>
+              <li><a href="#covariance-correlation">3. Covariance &amp; Correlation</a></li>
+              <li><a href="#multivariate-gaussian">4. Multivariate Gaussian</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

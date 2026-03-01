@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chapter 7 Quiz — 20 MCQ, MSQ, NAT, True/False questions on probability, Bayesian networks, HMM, MDP, information theory for GATE DA.">
+  <title>Quiz: Uncertainty — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link active"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo; <span class="current">Chapter Quiz</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-quiz" data-page-id="ch07-quiz">
+
+            <h1>Chapter 7 Quiz: Reasoning Under Uncertainty</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">20 Questions</span>
+              <button class="bookmark-btn" data-page="ch07-quiz" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="quiz-header">
+              <div class="quiz-timer" id="quizTimer">Time: 00:00</div>
+              <div class="quiz-palette" id="quizPalette"></div>
+            </div>
+
+            <div class="content-body">
+              <div class="quiz-container" id="quizContainer">
+
+                <!-- Q1 MCQ -->
+                <div class="quiz-question" data-question="1" data-type="mcq" data-answer="B">
+                  <h3>Q1. <span class="gate-tag">MCQ</span></h3>
+                  <p>If P(A) = 0.6 and P(B) = 0.5 and A, B are independent, what is P(A &cup; B)?</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q1" value="A"> (A) 0.30</label>
+                    <label><input type="radio" name="q1" value="B"> (B) 0.80</label>
+                    <label><input type="radio" name="q1" value="C"> (C) 1.10</label>
+                    <label><input type="radio" name="q1" value="D"> (D) 0.50</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: B.</strong> P(A &cup; B) = 0.6 + 0.5 &minus; 0.6(0.5) = 0.8.</div>
+                </div>
+
+                <!-- Q2 MCQ -->
+                <div class="quiz-question" data-question="2" data-type="mcq" data-answer="C">
+                  <h3>Q2. <span class="gate-tag">MCQ</span></h3>
+                  <p>Bayes' theorem states P(A|B) =</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q2" value="A"> (A) P(B|A) / P(A)</label>
+                    <label><input type="radio" name="q2" value="B"> (B) P(A) P(B)</label>
+                    <label><input type="radio" name="q2" value="C"> (C) P(B|A) P(A) / P(B)</label>
+                    <label><input type="radio" name="q2" value="D"> (D) P(A &cap; B) + P(B)</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: C.</strong> Bayes' theorem: P(A|B) = P(B|A)P(A)/P(B).</div>
+                </div>
+
+                <!-- Q3 NAT -->
+                <div class="quiz-question" data-question="3" data-type="nat" data-answer="0.4557" data-tolerance="0.01">
+                  <h3>Q3. <span class="gate-tag">NAT</span></h3>
+                  <p>Factories produce 30%, 45%, 25% of items with defect rates 3%, 4%, 5%. An item is defective. P(Factory 2) = ______ (round to 4 decimal places).</p>
+                  <div class="quiz-options"><input type="text" class="nat-input" placeholder="Enter numerical answer"></div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: 0.4557.</strong> P(D) = 0.0395. P(F2|D) = 0.018/0.0395 = 0.4557.</div>
+                </div>
+
+                <!-- Q4 MCQ -->
+                <div class="quiz-question" data-question="4" data-type="mcq" data-answer="A">
+                  <h3>Q4. <span class="gate-tag">MCQ</span></h3>
+                  <p>For a fair six-sided die, what is the entropy H(X)?</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q4" value="A"> (A) log<sub>2</sub>(6) &asymp; 2.585 bits</label>
+                    <label><input type="radio" name="q4" value="B"> (B) 1 bit</label>
+                    <label><input type="radio" name="q4" value="C"> (C) 6 bits</label>
+                    <label><input type="radio" name="q4" value="D"> (D) 3 bits</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: A.</strong> Uniform distribution has entropy log<sub>2</sub>(n) = log<sub>2</sub>(6) &asymp; 2.585 bits.</div>
+                </div>
+
+                <!-- Q5 True/False -->
+                <div class="quiz-question" data-question="5" data-type="mcq" data-answer="B">
+                  <h3>Q5. <span class="gate-tag">True/False</span></h3>
+                  <p>KL divergence is symmetric: D<sub>KL</sub>(P||Q) = D<sub>KL</sub>(Q||P).</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q5" value="A"> True</label>
+                    <label><input type="radio" name="q5" value="B"> False</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: False.</strong> KL divergence is NOT symmetric.</div>
+                </div>
+
+                <!-- Q6 MCQ -->
+                <div class="quiz-question" data-question="6" data-type="mcq" data-answer="D">
+                  <h3>Q6. <span class="gate-tag">MCQ</span></h3>
+                  <p>In a Bayesian network A &rarr; C &larr; B, with C not observed, which is true?</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q6" value="A"> (A) A and B are dependent</label>
+                    <label><input type="radio" name="q6" value="B"> (B) A and B are dependent given C</label>
+                    <label><input type="radio" name="q6" value="C"> (C) A and C are independent</label>
+                    <label><input type="radio" name="q6" value="D"> (D) A and B are independent</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: D.</strong> Collider C not observed &rArr; A &perp; B.</div>
+                </div>
+
+                <!-- Q7 MCQ -->
+                <div class="quiz-question" data-question="7" data-type="mcq" data-answer="B">
+                  <h3>Q7. <span class="gate-tag">MCQ</span></h3>
+                  <p>The Markov blanket of a node X in a BN includes:</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q7" value="A"> (A) Only parents of X</label>
+                    <label><input type="radio" name="q7" value="B"> (B) Parents, children, and co-parents of X</label>
+                    <label><input type="radio" name="q7" value="C"> (C) All ancestors of X</label>
+                    <label><input type="radio" name="q7" value="D"> (D) Only children of X</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: B.</strong> Markov blanket = parents + children + co-parents of children.</div>
+                </div>
+
+                <!-- Q8 NAT -->
+                <div class="quiz-question" data-question="8" data-type="nat" data-answer="0.70" data-tolerance="0.01">
+                  <h3>Q8. <span class="gate-tag">NAT</span></h3>
+                  <p>MLE of P(Heads) after 20 flips with 14 heads = ______.</p>
+                  <div class="quiz-options"><input type="text" class="nat-input" placeholder="Enter numerical answer"></div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: 0.70.</strong> MLE = k/n = 14/20 = 0.70.</div>
+                </div>
+
+                <!-- Q9 MCQ -->
+                <div class="quiz-question" data-question="9" data-type="mcq" data-answer="C">
+                  <h3>Q9. <span class="gate-tag">MCQ</span></h3>
+                  <p>In Naive Bayes, the "naive" assumption is:</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q9" value="A"> (A) Prior probabilities are equal</label>
+                    <label><input type="radio" name="q9" value="B"> (B) Features are normally distributed</label>
+                    <label><input type="radio" name="q9" value="C"> (C) Features are conditionally independent given the class</label>
+                    <label><input type="radio" name="q9" value="D"> (D) The model is non-parametric</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: C.</strong> The key assumption is P(x<sub>1</sub>,...,x<sub>n</sub>|C) = &prod; P(x<sub>i</sub>|C).</div>
+                </div>
+
+                <!-- Q10 True/False -->
+                <div class="quiz-question" data-question="10" data-type="mcq" data-answer="A">
+                  <h3>Q10. <span class="gate-tag">True/False</span></h3>
+                  <p>In an HMM, the Forward algorithm has time complexity O(T &middot; N&sup2;) where T is the sequence length and N is the number of states.</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q10" value="A"> True</label>
+                    <label><input type="radio" name="q10" value="B"> False</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: True.</strong> Both Forward and Viterbi run in O(T N&sup2;).</div>
+                </div>
+
+                <!-- Q11 MCQ -->
+                <div class="quiz-question" data-question="11" data-type="mcq" data-answer="B">
+                  <h3>Q11. <span class="gate-tag">MCQ</span></h3>
+                  <p>Which inference method gives exact results in Bayesian networks?</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q11" value="A"> (A) Gibbs Sampling</label>
+                    <label><input type="radio" name="q11" value="B"> (B) Variable Elimination</label>
+                    <label><input type="radio" name="q11" value="C"> (C) Rejection Sampling</label>
+                    <label><input type="radio" name="q11" value="D"> (D) Likelihood Weighting</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: B.</strong> Variable elimination is an exact inference method. The others are approximate sampling methods.</div>
+                </div>
+
+                <!-- Q12 NAT -->
+                <div class="quiz-question" data-question="12" data-type="nat" data-answer="1.75" data-tolerance="0.01">
+                  <h3>Q12. <span class="gate-tag">NAT</span></h3>
+                  <p>X takes values {1,2,3,4} with probabilities {1/2, 1/4, 1/8, 1/8}. H(X) = ______ bits.</p>
+                  <div class="quiz-options"><input type="text" class="nat-input" placeholder="Enter numerical answer"></div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: 1.75.</strong> H = 0.5(1) + 0.25(2) + 0.125(3) + 0.125(3) = 1.75 bits.</div>
+                </div>
+
+                <!-- Q13 MCQ -->
+                <div class="quiz-question" data-question="13" data-type="mcq" data-answer="A">
+                  <h3>Q13. <span class="gate-tag">MCQ</span></h3>
+                  <p>The Bellman optimality equation for value function is:</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q13" value="A"> (A) V*(s) = max<sub>a</sub> &sum;<sub>s'</sub> T(s,a,s')[R + &gamma;V*(s')]</label>
+                    <label><input type="radio" name="q13" value="B"> (B) V*(s) = &sum;<sub>a</sub> T(s,a,s') R</label>
+                    <label><input type="radio" name="q13" value="C"> (C) V*(s) = R(s) only</label>
+                    <label><input type="radio" name="q13" value="D"> (D) V*(s) = min<sub>a</sub> &sum;<sub>s'</sub> T(s,a,s') R</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: A.</strong> Bellman optimality: V*(s) = max<sub>a</sub> &sum; T(s,a,s')[R(s,a,s') + &gamma;V*(s')].</div>
+                </div>
+
+                <!-- Q14 MSQ -->
+                <div class="quiz-question" data-question="14" data-type="msq" data-answer="A,C">
+                  <h3>Q14. <span class="gate-tag">MSQ</span></h3>
+                  <p>Select ALL correct statements about Laplace smoothing in Naive Bayes:</p>
+                  <div class="quiz-options">
+                    <label><input type="checkbox" name="q14" value="A"> (A) Prevents zero probabilities for unseen feature values</label>
+                    <label><input type="checkbox" name="q14" value="B"> (B) Increases model accuracy in all cases</label>
+                    <label><input type="checkbox" name="q14" value="C"> (C) Adds a pseudo-count of 1 to each feature count</label>
+                    <label><input type="checkbox" name="q14" value="D"> (D) Eliminates the need for priors</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: A, C.</strong> Laplace smoothing adds 1 to counts, preventing zeros. It doesn't guarantee better accuracy or eliminate priors.</div>
+                </div>
+
+                <!-- Q15 True/False -->
+                <div class="quiz-question" data-question="15" data-type="mcq" data-answer="A">
+                  <h3>Q15. <span class="gate-tag">True/False</span></h3>
+                  <p>If the prior is uniform, then MAP estimation reduces to MLE.</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q15" value="A"> True</label>
+                    <label><input type="radio" name="q15" value="B"> False</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: True.</strong> Uniform prior &rArr; log P(&theta;) is constant &rArr; MAP = MLE.</div>
+                </div>
+
+                <!-- Q16 MCQ -->
+                <div class="quiz-question" data-question="16" data-type="mcq" data-answer="D">
+                  <h3>Q16. <span class="gate-tag">MCQ</span></h3>
+                  <p>The Viterbi algorithm solves which HMM problem?</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q16" value="A"> (A) Evaluation — P(observations | model)</label>
+                    <label><input type="radio" name="q16" value="B"> (B) Learning — estimating model parameters</label>
+                    <label><input type="radio" name="q16" value="C"> (C) Filtering — computing belief state</label>
+                    <label><input type="radio" name="q16" value="D"> (D) Decoding — finding the most likely state sequence</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: D.</strong> Viterbi finds the most probable hidden state sequence (decoding).</div>
+                </div>
+
+                <!-- Q17 NAT -->
+                <div class="quiz-question" data-question="17" data-type="nat" data-answer="0.245" data-tolerance="0.005">
+                  <h3>Q17. <span class="gate-tag">NAT</span></h3>
+                  <p>BN: A &rarr; B, A &rarr; C. P(A=T) = 0.3, P(B=T|A=T) = 0.9, P(B=T|A=F) = 0.4, P(C=T|A=T) = 0.7, P(C=T|A=F) = 0.2. P(B=T, C=T) = ______.</p>
+                  <div class="quiz-options"><input type="text" class="nat-input" placeholder="Enter numerical answer"></div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: 0.245.</strong> = 0.3(0.9)(0.7) + 0.7(0.4)(0.2) = 0.189 + 0.056 = 0.245.</div>
+                </div>
+
+                <!-- Q18 MCQ -->
+                <div class="quiz-question" data-question="18" data-type="mcq" data-answer="C">
+                  <h3>Q18. <span class="gate-tag">MCQ</span></h3>
+                  <p>What is mutual information I(X;Y)?</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q18" value="A"> (A) H(X) + H(Y)</label>
+                    <label><input type="radio" name="q18" value="B"> (B) H(X) &times; H(Y)</label>
+                    <label><input type="radio" name="q18" value="C"> (C) H(X) &minus; H(X|Y)</label>
+                    <label><input type="radio" name="q18" value="D"> (D) H(X|Y) &minus; H(X)</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: C.</strong> I(X;Y) = H(X) &minus; H(X|Y) = H(Y) &minus; H(Y|X).</div>
+                </div>
+
+                <!-- Q19 True/False -->
+                <div class="quiz-question" data-question="19" data-type="mcq" data-answer="B">
+                  <h3>Q19. <span class="gate-tag">True/False</span></h3>
+                  <p>In a BN, observing a collider's descendant does NOT activate the path through the collider.</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q19" value="A"> True</label>
+                    <label><input type="radio" name="q19" value="B"> False</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: False.</strong> Observing a collider OR any of its descendants unblocks the path (explaining away effect).</div>
+                </div>
+
+                <!-- Q20 MCQ -->
+                <div class="quiz-question" data-question="20" data-type="mcq" data-answer="B">
+                  <h3>Q20. <span class="gate-tag">MCQ</span></h3>
+                  <p>In value iteration for an MDP, the discount factor &gamma; must satisfy:</p>
+                  <div class="quiz-options">
+                    <label><input type="radio" name="q20" value="A"> (A) &gamma; &gt; 1</label>
+                    <label><input type="radio" name="q20" value="B"> (B) 0 &le; &gamma; &lt; 1</label>
+                    <label><input type="radio" name="q20" value="C"> (C) &gamma; = 1 always</label>
+                    <label><input type="radio" name="q20" value="D"> (D) &gamma; &lt; 0</label>
+                  </div>
+                  <div class="quiz-explanation" style="display:none;"><strong>Answer: B.</strong> Discount factor &gamma; &isin; [0, 1). For &gamma; = 1, convergence is only guaranteed with finite horizons.</div>
+                </div>
+
+              </div>
+
+              <div class="quiz-actions" style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+                <button class="submit-quiz-btn" id="submitQuiz">Submit Quiz</button>
+                <button class="show-answers-btn" id="showAnswers" style="display:none;">Show All Answers</button>
+              </div>
+              <div class="quiz-score" id="quizScore" style="display:none;"></div>
+            </div>
+
+            <button class="complete-btn" data-page="ch07-quiz">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="notes-uncertainty.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Chapter Notes</span></a>
+              <a href="../08-machine-learning-foundations/ml-fundamentals.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">ML Foundations</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#quizContainer">Quiz Questions</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Feature Engineering — Feature scaling, encoding, selection, handling missing values, curse of dimensionality for GATE DA.">
+  <title>Feature Engineering — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="supervised-learning.html" class="sidebar-link"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="unsupervised-learning.html" class="sidebar-link"><span class="link-check"></span> Unsupervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="bias-variance-tradeoff.html" class="sidebar-link"><span class="link-check"></span> Bias-Variance Tradeoff<span class="link-type theory">Theory</span></a>
+            <a href="overfitting-underfitting.html" class="sidebar-link"><span class="link-check"></span> Overfitting &amp; Underfitting<span class="link-type theory">Theory</span></a>
+            <a href="cross-validation.html" class="sidebar-link"><span class="link-check"></span> Cross-Validation<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-metrics.html" class="sidebar-link"><span class="link-check"></span> Evaluation Metrics<span class="link-type theory">Theory</span></a>
+            <a href="feature-engineering.html" class="sidebar-link active"><span class="link-check"></span> Feature Engineering<span class="link-type theory">Theory</span></a>
+            <a href="ml-math-essentials.html" class="sidebar-link"><span class="link-check"></span> ML Math Essentials<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="ml-fundamentals.html">Chapter 8: ML Foundations</a> &raquo; <span class="current">Feature Engineering</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch08-feature-engineering">
+
+            <h1>Feature Engineering</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch08-feature-engineering" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Apply normalization and standardization to features</li>
+              <li>Encode categorical variables using one-hot and label encoding</li>
+              <li>Select features using filter, wrapper, and embedded methods</li>
+              <li>Handle missing data appropriately</li>
+              <li>Understand the curse of dimensionality</li>
+            </ul></div>
+
+            <!-- Section 1: Feature Scaling -->
+            <section id="scaling">
+              <h2>1. Feature Scaling</h2>
+              <p>Many ML algorithms (KNN, SVM, gradient-based methods, PCA) are sensitive to the scale of input features. Features with large ranges dominate those with small ranges.</p>
+
+              <div class="definition-box">
+                <div class="box-title">Min-Max Normalization</div>
+                <p>Scales features to a fixed range, typically [0, 1]:</p>
+                <p><strong>x&#8242; = (x &minus; x_min) / (x_max &minus; x_min)</strong></p>
+                <ul>
+                  <li>Output range: [0, 1] (or any specified [a, b])</li>
+                  <li>Sensitive to outliers (outliers compress the rest of the data)</li>
+                  <li>Preserves the original distribution shape</li>
+                </ul>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">Standardization (Z-Score Normalization)</div>
+                <p>Transforms features to have zero mean and unit variance:</p>
+                <p><strong>z = (x &minus; &mu;) / &sigma;</strong></p>
+                <ul>
+                  <li>Output: mean = 0, std = 1, range is unbounded</li>
+                  <li>Less sensitive to outliers than min-max</li>
+                  <li>Preferred for algorithms assuming Gaussian input (e.g., SVM with RBF kernel, PCA)</li>
+                </ul>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: Feature Scaling</div>
+                <p><strong>Q:</strong> Feature values: [10, 20, 30, 40, 50]. Apply (a) min-max normalization, (b) z-score standardization.</p>
+                <p><strong>A (a):</strong> min=10, max=50. x&#8242; = (x&minus;10)/40. Result: [0, 0.25, 0.5, 0.75, 1.0]</p>
+                <p><strong>A (b):</strong> &mu;=30, &sigma;=&radic;200 = 10&radic;2 &asymp; 14.14. z = (x&minus;30)/14.14. Result: [&minus;1.414, &minus;0.707, 0, 0.707, 1.414]</p>
+              </div>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Property</th><th>Min-Max</th><th>Standardization</th></tr></thead>
+                  <tbody>
+                    <tr><td>Output range</td><td>[0, 1]</td><td>Unbounded</td></tr>
+                    <tr><td>Outlier sensitivity</td><td>High</td><td>Moderate</td></tr>
+                    <tr><td>Preserves zeros</td><td>No</td><td>Only if &mu;=0</td></tr>
+                    <tr><td>Best for</td><td>Neural nets, image pixels</td><td>SVM, PCA, logistic regression</td></tr>
+                    <tr><td>Distribution</td><td>Preserves shape</td><td>Centers at 0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="warning-box">
+                <div class="box-title">Fit on Training Data Only</div>
+                <p>Always compute scaling parameters (&mu;, &sigma;, min, max) on the <strong>training set only</strong>, then apply the same transformation to the validation and test sets. Otherwise, you leak information from test data.</p>
+              </div>
+            </section>
+
+            <!-- Section 2: Encoding -->
+            <section id="encoding">
+              <h2>2. Categorical Encoding</h2>
+              <p>ML algorithms work with numbers. Categorical features must be converted to numerical form.</p>
+
+              <div class="definition-box">
+                <div class="box-title">Label Encoding</div>
+                <p>Assigns each category a unique integer: Red&rarr;0, Green&rarr;1, Blue&rarr;2.</p>
+                <ul>
+                  <li><strong>Problem:</strong> Implies ordinal relationship (Green &gt; Red). Only suitable for truly ordinal features like &ldquo;Low, Medium, High&rdquo;.</li>
+                </ul>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">One-Hot Encoding</div>
+                <p>Creates a binary column for each category. K categories &rarr; K binary columns (or K&minus;1 with dummy variable trap avoidance).</p>
+                <p>Color {Red, Green, Blue} becomes: Red=[1,0,0], Green=[0,1,0], Blue=[0,0,1]</p>
+                <ul>
+                  <li>No ordinal assumption</li>
+                  <li>Increases dimensionality (problematic for high-cardinality features)</li>
+                </ul>
+              </div>
+
+              <div class="note-box">
+                <div class="box-title">Dummy Variable Trap</div>
+                <p>When using one-hot encoding with linear models, drop one column (K&minus;1 encoding) to avoid perfect multicollinearity. The dropped category becomes the &ldquo;reference&rdquo; category.</p>
+              </div>
+            </section>
+
+            <!-- Section 3: Feature Selection -->
+            <section id="selection">
+              <h2>3. Feature Selection Methods</h2>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Method</th><th>Approach</th><th>Examples</th><th>Pros</th><th>Cons</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Filter</strong></td><td>Evaluate features independently using statistical tests</td><td>Correlation, Chi-squared, Mutual Information, Variance Threshold</td><td>Fast, model-agnostic</td><td>Ignores feature interactions</td></tr>
+                    <tr><td><strong>Wrapper</strong></td><td>Use a model to evaluate subsets of features</td><td>Forward Selection, Backward Elimination, Recursive Feature Elimination (RFE)</td><td>Considers interactions</td><td>Computationally expensive</td></tr>
+                    <tr><td><strong>Embedded</strong></td><td>Feature selection built into the learning algorithm</td><td>Lasso (L1), Decision Tree feature importances, Ridge coefficients</td><td>Efficient, interaction-aware</td><td>Model-specific</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3 id="filter-methods">3.1 Filter Methods</h3>
+              <div class="definition-box">
+                <div class="box-title">Correlation-Based Selection</div>
+                <p>Remove features that have <strong>high correlation with each other</strong> (redundant) or <strong>low correlation with the target</strong> (irrelevant).</p>
+                <p>Pearson correlation: r = Cov(X,Y) / (&sigma;_X &times; &sigma;_Y). Range: [&minus;1, 1].</p>
+              </div>
+
+              <h3 id="wrapper-methods">3.2 Wrapper Methods</h3>
+              <div class="algorithm-block">
+                <div class="box-title">Forward Selection</div>
+                <pre>1. Start with no features selected
+2. For each remaining feature:
+   a. Add it to the current set
+   b. Evaluate model performance (e.g., with CV)
+3. Keep the feature that gives the best improvement
+4. Repeat until no improvement or desired number of features</pre>
+              </div>
+            </section>
+
+            <!-- Section 4: Missing Values -->
+            <section id="missing-values">
+              <h2>4. Handling Missing Data</h2>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Strategy</th><th>When to Use</th><th>Impact</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Drop rows</strong></td><td>Few missing values, large dataset</td><td>Loses data; can introduce bias if missing not at random</td></tr>
+                    <tr><td><strong>Drop columns</strong></td><td>Feature has &gt;50% missing</td><td>Loses entire feature</td></tr>
+                    <tr><td><strong>Mean/Median imputation</strong></td><td>Numerical features, MCAR</td><td>Simple but reduces variance</td></tr>
+                    <tr><td><strong>Mode imputation</strong></td><td>Categorical features</td><td>Simple; can distort distribution</td></tr>
+                    <tr><td><strong>KNN imputation</strong></td><td>Moderate missing, features correlated</td><td>Better quality; computationally expensive</td></tr>
+                    <tr><td><strong>Indicator variable</strong></td><td>Missingness itself is informative</td><td>Adds binary &ldquo;is_missing&rdquo; feature</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="note-box">
+                <div class="box-title">Types of Missing Data</div>
+                <ul>
+                  <li><strong>MCAR</strong> (Missing Completely At Random): Missingness unrelated to any variable</li>
+                  <li><strong>MAR</strong> (Missing At Random): Missingness related to observed data but not the missing value itself</li>
+                  <li><strong>MNAR</strong> (Missing Not At Random): Missingness related to the missing value (most problematic)</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 5: Curse of Dimensionality -->
+            <section id="curse">
+              <h2>5. Curse of Dimensionality</h2>
+              <div class="theorem-box">
+                <div class="box-title">The Curse of Dimensionality</div>
+                <p>As the number of features (dimensions) increases, the volume of the feature space grows exponentially, causing data to become increasingly sparse. This has profound effects on ML algorithms:</p>
+                <ul>
+                  <li><strong>Distance metrics become meaningless:</strong> In high-D space, the ratio of nearest to farthest neighbour distances approaches 1</li>
+                  <li><strong>More data needed:</strong> To maintain the same density, sample size must grow exponentially with dimensions</li>
+                  <li><strong>Overfitting risk increases:</strong> More features &rarr; more parameters &rarr; easier to memorize training data</li>
+                </ul>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example: Dimensionality</div>
+                <p><strong>Q:</strong> To keep 10 samples per &ldquo;cell&rdquo; with 10 bins per feature: 1D needs 10&times;10=100 samples, 2D needs 10&times;100=1000. How many for 5D?</p>
+                <p><strong>A:</strong> 10 &times; 10&#8309; = 10 &times; 100000 = <strong>1,000,000 samples</strong>. Exponential growth!</p>
+              </div>
+
+              <div class="note-box">
+                <div class="box-title">Mitigation Strategies</div>
+                <ul>
+                  <li>Feature selection (reduce irrelevant features)</li>
+                  <li>Dimensionality reduction (PCA, t-SNE)</li>
+                  <li>Regularization (L1/L2)</li>
+                  <li>Domain knowledge to select meaningful features</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 6: Feature Importance -->
+            <section id="importance">
+              <h2>6. Feature Importance</h2>
+              <p>After training a model, understanding which features contribute most to predictions is valuable for interpretation and feature selection.</p>
+
+              <div class="definition-box">
+                <div class="box-title">Feature Importance Methods</div>
+                <ul>
+                  <li><strong>Tree-based:</strong> Total reduction in impurity (Gini/Entropy) across all splits using that feature</li>
+                  <li><strong>Permutation importance:</strong> Shuffle one feature, measure drop in performance</li>
+                  <li><strong>Coefficient magnitude:</strong> |w&#7522;| for linear models (after standardization)</li>
+                  <li><strong>L1 regularization:</strong> Features with zero coefficients are unimportant</li>
+                </ul>
+              </div>
+            </section>
+
+          </article>
+
+          <aside class="on-this-page"><h4>On This Page</h4><ul>
+            <li><a href="#scaling">1. Feature Scaling</a></li>
+            <li><a href="#encoding">2. Categorical Encoding</a></li>
+            <li><a href="#selection">3. Feature Selection</a></li>
+            <li><a href="#missing-values">4. Missing Data</a></li>
+            <li><a href="#curse">5. Curse of Dimensionality</a></li>
+            <li><a href="#importance">6. Feature Importance</a></li>
+          </ul></aside>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="evaluation-metrics.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Evaluation Metrics</span></a>
+          <a href="ml-math-essentials.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">ML Math Essentials</span></a>
+        </div>
+        <button class="complete-btn" data-page="ch08-feature-engineering">&#10003; Mark as Complete</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

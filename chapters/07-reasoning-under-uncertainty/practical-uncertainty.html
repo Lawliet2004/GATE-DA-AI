@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive demos for Reasoning Under Uncertainty — Bayesian network visualization, probability calculator, Naive Bayes classifier simulation for GATE DA.">
+  <title>Interactive Demos: Uncertainty — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link active"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo; <span class="current">Interactive Demos</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-practical" data-page-id="ch07-practical-uncertainty">
+
+            <h1>Interactive Demos: Reasoning Under Uncertainty</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">Hands-On Practice</span>
+              <button class="bookmark-btn" data-page="ch07-practical-uncertainty" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="content-body">
+
+              <section id="bayes-calculator">
+                <h2>1. Bayes' Theorem Calculator</h2>
+                <p>Enter a prior probability, sensitivity (true positive rate), and false positive rate to see the posterior probability computed step by step.</p>
+                <div class="demo-container" style="padding:1.5rem; border:1px solid var(--border-color); border-radius:8px; margin:1rem 0;">
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; max-width:500px;">
+                    <label>Prior P(Disease): <input type="number" id="bayesPrior" value="0.01" step="0.01" min="0" max="1" style="width:100%; padding:6px; border:1px solid var(--border-color); border-radius:4px;"></label>
+                    <label>Sensitivity P(+|D): <input type="number" id="bayesSens" value="0.95" step="0.01" min="0" max="1" style="width:100%; padding:6px; border:1px solid var(--border-color); border-radius:4px;"></label>
+                    <label>False Positive P(+|&not;D): <input type="number" id="bayesFP" value="0.05" step="0.01" min="0" max="1" style="width:100%; padding:6px; border:1px solid var(--border-color); border-radius:4px;"></label>
+                  </div>
+                  <button id="bayesCalcBtn" style="margin-top:1rem; padding:8px 20px; background:var(--accent); color:#fff; border:none; border-radius:4px; cursor:pointer;">Calculate Posterior</button>
+                  <div id="bayesResult" style="margin-top:1rem; padding:1rem; background:var(--bg-secondary, #f5f5f5); border-radius:6px; display:none;"></div>
+                </div>
+
+                <script>
+                  document.getElementById('bayesCalcBtn').addEventListener('click', function() {
+                    const prior = parseFloat(document.getElementById('bayesPrior').value);
+                    const sens = parseFloat(document.getElementById('bayesSens').value);
+                    const fp = parseFloat(document.getElementById('bayesFP').value);
+                    const pPos = sens * prior + fp * (1 - prior);
+                    const posterior = (sens * prior) / pPos;
+                    const resultDiv = document.getElementById('bayesResult');
+                    resultDiv.style.display = 'block';
+                    resultDiv.innerHTML = '<h4>Step-by-Step Solution</h4>' +
+                      '<p><strong>P(+) =</strong> P(+|D)P(D) + P(+|&not;D)P(&not;D) = ' + sens.toFixed(4) + ' &times; ' + prior.toFixed(4) + ' + ' + fp.toFixed(4) + ' &times; ' + (1-prior).toFixed(4) + ' = <strong>' + pPos.toFixed(6) + '</strong></p>' +
+                      '<p><strong>P(D|+) =</strong> P(+|D)P(D) / P(+) = ' + (sens*prior).toFixed(6) + ' / ' + pPos.toFixed(6) + ' = <strong>' + posterior.toFixed(6) + ' (' + (posterior*100).toFixed(2) + '%)</strong></p>' +
+                      '<p style="margin-top:0.5rem; font-style:italic;">Even with a good test, a low prior can mean most positives are false positives!</p>';
+                  });
+                </script>
+              </section>
+
+              <section id="entropy-demo">
+                <h2>2. Entropy Visualizer</h2>
+                <p>Adjust the probability of heads for a coin and see how entropy changes. Maximum entropy = 1 bit occurs at p = 0.5.</p>
+                <div class="demo-container" style="padding:1.5rem; border:1px solid var(--border-color); border-radius:8px; margin:1rem 0;">
+                  <label>P(Heads): <strong id="entropyPVal">0.50</strong></label><br>
+                  <input type="range" id="entropySlider" min="0.01" max="0.99" step="0.01" value="0.50" style="width:100%; max-width:400px;">
+                  <div id="entropyDisplay" style="margin-top:1rem; font-size:1.3rem;"><strong>H = 1.0000 bits</strong></div>
+                  <div id="entropyBar" style="margin-top:0.5rem; height:20px; background:var(--accent); border-radius:4px; width:100%; max-width:400px; transition:width 0.2s;"></div>
+                </div>
+
+                <script>
+                  document.getElementById('entropySlider').addEventListener('input', function() {
+                    const p = parseFloat(this.value);
+                    const q = 1 - p;
+                    let H = 0;
+                    if (p > 0 && p < 1) H = -(p * Math.log2(p) + q * Math.log2(q));
+                    document.getElementById('entropyPVal').textContent = p.toFixed(2);
+                    document.getElementById('entropyDisplay').innerHTML = '<strong>H = ' + H.toFixed(4) + ' bits</strong>';
+                    document.getElementById('entropyBar').style.width = (H * 100) + '%';
+                  });
+                </script>
+              </section>
+
+              <section id="naive-bayes-demo">
+                <h2>3. Naive Bayes Spam Classifier</h2>
+                <p>Enter words (comma-separated) and see the Naive Bayes classification. This simple demo uses a built-in word likelihood table.</p>
+                <div class="demo-container" style="padding:1.5rem; border:1px solid var(--border-color); border-radius:8px; margin:1rem 0;">
+                  <label>Enter words: <input type="text" id="nbInput" value="free, winner, money" style="width:100%; max-width:400px; padding:6px; border:1px solid var(--border-color); border-radius:4px;"></label>
+                  <button id="nbCalcBtn" style="margin-top:0.5rem; padding:8px 20px; background:var(--accent); color:#fff; border:none; border-radius:4px; cursor:pointer;">Classify</button>
+                  <div id="nbResult" style="margin-top:1rem; padding:1rem; background:var(--bg-secondary, #f5f5f5); border-radius:6px; display:none;"></div>
+                </div>
+
+                <script>
+                  document.getElementById('nbCalcBtn').addEventListener('click', function() {
+                    const spamWords = {free:0.08, winner:0.06, money:0.07, click:0.05, offer:0.04, urgent:0.03, hello:0.01, meeting:0.005, report:0.003, project:0.004};
+                    const hamWords = {free:0.005, winner:0.001, money:0.002, click:0.003, offer:0.002, urgent:0.001, hello:0.04, meeting:0.05, report:0.04, project:0.05};
+                    const pSpam = 0.3, pHam = 0.7;
+                    const words = document.getElementById('nbInput').value.toLowerCase().split(',').map(w => w.trim()).filter(w => w);
+                    let logSpam = Math.log(pSpam), logHam = Math.log(pHam);
+                    let details = '';
+                    words.forEach(function(w) {
+                      const ps = spamWords[w] || 0.001;
+                      const ph = hamWords[w] || 0.001;
+                      logSpam += Math.log(ps);
+                      logHam += Math.log(ph);
+                      details += '<tr><td style="padding:4px 8px; border:1px solid var(--border-color);">' + w + '</td><td style="padding:4px 8px; border:1px solid var(--border-color);">' + ps.toFixed(4) + '</td><td style="padding:4px 8px; border:1px solid var(--border-color);">' + ph.toFixed(4) + '</td></tr>';
+                    });
+                    const maxLog = Math.max(logSpam, logHam);
+                    const pSpamPost = Math.exp(logSpam - maxLog) / (Math.exp(logSpam - maxLog) + Math.exp(logHam - maxLog));
+                    const result = pSpamPost > 0.5 ? 'SPAM' : 'HAM';
+                    const color = pSpamPost > 0.5 ? '#e74c3c' : '#27ae60';
+                    const resultDiv = document.getElementById('nbResult');
+                    resultDiv.style.display = 'block';
+                    resultDiv.innerHTML = '<table style="border-collapse:collapse; margin-bottom:0.5rem;"><tr><th style="padding:4px 8px; border:1px solid var(--border-color);">Word</th><th style="padding:4px 8px; border:1px solid var(--border-color);">P(w|spam)</th><th style="padding:4px 8px; border:1px solid var(--border-color);">P(w|ham)</th></tr>' + details + '</table>' +
+                      '<p>Log-score spam: ' + logSpam.toFixed(4) + ' | Log-score ham: ' + logHam.toFixed(4) + '</p>' +
+                      '<p style="font-size:1.3rem; color:' + color + ';"><strong>Classification: ' + result + '</strong> (P(spam|words) = ' + (pSpamPost*100).toFixed(1) + '%)</p>';
+                  });
+                </script>
+              </section>
+
+              <section id="coin-mle-demo">
+                <h2>4. MLE Coin Flip Simulator</h2>
+                <p>Flip a biased coin repeatedly and watch the MLE estimate converge to the true probability.</p>
+                <div class="demo-container" style="padding:1.5rem; border:1px solid var(--border-color); border-radius:8px; margin:1rem 0;">
+                  <label>True P(Heads): <input type="number" id="mleTrueP" value="0.7" step="0.05" min="0.05" max="0.95" style="width:80px; padding:6px; border:1px solid var(--border-color); border-radius:4px;"></label>
+                  <button id="mleFlipBtn" style="margin-left:1rem; padding:8px 20px; background:var(--accent); color:#fff; border:none; border-radius:4px; cursor:pointer;">Flip 10 Coins</button>
+                  <button id="mleResetBtn" style="margin-left:0.5rem; padding:8px 20px; background:#888; color:#fff; border:none; border-radius:4px; cursor:pointer;">Reset</button>
+                  <div id="mleDisplay" style="margin-top:1rem; font-size:1.1rem;">Flips: 0 | Heads: 0 | MLE: &mdash;</div>
+                </div>
+
+                <script>
+                  (function() {
+                    let totalFlips = 0, totalHeads = 0;
+                    document.getElementById('mleFlipBtn').addEventListener('click', function() {
+                      const trueP = parseFloat(document.getElementById('mleTrueP').value);
+                      for (let i = 0; i < 10; i++) { totalFlips++; if (Math.random() < trueP) totalHeads++; }
+                      const mle = (totalHeads / totalFlips).toFixed(4);
+                      document.getElementById('mleDisplay').innerHTML = 'Flips: ' + totalFlips + ' | Heads: ' + totalHeads + ' | <strong>MLE = ' + mle + '</strong> (true = ' + trueP + ')';
+                    });
+                    document.getElementById('mleResetBtn').addEventListener('click', function() {
+                      totalFlips = 0; totalHeads = 0;
+                      document.getElementById('mleDisplay').innerHTML = 'Flips: 0 | Heads: 0 | MLE: &mdash;';
+                    });
+                  })();
+                </script>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-practical-uncertainty">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="maximum-likelihood.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">MLE &amp; MAP</span></a>
+              <a href="gate-previous-year-uncertainty.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">GATE PYQs</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#bayes-calculator">1. Bayes Calculator</a></li>
+            <li><a href="#entropy-demo">2. Entropy Visualizer</a></li>
+            <li><a href="#naive-bayes-demo">3. NB Classifier</a></li>
+            <li><a href="#coin-mle-demo">4. MLE Simulator</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

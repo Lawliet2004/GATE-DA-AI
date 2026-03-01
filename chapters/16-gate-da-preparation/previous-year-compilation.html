@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Compilation of previous year GATE DA AI questions organized by topic with detailed solutions, difficulty analysis, and common patterns.">
+  <title>Previous Year Questions Compilation — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a>
+            <a href="topic-wise-weightage.html" class="sidebar-link"><span class="link-check"></span> Topic Weightage<span class="link-type notes">Notes</span></a>
+            <a href="previous-year-compilation.html" class="sidebar-link active"><span class="link-check"></span> Previous Year Qs<span class="link-type notes">Notes</span></a>
+            <a href="formula-sheet.html" class="sidebar-link"><span class="link-check"></span> Formula Sheet<span class="link-type notes">Notes</span></a>
+            <a href="common-mistakes.html" class="sidebar-link"><span class="link-check"></span> Common Mistakes<span class="link-type notes">Notes</span></a>
+            <a href="mock-test-1.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 1<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-2.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 2<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-3.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 3<span class="link-type quiz">Quiz</span></a>
+            <a href="final-revision-checklist.html" class="sidebar-link"><span class="link-check"></span> Final Revision Checklist<span class="link-type notes">Notes</span></a>
+        </div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="exam-pattern-strategy.html">Chapter 16: GATE DA Preparation</a> &raquo; <span class="current">Previous Year Questions Compilation</span></nav>
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch16-previous-year-compilation">
+            <h1>Previous Year Questions Compilation</h1>
+
+            <!-- Section 1 -->
+            <h2 id="how-to-use">How to Use This Compilation</h2>
+            <div class="definition-box">
+              <strong>Purpose:</strong> This page compiles representative GATE DA AI questions organized by topic with full solutions. Each question includes the type (MCQ/MSQ/NAT), marks, difficulty rating, and a step-by-step solution to help you understand the approach.
+            </div>
+            <p>For each question, try to solve it on your own first using a timer (2 min for 1-mark, 4 min for 2-mark), then check the solution. This simulates real exam conditions and builds time awareness.</p>
+            <div class="note-box">
+              <strong>Difficulty Scale:</strong> &#9733; Easy (should solve in &lt;1 min) &nbsp;|&nbsp; &#9733;&#9733; Medium (typical GATE level) &nbsp;|&nbsp; &#9733;&#9733;&#9733; Hard (top-difficulty, time-consuming)
+            </div>
+
+            <!-- Section 2 -->
+            <h2 id="search-algorithms">Search Algorithms</h2>
+
+            <div class="example-box">
+              <strong>Q1. [NAT, 2 marks, &#9733;&#9733;]</strong><br>
+              Consider the following graph where S is the start state and G is the goal state. Each edge is labelled with its cost. Using Uniform Cost Search, what is the cost of the optimal path from S to G?
+              <pre>
+    S --2-- A --3-- G
+    |               |
+    4               1
+    |               |
+    B ------2------ C
+              </pre>
+              <p>Graph edges: S&rarr;A (cost 2), A&rarr;G (cost 3), S&rarr;B (cost 4), B&rarr;C (cost 2), C&rarr;G (cost 1).</p>
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              UCS expands nodes in order of cumulative path cost:<br>
+              1. Start: {S: 0}<br>
+              2. Expand S: {A: 2, B: 4}<br>
+              3. Expand A (cost 2): {B: 4, G: 5}<br>
+              4. Expand B (cost 4): {G: 5, C: 6}<br>
+              5. Expand G (cost 5): Goal reached!<br><br>
+              But wait &mdash; we should also check path S&rarr;B&rarr;C&rarr;G = 4 + 2 + 1 = 7. Since 5 &lt; 7, the optimal path is S&rarr;A&rarr;G with cost <strong>5</strong>.<br><br>
+              <strong>Answer: 5</strong>
+            </div>
+
+            <div class="example-box">
+              <strong>Q2. [MCQ, 1 mark, &#9733;]</strong><br>
+              Which of the following search strategies is guaranteed to find the optimal solution when all step costs are equal?<br>
+              (A) Depth-First Search<br>
+              (B) Breadth-First Search<br>
+              (C) Depth-Limited Search<br>
+              (D) Greedy Best-First Search
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              When all step costs are equal, BFS expands nodes level by level, guaranteeing that the shallowest (and therefore cheapest) goal is found first. DFS can get stuck in deep branches, DLS may miss solutions beyond the limit, and Greedy Best-First is not optimal.<br><br>
+              <strong>Answer: (B)</strong>
+            </div>
+
+            <div class="example-box">
+              <strong>Q3. [NAT, 2 marks, &#9733;&#9733;&#9733;]</strong><br>
+              A* search is run on a graph with 8 nodes. The heuristic function h(n) is admissible but not consistent. In the worst case, how many times can a node be expanded by A* with graph search (without re-expansion)?
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              With an admissible but inconsistent heuristic in graph search (without re-expansion), A* may not find the optimal solution. However, the question asks about the number of expansions per node. In standard graph search, each node is expanded <strong>at most once</strong> because expanded nodes are added to the closed set.<br><br>
+              If the A* variant allows re-expansion (as needed for admissible-but-inconsistent heuristics), a node can be expanded up to exponentially many times in the worst case. But for standard graph search: <strong>1</strong>.<br><br>
+              <strong>Answer: 1</strong>
+            </div>
+
+            <!-- Section 3 -->
+            <h2 id="machine-learning">Machine Learning</h2>
+
+            <div class="example-box">
+              <strong>Q4. [NAT, 2 marks, &#9733;&#9733;]</strong><br>
+              A decision tree is being built using the ID3 algorithm. A dataset has 10 samples: 6 positive (+) and 4 negative (&minus;). An attribute A splits the data into two subsets: Left (4+, 1&minus;) and Right (2+, 3&minus;). Calculate the Information Gain of attribute A. Give your answer rounded to 3 decimal places. Use log base 2.
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              <strong>Step 1:</strong> Entropy of parent:<br>
+              H(S) = &minus;(6/10)log₂(6/10) &minus; (4/10)log₂(4/10)<br>
+              = &minus;0.6 &times; (&minus;0.737) &minus; 0.4 &times; (&minus;1.322)<br>
+              = 0.442 + 0.529 = 0.971<br><br>
+              <strong>Step 2:</strong> Entropy of Left (4+, 1&minus;):<br>
+              H(L) = &minus;(4/5)log₂(4/5) &minus; (1/5)log₂(1/5)<br>
+              = &minus;0.8 &times; (&minus;0.322) &minus; 0.2 &times; (&minus;2.322)<br>
+              = 0.258 + 0.464 = 0.722<br><br>
+              <strong>Step 3:</strong> Entropy of Right (2+, 3&minus;):<br>
+              H(R) = &minus;(2/5)log₂(2/5) &minus; (3/5)log₂(3/5)<br>
+              = &minus;0.4 &times; (&minus;1.322) &minus; 0.6 &times; (&minus;0.737)<br>
+              = 0.529 + 0.442 = 0.971<br><br>
+              <strong>Step 4:</strong> Weighted entropy after split:<br>
+              H(S|A) = (5/10) &times; 0.722 + (5/10) &times; 0.971 = 0.361 + 0.486 = 0.847<br><br>
+              <strong>Step 5:</strong> Information Gain:<br>
+              IG = 0.971 &minus; 0.847 = <strong>0.124</strong><br><br>
+              <strong>Answer: 0.124</strong>
+            </div>
+
+            <div class="example-box">
+              <strong>Q5. [MCQ, 2 marks, &#9733;&#9733;]</strong><br>
+              In ridge regression (L2 regularization), increasing the regularization parameter &lambda; will:<br>
+              (A) Increase bias and decrease variance<br>
+              (B) Decrease bias and increase variance<br>
+              (C) Increase both bias and variance<br>
+              (D) Decrease both bias and variance
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              Ridge regression adds a penalty term &lambda;||w||² to the loss function. As &lambda; increases:<br>
+              &bull; The model is forced to keep weights small, reducing model complexity<br>
+              &bull; Simpler models have <strong>higher bias</strong> (less flexible, may underfit)<br>
+              &bull; But they have <strong>lower variance</strong> (more stable across different training sets)<br><br>
+              This is the classic bias-variance tradeoff. Increasing regularization pushes towards simpler models.<br><br>
+              <strong>Answer: (A)</strong>
+            </div>
+
+            <div class="example-box">
+              <strong>Q6. [NAT, 1 mark, &#9733;]</strong><br>
+              A binary classifier has the following confusion matrix:<br>
+              <table class="styled-table">
+                <tr><td></td><td><strong>Predicted +</strong></td><td><strong>Predicted &minus;</strong></td></tr>
+                <tr><td><strong>Actual +</strong></td><td>40</td><td>10</td></tr>
+                <tr><td><strong>Actual &minus;</strong></td><td>5</td><td>45</td></tr>
+              </table>
+              What is the precision of the positive class? Give your answer rounded to 2 decimal places.
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              Precision = TP / (TP + FP) = 40 / (40 + 5) = 40 / 45 = 0.8889<br><br>
+              <strong>Answer: 0.89</strong>
+            </div>
+
+            <!-- Section 4 -->
+            <h2 id="probabilistic-reasoning">Probabilistic Reasoning</h2>
+
+            <div class="example-box">
+              <strong>Q7. [NAT, 2 marks, &#9733;&#9733;]</strong><br>
+              A medical test for a disease has a sensitivity (true positive rate) of 0.95 and a specificity (true negative rate) of 0.90. The prevalence of the disease in the population is 0.01 (1%). If a randomly selected person tests positive, what is the probability that they actually have the disease? Round to 3 decimal places.
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              This is a classic Bayes&rsquo; Theorem problem.<br><br>
+              Let D = has disease, T+ = tests positive.<br>
+              Given: P(T+|D) = 0.95, P(T&minus;|¬D) = 0.90, P(D) = 0.01<br>
+              So: P(T+|¬D) = 1 &minus; 0.90 = 0.10, P(¬D) = 0.99<br><br>
+              P(T+) = P(T+|D)&times;P(D) + P(T+|¬D)&times;P(¬D)<br>
+              = 0.95 &times; 0.01 + 0.10 &times; 0.99<br>
+              = 0.0095 + 0.099 = 0.1085<br><br>
+              P(D|T+) = P(T+|D)&times;P(D) / P(T+)<br>
+              = 0.0095 / 0.1085 = <strong>0.088</strong><br><br>
+              <strong>Answer: 0.088</strong>
+            </div>
+
+            <div class="example-box">
+              <strong>Q8. [MCQ, 1 mark, &#9733;&#9733;]</strong><br>
+              In a Bayesian Network, if X and Y are d-separated given Z, which of the following is true?<br>
+              (A) X and Y are marginally independent<br>
+              (B) X and Y are conditionally independent given Z<br>
+              (C) Z is a descendant of both X and Y<br>
+              (D) X causes Y through Z
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              D-separation is the graphical criterion for conditional independence in Bayesian Networks. If X and Y are d-separated given Z, then X and Y are conditionally independent given Z. This does not imply marginal independence, nor does it specify any particular structural relationship.<br><br>
+              <strong>Answer: (B)</strong>
+            </div>
+
+            <!-- Section 5 -->
+            <h2 id="neural-networks">Neural Networks &amp; Deep Learning</h2>
+
+            <div class="example-box">
+              <strong>Q9. [NAT, 2 marks, &#9733;&#9733;]</strong><br>
+              A single-layer perceptron has 3 inputs (x₁, x₂, x₃), weights (0.5, &minus;0.3, 0.8), and bias b = &minus;0.2. Using the sigmoid activation function &sigma;(z) = 1/(1 + e⁻ᶻ), compute the output for input (1, 0, 1). Round to 3 decimal places.
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              <strong>Step 1:</strong> Compute weighted sum:<br>
+              z = w₁x₁ + w₂x₂ + w₃x₃ + b<br>
+              z = 0.5(1) + (&minus;0.3)(0) + 0.8(1) + (&minus;0.2)<br>
+              z = 0.5 + 0 + 0.8 &minus; 0.2 = 1.1<br><br>
+              <strong>Step 2:</strong> Apply sigmoid:<br>
+              &sigma;(1.1) = 1 / (1 + e⁻¹·¹) = 1 / (1 + 0.3329) = 1 / 1.3329 = <strong>0.750</strong><br><br>
+              <strong>Answer: 0.750</strong>
+            </div>
+
+            <div class="example-box">
+              <strong>Q10. [MCQ, 2 marks, &#9733;&#9733;]</strong><br>
+              A convolutional layer has an input of size 32&times;32&times;3. It uses 16 filters of size 5&times;5 with stride 1 and no padding. What is the size of the output feature map?<br>
+              (A) 28&times;28&times;16<br>
+              (B) 32&times;32&times;16<br>
+              (C) 28&times;28&times;3<br>
+              (D) 27&times;27&times;16
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              Output size formula: O = (I &minus; F + 2P) / S + 1<br>
+              Where I = 32, F = 5, P = 0, S = 1<br>
+              O = (32 &minus; 5 + 0) / 1 + 1 = 27 + 1 = 28<br><br>
+              The depth of the output equals the number of filters = 16.<br>
+              Output: 28 &times; 28 &times; 16<br><br>
+              <strong>Answer: (A)</strong>
+            </div>
+
+            <div class="example-box">
+              <strong>Q11. [NAT, 2 marks, &#9733;&#9733;&#9733;]</strong><br>
+              A fully connected neural network has the following architecture: Input layer (4 neurons) &rarr; Hidden Layer 1 (8 neurons) &rarr; Hidden Layer 2 (6 neurons) &rarr; Output Layer (2 neurons). Each layer uses a bias term. How many total trainable parameters does this network have?
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              Count weights + biases for each connection:<br>
+              &bull; Input &rarr; Hidden 1: 4 &times; 8 weights + 8 biases = 32 + 8 = 40<br>
+              &bull; Hidden 1 &rarr; Hidden 2: 8 &times; 6 weights + 6 biases = 48 + 6 = 54<br>
+              &bull; Hidden 2 &rarr; Output: 6 &times; 2 weights + 2 biases = 12 + 2 = 14<br><br>
+              Total = 40 + 54 + 14 = <strong>108</strong><br><br>
+              <strong>Answer: 108</strong>
+            </div>
+
+            <!-- Section 6 -->
+            <h2 id="logic-questions">Logic</h2>
+
+            <div class="example-box">
+              <strong>Q12. [MCQ, 1 mark, &#9733;]</strong><br>
+              Which of the following is logically equivalent to &not;(P &rarr; Q)?<br>
+              (A) &not;P &and; Q<br>
+              (B) P &and; &not;Q<br>
+              (C) &not;P &or; Q<br>
+              (D) P &or; &not;Q
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              P &rarr; Q &equiv; &not;P &or; Q (material implication)<br>
+              &not;(P &rarr; Q) &equiv; &not;(&not;P &or; Q) &equiv; P &and; &not;Q (De Morgan&rsquo;s Law)<br><br>
+              <strong>Answer: (B)</strong>
+            </div>
+
+            <div class="example-box">
+              <strong>Q13. [MSQ, 2 marks, &#9733;&#9733;]</strong><br>
+              Consider the following propositional logic statements. Which of the following are tautologies? (Select ALL correct answers)<br>
+              (A) P &or; &not;P<br>
+              (B) P &and; &not;P<br>
+              (C) (P &rarr; Q) &or; (Q &rarr; P)<br>
+              (D) (P &and; Q) &rarr; P
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              (A) P &or; &not;P: Law of excluded middle &mdash; always true. <strong>Tautology &#10003;</strong><br>
+              (B) P &and; &not;P: Contradiction &mdash; always false. <strong>Not a tautology &#10007;</strong><br>
+              (C) (P &rarr; Q) &or; (Q &rarr; P): Expand to (&not;P &or; Q) &or; (&not;Q &or; P) = (&not;P &or; P) &or; (&not;Q &or; Q) = T &or; T = T. <strong>Tautology &#10003;</strong><br>
+              (D) (P &and; Q) &rarr; P: If both P and Q are true, then P is true. For all other cases, the implication holds vacuously. <strong>Tautology &#10003;</strong><br><br>
+              <strong>Answer: (A), (C), (D)</strong>
+            </div>
+
+            <!-- Section 7 -->
+            <h2 id="adversarial-search-questions">Adversarial Search</h2>
+
+            <div class="example-box">
+              <strong>Q14. [NAT, 2 marks, &#9733;&#9733;]</strong><br>
+              Consider the following game tree where MAX moves first. The leaf node values (left to right) are: 3, 12, 8, 2, 4, 6, 14, 5, 2. The tree has a root (MAX), two children (MIN), and each MIN node has three children (leaf nodes). Apply the Minimax algorithm. What is the value at the root?
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              <strong>Step 1:</strong> Group leaves under MIN nodes:<br>
+              &bull; Left MIN node: leaves = {3, 12, 8} &rarr; MIN picks 3<br>
+              &bull; Middle MIN node: leaves = {2, 4, 6} &rarr; MIN picks 2<br>
+              &bull; Right MIN node: leaves = {14, 5, 2} &rarr; MIN picks 2<br><br>
+              Wait &mdash; the root MAX has two children (MIN nodes), but we have 9 leaves and 3 leaves per MIN, suggesting 3 MIN children. Let me re-read: &ldquo;two children (MIN)&rdquo; with 3 children each = 6 leaves. But 9 leaves are given, so there must be 3 MIN nodes.<br><br>
+              Let&rsquo;s assume 3 MIN children of MAX, each with 3 leaves:<br>
+              &bull; Left MIN: min(3, 12, 8) = 3<br>
+              &bull; Middle MIN: min(2, 4, 6) = 2<br>
+              &bull; Right MIN: min(14, 5, 2) = 2<br><br>
+              <strong>Step 2:</strong> MAX at root: max(3, 2, 2) = <strong>3</strong><br><br>
+              <strong>Answer: 3</strong>
+            </div>
+
+            <div class="example-box">
+              <strong>Q15. [MCQ, 1 mark, &#9733;&#9733;]</strong><br>
+              In alpha-beta pruning applied to a minimax tree, what condition causes a prune at a MIN node?<br>
+              (A) &alpha; &ge; &beta; at the MIN node<br>
+              (B) &alpha; &le; &beta; at the MIN node<br>
+              (C) The MIN node&rsquo;s value exceeds its parent&rsquo;s &alpha;<br>
+              (D) The MIN node&rsquo;s value equals its parent&rsquo;s &beta;
+            </div>
+            <div class="note-box">
+              <strong>Solution:</strong><br>
+              Alpha-beta pruning prunes a subtree when it is certain that the subtree cannot influence the final decision. At a MIN node, pruning occurs when &alpha; &ge; &beta;, meaning the MAX ancestor already has a guaranteed value (&alpha;) that is at least as good as what MIN can force (&beta;). There is no point exploring further.<br><br>
+              <strong>Answer: (A)</strong>
+            </div>
+
+            <!-- Section 8 -->
+            <h2 id="common-patterns">Common Question Patterns</h2>
+            <p>Analysing previous year papers reveals recurring question formats that you should be prepared for:</p>
+
+            <div class="definition-box">
+              <strong>Pattern 1: Algorithm Tracing</strong>
+              <p>You are given a graph/tree and asked to trace an algorithm (BFS, DFS, A*, Minimax). The answer is typically the order of node expansions, the optimal path cost, or the value at the root. <em>Practice: trace algorithms by hand on paper until it becomes second nature.</em></p>
+            </div>
+
+            <div class="definition-box">
+              <strong>Pattern 2: Formula Application</strong>
+              <p>Compute entropy, information gain, Gini index, precision/recall, Bayes&rsquo; theorem, gradient descent step, etc. These are pure numerical computation. <em>Practice: memorize all formulas and solve 20+ numerical problems per topic.</em></p>
+            </div>
+
+            <div class="definition-box">
+              <strong>Pattern 3: Property Verification</strong>
+              <p>Which algorithm is complete? Which is optimal? Is this heuristic admissible? Is this sentence a tautology? These test deep conceptual understanding. <em>Practice: create comparison tables of algorithm properties.</em></p>
+            </div>
+
+            <div class="definition-box">
+              <strong>Pattern 4: Architecture Computation</strong>
+              <p>Count parameters in a neural network, compute output dimensions of a convolutional layer, determine the number of weights in a specific layer. <em>Practice: work through several architectures of varying depth.</em></p>
+            </div>
+
+            <div class="definition-box">
+              <strong>Pattern 5: Counter-example / Edge Case</strong>
+              <p>&ldquo;Which of the following statements is FALSE?&rdquo; or &ldquo;Give a counter-example.&rdquo; These require careful, precise knowledge. <em>Practice: for each concept, know at least one common misconception or edge case.</em></p>
+            </div>
+
+            <!-- Section 9 -->
+            <h2 id="difficulty-analysis">Difficulty Analysis</h2>
+            <p>Based on previous GATE DA papers, the AI section typically follows this difficulty distribution:</p>
+
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>Difficulty</th>
+                  <th>Approx. Questions</th>
+                  <th>Approx. Marks</th>
+                  <th>Strategy</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>&#9733; Easy</td><td>5&ndash;7</td><td>7&ndash;10</td><td>Must score &mdash; these are free marks</td></tr>
+                <tr><td>&#9733;&#9733; Medium</td><td>6&ndash;8</td><td>10&ndash;14</td><td>Target 80%+ accuracy here</td></tr>
+                <tr><td>&#9733;&#9733;&#9733; Hard</td><td>2&ndash;4</td><td>4&ndash;8</td><td>Attempt only if time permits or NAT/MSQ</td></tr>
+              </tbody>
+            </table>
+
+            <div class="warning-box">
+              <strong>Score Target:</strong> Scoring 22+ out of 30 in the AI section requires getting all Easy questions right, most Medium ones right, and at least 1&ndash;2 Hard questions. This is achievable with thorough preparation of high-priority topics.
+            </div>
+
+            <!-- Section 10 -->
+            <h2 id="practice-recommendations">Practice Recommendations</h2>
+            <div class="example-box">
+              <strong>Recommended Practice Plan:</strong>
+              <ol>
+                <li><strong>Topic-wise PYQs first:</strong> After studying each chapter, immediately solve all related previous year questions from this compilation.</li>
+                <li><strong>Timed practice:</strong> Set a timer for each question. 1-mark: 2 minutes max. 2-mark: 4 minutes max.</li>
+                <li><strong>Error journal:</strong> Maintain a log of every wrong answer with the reason (conceptual gap, calculation error, misread question, time pressure).</li>
+                <li><strong>Revisit errors:</strong> Re-attempt all wrong questions after 1 week without looking at the solution.</li>
+                <li><strong>Mock tests:</strong> After completing all topics, take the <a href="mock-test-1.html">Mock Tests</a> under full exam conditions (3 hours, 65 questions).</li>
+              </ol>
+            </div>
+
+            <div class="note-box">
+              <strong>Additional Resources:</strong> For topic-specific previous year questions, also check the dedicated PYQ pages in each chapter:
+              <ul>
+                <li><a href="../02-uninformed-search/gate-previous-year-uninformed.html">Uninformed Search PYQs</a></li>
+                <li><a href="../03-informed-search/gate-previous-year-informed.html">Informed Search PYQs</a></li>
+              </ul>
+            </div>
+
+          </article>
+          <aside class="page-toc" aria-label="On this page"><div class="toc-header">On This Page</div><ul id="toc-links"></ul></aside>
+        </div>
+        <nav class="nav-buttons" aria-label="Page navigation">
+          <a href="topic-wise-weightage.html" class="btn btn-nav btn-prev">&larr; Previous: Topic-wise Weightage</a>
+          <a href="formula-sheet.html" class="btn btn-nav btn-next">Next: Formula Sheet &rarr;</a>
+        </nav>
+        <div class="page-actions"><button class="btn btn-sm btn-bookmark" data-page="ch16-previous-year-compilation">&#128278; Bookmark</button><button class="btn btn-sm btn-complete" data-page="ch16-previous-year-compilation">&#9989; Mark Complete</button></div>
+      </div>
+    </main>
+  </div>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

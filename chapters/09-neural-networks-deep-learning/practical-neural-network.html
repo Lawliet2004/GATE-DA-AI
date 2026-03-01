@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive Neural Network Demos — Perceptron learning visualisation, forward pass calculator, and convolution filter demonstration for GATE DA.">
+  <title>Interactive Demos — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a>
+            <a href="perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="multilayer-perceptron.html" class="sidebar-link"><span class="link-check"></span> Multilayer Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="backpropagation.html" class="sidebar-link"><span class="link-check"></span> Backpropagation<span class="link-type theory">Theory</span></a>
+            <a href="activation-functions.html" class="sidebar-link"><span class="link-check"></span> Activation Functions<span class="link-type theory">Theory</span></a>
+            <a href="optimization-algorithms.html" class="sidebar-link"><span class="link-check"></span> Optimization Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="convolutional-neural-networks.html" class="sidebar-link"><span class="link-check"></span> CNNs<span class="link-type theory">Theory</span></a>
+            <a href="recurrent-neural-networks.html" class="sidebar-link"><span class="link-check"></span> RNNs<span class="link-type theory">Theory</span></a>
+            <a href="lstm-gru.html" class="sidebar-link"><span class="link-check"></span> LSTM &amp; GRU<span class="link-type theory">Theory</span></a>
+            <a href="attention-transformers.html" class="sidebar-link"><span class="link-check"></span> Attention &amp; Transformers<span class="link-type theory">Theory</span></a>
+            <a href="regularization-deep-learning.html" class="sidebar-link"><span class="link-check"></span> DL Regularization<span class="link-type theory">Theory</span></a>
+            <a href="practical-neural-network.html" class="sidebar-link active"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="neural-network-basics.html">Chapter 9: Neural Networks &amp; Deep Learning</a> &raquo; <span class="current">Interactive Demos</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-practical" data-page-id="ch09-practical-neural-network">
+
+            <h1>Interactive Neural Network Demos</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <button class="bookmark-btn" data-page="ch09-practical-neural-network" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <p>Interact with the demos below to build intuition for how neural networks compute. Adjust weights and inputs, then observe how the outputs change.</p>
+
+            <!-- ===================== DEMO 1: Perceptron ===================== -->
+            <section id="demo-perceptron">
+              <h2>Demo 1: Perceptron Learning</h2>
+              <p>This demo trains a single perceptron to learn a chosen Boolean function. Click <strong>Train Step</strong> to run one epoch, or <strong>Auto-Train</strong> to animate the learning process.</p>
+
+              <div class="demo-container">
+                <div class="demo-controls">
+                  <label>Function:
+                    <select id="perceptron-fn">
+                      <option value="AND">AND</option>
+                      <option value="OR">OR</option>
+                      <option value="NAND">NAND</option>
+                    </select>
+                  </label>
+                  <label>Learning Rate (&eta;): <input type="number" id="perceptron-lr" value="0.1" min="0.01" max="1" step="0.01"></label>
+                  <button id="perceptron-step" class="demo-btn">Train Step</button>
+                  <button id="perceptron-auto" class="demo-btn">Auto-Train</button>
+                  <button id="perceptron-reset" class="demo-btn">Reset</button>
+                </div>
+                <canvas id="perceptronCanvas" width="400" height="400" style="border:1px solid var(--border-color); max-width:100%;"></canvas>
+                <div id="perceptron-info" class="demo-output">
+                  <p>Weights: w<sub>1</sub> = <span id="pw1">0.00</span>, w<sub>2</sub> = <span id="pw2">0.00</span>, b = <span id="pb">0.00</span></p>
+                  <p>Epoch: <span id="pepoch">0</span> | Errors: <span id="perrors">—</span></p>
+                </div>
+              </div>
+            </section>
+
+            <!-- ===================== DEMO 2: Forward Pass ===================== -->
+            <section id="demo-forward-pass">
+              <h2>Demo 2: MLP Forward Pass Calculator</h2>
+              <p>Enter inputs and weights for a 2-input, 2-hidden, 1-output network. The demo computes the forward pass step by step using sigmoid activation.</p>
+
+              <div class="demo-container">
+                <div class="demo-controls" style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+                  <label>x<sub>1</sub>: <input type="number" id="fp-x1" value="0.5" step="0.1"></label>
+                  <label>x<sub>2</sub>: <input type="number" id="fp-x2" value="0.8" step="0.1"></label>
+                  <label>w<sub>11</sub>: <input type="number" id="fp-w11" value="0.15" step="0.05"></label>
+                  <label>w<sub>12</sub>: <input type="number" id="fp-w12" value="0.20" step="0.05"></label>
+                  <label>w<sub>21</sub>: <input type="number" id="fp-w21" value="0.25" step="0.05"></label>
+                  <label>w<sub>22</sub>: <input type="number" id="fp-w22" value="0.30" step="0.05"></label>
+                  <label>b<sub>h</sub>: <input type="number" id="fp-bh" value="0.35" step="0.05"></label>
+                  <label>w<sub>o1</sub>: <input type="number" id="fp-wo1" value="0.40" step="0.05"></label>
+                  <label>w<sub>o2</sub>: <input type="number" id="fp-wo2" value="0.45" step="0.05"></label>
+                  <label>b<sub>o</sub>: <input type="number" id="fp-bo" value="0.60" step="0.05"></label>
+                </div>
+                <button id="fp-compute" class="demo-btn" style="margin-top:0.5rem;">Compute Forward Pass</button>
+                <div id="fp-output" class="demo-output" style="margin-top:0.5rem; font-family:monospace; white-space:pre-wrap;"></div>
+              </div>
+            </section>
+
+            <!-- ===================== DEMO 3: Convolution ===================== -->
+            <section id="demo-convolution">
+              <h2>Demo 3: Convolution Filter Demo</h2>
+              <p>See how different 3&times;3 kernels transform a sample image grid. Choose a preset filter or enter custom values.</p>
+
+              <div class="demo-container">
+                <div class="demo-controls">
+                  <label>Preset Kernel:
+                    <select id="conv-preset">
+                      <option value="identity">Identity</option>
+                      <option value="edge">Edge Detection</option>
+                      <option value="sharpen">Sharpen</option>
+                      <option value="blur">Box Blur</option>
+                      <option value="custom">Custom</option>
+                    </select>
+                  </label>
+                  <button id="conv-apply" class="demo-btn">Apply Convolution</button>
+                </div>
+                <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:start; margin-top:0.5rem;">
+                  <div>
+                    <h4>Kernel (3&times;3)</h4>
+                    <table id="conv-kernel" style="border-collapse:collapse;">
+                      <tr><td><input type="number" class="kern-cell" value="0" step="1" style="width:3rem;"></td><td><input type="number" class="kern-cell" value="0" step="1" style="width:3rem;"></td><td><input type="number" class="kern-cell" value="0" step="1" style="width:3rem;"></td></tr>
+                      <tr><td><input type="number" class="kern-cell" value="0" step="1" style="width:3rem;"></td><td><input type="number" class="kern-cell" value="1" step="1" style="width:3rem;"></td><td><input type="number" class="kern-cell" value="0" step="1" style="width:3rem;"></td></tr>
+                      <tr><td><input type="number" class="kern-cell" value="0" step="1" style="width:3rem;"></td><td><input type="number" class="kern-cell" value="0" step="1" style="width:3rem;"></td><td><input type="number" class="kern-cell" value="0" step="1" style="width:3rem;"></td></tr>
+                    </table>
+                  </div>
+                  <div>
+                    <h4>Input (5&times;5)</h4>
+                    <canvas id="convInputCanvas" width="150" height="150" style="border:1px solid var(--border-color);"></canvas>
+                  </div>
+                  <div>
+                    <h4>Output (3&times;3)</h4>
+                    <canvas id="convOutputCanvas" width="90" height="90" style="border:1px solid var(--border-color);"></canvas>
+                  </div>
+                </div>
+                <div id="conv-output" class="demo-output" style="margin-top:0.5rem; font-family:monospace; white-space:pre-wrap;"></div>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch09-practical-neural-network">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="regularization-deep-learning.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">DL Regularization</span></a>
+              <a href="notes-deep-learning.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Chapter Notes</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#demo-perceptron">Perceptron Demo</a></li>
+            <li><a href="#demo-forward-pass">Forward Pass</a></li>
+            <li><a href="#demo-convolution">Convolution Demo</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+
+  <script>
+  // ========== Demo 1: Perceptron ==========
+  (function() {
+    const datasets = {
+      AND: [[0,0,0],[0,1,0],[1,0,0],[1,1,1]],
+      OR:  [[0,0,0],[0,1,1],[1,0,1],[1,1,1]],
+      NAND:[[0,0,1],[0,1,1],[1,0,1],[1,1,0]]
+    };
+    let w1=0, w2=0, b=0, epoch=0, autoId=null;
+    const canvas = document.getElementById('perceptronCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function draw() {
+      const fn = document.getElementById('perceptron-fn').value;
+      const data = datasets[fn];
+      ctx.clearRect(0,0,400,400);
+      // draw grid
+      ctx.strokeStyle = '#ccc'; ctx.lineWidth = 0.5;
+      for(let i=0;i<=4;i++){ctx.beginPath();ctx.moveTo(i*100,0);ctx.lineTo(i*100,400);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i*100);ctx.lineTo(400,i*100);ctx.stroke();}
+      // draw decision boundary: w1*x1 + w2*x2 + b = 0
+      if(Math.abs(w2)>1e-9||Math.abs(w1)>1e-9){
+        ctx.strokeStyle='#2563eb'; ctx.lineWidth=2; ctx.beginPath();
+        let pts=[];
+        for(let x1=-0.5;x1<=1.5;x1+=0.01){let x2=(-b-w1*x1)/w2; if(x2>=-0.5&&x2<=1.5) pts.push([x1,x2]);}
+        if(pts.length>=2){ctx.moveTo(pts[0][0]*200+100, 400-(pts[0][1]*200+100));
+        for(let i=1;i<pts.length;i++) ctx.lineTo(pts[i][0]*200+100, 400-(pts[i][1]*200+100));}
+        ctx.stroke();
+      }
+      // draw points
+      data.forEach(([x1,x2,y])=>{
+        const cx=x1*200+100, cy=400-(x2*200+100);
+        ctx.beginPath(); ctx.arc(cx,cy,10,0,Math.PI*2);
+        ctx.fillStyle=y===1?'#22c55e':'#ef4444'; ctx.fill();
+        ctx.strokeStyle='#000'; ctx.lineWidth=1; ctx.stroke();
+      });
+      document.getElementById('pw1').textContent=w1.toFixed(2);
+      document.getElementById('pw2').textContent=w2.toFixed(2);
+      document.getElementById('pb').textContent=b.toFixed(2);
+      document.getElementById('pepoch').textContent=epoch;
+    }
+
+    function trainStep(){
+      const fn=document.getElementById('perceptron-fn').value;
+      const lr=parseFloat(document.getElementById('perceptron-lr').value);
+      const data=datasets[fn]; let errors=0;
+      data.forEach(([x1,x2,y])=>{
+        const pred=(w1*x1+w2*x2+b)>=0?1:0;
+        const err=y-pred;
+        if(err!==0){errors++; w1+=lr*err*x1; w2+=lr*err*x2; b+=lr*err;}
+      });
+      epoch++;
+      document.getElementById('perrors').textContent=errors;
+      draw();
+      return errors;
+    }
+
+    document.getElementById('perceptron-step').onclick=trainStep;
+    document.getElementById('perceptron-auto').onclick=function(){
+      if(autoId){clearInterval(autoId);autoId=null;this.textContent='Auto-Train';return;}
+      this.textContent='Stop';
+      autoId=setInterval(()=>{if(trainStep()===0){clearInterval(autoId);autoId=null;document.getElementById('perceptron-auto').textContent='Auto-Train';}},200);
+    };
+    document.getElementById('perceptron-reset').onclick=function(){
+      if(autoId){clearInterval(autoId);autoId=null;document.getElementById('perceptron-auto').textContent='Auto-Train';}
+      w1=0;w2=0;b=0;epoch=0;document.getElementById('perrors').textContent='—';draw();
+    };
+    draw();
+  })();
+
+  // ========== Demo 2: Forward Pass Calculator ==========
+  (function(){
+    const sigmoid=x=>1/(1+Math.exp(-x));
+    document.getElementById('fp-compute').onclick=function(){
+      const g=id=>parseFloat(document.getElementById(id).value);
+      const x1=g('fp-x1'),x2=g('fp-x2');
+      const w11=g('fp-w11'),w12=g('fp-w12'),w21=g('fp-w21'),w22=g('fp-w22'),bh=g('fp-bh');
+      const wo1=g('fp-wo1'),wo2=g('fp-wo2'),bo=g('fp-bo');
+      const z1=w11*x1+w21*x2+bh, z2=w12*x1+w22*x2+bh;
+      const h1=sigmoid(z1), h2=sigmoid(z2);
+      const z3=wo1*h1+wo2*h2+bo;
+      const out=sigmoid(z3);
+      document.getElementById('fp-output').innerHTML=
+`Step 1 — Hidden layer pre-activation:
+  z₁ = ${w11}×${x1} + ${w21}×${x2} + ${bh} = ${z1.toFixed(4)}
+  z₂ = ${w12}×${x1} + ${w22}×${x2} + ${bh} = ${z2.toFixed(4)}
+
+Step 2 — Hidden layer activation (sigmoid):
+  h₁ = σ(${z1.toFixed(4)}) = ${h1.toFixed(4)}
+  h₂ = σ(${z2.toFixed(4)}) = ${h2.toFixed(4)}
+
+Step 3 — Output pre-activation:
+  z₃ = ${wo1}×${h1.toFixed(4)} + ${wo2}×${h2.toFixed(4)} + ${bo} = ${z3.toFixed(4)}
+
+Step 4 — Output activation:
+  ŷ = σ(${z3.toFixed(4)}) = ${out.toFixed(4)}`;
+    };
+  })();
+
+  // ========== Demo 3: Convolution ==========
+  (function(){
+    const inputData=[
+      [1,0,1,2,1],
+      [0,1,0,1,0],
+      [1,0,1,0,1],
+      [0,1,0,1,0],
+      [1,0,1,0,1]
+    ];
+    const presets={
+      identity:[[0,0,0],[0,1,0],[0,0,0]],
+      edge:[[-1,-1,-1],[-1,8,-1],[-1,-1,-1]],
+      sharpen:[[0,-1,0],[-1,5,-1],[0,-1,0]],
+      blur:[[1,1,1],[1,1,1],[1,1,1]]
+    };
+    function drawGrid(canvasId,data,cellSize){
+      const c=document.getElementById(canvasId),ctx=c.getContext('2d');
+      const rows=data.length,cols=data[0].length;
+      ctx.clearRect(0,0,c.width,c.height);
+      const maxVal=Math.max(...data.flat().map(Math.abs))||1;
+      data.forEach((row,r)=>row.forEach((v,col)=>{
+        const norm=(v+maxVal)/(2*maxVal);
+        const g=Math.round(norm*255);
+        ctx.fillStyle=`rgb(${g},${g},${g})`;
+        ctx.fillRect(col*cellSize,r*cellSize,cellSize,cellSize);
+        ctx.strokeStyle='#999';ctx.strokeRect(col*cellSize,r*cellSize,cellSize,cellSize);
+        ctx.fillStyle=g>128?'#000':'#fff';ctx.font='11px monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+        ctx.fillText(v.toString(),col*cellSize+cellSize/2,r*cellSize+cellSize/2);
+      }));
+    }
+    function getKernel(){
+      const cells=document.querySelectorAll('.kern-cell');
+      return [[+cells[0].value,+cells[1].value,+cells[2].value],[+cells[3].value,+cells[4].value,+cells[5].value],[+cells[6].value,+cells[7].value,+cells[8].value]];
+    }
+    function setKernel(k){
+      const cells=document.querySelectorAll('.kern-cell');
+      k.flat().forEach((v,i)=>cells[i].value=v);
+    }
+    document.getElementById('conv-preset').onchange=function(){
+      if(presets[this.value]) setKernel(presets[this.value]);
+    };
+    document.getElementById('conv-apply').onclick=function(){
+      const K=getKernel();
+      const out=[];
+      for(let i=0;i<3;i++){out[i]=[];for(let j=0;j<3;j++){let s=0;for(let ki=0;ki<3;ki++)for(let kj=0;kj<3;kj++)s+=inputData[i+ki][j+kj]*K[ki][kj];out[i][j]=s;}}
+      drawGrid('convOutputCanvas',out,30);
+      let txt='Output matrix:\n';
+      out.forEach(r=>txt+='  ['+r.map(v=>String(v).padStart(4)).join(', ')+']\n');
+      document.getElementById('conv-output').textContent=txt;
+    };
+    drawGrid('convInputCanvas',inputData,30);
+    drawGrid('convOutputCanvas',[[0,0,0],[0,0,0],[0,0,0]],30);
+  })();
+  </script>
+</body>
+</html>

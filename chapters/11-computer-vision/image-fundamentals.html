@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Image Fundamentals — digital images, pixel representation, color spaces, convolution, kernels, padding, stride, pooling, and basic image operations for GATE DA.">
+  <title>Image Fundamentals | GATE DA AI</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="image-fundamentals.html" class="sidebar-link active"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="cnn-architectures.html" class="sidebar-link"><span class="link-check"></span> CNN Architectures<span class="link-type theory">Theory</span></a>
+            <a href="object-detection.html" class="sidebar-link"><span class="link-check"></span> Object Detection<span class="link-type theory">Theory</span></a>
+            <a href="image-segmentation.html" class="sidebar-link"><span class="link-check"></span> Image Segmentation<span class="link-type theory">Theory</span></a>
+            <a href="generative-models-vision.html" class="sidebar-link"><span class="link-check"></span> Generative Models<span class="link-type theory">Theory</span></a>
+            <a href="notes-cv.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-cv.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="image-fundamentals.html">Chapter 11: Computer Vision</a> &raquo; <span class="current">Image Fundamentals</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch11-image-fundamentals">
+
+            <h1>Image Fundamentals</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Low&ndash;Medium</span>
+              <button class="bookmark-btn" data-page="ch11-image-fundamentals" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand how digital images are represented as matrices and tensors</li>
+                <li>Differentiate between grayscale, RGB, and RGBA color models</li>
+                <li>Perform the 2-D convolution operation by hand</li>
+                <li>Describe common kernels: edge detection, blur, and sharpen</li>
+                <li>Calculate output dimensions given padding, stride, and kernel size</li>
+                <li>Explain max pooling vs average pooling and their roles in CNNs</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="digital-images">
+              <h2>1. Digital Images</h2>
+              <p>A <strong>digital image</strong> is a 2-D grid of discrete picture elements called <em>pixels</em>. Each pixel stores one or more intensity values that encode color or brightness information.</p>
+
+              <div class="definition-box">
+                <strong>Definition &mdash; Pixel:</strong> The smallest addressable element of a raster image. In a grayscale image each pixel is a single scalar; in a colour image each pixel is a vector of channel values.
+              </div>
+
+              <h3>1.1 Image Resolution</h3>
+              <p>Resolution is expressed as <strong>W &times; H</strong> (width &times; height in pixels). A 1920 &times; 1080 image contains 1920 columns and 1080 rows, giving 2,073,600 total pixels.</p>
+
+              <div class="note-box">
+                <strong>Note:</strong> In NumPy / PyTorch the shape convention is (H, W, C) &mdash; rows first, columns second, channels last. Be careful when interpreting tensor shapes.
+              </div>
+
+              <h3>1.2 Bit Depth</h3>
+              <p>The number of bits used per channel determines the range of intensity values:</p>
+              <ul>
+                <li><strong>8-bit:</strong> Values 0&ndash;255 (most common for display images)</li>
+                <li><strong>16-bit:</strong> Values 0&ndash;65 535 (medical imaging, HDR)</li>
+                <li><strong>32-bit float:</strong> Values in [0, 1] (neural-network inputs after normalisation)</li>
+              </ul>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="color-representations">
+              <h2>2. Pixel &amp; Colour Representations</h2>
+
+              <h3>2.1 Grayscale</h3>
+              <p>A single channel where 0 = black and 255 = white. The image is an H &times; W matrix.</p>
+
+              <div class="example-box">
+                <h4>Example &mdash; 4 &times; 4 Grayscale Image Matrix</h4>
+                <pre>
+ I = | 10  20  30  40 |
+     | 50  60  70  80 |
+     | 90 100 110 120 |
+     |130 140 150 160 |</pre>
+                <p>Pixel at row 0, col 2 has intensity 30.</p>
+              </div>
+
+              <h3>2.2 RGB</h3>
+              <p>Three channels &mdash; Red, Green, Blue &mdash; each in [0, 255]. The image is an H &times; W &times; 3 tensor. A pure red pixel is (255, 0, 0); white is (255, 255, 255); black is (0, 0, 0).</p>
+
+              <h3>2.3 RGBA</h3>
+              <p>RGB plus an <strong>Alpha</strong> (transparency) channel. H &times; W &times; 4 tensor. Alpha = 0 means fully transparent; Alpha = 255 means fully opaque.</p>
+
+              <h3>2.4 Other Colour Spaces</h3>
+              <table class="comparison-table">
+                <thead><tr><th>Colour Space</th><th>Channels</th><th>Use Case</th></tr></thead>
+                <tbody>
+                  <tr><td>RGB</td><td>Red, Green, Blue</td><td>Display devices, default in most libraries</td></tr>
+                  <tr><td>HSV</td><td>Hue, Saturation, Value</td><td>Colour-based segmentation, object tracking</td></tr>
+                  <tr><td>YCbCr</td><td>Luminance (Y), Chrominance blue (Cb), Chrominance red (Cr)</td><td>JPEG compression, video encoding</td></tr>
+                  <tr><td>LAB</td><td>Lightness, a* (green-red), b* (blue-yellow)</td><td>Perceptually uniform colour differences</td></tr>
+                </tbody>
+              </table>
+
+              <div class="note-box">
+                <strong>Conversion (RGB &rarr; Grayscale):</strong> Y = 0.299 R + 0.587 G + 0.114 B (ITU-R BT.601 standard). Green contributes most because human eyes are most sensitive to green light.
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="image-as-tensor">
+              <h2>3. Image as a Matrix / Tensor</h2>
+              <p>Mathematically, a single-channel image is a matrix I &isin; &real;<sup>H&times;W</sup>. A colour image is a 3-D tensor I &isin; &real;<sup>H&times;W&times;C</sup>. A batch of N images forms a 4-D tensor of shape (N, C, H, W) in PyTorch or (N, H, W, C) in TensorFlow.</p>
+
+              <div class="definition-box">
+                <strong>Definition &mdash; Feature Map:</strong> The output of applying a convolutional filter to an input. Also called an &ldquo;activation map.&rdquo; Each filter produces one feature map.
+              </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="convolution">
+              <h2>4. Convolution Operation on Images</h2>
+              <p>The 2-D <strong>convolution</strong> (technically cross-correlation in deep learning) slides a small matrix called a <em>kernel</em> (or <em>filter</em>) over the input image and computes element-wise products followed by a sum at each position.</p>
+
+              <div class="definition-box">
+                <strong>Definition &mdash; 2-D Convolution:</strong> For input I and kernel K of size k &times; k, the output at position (i, j) is:<br>
+                (I &ast; K)(i, j) = &sum;<sub>m=0</sub><sup>k&minus;1</sup> &sum;<sub>n=0</sub><sup>k&minus;1</sup> I(i+m, j+n) &middot; K(m, n)
+              </div>
+
+              <div class="example-box">
+                <h4>Worked Example &mdash; 3&times;3 Convolution</h4>
+                <pre>
+Input (5&times;5):                     Kernel (3&times;3):
+| 1  2  3  0  1 |               | 1  0 -1 |
+| 0  1  2  3  1 |               | 1  0 -1 |
+| 1  0  1  0  2 |               | 1  0 -1 |
+| 2  1  0  1  1 |
+| 1  0  2  1  0 |
+
+Output at (0,0):
+  1&times;1 + 2&times;0 + 3&times;(&minus;1) +
+  0&times;1 + 1&times;0 + 2&times;(&minus;1) +
+  1&times;1 + 0&times;0 + 1&times;(&minus;1)
+  = 1 + 0 &minus; 3 + 0 + 0 &minus; 2 + 1 + 0 &minus; 1 = &minus;4
+
+Output size (no padding, stride 1): (5&minus;3+1) &times; (5&minus;3+1) = 3 &times; 3</pre>
+              </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="kernels">
+              <h2>5. Common Kernels / Filters</h2>
+
+              <h3>5.1 Edge Detection</h3>
+              <p>Highlights intensity gradients. The vertical Sobel kernel detects horizontal edges:</p>
+              <pre>
+Vertical Sobel:       Horizontal Sobel:
+| -1  0  1 |         | -1 -2 -1 |
+| -2  0  2 |         |  0  0  0 |
+| -1  0  1 |         |  1  2  1 |</pre>
+              <p>The <strong>Laplacian</strong> kernel detects edges in all directions:</p>
+              <pre>
+|  0  1  0 |
+|  1 -4  1 |
+|  0  1  0 |</pre>
+
+              <h3>5.2 Blur (Averaging / Gaussian)</h3>
+              <p>A 3&times;3 <strong>box blur</strong> (mean filter) replaces each pixel with the average of its 3&times;3 neighbourhood:</p>
+              <pre>
+(1/9) &times; | 1  1  1 |
+          | 1  1  1 |
+          | 1  1  1 |</pre>
+              <p>A <strong>Gaussian blur</strong> weights the centre pixel more heavily, producing smoother results.</p>
+
+              <h3>5.3 Sharpen</h3>
+              <pre>
+|  0 -1  0 |
+| -1  5 -1 |
+|  0 -1  0 |</pre>
+              <p>Enhances edges by amplifying the centre and subtracting neighbours. The kernel values sum to 1 to preserve overall brightness.</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="padding-stride">
+              <h2>6. Padding and Stride</h2>
+
+              <div class="definition-box">
+                <strong>Definition &mdash; Padding:</strong> Adding extra pixels (usually zeros) around the border of the input. <em>Valid padding</em> = no padding. <em>Same padding</em> = pad so that the output has the same spatial dimensions as the input.
+              </div>
+
+              <div class="definition-box">
+                <strong>Definition &mdash; Stride:</strong> The number of pixels the kernel moves between successive applications. Stride s &gt; 1 down-samples the output.
+              </div>
+
+              <div class="theorem-box">
+                <strong>Output Size Formula:</strong> Given input size n, kernel size k, padding p, and stride s, the output dimension is:<br>
+                <strong>O = &lfloor;(n &minus; k + 2p) / s&rfloor; + 1</strong>
+              </div>
+
+              <div class="example-box">
+                <h4>Example &mdash; Output Size Calculations</h4>
+                <table>
+                  <thead><tr><th>Input n</th><th>Kernel k</th><th>Padding p</th><th>Stride s</th><th>Output O</th></tr></thead>
+                  <tbody>
+                    <tr><td>32</td><td>3</td><td>0</td><td>1</td><td>&lfloor;(32&minus;3+0)/1&rfloor;+1 = 30</td></tr>
+                    <tr><td>32</td><td>3</td><td>1</td><td>1</td><td>&lfloor;(32&minus;3+2)/1&rfloor;+1 = 32 (same)</td></tr>
+                    <tr><td>32</td><td>5</td><td>0</td><td>2</td><td>&lfloor;(32&minus;5+0)/2&rfloor;+1 = 14</td></tr>
+                    <tr><td>224</td><td>7</td><td>3</td><td>2</td><td>&lfloor;(224&minus;7+6)/2&rfloor;+1 = 112</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="warning-box">
+                <strong>&#9888; Common Mistake:</strong> Forgetting the floor operation when stride &gt; 1. Fractional values are always rounded down.
+              </div>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="pooling">
+              <h2>7. Pooling Operations</h2>
+              <p>Pooling reduces the spatial dimensions of feature maps, decreasing the number of parameters and providing translation invariance.</p>
+
+              <h3>7.1 Max Pooling</h3>
+              <p>Takes the <strong>maximum</strong> value in each pooling window. A 2&times;2 max pool with stride 2 halves each spatial dimension.</p>
+
+              <div class="example-box">
+                <h4>Example &mdash; 2&times;2 Max Pooling (stride 2)</h4>
+                <pre>
+Input (4&times;4):                  Output (2&times;2):
+| 1  3  2  4 |               | 5  6 |
+| 5  2  6  1 |               | 8  7 |
+| 7  8  3  0 |
+| 2  4  1  7 |
+
+Top-left:  max(1,3,5,2) = 5
+Top-right: max(2,4,6,1) = 6
+Bot-left:  max(7,8,2,4) = 8
+Bot-right: max(3,0,1,7) = 7</pre>
+              </div>
+
+              <h3>7.2 Average Pooling</h3>
+              <p>Takes the <strong>mean</strong> of all values in each window. Keeps more information but is less robust to noise. Often used as <em>Global Average Pooling (GAP)</em> before the final classifier (e.g., GoogLeNet, ResNet).</p>
+
+              <table class="comparison-table">
+                <thead><tr><th>Property</th><th>Max Pooling</th><th>Average Pooling</th></tr></thead>
+                <tbody>
+                  <tr><td>Output value</td><td>Maximum in window</td><td>Mean of window</td></tr>
+                  <tr><td>Gradient flow</td><td>Only to the max element</td><td>Distributed equally</td></tr>
+                  <tr><td>Common use</td><td>Intermediate CNN layers</td><td>Global average before FC</td></tr>
+                  <tr><td>Translation invariance</td><td>Strong</td><td>Moderate</td></tr>
+                </tbody>
+              </table>
+
+              <div class="theorem-box">
+                <strong>Pooling Output Size:</strong> Same formula as convolution (with p = 0 typically):<br>
+                O = &lfloor;(n &minus; k) / s&rfloor; + 1
+              </div>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="basic-operations">
+              <h2>8. Basic Image Operations</h2>
+              <ul>
+                <li><strong>Resize:</strong> Interpolation methods &mdash; nearest-neighbour (fast, blocky), bilinear (smooth, common), bicubic (smoother, slower).</li>
+                <li><strong>Crop:</strong> Extract a sub-region I[y<sub>1</sub>:y<sub>2</sub>, x<sub>1</sub>:x<sub>2</sub>]. Used extensively in data augmentation.</li>
+                <li><strong>Rotate:</strong> Apply a 2-D rotation matrix. Requires interpolation for non-integer pixel locations.</li>
+                <li><strong>Flip:</strong> Horizontal flip (left-right) or vertical flip (up-down). Very common augmentation.</li>
+                <li><strong>Threshold:</strong> Convert a grayscale image to binary: pixel = 1 if I(i, j) &ge; T, else 0. Used in segmentation pre-processing.</li>
+              </ul>
+
+              <div class="example-box">
+                <h4>Example &mdash; Binary Thresholding (T = 100)</h4>
+                <pre>
+Input:                    Output (T = 100):
+| 50  120  80 |          | 0  1  0 |
+|200   90  30 |          | 1  0  0 |
+|110  100 250 |          | 1  1  1 |</pre>
+              </div>
+            </section>
+
+            <!-- Section 9 -->
+            <section id="data-augmentation">
+              <h2>9. Data Augmentation for Vision</h2>
+              <p>Augmentation artificially increases the effective size of a training set and improves generalisation:</p>
+              <ul>
+                <li><strong>Geometric:</strong> Random crop, resize, rotation, flip, affine transform</li>
+                <li><strong>Colour:</strong> Brightness / contrast jitter, hue shift, colour inversion</li>
+                <li><strong>Noise:</strong> Gaussian noise injection, cutout (random masking), mixup</li>
+              </ul>
+
+              <div class="warning-box">
+                <strong>&#9888; Important:</strong> Augmentation is applied only at <strong>training</strong> time (stochastically). At test/inference time, use the original (possibly centre-cropped) image for deterministic results.
+              </div>
+            </section>
+
+            <!-- Section 10 -->
+            <section id="summary">
+              <h2>10. Summary</h2>
+              <div class="summary-section">
+                <table>
+                  <thead><tr><th>Concept</th><th>Key Detail</th></tr></thead>
+                  <tbody>
+                    <tr><td>Grayscale image</td><td>H &times; W matrix, values 0&ndash;255</td></tr>
+                    <tr><td>RGB image</td><td>H &times; W &times; 3 tensor</td></tr>
+                    <tr><td>Convolution formula</td><td>&sum;&sum; I(i+m, j+n) &middot; K(m,n)</td></tr>
+                    <tr><td>Output size</td><td>&lfloor;(n &minus; k + 2p) / s&rfloor; + 1</td></tr>
+                    <tr><td>Max pooling</td><td>Takes max in each window; translation invariant</td></tr>
+                    <tr><td>Avg pooling</td><td>Takes mean; used in GAP layers</td></tr>
+                    <tr><td>Sobel kernel</td><td>Detects edges via gradient approximation</td></tr>
+                    <tr><td>Padding &ldquo;same&rdquo;</td><td>p = (k&minus;1)/2 keeps output size = input size</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch11-image-fundamentals">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="../10-natural-language-processing/quiz-nlp.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">NLP Quiz</span></a>
+              <a href="cnn-architectures.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">CNN Architectures</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#digital-images">1. Digital Images</a></li>
+            <li><a href="#color-representations">2. Colour Representations</a></li>
+            <li><a href="#image-as-tensor">3. Image as Tensor</a></li>
+            <li><a href="#convolution">4. Convolution</a></li>
+            <li><a href="#kernels">5. Common Kernels</a></li>
+            <li><a href="#padding-stride">6. Padding &amp; Stride</a></li>
+            <li><a href="#pooling">7. Pooling Operations</a></li>
+            <li><a href="#basic-operations">8. Basic Operations</a></li>
+            <li><a href="#data-augmentation">9. Data Augmentation</a></li>
+            <li><a href="#summary">10. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

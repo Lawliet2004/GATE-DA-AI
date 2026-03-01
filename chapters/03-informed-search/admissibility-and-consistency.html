@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Admissibility and Consistency of Heuristics — proofs, counterexamples, triangle inequality, and verification techniques for GATE DA AI preparation.">
+  <title>Admissibility &amp; Consistency — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div>
+      <div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div>
+      <div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First Search<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link active"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded Search<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA* Search<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="weighted-a-star.html" class="sidebar-link"><span class="link-check"></span> Weighted A*<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-informed-strategies.html" class="sidebar-link"><span class="link-check"></span> Strategy Comparison<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> Informed Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE Previous Year<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="heuristic-functions.html">Ch 3: Informed Search</a> &raquo;
+          <span class="current">Admissibility &amp; Consistency</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch03-admissibility">
+
+            <h1>Admissibility &amp; Consistency of Heuristics</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch03-admissibility" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="heuristic-functions.html">Heuristic Functions</a> &mdash; h(n), h*(n), domain knowledge</li>
+                <li><a href="a-star-search.html">A* Search</a> &mdash; f(n) = g(n) + h(n), optimality conditions</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Define admissibility and consistency formally</li>
+                <li>Prove that consistency implies admissibility</li>
+                <li>Construct a counterexample showing admissibility does not imply consistency</li>
+                <li>Explain why consistency is needed for A* graph search</li>
+                <li>Verify admissibility/consistency for given heuristics</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="admissibility">
+                <h2>1. Admissibility</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Admissible Heuristic</div>
+                  <p>A heuristic h(n) is <strong>admissible</strong> if it <strong>never overestimates</strong> the true cost to reach the goal from n:</p>
+                  <p style="text-align:center; font-size:1.2rem; margin:var(--spacing-md) 0;"><strong>h(n) &le; h*(n)</strong> for all n</p>
+                  <p>where h*(n) is the true optimal cost from n to the nearest goal.</p>
+                </div>
+
+                <p>An admissible heuristic is <strong>optimistic</strong> &mdash; it always thinks the goal is at least as close as (or closer than) it actually is. This optimism guarantees that A* tree search will never prematurely declare a suboptimal path as the solution.</p>
+
+                <h3>Examples of Admissible Heuristics</h3>
+                <ul>
+                  <li><strong>h(n) = 0</strong> &mdash; trivially admissible (never overestimates), makes A* behave like UCS</li>
+                  <li><strong>Straight-line distance</strong> for route finding &mdash; you can&rsquo;t drive shorter than a straight line</li>
+                  <li><strong>Manhattan distance</strong> for 8-puzzle &mdash; each tile needs at least that many moves</li>
+                  <li><strong>Misplaced tiles count</strong> for 8-puzzle &mdash; each misplaced tile needs at least 1 move</li>
+                </ul>
+              </section>
+
+              <section id="consistency">
+                <h2>2. Consistency (Monotonicity)</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Consistent Heuristic</div>
+                  <p>A heuristic h is <strong>consistent</strong> (or <strong>monotonic</strong>) if for every node n and every successor n&prime; of n generated by action a:</p>
+                  <p style="text-align:center; font-size:1.2rem; margin:var(--spacing-md) 0;"><strong>h(n) &le; c(n, a, n&prime;) + h(n&prime;)</strong></p>
+                  <p>This is a form of the <strong>triangle inequality</strong>: the estimated cost from n to the goal should not exceed the cost of one step to n&prime; plus the estimated cost from n&prime; to the goal.</p>
+                </div>
+
+                <p>Additionally, for any goal state G: h(G) = 0 (which follows from consistency applied at the goal).</p>
+
+                <h3>Why &ldquo;Monotonic&rdquo;?</h3>
+                <p>If h is consistent, then the f-values along any path are <strong>non-decreasing</strong>:</p>
+                <p>f(n&prime;) = g(n&prime;) + h(n&prime;) = g(n) + c(n,a,n&prime;) + h(n&prime;) &ge; g(n) + h(n) = f(n)</p>
+                <p>So f is monotonically non-decreasing along every path. This ensures that A* graph search can safely discard re-visited nodes.</p>
+              </section>
+
+              <section id="relationship">
+                <h2>3. Relationship Between Admissibility and Consistency</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Theorem: Consistency &rArr; Admissibility</div>
+                  <p>Every consistent heuristic is admissible. (The converse is NOT true.)</p>
+                </div>
+
+                <h3>Proof: Consistency Implies Admissibility</h3>
+                <p>Let n<sub>0</sub>, n<sub>1</sub>, &hellip;, n<sub>k</sub> be an optimal path from n<sub>0</sub> to goal n<sub>k</sub>.</p>
+                <p>By consistency: h(n<sub>i</sub>) &le; c(n<sub>i</sub>, a<sub>i</sub>, n<sub>i+1</sub>) + h(n<sub>i+1</sub>) for each step.</p>
+                <p>Applying this iteratively (telescoping sum):</p>
+                <p>h(n<sub>0</sub>) &le; c(n<sub>0</sub>,a<sub>0</sub>,n<sub>1</sub>) + h(n<sub>1</sub>) &le; c(n<sub>0</sub>,a<sub>0</sub>,n<sub>1</sub>) + c(n<sub>1</sub>,a<sub>1</sub>,n<sub>2</sub>) + h(n<sub>2</sub>) &le; &hellip; &le; &sum; c(n<sub>i</sub>,a<sub>i</sub>,n<sub>i+1</sub>) + h(n<sub>k</sub>)</p>
+                <p>Since n<sub>k</sub> is the goal, h(n<sub>k</sub>) = 0. So h(n<sub>0</sub>) &le; cost of optimal path = h*(n<sub>0</sub>). &#8718;</p>
+
+                <h3>Counterexample: Admissible but Not Consistent</h3>
+                <pre><code>Graph: A → B (cost 4), B → G (cost 1), A → G (cost 6)
+True costs: h*(A) = 5 (A→B→G), h*(B) = 1, h*(G) = 0
+
+Heuristic: h(A) = 4, h(B) = 0, h(G) = 0
+
+Admissible? h(A)=4 ≤ 5=h*(A) ✓, h(B)=0 ≤ 1=h*(B) ✓  → YES
+
+Consistent? Check edge A→B:
+  h(A) ≤ c(A,B) + h(B)?
+  4 ≤ 4 + 0 = 4? YES ✓
+
+Check edge B→G:
+  h(B) ≤ c(B,G) + h(G)?
+  0 ≤ 1 + 0 = 1? YES ✓
+
+Actually this one IS consistent. Let me construct a real counterexample:
+
+Graph: A → B (cost 1), B → G (cost 3), A → G (cost 5)
+h*(A) = 4, h*(B) = 3, h*(G) = 0
+
+h(A) = 4, h(B) = 1, h(G) = 0
+
+Admissible? h(A)=4 ≤ 4 ✓, h(B)=1 ≤ 3 ✓  → YES
+
+Consistent? Check A→B:
+  h(A) ≤ c(A,B) + h(B)?
+  4 ≤ 1 + 1 = 2?  NO! (4 > 2)  → NOT CONSISTENT</code></pre>
+                <p>This heuristic is <strong>admissible</strong> (never overestimates true cost) but <strong>not consistent</strong> (the triangle inequality is violated at edge A&rarr;B). Note that f decreases from A to B: f(A) = 0+4=4, but f(B) = 1+1=2 (f dropped!).</p>
+              </section>
+
+              <section id="why-consistency-matters">
+                <h2>4. Why Consistency Matters for Graph Search</h2>
+
+                <p>In A* <strong>graph search</strong>, once a node is expanded (moved to the explored/closed set), it is never reconsidered. If h is only admissible (not consistent), a node might first be reached via a <strong>suboptimal path</strong> and placed in the explored set, while the cheaper path is discovered later but <strong>ignored</strong> because the node is already explored.</p>
+
+                <div class="note-box">
+                  <div class="box-title">Consistency Guarantees</div>
+                  <p>With a consistent heuristic, f-values are non-decreasing along any path. This means the <strong>first time</strong> A* expands a node, it has found the cheapest path to that node. No re-expansion is ever needed.</p>
+                </div>
+
+                <p><strong>Workaround without consistency:</strong> Use A* <em>tree search</em> (allow re-visiting nodes) with just an admissible heuristic. This still guarantees optimality but may be slower and use more memory.</p>
+              </section>
+
+              <section id="verification">
+                <h2>5. How to Verify Admissibility / Consistency</h2>
+
+                <h3>Verifying Admissibility</h3>
+                <ol>
+                  <li>For each node n, compute h*(n) (true shortest cost to goal).</li>
+                  <li>Check that h(n) &le; h*(n) for every n.</li>
+                </ol>
+
+                <h3>Verifying Consistency</h3>
+                <ol>
+                  <li>For <strong>every edge</strong> (n, n&prime;) with cost c, check: h(n) &le; c + h(n&prime;).</li>
+                  <li>If all edges satisfy this, h is consistent.</li>
+                </ol>
+
+                <div class="note-box">
+                  <div class="box-title">Practical Tip</div>
+                  <p>Consistency is a <strong>local</strong> condition (checked edge by edge), while admissibility is a <strong>global</strong> condition (checked against true optimal cost). In practice, consistency is easier to verify because you only need edge costs and heuristic values, not h*(n) for every node.</p>
+                </div>
+              </section>
+
+              <section id="worked-examples">
+                <h2>6. Worked Examples</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Example 1: Checking a Grid Heuristic</div>
+                  <p>4-connected grid (up/down/left/right moves, cost 1 each). Goal at (3,3).</p>
+                  <p>Heuristic: h(x,y) = |x&minus;3| + |y&minus;3| (Manhattan distance).</p>
+                  <p><strong>Admissible?</strong> Manhattan distance is exactly the shortest path distance on a 4-connected grid with no obstacles. So h(n) = h*(n) &le; h*(n). <strong>Yes, admissible.</strong></p>
+                  <p><strong>Consistent?</strong> Consider node n=(1,2) with neighbor n&prime;=(1,3) [move right, cost 1]:</p>
+                  <ul>
+                    <li>h(1,2) = |1&minus;3| + |2&minus;3| = 3</li>
+                    <li>c(n,n&prime;) + h(1,3) = 1 + |1&minus;3| + |3&minus;3| = 1 + 2 = 3</li>
+                    <li>3 &le; 3 &#10004;</li>
+                  </ul>
+                  <p>For any move in a cardinal direction, Manhattan distance changes by exactly &plusmn;1, and the step cost is 1. So |h(n) &minus; h(n&prime;)| &le; 1 = c(n,n&prime;), which means h(n) &le; c + h(n&prime;) always holds. <strong>Consistent.</strong></p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 2: An Admissible but Inconsistent Heuristic</div>
+                  <pre><code>Nodes: S, A, B, G
+Edges: S→A (cost 2), A→B (cost 1), B→G (cost 3), S→G (cost 10)
+h*(S)=6, h*(A)=4, h*(B)=3, h*(G)=0
+
+Heuristic: h(S)=5, h(A)=4, h(B)=1, h(G)=0</code></pre>
+                  <p><strong>Admissible?</strong> h(S)=5&le;6 &#10004;, h(A)=4&le;4 &#10004;, h(B)=1&le;3 &#10004;. <strong>Yes.</strong></p>
+                  <p><strong>Consistent?</strong> Check A→B: h(A) &le; c(A,B) + h(B) &rarr; 4 &le; 1 + 1 = 2? <strong>NO!</strong> (4 &gt; 2). <strong>Not consistent.</strong></p>
+                  <p>The heuristic &ldquo;jumps down&rdquo; too much from A to B, violating the triangle inequality. This can cause A* graph search to find a suboptimal path.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 3: Verifying SLD for Romania</div>
+                  <p>Straight-line distance to Bucharest as h(n). Consider the edge Sibiu &rarr; Fagaras (road cost 99 km).</p>
+                  <ul>
+                    <li>h(Sibiu) = 253 km (SLD to Bucharest)</li>
+                    <li>h(Fagaras) = 176 km</li>
+                    <li>c(Sibiu, Fagaras) = 99 km</li>
+                  </ul>
+                  <p>Consistency check: h(Sibiu) &le; c + h(Fagaras)? &rarr; 253 &le; 99 + 176 = 275? <strong>Yes &#10004;</strong></p>
+                  <p>By the <strong>geometric triangle inequality</strong>, straight-line distance is always consistent for route-finding on a map. The SLD from A to G cannot exceed the SLD from A to B plus SLD from B to G, and road distance &ge; SLD. This makes SLD both admissible and consistent for any map.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li><strong>Admissible:</strong> h(n) &le; h*(n) &mdash; never overestimates (optimistic).</li>
+                    <li><strong>Consistent:</strong> h(n) &le; c(n,a,n&prime;) + h(n&prime;) &mdash; triangle inequality.</li>
+                    <li>Consistency &rArr; Admissibility (but not vice versa).</li>
+                    <li>A* tree search needs admissibility for optimality.</li>
+                    <li>A* graph search needs consistency for optimality.</li>
+                    <li>Most &ldquo;natural&rdquo; heuristics (Manhattan, SLD) are both admissible and consistent.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell &amp; Norvig, <em>AIMA</em> 4th Ed. &mdash; Section 3.5.2, 3.6</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch03-admissibility">&#9745; Mark as Complete</button>
+
+            <div class="nav-buttons">
+              <a href="a-star-search.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">A* Search</span>
+              </a>
+              <a href="memory-bounded-search.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Memory-Bounded Search</span>
+              </a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#admissibility">1. Admissibility</a></li>
+              <li><a href="#consistency">2. Consistency</a></li>
+              <li><a href="#relationship">3. Relationship</a></li>
+              <li><a href="#why-consistency-matters">4. Why It Matters</a></li>
+              <li><a href="#verification">5. Verification</a></li>
+              <li><a href="#worked-examples">6. Worked Examples</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

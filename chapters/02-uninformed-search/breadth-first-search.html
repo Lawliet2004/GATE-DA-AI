@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Breadth-First Search (BFS) — FIFO queue algorithm, complete pseudocode, step-by-step trace, time O(b^d), space O(b^d), completeness and optimality analysis for GATE DA.">
+  <title>Breadth-First Search (BFS) — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a><a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a><a href="../01-intelligent-agents/notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+            <a href="state-space-representation.html" class="sidebar-link"><span class="link-check"></span> State Space<span class="link-type theory">Theory</span></a>
+            <a href="breadth-first-search.html" class="sidebar-link active"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-first-search.html" class="sidebar-link"><span class="link-check"></span> DFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-limited-search.html" class="sidebar-link"><span class="link-check"></span> Depth-Limited<span class="link-type theory">Theory</span></a>
+            <a href="iterative-deepening-dfs.html" class="sidebar-link"><span class="link-check"></span> IDDFS<span class="link-type theory">Theory</span></a>
+            <a href="uniform-cost-search.html" class="sidebar-link"><span class="link-check"></span> UCS<span class="link-type theory">Theory</span></a>
+            <a href="bidirectional-search.html" class="sidebar-link"><span class="link-check"></span> Bidirectional<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-uninformed-strategies.html" class="sidebar-link"><span class="link-check"></span> Comparison<span class="link-type theory">Theory</span></a>
+            <a href="complexity-analysis.html" class="sidebar-link"><span class="link-check"></span> Complexity<span class="link-type theory">Theory</span></a>
+            <a href="practical-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uninformed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="problem-formulation.html">Chapter 2: Uninformed Search</a> &raquo; <span class="current">Breadth-First Search</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch02-bfs">
+
+            <h1>Breadth-First Search (BFS)</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch02-bfs" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="state-space-representation.html">State Space Representation</a> &mdash; Frontier, explored set, tree vs graph search</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Implement BFS using a <strong>FIFO queue</strong></li>
+              <li>Trace BFS execution step-by-step on example graphs</li>
+              <li>Prove BFS is <strong>complete</strong> (if b is finite) and <strong>optimal</strong> (if step costs are uniform)</li>
+              <li>Analyze time complexity O(b<sup>d</sup>) and space complexity O(b<sup>d</sup>)</li>
+              <li>Understand why <strong>memory</strong> is the limiting factor for BFS</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <section id="intuition">
+                <h2>1. Intuition</h2>
+                <p>BFS explores the search tree <strong>level by level</strong>. It first visits all nodes at depth 0 (the root), then all nodes at depth 1, then depth 2, and so on. This guarantees that the <strong>shallowest</strong> goal node is found first.</p>
+                <p>Think of it like a ripple spreading outward from a stone dropped in water&mdash;the wave front moves uniformly in all directions, covering the nearest points first.</p>
+              </section>
+
+              <section id="algorithm">
+                <h2>2. BFS Algorithm</h2>
+
+                <h3>Tree Search Version</h3>
+                <pre><code>function BFS-TREE(problem):
+    node = Node(problem.INITIAL-STATE)
+    if problem.GOAL-TEST(node.STATE): return SOLUTION(node)
+    frontier = FIFO-Queue(node)
+    loop:
+        if frontier is empty: return FAILURE
+        node = frontier.DEQUEUE()                 // remove from front
+        for each child in EXPAND(problem, node):
+            if problem.GOAL-TEST(child.STATE): return SOLUTION(child)
+            frontier.ENQUEUE(child)               // add to back</code></pre>
+
+                <h3>Graph Search Version</h3>
+                <pre><code>function BFS-GRAPH(problem):
+    node = Node(problem.INITIAL-STATE)
+    if problem.GOAL-TEST(node.STATE): return SOLUTION(node)
+    frontier = FIFO-Queue(node)
+    explored = {}
+    loop:
+        if frontier is empty: return FAILURE
+        node = frontier.DEQUEUE()
+        add node.STATE to explored
+        for each child in EXPAND(problem, node):
+            if child.STATE not in explored AND child not in frontier:
+                if problem.GOAL-TEST(child.STATE): return SOLUTION(child)
+                frontier.ENQUEUE(child)</code></pre>
+
+                <div class="note-box">
+                  <div class="box-title">Early Goal Test</div>
+                  <p>BFS applies the goal test when a node is <strong>generated</strong> (not when expanded). This is valid because all nodes at depth d are generated before any node at depth d+1 is expanded. This saves time&mdash;we don&rsquo;t need to wait until the goal node reaches the front of the queue.</p>
+                </div>
+              </section>
+
+              <section id="trace-example">
+                <h2>3. Step-by-Step Trace</h2>
+                <p>Consider this graph (edges with unit cost):</p>
+                <pre><code>        S
+       / \
+      A   B
+     / \   \
+    C   D   E
+        |
+        G (goal)</code></pre>
+                <p>Adjacency: S&rarr;{A,B}, A&rarr;{C,D}, B&rarr;{E}, D&rarr;{G}. All edges cost 1.</p>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Step</th><th>Expand</th><th>Frontier (FIFO)</th><th>Explored</th></tr></thead>
+                    <tbody>
+                      <tr><td>0</td><td>&mdash;</td><td>[S]</td><td>{}</td></tr>
+                      <tr><td>1</td><td>S</td><td>[A, B]</td><td>{S}</td></tr>
+                      <tr><td>2</td><td>A</td><td>[B, C, D]</td><td>{S, A}</td></tr>
+                      <tr><td>3</td><td>B</td><td>[C, D, E]</td><td>{S, A, B}</td></tr>
+                      <tr><td>4</td><td>C</td><td>[D, E]</td><td>{S, A, B, C}</td></tr>
+                      <tr><td>5</td><td>D</td><td>[E, G]</td><td>{S, A, B, C, D}</td></tr>
+                      <tr><td>6</td><td>&mdash;</td><td>G generated &rarr; GOAL TEST PASS!</td><td>&mdash;</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>Solution:</strong> S &rarr; A &rarr; D &rarr; G (cost = 3). BFS found the shallowest goal at depth 3.</p>
+              </section>
+
+              <section id="properties">
+                <h2>4. Properties of BFS</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Property</th><th>Value</th><th>Explanation</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Complete?</strong></td><td>Yes (if b is finite)</td><td>BFS will eventually reach every depth, so it will find a goal if one exists at any finite depth.</td></tr>
+                      <tr><td><strong>Optimal?</strong></td><td>Yes (if step cost = 1)</td><td>BFS finds the shallowest goal first. If all steps cost the same, shallowest = cheapest. Not optimal with variable step costs&mdash;use UCS instead.</td></tr>
+                      <tr><td><strong>Time</strong></td><td>O(b<sup>d</sup>)</td><td>In the worst case, all nodes up to depth d: 1 + b + b&sup2; + &hellip; + b<sup>d</sup> = O(b<sup>d</sup>).</td></tr>
+                      <tr><td><strong>Space</strong></td><td>O(b<sup>d</sup>)</td><td>The frontier at depth d can hold up to b<sup>d</sup> nodes. The explored set also stores O(b<sup>d</sup>) nodes.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Memory is the Bottleneck</div>
+                  <p>BFS must store the entire frontier in memory. With b=10 and d=10, BFS needs to store approximately 10<sup>10</sup> = 10 billion nodes. At ~1 KB per node, that&rsquo;s <strong>10 terabytes</strong> of memory. BFS is practical only for small to moderate search depths.</p>
+
+                  <div class="comparison-table-wrapper" style="margin-top:var(--spacing-md);">
+                    <table class="comparison-table" style="font-size:0.85rem;">
+                      <thead><tr><th>Depth d</th><th>Nodes (b=10)</th><th>Memory</th><th>Time (at 10M nodes/sec)</th></tr></thead>
+                      <tbody>
+                        <tr><td>2</td><td>111</td><td>111 KB</td><td>&lt; 1 ms</td></tr>
+                        <tr><td>4</td><td>11,111</td><td>11 MB</td><td>1 ms</td></tr>
+                        <tr><td>6</td><td>1,111,111</td><td>1 GB</td><td>0.1 sec</td></tr>
+                        <tr><td>8</td><td>10<sup>8</sup></td><td>100 GB</td><td>10 sec</td></tr>
+                        <tr><td>10</td><td>10<sup>10</sup></td><td>10 TB</td><td>17 min</td></tr>
+                        <tr><td>12</td><td>10<sup>12</sup></td><td>1 PB</td><td>28 hours</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+
+              <section id="worked-examples">
+                <h2>5. More Worked Examples</h2>
+
+                <h3>Example 2: BFS on a Cyclic Graph</h3>
+                <p>Graph: A&rarr;B, B&rarr;C, C&rarr;A, B&rarr;D(goal). Start: A.</p>
+                <p><strong>Graph search BFS:</strong></p>
+                <ol>
+                  <li>Frontier: [A]. Expand A &rarr; generate B. Explored: {A}. Frontier: [B].</li>
+                  <li>Expand B &rarr; generate C, D. C not in explored. D not in explored. Goal test D &rarr; <strong>GOAL!</strong></li>
+                </ol>
+                <p>Path: A &rarr; B &rarr; D. Cost = 2. Note: C&rarr;A would be discarded in graph search since A is in explored.</p>
+
+                <h3>Example 3: BFS Finds Shallowest, Not Cheapest</h3>
+                <p>Graph: S&rarr;A (cost 1), S&rarr;B (cost 100), A&rarr;G (cost 100), B&rarr;G (cost 1). Goal: G.</p>
+                <p>BFS expansion (FIFO): S, then A and B generated. Expand A &rarr; generate G. Goal test G &rarr; found! Path: S&rarr;A&rarr;G, cost=101.</p>
+                <p>But the optimal path is S&rarr;B&rarr;G, cost=101. Wait&mdash;in this case they&rsquo;re equal. Let&rsquo;s change: S&rarr;A (cost 10), A&rarr;G (cost 10), S&rarr;B (cost 1), B&rarr;G (cost 1). BFS still finds S&rarr;A&rarr;G (depth 2, cost 20) before or at the same time as S&rarr;B&rarr;G (depth 2, cost 2). Both are at the same depth, so which BFS finds depends on tie-breaking. With alphabetical ordering, A before B, so BFS returns cost 20&mdash;<strong>not optimal</strong> when step costs differ!</p>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section"><ul>
+                  <li>BFS uses a <strong>FIFO queue</strong> and explores nodes level by level.</li>
+                  <li><strong>Complete</strong> when branching factor b is finite.</li>
+                  <li><strong>Optimal</strong> only when all step costs are equal (unit cost).</li>
+                  <li>Time and space: both <strong>O(b<sup>d</sup>)</strong>&mdash;exponential.</li>
+                  <li><strong>Memory</strong> is the practical bottleneck, not time.</li>
+                  <li>Early goal test (at generation) is correct and efficient for BFS.</li>
+                </ul></div>
+              </section>
+
+              <section id="references"><h2>References</h2><ul><li>Russell &amp; Norvig, <em>AIMA</em>, Chapter 3.4.1.</li></ul></section>
+            </div>
+
+            <button class="complete-btn" data-page="ch02-bfs">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="state-space-representation.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">State Space Representation</span></a>
+              <a href="depth-first-search.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Depth-First Search</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#intuition">1. Intuition</a></li>
+            <li><a href="#algorithm">2. Algorithm</a></li>
+            <li><a href="#trace-example">3. Step-by-Step Trace</a></li>
+            <li><a href="#properties">4. Properties</a></li>
+            <li><a href="#worked-examples">5. Worked Examples</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

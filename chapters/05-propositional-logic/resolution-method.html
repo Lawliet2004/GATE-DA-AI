@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolution Method - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li class="active"><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>Resolution Method</span>
+        </div>
+
+        <article class="theory-content">
+            <h1>Resolution in Propositional Logic</h1>
+
+            <div class="gate-badge">GATE DA — Very High Importance</div>
+
+            <div class="learning-objectives">
+                <h3>🎯 Learning Objectives</h3>
+                <ul>
+                    <li>Convert formulas to clause form for resolution</li>
+                    <li>Apply the resolution algorithm systematically</li>
+                    <li>Perform refutation proofs (proof by contradiction)</li>
+                    <li>Understand resolution completeness</li>
+                </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section>
+                <h2>1. Overview of Resolution</h2>
+                <p>Resolution is a single, powerful inference rule that forms the basis of many automated theorem provers. It works on formulas in <strong>Conjunctive Normal Form (CNF)</strong> and uses <strong>proof by refutation</strong>: to prove that KB ⊨ α, we show that KB ∧ ¬α is unsatisfiable.</p>
+
+                <div class="definition-box">
+                    <div class="box-title">Resolution Proof Strategy (Refutation)</div>
+                    <p>To prove that a knowledge base KB entails a conclusion α:</p>
+                    <ol>
+                        <li>Convert KB to CNF (set of clauses)</li>
+                        <li>Add ¬α (negation of goal) as additional clauses</li>
+                        <li>Repeatedly apply resolution to pairs of clauses</li>
+                        <li>If the <strong>empty clause (□)</strong> is derived → KB ⊨ α is proved</li>
+                        <li>If no new clauses can be derived → α cannot be proved from KB</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 2: Converting to Clause Form -->
+            <section>
+                <h2>2. Converting to Clause Form</h2>
+
+                <p>A <strong>clause</strong> is a set of literals, representing their disjunction. A CNF formula is a set of clauses, representing their conjunction.</p>
+
+                <div class="example-box">
+                    <h4>Example: Formula to Clause Set</h4>
+                    <p>Formula: (P ∨ Q) ∧ (¬P ∨ R) ∧ (¬Q ∨ ¬R ∨ S)</p>
+                    <p>Clause set: { {P, Q}, {¬P, R}, {¬Q, ¬R, S} }</p>
+                    <p>Each clause is a set of literals separated by commas (implicit ∨).</p>
+                </div>
+            </section>
+
+            <!-- Section 3: Resolution Algorithm -->
+            <section>
+                <h2>3. Resolution Algorithm</h2>
+
+                <div class="algorithm-block">
+                    <div class="algo-header">Algorithm: Propositional Resolution</div>
+                    <div class="algo-body">
+<pre>
+function PL-RESOLUTION(KB, α):
+    clauses ← set of clauses in CNF of (KB ∧ ¬α)
+    new ← {}
+    
+    loop:
+        for each pair (Cᵢ, Cⱼ) in clauses:
+            resolvents ← PL-RESOLVE(Cᵢ, Cⱼ)
+            if □ (empty clause) ∈ resolvents:
+                return TRUE  // KB entails α
+            new ← new ∪ resolvents
+        
+        if new ⊆ clauses:
+            return FALSE  // KB does not entail α
+        clauses ← clauses ∪ new
+
+function PL-RESOLVE(Cᵢ, Cⱼ):
+    // Find complementary literals
+    for each literal l in Cᵢ:
+        if ¬l ∈ Cⱼ:
+            resolvent ← (Cᵢ - {l}) ∪ (Cⱼ - {¬l})
+            return {resolvent}
+    return {}
+</pre>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 Important Rules</h4>
+                    <ul>
+                        <li>Resolve <strong>one pair</strong> of complementary literals at a time.</li>
+                        <li>If the resolvent contains a literal and its complement (e.g., P and ¬P), it is a <strong>tautology</strong> — discard it.</li>
+                        <li>Remove duplicate literals within a clause (idempotent law).</li>
+                        <li>The empty clause □ represents <strong>False (⊥)</strong>.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Examples -->
+            <section>
+                <h2>4. Step-by-Step Resolution Examples</h2>
+
+                <div class="example-box">
+                    <h4>Example 1: Prove Q from {P, P → Q}</h4>
+                    <p><strong>Step 1: Convert to clauses</strong></p>
+                    <ul>
+                        <li>P → Q becomes ¬P ∨ Q</li>
+                        <li>KB clauses: {P}, {¬P, Q}</li>
+                        <li>Negate goal: ¬Q → clause {¬Q}</li>
+                    </ul>
+                    <p><strong>Step 2: Resolution</strong></p>
+                    <table class="styled-table">
+                        <thead><tr><th>Step</th><th>Clause 1</th><th>Clause 2</th><th>Resolved On</th><th>Resolvent</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>{¬P, Q}</td><td>{¬Q}</td><td>Q</td><td>{¬P}</td></tr>
+                            <tr><td>2</td><td>{P}</td><td>{¬P}</td><td>P</td><td><strong>□ (empty)</strong></td></tr>
+                        </tbody>
+                    </table>
+                    <p>Empty clause derived → KB ⊨ Q is <strong>proved</strong>. ✅</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 2: Prove R from {P → Q, Q → R, P}</h4>
+                    <p><strong>Clauses from KB + ¬R:</strong></p>
+                    <ol>
+                        <li>{¬P, Q} &nbsp;&nbsp;(from P → Q)</li>
+                        <li>{¬Q, R} &nbsp;&nbsp;(from Q → R)</li>
+                        <li>{P} &nbsp;&nbsp;(premise)</li>
+                        <li>{¬R} &nbsp;&nbsp;(negation of goal)</li>
+                    </ol>
+                    <p><strong>Resolution steps:</strong></p>
+                    <table class="styled-table">
+                        <thead><tr><th>Step</th><th>Resolve</th><th>On</th><th>Result</th></tr></thead>
+                        <tbody>
+                            <tr><td>5</td><td>(2) + (4)</td><td>R</td><td>{¬Q}</td></tr>
+                            <tr><td>6</td><td>(1) + (5)</td><td>Q</td><td>{¬P}</td></tr>
+                            <tr><td>7</td><td>(3) + (6)</td><td>P</td><td><strong>□</strong></td></tr>
+                        </tbody>
+                    </table>
+                    <p>Empty clause derived → R is proved from KB. ✅</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 3: Prove S from {P ∨ Q, ¬P ∨ R, ¬Q ∨ S, ¬R ∨ S}</h4>
+                    <p><strong>Clauses:</strong></p>
+                    <ol>
+                        <li>{P, Q}</li>
+                        <li>{¬P, R}</li>
+                        <li>{¬Q, S}</li>
+                        <li>{¬R, S}</li>
+                        <li>{¬S} &nbsp;&nbsp;(negation of goal)</li>
+                    </ol>
+                    <p><strong>Resolution:</strong></p>
+                    <table class="styled-table">
+                        <thead><tr><th>Step</th><th>Resolve</th><th>On</th><th>Result</th></tr></thead>
+                        <tbody>
+                            <tr><td>6</td><td>(3) + (5)</td><td>S</td><td>{¬Q}</td></tr>
+                            <tr><td>7</td><td>(4) + (5)</td><td>S</td><td>{¬R}</td></tr>
+                            <tr><td>8</td><td>(2) + (7)</td><td>R</td><td>{¬P}</td></tr>
+                            <tr><td>9</td><td>(1) + (6)</td><td>Q</td><td>{P}</td></tr>
+                            <tr><td>10</td><td>(8) + (9)</td><td>P</td><td><strong>□</strong></td></tr>
+                        </tbody>
+                    </table>
+                    <p>Empty clause derived → S is proved. ✅</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Completeness -->
+            <section>
+                <h2>5. Resolution Completeness</h2>
+
+                <div class="theorem-box">
+                    <h4>Theorem: Resolution is Refutation-Complete</h4>
+                    <p>If a set of propositional clauses is <strong>unsatisfiable</strong>, then resolution will always eventually derive the empty clause □. However, resolution is <strong>not</strong> complete for generating all entailed clauses — it can only prove unsatisfiability via refutation.</p>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 What This Means for GATE</h4>
+                    <p>Resolution can answer: "Does KB entail α?" by testing if KB ∧ ¬α is unsatisfiable. If resolution derives □, the answer is yes. If no more resolvents can be generated without □, the answer is no.</p>
+                </div>
+            </section>
+
+            <!-- Section 6: Common Pitfalls -->
+            <section>
+                <h2>6. Common Pitfalls</h2>
+                <div class="warning-box">
+                    <h4>⚠️ Watch Out</h4>
+                    <ul>
+                        <li>Don't forget to <strong>negate the goal</strong> before adding it to the clause set.</li>
+                        <li>Resolve only <strong>one complementary pair</strong> per resolution step.</li>
+                        <li>Discard <strong>tautological resolvents</strong> (those containing both P and ¬P).</li>
+                        <li>Make sure the formula is in <strong>CNF</strong> before starting resolution.</li>
+                        <li>Don't confuse KB ⊨ α (entailment) with KB ⊢ α (derivation). Resolution shows the former via refutation.</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="propositional-inference.html" class="nav-btn prev-btn">← Previous: Propositional Inference</a>
+            <a href="horn-clauses.html" class="nav-btn next-btn">Next: Horn Clauses →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-resolution-method">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-resolution-method">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

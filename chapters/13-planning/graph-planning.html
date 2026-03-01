@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GraphPlan — planning graph structure, mutex relations, inconsistent effects, interference, competing needs, solution extraction, worked example for GATE DA.">
+  <title>GraphPlan — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a>
+            <a href="strips.html" class="sidebar-link"><span class="link-check"></span> STRIPS<span class="link-type theory">Theory</span></a>
+            <a href="partial-order-planning.html" class="sidebar-link"><span class="link-check"></span> Partial-Order Planning<span class="link-type theory">Theory</span></a>
+            <a href="graph-planning.html" class="sidebar-link active"><span class="link-check"></span> GraphPlan<span class="link-type theory">Theory</span></a>
+            <a href="notes-planning.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-planning.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="classical-planning.html">Chapter 13: Planning</a> &raquo; <span class="current">GraphPlan</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch13-graph-planning">
+
+            <h1>GraphPlan</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium-High</span>
+              <button class="bookmark-btn" data-page="chapters/13-planning/graph-planning.html" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Describe the <strong>planning graph</strong> data structure (proposition and action layers)</li>
+              <li>Identify and classify <strong>mutex (mutual exclusion)</strong> relations</li>
+              <li>Enumerate the four types of mutex: inconsistent effects, interference, competing needs, inconsistent support</li>
+              <li>Trace the <strong>GraphPlan algorithm</strong> including expansion and solution extraction</li>
+              <li>Understand the <strong>level-off</strong> property and its implications</li>
+              <li>Use the planning graph as a <strong>heuristic</strong> for other planners</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="planning-graph">
+                <h2>1. Planning Graph Structure</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Planning Graph</h4>
+                  <p>A <strong>planning graph</strong> is a directed, layered graph that alternates between two types of layers:</p>
+                  <ul>
+                    <li><strong>Proposition layer (P<sub>i</sub>):</strong> set of propositions that <em>could possibly</em> be true at time step i</li>
+                    <li><strong>Action layer (A<sub>i</sub>):</strong> set of actions whose preconditions are satisfiable (without mutex conflicts) in P<sub>i</sub></li>
+                  </ul>
+                  <p>Layers grow monotonically: P<sub>i</sub> &sube; P<sub>i+1</sub> and A<sub>i</sub> &sube; A<sub>i+1</sub>.</p>
+                </div>
+
+                <p>Construction starts with P<sub>0</sub> = the initial state. Each subsequent layer is built by:</p>
+                <ol>
+                  <li><strong>A<sub>i</sub>:</strong> include all actions whose preconditions all appear in P<sub>i</sub> and are not pairwise mutex. Also include <strong>no-op</strong> (persistence) actions for every proposition in P<sub>i</sub>.</li>
+                  <li><strong>P<sub>i+1</sub>:</strong> includes all propositions in the add lists of actions in A<sub>i</sub>.</li>
+                  <li>Compute <strong>mutex relations</strong> in A<sub>i</sub> and P<sub>i+1</sub>.</li>
+                </ol>
+
+                <div class="note-box">
+                  <h4>&#128161; No-Op Actions</h4>
+                  <p>For every proposition p in P<sub>i</sub>, a special <strong>no-op</strong> (maintenance) action is added. It has precondition {p}, add list {p}, and empty delete list. This models the persistence of a proposition across time steps.</p>
+                </div>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="mutex-types">
+                <h2>2. Mutual Exclusion (Mutex) Relations</h2>
+
+                <p>Mutex relations track pairs of actions or propositions that <strong>cannot both be true/executed</strong> at the same time step.</p>
+
+                <h3>2.1 Action-Level Mutex</h3>
+
+                <div class="definition-box">
+                  <h4>&#128218; Inconsistent Effects</h4>
+                  <p>Two actions a<sub>1</sub> and a<sub>2</sub> are mutex if one <strong>negates an effect</strong> of the other. Formally: some p &isin; Add(a<sub>1</sub>) &cap; Del(a<sub>2</sub>), or vice versa.</p>
+                  <p><em>Example:</em> Move(A, Table, B) adds On(A,B) while Move(C, B, Table) deletes Clear(B) &mdash; but more directly, if a<sub>1</sub> adds Clear(X) and a<sub>2</sub> deletes Clear(X), they have inconsistent effects.</p>
+                </div>
+
+                <div class="definition-box">
+                  <h4>&#128218; Interference</h4>
+                  <p>Action a<sub>1</sub> <strong>deletes a precondition</strong> of a<sub>2</sub>, or vice versa. Formally: some p &isin; Del(a<sub>1</sub>) &cap; Precond(a<sub>2</sub>).</p>
+                  <p><em>Example:</em> Move(A, Table, B) deletes Clear(B). If another action requires Clear(B) as a precondition, they interfere.</p>
+                </div>
+
+                <div class="definition-box">
+                  <h4>&#128218; Competing Needs</h4>
+                  <p>Actions a<sub>1</sub> and a<sub>2</sub> have preconditions that are <strong>mutex in the preceding proposition layer</strong>. Formally: &exist; p &isin; Precond(a<sub>1</sub>), q &isin; Precond(a<sub>2</sub>) such that p and q are mutex in P<sub>i</sub>.</p>
+                </div>
+
+                <h3>2.2 Proposition-Level Mutex</h3>
+
+                <div class="definition-box">
+                  <h4>&#128218; Inconsistent Support</h4>
+                  <p>Two propositions p and q are mutex in P<sub>i+1</sub> if <strong>every pair</strong> of actions (a<sub>p</sub>, a<sub>q</sub>) that achieves them is mutex in A<sub>i</sub>. In other words, there is no way to have both p and q without executing two mutex actions.</p>
+                </div>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Mutex Type</th><th>Level</th><th>Condition</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Inconsistent Effects</strong></td><td>Action</td><td>One action&rsquo;s add list &cap; other&rsquo;s delete list &ne; &empty;</td></tr>
+                    <tr><td><strong>Interference</strong></td><td>Action</td><td>One action&rsquo;s delete list &cap; other&rsquo;s preconditions &ne; &empty;</td></tr>
+                    <tr><td><strong>Competing Needs</strong></td><td>Action</td><td>Preconditions of the two actions are mutex in P<sub>i</sub></td></tr>
+                    <tr><td><strong>Inconsistent Support</strong></td><td>Proposition</td><td>All achiever pairs are mutex in A<sub>i</sub></td></tr>
+                  </tbody>
+                </table>
+
+                <div class="warning-box">
+                  <h4>&#9888; GATE Tip</h4>
+                  <p>Mutex types are commonly tested. Remember: the first two (inconsistent effects, interference) are <strong>static</strong> &mdash; they depend only on action definitions. Competing needs and inconsistent support are <strong>derived</strong> &mdash; they depend on the mutex relations in the previous layer and may disappear as the graph grows.</p>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="graphplan-algorithm">
+                <h2>3. The GraphPlan Algorithm</h2>
+
+                <div class="algorithm-block">
+                  <h4>GraphPlan Algorithm</h4>
+<pre>function GraphPlan(problem):
+    graph ← initial planning graph with P₀ = initial state
+    loop:
+        // EXPAND: add next action layer and proposition layer
+        Aᵢ ← all applicable non-mutex actions for Pᵢ (+ no-ops)
+        Pᵢ₊₁ ← union of add lists of all actions in Aᵢ
+        compute mutex relations for Aᵢ and Pᵢ₊₁
+
+        // CHECK: are all goal propositions present and non-mutex?
+        if goal ⊆ Pᵢ₊₁ and no pair of goal props is mutex:
+            solution ← Extract(graph, goal, level i+1)
+            if solution ≠ failure:
+                return solution
+
+        // TERMINATION: check for level-off
+        if Pᵢ₊₁ = Pᵢ and mutexes unchanged:
+            return failure  // problem is unsolvable
+
+        i ← i + 1</pre>
+                </div>
+
+                <div class="definition-box">
+                  <h4>&#128218; Solution Extraction</h4>
+                  <p>Solution extraction performs a <strong>backward search</strong> from the last proposition layer. At each level, select a non-mutex set of actions that achieves all needed propositions. The preconditions of these actions become the goals for the previous level. This continues until level 0 (where the initial state must provide all needed propositions).</p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="level-off">
+                <h2>4. The Level-Off Property</h2>
+
+                <div class="theorem-box">
+                  <h4>&#128220; Level-Off Theorem</h4>
+                  <p>Because the sets of propositions and actions grow <strong>monotonically</strong> and the sets of mutex relations shrink monotonically, and both are finite, the planning graph must eventually <strong>level off</strong>: there exists a level k such that P<sub>k</sub> = P<sub>k+1</sub> and the mutex sets are identical.</p>
+                </div>
+
+                <p><strong>Implications:</strong></p>
+                <ul>
+                  <li>If the goal propositions never appear (or remain mutex) after level-off, the problem has <strong>no solution</strong>.</li>
+                  <li>Level-off guarantees <strong>termination</strong> of GraphPlan.</li>
+                  <li>The level at which goals first appear non-mutex is a lower bound on plan length &mdash; useful as a <strong>heuristic</strong>.</li>
+                </ul>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="pg-as-heuristic">
+                <h2>5. Planning Graph as a Heuristic</h2>
+
+                <p>Even when not using GraphPlan directly, the planning graph provides powerful heuristics for other planners:</p>
+
+                <div class="definition-box">
+                  <h4>&#128218; Max-Level Heuristic</h4>
+                  <p>h<sub>max-level</sub>(s) = the <strong>maximum</strong> over all goal propositions of the first level at which each appears. This is <strong>admissible</strong> but not very informative.</p>
+                </div>
+
+                <div class="definition-box">
+                  <h4>&#128218; Sum-Level Heuristic</h4>
+                  <p>h<sub>sum-level</sub>(s) = the <strong>sum</strong> of the first levels at which each goal proposition appears. This is <strong>not admissible</strong> (can overestimate due to positive interactions) but more informative.</p>
+                </div>
+
+                <div class="definition-box">
+                  <h4>&#128218; Set-Level Heuristic</h4>
+                  <p>h<sub>set-level</sub>(s) = the first level at which all goal propositions appear <strong>without any pair being mutex</strong>. This is <strong>admissible</strong> and accounts for interactions between goals.</p>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="worked-example">
+                <h2>6. Worked Example: Building a Planning Graph</h2>
+
+                <div class="example-box">
+                  <h4>&#128300; Have-Cake-Eat-Cake Problem</h4>
+                  <p><strong>Initial State P<sub>0</sub>:</strong> {Have(Cake)}</p>
+                  <p><strong>Goal:</strong> {Have(Cake), Eaten(Cake)}</p>
+                  <p><strong>Actions:</strong></p>
+                  <ul>
+                    <li><em>Eat(Cake):</em> Pre={Have(Cake)}; Add={Eaten(Cake)}; Del={Have(Cake)}</li>
+                    <li><em>Bake(Cake):</em> Pre={&not;Have(Cake)}; Add={Have(Cake)}; Del={}</li>
+                  </ul>
+
+                  <h4>Layer-by-Layer Construction</h4>
+
+                  <p><strong>P<sub>0</sub>:</strong> {Have(Cake), &not;Eaten(Cake)}</p>
+
+                  <p><strong>A<sub>0</sub>:</strong></p>
+                  <ul>
+                    <li>Eat(Cake) &mdash; Pre: Have(Cake) &#10003;</li>
+                    <li>no-op(Have(Cake)) &mdash; persists Have(Cake)</li>
+                    <li>no-op(&not;Eaten(Cake)) &mdash; persists &not;Eaten(Cake)</li>
+                    <li>(Bake not applicable: requires &not;Have(Cake), which is not in P<sub>0</sub>)</li>
+                  </ul>
+                  <p><strong>Mutex in A<sub>0</sub>:</strong> Eat(Cake) and no-op(Have(Cake)) are mutex by <em>inconsistent effects</em> (Eat deletes Have(Cake), no-op adds it). Also Eat(Cake) and no-op(&not;Eaten(Cake)) are mutex by <em>inconsistent effects</em>.</p>
+
+                  <p><strong>P<sub>1</sub>:</strong> {Have(Cake), &not;Have(Cake), Eaten(Cake), &not;Eaten(Cake)}</p>
+                  <p><strong>Mutex in P<sub>1</sub>:</strong> Have(Cake) and &not;Have(Cake) are mutex (inconsistent support). Eaten(Cake) and &not;Eaten(Cake) are mutex.</p>
+                  <p>Goal check: Have(Cake) and Eaten(Cake) are both in P<sub>1</sub>. Are they mutex? Have(Cake) achievers: {no-op(Have(Cake))}. Eaten(Cake) achievers: {Eat(Cake)}. These two actions <em>are</em> mutex &rArr; Have(Cake) and Eaten(Cake) are mutex in P<sub>1</sub>. <strong>Cannot extract solution yet.</strong></p>
+
+                  <p><strong>A<sub>1</sub>:</strong></p>
+                  <ul>
+                    <li>Eat(Cake) &mdash; Pre: Have(Cake) &#10003;</li>
+                    <li>Bake(Cake) &mdash; Pre: &not;Have(Cake) &#10003; (now available in P<sub>1</sub>)</li>
+                    <li>no-ops for all four propositions</li>
+                  </ul>
+
+                  <p><strong>P<sub>2</sub>:</strong> {Have(Cake), &not;Have(Cake), Eaten(Cake), &not;Eaten(Cake)}</p>
+                  <p>Now check: Have(Cake) achievers in A<sub>1</sub>: {Bake(Cake), no-op(Have(Cake))}. Eaten(Cake) achievers: {Eat(Cake), no-op(Eaten(Cake))}. Bake(Cake) and Eat(Cake) &mdash; are they mutex? Bake requires &not;Have(Cake); Eat requires Have(Cake). These preconditions are mutex in P<sub>1</sub> &rArr; <em>competing needs</em>. BUT Bake(Cake) and no-op(Eaten(Cake)) are <strong>not mutex</strong>! &rArr; Have(Cake) and Eaten(Cake) are <strong>no longer mutex</strong> in P<sub>2</sub>.</p>
+
+                  <p><strong>Solution extraction at P<sub>2</sub>:</strong></p>
+                  <ul>
+                    <li>Need: Have(Cake) and Eaten(Cake) at level 2</li>
+                    <li>Choose: Bake(Cake) for Have(Cake), no-op(Eaten(Cake)) for Eaten(Cake) &mdash; not mutex &#10003;</li>
+                    <li>At level 1: need &not;Have(Cake) for Bake, and Eaten(Cake) for no-op</li>
+                    <li>Choose: Eat(Cake) achieves both &not;Have(Cake) and Eaten(Cake) &#10003;</li>
+                    <li>At level 0: need Have(Cake) for Eat &mdash; satisfied by P<sub>0</sub> &#10003;</li>
+                  </ul>
+                  <p><strong>Plan:</strong> Step 1: Eat(Cake) &rarr; Step 2: Bake(Cake) &mdash; Total 2 steps.</p>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <ul>
+                  <li>A <strong>planning graph</strong> alternates proposition and action layers, growing monotonically.</li>
+                  <li>Four types of <strong>mutex</strong>: inconsistent effects, interference, competing needs (action-level); inconsistent support (proposition-level).</li>
+                  <li><strong>GraphPlan</strong> expands the graph until goals are non-mutex, then extracts a solution via backward search.</li>
+                  <li>The <strong>level-off property</strong> guarantees termination and enables unsolvability detection.</li>
+                  <li>The planning graph provides admissible heuristics (<strong>max-level</strong>, <strong>set-level</strong>) and an informative non-admissible heuristic (<strong>sum-level</strong>).</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="chapters/13-planning/graph-planning.html">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="partial-order-planning.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Partial-Order Planning</span></a>
+              <a href="notes-planning.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Planning Quick Notes</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#planning-graph">1. Planning Graph Structure</a></li>
+            <li><a href="#mutex-types">2. Mutex Relations</a></li>
+            <li><a href="#graphplan-algorithm">3. GraphPlan Algorithm</a></li>
+            <li><a href="#level-off">4. Level-Off Property</a></li>
+            <li><a href="#pg-as-heuristic">5. Planning Graph as Heuristic</a></li>
+            <li><a href="#worked-example">6. Worked Example</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

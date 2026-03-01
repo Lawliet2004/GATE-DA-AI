@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Computer Vision Quick Notes — cheatsheet covering image fundamentals, CNN architectures, object detection, segmentation, generative models, formulas, and GATE DA tips.">
+  <title>Computer Vision Quick Notes | GATE DA AI</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="cnn-architectures.html" class="sidebar-link"><span class="link-check"></span> CNN Architectures<span class="link-type theory">Theory</span></a>
+            <a href="object-detection.html" class="sidebar-link"><span class="link-check"></span> Object Detection<span class="link-type theory">Theory</span></a>
+            <a href="image-segmentation.html" class="sidebar-link"><span class="link-check"></span> Image Segmentation<span class="link-type theory">Theory</span></a>
+            <a href="generative-models-vision.html" class="sidebar-link"><span class="link-check"></span> Generative Models<span class="link-type theory">Theory</span></a>
+            <a href="notes-cv.html" class="sidebar-link active"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-cv.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="image-fundamentals.html">Chapter 11: Computer Vision</a> &raquo; <span class="current">Chapter Notes</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch11-notes-cv">
+
+            <h1>&#128221; Chapter 11: Computer Vision &mdash; Quick-Revision Notes</h1>
+            <p>A compact cheatsheet covering every major topic in the Computer Vision chapter. Use this for last-minute revision before GATE DA.</p>
+
+            <!-- Section 1 -->
+            <section id="image-basics">
+              <h2>1. Image Fundamentals</h2>
+              <table>
+                <thead><tr><th>Concept</th><th>Detail</th></tr></thead>
+                <tbody>
+                  <tr><td>Grayscale image</td><td>H &times; W matrix, values 0&ndash;255</td></tr>
+                  <tr><td>RGB image</td><td>H &times; W &times; 3 tensor (Red, Green, Blue)</td></tr>
+                  <tr><td>RGBA</td><td>H &times; W &times; 4 (+ Alpha transparency channel)</td></tr>
+                  <tr><td>RGB &rarr; Gray</td><td>Y = 0.299R + 0.587G + 0.114B</td></tr>
+                  <tr><td>HSV</td><td>Hue, Saturation, Value &mdash; colour-based segmentation</td></tr>
+                  <tr><td>YCbCr</td><td>Luminance + chrominance &mdash; JPEG compression</td></tr>
+                  <tr><td>Batch tensor (PyTorch)</td><td>(N, C, H, W)</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="convolution-formulas">
+              <h2>2. Convolution &amp; Pooling Formulas</h2>
+              <table>
+                <thead><tr><th>Formula</th><th>Expression</th></tr></thead>
+                <tbody>
+                  <tr><td>Conv output size</td><td>O = &lfloor;(n &minus; k + 2p) / s&rfloor; + 1</td></tr>
+                  <tr><td>Same padding (stride 1)</td><td>p = (k &minus; 1) / 2</td></tr>
+                  <tr><td>Pooling output size</td><td>O = &lfloor;(n &minus; k) / s&rfloor; + 1</td></tr>
+                  <tr><td>Transposed conv output</td><td>O = (n &minus; 1) &times; s &minus; 2p + k</td></tr>
+                  <tr><td>Dilated effective kernel</td><td>k<sub>eff</sub> = k + (k &minus; 1)(r &minus; 1)</td></tr>
+                  <tr><td>Conv layer params</td><td>C<sub>out</sub> &times; (C<sub>in</sub> &times; k&sup2; + 1)</td></tr>
+                  <tr><td>FC layer params</td><td>n<sub>out</sub> &times; (n<sub>in</sub> + 1)</td></tr>
+                  <tr><td>Receptive field (stride=1)</td><td>RF = 1 + &sum;(k<sub>l</sub> &minus; 1)</td></tr>
+                  <tr><td>Depthwise separable params</td><td>C<sub>in</sub> &times; k&sup2; + C<sub>in</sub> &times; C<sub>out</sub></td></tr>
+                </tbody>
+              </table>
+              <p><strong>Common kernels:</strong> Sobel (edge), Box blur (1/9 all-ones), Gaussian blur, Sharpen (centre = 5, cross = &minus;1), Laplacian (centre = &minus;4).</p>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="cnn-architectures">
+              <h2>3. CNN Architecture Quick Reference</h2>
+              <table>
+                <thead><tr><th>Model</th><th>Year</th><th>Params</th><th>Key Innovation</th></tr></thead>
+                <tbody>
+                  <tr><td>LeNet-5</td><td>1998</td><td>~60K</td><td>First practical CNN (MNIST)</td></tr>
+                  <tr><td>AlexNet</td><td>2012</td><td>~60M</td><td>ReLU, Dropout, GPU, data augmentation</td></tr>
+                  <tr><td>VGG-16</td><td>2014</td><td>138M</td><td>Uniform 3&times;3 filters, deep</td></tr>
+                  <tr><td>GoogLeNet</td><td>2014</td><td>5M</td><td>Inception module, 1&times;1 bottleneck, GAP</td></tr>
+                  <tr><td>ResNet-50</td><td>2015</td><td>25.6M</td><td>Residual connections (y = F(x) + x)</td></tr>
+                  <tr><td>DenseNet</td><td>2017</td><td>8M</td><td>Dense connectivity, growth rate k</td></tr>
+                  <tr><td>MobileNet</td><td>2017</td><td>4.2M</td><td>Depthwise separable conv (~8&times; saving)</td></tr>
+                  <tr><td>EfficientNet</td><td>2019</td><td>5.3M</td><td>Compound scaling (&alpha; &middot; &beta;&sup2; &middot; &gamma;&sup2; &asymp; 2)</td></tr>
+                </tbody>
+              </table>
+              <p><strong>VGG insight:</strong> Three 3&times;3 convs have same RF as one 7&times;7 but only 27C&sup2; vs 49C&sup2; params + 3 non-linearities.</p>
+              <p><strong>ResNet insight:</strong> Skip connections create gradient highways; learning F(x) = 0 is easier than H(x) = x.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="detection-notes">
+              <h2>4. Object Detection</h2>
+              <table>
+                <thead><tr><th>Concept</th><th>Formula / Detail</th></tr></thead>
+                <tbody>
+                  <tr><td>IoU</td><td>|A &cap; B| / |A &cup; B|; TP if IoU &ge; 0.5</td></tr>
+                  <tr><td>NMS</td><td>Sort by confidence; keep top; remove IoU &gt; thresh; repeat</td></tr>
+                  <tr><td>mAP</td><td>Mean of per-class AP (area under P-R curve)</td></tr>
+                  <tr><td>Precision</td><td>TP / (TP + FP)</td></tr>
+                  <tr><td>Recall</td><td>TP / (TP + FN)</td></tr>
+                </tbody>
+              </table>
+
+              <h3>Detector Evolution</h3>
+              <table>
+                <thead><tr><th>Model</th><th>Type</th><th>Key Feature</th></tr></thead>
+                <tbody>
+                  <tr><td>R-CNN</td><td>Two-stage</td><td>Selective Search + CNN per region</td></tr>
+                  <tr><td>Fast R-CNN</td><td>Two-stage</td><td>Shared features + RoI Pooling</td></tr>
+                  <tr><td>Faster R-CNN</td><td>Two-stage</td><td>RPN replaces Selective Search</td></tr>
+                  <tr><td>YOLO</td><td>One-stage</td><td>S&times;S grid; output = S&times;S&times;(B&times;5+C)</td></tr>
+                  <tr><td>SSD</td><td>One-stage</td><td>Multi-scale feature maps, default boxes</td></tr>
+                </tbody>
+              </table>
+              <p><strong>Two-stage:</strong> More accurate, slower. <strong>One-stage:</strong> Faster, real-time capable.</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="segmentation-notes">
+              <h2>5. Image Segmentation</h2>
+              <table>
+                <thead><tr><th>Type</th><th>Output</th><th>Example Model</th></tr></thead>
+                <tbody>
+                  <tr><td>Semantic</td><td>Per-pixel class label</td><td>FCN, DeepLab</td></tr>
+                  <tr><td>Instance</td><td>Per-object mask + class</td><td>Mask R-CNN</td></tr>
+                  <tr><td>Panoptic</td><td>Semantic + instance IDs for things</td><td>Panoptic FPN</td></tr>
+                </tbody>
+              </table>
+
+              <h3>Key Models</h3>
+              <ul>
+                <li><strong>FCN:</strong> 1&times;1 conv replaces FC layers; variants FCN-32s, -16s, -8s</li>
+                <li><strong>U-Net:</strong> Encoder-decoder + skip concatenation; dominant in medical imaging</li>
+                <li><strong>DeepLab:</strong> Atrous/dilated conv + ASPP; v3+ adds decoder for sharp boundaries</li>
+                <li><strong>Mask R-CNN:</strong> Faster R-CNN + mask head + RoI Align (bilinear, no quantisation)</li>
+              </ul>
+
+              <h3>Metrics</h3>
+              <table>
+                <thead><tr><th>Metric</th><th>Formula</th></tr></thead>
+                <tbody>
+                  <tr><td>Pixel Accuracy</td><td>&sum; p<sub>ii</sub> / &sum;&sum; p<sub>ij</sub></td></tr>
+                  <tr><td>mIoU</td><td>(1/C) &sum; TP<sub>c</sub>/(TP<sub>c</sub>+FP<sub>c</sub>+FN<sub>c</sub>)</td></tr>
+                  <tr><td>Dice coefficient</td><td>2TP / (2TP + FP + FN)</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="generative-notes">
+              <h2>6. Generative Models</h2>
+              <table>
+                <thead><tr><th>Model</th><th>Key Idea</th><th>Loss / Objective</th></tr></thead>
+                <tbody>
+                  <tr><td>Autoencoder</td><td>Compress &rarr; reconstruct</td><td>MSE or BCE</td></tr>
+                  <tr><td>VAE</td><td>Probabilistic latent; reparameterisation trick</td><td>Recon + KL divergence</td></tr>
+                  <tr><td>GAN</td><td>Generator vs Discriminator</td><td>min<sub>G</sub> max<sub>D</sub> V(D,G)</td></tr>
+                  <tr><td>WGAN</td><td>Wasserstein distance</td><td>E[D(x)] &minus; E[D(G(z))], 1-Lipschitz</td></tr>
+                  <tr><td>Diffusion</td><td>Forward noise &rarr; reverse denoise</td><td>E[&#8214;&epsilon; &minus; &epsilon;<sub>&theta;</sub>(x<sub>t</sub>,t)&#8214;&sup2;]</td></tr>
+                </tbody>
+              </table>
+
+              <h3>Key Formulas</h3>
+              <ul>
+                <li><strong>VAE KL:</strong> &minus;&frac12; &sum;(1 + log &sigma;&sup2; &minus; &mu;&sup2; &minus; &sigma;&sup2;)</li>
+                <li><strong>GAN V:</strong> E[log D(x)] + E[log(1&minus;D(G(z)))]</li>
+                <li><strong>Diffusion forward:</strong> x<sub>t</sub> = &radic;&alpha;&#772;<sub>t</sub> x<sub>0</sub> + &radic;(1&minus;&alpha;&#772;<sub>t</sub>) &epsilon;</li>
+              </ul>
+
+              <table>
+                <thead><tr><th>Property</th><th>VAE</th><th>GAN</th><th>Diffusion</th></tr></thead>
+                <tbody>
+                  <tr><td>Training</td><td>Stable</td><td>Unstable</td><td>Stable</td></tr>
+                  <tr><td>Quality</td><td>Blurry</td><td>Sharp</td><td>Best</td></tr>
+                  <tr><td>Speed</td><td>Fast</td><td>Fast</td><td>Slow (T steps)</td></tr>
+                  <tr><td>Mode collapse</td><td>No</td><td>Yes</td><td>No</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="formula-sheet">
+              <h2>7. Master Formula Reference</h2>
+              <table>
+                <thead><tr><th>Concept</th><th>Formula</th></tr></thead>
+                <tbody>
+                  <tr><td>Conv output</td><td>&lfloor;(n &minus; k + 2p)/s&rfloor; + 1</td></tr>
+                  <tr><td>Transposed conv output</td><td>(n&minus;1)s &minus; 2p + k</td></tr>
+                  <tr><td>Dilated kernel</td><td>k + (k&minus;1)(r&minus;1)</td></tr>
+                  <tr><td>Conv params</td><td>C<sub>out</sub>(C<sub>in</sub> k&sup2; + 1)</td></tr>
+                  <tr><td>Depthwise sep. params</td><td>C<sub>in</sub> k&sup2; + C<sub>in</sub> C<sub>out</sub></td></tr>
+                  <tr><td>Receptive field</td><td>1 + &sum;(k<sub>l</sub> &minus; 1) &middot; &prod; s<sub>j&lt;l</sub></td></tr>
+                  <tr><td>IoU</td><td>Intersection / Union</td></tr>
+                  <tr><td>Dice</td><td>2TP / (2TP + FP + FN)</td></tr>
+                  <tr><td>mAP</td><td>Mean of AP over classes</td></tr>
+                  <tr><td>VAE ELBO</td><td>Recon loss + KL(q(z|x) &#8214; p(z))</td></tr>
+                  <tr><td>GAN objective</td><td>E[log D(x)] + E[log(1&minus;D(G(z)))]</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="gate-tips">
+              <h2>8. GATE DA Quick Tips</h2>
+              <div class="tip-box">
+                <ul>
+                  <li>&#9889; <strong>Output size formula</strong> is the most testable &mdash; practise with varying padding, stride, and kernel sizes.</li>
+                  <li>&#9889; <strong>Parameter counting:</strong> Remember C<sub>out</sub> &times; (C<sub>in</sub> &times; k&sup2; + 1). FC layers dominate total params in VGG/AlexNet.</li>
+                  <li>&#9889; <strong>Receptive field:</strong> For all-stride-1, RF = 1 + &sum;(k<sub>l</sub> &minus; 1). Three 3&times;3 = RF of 7.</li>
+                  <li>&#9889; <strong>ResNet skip connection:</strong> y = F(x) + x. Solves degradation in deep networks.</li>
+                  <li>&#9889; <strong>IoU calculation:</strong> Draw the boxes, compute intersection dims carefully, then union = A + B &minus; intersection.</li>
+                  <li>&#9889; <strong>1&times;1 convolutions</strong> are used for channel reduction (bottleneck), not spatial change.</li>
+                  <li>&#9889; <strong>Depthwise separable conv</strong> saves ~k&sup2;&times; parameters compared to standard conv.</li>
+                  <li>&#9889; <strong>Transposed conv output</strong> formula is the &ldquo;reverse&rdquo; of regular conv: (n&minus;1)s &minus; 2p + k.</li>
+                  <li>&#9889; <strong>Semantic vs Instance:</strong> Semantic = per-pixel class only. Instance = per-object mask + class.</li>
+                  <li>&#9889; <strong>mIoU &gt; Pixel Accuracy</strong> for evaluation when classes are imbalanced.</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch11-notes-cv">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="generative-models-vision.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Generative Models</span></a>
+              <a href="quiz-cv.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Quiz: Computer Vision</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#image-basics">1. Image Fundamentals</a></li>
+            <li><a href="#convolution-formulas">2. Conv &amp; Pooling Formulas</a></li>
+            <li><a href="#cnn-architectures">3. CNN Architectures</a></li>
+            <li><a href="#detection-notes">4. Object Detection</a></li>
+            <li><a href="#segmentation-notes">5. Segmentation</a></li>
+            <li><a href="#generative-notes">6. Generative Models</a></li>
+            <li><a href="#formula-sheet">7. Formula Reference</a></li>
+            <li><a href="#gate-tips">8. GATE Tips</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

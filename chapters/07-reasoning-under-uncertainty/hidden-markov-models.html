@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hidden Markov Models — states, observations, transitions, emissions, Forward algorithm, Viterbi algorithm, Baum-Welch overview for GATE DA preparation.">
+  <title>Hidden Markov Models — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link active"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo; <span class="current">Hidden Markov Models</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch07-hmm">
+
+            <h1>Hidden Markov Models</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch07-hmm" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="conditional-probability.html">Conditional Probability</a></li>
+              <li><a href="bayesian-networks-intro.html">Bayesian Networks</a></li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Define HMM components: states, observations, transitions, emissions</li>
+              <li>State the three fundamental HMM problems</li>
+              <li>Apply the Forward algorithm for evaluation</li>
+              <li>Apply the Viterbi algorithm for decoding</li>
+              <li>Understand Baum-Welch (EM) for learning at a high level</li>
+            </ul></div>
+
+            <div class="content-body">
+
+              <section id="hmm-definition">
+                <h2>1. HMM Definition</h2>
+                <div class="definition-box">
+                  <h4>Hidden Markov Model</h4>
+                  <p>An HMM is defined by &lambda; = (A, B, &pi;):</p>
+                  <ul>
+                    <li><strong>States:</strong> S = {s<sub>1</sub>, s<sub>2</sub>, &hellip;, s<sub>N</sub>} (hidden)</li>
+                    <li><strong>Observations:</strong> O = {o<sub>1</sub>, o<sub>2</sub>, &hellip;, o<sub>M</sub>} (visible)</li>
+                    <li><strong>Transition matrix A:</strong> a<sub>ij</sub> = P(q<sub>t+1</sub> = s<sub>j</sub> | q<sub>t</sub> = s<sub>i</sub>)</li>
+                    <li><strong>Emission matrix B:</strong> b<sub>j</sub>(k) = P(o<sub>t</sub> = v<sub>k</sub> | q<sub>t</sub> = s<sub>j</sub>)</li>
+                    <li><strong>Initial distribution &pi;:</strong> &pi;<sub>i</sub> = P(q<sub>1</sub> = s<sub>i</sub>)</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <h4>Key Assumptions</h4>
+                  <ul>
+                    <li><strong>Markov property:</strong> P(q<sub>t+1</sub> | q<sub>1</sub>, &hellip;, q<sub>t</sub>) = P(q<sub>t+1</sub> | q<sub>t</sub>)</li>
+                    <li><strong>Output independence:</strong> P(o<sub>t</sub> | q<sub>1</sub>, &hellip;, q<sub>t</sub>, o<sub>1</sub>, &hellip;, o<sub>t</sub>) = P(o<sub>t</sub> | q<sub>t</sub>)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="three-problems">
+                <h2>2. Three Fundamental HMM Problems</h2>
+                <table style="border-collapse:collapse; width:100%;">
+                  <tr><th style="padding:8px; border:1px solid var(--border-color);">Problem</th><th style="padding:8px; border:1px solid var(--border-color);">Task</th><th style="padding:8px; border:1px solid var(--border-color);">Algorithm</th></tr>
+                  <tr><td style="padding:8px; border:1px solid var(--border-color);"><strong>Evaluation</strong></td><td style="padding:8px; border:1px solid var(--border-color);">P(O | &lambda;) — likelihood of observations</td><td style="padding:8px; border:1px solid var(--border-color);">Forward algorithm</td></tr>
+                  <tr><td style="padding:8px; border:1px solid var(--border-color);"><strong>Decoding</strong></td><td style="padding:8px; border:1px solid var(--border-color);">Best state sequence given O</td><td style="padding:8px; border:1px solid var(--border-color);">Viterbi algorithm</td></tr>
+                  <tr><td style="padding:8px; border:1px solid var(--border-color);"><strong>Learning</strong></td><td style="padding:8px; border:1px solid var(--border-color);">Estimate &lambda; from observations</td><td style="padding:8px; border:1px solid var(--border-color);">Baum-Welch (EM)</td></tr>
+                </table>
+              </section>
+
+              <section id="forward-algorithm">
+                <h2>3. Forward Algorithm</h2>
+                <div class="algorithm-block">
+                  <h4>Forward Algorithm — O(T &middot; N<sup>2</sup>)</h4>
+                  <p>Define forward variable: &alpha;<sub>t</sub>(i) = P(o<sub>1</sub>, o<sub>2</sub>, &hellip;, o<sub>t</sub>, q<sub>t</sub> = s<sub>i</sub> | &lambda;)</p>
+                  <ol>
+                    <li><strong>Initialization:</strong> &alpha;<sub>1</sub>(i) = &pi;<sub>i</sub> &middot; b<sub>i</sub>(o<sub>1</sub>)</li>
+                    <li><strong>Recursion:</strong> &alpha;<sub>t+1</sub>(j) = [&sum;<sub>i=1</sub><sup>N</sup> &alpha;<sub>t</sub>(i) &middot; a<sub>ij</sub>] &middot; b<sub>j</sub>(o<sub>t+1</sub>)</li>
+                    <li><strong>Termination:</strong> P(O | &lambda;) = &sum;<sub>i=1</sub><sup>N</sup> &alpha;<sub>T</sub>(i)</li>
+                  </ol>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example <span class="gate-tag">GATE Style</span></h4>
+                  <p>States: {Sunny, Rainy}. Observations: {Walk, Shop, Clean}.<br>
+                  &pi; = [0.6, 0.4], A = [[0.7, 0.3], [0.4, 0.6]]<br>
+                  B = [[0.1, 0.4, 0.5], [0.6, 0.3, 0.1]]<br>
+                  Observation sequence: Walk, Shop. Compute P(O).</p>
+                  <p>&alpha;<sub>1</sub>(S) = 0.6 &times; 0.1 = 0.06, &alpha;<sub>1</sub>(R) = 0.4 &times; 0.6 = 0.24</p>
+                  <p>&alpha;<sub>2</sub>(S) = (0.06 &times; 0.7 + 0.24 &times; 0.4) &times; 0.4 = (0.042 + 0.096) &times; 0.4 = 0.0552</p>
+                  <p>&alpha;<sub>2</sub>(R) = (0.06 &times; 0.3 + 0.24 &times; 0.6) &times; 0.3 = (0.018 + 0.144) &times; 0.3 = 0.0486</p>
+                  <p>P(O) = 0.0552 + 0.0486 = <strong>0.1038</strong></p>
+                </div>
+              </section>
+
+              <section id="viterbi">
+                <h2>4. Viterbi Algorithm</h2>
+                <div class="algorithm-block">
+                  <h4>Viterbi Algorithm — O(T &middot; N<sup>2</sup>)</h4>
+                  <p>Like Forward, but replaces sum with max. Finds the most likely state sequence.</p>
+                  <p>Define: &delta;<sub>t</sub>(i) = max<sub>q<sub>1</sub>,...,q<sub>t-1</sub></sub> P(q<sub>1</sub>, &hellip;, q<sub>t</sub> = s<sub>i</sub>, o<sub>1</sub>, &hellip;, o<sub>t</sub>)</p>
+                  <ol>
+                    <li><strong>Initialization:</strong> &delta;<sub>1</sub>(i) = &pi;<sub>i</sub> &middot; b<sub>i</sub>(o<sub>1</sub>)</li>
+                    <li><strong>Recursion:</strong> &delta;<sub>t+1</sub>(j) = max<sub>i</sub>[&delta;<sub>t</sub>(i) &middot; a<sub>ij</sub>] &middot; b<sub>j</sub>(o<sub>t+1</sub>). Store &psi;<sub>t+1</sub>(j) = argmax<sub>i</sub>[&delta;<sub>t</sub>(i) &middot; a<sub>ij</sub>].</li>
+                    <li><strong>Termination:</strong> Best final state q*<sub>T</sub> = argmax<sub>i</sub> &delta;<sub>T</sub>(i). Backtrack using &psi;.</li>
+                  </ol>
+                </div>
+              </section>
+
+              <section id="baum-welch">
+                <h2>5. Baum-Welch (EM) — Overview</h2>
+                <p>The Baum-Welch algorithm is an <strong>Expectation-Maximization</strong> procedure that iteratively refines the HMM parameters (&pi;, A, B) to maximize the likelihood of the observed data. It alternates between:</p>
+                <ul>
+                  <li><strong>E-step:</strong> Compute expected sufficient statistics using forward-backward algorithm</li>
+                  <li><strong>M-step:</strong> Re-estimate parameters using the expected counts</li>
+                </ul>
+                <p>Convergence is guaranteed to a local maximum of the likelihood.</p>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li>HMM = hidden states + observed emissions + transition/emission probabilities</li>
+                    <li><strong>Forward:</strong> computes P(observations) in O(TN<sup>2</sup>)</li>
+                    <li><strong>Viterbi:</strong> finds best state sequence — same complexity, replace &sum; with max</li>
+                    <li><strong>Baum-Welch:</strong> EM algorithm for parameter learning</li>
+                    <li>HMMs model sequential data: speech, POS tagging, gene finding</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-hmm">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="naive-bayes.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Naive Bayes</span></a>
+              <a href="markov-decision-processes.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">MDPs</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#hmm-definition">1. HMM Definition</a></li>
+            <li><a href="#three-problems">2. Three Problems</a></li>
+            <li><a href="#forward-algorithm">3. Forward Algorithm</a></li>
+            <li><a href="#viterbi">4. Viterbi Algorithm</a></li>
+            <li><a href="#baum-welch">5. Baum-Welch</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Revision Notes - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li class="active"><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>Quick Revision Notes</span>
+        </div>
+
+        <article class="theory-content notes-page">
+            <h1>📋 Quick Revision Notes: Propositional Logic</h1>
+
+            <div class="note-box">
+                <h4>📝 How to Use These Notes</h4>
+                <p>These are condensed revision notes covering all key formulas, laws, and facts for GATE preparation. Review these before the exam!</p>
+            </div>
+
+            <!-- Section 1: Connectives -->
+            <section>
+                <h2>1. Connectives Truth Table Summary</h2>
+                <div class="quick-facts">
+                    <table class="styled-table">
+                        <thead><tr><th>P</th><th>Q</th><th>¬P</th><th>P∧Q</th><th>P∨Q</th><th>P→Q</th><th>P↔Q</th></tr></thead>
+                        <tbody>
+                            <tr><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+                            <tr><td>T</td><td>F</td><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td></tr>
+                            <tr><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td></tr>
+                            <tr><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mnemonic-box">
+                    <h4>🧠 Mnemonics</h4>
+                    <ul>
+                        <li><strong>AND (∧):</strong> True only when BOTH true — "strict gatekeeper"</li>
+                        <li><strong>OR (∨):</strong> False only when BOTH false — "generous gatekeeper"</li>
+                        <li><strong>IMPLIES (→):</strong> False ONLY when T→F — "a broken promise"</li>
+                        <li><strong>IFF (↔):</strong> True when SAME values — "agreement checker"</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 2: Operator Precedence -->
+            <section>
+                <h2>2. Operator Precedence</h2>
+                <div class="quick-facts">
+                    <p class="formula" style="font-size: 1.2em;">¬ &gt; ∧ &gt; ∨ &gt; → &gt; ↔</p>
+                    <p>(Highest to Lowest)</p>
+                </div>
+                <div class="mnemonic-box">
+                    <h4>🧠 Mnemonic: "Not And Or Implies Iff" — NAOII</h4>
+                    <p>→ is <strong>right-associative</strong>: P → Q → R means P → (Q → R)</p>
+                </div>
+            </section>
+
+            <!-- Section 3: All Equivalence Laws -->
+            <section>
+                <h2>3. Complete Equivalence Laws Table</h2>
+                <div class="formula-list">
+                    <table class="styled-table">
+                        <thead><tr><th>Law</th><th>Equivalence</th></tr></thead>
+                        <tbody>
+                            <tr><td>Identity</td><td>P ∧ ⊤ ≡ P &nbsp;|&nbsp; P ∨ ⊥ ≡ P</td></tr>
+                            <tr><td>Domination</td><td>P ∨ ⊤ ≡ ⊤ &nbsp;|&nbsp; P ∧ ⊥ ≡ ⊥</td></tr>
+                            <tr><td>Idempotent</td><td>P ∨ P ≡ P &nbsp;|&nbsp; P ∧ P ≡ P</td></tr>
+                            <tr><td>Double Negation</td><td>¬(¬P) ≡ P</td></tr>
+                            <tr><td>Commutative</td><td>P ∧ Q ≡ Q ∧ P &nbsp;|&nbsp; P ∨ Q ≡ Q ∨ P</td></tr>
+                            <tr><td>Associative</td><td>(P∧Q)∧R ≡ P∧(Q∧R) &nbsp;|&nbsp; (P∨Q)∨R ≡ P∨(Q∨R)</td></tr>
+                            <tr><td>Distributive</td><td>P∧(Q∨R) ≡ (P∧Q)∨(P∧R) &nbsp;|&nbsp; P∨(Q∧R) ≡ (P∨Q)∧(P∨R)</td></tr>
+                            <tr><td><strong>De Morgan's</strong></td><td><strong>¬(P∧Q) ≡ ¬P∨¬Q &nbsp;|&nbsp; ¬(P∨Q) ≡ ¬P∧¬Q</strong></td></tr>
+                            <tr><td>Absorption</td><td>P∨(P∧Q) ≡ P &nbsp;|&nbsp; P∧(P∨Q) ≡ P</td></tr>
+                            <tr><td>Complement</td><td>P∨¬P ≡ ⊤ &nbsp;|&nbsp; P∧¬P ≡ ⊥</td></tr>
+                            <tr><td><strong>Material Impl.</strong></td><td><strong>P → Q ≡ ¬P ∨ Q</strong></td></tr>
+                            <tr><td><strong>Contrapositive</strong></td><td><strong>P → Q ≡ ¬Q → ¬P</strong></td></tr>
+                            <tr><td>Biconditional</td><td>P ↔ Q ≡ (P→Q)∧(Q→P) ≡ (P∧Q)∨(¬P∧¬Q)</td></tr>
+                            <tr><td>Exportation</td><td>(P∧Q)→R ≡ P→(Q→R)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 4: Inference Rules -->
+            <section>
+                <h2>4. All Inference Rules</h2>
+                <div class="formula-list">
+                    <table class="styled-table">
+                        <thead><tr><th>Rule</th><th>Premises</th><th>Conclusion</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Modus Ponens</strong></td><td>P → Q, P</td><td>Q</td></tr>
+                            <tr><td><strong>Modus Tollens</strong></td><td>P → Q, ¬Q</td><td>¬P</td></tr>
+                            <tr><td>Hypothetical Syllogism</td><td>P → Q, Q → R</td><td>P → R</td></tr>
+                            <tr><td>Disjunctive Syllogism</td><td>P ∨ Q, ¬P</td><td>Q</td></tr>
+                            <tr><td>Addition</td><td>P</td><td>P ∨ Q</td></tr>
+                            <tr><td>Simplification</td><td>P ∧ Q</td><td>P</td></tr>
+                            <tr><td>Conjunction</td><td>P, Q</td><td>P ∧ Q</td></tr>
+                            <tr><td><strong>Resolution</strong></td><td>P ∨ α, ¬P ∨ β</td><td>α ∨ β</td></tr>
+                            <tr><td>Constructive Dilemma</td><td>(P→Q)∧(R→S), P∨R</td><td>Q ∨ S</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Common Fallacies (INVALID!)</h4>
+                    <ul>
+                        <li><strong>Affirming the Consequent:</strong> P → Q, Q ⊬ P</li>
+                        <li><strong>Denying the Antecedent:</strong> P → Q, ¬P ⊬ ¬Q</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 5: Normal Forms -->
+            <section>
+                <h2>5. Normal Forms</h2>
+                <div class="quick-facts">
+                    <table class="styled-table">
+                        <thead><tr><th>Form</th><th>Structure</th><th>Conversion</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>CNF</strong></td><td>AND of ORs: (l₁∨l₂)∧(l₃∨l₄)∧...</td><td>Distribute ∨ over ∧</td></tr>
+                            <tr><td><strong>DNF</strong></td><td>OR of ANDs: (l₁∧l₂)∨(l₃∧l₄)∨...</td><td>Distribute ∧ over ∨</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 CNF Conversion Steps</h4>
+                    <ol>
+                        <li>Eliminate ↔: α ↔ β → (α→β) ∧ (β→α)</li>
+                        <li>Eliminate →: α → β → ¬α ∨ β</li>
+                        <li>Push ¬ inward (De Morgan's, Double Negation)</li>
+                        <li>Distribute ∨ over ∧</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Section 6: Key Formulas -->
+            <section>
+                <h2>6. Key Formulas &amp; Complexity</h2>
+                <div class="formula-list">
+                    <table class="styled-table">
+                        <thead><tr><th>Fact</th><th>Formula/Value</th></tr></thead>
+                        <tbody>
+                            <tr><td>Interpretations for n variables</td><td>2<sup>n</sup></td></tr>
+                            <tr><td>Distinct Boolean functions of n vars</td><td>2<sup>2<sup>n</sup></sup></td></tr>
+                            <tr><td>SAT complexity</td><td>NP-complete</td></tr>
+                            <tr><td>2-SAT complexity</td><td>O(n + m) — polynomial</td></tr>
+                            <tr><td>3-SAT complexity</td><td>NP-complete</td></tr>
+                            <tr><td>Horn-SAT complexity</td><td>O(n) — linear</td></tr>
+                            <tr><td>Resolution</td><td>Sound and refutation-complete</td></tr>
+                            <tr><td>Forward/Backward chaining</td><td>Sound + complete for Horn clauses</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 7: Classification -->
+            <section>
+                <h2>7. Formula Classification</h2>
+                <div class="quick-facts">
+                    <table class="styled-table">
+                        <thead><tr><th>Type</th><th>True in</th><th>Satisfiable?</th><th>Test</th></tr></thead>
+                        <tbody>
+                            <tr><td>Tautology</td><td>ALL interpretations</td><td>Yes</td><td>Can't make it false</td></tr>
+                            <tr><td>Contingency</td><td>SOME interpretations</td><td>Yes</td><td>Some T, some F</td></tr>
+                            <tr><td>Contradiction</td><td>NO interpretations</td><td>No</td><td>Can't make it true</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="formula">α is tautology ⟺ ¬α is contradiction</p>
+                <p class="formula">α ⊨ β ⟺ α ∧ ¬β is unsatisfiable</p>
+            </section>
+
+            <!-- Section 8: Horn Clauses -->
+            <section>
+                <h2>8. Horn Clauses Quick Reference</h2>
+                <div class="quick-facts">
+                    <table class="styled-table">
+                        <thead><tr><th>Type</th><th>Positive Literals</th><th>Example</th></tr></thead>
+                        <tbody>
+                            <tr><td>Definite clause</td><td>Exactly 1</td><td>¬A ∨ ¬B ∨ C (= A∧B→C)</td></tr>
+                            <tr><td>Fact</td><td>Exactly 1 (no negatives)</td><td>A</td></tr>
+                            <tr><td>Goal clause</td><td>0</td><td>¬A ∨ ¬B</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 9: GATE Patterns -->
+            <section>
+                <h2>9. Common GATE Patterns</h2>
+                <div class="mnemonic-box">
+                    <h4>🎯 Most Frequently Tested Topics</h4>
+                    <ol>
+                        <li><strong>Identify tautology/contradiction</strong> — Use falsification method</li>
+                        <li><strong>Count satisfying assignments</strong> — Build truth table, count T rows</li>
+                        <li><strong>Apply De Morgan's and Material Implication</strong> — Simplification questions</li>
+                        <li><strong>Convert to CNF</strong> — Follow 4-step algorithm</li>
+                        <li><strong>Resolution proof</strong> — Negate goal, convert to clauses, resolve to □</li>
+                        <li><strong>Identify valid inference</strong> — Modus Ponens/Tollens vs fallacies</li>
+                        <li><strong>Complexity: 2-SAT vs 3-SAT</strong> — P vs NP boundary</li>
+                        <li><strong>Horn clause identification</strong> — Count positive literals ≤ 1</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Resolution Quick Steps -->
+            <section>
+                <h2>10. Resolution Proof Quick Steps</h2>
+                <div class="note-box">
+                    <h4>📝 Resolution Checklist</h4>
+                    <ol>
+                        <li>✅ Convert KB to CNF</li>
+                        <li>✅ Negate the goal and convert to clauses</li>
+                        <li>✅ Add negated goal clauses to KB clauses</li>
+                        <li>✅ Find pairs with complementary literals</li>
+                        <li>✅ Resolve and add resolvents</li>
+                        <li>✅ If empty clause □ derived → proved!</li>
+                        <li>✅ If no new resolvents possible → not provable</li>
+                    </ol>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="gate-previous-year-propositional.html" class="nav-btn prev-btn">← Previous: GATE Previous Year Questions</a>
+            <a href="quiz-propositional-logic.html" class="nav-btn next-btn">Next: Chapter Quiz →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-notes">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-notes">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

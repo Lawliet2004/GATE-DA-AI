@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evaluation Functions for Games — Material balance, positional features, cutoff search, quiescence search for adversarial game playing AI.">
+  <title>Evaluation Functions — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+            <a href="minimax-algorithm.html" class="sidebar-link"><span class="link-check"></span> Minimax<span class="link-type theory">Theory</span></a>
+            <a href="alpha-beta-pruning.html" class="sidebar-link"><span class="link-check"></span> Alpha-Beta Pruning<span class="link-type theory">Theory</span></a>
+            <a href="move-ordering.html" class="sidebar-link"><span class="link-check"></span> Move Ordering<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-functions.html" class="sidebar-link active"><span class="link-check"></span> Evaluation Functions<span class="link-type theory">Theory</span></a>
+            <a href="stochastic-games.html" class="sidebar-link"><span class="link-check"></span> Stochastic Games<span class="link-type theory">Theory</span></a>
+            <a href="partially-observable-games.html" class="sidebar-link"><span class="link-check"></span> Partially Observable<span class="link-type theory">Theory</span></a>
+            <a href="monte-carlo-tree-search.html" class="sidebar-link"><span class="link-check"></span> MCTS<span class="link-type theory">Theory</span></a>
+            <a href="practical-adversarial.html" class="sidebar-link"><span class="link-check"></span> Tic-Tac-Toe Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-adversarial.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="game-theory-basics.html">Chapter 4: Adversarial Search</a> &raquo;
+          <span class="current">Evaluation Functions</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch04-eval-functions">
+            <h1>Evaluation Functions</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch04-eval-functions" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="minimax-algorithm.html">Minimax Algorithm</a> &mdash; Full-depth minimax search</li>
+                <li><a href="alpha-beta-pruning.html">Alpha-Beta Pruning</a> &mdash; Pruning techniques</li>
+                <li><a href="../03-informed-search/heuristic-functions.html">Heuristic Functions</a> &mdash; Concept of heuristic evaluation</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand why evaluation functions are needed (cannot search to terminal states)</li>
+                <li>Design evaluation functions using material and positional features</li>
+                <li>Implement cutoff search: minimax with a depth limit and evaluation</li>
+                <li>Recognize the horizon effect and solve it with quiescence search</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="need-for-eval">
+                <h2>1. Why Evaluation Functions?</h2>
+                <p>For complex games like chess (b&asymp;35, m&asymp;80), searching all the way to terminal states is impossible. Even with alpha-beta pruning, the tree is too large. The solution: <strong>cut off the search at some depth d</strong> and use an <strong>evaluation function</strong> to estimate the utility of non-terminal states.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Evaluation Function</div>
+                  <p>An <strong>evaluation function</strong> EVAL(s) is a heuristic that estimates the expected utility of game state s. It replaces the true UTILITY function at non-terminal states when the search is cut off.</p>
+                  <ul>
+                    <li>EVAL(s) &gt; 0 &rArr; position favors MAX</li>
+                    <li>EVAL(s) &lt; 0 &rArr; position favors MIN</li>
+                    <li>EVAL(s) = 0 &rArr; roughly equal position</li>
+                    <li>At terminal states, EVAL must agree with UTILITY</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="design-principles">
+                <h2>2. Designing Evaluation Functions</h2>
+
+                <h3>2.1 Weighted Linear Evaluation</h3>
+                <p>The most common form is a <strong>weighted linear combination</strong> of features:</p>
+                <div class="formula">
+                  <p><strong>EVAL(s) = w<sub>1</sub>f<sub>1</sub>(s) + w<sub>2</sub>f<sub>2</sub>(s) + &hellip; + w<sub>n</sub>f<sub>n</sub>(s)</strong></p>
+                </div>
+                <p>where f<sub>i</sub>(s) are features of the state and w<sub>i</sub> are learned or hand-tuned weights.</p>
+
+                <h3>2.2 Material Balance (Chess)</h3>
+                <div class="example-box">
+                  <div class="box-title">Standard Chess Piece Values</div>
+                  <table class="comparison-table">
+                    <thead><tr><th>Piece</th><th>Value</th><th>Feature</th></tr></thead>
+                    <tbody>
+                      <tr><td>Pawn (&#9817;)</td><td>1</td><td>f<sub>1</sub> = #white pawns &minus; #black pawns</td></tr>
+                      <tr><td>Knight (&#9816;)</td><td>3</td><td>f<sub>2</sub> = #white knights &minus; #black knights</td></tr>
+                      <tr><td>Bishop (&#9815;)</td><td>3</td><td>f<sub>3</sub> = #white bishops &minus; #black bishops</td></tr>
+                      <tr><td>Rook (&#9814;)</td><td>5</td><td>f<sub>4</sub> = #white rooks &minus; #black rooks</td></tr>
+                      <tr><td>Queen (&#9813;)</td><td>9</td><td>f<sub>5</sub> = #white queens &minus; #black queens</td></tr>
+                    </tbody>
+                  </table>
+                  <p>Material evaluation: EVAL = 1&middot;f<sub>1</sub> + 3&middot;f<sub>2</sub> + 3&middot;f<sub>3</sub> + 5&middot;f<sub>4</sub> + 9&middot;f<sub>5</sub></p>
+                </div>
+
+                <h3>2.3 Positional Features</h3>
+                <p>Beyond material, strong evaluation functions consider:</p>
+                <ul>
+                  <li><strong>Piece mobility:</strong> Number of legal moves available</li>
+                  <li><strong>King safety:</strong> Pawn shelter, castling status</li>
+                  <li><strong>Pawn structure:</strong> Doubled, isolated, or passed pawns</li>
+                  <li><strong>Center control:</strong> Pieces controlling central squares</li>
+                  <li><strong>Development:</strong> How many pieces are active vs. on starting squares</li>
+                </ul>
+
+                <div class="note-box">
+                  <div class="box-title">Modern Approach: Neural Networks</div>
+                  <p>Modern engines like AlphaZero and Leela use neural networks as evaluation functions, trained via self-play. The network learns features automatically. Stockfish NNUE combines a hand-crafted search with a neural network evaluator.</p>
+                </div>
+              </section>
+
+              <section id="cutoff-search">
+                <h2>3. Cutoff Search</h2>
+
+                <div class="algorithm-block">
+                  <div class="algo-header">Algorithm: H-MINIMAX (Minimax with Cutoff)</div>
+                  <div class="algo-body">
+<pre>function H-MINIMAX(state, depth):
+    if IS-TERMINAL(state): return UTILITY(state)
+    if depth = 0: return EVAL(state)    <em>// cutoff</em>
+    if PLAYER(state) = MAX:
+        v &larr; &minus;&infin;
+        for each a in ACTIONS(state):
+            v &larr; max(v, H-MINIMAX(RESULT(state,a), depth&minus;1))
+        return v
+    else:
+        v &larr; +&infin;
+        for each a in ACTIONS(state):
+            v &larr; min(v, H-MINIMAX(RESULT(state,a), depth&minus;1))
+        return v</pre>
+                  </div>
+                </div>
+
+                <p>The depth parameter d is chosen based on available time. Deeper search generally means better play, but diminishing returns apply. The combination of cutoff search with alpha-beta pruning and iterative deepening is the standard approach.</p>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Evaluation Function Requirements</div>
+                  <ul>
+                    <li>Must be <strong>fast to compute</strong> &mdash; called millions of times per move</li>
+                    <li>Must <strong>correlate with true utility</strong> &mdash; better positions should score higher</li>
+                    <li>Must be <strong>consistent with terminal values</strong> at game-over states</li>
+                    <li>Should not have <strong>systematic biases</strong> that cause pathological behavior</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="horizon-effect">
+                <h2>4. The Horizon Effect</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Horizon Effect</div>
+                  <p>An artifact of fixed-depth search where the engine makes poor decisions because a critical event (threat, capture) occurs just beyond the search depth. The engine &ldquo;pushes&rdquo; the problem past its horizon by making delaying moves.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Horizon Effect Example</div>
+                  <p>Suppose at depth 6, a queen capture occurs at depth 7. The engine doesn&rsquo;t see it and evaluates the position as good. It might even sacrifice a piece to push the queen loss to depth 8 — still beyond its horizon — making the situation worse.</p>
+                </div>
+              </section>
+
+              <section id="quiescence">
+                <h2>5. Quiescence Search</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Quiescence Search</div>
+                  <p>Instead of cutting off at a fixed depth, continue searching in <strong>non-quiet</strong> (volatile) positions. Only apply EVAL(s) at <strong>quiet positions</strong> — states where no captures, checks, or other forcing moves are available.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <div class="algo-header">Algorithm: QUIESCENCE-SEARCH</div>
+                  <div class="algo-body">
+<pre>function QUIESCENCE(state, &alpha;, &beta;):
+    stand_pat &larr; EVAL(state)
+    if stand_pat &ge; &beta;: return &beta;
+    if stand_pat &gt; &alpha;: &alpha; &larr; stand_pat
+    
+    for each capture_move in CAPTURE-MOVES(state):
+        score &larr; &minus;QUIESCENCE(RESULT(state, capture_move),
+                                   &minus;&beta;, &minus;&alpha;)
+        if score &ge; &beta;: return &beta;
+        if score &gt; &alpha;: &alpha; &larr; score
+    return &alpha;</pre>
+                  </div>
+                </div>
+
+                <p>Quiescence search typically adds 4&ndash;8 plies of additional search at capture-heavy positions, providing much more accurate evaluations.</p>
+              </section>
+
+              <section id="eval-examples">
+                <h2>6. Evaluation in Other Games</h2>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Game</th><th>Key Features</th><th>Typical EVAL</th></tr></thead>
+                    <tbody>
+                      <tr><td>Tic-Tac-Toe</td><td>Lines with potential, blocking</td><td>+1/0/&minus;1 (can solve fully, eval rarely needed)</td></tr>
+                      <tr><td>Chess</td><td>Material, position, pawn structure</td><td>Centipawns (100 = 1 pawn advantage)</td></tr>
+                      <tr><td>Othello (Reversi)</td><td>Corners, edges, mobility, disc count</td><td>Weighted square table + mobility</td></tr>
+                      <tr><td>Checkers</td><td>Kings, back-row protection, piece count</td><td>Linear combination of ~20 features</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>Evaluation functions estimate utility for non-terminal states when search is cut off at depth d.</li>
+                    <li>Weighted linear combinations of game features are the classic approach.</li>
+                    <li>Material balance is the dominant feature in chess; positional features add refinement.</li>
+                    <li>The horizon effect causes errors when critical events lie just beyond the search depth.</li>
+                    <li>Quiescence search addresses the horizon effect by extending search in volatile positions.</li>
+                    <li>Modern engines use neural network evaluators trained by self-play.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>AIMA</em>, 4th Ed. &mdash; Chapter 5.4</li>
+                  <li>Shannon, C. &ldquo;Programming a Computer for Playing Chess&rdquo;, 1950</li>
+                  <li>Silver, D. et al. &ldquo;Mastering Chess and Shogi by Self-Play&rdquo;, <em>Science</em>, 2018</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch04-eval-functions">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="move-ordering.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Move Ordering</span></a>
+              <a href="stochastic-games.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Stochastic Games</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#need-for-eval">1. Why Evaluation Functions?</a></li>
+              <li><a href="#design-principles">2. Designing Evaluation Functions</a></li>
+              <li><a href="#cutoff-search">3. Cutoff Search</a></li>
+              <li><a href="#horizon-effect">4. The Horizon Effect</a></li>
+              <li><a href="#quiescence">5. Quiescence Search</a></li>
+              <li><a href="#eval-examples">6. Evaluation in Other Games</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

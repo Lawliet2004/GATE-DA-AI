@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Attention Mechanism and Transformers — Scaled dot-product attention, multi-head attention, positional encoding, transformer encoder-decoder architecture, BERT and GPT overview for GATE DA.">
+  <title>Attention &amp; Transformers — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a>
+            <a href="perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="multilayer-perceptron.html" class="sidebar-link"><span class="link-check"></span> Multilayer Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="backpropagation.html" class="sidebar-link"><span class="link-check"></span> Backpropagation<span class="link-type theory">Theory</span></a>
+            <a href="activation-functions.html" class="sidebar-link"><span class="link-check"></span> Activation Functions<span class="link-type theory">Theory</span></a>
+            <a href="optimization-algorithms.html" class="sidebar-link"><span class="link-check"></span> Optimization Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="convolutional-neural-networks.html" class="sidebar-link"><span class="link-check"></span> CNNs<span class="link-type theory">Theory</span></a>
+            <a href="recurrent-neural-networks.html" class="sidebar-link"><span class="link-check"></span> RNNs<span class="link-type theory">Theory</span></a>
+            <a href="lstm-gru.html" class="sidebar-link"><span class="link-check"></span> LSTM &amp; GRU<span class="link-type theory">Theory</span></a>
+            <a href="attention-transformers.html" class="sidebar-link active"><span class="link-check"></span> Attention &amp; Transformers<span class="link-type theory">Theory</span></a>
+            <a href="regularization-deep-learning.html" class="sidebar-link"><span class="link-check"></span> DL Regularization<span class="link-type theory">Theory</span></a>
+            <a href="practical-neural-network.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="neural-network-basics.html">Chapter 9: Neural Networks &amp; Deep Learning</a> &raquo; <span class="current">Attention &amp; Transformers</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch09-attention-transformers">
+
+            <h1>Attention &amp; Transformers</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch09-attention-transformers" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="recurrent-neural-networks.html">RNNs</a> &mdash; Sequence modelling basics</li>
+              <li><a href="lstm-gru.html">LSTM &amp; GRU</a> &mdash; Encoder&ndash;decoder framework</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Understand why <strong>attention</strong> was introduced (information bottleneck)</li>
+              <li>Compute <strong>scaled dot-product attention</strong>: softmax(QK<sup>T</sup>/&radic;d<sub>k</sub>)V</li>
+              <li>Explain <strong>multi-head attention</strong> and its benefit</li>
+              <li>Describe the <strong>transformer encoder&ndash;decoder</strong> architecture</li>
+              <li>Know <strong>positional encoding</strong> and <strong>layer normalisation</strong></li>
+              <li>Distinguish <strong>BERT</strong> (encoder-only) and <strong>GPT</strong> (decoder-only)</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <section id="attention-motivation">
+                <h2>1. The Information Bottleneck</h2>
+                <p>In a vanilla encoder&ndash;decoder RNN, the encoder compresses the <strong>entire input sequence</strong> into a single fixed-size context vector c = h<sub>T</sub>. For long sequences, this bottleneck loses information.</p>
+                <p><strong>Attention</strong> (Bahdanau et al., 2014) allows the decoder to look at <strong>all encoder hidden states</strong> and dynamically focus on the most relevant ones at each decoding step.</p>
+              </section>
+
+              <section id="scaled-dot-product">
+                <h2>2. Scaled Dot-Product Attention</h2>
+                <div class="definition-box">
+                  <h4>Attention Formula (Vaswani et al., 2017)</h4>
+                  <pre><code>Attention(Q, K, V) = softmax(QK<sup>T</sup> / &radic;d<sub>k</sub>) &middot; V
+
+Where:
+  Q &isin; &reals;<sup>n&times;d<sub>k</sub></sup>  &mdash; Query matrix (n queries)
+  K &isin; &reals;<sup>m&times;d<sub>k</sub></sup>  &mdash; Key matrix (m key-value pairs)
+  V &isin; &reals;<sup>m&times;d<sub>v</sub></sup>  &mdash; Value matrix
+  d<sub>k</sub>            &mdash; key dimension (scaling factor)
+  Output &isin; &reals;<sup>n&times;d<sub>v</sub></sup></code></pre>
+                </div>
+
+                <div class="note-box">
+                  <h4>Why Scale by &radic;d<sub>k</sub>?</h4>
+                  <p>For large d<sub>k</sub>, the dot products QK<sup>T</sup> grow large in magnitude, pushing softmax into regions with extremely small gradients. Dividing by &radic;d<sub>k</sub> keeps the variance of the dot products at roughly 1.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Numerical Example (d<sub>k</sub> = 2)</h4>
+                  <pre><code>Q = [1, 0]   (1 query)
+K = [[1, 0],  &larr; key 1
+     [0, 1],  &larr; key 2
+     [1, 1]]  &larr; key 3
+V = [[10],
+     [20],
+     [30]]
+
+Scores = QK<sup>T</sup> = [1&middot;1+0&middot;0, 1&middot;0+0&middot;1, 1&middot;1+0&middot;1] = [1, 0, 1]
+Scaled = [1/&radic;2, 0/&radic;2, 1/&radic;2] = [0.707, 0, 0.707]
+Weights = softmax([0.707, 0, 0.707]) &asymp; [0.387, 0.226, 0.387]
+Output = 0.387&times;10 + 0.226&times;20 + 0.387&times;30 = 3.87 + 4.52 + 11.61 = 20.0</code></pre>
+                </div>
+              </section>
+
+              <section id="self-attention">
+                <h2>3. Self-Attention</h2>
+                <p>When Q, K, and V all come from the <strong>same sequence</strong>, we call this <strong>self-attention</strong>. Each position attends to all other positions in the sequence.</p>
+                <pre><code>Q = XW<sub>Q</sub>,  K = XW<sub>K</sub>,  V = XW<sub>V</sub>
+
+Where X &isin; &reals;<sup>n&times;d<sub>model</sub></sup> is the input sequence.</code></pre>
+                <p><strong>Key advantage over RNNs:</strong> Self-attention computes relationships between <strong>any two positions in O(1) path length</strong>, compared to O(n) for RNNs. This eliminates the sequential bottleneck.</p>
+              </section>
+
+              <section id="multi-head">
+                <h2>4. Multi-Head Attention</h2>
+                <div class="definition-box">
+                  <h4>Multi-Head Attention</h4>
+                  <pre><code>MultiHead(Q, K, V) = Concat(head<sub>1</sub>, &hellip;, head<sub>h</sub>) &middot; W<sup>O</sup>
+
+where head<sub>i</sub> = Attention(QW<sub>i</sub><sup>Q</sup>, KW<sub>i</sub><sup>K</sup>, VW<sub>i</sub><sup>V</sup>)
+
+Projection matrices:
+  W<sub>i</sub><sup>Q</sup> &isin; &reals;<sup>d<sub>model</sub> &times; d<sub>k</sub></sup>
+  W<sub>i</sub><sup>K</sup> &isin; &reals;<sup>d<sub>model</sub> &times; d<sub>k</sub></sup>
+  W<sub>i</sub><sup>V</sup> &isin; &reals;<sup>d<sub>model</sub> &times; d<sub>v</sub></sup>
+  W<sup>O</sup> &isin; &reals;<sup>hd<sub>v</sub> &times; d<sub>model</sub></sup>
+
+Typical: d<sub>k</sub> = d<sub>v</sub> = d<sub>model</sub> / h</code></pre>
+                </div>
+                <p><strong>Why multiple heads?</strong> Each head can attend to different types of relationships (e.g., syntactic vs semantic). With h = 8 heads and d<sub>model</sub> = 512, each head uses d<sub>k</sub> = 64.</p>
+              </section>
+
+              <section id="positional-encoding">
+                <h2>5. Positional Encoding</h2>
+                <p>Since self-attention has <strong>no inherent notion of position</strong> (it&rsquo;s permutation-equivariant), position information is added explicitly:</p>
+                <div class="definition-box">
+                  <h4>Sinusoidal Positional Encoding</h4>
+                  <pre><code>PE(pos, 2i)   = sin(pos / 10000<sup>2i/d<sub>model</sub></sup>)
+PE(pos, 2i+1) = cos(pos / 10000<sup>2i/d<sub>model</sub></sup>)
+
+Input to transformer = token embedding + PE</code></pre>
+                </div>
+                <p>This encoding allows the model to attend to relative positions because PE(pos+k) can be expressed as a linear function of PE(pos).</p>
+              </section>
+
+              <section id="transformer">
+                <h2>6. Transformer Architecture</h2>
+                <p>The Transformer (&ldquo;Attention Is All You Need&rdquo;, Vaswani et al., 2017) eliminates recurrence entirely.</p>
+
+                <h3>Encoder Block (repeated N&times;)</h3>
+                <pre><code>1. Multi-Head Self-Attention
+2. Add &amp; Layer Norm (residual connection)
+3. Feed-Forward Network: FFN(x) = max(0, xW<sub>1</sub>+b<sub>1</sub>)W<sub>2</sub>+b<sub>2</sub>
+4. Add &amp; Layer Norm</code></pre>
+
+                <h3>Decoder Block (repeated N&times;)</h3>
+                <pre><code>1. Masked Multi-Head Self-Attention (causal mask)
+2. Add &amp; Layer Norm
+3. Multi-Head Cross-Attention (Q from decoder, K,V from encoder)
+4. Add &amp; Layer Norm
+5. Feed-Forward Network
+6. Add &amp; Layer Norm</code></pre>
+
+                <div class="note-box">
+                  <h4>Transformer-Base Configuration</h4>
+                  <p>N = 6 layers, d<sub>model</sub> = 512, h = 8 heads, d<sub>ff</sub> = 2048, dropout = 0.1. Total &sim;65M parameters.</p>
+                </div>
+              </section>
+
+              <section id="bert-gpt">
+                <h2>7. BERT &amp; GPT</h2>
+                <table class="comparison-table">
+                  <tr><th>Feature</th><th>BERT</th><th>GPT</th></tr>
+                  <tr><td>Architecture</td><td>Encoder-only</td><td>Decoder-only</td></tr>
+                  <tr><td>Attention</td><td>Bidirectional</td><td>Causal (left-to-right)</td></tr>
+                  <tr><td>Pre-training</td><td>Masked Language Model + NSP</td><td>Autoregressive LM</td></tr>
+                  <tr><td>Best For</td><td>Understanding (classification, NER)</td><td>Generation (text, code)</td></tr>
+                  <tr><td>Parameters</td><td>BERT-base: 110M</td><td>GPT-2: 1.5B; GPT-3: 175B</td></tr>
+                </table>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li>Attention: softmax(QK<sup>T</sup>/&radic;d<sub>k</sub>)V &mdash; weighted sum of values based on query-key similarity.</li>
+                    <li>Multi-head attention: h parallel attention heads, concatenated and projected.</li>
+                    <li>Positional encoding uses sinusoids to inject position information.</li>
+                    <li>Transformer = stacked encoder/decoder blocks with self-attention + FFN + residual + LayerNorm.</li>
+                    <li>BERT = encoder-only (bidirectional). GPT = decoder-only (causal).</li>
+                    <li>For GATE: know the attention formula, scaling factor reason, and transformer block structure.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch09-attention-transformers">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="lstm-gru.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">LSTM &amp; GRU</span></a>
+              <a href="regularization-deep-learning.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">DL Regularization</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#attention-motivation">1. Motivation</a></li>
+            <li><a href="#scaled-dot-product">2. Scaled Attention</a></li>
+            <li><a href="#self-attention">3. Self-Attention</a></li>
+            <li><a href="#multi-head">4. Multi-Head</a></li>
+            <li><a href="#positional-encoding">5. Positional Encoding</a></li>
+            <li><a href="#transformer">6. Architecture</a></li>
+            <li><a href="#bert-gpt">7. BERT &amp; GPT</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

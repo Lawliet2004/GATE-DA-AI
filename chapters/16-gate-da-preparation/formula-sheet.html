@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Master formula sheet and quick reference for all AI topics covered in GATE DA. Includes search algorithms, logic, probability, ML, neural networks, and reinforcement learning formulas.">
+  <title>Formula Sheet &amp; Quick Reference — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a>
+            <a href="topic-wise-weightage.html" class="sidebar-link"><span class="link-check"></span> Topic Weightage<span class="link-type notes">Notes</span></a>
+            <a href="previous-year-compilation.html" class="sidebar-link"><span class="link-check"></span> Previous Year Qs<span class="link-type notes">Notes</span></a>
+            <a href="formula-sheet.html" class="sidebar-link active"><span class="link-check"></span> Formula Sheet<span class="link-type notes">Notes</span></a>
+            <a href="common-mistakes.html" class="sidebar-link"><span class="link-check"></span> Common Mistakes<span class="link-type notes">Notes</span></a>
+            <a href="mock-test-1.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 1<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-2.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 2<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-3.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 3<span class="link-type quiz">Quiz</span></a>
+            <a href="final-revision-checklist.html" class="sidebar-link"><span class="link-check"></span> Final Revision Checklist<span class="link-type notes">Notes</span></a>
+        </div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="exam-pattern-strategy.html">Ch 16: GATE DA Preparation</a> &raquo; <span class="current">Formula Sheet</span></nav>
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch16-formula-sheet">
+            <h1>&#128203; Master Formula Sheet &amp; Quick Reference</h1>
+
+            <div class="definition-box">
+              <strong>Purpose:</strong> This is the single-page quick reference for every key formula, identity, and complexity result across all AI topics tested in GATE DA. Print it, bookmark it, and use it during your final revision. Formulas are grouped by chapter and topic.
+            </div>
+
+            <div class="note-box">
+              <strong>How to Use:</strong> Skim before each mock test to refresh your memory. Highlight any formula you keep forgetting. Come back to this page during the last 48 hours before the exam for a rapid sweep.
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 1: SEARCH ALGORITHMS                          -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="search-algorithms">1. Search Algorithms (Ch 02 &amp; 03)</h2>
+
+            <h3 id="uninformed-search">1.1 Uninformed Search Complexity</h3>
+            <div class="definition-box">
+              <strong>Notation:</strong> b = branching factor, d = depth of shallowest goal, m = maximum depth of the search tree, l = depth limit, C* = optimal path cost, &epsilon; = minimum step cost.
+            </div>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Algorithm</th>
+                  <th>Time</th>
+                  <th>Space</th>
+                  <th>Complete?</th>
+                  <th>Optimal?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>BFS</strong></td>
+                  <td>O(b<sup>d</sup>)</td>
+                  <td>O(b<sup>d</sup>)</td>
+                  <td>Yes (finite b)</td>
+                  <td>Yes (uniform cost)</td>
+                </tr>
+                <tr>
+                  <td><strong>DFS</strong></td>
+                  <td>O(b<sup>m</sup>)</td>
+                  <td>O(bm)</td>
+                  <td>No</td>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <td><strong>DLS</strong></td>
+                  <td>O(b<sup>l</sup>)</td>
+                  <td>O(bl)</td>
+                  <td>No</td>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <td><strong>IDDFS</strong></td>
+                  <td>O(b<sup>d</sup>)</td>
+                  <td>O(bd)</td>
+                  <td>Yes</td>
+                  <td>Yes (uniform cost)</td>
+                </tr>
+                <tr>
+                  <td><strong>UCS</strong></td>
+                  <td>O(b<sup>1+&lfloor;C*/&epsilon;&rfloor;</sup>)</td>
+                  <td>O(b<sup>1+&lfloor;C*/&epsilon;&rfloor;</sup>)</td>
+                  <td>Yes (&epsilon; &gt; 0)</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td><strong>Bidirectional</strong></td>
+                  <td>O(b<sup>d/2</sup>)</td>
+                  <td>O(b<sup>d/2</sup>)</td>
+                  <td>Yes</td>
+                  <td>Yes (uniform cost)</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="note-box">
+              <strong>IDDFS Overhead:</strong> Total nodes generated = d&middot;b + (d&minus;1)&middot;b&sup2; + &hellip; + 1&middot;b<sup>d</sup>. The overhead ratio compared to BFS is b/(b&minus;1), which is less than 11% for b &ge; 10.
+            </div>
+
+            <h3 id="informed-search">1.2 Informed (Heuristic) Search</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>A* Evaluation Function:</strong><br>
+                f(n) = g(n) + h(n)<br>
+                where g(n) = cost from start to n, h(n) = estimated cost from n to goal
+              </div>
+              <div class="formula">
+                <strong>Admissibility (guarantees optimality with Tree Search):</strong><br>
+                h(n) &le; h*(n) for all n<br>
+                where h*(n) is the true cheapest cost from n to goal
+              </div>
+              <div class="formula">
+                <strong>Consistency / Monotonicity (guarantees optimality with Graph Search):</strong><br>
+                h(n) &le; c(n, a, n&prime;) + h(n&prime;) for every successor n&prime; of n<br>
+                <em>Consistency implies admissibility (but not vice versa).</em>
+              </div>
+              <div class="formula">
+                <strong>Effective Branching Factor b*:</strong><br>
+                N + 1 = (b*)<sup>d+1</sup><br>
+                where N = total nodes expanded, d = solution depth. A good heuristic has b* close to 1.
+              </div>
+              <div class="formula">
+                <strong>Greedy Best-First Search:</strong><br>
+                f(n) = h(n)<br>
+                <em>Not optimal, not complete (in infinite state spaces).</em> Time &amp; Space: O(b<sup>m</sup>) worst case.
+              </div>
+              <div class="formula">
+                <strong>IDA* (Iterative Deepening A*):</strong><br>
+                Uses f-cost limit instead of depth limit. Space: O(bd). Optimal if h is admissible.
+              </div>
+            </div>
+
+            <h3 id="local-search">1.3 Local Search &amp; Optimization</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Hill Climbing:</strong> Move to neighbor with highest value. Can get stuck at local maxima, ridges, and plateaus.
+              </div>
+              <div class="formula">
+                <strong>Simulated Annealing &mdash; Acceptance Probability:</strong><br>
+                P(accept) = e<sup>&minus;&Delta;E / T</sup><br>
+                where &Delta;E = value(next) &minus; value(current), T = temperature. As T &rarr; 0, becomes greedy.
+              </div>
+              <div class="formula">
+                <strong>Genetic Algorithm Operators:</strong><br>
+                Fitness function &rarr; Selection &rarr; Crossover &rarr; Mutation &rarr; Next generation<br>
+                <em>Schema theorem: short, low-order, above-average schemata grow exponentially.</em>
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 2: ADVERSARIAL SEARCH                         -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="adversarial-search">2. Adversarial Search (Ch 04)</h2>
+
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Minimax Value:</strong><br>
+                MINIMAX(s) =
+                <ul>
+                  <li>UTILITY(s) &mdash; if s is a terminal state</li>
+                  <li>max<sub>a</sub> MINIMAX(RESULT(s, a)) &mdash; if PLAYER(s) = MAX</li>
+                  <li>min<sub>a</sub> MINIMAX(RESULT(s, a)) &mdash; if PLAYER(s) = MIN</li>
+                </ul>
+                Time: O(b<sup>m</sup>), Space: O(bm)
+              </div>
+              <div class="formula">
+                <strong>Alpha-Beta Pruning:</strong><br>
+                &alpha; = best value MAX can guarantee (initially &minus;&infin;)<br>
+                &beta; = best value MIN can guarantee (initially +&infin;)<br>
+                Prune when &alpha; &ge; &beta;<br><br>
+                <strong>Complexity:</strong><br>
+                &bull; Worst case: O(b<sup>m</sup>) &mdash; no pruning<br>
+                &bull; Best case (perfect ordering): O(b<sup>m/2</sup>) &mdash; effectively doubles searchable depth<br>
+                &bull; Random ordering: O(b<sup>3m/4</sup>)
+              </div>
+              <div class="formula">
+                <strong>Expectiminimax (Stochastic Games):</strong><br>
+                Adds CHANCE nodes between MAX/MIN layers:<br>
+                EXPECTIMINIMAX(s) = &Sigma;<sub>r</sub> P(r) &middot; EXPECTIMINIMAX(RESULT(s, r))<br>
+                Time: O(b<sup>m</sup> &middot; n<sup>m</sup>) where n = number of chance outcomes. Alpha-beta pruning is less effective here.
+              </div>
+            </div>
+
+            <div class="note-box">
+              <strong>Move Ordering Tip:</strong> In alpha-beta, examine the likely best moves first (e.g., killer heuristic, history heuristic) to maximize pruning.
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 3: PROPOSITIONAL LOGIC                        -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="propositional-logic">3. Propositional Logic (Ch 05)</h2>
+
+            <h3 id="logical-equivalences">3.1 Key Logical Equivalences</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>De Morgan&rsquo;s Laws:</strong><br>
+                &not;(A &and; B) &equiv; &not;A &or; &not;B<br>
+                &not;(A &or; B) &equiv; &not;A &and; &not;B
+              </div>
+              <div class="formula">
+                <strong>Implication Elimination:</strong><br>
+                A &rarr; B &equiv; &not;A &or; B
+              </div>
+              <div class="formula">
+                <strong>Contrapositive:</strong><br>
+                A &rarr; B &equiv; &not;B &rarr; &not;A
+              </div>
+              <div class="formula">
+                <strong>Biconditional:</strong><br>
+                A &harr; B &equiv; (A &rarr; B) &and; (B &rarr; A) &equiv; (A &and; B) &or; (&not;A &and; &not;B)
+              </div>
+              <div class="formula">
+                <strong>Distributive Laws:</strong><br>
+                A &and; (B &or; C) &equiv; (A &and; B) &or; (A &and; C)<br>
+                A &or; (B &and; C) &equiv; (A &or; B) &and; (A &or; C)
+              </div>
+              <div class="formula">
+                <strong>Double Negation:</strong><br>
+                &not;&not;A &equiv; A
+              </div>
+              <div class="formula">
+                <strong>Absorption:</strong><br>
+                A &or; (A &and; B) &equiv; A<br>
+                A &and; (A &or; B) &equiv; A
+              </div>
+            </div>
+
+            <h3 id="inference-rules">3.2 Inference Rules</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Modus Ponens:</strong><br>
+                A, A &rarr; B &vdash; B
+              </div>
+              <div class="formula">
+                <strong>Modus Tollens:</strong><br>
+                &not;B, A &rarr; B &vdash; &not;A
+              </div>
+              <div class="formula">
+                <strong>Resolution (core of SAT solvers):</strong><br>
+                (A &or; B), (&not;B &or; C) &vdash; (A &or; C)<br>
+                <em>Resolution is refutation-complete: to prove KB &models; &alpha;, show KB &and; &not;&alpha; is unsatisfiable.</em>
+              </div>
+              <div class="formula">
+                <strong>Hypothetical Syllogism:</strong><br>
+                A &rarr; B, B &rarr; C &vdash; A &rarr; C
+              </div>
+            </div>
+
+            <h3 id="cnf-conversion">3.3 CNF Conversion Steps</h3>
+            <div class="note-box">
+              <strong>Steps to convert to CNF:</strong>
+              <ol>
+                <li>Eliminate biconditionals: A &harr; B &rArr; (A &rarr; B) &and; (B &rarr; A)</li>
+                <li>Eliminate implications: A &rarr; B &rArr; &not;A &or; B</li>
+                <li>Push negations inward (De Morgan&rsquo;s + double negation)</li>
+                <li>Distribute &or; over &and;</li>
+                <li>Result: conjunction of clauses (clause = disjunction of literals)</li>
+              </ol>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 4: PREDICATE LOGIC                             -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="predicate-logic">4. Predicate Logic (Ch 06)</h2>
+
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Quantifier Equivalences:</strong><br>
+                &not;&forall;x P(x) &equiv; &exist;x &not;P(x)<br>
+                &not;&exist;x P(x) &equiv; &forall;x &not;P(x)
+              </div>
+              <div class="formula">
+                <strong>Unification:</strong><br>
+                Find substitution &theta; such that Apply(&theta;, p) = Apply(&theta;, q).<br>
+                Most General Unifier (MGU) is the most general such &theta;.<br>
+                <em>Occur check: x cannot unify with a term containing x (prevents infinite structures).</em>
+              </div>
+              <div class="formula">
+                <strong>Skolemization (remove existential quantifiers):</strong><br>
+                &bull; &exist;x P(x) &rArr; P(c) &mdash; replace with Skolem constant c<br>
+                &bull; &forall;x &exist;y P(x, y) &rArr; &forall;x P(x, f(x)) &mdash; replace with Skolem function f<br>
+                &bull; &forall;x &forall;z &exist;y P(x, y, z) &rArr; &forall;x &forall;z P(x, f(x, z), z)<br>
+                <em>Skolemization preserves satisfiability (not equivalence).</em>
+              </div>
+              <div class="formula">
+                <strong>Generalized Modus Ponens:</strong><br>
+                p<sub>1</sub>&prime;, p<sub>2</sub>&prime;, &hellip;, p<sub>n</sub>&prime;, (p<sub>1</sub> &and; p<sub>2</sub> &and; &hellip; &and; p<sub>n</sub> &rarr; q) &vdash; q&theta;<br>
+                where &theta; = Unify(p<sub>i</sub>&prime;, p<sub>i</sub>) for all i.
+              </div>
+            </div>
+
+            <h3 id="fol-to-cnf">4.1 FOL to CNF Conversion</h3>
+            <div class="note-box">
+              <strong>Additional steps beyond propositional CNF:</strong>
+              <ol>
+                <li>Eliminate implications and biconditionals (same as propositional)</li>
+                <li>Move negations inward (including quantifier negation rules)</li>
+                <li>Standardize variables (rename so each quantifier uses a unique variable)</li>
+                <li>Skolemize: remove &exist; quantifiers</li>
+                <li>Drop universal quantifiers (all remaining variables are implicitly universal)</li>
+                <li>Distribute &or; over &and;</li>
+              </ol>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 5: PROBABILITY & BAYESIAN NETWORKS             -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="probability-bayesian">5. Probability &amp; Bayesian Networks (Ch 07)</h2>
+
+            <h3 id="probability-rules">5.1 Core Probability Rules</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Sum Rule (Marginalization):</strong><br>
+                P(A) = &Sigma;<sub>b</sub> P(A, B=b) = &Sigma;<sub>b</sub> P(A | B=b) P(B=b)
+              </div>
+              <div class="formula">
+                <strong>Product Rule:</strong><br>
+                P(A, B) = P(A | B) &middot; P(B) = P(B | A) &middot; P(A)
+              </div>
+              <div class="formula">
+                <strong>Bayes&rsquo; Theorem:</strong><br>
+                P(A | B) = P(B | A) &middot; P(A) / P(B)<br><br>
+                With multiple hypotheses:<br>
+                P(H<sub>i</sub> | E) = P(E | H<sub>i</sub>) &middot; P(H<sub>i</sub>) / &Sigma;<sub>j</sub> P(E | H<sub>j</sub>) &middot; P(H<sub>j</sub>)
+              </div>
+              <div class="formula">
+                <strong>Conditional Independence:</strong><br>
+                P(A, B | C) = P(A | C) &middot; P(B | C)<br>
+                <em>Notation: A &perp; B | C (A is independent of B given C)</em>
+              </div>
+              <div class="formula">
+                <strong>Chain Rule (general):</strong><br>
+                P(X<sub>1</sub>, X<sub>2</sub>, &hellip;, X<sub>n</sub>) = &Pi;<sub>i=1..n</sub> P(X<sub>i</sub> | X<sub>1</sub>, &hellip;, X<sub>i&minus;1</sub>)
+              </div>
+            </div>
+
+            <h3 id="bayesian-networks">5.2 Bayesian Networks</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Chain Rule for Bayesian Networks:</strong><br>
+                P(X<sub>1</sub>, &hellip;, X<sub>n</sub>) = &Pi;<sub>i=1..n</sub> P(X<sub>i</sub> | Parents(X<sub>i</sub>))<br>
+                <em>Each variable is conditionally independent of its non-descendants given its parents.</em>
+              </div>
+              <div class="formula">
+                <strong>Number of Parameters:</strong><br>
+                For a node X with k binary parents: 2<sup>k</sup> rows in its CPT (for binary X, 2<sup>k</sup> independent parameters).<br>
+                Total parameters for full joint (n binary vars): 2<sup>n</sup> &minus; 1.<br>
+                BN reduces this via conditional independence.
+              </div>
+            </div>
+
+            <h3 id="d-separation">5.3 D-Separation Rules</h3>
+            <div class="definition-box">
+              <strong>D-separation</strong> determines conditional independence in a Bayesian Network. X and Y are d-separated by Z if every undirected path between X and Y is &ldquo;blocked&rdquo; by Z.
+            </div>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Structure</th>
+                  <th>Pattern</th>
+                  <th>Blocked When</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Chain</strong></td>
+                  <td>A &rarr; B &rarr; C</td>
+                  <td>B is in evidence set Z</td>
+                </tr>
+                <tr>
+                  <td><strong>Common Cause (Fork)</strong></td>
+                  <td>A &larr; B &rarr; C</td>
+                  <td>B is in evidence set Z</td>
+                </tr>
+                <tr>
+                  <td><strong>Common Effect (Collider / V-structure)</strong></td>
+                  <td>A &rarr; B &larr; C</td>
+                  <td>B and all descendants of B are <em>not</em> in Z</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="note-box">
+              <strong>Key Insight:</strong> Colliders work opposite! An unobserved collider blocks the path. Observing a collider (or its descendant) <strong>opens</strong> the path (&ldquo;explaining away&rdquo; effect).
+            </div>
+
+            <h3 id="variable-elimination">5.4 Variable Elimination</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Factor Operations:</strong><br>
+                &bull; <strong>Pointwise product:</strong> f<sub>3</sub>(X, Y, Z) = f<sub>1</sub>(X, Y) &middot; f<sub>2</sub>(Y, Z)<br>
+                &bull; <strong>Summing out (marginalization):</strong> f(X) = &Sigma;<sub>y</sub> f(X, Y=y)<br><br>
+                <strong>Elimination order matters:</strong> affects intermediate factor sizes. Finding optimal order is NP-hard; use heuristics (min-degree, min-fill).
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 6: MACHINE LEARNING                            -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="machine-learning">6. Machine Learning (Ch 08)</h2>
+
+            <h3 id="bias-variance">6.1 Bias-Variance Decomposition</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Expected Prediction Error:</strong><br>
+                E[(y &minus; &ycirc;)&sup2;] = Bias(&ycirc;)&sup2; + Var(&ycirc;) + &sigma;&sup2;<br><br>
+                &bull; <strong>Bias&sup2;:</strong> (E[&ycirc;] &minus; f(x))&sup2; &mdash; error from wrong assumptions<br>
+                &bull; <strong>Variance:</strong> E[(&ycirc; &minus; E[&ycirc;])&sup2;] &mdash; error from sensitivity to training data<br>
+                &bull; <strong>&sigma;&sup2; (Irreducible noise):</strong> inherent noise in the data
+              </div>
+              <div class="formula">
+                <strong>Bias-Variance Tradeoff:</strong><br>
+                Simple models &rarr; high bias, low variance (underfitting)<br>
+                Complex models &rarr; low bias, high variance (overfitting)
+              </div>
+            </div>
+
+            <h3 id="loss-functions">6.2 Loss Functions</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Mean Squared Error (MSE):</strong><br>
+                MSE = (1/n) &Sigma;<sub>i=1..n</sub> (y<sub>i</sub> &minus; &ycirc;<sub>i</sub>)&sup2;
+              </div>
+              <div class="formula">
+                <strong>Cross-Entropy Loss (Binary):</strong><br>
+                L = &minus;[y log(&ycirc;) + (1 &minus; y) log(1 &minus; &ycirc;)]
+              </div>
+              <div class="formula">
+                <strong>Cross-Entropy Loss (Multi-class):</strong><br>
+                L = &minus;&Sigma;<sub>i=1..C</sub> y<sub>i</sub> log(&ycirc;<sub>i</sub>)<br>
+                where C = number of classes, y<sub>i</sub> is 1 for the true class and 0 otherwise.
+              </div>
+            </div>
+
+            <h3 id="evaluation-metrics">6.3 Evaluation Metrics</h3>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Formula</th>
+                  <th>Use When</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Accuracy</strong></td>
+                  <td>(TP + TN) / (TP + TN + FP + FN)</td>
+                  <td>Balanced classes</td>
+                </tr>
+                <tr>
+                  <td><strong>Precision</strong></td>
+                  <td>TP / (TP + FP)</td>
+                  <td>Cost of false positive is high</td>
+                </tr>
+                <tr>
+                  <td><strong>Recall (Sensitivity)</strong></td>
+                  <td>TP / (TP + FN)</td>
+                  <td>Cost of false negative is high</td>
+                </tr>
+                <tr>
+                  <td><strong>F1 Score</strong></td>
+                  <td>2PR / (P + R) = 2TP / (2TP + FP + FN)</td>
+                  <td>Imbalanced classes</td>
+                </tr>
+                <tr>
+                  <td><strong>Specificity</strong></td>
+                  <td>TN / (TN + FP)</td>
+                  <td>Screening tests</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 id="regularization">6.4 Regularization</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>L1 Regularization (Lasso):</strong><br>
+                J(&theta;) = Loss(&theta;) + &lambda; &Sigma;<sub>j</sub> |&theta;<sub>j</sub>|<br>
+                <em>Promotes sparsity (drives some weights to exactly 0).</em>
+              </div>
+              <div class="formula">
+                <strong>L2 Regularization (Ridge):</strong><br>
+                J(&theta;) = Loss(&theta;) + &lambda; &Sigma;<sub>j</sub> &theta;<sub>j</sub>&sup2;<br>
+                <em>Shrinks weights toward 0 but doesn&rsquo;t force exact zeros.</em>
+              </div>
+            </div>
+
+            <h3 id="decision-trees">6.5 Decision Trees &amp; Information Theory</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Entropy:</strong><br>
+                H(S) = &minus;&Sigma;<sub>i=1..C</sub> p<sub>i</sub> log<sub>2</sub>(p<sub>i</sub>)<br>
+                Maximum entropy for C classes = log<sub>2</sub>(C)
+              </div>
+              <div class="formula">
+                <strong>Information Gain:</strong><br>
+                IG(S, A) = H(S) &minus; &Sigma;<sub>v &isin; Values(A)</sub> (|S<sub>v</sub>| / |S|) &middot; H(S<sub>v</sub>)<br>
+                <em>ID3 selects the attribute with the highest information gain.</em>
+              </div>
+              <div class="formula">
+                <strong>Gini Impurity:</strong><br>
+                Gini(S) = 1 &minus; &Sigma;<sub>i=1..C</sub> p<sub>i</sub>&sup2;<br>
+                <em>Used by CART. Gini = 0 means pure node.</em>
+              </div>
+            </div>
+
+            <h3 id="svm">6.6 Support Vector Machines</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Margin:</strong> 2 / ||w||<br>
+                <strong>Optimization:</strong> Minimize &frac12; ||w||&sup2; subject to y<sub>i</sub>(w &middot; x<sub>i</sub> + b) &ge; 1
+              </div>
+              <div class="formula">
+                <strong>Kernel Trick:</strong><br>
+                &bull; Linear: K(x, z) = x &middot; z<br>
+                &bull; Polynomial: K(x, z) = (x &middot; z + c)<sup>d</sup><br>
+                &bull; RBF/Gaussian: K(x, z) = exp(&minus;||x &minus; z||&sup2; / 2&sigma;&sup2;)
+              </div>
+            </div>
+
+            <h3 id="naive-bayes">6.7 Na&iuml;ve Bayes Classifier</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Classification Rule:</strong><br>
+                &ycirc; = argmax<sub>c</sub> P(C=c) &middot; &Pi;<sub>i=1..n</sub> P(x<sub>i</sub> | C=c)<br>
+                <em>Assumes features are conditionally independent given the class.</em>
+              </div>
+              <div class="formula">
+                <strong>Laplace Smoothing:</strong><br>
+                P(x<sub>i</sub> | C=c) = (count(x<sub>i</sub>, c) + 1) / (count(c) + |vocabulary|)
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 7: NEURAL NETWORKS                             -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="neural-networks">7. Neural Networks &amp; Deep Learning (Ch 09)</h2>
+
+            <h3 id="perceptron">7.1 Perceptron</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Perceptron Output:</strong><br>
+                y = &sigma;(w &middot; x + b) where &sigma; is the activation function (step function for classical perceptron)
+              </div>
+              <div class="formula">
+                <strong>Perceptron Learning Rule:</strong><br>
+                w<sub>i</sub> &larr; w<sub>i</sub> + &eta; (y &minus; &ycirc;) x<sub>i</sub><br>
+                <em>Converges in finite steps if data is linearly separable (Perceptron Convergence Theorem).</em>
+              </div>
+              <div class="formula">
+                <strong>XOR Problem:</strong> A single perceptron cannot solve XOR &mdash; requires a multi-layer network (at least one hidden layer).
+              </div>
+            </div>
+
+            <h3 id="activation-functions">7.2 Activation Functions</h3>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Function</th>
+                  <th>Formula</th>
+                  <th>Range</th>
+                  <th>Key Property</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Sigmoid</strong></td>
+                  <td>&sigma;(z) = 1 / (1 + e<sup>&minus;z</sup>)</td>
+                  <td>(0, 1)</td>
+                  <td>Output interpretable as probability; vanishing gradient</td>
+                </tr>
+                <tr>
+                  <td><strong>Tanh</strong></td>
+                  <td>tanh(z) = (e<sup>z</sup> &minus; e<sup>&minus;z</sup>) / (e<sup>z</sup> + e<sup>&minus;z</sup>)</td>
+                  <td>(&minus;1, 1)</td>
+                  <td>Zero-centered; still has vanishing gradient</td>
+                </tr>
+                <tr>
+                  <td><strong>ReLU</strong></td>
+                  <td>f(z) = max(0, z)</td>
+                  <td>[0, &infin;)</td>
+                  <td>No vanishing gradient for z &gt; 0; dying ReLU problem</td>
+                </tr>
+                <tr>
+                  <td><strong>Leaky ReLU</strong></td>
+                  <td>f(z) = max(&alpha;z, z), &alpha; &asymp; 0.01</td>
+                  <td>(&minus;&infin;, &infin;)</td>
+                  <td>Fixes dying ReLU</td>
+                </tr>
+                <tr>
+                  <td><strong>Softmax</strong></td>
+                  <td>&sigma;(z<sub>i</sub>) = e<sup>z<sub>i</sub></sup> / &Sigma;<sub>j</sub> e<sup>z<sub>j</sub></sup></td>
+                  <td>(0, 1), sums to 1</td>
+                  <td>Used for multi-class output layer</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 id="backpropagation">7.3 Backpropagation</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Error Signal (Output Unit j):</strong><br>
+                &delta;<sub>j</sub> = (y<sub>j</sub> &minus; o<sub>j</sub>) &middot; &sigma;&prime;(net<sub>j</sub>)<br>
+                where net<sub>j</sub> = &Sigma;<sub>i</sub> w<sub>ij</sub> o<sub>i</sub>
+              </div>
+              <div class="formula">
+                <strong>Error Signal (Hidden Unit j):</strong><br>
+                &delta;<sub>j</sub> = &sigma;&prime;(net<sub>j</sub>) &middot; &Sigma;<sub>k</sub> w<sub>jk</sub> &delta;<sub>k</sub><br>
+                (sum over all units k in the next layer)
+              </div>
+              <div class="formula">
+                <strong>Weight Update:</strong><br>
+                &Delta;w<sub>ij</sub> = &minus;&eta; &middot; &delta;<sub>j</sub> &middot; o<sub>i</sub><br>
+                w<sub>ij</sub> &larr; w<sub>ij</sub> + &Delta;w<sub>ij</sub><br>
+                where &eta; = learning rate, o<sub>i</sub> = output of unit i
+              </div>
+              <div class="formula">
+                <strong>Gradient Descent Variants:</strong><br>
+                &bull; <strong>SGD:</strong> Update after each sample<br>
+                &bull; <strong>Mini-batch:</strong> Update after a batch of samples<br>
+                &bull; <strong>Adam:</strong> Adaptive learning rates with momentum &mdash; m<sub>t</sub> = &beta;<sub>1</sub>m<sub>t&minus;1</sub> + (1&minus;&beta;<sub>1</sub>)g<sub>t</sub>, v<sub>t</sub> = &beta;<sub>2</sub>v<sub>t&minus;1</sub> + (1&minus;&beta;<sub>2</sub>)g<sub>t</sub>&sup2;
+              </div>
+            </div>
+
+            <h3 id="cnn-formulas">7.4 Convolutional Neural Networks</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Output Size (1D):</strong><br>
+                output = &lfloor;(n &minus; f + 2p) / s&rfloor; + 1<br>
+                where n = input size, f = filter size, p = padding, s = stride
+              </div>
+              <div class="formula">
+                <strong>Number of Parameters (Conv Layer):</strong><br>
+                params = (f &times; f &times; c<sub>in</sub> + 1) &times; c<sub>out</sub><br>
+                where f = filter size, c<sub>in</sub> = input channels, c<sub>out</sub> = output channels (filters), +1 for bias
+              </div>
+            </div>
+
+            <h3 id="attention">7.5 Attention Mechanism</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Scaled Dot-Product Attention:</strong><br>
+                Attention(Q, K, V) = softmax(QK<sup>T</sup> / &radic;d<sub>k</sub>) &middot; V<br>
+                where Q = queries, K = keys, V = values, d<sub>k</sub> = dimension of keys.<br>
+                Scaling by &radic;d<sub>k</sub> prevents softmax saturation for large d<sub>k</sub>.
+              </div>
+              <div class="formula">
+                <strong>Multi-Head Attention:</strong><br>
+                MultiHead(Q, K, V) = Concat(head<sub>1</sub>, &hellip;, head<sub>h</sub>) W<sup>O</sup><br>
+                where head<sub>i</sub> = Attention(QW<sub>i</sub><sup>Q</sup>, KW<sub>i</sub><sup>K</sup>, VW<sub>i</sub><sup>V</sup>)
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 8: REINFORCEMENT LEARNING                      -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="reinforcement-learning">8. Reinforcement Learning (Ch 12)</h2>
+
+            <h3 id="mdp">8.1 Markov Decision Processes</h3>
+            <div class="definition-box">
+              <strong>MDP Tuple:</strong> (S, A, P, R, &gamma;) where S = states, A = actions, P(s&prime;|s,a) = transition model, R(s,a,s&prime;) = reward, &gamma; = discount factor (0 &le; &gamma; &lt; 1).
+            </div>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Bellman Equation (State Value):</strong><br>
+                V<sup>&pi;</sup>(s) = &Sigma;<sub>a</sub> &pi;(a|s) &Sigma;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; V<sup>&pi;</sup>(s&prime;)]
+              </div>
+              <div class="formula">
+                <strong>Bellman Optimality Equation (Value):</strong><br>
+                V*(s) = max<sub>a</sub> &Sigma;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; V*(s&prime;)]
+              </div>
+              <div class="formula">
+                <strong>Bellman Optimality Equation (Q-value):</strong><br>
+                Q*(s,a) = &Sigma;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; max<sub>a&prime;</sub> Q*(s&prime;,a&prime;)]
+              </div>
+              <div class="formula">
+                <strong>Relationship:</strong> V*(s) = max<sub>a</sub> Q*(s,a) and &pi;*(s) = argmax<sub>a</sub> Q*(s,a)
+              </div>
+            </div>
+
+            <h3 id="value-iteration">8.2 Value Iteration</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Update Rule:</strong><br>
+                V<sub>k+1</sub>(s) = max<sub>a</sub> &Sigma;<sub>s&prime;</sub> P(s&prime;|s,a) [R(s,a,s&prime;) + &gamma; V<sub>k</sub>(s&prime;)]<br><br>
+                <strong>Convergence:</strong> V<sub>k</sub> &rarr; V* as k &rarr; &infin;. Stop when max<sub>s</sub> |V<sub>k+1</sub>(s) &minus; V<sub>k</sub>(s)| &lt; &epsilon;.<br>
+                <em>Convergence rate depends on &gamma;: smaller &gamma; = faster convergence.</em>
+              </div>
+            </div>
+
+            <h3 id="policy-iteration">8.3 Policy Iteration</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Two alternating steps:</strong><br>
+                1. <strong>Policy Evaluation:</strong> Solve V<sup>&pi;</sup>(s) = &Sigma;<sub>s&prime;</sub> P(s&prime;|s, &pi;(s)) [R + &gamma; V<sup>&pi;</sup>(s&prime;)] (system of linear equations)<br>
+                2. <strong>Policy Improvement:</strong> &pi;&prime;(s) = argmax<sub>a</sub> &Sigma;<sub>s&prime;</sub> P(s&prime;|s,a) [R + &gamma; V<sup>&pi;</sup>(s&prime;)]<br><br>
+                <em>Converges in a finite number of iterations (at most |A|<sup>|S|</sup> iterations).</em>
+              </div>
+            </div>
+
+            <h3 id="td-learning">8.4 Temporal Difference Learning</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>TD(0) Update:</strong><br>
+                V(s) &larr; V(s) + &alpha; [r + &gamma; V(s&prime;) &minus; V(s)]<br>
+                <em>Bootstraps using current estimate. Combines ideas of MC and DP.</em>
+              </div>
+              <div class="formula">
+                <strong>Q-Learning (Off-Policy TD):</strong><br>
+                Q(s,a) &larr; Q(s,a) + &alpha; [r + &gamma; max<sub>a&prime;</sub> Q(s&prime;,a&prime;) &minus; Q(s,a)]<br>
+                <em>Converges to Q* regardless of exploration policy (with sufficient exploration and decaying &alpha;).</em>
+              </div>
+              <div class="formula">
+                <strong>SARSA (On-Policy TD):</strong><br>
+                Q(s,a) &larr; Q(s,a) + &alpha; [r + &gamma; Q(s&prime;,a&prime;) &minus; Q(s,a)]<br>
+                <em>Uses the actual next action a&prime; chosen by the policy (not max).</em>
+              </div>
+            </div>
+
+            <h3 id="exploration">8.5 Exploration Strategies</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>&epsilon;-Greedy:</strong><br>
+                With probability 1 &minus; &epsilon;: choose a = argmax<sub>a</sub> Q(s,a)<br>
+                With probability &epsilon;: choose a random action uniformly
+              </div>
+              <div class="formula">
+                <strong>Boltzmann (Softmax) Exploration:</strong><br>
+                P(a|s) = e<sup>Q(s,a)/T</sup> / &Sigma;<sub>a&prime;</sub> e<sup>Q(s,a&prime;)/T</sup><br>
+                <em>Temperature T controls exploration: high T = random, low T = greedy.</em>
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 9: CSP                                         -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="constraint-satisfaction">9. Constraint Satisfaction Problems (Ch 14)</h2>
+
+            <div class="formula-list">
+              <div class="formula">
+                <strong>CSP Definition:</strong> (X, D, C) where X = set of variables, D = domains, C = constraints.
+              </div>
+              <div class="formula">
+                <strong>Arc Consistency (AC-3):</strong><br>
+                X<sub>i</sub> is arc-consistent w.r.t. X<sub>j</sub> if for every value in D<sub>i</sub> there exists some value in D<sub>j</sub> that satisfies the constraint between X<sub>i</sub> and X<sub>j</sub>.<br>
+                <strong>Complexity:</strong> O(ed&sup3;) where e = number of arcs, d = domain size.
+              </div>
+              <div class="formula">
+                <strong>Backtracking Search Heuristics:</strong><br>
+                &bull; <strong>MRV (Minimum Remaining Values):</strong> Choose variable with fewest legal values<br>
+                &bull; <strong>Degree Heuristic:</strong> Choose variable involved in most constraints on unassigned variables<br>
+                &bull; <strong>LCV (Least Constraining Value):</strong> Choose value that rules out fewest choices for neighbors
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 10: NLP                                        -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="nlp">10. Natural Language Processing (Ch 10)</h2>
+
+            <div class="formula-list">
+              <div class="formula">
+                <strong>N-gram Probability:</strong><br>
+                P(w<sub>n</sub> | w<sub>1</sub>&hellip;w<sub>n&minus;1</sub>) &approx; P(w<sub>n</sub> | w<sub>n&minus;N+1</sub>&hellip;w<sub>n&minus;1</sub>)<br>
+                <em>Bigram: P(w<sub>n</sub> | w<sub>n&minus;1</sub>), Trigram: P(w<sub>n</sub> | w<sub>n&minus;2</sub>, w<sub>n&minus;1</sub>)</em>
+              </div>
+              <div class="formula">
+                <strong>TF-IDF:</strong><br>
+                TF(t,d) = count(t in d) / |d|<br>
+                IDF(t) = log(N / df(t))<br>
+                TF-IDF(t,d) = TF(t,d) &times; IDF(t)<br>
+                <em>High value = important word in a specific document.</em>
+              </div>
+              <div class="formula">
+                <strong>Perplexity:</strong><br>
+                PP(W) = P(w<sub>1</sub>&hellip;w<sub>N</sub>)<sup>&minus;1/N</sup><br>
+                <em>Lower perplexity = better language model.</em>
+              </div>
+              <div class="formula">
+                <strong>Cosine Similarity:</strong><br>
+                cos(&theta;) = (A &middot; B) / (||A|| &middot; ||B||)
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 11: PLANNING                                   -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="planning">11. Planning (Ch 13)</h2>
+
+            <div class="formula-list">
+              <div class="formula">
+                <strong>STRIPS Representation:</strong><br>
+                Action(a): Precondition(a), Effect(a) = Add(a) &cup; Del(a)<br>
+                State: set of ground atoms (closed-world assumption: unlisted atoms are false)
+              </div>
+              <div class="formula">
+                <strong>Planning Graph Levels:</strong><br>
+                &bull; S<sub>0</sub> = initial state literals<br>
+                &bull; A<sub>i</sub> = actions whose preconditions are in S<sub>i</sub> (+ persistence actions)<br>
+                &bull; S<sub>i+1</sub> = effects of actions in A<sub>i</sub><br>
+                &bull; <strong>Mutex relations:</strong> Inconsistent effects, interference, competing needs, inconsistent support
+              </div>
+              <div class="formula">
+                <strong>GraphPlan heuristic for A*:</strong><br>
+                h(s) = level at which all goals first appear without mutex in the planning graph (admissible heuristic).
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- SECTION 12: QUICK REFERENCE TABLE                      -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="quick-reference">12. Quick Reference: Common GATE Calculations</h2>
+
+            <h3 id="complexity-cheatsheet">12.1 Complexity Cheat-Sheet</h3>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Algorithm</th>
+                  <th>Time</th>
+                  <th>Space</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>BFS</td><td>O(b<sup>d</sup>)</td><td>O(b<sup>d</sup>)</td><td>Complete, optimal (uniform cost)</td></tr>
+                <tr><td>DFS</td><td>O(b<sup>m</sup>)</td><td>O(bm)</td><td>Not complete, not optimal</td></tr>
+                <tr><td>IDDFS</td><td>O(b<sup>d</sup>)</td><td>O(bd)</td><td>Complete, optimal (uniform cost)</td></tr>
+                <tr><td>UCS</td><td>O(b<sup>1+&lfloor;C*/&epsilon;&rfloor;</sup>)</td><td>O(b<sup>1+&lfloor;C*/&epsilon;&rfloor;</sup>)</td><td>Complete, optimal</td></tr>
+                <tr><td>A* (Tree)</td><td>O(b<sup>d</sup>) typical</td><td>O(b<sup>d</sup>)</td><td>Optimal if h admissible</td></tr>
+                <tr><td>A* (Graph)</td><td>O(b<sup>d</sup>) typical</td><td>O(b<sup>d</sup>)</td><td>Optimal if h consistent</td></tr>
+                <tr><td>Minimax</td><td>O(b<sup>m</sup>)</td><td>O(bm)</td><td>Exponential in depth</td></tr>
+                <tr><td>Alpha-Beta (best)</td><td>O(b<sup>m/2</sup>)</td><td>O(bm)</td><td>Perfect move ordering</td></tr>
+                <tr><td>AC-3</td><td>O(ed&sup3;)</td><td>O(e + nd)</td><td>e=arcs, d=domain, n=vars</td></tr>
+              </tbody>
+            </table>
+
+            <h3 id="counting-formulas">12.2 Useful Counting Formulas</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Nodes in a complete tree:</strong> 1 + b + b&sup2; + &hellip; + b<sup>d</sup> = (b<sup>d+1</sup> &minus; 1) / (b &minus; 1)
+              </div>
+              <div class="formula">
+                <strong>Number of propositional models:</strong> 2<sup>n</sup> for n propositional symbols
+              </div>
+              <div class="formula">
+                <strong>BN CPT entries:</strong> For binary node with k binary parents: 2<sup>k</sup> independent parameters
+              </div>
+              <div class="formula">
+                <strong>Geometric sum for discounted rewards:</strong><br>
+                &Sigma;<sub>t=0..&infin;</sub> &gamma;<sup>t</sup> R = R / (1 &minus; &gamma;) &nbsp;&mdash;&nbsp; maximum total return for constant reward R
+              </div>
+              <div class="formula">
+                <strong>Conv output dimension:</strong> &lfloor;(n &minus; f + 2p) / s&rfloor; + 1
+              </div>
+            </div>
+
+            <h3 id="important-identities">12.3 Important Identities &amp; Inequalities</h3>
+            <div class="formula-list">
+              <div class="formula">
+                <strong>Triangle Inequality (heuristic admissibility check):</strong><br>
+                h(n) &le; c(n, n&prime;) + h(n&prime;) &rArr; consistent heuristic
+              </div>
+              <div class="formula">
+                <strong>Jensen&rsquo;s Inequality:</strong><br>
+                f(E[X]) &le; E[f(X)] for convex f<br>
+                Useful in deriving cross-entropy and KL divergence properties.
+              </div>
+              <div class="formula">
+                <strong>KL Divergence (Relative Entropy):</strong><br>
+                D<sub>KL</sub>(P || Q) = &Sigma;<sub>x</sub> P(x) log(P(x) / Q(x)) &ge; 0<br>
+                <em>Not symmetric: D<sub>KL</sub>(P||Q) &ne; D<sub>KL</sub>(Q||P)</em>
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <!-- FINAL TIPS                                             -->
+            <!-- ═══════════════════════════════════════════════════════ -->
+            <h2 id="exam-tips">13. Last-Minute Exam Tips</h2>
+
+            <div class="note-box">
+              <strong>Formula Recall Strategy:</strong>
+              <ul>
+                <li><strong>Group similar formulas:</strong> Bellman equations all share the same structure &mdash; learn the template, not each variant separately.</li>
+                <li><strong>Derive, don&rsquo;t memorize:</strong> Understand where each formula comes from. If you forget Bayes&rsquo; theorem, you can derive it from the product rule.</li>
+                <li><strong>Boundary checks:</strong> Plug extreme values (&gamma;=0, &gamma;=1, &epsilon;&rarr;0, b=1) to verify your formula makes sense.</li>
+                <li><strong>Units/dimensions:</strong> In probability, results must be in [0,1]. In search, complexity must use correct parameters (b, d, m).</li>
+              </ul>
+            </div>
+
+            <div class="warning-box">
+              <strong>Common Formula Pitfalls in GATE:</strong>
+              <ul>
+                <li>Confusing BFS space O(b<sup>d</sup>) with DFS space O(bm) &mdash; these are very different!</li>
+                <li>Forgetting that A* Graph Search needs <em>consistency</em> (not just admissibility) for optimality.</li>
+                <li>Mixing up &alpha; (learning rate in ML) with &alpha; (alpha in alpha-beta pruning).</li>
+                <li>Using P(A|B) when you need P(B|A) &mdash; always write out Bayes&rsquo; theorem fully.</li>
+                <li>Forgetting to Skolemize before applying resolution in FOL.</li>
+              </ul>
+            </div>
+
+          </article>
+          <aside class="page-toc" aria-label="On this page"><div class="toc-header">On This Page</div><ul id="toc-links"></ul></aside>
+        </div>
+        <nav class="nav-buttons" aria-label="Page navigation">
+          <a href="previous-year-compilation.html" class="btn btn-nav btn-prev">&larr; Previous: Previous Year Compilation</a>
+          <a href="common-mistakes.html" class="btn btn-nav btn-next">Next: Common Mistakes &rarr;</a>
+        </nav>
+        <div class="page-actions"><button class="btn btn-sm btn-bookmark" data-page="ch16-formula-sheet">&#128278; Bookmark</button><button class="btn btn-sm btn-complete" data-page="ch16-formula-sheet">&#9989; Mark Complete</button></div>
+      </div>
+    </main>
+  </div>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

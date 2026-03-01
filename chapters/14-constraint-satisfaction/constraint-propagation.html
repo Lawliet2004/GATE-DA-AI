@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Constraint Propagation — local consistency, forward checking vs AC, specialized constraints, tree-structured CSPs, cutset conditioning, tree decomposition for GATE DA.">
+  <title>Constraint Propagation — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a>
+            <a href="backtracking-csp.html" class="sidebar-link"><span class="link-check"></span> Backtracking Search<span class="link-type theory">Theory</span></a>
+            <a href="arc-consistency.html" class="sidebar-link"><span class="link-check"></span> Arc Consistency<span class="link-type theory">Theory</span></a>
+            <a href="constraint-propagation.html" class="sidebar-link active"><span class="link-check"></span> Constraint Propagation<span class="link-type theory">Theory</span></a>
+            <a href="practical-csp.html" class="sidebar-link"><span class="link-check"></span> &#128736; Practical: CSP Solver<span class="link-type practical">Practical</span></a>
+            <a href="notes-csp.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-csp.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="csp-formulation.html">Chapter 14: Constraint Satisfaction</a> &raquo; <span class="current">Constraint Propagation</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch14-constraint-propagation">
+
+            <h1>Constraint Propagation</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium-High</span>
+              <button class="bookmark-btn" data-page="chapters/14-constraint-satisfaction/constraint-propagation.html" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Understand <strong>constraint propagation</strong> as a form of inference</li>
+              <li>Compare <strong>forward checking</strong> and <strong>full arc consistency</strong> during search</li>
+              <li>Handle <strong>specialized constraints</strong>: AllDiff, AtMost</li>
+              <li>Solve <strong>tree-structured CSPs</strong> in O(nd&sup2;) time</li>
+              <li>Apply <strong>cutset conditioning</strong> and understand <strong>tree decomposition</strong></li>
+              <li>Explain <strong>bounds propagation</strong> for ordered domains</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="propagation-as-inference">
+                <h2>1. Constraint Propagation as Inference</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Constraint Propagation</h4>
+                  <p><strong>Constraint propagation</strong> uses the constraints to reduce the domains of variables, eliminating values that cannot participate in any solution. It is a form of <em>inference</em> that can be applied before search (as preprocessing) or during search (interleaved with backtracking).</p>
+                </div>
+
+                <p>The key idea: when a value is removed from a variable's domain, the effects <strong>propagate</strong> through the constraint graph. Removing value v from X<sub>i</sub> may cause some values in X<sub>j</sub> (a neighbour of X<sub>i</sub>) to lose support, leading to further removals, and so on. This chain reaction is constraint propagation.</p>
+
+                <div class="note-box">
+                  <h4>&#128161; Propagation Strength Spectrum</h4>
+                  <p>From weakest to strongest: <strong>No propagation</strong> (plain backtracking) → <strong>Forward checking</strong> (check assigned&ndash;unassigned pairs) → <strong>Arc consistency</strong> (check all pairs) → <strong>Path consistency</strong> (check triples) → <strong>Strong n-consistency</strong> (backtrack-free, but expensive).</p>
+                </div>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="local-consistency">
+                <h2>2. Local Consistency</h2>
+
+                <p><strong>Local consistency</strong> is a family of properties that can be enforced in polynomial time. Each level eliminates values (or tuples) that cannot be part of any solution:</p>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Level</th><th>What It Checks</th><th>Cost</th><th>Detects</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Node consistency</strong></td><td>Single variable vs unary constraints</td><td>O(n &middot; d)</td><td>Unary violations</td></tr>
+                    <tr><td><strong>Arc consistency</strong></td><td>Pairs of variables</td><td>O(c &middot; d&sup3;) for AC-3</td><td>Binary inconsistencies</td></tr>
+                    <tr><td><strong>Path consistency</strong></td><td>Triples of variables</td><td>O(n&sup3; &middot; d&sup3;)</td><td>Ternary inconsistencies</td></tr>
+                    <tr><td><strong>i-consistency</strong></td><td>Sets of i variables</td><td>Exponential in i</td><td>Higher-order issues</td></tr>
+                  </tbody>
+                </table>
+
+                <p>In practice, <strong>arc consistency</strong> provides the best cost-benefit trade-off and is the most widely used form of local consistency.</p>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="fc-vs-ac">
+                <h2>3. Forward Checking vs. Full Arc Consistency</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Maintaining Arc Consistency During Search</h4>
+                  <p>When combined with backtracking search, there are two main strategies for interleaving propagation:</p>
+                  <ul>
+                    <li><strong>Forward Checking (FC)</strong>: After assigning X<sub>i</sub> = v, check only arcs (X<sub>j</sub>, X<sub>i</sub>) for unassigned neighbours X<sub>j</sub></li>
+                    <li><strong>MAC (Maintaining Arc Consistency)</strong>: After assigning X<sub>i</sub> = v, run full AC-3 starting from arcs involving X<sub>i</sub></li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; FC Misses What MAC Catches</h4>
+                  <p>Consider variables A, B, C with D<sub>A</sub>={1,2}, D<sub>B</sub>={1,2}, D<sub>C</sub>={1,2} and constraints A≠B, B≠C, A≠C.</p>
+                  <p><strong>Assign A = 1</strong>:</p>
+                  <ul>
+                    <li>FC removes 1 from D<sub>B</sub> → D<sub>B</sub> = {2}. Removes 1 from D<sub>C</sub> → D<sub>C</sub> = {2}.</li>
+                    <li>FC does NOT check B vs C. D<sub>B</sub>={2}, D<sub>C</sub>={2} with B≠C → inconsistent! FC won't detect this until we try to assign B.</li>
+                    <li>MAC would propagate: after D<sub>B</sub> shrinks, check (C, B). C=2 needs B≠2, but D<sub>B</sub>={2} → no support → domain wipe-out detected immediately!</li>
+                  </ul>
+                </div>
+
+                <table class="comparison-table">
+                  <thead><tr><th>Criterion</th><th>Forward Checking</th><th>MAC</th></tr></thead>
+                  <tbody>
+                    <tr><td>Propagation scope</td><td>Current → neighbours only</td><td>Full propagation cascade</td></tr>
+                    <tr><td>Early failure detection</td><td>Moderate</td><td>Strong</td></tr>
+                    <tr><td>Cost per assignment</td><td>O(n &middot; d)</td><td>O(c &middot; d&sup3;) worst case</td></tr>
+                    <tr><td>Tree size (typically)</td><td>Larger</td><td>Smaller</td></tr>
+                    <tr><td>Best for</td><td>Loosely constrained problems</td><td>Tightly constrained problems</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="specialized-constraints">
+                <h2>4. Specialized Constraints</h2>
+
+                <h3>4.1 AllDiff Constraint</h3>
+                <div class="definition-box">
+                  <h4>&#128218; AllDiff Propagation</h4>
+                  <p>For <strong>AllDiff</strong>(X<sub>1</sub>, &hellip;, X<sub>k</sub>): if any variable has a singleton domain {v}, remove v from all other variables' domains. More powerfully, if m variables collectively have only m possible values, those values can be removed from all other variables in the constraint.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; AllDiff Example (Sudoku Row)</h4>
+                  <p>Row variables: X<sub>1</sub>=5, X<sub>2</sub>=?, X<sub>3</sub>=?, &hellip;, X<sub>9</sub>=3</p>
+                  <p>Given X<sub>1</sub>=5 and X<sub>9</sub>=3: remove 5 and 3 from the domains of X<sub>2</sub>&hellip;X<sub>8</sub>.</p>
+                  <p>If D<sub>4</sub>={7} and D<sub>6</sub>={7,8}: after AllDiff propagation, X<sub>4</sub>=7 forces removal of 7 from D<sub>6</sub> → D<sub>6</sub>={8}.</p>
+                </div>
+
+                <h3>4.2 AtMost Constraint</h3>
+                <div class="definition-box">
+                  <h4>&#128218; AtMost Constraint</h4>
+                  <p><strong>AtMost</strong>(n, X<sub>1</sub>, &hellip;, X<sub>k</sub>, v): at most n of the variables can take value v. If already n variables are assigned value v, remove v from all remaining unassigned variables' domains.</p>
+                </div>
+
+                <h3>4.3 Bounds Propagation</h3>
+                <div class="definition-box">
+                  <h4>&#128218; Bounds Propagation</h4>
+                  <p>For constraints over <strong>ordered domains</strong> (integers), maintain only the <strong>lower</strong> and <strong>upper bounds</strong> of each variable's domain. When a constraint like X<sub>1</sub> + X<sub>2</sub> ≤ 10 exists with D<sub>1</sub> = [1, 7], D<sub>2</sub> = [3, 8], we can tighten: X<sub>2</sub> ≤ 10 &minus; 1 = 9 (no change), X<sub>1</sub> ≤ 10 &minus; 3 = 7 (no change). If D<sub>1</sub> = [4, 7], then X<sub>2</sub> ≤ 10 &minus; 4 = 6, so D<sub>2</sub> shrinks to [3, 6].</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="tree-structured-csps">
+                <h2>5. Tree-Structured CSPs</h2>
+
+                <div class="theorem-box">
+                  <h4>&#128220; Tree CSP Theorem</h4>
+                  <p>If the <strong>constraint graph</strong> is a <strong>tree</strong> (acyclic connected graph), the CSP can be solved in <strong>O(n &middot; d&sup2;)</strong> time, where n = number of variables and d = maximum domain size. This is linear in the number of variables!</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Algorithm: Tree-CSP-Solver</h4>
+                  <pre>
+function TREE-CSP-SOLVER(csp) returns solution or failure
+    1. Choose any variable as root; order variables by topological sort
+       giving X<sub>1</sub>, X<sub>2</sub>, &hellip;, X<sub>n</sub> where parent(X<sub>i</sub>) comes before X<sub>i</sub>
+    2. // Backward pass: make arcs consistent from leaves to root
+       for j = n down to 2 do
+           REVISE(csp, parent(X<sub>j</sub>), X<sub>j</sub>)
+           if D<sub>parent(X<sub>j</sub>)</sub> = &empty; then return failure
+    3. // Forward pass: assign values from root to leaves
+       for j = 1 to n do
+           X<sub>j</sub> &larr; any value in D<sub>j</sub> consistent with parent's assignment
+    return assignment
+                  </pre>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; Tree CSP Example</h4>
+                  <p>Variables: A &mdash; B &mdash; C &mdash; D (a path/chain, which is a tree)</p>
+                  <p>Domains: all {R, G, B}. Constraints: adjacent ≠.</p>
+                  <p><strong>Backward pass</strong>: REVISE(C, D) → no change. REVISE(B, C) → no change. REVISE(A, B) → no change.</p>
+                  <p><strong>Forward pass</strong>: A=R, B=G (≠R), C=R (≠G), D=G (≠R). Solution found with no backtracking!</p>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="cutset-conditioning">
+                <h2>6. Cutset Conditioning</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Cycle Cutset</h4>
+                  <p>A <strong>cycle cutset</strong> S is a subset of variables such that removing S from the constraint graph makes it a <strong>tree</strong>. If |S| = c, the algorithm:</p>
+                  <ol>
+                    <li>Try all d<sup>c</sup> assignments to the cutset variables</li>
+                    <li>For each assignment, reduce domains of remaining variables and solve the tree-structured CSP in O(n &middot; d&sup2;)</li>
+                  </ol>
+                  <p>Total complexity: <strong>O(d<sup>c</sup> &middot; n &middot; d&sup2;)</strong> &mdash; exponential only in the cutset size c, not in n.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; Cutset for Australia Map</h4>
+                  <p>The Australia constraint graph has cycles (e.g., WA&ndash;NT&ndash;SA&ndash;WA). Removing <strong>SA</strong> (which connects to 5 of 6 remaining regions) breaks all cycles, giving a cutset of size 1. The remaining graph {WA, NT, Q, NSW, V, T} restricted by SA's assignment forms a forest. We try 3 values for SA, solving each resulting tree in O(6 &middot; 9) = O(54). Total: 3 &times; 54 = 162 operations &mdash; very fast!</p>
+                </div>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="tree-decomposition">
+                <h2>7. Tree Decomposition Overview</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Tree Decomposition</h4>
+                  <p>A <strong>tree decomposition</strong> of a constraint graph organizes the variables into clusters (bags) arranged in a tree, such that:</p>
+                  <ul>
+                    <li>Every variable appears in at least one bag</li>
+                    <li>For every constraint, all variables in its scope appear together in at least one bag</li>
+                    <li>If a variable appears in two bags, it appears in every bag on the path between them (running intersection property)</li>
+                  </ul>
+                  <p>The <strong>tree-width</strong> w is one less than the size of the largest bag. If tree-width is w, the CSP can be solved in <strong>O(n &middot; d<sup>w+1</sup>)</strong> time.</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; GATE Tip</h4>
+                  <p>For GATE, know that tree-structured CSPs are solvable in polynomial time O(nd&sup2;), and that cutset conditioning exploits near-tree structure. The exact tree decomposition algorithm is rarely tested, but understanding the concept (tree-width controls tractability) is valuable.</p>
+                </div>
+
+                <div class="theorem-box">
+                  <h4>&#128220; Structure Exploitation Summary</h4>
+                  <p>The <strong>structure of the constraint graph</strong> is the key to efficient CSP solving:</p>
+                  <ul>
+                    <li><strong>Trees</strong>: O(n &middot; d&sup2;) &mdash; polynomial</li>
+                    <li><strong>Nearly-trees</strong> (small cutset c): O(d<sup>c</sup> &middot; n &middot; d&sup2;)</li>
+                    <li><strong>Low tree-width</strong> w: O(n &middot; d<sup>w+1</sup>)</li>
+                    <li><strong>General</strong>: worst case exponential, but constraint propagation + heuristics make it practical</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <ul>
+                  <li><strong>Constraint propagation</strong> is inference that reduces variable domains by exploiting constraints.</li>
+                  <li><strong>Forward checking</strong> propagates to direct neighbours only; <strong>MAC</strong> runs full arc consistency &mdash; stronger but costlier.</li>
+                  <li><strong>AllDiff</strong> and <strong>AtMost</strong> are common global constraints with specialized propagation algorithms.</li>
+                  <li><strong>Bounds propagation</strong> is efficient for constraints over ordered/integer domains.</li>
+                  <li><strong>Tree-structured CSPs</strong> are solvable in O(n &middot; d&sup2;) using a two-pass algorithm.</li>
+                  <li><strong>Cutset conditioning</strong> handles near-tree CSPs in O(d<sup>c</sup> &middot; n &middot; d&sup2;) where c is the cutset size.</li>
+                  <li><strong>Tree decomposition</strong> generalizes tree solving; complexity is O(n &middot; d<sup>w+1</sup>) for tree-width w.</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="bookmark-btn" data-page="chapters/14-constraint-satisfaction/constraint-propagation.html" title="Bookmark this page">&#9733; Bookmark</button>
+            <button class="complete-btn" data-page="chapters/14-constraint-satisfaction/constraint-propagation.html">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="arc-consistency.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Arc Consistency</span></a>
+              <a href="practical-csp.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Practical: CSP Solver</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#propagation-as-inference">1. Propagation as Inference</a></li>
+            <li><a href="#local-consistency">2. Local Consistency</a></li>
+            <li><a href="#fc-vs-ac">3. FC vs AC</a></li>
+            <li><a href="#specialized-constraints">4. Specialized Constraints</a></li>
+            <li><a href="#tree-structured-csps">5. Tree-Structured CSPs</a></li>
+            <li><a href="#cutset-conditioning">6. Cutset Conditioning</a></li>
+            <li><a href="#tree-decomposition">7. Tree Decomposition</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tautology, Contradiction, Contingency - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li class="active"><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>Tautology, Contradiction, Contingency</span>
+        </div>
+
+        <article class="theory-content">
+            <h1>Tautologies, Contradictions, and Contingencies</h1>
+
+            <div class="gate-badge">GATE DA — High Importance</div>
+
+            <div class="learning-objectives">
+                <h3>🎯 Learning Objectives</h3>
+                <ul>
+                    <li>Distinguish between tautologies, contradictions, and contingencies</li>
+                    <li>Test a formula's classification using truth tables</li>
+                    <li>Understand the concept of satisfiability</li>
+                    <li>Know the important tautologies tested in GATE</li>
+                </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section>
+                <h2>1. Definitions</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Tautology</div>
+                    <p>A propositional formula α is a <strong>tautology</strong> if it is true under <em>every</em> possible interpretation. We write <strong>⊨ α</strong>.</p>
+                    <p class="formula">⊨ α ⟺ v(α) = True for all interpretations v</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Contradiction</div>
+                    <p>A propositional formula α is a <strong>contradiction</strong> (also called <strong>unsatisfiable</strong>) if it is false under <em>every</em> possible interpretation.</p>
+                    <p class="formula">α is a contradiction ⟺ v(α) = False for all interpretations v</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Contingency</div>
+                    <p>A propositional formula α is a <strong>contingency</strong> if it is neither a tautology nor a contradiction — it is true under some interpretations and false under others.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Satisfiable</div>
+                    <p>A formula α is <strong>satisfiable</strong> if there exists <em>at least one</em> interpretation under which it is true. A formula is satisfiable if and only if it is <strong>not</strong> a contradiction.</p>
+                    <p class="formula">Satisfiable ⟺ NOT a contradiction</p>
+                </div>
+
+                <div class="theorem-box">
+                    <h4>Key Relationships</h4>
+                    <ul>
+                        <li>α is a tautology ⟺ ¬α is a contradiction</li>
+                        <li>α is a contradiction ⟺ ¬α is a tautology</li>
+                        <li>α is a tautology ⟹ α is satisfiable</li>
+                        <li>α is a contingency ⟹ α is satisfiable</li>
+                        <li>Tautology ∪ Contingency = Satisfiable formulas</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 2: Examples -->
+            <section>
+                <h2>2. Examples with Truth Tables</h2>
+
+                <div class="example-box">
+                    <h4>Example 1: P ∨ ¬P (Tautology — Law of Excluded Middle)</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>P</th><th>¬P</th><th>P ∨ ¬P</th></tr></thead>
+                        <tbody>
+                            <tr><td>T</td><td>F</td><td><strong>T</strong></td></tr>
+                            <tr><td>F</td><td>T</td><td><strong>T</strong></td></tr>
+                        </tbody>
+                    </table>
+                    <p>All rows are T → <strong>Tautology</strong> ✅</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 2: P ∧ ¬P (Contradiction)</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>P</th><th>¬P</th><th>P ∧ ¬P</th></tr></thead>
+                        <tbody>
+                            <tr><td>T</td><td>F</td><td><strong>F</strong></td></tr>
+                            <tr><td>F</td><td>T</td><td><strong>F</strong></td></tr>
+                        </tbody>
+                    </table>
+                    <p>All rows are F → <strong>Contradiction</strong> ✅</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 3: P → Q (Contingency)</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>P</th><th>Q</th><th>P → Q</th></tr></thead>
+                        <tbody>
+                            <tr><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>T</td><td>F</td><td><strong>F</strong></td></tr>
+                            <tr><td>F</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>F</td><td>F</td><td><strong>T</strong></td></tr>
+                        </tbody>
+                    </table>
+                    <p>Has both T and F values → <strong>Contingency</strong> (but also satisfiable)</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 4: (P → Q) ↔ (¬P ∨ Q) (Tautology — Material Implication)</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>P</th><th>Q</th><th>P → Q</th><th>¬P ∨ Q</th><th>(P → Q) ↔ (¬P ∨ Q)</th></tr></thead>
+                        <tbody>
+                            <tr><td>T</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>T</td><td>F</td><td>F</td><td>F</td><td><strong>T</strong></td></tr>
+                            <tr><td>F</td><td>T</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                            <tr><td>F</td><td>F</td><td>T</td><td>T</td><td><strong>T</strong></td></tr>
+                        </tbody>
+                    </table>
+                    <p>All T → <strong>Tautology</strong>. This proves material implication is a logical equivalence.</p>
+                </div>
+            </section>
+
+            <!-- Section 3: Satisfiability -->
+            <section>
+                <h2>3. Satisfiability</h2>
+
+                <p>The concept of satisfiability is central to computational logic and is the foundation of the famous <strong>SAT problem</strong>.</p>
+
+                <div class="theorem-box">
+                    <h4>Classification Summary</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>Category</th><th>True in how many interpretations?</th><th>Satisfiable?</th></tr></thead>
+                        <tbody>
+                            <tr><td>Tautology</td><td>All 2<sup>n</sup></td><td>Yes</td></tr>
+                            <tr><td>Contingency</td><td>Some (1 to 2<sup>n</sup>−1)</td><td>Yes</td></tr>
+                            <tr><td>Contradiction</td><td>None (0)</td><td>No</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="theorem-box">
+                    <h4>Theorem: Satisfiability and Entailment</h4>
+                    <p>α ⊨ β (α entails β) if and only if α ∧ ¬β is <strong>unsatisfiable</strong> (a contradiction).</p>
+                    <p class="formula">α ⊨ β ⟺ (α ∧ ¬β) is unsatisfiable</p>
+                    <p>This is the theoretical basis for <strong>proof by refutation</strong>, used in the resolution method.</p>
+                </div>
+            </section>
+
+            <!-- Section 4: Important Tautologies -->
+            <section>
+                <h2>4. Important Tautologies for GATE</h2>
+
+                <div class="note-box">
+                    <h4>📝 Must-Know Tautologies</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>Name</th><th>Formula</th></tr></thead>
+                        <tbody>
+                            <tr><td>Law of Excluded Middle</td><td>P ∨ ¬P</td></tr>
+                            <tr><td>Modus Ponens</td><td>((P → Q) ∧ P) → Q</td></tr>
+                            <tr><td>Modus Tollens</td><td>((P → Q) ∧ ¬Q) → ¬P</td></tr>
+                            <tr><td>Hypothetical Syllogism</td><td>((P → Q) ∧ (Q → R)) → (P → R)</td></tr>
+                            <tr><td>Disjunctive Syllogism</td><td>((P ∨ Q) ∧ ¬P) → Q</td></tr>
+                            <tr><td>Contrapositive Equiv.</td><td>(P → Q) ↔ (¬Q → ¬P)</td></tr>
+                            <tr><td>Material Implication</td><td>(P → Q) ↔ (¬P ∨ Q)</td></tr>
+                            <tr><td>De Morgan's</td><td>¬(P ∧ Q) ↔ (¬P ∨ ¬Q)</td></tr>
+                            <tr><td>Constructive Dilemma</td><td>((P → Q) ∧ (R → S) ∧ (P ∨ R)) → (Q ∨ S)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 5: Quick Tests -->
+            <section>
+                <h2>5. Quick Tests Without Full Truth Tables</h2>
+
+                <div class="note-box">
+                    <h4>📝 Shortcut Methods</h4>
+                    <ul>
+                        <li><strong>To check if contradiction:</strong> Try to find an assignment making it true. If you can't, it's a contradiction.</li>
+                        <li><strong>To check if tautology:</strong> Try to find an assignment making it false. If you can't, it's a tautology.</li>
+                        <li><strong>For implications α → β:</strong> Set α = T and β = F. Check if this leads to a contradiction in variable assignments. If yes, the formula is a tautology.</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Quick Test: Is ((P → Q) ∧ P) → Q a tautology?</h4>
+                    <p>Try to make it false: set the outer → to false.</p>
+                    <ol>
+                        <li>For outer → to be F: antecedent must be T and consequent must be F.</li>
+                        <li>So Q = F, and (P → Q) ∧ P = T.</li>
+                        <li>P = T (from P = T in the conjunction).</li>
+                        <li>P → Q = T → F = F. But we need (P → Q) = T. <strong>Contradiction!</strong></li>
+                    </ol>
+                    <p>We cannot make the formula false, so it is a <strong>tautology</strong>. ✅</p>
+                </div>
+            </section>
+
+            <!-- GATE Tips -->
+            <section>
+                <h2>6. GATE Exam Tips</h2>
+                <div class="warning-box">
+                    <h4>🎯 Exam Strategy</h4>
+                    <ul>
+                        <li>For MCQs asking "which is a tautology?", try to falsify each option — the one you can't falsify is the answer.</li>
+                        <li>For NAT questions asking "how many satisfying assignments?", build the truth table and count T rows.</li>
+                        <li>Remember: <strong>Tautology negated = Contradiction</strong>. Use this to quickly classify negations.</li>
+                        <li>The number of satisfying assignments of a tautology with n variables is exactly 2<sup>n</sup>.</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="logical-equivalence.html" class="nav-btn prev-btn">← Previous: Logical Equivalence</a>
+            <a href="normal-forms.html" class="nav-btn next-btn">Next: Normal Forms (CNF/DNF) →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-tautology-contradiction-contingency">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-tautology-contradiction-contingency">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

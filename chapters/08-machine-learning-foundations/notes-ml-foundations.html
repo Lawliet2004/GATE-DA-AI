@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ML Foundations — Quick-Reference Chapter Notes covering all key formulas, comparison tables, GATE tips for Machine Learning.">
+  <title>Chapter Notes: ML Foundations — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="supervised-learning.html" class="sidebar-link"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="unsupervised-learning.html" class="sidebar-link"><span class="link-check"></span> Unsupervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="bias-variance-tradeoff.html" class="sidebar-link"><span class="link-check"></span> Bias-Variance Tradeoff<span class="link-type theory">Theory</span></a>
+            <a href="overfitting-underfitting.html" class="sidebar-link"><span class="link-check"></span> Overfitting &amp; Underfitting<span class="link-type theory">Theory</span></a>
+            <a href="cross-validation.html" class="sidebar-link"><span class="link-check"></span> Cross-Validation<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-metrics.html" class="sidebar-link"><span class="link-check"></span> Evaluation Metrics<span class="link-type theory">Theory</span></a>
+            <a href="feature-engineering.html" class="sidebar-link"><span class="link-check"></span> Feature Engineering<span class="link-type theory">Theory</span></a>
+            <a href="ml-math-essentials.html" class="sidebar-link"><span class="link-check"></span> ML Math Essentials<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-ml-foundations.html" class="sidebar-link active"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="ml-fundamentals.html">Chapter 8: ML Foundations</a> &raquo; <span class="current">Chapter Notes</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch08-notes-ml-foundations">
+
+            <h1>&#128221; Chapter Notes: ML Foundations</h1>
+            <p class="subtitle">Quick-reference summary of all key concepts, formulas, and GATE tips from Chapter 8.</p>
+
+            <!-- Note Card 1 -->
+            <section id="ml-types" class="note-card">
+              <h2>1. Types of Machine Learning</h2>
+              <div class="quick-facts">
+                <ul>
+                  <li><strong>Supervised:</strong> Labelled data &rarr; Classification (discrete) or Regression (continuous)</li>
+                  <li><strong>Unsupervised:</strong> No labels &rarr; Clustering, Dimensionality Reduction, Association Rules</li>
+                  <li><strong>Semi-supervised:</strong> Small labelled + large unlabelled data</li>
+                  <li><strong>Reinforcement:</strong> Agent learns through rewards/penalties in an environment</li>
+                </ul>
+              </div>
+              <div class="mnemonic-box">
+                <strong>Tom Mitchell&rsquo;s Definition:</strong> &ldquo;A program learns from Experience E with respect to Task T and Performance measure P if its performance at T, as measured by P, improves with experience E.&rdquo;
+              </div>
+            </section>
+
+            <!-- Note Card 2 -->
+            <section id="supervised-formulas" class="note-card">
+              <h2>2. Supervised Learning — Key Formulas</h2>
+              <div class="formula-list">
+                <div class="formula-item">
+                  <span class="formula-name">Linear Regression (Normal Equation)</span>
+                  <span class="formula">w* = (X&#7488;X)&#8315;&sup1;X&#7488;y</span>
+                </div>
+                <div class="formula-item">
+                  <span class="formula-name">MSE Cost</span>
+                  <span class="formula">J(w) = (1/2n) &sum;(y&#7522; &minus; w&#7488;x&#7522;)&sup2;</span>
+                </div>
+                <div class="formula-item">
+                  <span class="formula-name">Sigmoid Function</span>
+                  <span class="formula">&sigma;(z) = 1 / (1 + e&#8315;&#7602;)</span>
+                </div>
+                <div class="formula-item">
+                  <span class="formula-name">Cross-Entropy Loss</span>
+                  <span class="formula">L = &minus;[y log(p) + (1&minus;y) log(1&minus;p)]</span>
+                </div>
+                <div class="formula-item">
+                  <span class="formula-name">Entropy</span>
+                  <span class="formula">H(S) = &minus;&sum; p&#7522; log&sub2;(p&#7522;)</span>
+                </div>
+                <div class="formula-item">
+                  <span class="formula-name">Information Gain</span>
+                  <span class="formula">IG(S,A) = H(S) &minus; &sum; (|S&#7525;|/|S|) H(S&#7525;)</span>
+                </div>
+                <div class="formula-item">
+                  <span class="formula-name">Gini Impurity</span>
+                  <span class="formula">Gini(S) = 1 &minus; &sum; p&#7522;&sup2;</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- Note Card 3 -->
+            <section id="unsupervised-formulas" class="note-card">
+              <h2>3. Unsupervised Learning — Key Formulas</h2>
+              <div class="formula-list">
+                <div class="formula-item">
+                  <span class="formula-name">K-Means Objective</span>
+                  <span class="formula">J = &sum;&#8342; &sum;(x&#7522; &isin; C&#8342;) ||x&#7522; &minus; &mu;&#8342;||&sup2;</span>
+                </div>
+                <div class="formula-item">
+                  <span class="formula-name">Silhouette Score</span>
+                  <span class="formula">s(i) = (b(i) &minus; a(i)) / max(a(i), b(i))</span>
+                </div>
+                <div class="formula-item">
+                  <span class="formula-name">PCA: Explained Variance Ratio</span>
+                  <span class="formula">EVR&#8342; = &lambda;&#8342; / &sum;&lambda;&#7522;</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- Note Card 4 -->
+            <section id="bias-variance" class="note-card">
+              <h2>4. Bias-Variance Tradeoff</h2>
+              <div class="formula-list">
+                <div class="formula-item">
+                  <span class="formula-name">Decomposition</span>
+                  <span class="formula">E[(y &minus; f&#770;)&sup2;] = Bias&sup2; + Variance + &sigma;&sup2;</span>
+                </div>
+              </div>
+              <div class="quick-facts">
+                <ul>
+                  <li><strong>High Bias:</strong> Simple models (linear regression, small tree) &rarr; Underfitting</li>
+                  <li><strong>High Variance:</strong> Complex models (deep tree, KNN with K=1) &rarr; Overfitting</li>
+                  <li>&sigma;&sup2; = irreducible error (noise in data)</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Note Card 5 -->
+            <section id="regularization" class="note-card">
+              <h2>5. Regularization Quick Reference</h2>
+              <div class="formula-list">
+                <div class="formula-item">
+                  <span class="formula-name">Ridge (L2)</span>
+                  <span class="formula">J = MSE + &lambda; &sum;w&#7522;&sup2;</span>
+                </div>
+                <div class="formula-item">
+                  <span class="formula-name">Lasso (L1)</span>
+                  <span class="formula">J = MSE + &lambda; &sum;|w&#7522;|</span>
+                </div>
+                <div class="formula-item">
+                  <span class="formula-name">Elastic Net</span>
+                  <span class="formula">J = MSE + &lambda;&sub1;&sum;|w&#7522;| + &lambda;&sub2;&sum;w&#7522;&sup2;</span>
+                </div>
+              </div>
+              <div class="quick-facts">
+                <ul>
+                  <li>Ridge: shrinks coefficients, never zeros them</li>
+                  <li>Lasso: can zero out coefficients (feature selection)</li>
+                  <li>Larger &lambda; = more regularization = simpler model</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Note Card 6 -->
+            <section id="cv-notes" class="note-card">
+              <h2>6. Cross-Validation Quick Facts</h2>
+              <div class="quick-facts">
+                <ul>
+                  <li><strong>K-Fold:</strong> K models trained, each sample validated once. Common: K=5 or K=10.</li>
+                  <li><strong>LOOCV (K=n):</strong> Nearly unbiased but high variance. Deterministic (no shuffle).</li>
+                  <li><strong>Stratified:</strong> Preserves class distribution. Essential for imbalanced data.</li>
+                  <li><strong>Bootstrap OOB:</strong> ~36.8% of data is out-of-bag in each sample (e&#8315;&sup1;).</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Note Card 7 -->
+            <section id="metrics-notes" class="note-card">
+              <h2>7. Evaluation Metrics Cheat Sheet</h2>
+              <div class="formula-list">
+                <div class="formula-item"><span class="formula-name">Accuracy</span><span class="formula">(TP+TN) / (TP+TN+FP+FN)</span></div>
+                <div class="formula-item"><span class="formula-name">Precision</span><span class="formula">TP / (TP+FP)</span></div>
+                <div class="formula-item"><span class="formula-name">Recall</span><span class="formula">TP / (TP+FN)</span></div>
+                <div class="formula-item"><span class="formula-name">F1-Score</span><span class="formula">2&times;P&times;R / (P+R) = 2TP/(2TP+FP+FN)</span></div>
+                <div class="formula-item"><span class="formula-name">Specificity</span><span class="formula">TN / (TN+FP)</span></div>
+                <div class="formula-item"><span class="formula-name">ROC</span><span class="formula">TPR vs FPR; AUC=1 perfect, AUC=0.5 random</span></div>
+                <div class="formula-item"><span class="formula-name">R&sup2;</span><span class="formula">1 &minus; SS_res/SS_tot</span></div>
+                <div class="formula-item"><span class="formula-name">Adjusted R&sup2;</span><span class="formula">1 &minus; ((1&minus;R&sup2;)(n&minus;1))/(n&minus;p&minus;1)</span></div>
+              </div>
+              <div class="mnemonic-box">
+                <strong>&#128161; Remember:</strong> FP = Type I error (false alarm). FN = Type II error (miss). For imbalanced data, never rely on accuracy alone — use F1 or AUC.
+              </div>
+            </section>
+
+            <!-- Note Card 8 -->
+            <section id="feature-notes" class="note-card">
+              <h2>8. Feature Engineering Essentials</h2>
+              <div class="formula-list">
+                <div class="formula-item"><span class="formula-name">Min-Max</span><span class="formula">x' = (x&minus;x_min)/(x_max&minus;x_min)</span></div>
+                <div class="formula-item"><span class="formula-name">Z-Score</span><span class="formula">z = (x&minus;&mu;)/&sigma;</span></div>
+              </div>
+              <div class="quick-facts">
+                <ul>
+                  <li>One-hot encode nominal features; label encode ordinal features</li>
+                  <li>Drop one dummy to avoid multicollinearity (K&minus;1 encoding)</li>
+                  <li>Fit scaler on training data only; transform test data with same params</li>
+                  <li>Curse of dimensionality: samples needed grow exponentially with features</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Note Card 9 -->
+            <section id="math-notes" class="note-card">
+              <h2>9. Math Essentials Quick Reference</h2>
+              <div class="formula-list">
+                <div class="formula-item"><span class="formula-name">Gradient Descent Update</span><span class="formula">w &larr; w &minus; &eta;&nabla;L</span></div>
+                <div class="formula-item"><span class="formula-name">MLE</span><span class="formula">&theta;_MLE = argmax &sum; log P(x&#7522;|&theta;)</span></div>
+                <div class="formula-item"><span class="formula-name">MAP</span><span class="formula">&theta;_MAP = argmax [log P(D|&theta;) + log P(&theta;)]</span></div>
+                <div class="formula-item"><span class="formula-name">Bayes</span><span class="formula">P(A|B) = P(B|A)P(A)/P(B)</span></div>
+                <div class="formula-item"><span class="formula-name">Eigenvalue</span><span class="formula">Av = &lambda;v; det(A&minus;&lambda;I)=0</span></div>
+              </div>
+              <div class="quick-facts">
+                <ul>
+                  <li>MAP with Gaussian prior = Ridge (L2); MAP with Laplace prior = Lasso (L1)</li>
+                  <li>SGD: 1 sample per update (noisy). Mini-batch: B samples (balanced).</li>
+                  <li>Convex functions have a single global minimum. MSE is convex.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Note Card 10 -->
+            <section id="gate-tips" class="note-card">
+              <h2>10. GATE DA Tips for ML Foundations</h2>
+              <div class="mnemonic-box">
+                <strong>&#127919; High-Frequency GATE Topics:</strong>
+                <ol>
+                  <li>Confusion matrix calculations (Precision, Recall, F1) — almost every year</li>
+                  <li>Linear regression: Normal equation &amp; MSE computation</li>
+                  <li>K-Means: Step-by-step centroid updates with given data</li>
+                  <li>Decision trees: Entropy &amp; Information Gain calculation</li>
+                  <li>Bias-Variance decomposition conceptual questions</li>
+                  <li>PCA: Eigenvalue problems, explained variance</li>
+                  <li>R&sup2; and Adjusted R&sup2; calculation</li>
+                  <li>Ridge vs Lasso conceptual differences</li>
+                </ol>
+              </div>
+              <div class="quick-facts">
+                <ul>
+                  <li>Always check: does the question ask for MSE or RMSE? (RMSE = &radic;MSE)</li>
+                  <li>Entropy is maximised when all classes are equally likely</li>
+                  <li>For NAT questions on metrics: compute step-by-step, don&rsquo;t round intermediate results</li>
+                  <li>R&sup2; can be negative (model worse than mean prediction)</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Algorithms at a Glance -->
+            <section id="algorithms-glance" class="note-card">
+              <h2>11. Algorithms at a Glance</h2>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Algorithm</th><th>Type</th><th>Key Idea</th><th>Bias</th><th>Variance</th></tr></thead>
+                  <tbody>
+                    <tr><td>Linear Regression</td><td>Supervised (Reg)</td><td>Minimise MSE, closed-form solution</td><td>High</td><td>Low</td></tr>
+                    <tr><td>Logistic Regression</td><td>Supervised (Cls)</td><td>Sigmoid + cross-entropy</td><td>Medium</td><td>Low</td></tr>
+                    <tr><td>Decision Tree</td><td>Supervised</td><td>Recursive splitting on best feature</td><td>Low</td><td>High</td></tr>
+                    <tr><td>Random Forest</td><td>Supervised</td><td>Ensemble of bagged trees</td><td>Low</td><td>Medium</td></tr>
+                    <tr><td>SVM</td><td>Supervised</td><td>Maximum margin hyperplane + kernels</td><td>Low</td><td>Medium</td></tr>
+                    <tr><td>KNN</td><td>Supervised</td><td>Majority vote of K nearest neighbours</td><td>Low (small K)</td><td>High (small K)</td></tr>
+                    <tr><td>Naive Bayes</td><td>Supervised (Cls)</td><td>Bayes + feature independence assumption</td><td>High</td><td>Low</td></tr>
+                    <tr><td>K-Means</td><td>Unsupervised</td><td>Minimise within-cluster sum of squares</td><td>&mdash;</td><td>&mdash;</td></tr>
+                    <tr><td>PCA</td><td>Unsupervised</td><td>Eigen-decomposition of covariance matrix</td><td>&mdash;</td><td>&mdash;</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+          </article>
+
+          <aside class="on-this-page"><h4>On This Page</h4><ul>
+            <li><a href="#ml-types">1. Types of ML</a></li>
+            <li><a href="#supervised-formulas">2. Supervised Formulas</a></li>
+            <li><a href="#unsupervised-formulas">3. Unsupervised Formulas</a></li>
+            <li><a href="#bias-variance">4. Bias-Variance</a></li>
+            <li><a href="#regularization">5. Regularization</a></li>
+            <li><a href="#cv-notes">6. Cross-Validation</a></li>
+            <li><a href="#metrics-notes">7. Evaluation Metrics</a></li>
+            <li><a href="#feature-notes">8. Feature Engineering</a></li>
+            <li><a href="#math-notes">9. Math Essentials</a></li>
+            <li><a href="#gate-tips">10. GATE Tips</a></li>
+            <li><a href="#algorithms-glance">11. Algorithms at a Glance</a></li>
+          </ul></aside>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="practical-ml.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Interactive Demos</span></a>
+          <a href="quiz-ml-foundations.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Chapter Quiz</span></a>
+        </div>
+        <button class="complete-btn" data-page="ch08-notes-ml-foundations">&#10003; Mark as Complete</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

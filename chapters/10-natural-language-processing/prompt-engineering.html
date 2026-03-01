@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prompt Engineering — zero-shot, few-shot, chain-of-thought prompting, prompt templates, and in-context learning strategies for GATE DA preparation.">
+  <title>Prompt Engineering — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a>
+            <a href="word-embeddings.html" class="sidebar-link"><span class="link-check"></span> Word Embeddings<span class="link-type theory">Theory</span></a>
+            <a href="language-models.html" class="sidebar-link"><span class="link-check"></span> Language Models<span class="link-type theory">Theory</span></a>
+            <a href="large-language-models.html" class="sidebar-link"><span class="link-check"></span> Large Language Models<span class="link-type theory">Theory</span></a>
+            <a href="gpt-architecture.html" class="sidebar-link"><span class="link-check"></span> GPT Architecture<span class="link-type theory">Theory</span></a>
+            <a href="bert-and-variants.html" class="sidebar-link"><span class="link-check"></span> BERT &amp; Variants<span class="link-type theory">Theory</span></a>
+            <a href="prompt-engineering.html" class="sidebar-link active"><span class="link-check"></span> Prompt Engineering<span class="link-type theory">Theory</span></a>
+            <a href="notes-nlp.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-nlp.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="text-preprocessing.html">Chapter 10: Natural Language Processing</a> &raquo; <span class="current">Prompt Engineering</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch10-prompt-engineering">
+
+            <h1>Prompt Engineering</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge low">GATE Relevance: Low</span>
+              <button class="bookmark-btn" data-page="ch10-prompt-engineering" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="large-language-models.html">Large Language Models</a> &mdash; in-context learning, emergent abilities</li>
+                <li><a href="gpt-architecture.html">GPT Architecture</a> &mdash; autoregressive generation</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Define prompt engineering and explain why it matters for LLMs</li>
+                <li>Distinguish zero-shot, one-shot, and few-shot prompting</li>
+                <li>Describe Chain-of-Thought (CoT) prompting and its benefits</li>
+                <li>Apply structured prompt templates for various NLP tasks</li>
+                <li>Understand advanced strategies: self-consistency, ReAct, Tree-of-Thought</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="what-is-prompt-engineering">
+              <h2>1. What Is Prompt Engineering?</h2>
+              <div class="definition-box">
+                <strong>Prompt Engineering:</strong> The practice of designing and refining the input (prompt) given to a large language model to elicit desired, accurate, and useful outputs &mdash; without changing the model&rsquo;s weights.
+              </div>
+              <p>Modern LLMs like GPT-4, Claude, and Gemini are conditioned by the text they receive as input. The quality, structure, and specificity of the prompt dramatically affect the output. Prompt engineering is essentially <strong>programming with natural language</strong>.</p>
+              <p><strong>Why it matters:</strong></p>
+              <ul>
+                <li>No training or fine-tuning required &mdash; instant use</li>
+                <li>Same model, vastly different outputs depending on the prompt</li>
+                <li>Enables complex reasoning, structured outputs, and domain specialization</li>
+                <li>Cost-effective: avoids expensive model retraining</li>
+              </ul>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="zero-shot">
+              <h2>2. Zero-Shot Prompting</h2>
+              <div class="definition-box">
+                <strong>Zero-Shot:</strong> The model is given a task description with <strong>no examples</strong>. It must rely entirely on its pretraining knowledge.
+              </div>
+              <div class="example-box">
+                <h4>Example: Sentiment Classification</h4>
+                <pre><code>Classify the sentiment of this review as Positive, Negative, or Neutral.
+
+Review: "The battery life is amazing but the screen resolution is disappointing."
+Sentiment:</code></pre>
+                <p><strong>Expected output:</strong> Neutral (or Mixed)</p>
+              </div>
+              <p><strong>When zero-shot works well:</strong></p>
+              <ul>
+                <li>Common, well-defined tasks (translation, summarization, classification)</li>
+                <li>Large, capable models (GPT-4, Claude 3)</li>
+                <li>Clear, unambiguous instructions</li>
+              </ul>
+              <p><strong>Limitations:</strong> May struggle with domain-specific formats, edge cases, or tasks requiring a specific output structure.</p>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="few-shot">
+              <h2>3. Few-Shot Prompting</h2>
+              <div class="definition-box">
+                <strong>Few-Shot (k-shot):</strong> Provide k examples of (input, output) pairs in the prompt before the actual query. The model learns the pattern from these demonstrations.
+              </div>
+              <div class="example-box">
+                <h4>Example: Named Entity Extraction (3-shot)</h4>
+                <pre><code>Extract the person names from each sentence.
+
+Sentence: "Albert Einstein developed the theory of relativity."
+Names: Albert Einstein
+
+Sentence: "Marie Curie won two Nobel Prizes."
+Names: Marie Curie
+
+Sentence: "Ada Lovelace is considered the first computer programmer."
+Names: Ada Lovelace
+
+Sentence: "Alan Turing and John von Neumann laid the foundations of computer science."
+Names:</code></pre>
+                <p><strong>Expected output:</strong> Alan Turing, John von Neumann</p>
+              </div>
+              <p><strong>Best practices for few-shot:</strong></p>
+              <ul>
+                <li><strong>Diverse examples:</strong> Cover different cases, edge cases, and output formats</li>
+                <li><strong>Consistent format:</strong> Use a uniform template so the pattern is learnable</li>
+                <li><strong>Order matters:</strong> Place the most similar examples closest to the query</li>
+                <li><strong>Typical k:</strong> 3&ndash;8 examples strike a good balance between quality and token cost</li>
+              </ul>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="chain-of-thought">
+              <h2>4. Chain-of-Thought (CoT) Prompting</h2>
+              <div class="definition-box">
+                <strong>Chain-of-Thought:</strong> Prompting the model to produce intermediate reasoning steps before arriving at the final answer. Introduced by Wei et al. (2022).
+              </div>
+              <div class="example-box">
+                <h4>Example: Math Problem with CoT</h4>
+                <pre><code>Q: A store has 45 apples. They sell 12 in the morning and 
+receive a shipment of 30 in the afternoon. Then they sell 
+18 more. How many apples remain?
+
+A: Let's think step by step.
+- Start: 45 apples
+- After morning sales: 45 − 12 = 33
+- After shipment: 33 + 30 = 63
+- After afternoon sales: 63 − 18 = 45
+The answer is 45 apples.</code></pre>
+              </div>
+              <p><strong>Why CoT works:</strong></p>
+              <ul>
+                <li>Breaks complex problems into manageable sub-problems</li>
+                <li>The model can "check" intermediate results</li>
+                <li>Significantly improves accuracy on math, logic, and multi-step reasoning</li>
+              </ul>
+
+              <h3>4.1 Zero-Shot CoT</h3>
+              <p>Simply append <strong>&ldquo;Let&rsquo;s think step by step&rdquo;</strong> to the prompt. Remarkably effective with no examples needed (Kojima et al., 2022).</p>
+
+              <h3>4.2 Few-Shot CoT</h3>
+              <p>Provide examples that include the reasoning chain (not just input → output, but input → reasoning → output).</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="prompt-templates">
+              <h2>5. Prompt Templates and Structure</h2>
+              <p>A well-structured prompt typically has these components:</p>
+              <ol>
+                <li><strong>Role / System instruction:</strong> Set the persona and behavior (&ldquo;You are an expert NLP researcher&rdquo;)</li>
+                <li><strong>Task description:</strong> Clear, specific instruction of what to do</li>
+                <li><strong>Context / Background:</strong> Relevant information or documents</li>
+                <li><strong>Examples:</strong> Few-shot demonstrations (if needed)</li>
+                <li><strong>Input:</strong> The actual query or data to process</li>
+                <li><strong>Output format:</strong> Specify desired structure (JSON, bullet points, table, etc.)</li>
+              </ol>
+              <div class="example-box">
+                <h4>Example: Structured Prompt Template</h4>
+                <pre><code>Role: You are a medical information assistant.
+Task: Summarize the following clinical note in 3 bullet points.
+Constraints: Use simple language. No medical jargon.
+Output format: Markdown bullet list.
+
+Clinical note: [INSERT NOTE HERE]
+
+Summary:</code></pre>
+              </div>
+              <p><strong>Key principles:</strong></p>
+              <ul>
+                <li>Be <strong>specific</strong>: &ldquo;List 5 reasons&rdquo; &gt; &ldquo;Why?&rdquo;</li>
+                <li>Use <strong>delimiters</strong>: triple quotes, XML tags, or markdown to separate sections</li>
+                <li>Specify <strong>constraints</strong>: length, format, what to include/exclude</li>
+                <li>Use <strong>positive instructions</strong>: say what to do, not just what not to do</li>
+              </ul>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="advanced-strategies">
+              <h2>6. Advanced Prompting Strategies</h2>
+
+              <h3>6.1 Self-Consistency (Wang et al., 2022)</h3>
+              <p>Sample multiple reasoning paths (using temperature &gt; 0) and take a <strong>majority vote</strong> on the final answer. More robust than a single CoT path.</p>
+              <ul>
+                <li>Generate N answers with CoT prompting</li>
+                <li>Select the most frequent final answer</li>
+                <li>Improves accuracy by 5&ndash;15% on arithmetic and logic benchmarks</li>
+              </ul>
+
+              <h3>6.2 ReAct (Reason + Act)</h3>
+              <p>Interleave <strong>reasoning traces</strong> with <strong>actions</strong> (e.g., web search, calculator, API calls). The model reasons about what action to take, executes it, observes the result, and continues.</p>
+              <div class="example-box">
+                <h4>ReAct Trace</h4>
+                <pre><code>Thought: I need to find the population of France.
+Action: Search("population of France 2024")
+Observation: Approximately 68.4 million.
+Thought: Now I can answer the question.
+Answer: The population of France is approximately 68.4 million.</code></pre>
+              </div>
+
+              <h3>6.3 Tree-of-Thought (ToT)</h3>
+              <p>Extends CoT by exploring <strong>multiple reasoning branches</strong> (like a search tree) and evaluating/backtracking. Good for planning and creative tasks where a single chain may fail.</p>
+
+              <h3>6.4 Retrieval-Augmented Generation (RAG)</h3>
+              <p>Retrieve relevant documents from an external knowledge base, inject them into the prompt as context, then generate. Reduces hallucination and keeps answers grounded in facts.</p>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="common-pitfalls">
+              <h2>7. Common Pitfalls and Solutions</h2>
+              <table>
+                <thead><tr><th>Pitfall</th><th>Solution</th></tr></thead>
+                <tbody>
+                  <tr><td>Vague or ambiguous instructions</td><td>Be specific: define format, length, style</td></tr>
+                  <tr><td>Model hallucinating facts</td><td>Use RAG; ask &ldquo;say I don&rsquo;t know if unsure&rdquo;</td></tr>
+                  <tr><td>Wrong output format</td><td>Provide explicit format examples in the prompt</td></tr>
+                  <tr><td>Too long / unfocused answers</td><td>Set length constraints (&ldquo;in 2 sentences&rdquo;)</td></tr>
+                  <tr><td>Ignoring parts of the prompt</td><td>Use numbered instructions; use delimiters</td></tr>
+                  <tr><td>Sensitivity to prompt wording</td><td>Try multiple phrasings; use self-consistency</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="summary">
+              <h2>8. Summary</h2>
+              <div class="summary-section">
+                <ul>
+                  <li><strong>Prompt engineering</strong> is designing natural-language inputs to steer LLM outputs without changing model weights.</li>
+                  <li><strong>Zero-shot:</strong> No examples; relies on the model&rsquo;s pretraining knowledge.</li>
+                  <li><strong>Few-shot:</strong> k examples in the prompt for pattern demonstration (typically k = 3&ndash;8).</li>
+                  <li><strong>Chain-of-Thought (CoT):</strong> &ldquo;Let&rsquo;s think step by step&rdquo; &mdash; dramatically improves reasoning.</li>
+                  <li><strong>Structured templates:</strong> Role + Task + Context + Examples + Input + Format.</li>
+                  <li><strong>Self-Consistency:</strong> Majority vote over multiple CoT samples.</li>
+                  <li><strong>ReAct:</strong> Interleave Thought &rarr; Action &rarr; Observation loops.</li>
+                  <li><strong>RAG:</strong> Retrieve → Read → Generate for grounded answers.</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch10-prompt-engineering">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="bert-and-variants.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">BERT and Variants</span></a>
+              <a href="notes-nlp.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Chapter Notes</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#what-is-prompt-engineering">1. What Is Prompt Engineering?</a></li>
+            <li><a href="#zero-shot">2. Zero-Shot Prompting</a></li>
+            <li><a href="#few-shot">3. Few-Shot Prompting</a></li>
+            <li><a href="#chain-of-thought">4. Chain-of-Thought (CoT)</a></li>
+            <li><a href="#prompt-templates">5. Prompt Templates</a></li>
+            <li><a href="#advanced-strategies">6. Advanced Strategies</a></li>
+            <li><a href="#common-pitfalls">7. Common Pitfalls</a></li>
+            <li><a href="#summary">8. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

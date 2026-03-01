@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Types of Artificial Intelligence — Narrow vs General vs Super AI, Weak vs Strong AI, classification by capability and functionality for GATE DA.">
+  <title>Types of AI — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="types-of-ai.html" class="sidebar-link active"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="what-is-ai.html">Chapter 0: Introduction</a> &raquo;
+          <span class="current">Types of AI</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch00-types-of-ai">
+
+            <!-- Page Header -->
+            <h1>Types of Artificial Intelligence</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch00-types-of-ai" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="what-is-ai.html">What is Artificial Intelligence?</a></li>
+                <li><a href="history-of-ai.html">History of AI</a> (recommended)</li>
+              </ul>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Classify AI systems by capability: Narrow AI, General AI, Super AI</li>
+                <li>Distinguish between Weak AI and Strong AI</li>
+                <li>Classify AI by functionality: Reactive, Limited Memory, Theory of Mind, Self-Aware</li>
+                <li>Provide real-world examples for each AI type</li>
+                <li>Understand the current state of AI (we are still in the Narrow AI era)</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: Why Classify? -->
+              <section id="why-classify">
+                <h2>1. Why Classify AI Systems?</h2>
+
+                <p>Not all AI systems are created equal. A chess engine and a self-driving car are both &ldquo;AI,&rdquo; but they differ enormously in scope, capability, and design. Classifying AI systems helps us understand what current technology can and cannot do, set realistic expectations, and communicate precisely about different classes of systems.</p>
+
+                <p>There are two major classification schemes:</p>
+                <ol>
+                  <li><strong>By Capability</strong> &mdash; What can the AI do? (Narrow AI vs. General AI vs. Super AI)</li>
+                  <li><strong>By Functionality</strong> &mdash; How does the AI process information? (Reactive, Limited Memory, Theory of Mind, Self-Aware)</li>
+                </ol>
+
+                <p>Additionally, the philosophical distinction between <strong>Weak AI</strong> and <strong>Strong AI</strong> addresses the question of whether AI <em>truly</em> understands or merely simulates understanding.</p>
+              </section>
+
+              <!-- Section 2: Classification by Capability -->
+              <section id="by-capability">
+                <h2>2. Classification by Capability</h2>
+
+                <!-- 2.1 Narrow AI -->
+                <h3 id="narrow-ai">2.1 Narrow AI (Artificial Narrow Intelligence &mdash; ANI)</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Narrow AI (ANI)</div>
+                  <p>An AI system designed and trained for a <strong>specific task</strong>. It excels at that one task (sometimes surpassing human performance) but cannot generalize to tasks outside its training domain. Also called <strong>Weak AI</strong> in some contexts (though &ldquo;Weak AI&rdquo; can also refer to a philosophical position).</p>
+                </div>
+
+                <p>Narrow AI is the <strong>only type of AI that currently exists</strong>. All AI systems deployed today&mdash;from voice assistants to recommendation engines to self-driving cars&mdash;are narrow AI.</p>
+
+                <p><strong>Examples of Narrow AI:</strong></p>
+                <ul>
+                  <li><strong>Spam filters</strong> &mdash; Classify emails as spam/not-spam; cannot write emails or summarize articles.</li>
+                  <li><strong>Google Search</strong> &mdash; Retrieves relevant web pages; cannot drive a car or diagnose diseases.</li>
+                  <li><strong>Face recognition</strong> &mdash; Identifies faces in images; cannot understand emotions or generate art.</li>
+                  <li><strong>AlphaGo</strong> &mdash; Plays Go at a superhuman level; cannot play chess or even tic-tac-toe without retraining.</li>
+                  <li><strong>Siri / Alexa</strong> &mdash; Answer questions and execute commands via voice; limited to predefined capabilities.</li>
+                  <li><strong>ChatGPT</strong> &mdash; Generates human-like text across topics; but it does not truly &ldquo;understand&rdquo; language, cannot learn from a conversation permanently, and cannot manipulate the physical world.</li>
+                </ul>
+
+                <div class="note-box">
+                  <div class="box-title">Are Large Language Models &ldquo;General AI&rdquo;?</div>
+                  <p>This is a debated topic. LLMs like GPT-4 can perform a wide variety of text-based tasks (translation, summarization, coding, reasoning), which makes them appear general-purpose. However, they are still constrained: they lack persistent memory, cannot learn new things after training without fine-tuning, have no sensory perception, and cannot take physical actions. Most AI researchers classify them as <strong>highly versatile Narrow AI</strong>, not as General AI.</p>
+                </div>
+
+                <!-- 2.2 General AI -->
+                <h3 id="general-ai">2.2 General AI (Artificial General Intelligence &mdash; AGI)</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">General AI (AGI)</div>
+                  <p>A hypothetical AI system with the ability to understand, learn, and apply knowledge across <strong>any intellectual task</strong> that a human being can perform. AGI would match human cognitive abilities in generality, flexibility, and transfer learning.</p>
+                </div>
+
+                <p><strong>Key characteristics AGI would need:</strong></p>
+                <ul>
+                  <li><strong>Transfer learning:</strong> Knowledge acquired in one domain can be applied to new, unseen domains.</li>
+                  <li><strong>Common sense reasoning:</strong> Understanding context, causality, and real-world physics.</li>
+                  <li><strong>Abstraction:</strong> Forming general concepts from specific examples.</li>
+                  <li><strong>Adaptability:</strong> Learning new tasks without being explicitly programmed for them.</li>
+                  <li><strong>Self-awareness:</strong> Understanding its own capabilities and limitations (debated).</li>
+                </ul>
+
+                <p><strong>Current status:</strong> AGI does <em>not</em> exist. Despite significant progress, we do not yet have systems that match human-level general intelligence. Estimates for when (or whether) AGI will be achieved vary wildly&mdash;from &ldquo;within 10 years&rdquo; to &ldquo;never.&rdquo;</p>
+
+                <!-- 2.3 Super AI -->
+                <h3 id="super-ai">2.3 Super AI (Artificial Superintelligence &mdash; ASI)</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Super AI (ASI)</div>
+                  <p>A hypothetical AI system that <strong>surpasses human intelligence</strong> in all domains: scientific creativity, social skills, general wisdom, and every other cognitive ability. ASI would be to humans what humans are to ants in terms of intellectual capability.</p>
+                </div>
+
+                <p>ASI is entirely theoretical and raises profound philosophical, ethical, and existential questions. It is the subject of much discussion in AI safety and alignment research.</p>
+
+                <p><strong>Key concerns about ASI:</strong></p>
+                <ul>
+                  <li><strong>Control problem:</strong> How do we ensure an ASI acts in humanity&rsquo;s best interests?</li>
+                  <li><strong>Value alignment:</strong> How do we instill human values in a system far more intelligent than us?</li>
+                  <li><strong>Intelligence explosion:</strong> If an ASI can improve its own design, it could undergo recursive self-improvement, rapidly becoming unimaginably intelligent (the &ldquo;technological singularity&rdquo;).</li>
+                </ul>
+
+                <!-- Comparison Table -->
+                <h3>Comparison: ANI vs. AGI vs. ASI</h3>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Feature</th>
+                        <th>Narrow AI (ANI)</th>
+                        <th>General AI (AGI)</th>
+                        <th>Super AI (ASI)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Scope</td>
+                        <td>Single task / narrow domain</td>
+                        <td>All human cognitive tasks</td>
+                        <td>All tasks, beyond human capability</td>
+                      </tr>
+                      <tr>
+                        <td>Current Status</td>
+                        <td>&#9989; Exists today</td>
+                        <td>&#10060; Does not exist yet</td>
+                        <td>&#10060; Theoretical</td>
+                      </tr>
+                      <tr>
+                        <td>Learning</td>
+                        <td>Task-specific training</td>
+                        <td>Transfer &amp; generalize across domains</td>
+                        <td>Self-improving, recursive enhancement</td>
+                      </tr>
+                      <tr>
+                        <td>Adaptability</td>
+                        <td>Low (retrain for new tasks)</td>
+                        <td>High (learns new tasks on its own)</td>
+                        <td>Infinite (surpasses all human ability)</td>
+                      </tr>
+                      <tr>
+                        <td>Examples</td>
+                        <td>Siri, AlphaGo, spam filters, GPT</td>
+                        <td>None yet</td>
+                        <td>None (science fiction only)</td>
+                      </tr>
+                      <tr>
+                        <td>Risk Level</td>
+                        <td>Low&ndash;Moderate (biases, misuse)</td>
+                        <td>High (unpredictable behavior)</td>
+                        <td>Existential (if misaligned)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 3: Weak AI vs Strong AI -->
+              <section id="weak-vs-strong">
+                <h2>3. Weak AI vs. Strong AI</h2>
+
+                <p>This is a <em>philosophical</em> distinction, not a capabilities-based one. It addresses the question: <strong>Does an AI system truly &ldquo;understand,&rdquo; or does it merely simulate understanding?</strong></p>
+
+                <div class="definition-box">
+                  <div class="box-title">Weak AI</div>
+                  <p>The view that AI systems can <strong>simulate</strong> intelligent behavior but do not actually possess understanding, consciousness, or genuine cognition. A weak AI system processes symbols according to rules without any real comprehension of what those symbols mean.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Strong AI</div>
+                  <p>The view that a sufficiently advanced AI system can <strong>genuinely</strong> possess understanding, consciousness, and mind. A strong AI would not merely simulate thinking&mdash;it would actually <em>be</em> thinking, in the same sense that humans think.</p>
+                </div>
+
+                <p>The debate is epitomized by John Searle&rsquo;s <strong>Chinese Room Argument</strong> (1980):</p>
+
+                <div class="theorem-box">
+                  <div class="box-title">The Chinese Room Argument (Searle, 1980)</div>
+                  <p>Imagine a person locked in a room who does not understand Chinese. They receive Chinese characters through a slot, consult a rulebook (written in English) that tells them which Chinese characters to send back, and output a response. To an outside Chinese speaker, the responses are perfect&mdash;indistinguishable from a native speaker. But the person in the room <em>does not understand Chinese</em>.</p>
+                  <p><strong>Searle&rsquo;s conclusion:</strong> A computer running a program is like the person in the room&mdash;it manipulates symbols without understanding them. Therefore, no computer program can ever give a computer genuine understanding (i.e., Strong AI is impossible through computation alone).</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Common Confusion</div>
+                  <p>Don&rsquo;t conflate &ldquo;Weak AI / Strong AI&rdquo; (philosophical positions about understanding) with &ldquo;Narrow AI / General AI&rdquo; (capability classifications). An AGI could still be &ldquo;Weak AI&rdquo; in the philosophical sense if it simulates intelligence without genuine understanding. Conversely, a narrow system <em>could</em> potentially have genuine understanding of its narrow domain (Strong AI position) &mdash; though this is highly debated.</p>
+                </div>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Aspect</th>
+                        <th>Weak AI</th>
+                        <th>Strong AI</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Core claim</td>
+                        <td>AI simulates intelligence</td>
+                        <td>AI possesses genuine intelligence / mind</td>
+                      </tr>
+                      <tr>
+                        <td>Consciousness</td>
+                        <td>No (just computation)</td>
+                        <td>Yes (genuine consciousness possible)</td>
+                      </tr>
+                      <tr>
+                        <td>Understanding</td>
+                        <td>Syntactic (symbol manipulation)</td>
+                        <td>Semantic (real comprehension)</td>
+                      </tr>
+                      <tr>
+                        <td>Key proponent</td>
+                        <td>John Searle</td>
+                        <td>Alan Turing, some functionalists</td>
+                      </tr>
+                      <tr>
+                        <td>Current AI systems</td>
+                        <td>All current AI is Weak AI</td>
+                        <td>No Strong AI system exists</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 4: Classification by Functionality -->
+              <section id="by-functionality">
+                <h2>4. Classification by Functionality</h2>
+
+                <p>This classification, popularized by Arend Hintze, categorizes AI by how it processes information and interacts with the world, forming a progression from simple to complex.</p>
+
+                <!-- 4.1 Reactive Machines -->
+                <h3 id="reactive-machines">4.1 Type I: Reactive Machines</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Reactive Machines</div>
+                  <p>The simplest type of AI. They can <strong>only react to the current situation</strong>&mdash;they have no memory, cannot learn from past experiences, and cannot use historical data to inform current decisions. They choose the best action based <em>solely</em> on the current input.</p>
+                </div>
+
+                <p><strong>Example:</strong> IBM&rsquo;s <strong>Deep Blue</strong>. It evaluated the current board position and selected the best move. It had no memory of previous games and could not learn or improve over time. Every game started from scratch (in terms of strategy).</p>
+
+                <p><strong>Characteristics:</strong> No memory, no learning, deterministic based on current inputs, highly specialized.</p>
+
+                <!-- 4.2 Limited Memory -->
+                <h3 id="limited-memory">4.2 Type II: Limited Memory</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Limited Memory AI</div>
+                  <p>These systems can <strong>use past data or experiences to inform current decisions</strong>, but only within a limited window. They do not permanently store this information as long-term &ldquo;experiential&rdquo; knowledge the way humans do. Most current AI falls in this category.</p>
+                </div>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                  <li><strong>Self-driving cars:</strong> Use recent observations of other vehicles&rsquo; speed, direction, and lane position to make driving decisions. The data is used temporarily, not stored permanently as &ldquo;experiences.&rdquo;</li>
+                  <li><strong>Chatbots with context windows:</strong> GPT-based chatbots remember the conversation within a session (context window) but don&rsquo;t learn permanently from each conversation.</li>
+                  <li><strong>Recommendation systems:</strong> Netflix&rsquo;s recommendation engine uses your recent viewing history (limited memory) to suggest content.</li>
+                </ul>
+
+                <p><strong>Characteristics:</strong> Short-term memory, learns from training data (not from ongoing experiences permanently), most current ML models.</p>
+
+                <!-- 4.3 Theory of Mind -->
+                <h3 id="theory-of-mind">4.3 Type III: Theory of Mind</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Theory of Mind AI</div>
+                  <p>A hypothetical AI that can <strong>understand the mental states</strong> of other entities&mdash;beliefs, desires, intentions, emotions, and knowledge. It can model what others are thinking and adjust its behavior accordingly. This requires understanding that other agents have their own internal states.</p>
+                </div>
+
+                <p><strong>Current status:</strong> Does not fully exist. Some limited progress has been made in emotion recognition (detecting facial expressions, tone of voice), but no AI system truly &ldquo;understands&rdquo; another entity&rsquo;s mental state in the way humans do.</p>
+
+                <p><strong>Why it matters:</strong> For AI to interact naturally with humans&mdash;in caregiving, teaching, negotiation, or teamwork&mdash;it needs some form of Theory of Mind. A robot caregiver, for instance, would need to understand when a patient is confused, anxious, or in pain.</p>
+
+                <!-- 4.4 Self-Aware -->
+                <h3 id="self-aware">4.4 Type IV: Self-Aware AI</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Self-Aware AI</div>
+                  <p>The most advanced (and entirely hypothetical) type of AI. A self-aware AI has its own <strong>consciousness, self-awareness, and sentience</strong>. It understands its own internal state, has subjective experiences, and can form its own goals and motivations.</p>
+                </div>
+
+                <p><strong>Current status:</strong> Purely theoretical. No AI system has demonstrated anything resembling consciousness or self-awareness. Whether machine consciousness is even <em>possible</em> is an open philosophical question.</p>
+
+                <!-- Functionality Comparison Table -->
+                <h3>Comparison of AI Functionality Types</h3>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>Memory</th>
+                        <th>Learning</th>
+                        <th>Social Understanding</th>
+                        <th>Self-Awareness</th>
+                        <th>Exists?</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>I: Reactive</td>
+                        <td>&#10060; None</td>
+                        <td>&#10060; No</td>
+                        <td>&#10060; No</td>
+                        <td>&#10060; No</td>
+                        <td>&#9989; Yes</td>
+                      </tr>
+                      <tr>
+                        <td>II: Limited Memory</td>
+                        <td>&#9989; Short-term</td>
+                        <td>&#9989; From data</td>
+                        <td>&#10060; No</td>
+                        <td>&#10060; No</td>
+                        <td>&#9989; Yes</td>
+                      </tr>
+                      <tr>
+                        <td>III: Theory of Mind</td>
+                        <td>&#9989; Yes</td>
+                        <td>&#9989; Yes</td>
+                        <td>&#9989; Models others</td>
+                        <td>&#10060; No</td>
+                        <td>&#10060; No</td>
+                      </tr>
+                      <tr>
+                        <td>IV: Self-Aware</td>
+                        <td>&#9989; Yes</td>
+                        <td>&#9989; Yes</td>
+                        <td>&#9989; Yes</td>
+                        <td>&#9989; Conscious</td>
+                        <td>&#10060; No</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 5: Mapping the Classifications -->
+              <section id="mapping">
+                <h2>5. How the Classifications Map to Each Other</h2>
+
+                <p>The two classification schemes (by capability and by functionality) are complementary, not competing. Here is how they roughly align:</p>
+
+                <ul>
+                  <li><strong>Narrow AI</strong> includes Type I (Reactive) and Type II (Limited Memory) systems.</li>
+                  <li><strong>General AI</strong> would likely require at least Type III (Theory of Mind) capabilities.</li>
+                  <li><strong>Super AI</strong> would encompass Type IV (Self-Aware) and beyond.</li>
+                </ul>
+
+                <div class="diagram-container">
+                  <pre style="text-align:left; display:inline-block; font-family:var(--font-mono); font-size:0.85rem;">
+By Capability:         By Functionality:
+┌──────────────┐       ┌─────────────────┐
+│  Narrow AI   │ ────▶ │ I.  Reactive    │
+│  (ANI)       │       │ II. Limited Mem. │
+│  ✓ EXISTS    │       │     ✓ EXISTS     │
+├──────────────┤       ├─────────────────┤
+│  General AI  │ ────▶ │ III. Theory of  │
+│  (AGI)       │       │      Mind       │
+│  ✗ FUTURE    │       │     ✗ FUTURE    │
+├──────────────┤       ├─────────────────┤
+│  Super AI    │ ────▶ │ IV.  Self-Aware │
+│  (ASI)       │       │     ✗ THEORY    │
+│  ✗ THEORY    │       │                 │
+└──────────────┘       └─────────────────┘</pre>
+                  <div class="caption">Figure: Approximate mapping between capability and functionality classifications</div>
+                </div>
+              </section>
+
+              <!-- Section 6: Examples -->
+              <section id="examples">
+                <h2>6. Real-World Examples by Type</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Example: Classifying Real Systems</div>
+                  <p><strong>Question:</strong> Classify the following systems by both capability and functionality type:</p>
+                  <ol>
+                    <li>A thermostat that turns heating on when temperature drops below 20&deg;C</li>
+                    <li>Tesla Autopilot</li>
+                    <li>GPT-4</li>
+                    <li>A hypothetical robot that understands you are sad and comforts you</li>
+                  </ol>
+                  <p><strong>Solution:</strong></p>
+                  <ol>
+                    <li><strong>Thermostat:</strong> Narrow AI (single task) / Type I Reactive (no memory, responds only to current temperature). Note: many would argue a simple thermostat is not AI at all&mdash;it&rsquo;s just automation. But it is a useful edge case for understanding the boundary.</li>
+                    <li><strong>Tesla Autopilot:</strong> Narrow AI (driving only) / Type II Limited Memory (uses recent sensor data&mdash;speed, position, lane markings from past few seconds&mdash;to make driving decisions).</li>
+                    <li><strong>GPT-4:</strong> Narrow AI (text processing, despite being versatile) / Type II Limited Memory (uses the conversation context window but does not permanently learn from interactions).</li>
+                    <li><strong>Empathetic robot:</strong> Would require General AI / Type III Theory of Mind (understanding your emotional state and acting accordingly). Does not exist yet.</li>
+                  </ol>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example: GATE-Style MCQ</div>
+                  <p><strong>Question:</strong> Which of the following is TRUE about current AI systems?</p>
+                  <ol type="A">
+                    <li>GPT-4 is an example of Artificial General Intelligence (AGI)</li>
+                    <li>All current AI systems are examples of Narrow AI (ANI)</li>
+                    <li>Self-driving cars are Type I (Reactive) AI systems</li>
+                    <li>Deep Blue was a Type II (Limited Memory) system because it improved over time</li>
+                  </ol>
+                  <p><strong>Answer: B</strong></p>
+                  <p><strong>Explanation:</strong> (A) GPT-4 is versatile but still Narrow AI. (B) Correct&mdash;no AGI exists yet. (C) Self-driving cars use recent sensor data, making them Type II (Limited Memory). (D) Deep Blue did not learn or use memory of past games; it was Type I (Reactive).</p>
+                </div>
+              </section>
+
+              <!-- Section 7: Common Mistakes -->
+              <section id="common-mistakes">
+                <h2>7. Common Mistakes</h2>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake: Equating Versatility with Generality</div>
+                  <p>Just because GPT-4 can perform many text-based tasks does not make it AGI. General AI requires the ability to learn <em>any</em> new task (including physical tasks, emotional understanding, creative reasoning in novel domains) without specific training.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake: Confusing Weak/Strong with Narrow/General</div>
+                  <p>&ldquo;Weak AI&rdquo; and &ldquo;Strong AI&rdquo; are <em>philosophical</em> positions about understanding and consciousness. &ldquo;Narrow AI&rdquo; and &ldquo;General AI&rdquo; are <em>capability-based</em> classifications. They are related but NOT the same.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake: Thinking Super AI is Imminent</div>
+                  <p>ASI is a theoretical concept. No credible AI researcher has provided a concrete timeline or mechanism for achieving ASI. It remains in the realm of speculation and long-term research, not near-term engineering.</p>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary" class="summary-section">
+                <h2>&#128218; Summary</h2>
+                <ul>
+                  <li>AI is classified <strong>by capability</strong>: Narrow AI (exists), General AI (future goal), Super AI (theoretical).</li>
+                  <li>AI is classified <strong>by functionality</strong>: Reactive (I), Limited Memory (II), Theory of Mind (III), Self-Aware (IV).</li>
+                  <li><strong>Weak AI vs. Strong AI</strong> is a philosophical debate about whether AI can truly <em>understand</em> or only <em>simulate</em>.</li>
+                  <li>All current AI systems (including LLMs) are <strong>Narrow AI</strong> and fall under Type I or Type II.</li>
+                  <li>AGI and ASI do not exist; their development timelines are highly uncertain.</li>
+                  <li>The Chinese Room Argument (Searle) is the most famous argument against Strong AI.</li>
+                </ul>
+              </section>
+
+              <!-- References -->
+              <section id="references" class="references-section">
+                <h2>References</h2>
+                <ol>
+                  <li>Russell, S. &amp; Norvig, P. (2020). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson. &mdash; Chapter 1, 27.</li>
+                  <li>Hintze, A. (2016). &ldquo;Understanding the Four Types of Artificial Intelligence.&rdquo; <em>The Conversation</em>.</li>
+                  <li>Searle, J. (1980). &ldquo;Minds, Brains, and Programs.&rdquo; <em>Behavioral and Brain Sciences</em>, 3(3), 417&ndash;424.</li>
+                  <li>Bostrom, N. (2014). <em>Superintelligence: Paths, Dangers, Strategies</em>. Oxford University Press.</li>
+                </ol>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch00-types-of-ai">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="history-of-ai.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">History of AI</span>
+              </a>
+              <a href="ai-vs-ml-vs-dl.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">AI vs ML vs DL</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#why-classify">1. Why Classify?</a></li>
+              <li><a href="#by-capability">2. By Capability</a>
+                <ul>
+                  <li><a href="#narrow-ai">2.1 Narrow AI</a></li>
+                  <li><a href="#general-ai">2.2 General AI</a></li>
+                  <li><a href="#super-ai">2.3 Super AI</a></li>
+                </ul>
+              </li>
+              <li><a href="#weak-vs-strong">3. Weak vs Strong AI</a></li>
+              <li><a href="#by-functionality">4. By Functionality</a>
+                <ul>
+                  <li><a href="#reactive-machines">4.1 Reactive</a></li>
+                  <li><a href="#limited-memory">4.2 Limited Memory</a></li>
+                  <li><a href="#theory-of-mind">4.3 Theory of Mind</a></li>
+                  <li><a href="#self-aware">4.4 Self-Aware</a></li>
+                </ul>
+              </li>
+              <li><a href="#mapping">5. Mapping Classifications</a></li>
+              <li><a href="#examples">6. Examples</a></li>
+              <li><a href="#common-mistakes">7. Common Mistakes</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

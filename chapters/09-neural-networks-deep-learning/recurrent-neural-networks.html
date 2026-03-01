@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Recurrent Neural Networks — RNN architecture, hidden state, BPTT, vanishing gradient problem, and sequence-to-sequence models for GATE DA.">
+  <title>Recurrent Neural Networks — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a>
+            <a href="perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="multilayer-perceptron.html" class="sidebar-link"><span class="link-check"></span> Multilayer Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="backpropagation.html" class="sidebar-link"><span class="link-check"></span> Backpropagation<span class="link-type theory">Theory</span></a>
+            <a href="activation-functions.html" class="sidebar-link"><span class="link-check"></span> Activation Functions<span class="link-type theory">Theory</span></a>
+            <a href="optimization-algorithms.html" class="sidebar-link"><span class="link-check"></span> Optimization Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="convolutional-neural-networks.html" class="sidebar-link"><span class="link-check"></span> CNNs<span class="link-type theory">Theory</span></a>
+            <a href="recurrent-neural-networks.html" class="sidebar-link active"><span class="link-check"></span> RNNs<span class="link-type theory">Theory</span></a>
+            <a href="lstm-gru.html" class="sidebar-link"><span class="link-check"></span> LSTM &amp; GRU<span class="link-type theory">Theory</span></a>
+            <a href="attention-transformers.html" class="sidebar-link"><span class="link-check"></span> Attention &amp; Transformers<span class="link-type theory">Theory</span></a>
+            <a href="regularization-deep-learning.html" class="sidebar-link"><span class="link-check"></span> DL Regularization<span class="link-type theory">Theory</span></a>
+            <a href="practical-neural-network.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="neural-network-basics.html">Chapter 9: Neural Networks &amp; Deep Learning</a> &raquo; <span class="current">Recurrent Neural Networks</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch09-recurrent-neural-networks">
+
+            <h1>Recurrent Neural Networks (RNNs)</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch09-recurrent-neural-networks" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="backpropagation.html">Backpropagation</a> &mdash; Chain rule and gradient flow</li>
+              <li><a href="activation-functions.html">Activation Functions</a> &mdash; tanh, softmax</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Understand why <strong>feedforward networks fail</strong> on sequential data</li>
+              <li>Write the <strong>RNN hidden state equation</strong></li>
+              <li>Unfold an RNN in time and count <strong>parameters</strong></li>
+              <li>Explain <strong>Backpropagation Through Time (BPTT)</strong></li>
+              <li>Describe the <strong>vanishing / exploding gradient</strong> problem in RNNs</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <section id="motivation">
+                <h2>1. Why Sequences Need Recurrence</h2>
+                <p>Feedforward networks take a <strong>fixed-size input</strong> and produce a <strong>fixed-size output</strong>. Many real-world tasks involve <strong>variable-length sequences</strong>:</p>
+                <ul>
+                  <li>Language modelling: predict the next word given all previous words.</li>
+                  <li>Speech recognition: audio frames &rarr; text.</li>
+                  <li>Time-series forecasting: stock prices, weather data.</li>
+                </ul>
+                <p>An RNN processes one element at a time while maintaining a <strong>hidden state</strong> that summarises the history of all previous elements.</p>
+              </section>
+
+              <section id="architecture">
+                <h2>2. RNN Architecture</h2>
+                <div class="definition-box">
+                  <h4>Basic RNN Equations</h4>
+                  <pre><code>h<sub>t</sub> = tanh(W<sub>hh</sub> &middot; h<sub>t&minus;1</sub> + W<sub>xh</sub> &middot; x<sub>t</sub> + b<sub>h</sub>)
+y<sub>t</sub> = W<sub>hy</sub> &middot; h<sub>t</sub> + b<sub>y</sub>
+
+Where:
+  x<sub>t</sub> &isin; &reals;<sup>d</sup>     &mdash; input at time step t
+  h<sub>t</sub> &isin; &reals;<sup>n</sup>     &mdash; hidden state at time t
+  y<sub>t</sub> &isin; &reals;<sup>m</sup>     &mdash; output at time t
+  W<sub>xh</sub> &isin; &reals;<sup>n&times;d</sup>  &mdash; input-to-hidden weights
+  W<sub>hh</sub> &isin; &reals;<sup>n&times;n</sup>  &mdash; hidden-to-hidden weights
+  W<sub>hy</sub> &isin; &reals;<sup>m&times;n</sup>  &mdash; hidden-to-output weights</code></pre>
+                </div>
+
+                <div class="note-box">
+                  <h4>Key Property: Parameter Sharing</h4>
+                  <p>The <strong>same</strong> weights W<sub>xh</sub>, W<sub>hh</sub>, W<sub>hy</sub> are used at <strong>every time step</strong>. This is analogous to how CNN filters are shared across spatial locations.</p>
+                </div>
+              </section>
+
+              <section id="unfolding">
+                <h2>3. Unfolding in Time</h2>
+                <p>The compact RNN diagram (with a self-loop on h) can be <strong>unfolded</strong> into a deep feedforward network where each &ldquo;layer&rdquo; corresponds to one time step:</p>
+                <pre><code>h<sub>0</sub> &rarr; h<sub>1</sub> &rarr; h<sub>2</sub> &rarr; ... &rarr; h<sub>T</sub>
+ &uarr;       &uarr;       &uarr;             &uarr;
+x<sub>0</sub>      x<sub>1</sub>      x<sub>2</sub>            x<sub>T</sub>
+          &darr;       &darr;             &darr;
+         y<sub>1</sub>      y<sub>2</sub>            y<sub>T</sub></code></pre>
+                <p>Despite being &ldquo;deep&rdquo; (T layers), the unfolded network shares weights across all layers.</p>
+              </section>
+
+              <section id="parameter-counting">
+                <h2>4. Parameter Counting</h2>
+                <div class="theorem-box">
+                  <h4>Total RNN Parameters</h4>
+                  <pre><code>Params = n(d + n + 1) + m(n + 1)
+       = |W<sub>xh</sub>| + |W<sub>hh</sub>| + |b<sub>h</sub>| + |W<sub>hy</sub>| + |b<sub>y</sub>|
+       =   nd   +   n&sup2;   +   n   +   mn   +   m</code></pre>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example: Language Model</h4>
+                  <p>Vocabulary size d = 10,000, hidden size n = 256, output size m = 10,000.</p>
+                  <pre><code>W<sub>xh</sub>: 256&times;10000 = 2,560,000
+W<sub>hh</sub>: 256&times;256   =    65,536
+b<sub>h</sub>:  256        =       256
+W<sub>hy</sub>: 10000&times;256 = 2,560,000
+b<sub>y</sub>:  10000      =    10,000
+Total = 5,195,792</code></pre>
+                  <p>Note: The parameter count is <strong>independent of sequence length T</strong>.</p>
+                </div>
+              </section>
+
+              <section id="bptt">
+                <h2>5. Backpropagation Through Time (BPTT)</h2>
+                <p>BPTT is simply backpropagation applied to the <strong>unfolded</strong> RNN graph.</p>
+
+                <div class="algorithm-block">
+                  <h4>BPTT Algorithm</h4>
+                  <ol class="step-list">
+                    <li><strong>Forward pass:</strong> Compute h<sub>1</sub>, h<sub>2</sub>, &hellip;, h<sub>T</sub> and y<sub>1</sub>, &hellip;, y<sub>T</sub>. Store all intermediate values.</li>
+                    <li><strong>Compute loss:</strong> L = &sum;<sub>t=1</sub><sup>T</sup> L<sub>t</sub>(y<sub>t</sub>, target<sub>t</sub>)</li>
+                    <li><strong>Backward pass:</strong> For t = T, T&minus;1, &hellip;, 1:
+                      <pre><code>&delta;<sub>t</sub> = &part;L/&part;h<sub>t</sub>
+&part;L/&part;W<sub>hh</sub> += &delta;<sub>t</sub> &middot; h<sub>t&minus;1</sub><sup>&topsuperscript;</sup>
+&part;L/&part;W<sub>xh</sub> += &delta;<sub>t</sub> &middot; x<sub>t</sub><sup>&topsuperscript;</sup></code></pre>
+                    </li>
+                    <li><strong>Update weights:</strong> &theta; &larr; &theta; &minus; &eta; &middot; &nabla;L</li>
+                  </ol>
+                </div>
+
+                <div class="note-box">
+                  <h4>Truncated BPTT</h4>
+                  <p>For very long sequences, full BPTT is expensive. <strong>Truncated BPTT</strong> limits backpropagation to the last k time steps, trading accuracy for speed.</p>
+                </div>
+              </section>
+
+              <section id="vanishing-gradient">
+                <h2>6. Vanishing &amp; Exploding Gradients in RNNs</h2>
+                <p>The gradient with respect to h<sub>0</sub> involves a product of Jacobians through all T time steps:</p>
+                <pre><code>&part;h<sub>T</sub>/&part;h<sub>0</sub> = &prod;<sub>t=1</sub><sup>T</sup> &part;h<sub>t</sub>/&part;h<sub>t&minus;1</sub> = &prod;<sub>t=1</sub><sup>T</sup> diag(tanh'(z<sub>t</sub>)) &middot; W<sub>hh</sub></code></pre>
+
+                <div class="warning-box">
+                  <h4>The Fundamental Problem</h4>
+                  <ul>
+                    <li>If &lambda;<sub>max</sub>(W<sub>hh</sub>) &lt; 1: gradients shrink exponentially &rarr; <strong>vanishing</strong> (cannot learn long-range dependencies).</li>
+                    <li>If &lambda;<sub>max</sub>(W<sub>hh</sub>) &gt; 1: gradients grow exponentially &rarr; <strong>exploding</strong> (training diverges, NaN losses).</li>
+                  </ul>
+                </div>
+
+                <h3>Solutions</h3>
+                <table class="comparison-table">
+                  <tr><th>Solution</th><th>Addresses</th><th>Mechanism</th></tr>
+                  <tr><td>Gradient clipping</td><td>Exploding</td><td>Clip &#8214;&nabla;&#8214; to max threshold</td></tr>
+                  <tr><td>LSTM / GRU</td><td>Vanishing</td><td>Gated memory preserves gradients</td></tr>
+                  <tr><td>Skip connections</td><td>Vanishing</td><td>Direct gradient paths</td></tr>
+                  <tr><td>Orthogonal init</td><td>Both</td><td>Keeps eigenvalues near 1</td></tr>
+                </table>
+              </section>
+
+              <section id="seq-architectures">
+                <h2>7. Sequence Architectures</h2>
+                <table class="comparison-table">
+                  <tr><th>Type</th><th>Input &rarr; Output</th><th>Example</th></tr>
+                  <tr><td>One-to-Many</td><td>1 &rarr; T</td><td>Image captioning</td></tr>
+                  <tr><td>Many-to-One</td><td>T &rarr; 1</td><td>Sentiment analysis</td></tr>
+                  <tr><td>Many-to-Many (synced)</td><td>T &rarr; T</td><td>POS tagging</td></tr>
+                  <tr><td>Many-to-Many (encoder&ndash;decoder)</td><td>T<sub>1</sub> &rarr; T<sub>2</sub></td><td>Machine translation</td></tr>
+                </table>
+
+                <h3>Bidirectional RNN</h3>
+                <p>A bidirectional RNN runs <strong>two separate hidden states</strong>: one forward (left-to-right) and one backward (right-to-left). The outputs are concatenated:</p>
+                <pre><code>h<sub>t</sub> = [h<sub>t</sub><sup>&rarr;</sup> ; h<sub>t</sub><sup>&larr;</sup>]  &isin; &reals;<sup>2n</sup></code></pre>
+                <p>This allows each position to have context from both the past and the future.</p>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li>RNN hidden state: h<sub>t</sub> = tanh(W<sub>hh</sub> h<sub>t&minus;1</sub> + W<sub>xh</sub> x<sub>t</sub> + b).</li>
+                    <li>Parameters are <strong>shared across time</strong>; count is independent of T.</li>
+                    <li>BPTT unfolds the RNN and applies backprop; gradient is a product of T Jacobians.</li>
+                    <li><strong>Vanishing gradients</strong> prevent learning long-range dependencies &rarr; solved by LSTM/GRU.</li>
+                    <li>For GATE: know the RNN equations, parameter counting, and why vanilla RNNs struggle with long sequences.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch09-recurrent-neural-networks">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="convolutional-neural-networks.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">CNNs</span></a>
+              <a href="lstm-gru.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">LSTM &amp; GRU</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#motivation">1. Motivation</a></li>
+            <li><a href="#architecture">2. Architecture</a></li>
+            <li><a href="#unfolding">3. Unfolding</a></li>
+            <li><a href="#parameter-counting">4. Param Counting</a></li>
+            <li><a href="#bptt">5. BPTT</a></li>
+            <li><a href="#vanishing-gradient">6. Vanishing Gradient</a></li>
+            <li><a href="#seq-architectures">7. Seq Architectures</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

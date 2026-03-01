@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evaluation Metrics — Confusion Matrix, Precision, Recall, F1, ROC-AUC, Regression metrics (MSE, R²) for GATE DA.">
+  <title>Evaluation Metrics — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="supervised-learning.html" class="sidebar-link"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="unsupervised-learning.html" class="sidebar-link"><span class="link-check"></span> Unsupervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="bias-variance-tradeoff.html" class="sidebar-link"><span class="link-check"></span> Bias-Variance Tradeoff<span class="link-type theory">Theory</span></a>
+            <a href="overfitting-underfitting.html" class="sidebar-link"><span class="link-check"></span> Overfitting &amp; Underfitting<span class="link-type theory">Theory</span></a>
+            <a href="cross-validation.html" class="sidebar-link"><span class="link-check"></span> Cross-Validation<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-metrics.html" class="sidebar-link active"><span class="link-check"></span> Evaluation Metrics<span class="link-type theory">Theory</span></a>
+            <a href="feature-engineering.html" class="sidebar-link"><span class="link-check"></span> Feature Engineering<span class="link-type theory">Theory</span></a>
+            <a href="ml-math-essentials.html" class="sidebar-link"><span class="link-check"></span> ML Math Essentials<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="ml-fundamentals.html">Chapter 8: ML Foundations</a> &raquo; <span class="current">Evaluation Metrics</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch08-evaluation-metrics">
+
+            <h1>Evaluation Metrics</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: Very High</span>
+              <button class="bookmark-btn" data-page="ch08-evaluation-metrics" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Construct and interpret a confusion matrix</li>
+              <li>Calculate Precision, Recall, F1-Score, Specificity</li>
+              <li>Understand ROC curves and AUC</li>
+              <li>Apply regression metrics: MSE, RMSE, MAE, R&sup2;</li>
+              <li>Handle multi-class averaging (macro, micro, weighted)</li>
+            </ul></div>
+
+            <!-- Section 1: Confusion Matrix -->
+            <section id="confusion-matrix">
+              <h2>1. Confusion Matrix</h2>
+              <p>For a binary classifier with classes Positive (P) and Negative (N), the confusion matrix is a 2&times;2 table of prediction outcomes:</p>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th></th><th>Predicted Positive</th><th>Predicted Negative</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Actual Positive</strong></td><td>True Positive (TP)</td><td>False Negative (FN)</td></tr>
+                    <tr><td><strong>Actual Negative</strong></td><td>False Positive (FP)</td><td>True Negative (TN)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="note-box">
+                <div class="box-title">Mnemonic</div>
+                <p>The first word (True/False) tells you if the prediction was <em>correct</em>. The second word (Positive/Negative) tells you <em>what was predicted</em>.</p>
+                <ul>
+                  <li><strong>FP</strong> (Type I error) = &ldquo;False alarm&rdquo; &mdash; predicted positive but wrong</li>
+                  <li><strong>FN</strong> (Type II error) = &ldquo;Missed detection&rdquo; &mdash; predicted negative but wrong</li>
+                </ul>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: Confusion Matrix</div>
+                <p><strong>Q:</strong> A spam classifier on 200 emails: 120 are spam, 80 are not spam. Results: 100 spam correctly identified, 20 spam missed, 10 non-spam wrongly flagged, 70 non-spam correctly identified. Build the confusion matrix.</p>
+                <p><strong>A:</strong> TP=100, FN=20, FP=10, TN=70. Total = 200 &#10003;</p>
+              </div>
+            </section>
+
+            <!-- Section 2: Classification Metrics -->
+            <section id="classification-metrics">
+              <h2>2. Classification Metrics</h2>
+
+              <div class="definition-box">
+                <div class="box-title">Core Classification Metrics</div>
+                <ul>
+                  <li><strong>Accuracy</strong> = (TP + TN) / (TP + TN + FP + FN)</li>
+                  <li><strong>Precision</strong> (Positive Predictive Value) = TP / (TP + FP)</li>
+                  <li><strong>Recall</strong> (Sensitivity, True Positive Rate) = TP / (TP + FN)</li>
+                  <li><strong>Specificity</strong> (True Negative Rate) = TN / (TN + FP)</li>
+                  <li><strong>F1-Score</strong> = 2 &times; (Precision &times; Recall) / (Precision + Recall) = 2TP / (2TP + FP + FN)</li>
+                  <li><strong>F&beta;-Score</strong> = (1+&beta;&sup2;) &times; (Precision &times; Recall) / (&beta;&sup2; &times; Precision + Recall)</li>
+                </ul>
+              </div>
+
+              <div class="warning-box">
+                <div class="box-title">When Accuracy Fails</div>
+                <p>For imbalanced datasets, accuracy is misleading. If 99% of data is Class A, predicting all as Class A gives 99% accuracy but 0% recall for Class B. Always use Precision, Recall, and F1 for imbalanced problems.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: All Metrics</div>
+                <p><strong>Q:</strong> Given TP=100, FN=20, FP=10, TN=70. Compute all metrics.</p>
+                <p><strong>A:</strong></p>
+                <ul>
+                  <li>Accuracy = (100+70)/200 = 170/200 = <strong>0.85</strong></li>
+                  <li>Precision = 100/(100+10) = 100/110 &asymp; <strong>0.909</strong></li>
+                  <li>Recall = 100/(100+20) = 100/120 &asymp; <strong>0.833</strong></li>
+                  <li>Specificity = 70/(70+10) = 70/80 = <strong>0.875</strong></li>
+                  <li>F1 = 2&times;(0.909&times;0.833)/(0.909+0.833) = 2&times;0.757/1.742 &asymp; <strong>0.870</strong></li>
+                </ul>
+              </div>
+
+              <h3 id="precision-recall-tradeoff">2.1 Precision-Recall Tradeoff</h3>
+              <p>Increasing the classification threshold increases precision but decreases recall (fewer positives predicted). Decreasing the threshold increases recall but decreases precision.</p>
+              <div class="note-box">
+                <div class="box-title">When to Favour What</div>
+                <ul>
+                  <li><strong>High Precision needed:</strong> Spam filtering (don&rsquo;t flag legitimate email as spam)</li>
+                  <li><strong>High Recall needed:</strong> Cancer detection (don&rsquo;t miss any cancer cases)</li>
+                  <li><strong>F&beta; with &beta;&gt;1:</strong> Favours recall (e.g., F2 score)</li>
+                  <li><strong>F&beta; with &beta;&lt;1:</strong> Favours precision (e.g., F0.5 score)</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 3: ROC and AUC -->
+            <section id="roc-auc">
+              <h2>3. ROC Curve and AUC</h2>
+              <div class="definition-box">
+                <div class="box-title">ROC Curve</div>
+                <p>The <strong>Receiver Operating Characteristic</strong> curve plots <strong>TPR (Recall)</strong> on the y-axis vs. <strong>FPR (1 &minus; Specificity)</strong> on the x-axis at various classification thresholds.</p>
+                <ul>
+                  <li><strong>TPR</strong> = TP / (TP + FN)</li>
+                  <li><strong>FPR</strong> = FP / (FP + TN)</li>
+                </ul>
+              </div>
+
+              <div class="theorem-box">
+                <div class="box-title">AUC (Area Under the ROC Curve)</div>
+                <ul>
+                  <li>AUC = 1.0 &rarr; Perfect classifier</li>
+                  <li>AUC = 0.5 &rarr; Random classifier (diagonal line)</li>
+                  <li>AUC &lt; 0.5 &rarr; Worse than random (invert predictions)</li>
+                  <li>AUC is <strong>threshold-independent</strong> and measures overall ranking quality</li>
+                  <li><strong>Interpretation:</strong> AUC = P(score of random positive &gt; score of random negative)</li>
+                </ul>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: ROC Points</div>
+                <p><strong>Q:</strong> A classifier at threshold T produces TP=80, FP=20, FN=20, TN=80. Calculate the point on the ROC curve.</p>
+                <p><strong>A:</strong> TPR = 80/100 = 0.8, FPR = 20/100 = 0.2. ROC point = <strong>(0.2, 0.8)</strong>. This is above the diagonal, so better than random.</p>
+              </div>
+
+              <h3 id="pr-curve">3.1 Precision-Recall Curve</h3>
+              <p>For <strong>highly imbalanced</strong> datasets, the PR curve is more informative than ROC. It plots Precision vs. Recall at different thresholds.</p>
+              <p>Average Precision (AP) summarises the PR curve as the weighted mean of precisions at each threshold, with the increase in recall as the weight.</p>
+            </section>
+
+            <!-- Section 4: Regression Metrics -->
+            <section id="regression-metrics">
+              <h2>4. Regression Metrics</h2>
+
+              <div class="definition-box">
+                <div class="box-title">Regression Evaluation Metrics</div>
+                <ul>
+                  <li><strong>MSE</strong> (Mean Squared Error) = (1/n) &sum;(y&#7522; &minus; &#375;&#7522;)&sup2;</li>
+                  <li><strong>RMSE</strong> (Root MSE) = &radic;MSE &mdash; same units as y</li>
+                  <li><strong>MAE</strong> (Mean Absolute Error) = (1/n) &sum;|y&#7522; &minus; &#375;&#7522;|</li>
+                  <li><strong>R&sup2;</strong> (Coefficient of Determination) = 1 &minus; (SS_res / SS_tot)</li>
+                </ul>
+              </div>
+
+              <div class="theorem-box">
+                <div class="box-title">R&sup2; — Coefficient of Determination</div>
+                <p>R&sup2; = 1 &minus; (&sum;(y&#7522; &minus; &#375;&#7522;)&sup2;) / (&sum;(y&#7522; &minus; &#x233;)&sup2;)</p>
+                <ul>
+                  <li>SS_res = &sum;(y&#7522; &minus; &#375;&#7522;)&sup2; (residual sum of squares)</li>
+                  <li>SS_tot = &sum;(y&#7522; &minus; &#x233;)&sup2; (total sum of squares, where &#x233; is the mean of y)</li>
+                  <li>R&sup2; = 1 &rarr; Perfect prediction</li>
+                  <li>R&sup2; = 0 &rarr; Model is as good as predicting the mean</li>
+                  <li>R&sup2; &lt; 0 &rarr; Model is worse than predicting the mean</li>
+                </ul>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">Adjusted R&sup2;</div>
+                <p>Adjusted R&sup2; = 1 &minus; ((1&minus;R&sup2;)(n&minus;1)) / (n&minus;p&minus;1)</p>
+                <p>Where p = number of predictors, n = number of samples. Penalises adding unnecessary features. Always use Adjusted R&sup2; when comparing models with different numbers of features.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: R&sup2;</div>
+                <p><strong>Q:</strong> Actual values: [2, 4, 6, 8]. Predicted: [2.5, 3.5, 5.5, 8.5]. Compute R&sup2;.</p>
+                <p><strong>A:</strong> Mean &#x233; = (2+4+6+8)/4 = 5.</p>
+                <p>SS_res = (2&minus;2.5)&sup2; + (4&minus;3.5)&sup2; + (6&minus;5.5)&sup2; + (8&minus;8.5)&sup2; = 0.25+0.25+0.25+0.25 = <strong>1.0</strong></p>
+                <p>SS_tot = (2&minus;5)&sup2; + (4&minus;5)&sup2; + (6&minus;5)&sup2; + (8&minus;5)&sup2; = 9+1+1+9 = <strong>20</strong></p>
+                <p>R&sup2; = 1 &minus; 1/20 = <strong>0.95</strong></p>
+              </div>
+            </section>
+
+            <!-- Section 5: Multi-class Averaging -->
+            <section id="multiclass">
+              <h2>5. Multi-Class Averaging</h2>
+              <p>When there are more than two classes, per-class metrics must be aggregated:</p>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Method</th><th>How It Works</th><th>When to Use</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Macro Average</strong></td><td>Average metrics equally across all classes (unweighted mean)</td><td>When all classes are equally important</td></tr>
+                    <tr><td><strong>Micro Average</strong></td><td>Aggregate TP, FP, FN globally, then compute metric</td><td>When overall performance matters; equals accuracy for multiclass</td></tr>
+                    <tr><td><strong>Weighted Average</strong></td><td>Average weighted by class support (number of samples)</td><td>When class imbalance should influence the metric</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example: Macro vs Micro</div>
+                <p>3-class classifier: Class A (P=0.9, R=0.8, support=100), Class B (P=0.7, R=0.6, support=50), Class C (P=0.8, R=0.9, support=50).</p>
+                <p><strong>Macro Precision</strong> = (0.9+0.7+0.8)/3 = <strong>0.8</strong></p>
+                <p><strong>Weighted Precision</strong> = (0.9&times;100 + 0.7&times;50 + 0.8&times;50)/200 = (90+35+40)/200 = <strong>0.825</strong></p>
+              </div>
+            </section>
+
+            <!-- Section 6: Summary -->
+            <section id="summary">
+              <h2>6. Metrics Summary Table</h2>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Metric</th><th>Type</th><th>Formula</th><th>Range</th><th>GATE Frequency</th></tr></thead>
+                  <tbody>
+                    <tr><td>Accuracy</td><td>Classification</td><td>(TP+TN)/(All)</td><td>[0,1]</td><td>High</td></tr>
+                    <tr><td>Precision</td><td>Classification</td><td>TP/(TP+FP)</td><td>[0,1]</td><td>Very High</td></tr>
+                    <tr><td>Recall</td><td>Classification</td><td>TP/(TP+FN)</td><td>[0,1]</td><td>Very High</td></tr>
+                    <tr><td>F1</td><td>Classification</td><td>Harmonic mean</td><td>[0,1]</td><td>Very High</td></tr>
+                    <tr><td>AUC</td><td>Classification</td><td>Area under ROC</td><td>[0,1]</td><td>Medium</td></tr>
+                    <tr><td>MSE</td><td>Regression</td><td>(1/n)&sum;(y&minus;&#375;)&sup2;</td><td>[0,&infin;)</td><td>High</td></tr>
+                    <tr><td>MAE</td><td>Regression</td><td>(1/n)&sum;|y&minus;&#375;|</td><td>[0,&infin;)</td><td>Medium</td></tr>
+                    <tr><td>R&sup2;</td><td>Regression</td><td>1&minus;SS_res/SS_tot</td><td>(&minus;&infin;,1]</td><td>High</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+          </article>
+
+          <aside class="on-this-page"><h4>On This Page</h4><ul>
+            <li><a href="#confusion-matrix">1. Confusion Matrix</a></li>
+            <li><a href="#classification-metrics">2. Classification Metrics</a></li>
+            <li><a href="#roc-auc">3. ROC &amp; AUC</a></li>
+            <li><a href="#regression-metrics">4. Regression Metrics</a></li>
+            <li><a href="#multiclass">5. Multi-Class Averaging</a></li>
+            <li><a href="#summary">6. Summary Table</a></li>
+          </ul></aside>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="cross-validation.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Cross-Validation</span></a>
+          <a href="feature-engineering.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Feature Engineering</span></a>
+        </div>
+        <button class="complete-btn" data-page="ch08-evaluation-metrics">&#10003; Mark as Complete</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

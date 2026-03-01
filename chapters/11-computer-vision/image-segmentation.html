@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Image Segmentation — semantic, instance, and panoptic segmentation; FCN, U-Net, DeepLab, Mask R-CNN, transposed convolution, dilated convolution, and evaluation metrics for GATE DA.">
+  <title>Image Segmentation | GATE DA AI</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="cnn-architectures.html" class="sidebar-link"><span class="link-check"></span> CNN Architectures<span class="link-type theory">Theory</span></a>
+            <a href="object-detection.html" class="sidebar-link"><span class="link-check"></span> Object Detection<span class="link-type theory">Theory</span></a>
+            <a href="image-segmentation.html" class="sidebar-link active"><span class="link-check"></span> Image Segmentation<span class="link-type theory">Theory</span></a>
+            <a href="generative-models-vision.html" class="sidebar-link"><span class="link-check"></span> Generative Models<span class="link-type theory">Theory</span></a>
+            <a href="notes-cv.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-cv.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="image-fundamentals.html">Chapter 11: Computer Vision</a> &raquo; <span class="current">Image Segmentation</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch11-image-segmentation">
+
+            <h1>Image Segmentation</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch11-image-segmentation" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Distinguish semantic, instance, and panoptic segmentation</li>
+                <li>Understand FCN and the encoder-decoder paradigm</li>
+                <li>Explain U-Net architecture and the role of skip connections in segmentation</li>
+                <li>Describe transposed (deconvolution) and dilated (atrous) convolutions</li>
+                <li>Know the DeepLab family and Mask R-CNN</li>
+                <li>Compute mIoU, pixel accuracy, and Dice coefficient</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="types">
+              <h2>1. Types of Image Segmentation</h2>
+
+              <div class="definition-box">
+                <strong>Semantic Segmentation:</strong> Assign a class label to <em>every pixel</em> in the image. All pixels belonging to &ldquo;car&rdquo; get the same label regardless of which car. No distinction between individual object instances.
+              </div>
+
+              <div class="definition-box">
+                <strong>Instance Segmentation:</strong> Detect each object instance and produce a pixel-level mask for it. Two cars are labelled as &ldquo;car-1&rdquo; and &ldquo;car-2&rdquo; with separate masks. Combines detection + segmentation.
+              </div>
+
+              <div class="definition-box">
+                <strong>Panoptic Segmentation:</strong> Unifies semantic and instance segmentation. Every pixel gets a class label, and countable object instances (&ldquo;things&rdquo;) additionally get an instance ID. Uncountable regions (&ldquo;stuff&rdquo; like sky, road) receive only class labels.
+              </div>
+
+              <table class="comparison-table">
+                <thead><tr><th>Property</th><th>Semantic</th><th>Instance</th><th>Panoptic</th></tr></thead>
+                <tbody>
+                  <tr><td>Pixel-level class</td><td>&#10004;</td><td>&#10004;</td><td>&#10004;</td></tr>
+                  <tr><td>Instance-level ID</td><td>&#10008;</td><td>&#10004;</td><td>&#10004; (things only)</td></tr>
+                  <tr><td>Background/stuff</td><td>&#10004;</td><td>&#10008;</td><td>&#10004;</td></tr>
+                  <tr><td>Example model</td><td>FCN, DeepLab</td><td>Mask R-CNN</td><td>Panoptic FPN</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="fcn">
+              <h2>2. FCN (Fully Convolutional Networks)</h2>
+              <p>The first major deep-learning approach to semantic segmentation (Long et al., 2015). Key idea: replace FC layers in a classification CNN with 1&times;1 convolutions to preserve spatial information, then upsample to the original resolution.</p>
+
+              <div class="note-box">
+                <strong>Why Fully Convolutional?</strong> FC layers destroy spatial layout (flatten to 1-D). By converting them to 1&times;1 convolutions, every layer maintains a 2-D spatial grid, enabling pixel-wise classification. The network can also accept inputs of any size.
+              </div>
+
+              <h3>FCN Variants</h3>
+              <ul>
+                <li><strong>FCN-32s:</strong> Single 32&times; upsampling from the final feature map. Coarse output.</li>
+                <li><strong>FCN-16s:</strong> Combines predictions from the final and pool4 layers using a skip connection, then 16&times; upsampling. Finer boundaries.</li>
+                <li><strong>FCN-8s:</strong> Adds pool3 predictions via another skip. Best boundary quality among FCN variants.</li>
+              </ul>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="encoder-decoder">
+              <h2>3. Encoder-Decoder Structure</h2>
+              <p>The dominant paradigm in segmentation networks:</p>
+
+              <div class="definition-box">
+                <strong>Encoder:</strong> A series of convolution + pooling layers that progressively reduce spatial resolution while increasing the number of feature channels. Captures <em>what</em> is in the image (semantic content).<br><br>
+                <strong>Decoder:</strong> Gradually recovers spatial resolution through upsampling operations (transposed convolutions or bilinear interpolation). Reconstructs <em>where</em> objects are (spatial detail).
+              </div>
+
+              <p>The encoder typically uses a pre-trained classification backbone (e.g., ResNet, VGG). The decoder is trained to map low-resolution feature maps back to full-resolution pixel labels.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="transposed-conv">
+              <h2>4. Transposed Convolution (Deconvolution)</h2>
+              <p>The standard learned upsampling operation in segmentation networks. Despite the name &ldquo;deconvolution,&rdquo; it is <em>not</em> the mathematical inverse of convolution.</p>
+
+              <div class="definition-box">
+                <strong>Transposed Convolution:</strong> An upsampling operation that inserts zeros between input elements, then applies a standard convolution. Equivalently, it maps each input element to a k&times;k patch in the output and sums overlapping contributions.
+              </div>
+
+              <div class="theorem-box">
+                <strong>Transposed Conv Output Size:</strong><br>
+                O = (n &minus; 1) &times; s &minus; 2p + k<br>
+                Where n = input size, s = stride, p = padding, k = kernel size. Note this is the &ldquo;inverse&rdquo; of the standard formula.
+              </div>
+
+              <div class="example-box">
+                <h4>Example &mdash; Transposed Conv Output</h4>
+                <p>Input: 7 &times; 7, kernel: 4 &times; 4, stride: 2, padding: 1</p>
+                <p>O = (7 &minus; 1) &times; 2 &minus; 2(1) + 4 = 12 &minus; 2 + 4 = <strong>14 &times; 14</strong></p>
+                <p>This doubles the spatial resolution (7 &rarr; 14), commonly used in decoder paths.</p>
+              </div>
+
+              <div class="warning-box">
+                <strong>&#9888; Checkerboard Artifacts:</strong> Transposed convolutions can produce checkerboard patterns when kernel size is not divisible by stride. Mitigation: use bilinear upsampling followed by a regular convolution, or choose kernel/stride carefully (e.g., k = 2s).
+              </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="dilated-conv">
+              <h2>5. Atrous / Dilated Convolution</h2>
+              <p>Increases the receptive field <strong>without</strong> reducing spatial resolution or increasing the number of parameters.</p>
+
+              <div class="definition-box">
+                <strong>Dilated Convolution:</strong> Inserts gaps (holes, &ldquo;atrous&rdquo; from French &ldquo;&agrave; trous&rdquo;) between kernel elements. A dilation rate r = 2 spaces kernel weights 2 pixels apart, giving a 3&times;3 kernel an effective receptive field of 5&times;5 with only 9 parameters.
+              </div>
+
+              <div class="theorem-box">
+                <strong>Effective Kernel Size:</strong> k<sub>eff</sub> = k + (k &minus; 1)(r &minus; 1)<br>
+                For k = 3, r = 2: k<sub>eff</sub> = 3 + 2(1) = 5.<br>
+                For k = 3, r = 4: k<sub>eff</sub> = 3 + 2(3) = 9.
+              </div>
+
+              <p><strong>Advantage:</strong> Maintains spatial resolution (no pooling needed) while capturing multi-scale context. Critical for dense prediction tasks like segmentation.</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="unet">
+              <h2>6. U-Net Architecture</h2>
+              <p>Designed for biomedical image segmentation (Ronneberger et al., 2015). The U-shaped architecture has become one of the most influential designs in segmentation.</p>
+
+              <div class="note-box">
+                <strong>U-Net Key Feature &mdash; Skip Connections:</strong> The encoder and decoder are connected at each resolution level by skip connections that <strong>concatenate</strong> encoder feature maps with decoder feature maps. This provides the decoder with both high-level semantic information (from the bottleneck) and low-level spatial detail (from the encoder).
+              </div>
+
+              <h3>U-Net Architecture (simplified)</h3>
+              <table class="comparison-table">
+                <thead><tr><th>Stage</th><th>Path</th><th>Resolution</th><th>Channels</th><th>Operation</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Encoder</td><td>572 &rarr; 568</td><td>1 &rarr; 64</td><td>2 &times; Conv3, ReLU</td></tr>
+                  <tr><td>2</td><td>Encoder</td><td>284 &rarr; 280</td><td>64 &rarr; 128</td><td>MaxPool, 2 &times; Conv3</td></tr>
+                  <tr><td>3</td><td>Encoder</td><td>140 &rarr; 136</td><td>128 &rarr; 256</td><td>MaxPool, 2 &times; Conv3</td></tr>
+                  <tr><td>4</td><td>Encoder</td><td>68 &rarr; 64</td><td>256 &rarr; 512</td><td>MaxPool, 2 &times; Conv3</td></tr>
+                  <tr><td>5</td><td>Bottleneck</td><td>32 &rarr; 28</td><td>512 &rarr; 1024</td><td>MaxPool, 2 &times; Conv3</td></tr>
+                  <tr><td>6</td><td>Decoder</td><td>56 (after concat)</td><td>1024 &rarr; 512</td><td>UpConv, concat, 2 &times; Conv3</td></tr>
+                  <tr><td>7</td><td>Decoder</td><td>104</td><td>512 &rarr; 256</td><td>UpConv, concat, 2 &times; Conv3</td></tr>
+                  <tr><td>8</td><td>Decoder</td><td>200</td><td>256 &rarr; 128</td><td>UpConv, concat, 2 &times; Conv3</td></tr>
+                  <tr><td>9</td><td>Decoder</td><td>388</td><td>128 &rarr; 64</td><td>UpConv, concat, 2 &times; Conv3</td></tr>
+                  <tr><td>Output</td><td>&mdash;</td><td>388</td><td>64 &rarr; C</td><td>1 &times; 1 Conv</td></tr>
+                </tbody>
+              </table>
+
+              <p><strong>Key insight:</strong> Concatenation (not addition as in ResNet) doubles the channel count at each skip, giving the decoder access to the full encoder features at matching resolution.</p>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="deeplab">
+              <h2>7. DeepLab Family</h2>
+              <p>Series of models from Google that use <strong>atrous convolutions</strong> and <strong>Atrous Spatial Pyramid Pooling (ASPP)</strong> for multi-scale segmentation.</p>
+
+              <div class="definition-box">
+                <strong>ASPP (Atrous Spatial Pyramid Pooling):</strong> Apply dilated convolutions with multiple dilation rates (e.g., r = 6, 12, 18) in parallel, plus a 1&times;1 conv and global average pooling. Concatenate all outputs. Captures objects at multiple scales without losing resolution.
+              </div>
+
+              <h3>DeepLab Versions</h3>
+              <ul>
+                <li><strong>DeepLab v1:</strong> Atrous convolution + CRF post-processing</li>
+                <li><strong>DeepLab v2:</strong> Added ASPP for multi-scale context</li>
+                <li><strong>DeepLab v3:</strong> Improved ASPP with batch normalisation + global average pooling branch</li>
+                <li><strong>DeepLab v3+:</strong> Added a decoder module for sharper boundaries (encoder-decoder with ASPP)</li>
+              </ul>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="mask-rcnn">
+              <h2>8. Mask R-CNN</h2>
+              <p>Extends Faster R-CNN for <strong>instance segmentation</strong> by adding a mask prediction branch parallel to the existing classification and bounding box regression branches.</p>
+
+              <div class="definition-box">
+                <strong>Mask R-CNN Architecture:</strong>
+                <ol>
+                  <li>Backbone CNN + FPN (Feature Pyramid Network)</li>
+                  <li>RPN generates region proposals</li>
+                  <li><strong>RoI Align</strong> (not RoI Pooling) extracts features &mdash; uses bilinear interpolation for sub-pixel precision</li>
+                  <li>Three parallel heads: classification, box regression, and <strong>mask prediction</strong> (small FCN per RoI)</li>
+                </ol>
+              </div>
+
+              <div class="note-box">
+                <strong>RoI Align vs RoI Pooling:</strong> RoI Pooling quantises coordinates to integer positions, causing misalignment. RoI Align uses bilinear interpolation at exact floating-point positions, which is critical for pixel-accurate mask prediction.
+              </div>
+            </section>
+
+            <!-- Section 9 -->
+            <section id="metrics">
+              <h2>9. Evaluation Metrics</h2>
+
+              <div class="definition-box">
+                <strong>Pixel Accuracy:</strong> Fraction of correctly classified pixels:<br>
+                PA = &sum;<sub>i</sub> p<sub>ii</sub> / &sum;<sub>i</sub>&sum;<sub>j</sub> p<sub>ij</sub><br>
+                where p<sub>ij</sub> = number of pixels of class i predicted as class j. Simple but can be misleading with class imbalance.
+              </div>
+
+              <div class="definition-box">
+                <strong>Mean IoU (mIoU):</strong> For each class c, compute IoU<sub>c</sub> = TP<sub>c</sub> / (TP<sub>c</sub> + FP<sub>c</sub> + FN<sub>c</sub>), then average over all classes:<br>
+                <strong>mIoU = (1/C) &sum;<sub>c=1</sub><sup>C</sup> IoU<sub>c</sub></strong><br>
+                The standard metric for semantic segmentation.
+              </div>
+
+              <div class="definition-box">
+                <strong>Dice Coefficient (F1 Score for segmentation):</strong><br>
+                <strong>Dice = 2|A &cap; B| / (|A| + |B|) = 2TP / (2TP + FP + FN)</strong><br>
+                Ranges from 0 to 1. Equivalent to the F1 score. Widely used in medical image segmentation.
+              </div>
+
+              <div class="example-box">
+                <h4>Worked Example &mdash; mIoU</h4>
+                <p>Binary segmentation (class 0 = background, class 1 = object). Confusion matrix:</p>
+                <table>
+                  <thead><tr><th></th><th>Pred 0</th><th>Pred 1</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>True 0</strong></td><td>800 (TN)</td><td>50 (FP)</td></tr>
+                    <tr><td><strong>True 1</strong></td><td>30 (FN)</td><td>120 (TP)</td></tr>
+                  </tbody>
+                </table>
+                <p>IoU<sub>0</sub> (background) = 800 / (800 + 50 + 30) = 800 / 880 = 0.909</p>
+                <p>IoU<sub>1</sub> (object) = 120 / (120 + 50 + 30) = 120 / 200 = 0.600</p>
+                <p><strong>mIoU = (0.909 + 0.600) / 2 = 0.755</strong></p>
+                <p>Dice for object class = 2 &times; 120 / (2 &times; 120 + 50 + 30) = 240 / 320 = <strong>0.750</strong></p>
+              </div>
+
+              <div class="warning-box">
+                <strong>&#9888; Class Imbalance:</strong> Pixel accuracy is biased toward dominant classes (e.g., background). Always use mIoU or Dice when classes are imbalanced.
+              </div>
+            </section>
+
+            <!-- Section 10 -->
+            <section id="summary">
+              <h2>10. Summary</h2>
+              <div class="summary-section">
+                <ul>
+                  <li><strong>Semantic segmentation</strong> labels every pixel but does not distinguish instances.</li>
+                  <li><strong>Instance segmentation</strong> (Mask R-CNN) assigns per-object masks.</li>
+                  <li><strong>FCN</strong> replaced FC layers with 1&times;1 convolutions for dense prediction.</li>
+                  <li><strong>U-Net</strong> uses an encoder-decoder with skip concatenation; dominant in medical imaging.</li>
+                  <li><strong>Transposed convolution</strong> is the standard learnable upsampling. Output: (n&minus;1)s &minus; 2p + k.</li>
+                  <li><strong>Dilated convolution</strong> increases receptive field without reducing resolution. Effective kernel = k + (k&minus;1)(r&minus;1).</li>
+                  <li><strong>DeepLab</strong> uses ASPP for multi-scale context; v3+ adds a decoder.</li>
+                  <li><strong>mIoU</strong> is the standard metric; <strong>Dice</strong> is preferred in medical imaging.</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch11-image-segmentation">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="object-detection.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Object Detection</span></a>
+              <a href="generative-models-vision.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Generative Models</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#types">1. Types of Segmentation</a></li>
+            <li><a href="#fcn">2. FCN</a></li>
+            <li><a href="#encoder-decoder">3. Encoder-Decoder</a></li>
+            <li><a href="#transposed-conv">4. Transposed Conv</a></li>
+            <li><a href="#dilated-conv">5. Dilated Conv</a></li>
+            <li><a href="#unet">6. U-Net</a></li>
+            <li><a href="#deeplab">7. DeepLab</a></li>
+            <li><a href="#mask-rcnn">8. Mask R-CNN</a></li>
+            <li><a href="#metrics">9. Evaluation Metrics</a></li>
+            <li><a href="#summary">10. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

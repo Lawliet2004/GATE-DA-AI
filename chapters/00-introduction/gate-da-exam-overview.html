@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GATE DA Exam Overview — exam pattern, sections, marks distribution, AI section details, and preparation tips for GATE Data Science &amp; AI.">
+  <title>GATE DA Exam Overview — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="gate-da-exam-overview.html" class="sidebar-link active"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="what-is-ai.html">Chapter 0: Introduction</a> &raquo;
+          <span class="current">GATE DA Exam Overview</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch00-gate-da-overview">
+
+            <!-- Page Header -->
+            <h1>GATE DA Exam Overview</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch00-gate-da-overview" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="ai-vs-ml-vs-dl.html">AI vs ML vs DL</a> (recommended)</li>
+              </ul>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand the GATE DA exam structure, duration, and marks distribution</li>
+                <li>Know the AI-related topics in the GATE DA syllabus</li>
+                <li>Learn the question types and marking scheme</li>
+                <li>Develop an effective preparation strategy for the AI section</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: What is GATE DA? -->
+              <section id="what-is-gate-da">
+                <h2>1. What is GATE DA?</h2>
+
+                <p><strong>GATE</strong> (Graduate Aptitude Test in Engineering) is a national-level examination conducted jointly by IISc Bangalore and seven IITs. It tests comprehensive understanding of various undergraduate and postgraduate subjects in engineering and science.</p>
+
+                <p><strong>GATE DA (Data Science and Artificial Intelligence)</strong> is a relatively new paper introduced to address the growing demand for data science and AI professionals. It covers mathematics, statistics, programming, data science, machine learning, and artificial intelligence.</p>
+
+                <div class="note-box">
+                  <div class="box-title">Why GATE DA?</div>
+                  <p>GATE DA scores are used for admission to M.Tech / MS / PhD programs in Data Science and AI at IITs, IISc, NITs, and other premier institutions. Some PSUs and private companies also accept GATE scores for recruitment. A good GATE DA score opens doors to the finest research and academic institutions in India.</p>
+                </div>
+              </section>
+
+              <!-- Section 2: Exam Pattern -->
+              <section id="exam-pattern">
+                <h2>2. Exam Pattern</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Duration</strong></td>
+                        <td>3 hours (180 minutes)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Total Questions</strong></td>
+                        <td>65 questions</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Total Marks</strong></td>
+                        <td>100 marks</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Question Types</strong></td>
+                        <td>MCQ (Multiple Choice), MSQ (Multiple Select), NAT (Numerical Answer Type)</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Marks per Question</strong></td>
+                        <td>1 mark or 2 marks</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Negative Marking (MCQ)</strong></td>
+                        <td>1-mark Q: &minus;1/3 | 2-mark Q: &minus;2/3</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Negative Marking (MSQ/NAT)</strong></td>
+                        <td>No negative marking</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Mode</strong></td>
+                        <td>Online (Computer Based Test)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Important: Negative Marking Strategy</div>
+                  <p>For MCQs, there is negative marking (&minus;1/3 for 1-mark, &minus;2/3 for 2-mark). This means <strong>blind guessing is statistically unfavorable</strong>. However, if you can eliminate 2 out of 4 options, guessing becomes favorable. For MSQ and NAT questions, there is <strong>no negative marking</strong>, so always attempt these even if you are unsure.</p>
+                </div>
+              </section>
+
+              <!-- Section 3: Syllabus Sections -->
+              <section id="syllabus-sections">
+                <h2>3. Syllabus Sections &amp; Marks Distribution</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Section</th>
+                        <th>Topics</th>
+                        <th>Approximate Marks</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>General Aptitude (GA)</strong></td>
+                        <td>Verbal Ability, Quantitative Aptitude</td>
+                        <td>15 marks</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Mathematics &amp; Statistics</strong></td>
+                        <td>Linear Algebra, Calculus, Probability, Statistics, Optimization</td>
+                        <td>~25 marks</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Programming &amp; Data Structures</strong></td>
+                        <td>Python/R programming, Data structures, Algorithms, Complexity</td>
+                        <td>~15 marks</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Machine Learning</strong></td>
+                        <td>Supervised learning, Unsupervised learning, Evaluation metrics, Overfitting/underfitting</td>
+                        <td>~20 marks</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Artificial Intelligence</strong></td>
+                        <td>Search, Logic, Reasoning, Planning, Agents, NLP basics</td>
+                        <td>~15 marks</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Database &amp; Data Mining</strong></td>
+                        <td>SQL, ER model, Association rules, Preprocessing</td>
+                        <td>~10 marks</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Note on Distribution</div>
+                  <p>The exact marks distribution varies year to year. The values above are approximate estimates based on past papers and the official syllabus weightage. Always check the latest GATE notification for the current year&rsquo;s official syllabus.</p>
+                </div>
+              </section>
+
+              <!-- Section 4: AI Section Details -->
+              <section id="ai-section">
+                <h2>4. AI Section &mdash; Detailed Topic List</h2>
+
+                <p>The AI section of GATE DA focuses on classical AI topics. Here is the detailed breakdown, mapped to our website&rsquo;s chapters:</p>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>GATE DA AI Topic</th>
+                        <th>Our Chapter</th>
+                        <th>Priority</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Intelligent Agents</td>
+                        <td>Ch 01</td>
+                        <td><span class="gate-badge medium">Medium</span></td>
+                      </tr>
+                      <tr>
+                        <td>Uninformed Search (BFS, DFS, IDDFS, UCS)</td>
+                        <td>Ch 02</td>
+                        <td><span class="gate-badge high">High</span></td>
+                      </tr>
+                      <tr>
+                        <td>Informed Search (A*, Heuristics)</td>
+                        <td>Ch 03</td>
+                        <td><span class="gate-badge high">High</span></td>
+                      </tr>
+                      <tr>
+                        <td>Adversarial Search (Minimax, Alpha-Beta)</td>
+                        <td>Ch 04</td>
+                        <td><span class="gate-badge high">High</span></td>
+                      </tr>
+                      <tr>
+                        <td>Propositional Logic, Inference</td>
+                        <td>Ch 05</td>
+                        <td><span class="gate-badge high">High</span></td>
+                      </tr>
+                      <tr>
+                        <td>Predicate Logic, Unification, Resolution</td>
+                        <td>Ch 06</td>
+                        <td><span class="gate-badge high">High</span></td>
+                      </tr>
+                      <tr>
+                        <td>Probabilistic Reasoning, Bayesian Networks</td>
+                        <td>Ch 07</td>
+                        <td><span class="gate-badge medium">Medium</span></td>
+                      </tr>
+                      <tr>
+                        <td>ML Foundations (separate section in GATE)</td>
+                        <td>Ch 08</td>
+                        <td><span class="gate-badge high">High</span></td>
+                      </tr>
+                      <tr>
+                        <td>Neural Networks Basics</td>
+                        <td>Ch 09</td>
+                        <td><span class="gate-badge medium">Medium</span></td>
+                      </tr>
+                      <tr>
+                        <td>NLP Basics</td>
+                        <td>Ch 10</td>
+                        <td><span class="gate-badge low">Low</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="theorem-box">
+                  <div class="box-title">High-Priority AI Topics for GATE DA</div>
+                  <p>Based on analysis of past GATE DA papers, the following AI topics appear most frequently and carry the most marks:</p>
+                  <ol>
+                    <li><strong>Search Algorithms</strong> (BFS, DFS, A*, Minimax, Alpha-Beta) &mdash; at least 2&ndash;3 questions every year</li>
+                    <li><strong>Propositional &amp; Predicate Logic</strong> (Inference, Resolution, Unification) &mdash; 1&ndash;2 questions</li>
+                    <li><strong>Probabilistic Reasoning</strong> (Bayes&rsquo; theorem, Bayesian Networks) &mdash; 1&ndash;2 questions</li>
+                    <li><strong>Agent types and PEAS</strong> &mdash; occasional 1-mark questions</li>
+                  </ol>
+                </div>
+              </section>
+
+              <!-- Section 5: Question Types -->
+              <section id="question-types">
+                <h2>5. Question Types in Detail</h2>
+
+                <h3>5.1 MCQ (Multiple Choice Questions)</h3>
+                <p>Four options, exactly one correct. Negative marking applies. These test conceptual understanding and the ability to quickly identify the right answer.</p>
+
+                <h3>5.2 MSQ (Multiple Select Questions)</h3>
+                <p>Four options, <strong>one or more</strong> may be correct. You get full marks only if you select ALL correct options and NO incorrect ones. No partial marking. No negative marking. These test deeper understanding.</p>
+
+                <h3>5.3 NAT (Numerical Answer Type)</h3>
+                <p>You type a numerical value. No options are provided. No negative marking. A range of acceptable answers is defined (e.g., 3.98 to 4.02). These test computational/problem-solving skills.</p>
+
+                <div class="example-box">
+                  <div class="box-title">Example: AI-Related GATE DA Question Types</div>
+                  <p><strong>MCQ example:</strong> &ldquo;In A* search, if the heuristic function h(n) is admissible, the algorithm is guaranteed to be: (a) Complete (b) Optimal (c) Both complete and optimal (d) Neither.&rdquo;</p>
+                  <p><strong>NAT example:</strong> &ldquo;In a game tree with branching factor 3 and depth 4, how many leaf nodes does Minimax evaluate without pruning?&rdquo; (Answer: 81 = 3<sup>4</sup>)</p>
+                  <p><strong>MSQ example:</strong> &ldquo;Which of the following search algorithms are complete when the state space is finite? (Select all that apply) (a) DFS (b) BFS (c) DLS (d) IDDFS&rdquo; (Answer: a, b, d)</p>
+                </div>
+              </section>
+
+              <!-- Section 6: Preparation Tips -->
+              <section id="preparation-tips">
+                <h2>6. Preparation Strategy for the AI Section</h2>
+
+                <div class="note-box">
+                  <div class="box-title">Strategy 1: Master the Fundamentals First</div>
+                  <p>Before diving into advanced topics, make sure you have a rock-solid foundation in search algorithms and logic. These two areas account for the majority of AI questions in GATE DA. Start with BFS/DFS, then move to A*, then Minimax/Alpha-Beta.</p>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Strategy 2: Practice Numerical Problems</div>
+                  <p>GATE favors NAT-type questions where you trace through algorithms by hand. Practice:</p>
+                  <ul>
+                    <li>Tracing BFS/DFS on graphs and noting the order of node expansion</li>
+                    <li>Computing f(n) = g(n) + h(n) for A* search step by step</li>
+                    <li>Building Minimax trees and applying alpha-beta pruning</li>
+                    <li>Resolving clauses in propositional and predicate logic</li>
+                    <li>Computing posterior probabilities using Bayes&rsquo; theorem</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Strategy 3: Use the Right Textbook</div>
+                  <p>The standard reference for GATE DA AI is <strong>Russell &amp; Norvig: &ldquo;Artificial Intelligence: A Modern Approach&rdquo;</strong> (AIMA). Chapters 1&ndash;7, 13, 18&ndash;19 of AIMA directly map to the GATE DA AI syllabus. This website follows the same structure and content.</p>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Strategy 4: Solve Previous Year Papers</div>
+                  <p>Since GATE DA is relatively new, also practice AI questions from <strong>GATE CS (Computer Science)</strong> papers, which have tested these same topics for decades. The AI section of GATE CS is very similar to GATE DA&rsquo;s AI portion.</p>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Strategy 5: Time Management</div>
+                  <p>You have 180 minutes for 65 questions. That&rsquo;s approximately <strong>2.77 minutes per question</strong>. For the AI section (~8&ndash;10 questions), budget about 25 minutes. Practice solving AI problems within time constraints.</p>
+                </div>
+
+                <h3>Recommended Study Order</h3>
+                <ol>
+                  <li>Intelligent Agents (quick overview) &mdash; 1 day</li>
+                  <li>Uninformed Search (thorough) &mdash; 3&ndash;4 days</li>
+                  <li>Informed Search (thorough) &mdash; 3&ndash;4 days</li>
+                  <li>Adversarial Search (thorough) &mdash; 3&ndash;4 days</li>
+                  <li>Propositional Logic (thorough) &mdash; 3&ndash;4 days</li>
+                  <li>Predicate Logic (thorough) &mdash; 3&ndash;4 days</li>
+                  <li>Probabilistic Reasoning (moderate) &mdash; 3 days</li>
+                  <li>ML &amp; Neural Networks (covered in separate sections) &mdash; ongoing</li>
+                  <li>Revision &amp; past papers &mdash; 3&ndash;5 days</li>
+                </ol>
+
+                <p><strong>Total estimated time for AI section:</strong> 20&ndash;25 days of focused study.</p>
+              </section>
+
+              <!-- Section 7: Important Formulas & Facts -->
+              <section id="important-facts">
+                <h2>7. Quick Reference: Key AI Facts for GATE</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Fact</th>
+                        <th>Detail</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>BFS Time Complexity</td>
+                        <td>O(b<sup>d</sup>) where b = branching factor, d = depth</td>
+                      </tr>
+                      <tr>
+                        <td>DFS Time Complexity</td>
+                        <td>O(b<sup>m</sup>) where m = max depth</td>
+                      </tr>
+                      <tr>
+                        <td>A* Optimality Condition</td>
+                        <td>h(n) must be <strong>admissible</strong> (never overestimates)</td>
+                      </tr>
+                      <tr>
+                        <td>A* on Graph: Optimality</td>
+                        <td>Requires <strong>consistency</strong> (h(n) &le; c(n,n&prime;) + h(n&prime;))</td>
+                      </tr>
+                      <tr>
+                        <td>Minimax Value</td>
+                        <td>MAX nodes: max of children; MIN nodes: min of children</td>
+                      </tr>
+                      <tr>
+                        <td>Alpha-Beta Best Case</td>
+                        <td>Examines O(b<sup>d/2</sup>) nodes (with perfect move ordering)</td>
+                      </tr>
+                      <tr>
+                        <td>Modus Ponens</td>
+                        <td>From P and P &rarr; Q, conclude Q</td>
+                      </tr>
+                      <tr>
+                        <td>Resolution</td>
+                        <td>From (A &or; B) and (&not;B &or; C), conclude (A &or; C)</td>
+                      </tr>
+                      <tr>
+                        <td>Bayes&rsquo; Theorem</td>
+                        <td>P(A|B) = P(B|A) &middot; P(A) / P(B)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary" class="summary-section">
+                <h2>&#128218; Summary</h2>
+                <ul>
+                  <li>GATE DA is a 3-hour, 65-question, 100-mark online exam.</li>
+                  <li>Question types: MCQ (negative marking), MSQ (no negative), NAT (no negative).</li>
+                  <li>The AI section carries approximately 15 marks with 8&ndash;10 questions.</li>
+                  <li>High-priority topics: Search (uninformed + informed + adversarial), Logic (propositional + predicate), Probabilistic reasoning.</li>
+                  <li>Primary reference: Russell &amp; Norvig, <em>AIMA</em>.</li>
+                  <li>Practice previous GATE CS AI questions + GATE DA papers.</li>
+                  <li>Budget ~25 days for thorough AI preparation.</li>
+                </ul>
+              </section>
+
+              <!-- References -->
+              <section id="references" class="references-section">
+                <h2>References</h2>
+                <ol>
+                  <li>GATE Official Website: <em>gate2026.iitr.ac.in</em> (check for latest year)</li>
+                  <li>GATE DA Syllabus (Official): Data Science and Artificial Intelligence paper syllabus.</li>
+                  <li>Russell, S. &amp; Norvig, P. (2020). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson.</li>
+                  <li>Previous Year GATE DA &amp; GATE CS Question Papers.</li>
+                </ol>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch00-gate-da-overview">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="ai-vs-ml-vs-dl.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">AI vs ML vs DL</span>
+              </a>
+              <a href="../01-intelligent-agents/agents-and-environments.html" class="nav-btn next">
+                <span class="nav-label">Next Chapter &rarr;</span>
+                <span class="nav-title">Ch 01: Agents &amp; Environments</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#what-is-gate-da">1. What is GATE DA?</a></li>
+              <li><a href="#exam-pattern">2. Exam Pattern</a></li>
+              <li><a href="#syllabus-sections">3. Syllabus &amp; Marks</a></li>
+              <li><a href="#ai-section">4. AI Section Details</a></li>
+              <li><a href="#question-types">5. Question Types</a></li>
+              <li><a href="#preparation-tips">6. Preparation Strategy</a></li>
+              <li><a href="#important-facts">7. Key AI Facts</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

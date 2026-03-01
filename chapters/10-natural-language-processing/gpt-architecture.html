@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GPT Architecture — decoder-only transformer, autoregressive generation, GPT-1/2/3/4 progression, BPE tokenization, positional encoding, and causal masking for GATE DA preparation.">
+  <title>GPT Architecture — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a>
+            <a href="word-embeddings.html" class="sidebar-link"><span class="link-check"></span> Word Embeddings<span class="link-type theory">Theory</span></a>
+            <a href="language-models.html" class="sidebar-link"><span class="link-check"></span> Language Models<span class="link-type theory">Theory</span></a>
+            <a href="large-language-models.html" class="sidebar-link"><span class="link-check"></span> Large Language Models<span class="link-type theory">Theory</span></a>
+            <a href="gpt-architecture.html" class="sidebar-link active"><span class="link-check"></span> GPT Architecture<span class="link-type theory">Theory</span></a>
+            <a href="bert-and-variants.html" class="sidebar-link"><span class="link-check"></span> BERT &amp; Variants<span class="link-type theory">Theory</span></a>
+            <a href="prompt-engineering.html" class="sidebar-link"><span class="link-check"></span> Prompt Engineering<span class="link-type theory">Theory</span></a>
+            <a href="notes-nlp.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-nlp.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="text-preprocessing.html">Chapter 10: Natural Language Processing</a> &raquo; <span class="current">GPT Architecture</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch10-gpt-architecture">
+
+            <h1>GPT Architecture</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge low">GATE Relevance: Low</span>
+              <button class="bookmark-btn" data-page="ch10-gpt-architecture" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="large-language-models.html">Large Language Models</a> &mdash; pretraining, scaling</li>
+                <li><a href="language-models.html">Language Models</a> &mdash; autoregressive prediction</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Describe the decoder-only transformer architecture used by GPT</li>
+                <li>Explain autoregressive generation (next-token prediction)</li>
+                <li>Trace the progression from GPT-1 through GPT-4</li>
+                <li>Understand BPE tokenization and its role in GPT</li>
+                <li>Explain positional encoding and causal masking</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="decoder-only">
+              <h2>1. Decoder-Only Transformer</h2>
+              <p>The original Transformer (Vaswani et al., 2017) has an encoder-decoder architecture. GPT uses only the <strong>decoder</strong> stack, modified with causal (left-to-right) attention.</p>
+              <p><strong>Architecture of a single GPT block:</strong></p>
+              <ol>
+                <li><strong>Masked Multi-Head Self-Attention:</strong> Each position can only attend to itself and previous positions (causal mask prevents looking ahead).</li>
+                <li><strong>Layer Normalization:</strong> Applied before each sub-layer (pre-norm in GPT-2+).</li>
+                <li><strong>Feed-Forward Network (FFN):</strong> Two linear layers with a GELU activation: FFN(x) = W₂ &middot; GELU(W₁ &middot; x + b₁) + b₂.</li>
+                <li><strong>Residual Connections:</strong> Each sub-layer adds its input: output = x + SubLayer(LayerNorm(x)).</li>
+              </ol>
+              <p>The full model stacks L such blocks. GPT-2 uses L = 48 layers for its largest variant; GPT-3 uses L = 96.</p>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="autoregressive">
+              <h2>2. Autoregressive Generation</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> Autoregressive generation produces tokens one at a time, left to right. At each step, the model predicts a probability distribution over the vocabulary for the next token, samples or selects from it, appends the token, and repeats.
+              </div>
+              <p style="text-align:center; font-size:1.1rem;">P(w₁, w₂, &hellip;, w<sub>T</sub>) = &prod;<sub>t=1</sub><sup>T</sup> P(w<sub>t</sub> | w₁, &hellip;, w<sub>t&minus;1</sub>; θ)</p>
+              <p><strong>Decoding strategies:</strong></p>
+              <ul>
+                <li><strong>Greedy decoding:</strong> Always pick the token with highest probability. Fast but can produce repetitive text.</li>
+                <li><strong>Beam search:</strong> Maintain top-k partial sequences at each step. Better quality but computationally expensive.</li>
+                <li><strong>Top-k sampling:</strong> Sample from the top k most probable tokens. Introduces diversity.</li>
+                <li><strong>Top-p (nucleus) sampling:</strong> Sample from the smallest set of tokens whose cumulative probability exceeds p (e.g., p = 0.9).</li>
+                <li><strong>Temperature:</strong> Scale logits by 1/τ before softmax. τ &lt; 1 sharpens the distribution (more deterministic); τ &gt; 1 flattens it (more random).</li>
+              </ul>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="causal-masking">
+              <h2>3. Causal Masking</h2>
+              <p>In standard self-attention, each token attends to all positions. In GPT&rsquo;s causal (masked) attention, token at position i can only attend to positions ≤ i:</p>
+              <p style="text-align:center;">Attention(Q, K, V) = softmax(QK<sup>T</sup>/√d<sub>k</sub> + M) &middot; V</p>
+              <p>where M is a mask matrix: M<sub>ij</sub> = 0 if j ≤ i, and M<sub>ij</sub> = −∞ if j &gt; i. The −∞ values become 0 after softmax, effectively preventing the model from &ldquo;seeing the future&rdquo;.</p>
+              <div class="example-box">
+                <h4>Example: Causal Mask for a 4-token sequence</h4>
+                <table>
+                  <thead><tr><th></th><th>t₁</th><th>t₂</th><th>t₃</th><th>t₄</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>t₁</strong></td><td>0</td><td>&minus;∞</td><td>&minus;∞</td><td>&minus;∞</td></tr>
+                    <tr><td><strong>t₂</strong></td><td>0</td><td>0</td><td>&minus;∞</td><td>&minus;∞</td></tr>
+                    <tr><td><strong>t₃</strong></td><td>0</td><td>0</td><td>0</td><td>&minus;∞</td></tr>
+                    <tr><td><strong>t₄</strong></td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                  </tbody>
+                </table>
+                <p>Token t₃ can attend to t₁, t₂, and t₃ (itself), but not t₄.</p>
+              </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="bpe-tokenization">
+              <h2>4. BPE Tokenization in GPT</h2>
+              <p>GPT uses <strong>Byte Pair Encoding (BPE)</strong> to convert raw text into token IDs:</p>
+              <ol>
+                <li><strong>Initialize:</strong> Start with a vocabulary of individual bytes (256 entries).</li>
+                <li><strong>Iterate:</strong> Find the most frequent pair of adjacent tokens in the training data. Merge them into a new token. Add to vocabulary.</li>
+                <li><strong>Repeat:</strong> Continue until the desired vocabulary size is reached (GPT-2: ~50,257 tokens).</li>
+              </ol>
+              <div class="example-box">
+                <h4>BPE Merge Example</h4>
+                <p><strong>Corpus tokens:</strong> [l, o, w, e, r, _, l, o, w, _, n, e, w, e, s, t]</p>
+                <p><strong>Most frequent pair:</strong> (l, o) &rarr; merge into &ldquo;lo&rdquo;</p>
+                <p><strong>After merge:</strong> [lo, w, e, r, _, lo, w, _, n, e, w, e, s, t]</p>
+                <p><strong>Next most frequent:</strong> (lo, w) &rarr; merge into &ldquo;low&rdquo;</p>
+                <p><strong>After merge:</strong> [low, e, r, _, low, _, n, e, w, e, s, t]</p>
+                <p>This process continues until the target vocabulary size is reached.</p>
+              </div>
+              <p><strong>Advantages:</strong> Handles out-of-vocabulary words (falls back to subwords/bytes), compact vocabulary, language-agnostic.</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="positional-encoding">
+              <h2>5. Positional Encoding</h2>
+              <p>Transformers have no inherent notion of sequence order (unlike RNNs). Positional information must be explicitly injected.</p>
+              <h3>5.1 Learned Positional Embeddings (GPT-1/2/3)</h3>
+              <p>GPT learns a position embedding matrix P ∈ ℝ<sup>T<sub>max</sub> &times; d</sup> where T<sub>max</sub> is the maximum sequence length. The input to the first block is:</p>
+              <p style="text-align:center;">h₀ = W<sub>e</sub> &middot; x + P[1:T]</p>
+              <p>where W<sub>e</sub> is the token embedding matrix and P[1:T] selects the first T position embeddings.</p>
+              <h3>5.2 Sinusoidal Encoding (Original Transformer)</h3>
+              <p>The original Transformer used fixed sinusoidal functions:</p>
+              <p style="text-align:center;">PE(pos, 2i) = sin(pos / 10000<sup>2i/d</sup>)</p>
+              <p style="text-align:center;">PE(pos, 2i+1) = cos(pos / 10000<sup>2i/d</sup>)</p>
+              <h3>5.3 Rotary Position Embeddings (RoPE)</h3>
+              <p>Modern models (Llama, GPT-NeoX) use RoPE, which encodes position by rotating the query and key vectors. This enables better extrapolation to longer sequences than learned embeddings.</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="gpt-progression">
+              <h2>6. GPT Model Progression</h2>
+              <table>
+                <thead><tr><th>Model</th><th>Year</th><th>Parameters</th><th>Layers</th><th>Context Length</th><th>Key Innovation</th></tr></thead>
+                <tbody>
+                  <tr><td>GPT-1</td><td>2018</td><td>117M</td><td>12</td><td>512</td><td>Unsupervised pretraining + supervised fine-tuning</td></tr>
+                  <tr><td>GPT-2</td><td>2019</td><td>1.5B</td><td>48</td><td>1024</td><td>Zero-shot task transfer; no fine-tuning needed</td></tr>
+                  <tr><td>GPT-3</td><td>2020</td><td>175B</td><td>96</td><td>2048</td><td>In-context few-shot learning; scaling breakthrough</td></tr>
+                  <tr><td>GPT-4</td><td>2023</td><td>~1.8T*</td><td>&mdash;</td><td>8K&ndash;128K</td><td>Multimodal (text + images); RLHF alignment</td></tr>
+                </tbody>
+              </table>
+              <p style="font-size:0.85rem; color:var(--text-secondary);">*GPT-4 parameter count is estimated and not officially confirmed.</p>
+
+              <h3>6.1 Key Architectural Changes Across Versions</h3>
+              <ul>
+                <li><strong>GPT-1 &rarr; GPT-2:</strong> Moved layer normalization before attention (pre-norm), larger context window, removed need for task-specific fine-tuning heads.</li>
+                <li><strong>GPT-2 &rarr; GPT-3:</strong> Massive scale increase (100&times; parameters), alternating dense and sparse attention layers (in some variants), demonstrated few-shot learning.</li>
+                <li><strong>GPT-3 &rarr; GPT-4:</strong> Mixture of Experts (MoE) architecture (rumored), multimodal input support, dramatically improved reasoning via RLHF and chain-of-thought data.</li>
+              </ul>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="summary">
+              <h2>7. Summary</h2>
+              <div class="summary-section">
+                <ul>
+                  <li><strong>GPT</strong> uses a decoder-only transformer with causal (left-to-right) masked attention.</li>
+                  <li><strong>Autoregressive generation:</strong> P(sequence) = ∏ P(w<sub>t</sub>|w<sub>&lt;t</sub>), one token at a time.</li>
+                  <li><strong>Causal mask:</strong> M<sub>ij</sub> = &minus;∞ for j &gt; i prevents attending to future tokens.</li>
+                  <li><strong>BPE tokenization:</strong> Iterative merging of frequent byte pairs; handles OOV words.</li>
+                  <li><strong>Positional encoding:</strong> Learned (GPT-1/2/3) or rotary (modern variants).</li>
+                  <li><strong>Progression:</strong> GPT-1 (117M) &rarr; GPT-2 (1.5B) &rarr; GPT-3 (175B) &rarr; GPT-4 (~1.8T).</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch10-gpt-architecture">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="large-language-models.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Large Language Models</span></a>
+              <a href="bert-and-variants.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">BERT &amp; Variants</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#decoder-only">1. Decoder-Only Transformer</a></li>
+            <li><a href="#autoregressive">2. Autoregressive Generation</a></li>
+            <li><a href="#causal-masking">3. Causal Masking</a></li>
+            <li><a href="#bpe-tokenization">4. BPE Tokenization</a></li>
+            <li><a href="#positional-encoding">5. Positional Encoding</a></li>
+            <li><a href="#gpt-progression">6. GPT Progression</a></li>
+            <li><a href="#summary">7. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax and Semantics - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="00">📘 Ch 0: Introduction</h3>
+                <ul class="chapter-links collapsed">
+                    <li><a href="../00-introduction/what-is-ai.html">What is AI?</a></li>
+                    <li><a href="../00-introduction/history-of-ai.html">History of AI</a></li>
+                    <li><a href="../00-introduction/types-of-ai.html">Types of AI</a></li>
+                    <li><a href="../00-introduction/ai-vs-ml-vs-dl.html">AI vs ML vs DL</a></li>
+                    <li><a href="../00-introduction/gate-da-exam-overview.html">GATE DA Exam Overview</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="01">📘 Ch 1: Intelligent Agents</h3>
+                <ul class="chapter-links collapsed">
+                    <li><a href="../01-intelligent-agents/agents-and-environments.html">Agents &amp; Environments</a></li>
+                    <li><a href="../01-intelligent-agents/rationality.html">Rationality</a></li>
+                    <li><a href="../01-intelligent-agents/task-environment-peas.html">Task Environment (PEAS)</a></li>
+                    <li><a href="../01-intelligent-agents/agent-types.html">Agent Types</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="02">📘 Ch 2: Uninformed Search</h3>
+                <ul class="chapter-links collapsed">
+                    <li><a href="../02-uninformed-search/state-space-representation.html">State Space Representation</a></li>
+                    <li><a href="../02-uninformed-search/breadth-first-search.html">Breadth-First Search</a></li>
+                    <li><a href="../02-uninformed-search/depth-first-search.html">Depth-First Search</a></li>
+                    <li><a href="../02-uninformed-search/uniform-cost-search.html">Uniform-Cost Search</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="03">📘 Ch 3: Informed Search</h3>
+                <ul class="chapter-links collapsed">
+                    <li><a href="../03-informed-search/heuristic-functions.html">Heuristic Functions</a></li>
+                    <li><a href="../03-informed-search/a-star-search.html">A* Search</a></li>
+                    <li><a href="../03-informed-search/local-search-hill-climbing.html">Hill Climbing</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed">
+                    <li><a href="../04-adversarial-search/game-theory-basics.html">Game Theory Basics</a></li>
+                    <li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax Algorithm</a></li>
+                    <li><a href="../04-adversarial-search/alpha-beta-pruning.html">Alpha-Beta Pruning</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li class="active"><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed">
+                    <li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li>
+                </ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>Syntax &amp; Semantics</span>
+        </div>
+
+        <article class="theory-content">
+            <h1>Syntax and Semantics of Propositional Logic</h1>
+
+            <div class="gate-badge">GATE DA — High Importance</div>
+
+            <div class="prerequisites-box">
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li>Basic understanding of mathematical logic</li>
+                    <li>Familiarity with Boolean algebra concepts</li>
+                </ul>
+            </div>
+
+            <div class="learning-objectives">
+                <h3>🎯 Learning Objectives</h3>
+                <ul>
+                    <li>Understand the syntax of propositional logic: atomic propositions and connectives</li>
+                    <li>Define well-formed formulas (WFFs) formally</li>
+                    <li>Apply operator precedence to parse complex formulas</li>
+                    <li>Evaluate formulas under given truth assignments</li>
+                </ul>
+            </div>
+
+            <!-- Section 1: Introduction -->
+            <section>
+                <h2>1. What is Propositional Logic?</h2>
+                <p>Propositional logic (also called <strong>sentential logic</strong> or <strong>zeroth-order logic</strong>) is the simplest form of formal logic. It deals with <em>propositions</em>—statements that are either true or false—and how they can be combined using logical connectives.</p>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Proposition</div>
+                    <p>A <strong>proposition</strong> is a declarative sentence that is either <strong>true (⊤)</strong> or <strong>false (⊥)</strong>, but not both. It has a definite truth value.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Examples of Propositions</h4>
+                    <ul>
+                        <li>"The Earth revolves around the Sun." — <strong>True</strong></li>
+                        <li>"7 + 5 = 13" — <strong>False</strong></li>
+                        <li>"GATE DA 2026 exam has an AI section." — <strong>True</strong></li>
+                    </ul>
+                    <h4>Non-Propositions (Not Declarative)</h4>
+                    <ul>
+                        <li>"What time is it?" — <em>Question, no truth value</em></li>
+                        <li>"Close the door." — <em>Command, no truth value</em></li>
+                        <li>"x + 2 = 5" — <em>Open sentence (depends on x)</em></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 2: Syntax -->
+            <section>
+                <h2>2. Syntax of Propositional Logic</h2>
+                <p>The syntax defines the <strong>alphabet</strong> (symbols) and <strong>grammar</strong> (rules for forming valid expressions) of the language.</p>
+
+                <h3>2.1 Alphabet</h3>
+                <p>The alphabet of propositional logic consists of:</p>
+                <table class="styled-table">
+                    <thead>
+                        <tr><th>Symbol Type</th><th>Symbols</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Propositional variables</td><td>P, Q, R, S, ... (or p, q, r, s, ...)</td><td>Atomic propositions</td></tr>
+                        <tr><td>Truth constants</td><td>⊤ (True), ⊥ (False)</td><td>Logical constants</td></tr>
+                        <tr><td>Negation</td><td>¬</td><td>NOT (unary connective)</td></tr>
+                        <tr><td>Conjunction</td><td>∧</td><td>AND (binary connective)</td></tr>
+                        <tr><td>Disjunction</td><td>∨</td><td>OR (binary connective)</td></tr>
+                        <tr><td>Implication</td><td>→</td><td>IF...THEN (binary connective)</td></tr>
+                        <tr><td>Biconditional</td><td>↔</td><td>IF AND ONLY IF (binary connective)</td></tr>
+                        <tr><td>Parentheses</td><td>( , )</td><td>Grouping</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>2.2 The Five Logical Connectives</h3>
+
+                <div class="definition-box">
+                    <div class="box-title">Negation (¬)</div>
+                    <p><strong>¬P</strong> is true when P is false, and false when P is true. It flips the truth value.</p>
+                    <p class="formula">¬P is true ⟺ P is false</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title">Conjunction (∧)</div>
+                    <p><strong>P ∧ Q</strong> is true only when <em>both</em> P and Q are true.</p>
+                    <p class="formula">P ∧ Q is true ⟺ P is true AND Q is true</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title">Disjunction (∨)</div>
+                    <p><strong>P ∨ Q</strong> is true when <em>at least one</em> of P or Q is true. This is <strong>inclusive OR</strong>.</p>
+                    <p class="formula">P ∨ Q is false ⟺ P is false AND Q is false</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title">Implication (→)</div>
+                    <p><strong>P → Q</strong> is false only when P is true and Q is false. P is the <em>antecedent</em> (hypothesis), Q is the <em>consequent</em> (conclusion).</p>
+                    <p class="formula">P → Q is false ⟺ P is true AND Q is false</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Common GATE Mistake: Implication</h4>
+                    <p>Many students get confused: <strong>P → Q is true when P is false</strong>, regardless of Q. A false hypothesis makes the entire implication vacuously true. For example: "If 2 + 2 = 5, then the moon is made of cheese" is <strong>True</strong>!</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title">Biconditional (↔)</div>
+                    <p><strong>P ↔ Q</strong> is true when P and Q have the <em>same truth value</em>.</p>
+                    <p class="formula">P ↔ Q is true ⟺ (P → Q) ∧ (Q → P)</p>
+                </div>
+            </section>
+
+            <!-- Section 3: Well-Formed Formulas -->
+            <section>
+                <h2>3. Well-Formed Formulas (WFFs)</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Well-Formed Formula (WFF)</div>
+                    <p>A well-formed formula is defined recursively:</p>
+                    <ol>
+                        <li><strong>Base case:</strong> Every propositional variable (P, Q, R, ...) is a WFF. The constants ⊤ and ⊥ are WFFs.</li>
+                        <li><strong>Negation:</strong> If α is a WFF, then <strong>¬α</strong> is a WFF.</li>
+                        <li><strong>Binary connective:</strong> If α and β are WFFs, then <strong>(α ∧ β)</strong>, <strong>(α ∨ β)</strong>, <strong>(α → β)</strong>, and <strong>(α ↔ β)</strong> are WFFs.</li>
+                        <li><strong>Nothing else</strong> is a WFF.</li>
+                    </ol>
+                </div>
+
+                <div class="example-box">
+                    <h4>WFF or Not?</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr><th>Expression</th><th>WFF?</th><th>Reason</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>P ∧ Q</td><td>✅ Yes</td><td>Binary connective applied to two propositional variables</td></tr>
+                            <tr><td>¬(P → Q)</td><td>✅ Yes</td><td>Negation applied to an implication WFF</td></tr>
+                            <tr><td>∧ P Q</td><td>❌ No</td><td>Connective must be between two WFFs (infix notation)</td></tr>
+                            <tr><td>P ∧ ∨ Q</td><td>❌ No</td><td>Two consecutive binary connectives without operand</td></tr>
+                            <tr><td>((P ∨ Q) ∧ ¬R) → S</td><td>✅ Yes</td><td>Valid recursive construction</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 4: Operator Precedence -->
+            <section>
+                <h2>4. Operator Precedence</h2>
+                <p>To reduce the number of parentheses, we adopt a standard precedence (from highest to lowest):</p>
+
+                <div class="theorem-box">
+                    <h4>Operator Precedence (Highest to Lowest)</h4>
+                    <table class="styled-table">
+                        <thead>
+                            <tr><th>Priority</th><th>Operator</th><th>Name</th><th>Associativity</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1 (Highest)</td><td>¬</td><td>Negation</td><td>Right</td></tr>
+                            <tr><td>2</td><td>∧</td><td>Conjunction</td><td>Left</td></tr>
+                            <tr><td>3</td><td>∨</td><td>Disjunction</td><td>Left</td></tr>
+                            <tr><td>4</td><td>→</td><td>Implication</td><td>Right</td></tr>
+                            <tr><td>5 (Lowest)</td><td>↔</td><td>Biconditional</td><td>Left</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 Key Point for GATE</h4>
+                    <p>Implication (→) is <strong>right-associative</strong>: P → Q → R means P → (Q → R), not (P → Q) → R.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 1: Parsing P ∧ Q ∨ R → S</h4>
+                    <p>Step 1: ∧ binds tighter than ∨: <strong>(P ∧ Q)</strong> ∨ R → S</p>
+                    <p>Step 2: ∨ binds tighter than →: <strong>((P ∧ Q) ∨ R)</strong> → S</p>
+                    <p>Fully parenthesized: <span class="formula">((P ∧ Q) ∨ R) → S</span></p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 2: Parsing ¬P ∧ Q → R ∨ S</h4>
+                    <p>Step 1: ¬ has highest precedence: <strong>(¬P)</strong> ∧ Q → R ∨ S</p>
+                    <p>Step 2: ∧ next: <strong>((¬P) ∧ Q)</strong> → R ∨ S</p>
+                    <p>Step 3: ∨ next: ((¬P) ∧ Q) → <strong>(R ∨ S)</strong></p>
+                    <p>Fully parenthesized: <span class="formula">((¬P) ∧ Q) → (R ∨ S)</span></p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example 3: Parsing P → Q → R ↔ S ∨ ¬T</h4>
+                    <p>Step 1: ¬ first: P → Q → R ↔ S ∨ <strong>(¬T)</strong></p>
+                    <p>Step 2: ∨ binds: P → Q → R ↔ <strong>(S ∨ (¬T))</strong></p>
+                    <p>Step 3: → is right-associative: P → <strong>(Q → R)</strong> ↔ (S ∨ (¬T))</p>
+                    <p>Step 4: → again: <strong>(P → (Q → R))</strong> ↔ (S ∨ (¬T))</p>
+                    <p>Fully parenthesized: <span class="formula">(P → (Q → R)) ↔ (S ∨ (¬T))</span></p>
+                </div>
+            </section>
+
+            <!-- Section 5: Semantics -->
+            <section>
+                <h2>5. Semantics: Truth Assignments and Interpretations</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Truth Assignment (Interpretation)</div>
+                    <p>A <strong>truth assignment</strong> (also called an <strong>interpretation</strong> or <strong>valuation</strong>) is a function <em>v</em> that maps every propositional variable to a truth value:</p>
+                    <p class="formula">v : {P, Q, R, ...} → {True, False}</p>
+                    <p>The truth value of any compound formula is then determined by the truth values of its components and the semantics of the connectives.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title">Semantic Evaluation Rules</div>
+                    <p>Given an interpretation <em>v</em>, the truth value of a formula α, denoted v(α), is:</p>
+                    <ul>
+                        <li><strong>v(¬α)</strong> = True iff v(α) = False</li>
+                        <li><strong>v(α ∧ β)</strong> = True iff v(α) = True and v(β) = True</li>
+                        <li><strong>v(α ∨ β)</strong> = True iff v(α) = True or v(β) = True</li>
+                        <li><strong>v(α → β)</strong> = True iff v(α) = False or v(β) = True</li>
+                        <li><strong>v(α ↔ β)</strong> = True iff v(α) = v(β)</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Evaluate (P → Q) ∧ ¬R under v(P)=T, v(Q)=F, v(R)=T</h4>
+                    <ol>
+                        <li>v(P → Q) = v(P)=T and v(Q)=F, so P → Q = <strong>False</strong> (T → F = F)</li>
+                        <li>v(¬R) = ¬True = <strong>False</strong></li>
+                        <li>v((P → Q) ∧ ¬R) = False ∧ False = <strong>False</strong></li>
+                    </ol>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 Number of Possible Interpretations</h4>
+                    <p>For a formula with <strong>n</strong> distinct propositional variables, there are <strong>2<sup>n</sup></strong> possible truth assignments. This is why truth tables have 2<sup>n</sup> rows.</p>
+                </div>
+            </section>
+
+            <!-- Section 6: Key Terminology -->
+            <section>
+                <h2>6. Key Terminology Summary</h2>
+                <table class="styled-table">
+                    <thead>
+                        <tr><th>Term</th><th>Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Atomic formula</td><td>A propositional variable (P, Q, R, ...)</td></tr>
+                        <tr><td>Literal</td><td>An atom or its negation (P or ¬P)</td></tr>
+                        <tr><td>Compound formula</td><td>Formula built using connectives</td></tr>
+                        <tr><td>Model</td><td>An interpretation that makes a formula true</td></tr>
+                        <tr><td>⊨ (entails)</td><td>Semantic consequence: α ⊨ β means every model of α is a model of β</td></tr>
+                        <tr><td>⊢ (derives)</td><td>Syntactic derivation using inference rules</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- GATE Tips -->
+            <section>
+                <h2>7. GATE Exam Tips</h2>
+                <div class="warning-box">
+                    <h4>🎯 Frequently Tested Concepts</h4>
+                    <ul>
+                        <li><strong>Operator precedence</strong> — Questions often test whether you can parse formulas correctly without full parenthesization.</li>
+                        <li><strong>Implication truth table</strong> — The fact that F → T = T and F → F = T trips up many students.</li>
+                        <li><strong>WFF identification</strong> — Distinguish valid formulas from syntactically incorrect expressions.</li>
+                        <li><strong>Number of interpretations</strong> — For n variables, there are exactly 2<sup>n</sup> interpretations.</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="../04-adversarial-search/quiz-adversarial-search.html" class="nav-btn prev-btn">← Previous: Quiz - Adversarial Search</a>
+            <a href="truth-tables.html" class="nav-btn next-btn">Next: Truth Tables →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-syntax-and-semantics">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-syntax-and-semantics">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quick Revision Notes for Adversarial Search — One-page summary of minimax, alpha-beta, MCTS, formula sheet, and comparison tables for GATE DA.">
+  <title>Notes: Adversarial Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+            <a href="minimax-algorithm.html" class="sidebar-link"><span class="link-check"></span> Minimax<span class="link-type theory">Theory</span></a>
+            <a href="alpha-beta-pruning.html" class="sidebar-link"><span class="link-check"></span> Alpha-Beta Pruning<span class="link-type theory">Theory</span></a>
+            <a href="move-ordering.html" class="sidebar-link"><span class="link-check"></span> Move Ordering<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-functions.html" class="sidebar-link"><span class="link-check"></span> Evaluation Functions<span class="link-type theory">Theory</span></a>
+            <a href="stochastic-games.html" class="sidebar-link"><span class="link-check"></span> Stochastic Games<span class="link-type theory">Theory</span></a>
+            <a href="partially-observable-games.html" class="sidebar-link"><span class="link-check"></span> Partially Observable<span class="link-type theory">Theory</span></a>
+            <a href="monte-carlo-tree-search.html" class="sidebar-link"><span class="link-check"></span> MCTS<span class="link-type theory">Theory</span></a>
+            <a href="practical-adversarial.html" class="sidebar-link"><span class="link-check"></span> Tic-Tac-Toe Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-adversarial.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-adversarial-search.html" class="sidebar-link active"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="game-theory-basics.html">Chapter 4: Adversarial Search</a> &raquo;
+          <span class="current">Quick Revision Notes</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-notes" data-page-id="ch04-notes">
+            <h1>&#128221; Quick Revision Notes: Adversarial Search</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">Revision Notes</span>
+              <button class="bookmark-btn" data-page="ch04-notes" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Core Concepts -->
+              <section id="core-concepts">
+                <h2>1. Core Concepts at a Glance</h2>
+                <div class="note-box">
+                  <div class="box-title">Adversarial Search = Game Playing</div>
+                  <ul>
+                    <li><strong>Two players:</strong> MAX (wants to maximize utility) and MIN (wants to minimize)</li>
+                    <li><strong>Game tree:</strong> Alternating MAX and MIN levels; leaves have utility values</li>
+                    <li><strong>Zero-sum:</strong> U<sub>MAX</sub> + U<sub>MIN</sub> = 0 (one&rsquo;s gain = other&rsquo;s loss)</li>
+                    <li><strong>Perfect information:</strong> Both players see complete game state (Chess, Go)</li>
+                    <li><strong>Imperfect information:</strong> Hidden state (Poker, Battleship)</li>
+                    <li><strong>Stochastic:</strong> Chance elements like dice (Backgammon)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Formula Sheet -->
+              <section id="formula-sheet">
+                <h2>2. Formula Sheet</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Minimax Value</div>
+                  <ul>
+                    <li>MINIMAX(n) = UTILITY(n) &nbsp;&nbsp;&nbsp; if terminal</li>
+                    <li>MINIMAX(n) = max<sub>c</sub> MINIMAX(c) &nbsp;&nbsp;&nbsp; if MAX node</li>
+                    <li>MINIMAX(n) = min<sub>c</sub> MINIMAX(c) &nbsp;&nbsp;&nbsp; if MIN node</li>
+                  </ul>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Alpha-Beta Pruning Rules</div>
+                  <ul>
+                    <li>&alpha; = best value MAX can guarantee (init: &minus;&infin;)</li>
+                    <li>&beta; = best value MIN can guarantee (init: +&infin;)</li>
+                    <li><strong>&beta; cutoff:</strong> at MAX node, prune if v &ge; &beta;</li>
+                    <li><strong>&alpha; cutoff:</strong> at MIN node, prune if v &le; &alpha;</li>
+                  </ul>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Expectiminimax (Chance Nodes)</div>
+                  <p>EXPECTIMINIMAX(n) = &sum;<sub>c</sub> P(c) &times; EXPECTIMINIMAX(c) &nbsp;&nbsp; if CHANCE node</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">UCB1 (MCTS Selection)</div>
+                  <p>UCB1(i) = w<sub>i</sub>/n<sub>i</sub> + C&radic;(ln N / n<sub>i</sub>)</p>
+                  <p>w<sub>i</sub> = wins, n<sub>i</sub> = visits to child, N = visits to parent, C = exploration constant (&asymp; &radic;2)</p>
+                </div>
+              </section>
+
+              <!-- Complexity Table -->
+              <section id="complexity">
+                <h2>3. Complexity Comparison</h2>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Algorithm</th><th>Time</th><th>Space</th><th>Optimal?</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Minimax</strong></td><td>O(b<sup>m</sup>)</td><td>O(bm)</td><td>Yes (vs optimal opponent)</td></tr>
+                      <tr><td><strong>Alpha-Beta (worst)</strong></td><td>O(b<sup>m</sup>)</td><td>O(bm)</td><td>Yes</td></tr>
+                      <tr><td><strong>Alpha-Beta (best)</strong></td><td>O(b<sup>m/2</sup>)</td><td>O(bm)</td><td>Yes</td></tr>
+                      <tr><td><strong>Alpha-Beta (avg)</strong></td><td>O(b<sup>3m/4</sup>)</td><td>O(bm)</td><td>Yes</td></tr>
+                      <tr><td><strong>Expectiminimax</strong></td><td>O((bn<sub>c</sub>)<sup>m</sup>)</td><td>O(bn<sub>c</sub>m)</td><td>Yes (expected value)</td></tr>
+                      <tr><td><strong>MCTS</strong></td><td>Anytime</td><td>O(iterations)</td><td>Converges with &infin; time</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><strong>b</strong> = branching factor, <strong>m</strong> = max depth, <strong>n<sub>c</sub></strong> = number of chance outcomes</p>
+              </section>
+
+              <!-- Algorithm Comparison -->
+              <section id="algorithm-comparison">
+                <h2>4. Algorithm Comparison</h2>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Feature</th><th>Minimax</th><th>Alpha-Beta</th><th>Expectiminimax</th><th>MCTS</th></tr></thead>
+                    <tbody>
+                      <tr><td>Game type</td><td>Deterministic</td><td>Deterministic</td><td>Stochastic</td><td>Any</td></tr>
+                      <tr><td>Eval function needed</td><td>For cutoff only</td><td>For cutoff only</td><td>For cutoff only</td><td>No</td></tr>
+                      <tr><td>Pruning</td><td>None</td><td>&alpha;-&beta; pruning</td><td>Limited</td><td>N/A (sampling)</td></tr>
+                      <tr><td>Anytime</td><td>No</td><td>With IDDFS</td><td>With IDDFS</td><td>Yes</td></tr>
+                      <tr><td>Best for</td><td>Small games</td><td>Chess, checkers</td><td>Backgammon</td><td>Go, large games</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Game Classification -->
+              <section id="game-classification">
+                <h2>5. Game Classification Quick Reference</h2>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Game</th><th>Deterministic?</th><th>Perfect Info?</th><th>Zero-Sum?</th><th>Algorithm</th></tr></thead>
+                    <tbody>
+                      <tr><td>Chess</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Alpha-Beta + Eval</td></tr>
+                      <tr><td>Go</td><td>Yes</td><td>Yes</td><td>Yes</td><td>MCTS + Neural Nets</td></tr>
+                      <tr><td>Tic-Tac-Toe</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Minimax (solvable)</td></tr>
+                      <tr><td>Backgammon</td><td>No (dice)</td><td>Yes</td><td>Yes</td><td>Expectiminimax</td></tr>
+                      <tr><td>Poker</td><td>No (cards)</td><td>No</td><td>Yes</td><td>CFR</td></tr>
+                      <tr><td>Prisoner&rsquo;s Dilemma</td><td>Yes</td><td>Yes</td><td>No</td><td>Game Theory</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Key Enhancements -->
+              <section id="enhancements">
+                <h2>6. Key Enhancements</h2>
+                <div class="note-box">
+                  <div class="box-title">Move Ordering Techniques</div>
+                  <ul>
+                    <li><strong>Killer moves:</strong> Store moves that caused cutoffs at the same depth; try them first</li>
+                    <li><strong>History heuristic:</strong> Global table H[move] tracking cutoff frequency; sort by H</li>
+                    <li><strong>Transposition table:</strong> Hash table caching evaluated positions; Zobrist hashing with XOR</li>
+                    <li><strong>Iterative deepening:</strong> Use best move from depth d&minus;1 as first move at depth d</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Evaluation Functions</div>
+                  <ul>
+                    <li><strong>Form:</strong> EVAL(s) = w<sub>1</sub>f<sub>1</sub>(s) + w<sub>2</sub>f<sub>2</sub>(s) + &hellip;</li>
+                    <li><strong>Chess features:</strong> material (P=1, N=B=3, R=5, Q=9), mobility, king safety, pawn structure</li>
+                    <li><strong>Quiescence search:</strong> Extend search in captures/checks to avoid horizon effect</li>
+                    <li><strong>Modern:</strong> Neural network evaluators (AlphaZero, Stockfish NNUE)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- MCTS Quick Reference -->
+              <section id="mcts-ref">
+                <h2>7. MCTS: Four Phases</h2>
+                <ol>
+                  <li><strong>Selection:</strong> Traverse tree using UCB1 policy</li>
+                  <li><strong>Expansion:</strong> Add new child node for unexplored move</li>
+                  <li><strong>Simulation:</strong> Random playout from new node to terminal state</li>
+                  <li><strong>Backpropagation:</strong> Update win/visit counts from leaf to root</li>
+                </ol>
+                <p>Final move: choose child with <strong>highest visit count</strong> (not highest win rate).</p>
+              </section>
+
+              <!-- Common Mistakes -->
+              <section id="common-mistakes">
+                <h2>8. Common GATE Mistakes</h2>
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Avoid These Errors</div>
+                  <ul>
+                    <li>Backing up values from root to leaves instead of leaves to root</li>
+                    <li>Applying MAX at MIN nodes or vice versa</li>
+                    <li>Forgetting that &alpha;-&beta; values are inherited from ancestors, not just the parent</li>
+                    <li>Assuming &alpha;-&beta; changes the minimax result (it returns the SAME value)</li>
+                    <li>Confusing time complexity of &alpha;-&beta; best case: it&rsquo;s O(b<sup>d/2</sup>), not O(b<sup>d</sup>/2)</li>
+                    <li>Forgetting probability weights at chance nodes in expectiminimax</li>
+                    <li>Confusing zero-sum with general-sum (Prisoner&rsquo;s Dilemma is NOT zero-sum)</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Quick Facts -->
+              <section id="quick-facts">
+                <h2>9. Quick Facts</h2>
+                <div class="quick-facts">
+                  <ul>
+                    <li>Tic-Tac-Toe minimax value = 0 (draw)</li>
+                    <li>Checkers was solved in 2007 (draw with optimal play)</li>
+                    <li>Chess: b &asymp; 35, tree size &asymp; 10<sup>123</sup></li>
+                    <li>Go: b &asymp; 250, tree size &asymp; 10<sup>360</sup></li>
+                    <li>AlphaGo (2016): MCTS + neural networks defeated world champion</li>
+                    <li>AlphaZero (2017): Learned Chess, Go, Shogi from scratch via self-play</li>
+                    <li>Nash equilibrium = minimax solution for two-player zero-sum games</li>
+                    <li>Minimax theorem (von Neumann, 1928): equilibrium always exists in finite zero-sum games</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch04-notes">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="gate-previous-year-adversarial.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">GATE PYQs</span></a>
+              <a href="quiz-adversarial-search.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Quiz: Adversarial Search</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#core-concepts">1. Core Concepts</a></li>
+              <li><a href="#formula-sheet">2. Formula Sheet</a></li>
+              <li><a href="#complexity">3. Complexity Table</a></li>
+              <li><a href="#algorithm-comparison">4. Algorithm Comparison</a></li>
+              <li><a href="#game-classification">5. Game Classification</a></li>
+              <li><a href="#enhancements">6. Key Enhancements</a></li>
+              <li><a href="#mcts-ref">7. MCTS Phases</a></li>
+              <li><a href="#common-mistakes">8. Common Mistakes</a></li>
+              <li><a href="#quick-facts">9. Quick Facts</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

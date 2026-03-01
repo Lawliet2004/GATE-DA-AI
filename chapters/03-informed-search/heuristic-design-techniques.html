@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Heuristic Design Techniques — relaxed problems, max of multiple heuristics, linear combination, and learning heuristics for GATE DA AI.">
+  <title>Heuristic Design Techniques — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div>
+      <div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div>
+      <div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First Search<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded Search<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA* Search<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link active"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="weighted-a-star.html" class="sidebar-link"><span class="link-check"></span> Weighted A*<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-informed-strategies.html" class="sidebar-link"><span class="link-check"></span> Strategy Comparison<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> Informed Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE Previous Year<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="heuristic-functions.html">Ch 3: Informed Search</a> &raquo;
+          <span class="current">Heuristic Design Techniques</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch03-heuristic-design">
+
+            <h1>Heuristic Design Techniques</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch03-heuristic-design" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="heuristic-functions.html">Heuristic Functions</a> &mdash; h(n), admissibility</li>
+                <li><a href="admissibility-and-consistency.html">Admissibility &amp; Consistency</a> &mdash; proving heuristics correct</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Generate admissible heuristics from relaxed problems</li>
+                <li>Combine multiple heuristics with max()</li>
+                <li>Understand heuristic dominance and its effect on performance</li>
+                <li>Apply linear combination and learning-based approaches</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="relaxed-problems">
+                <h2>1. Relaxed Problems</h2>
+                <p>The most common technique for inventing admissible heuristics is to solve a <strong>relaxed</strong> version of the problem &mdash; one with <em>fewer constraints</em> on the actions. The exact cost of the optimal solution to the relaxed problem is always an admissible heuristic for the original problem because removing constraints can only make the problem easier (or keep it the same).</p>
+
+                <div class="example-box">
+                  <div class="box-title">8-Puzzle Relaxations</div>
+                  <p>Original rule: A tile can move from square A to square B if A is adjacent to B <strong>and</strong> B is blank.</p>
+                  <ul>
+                    <li><strong>Relaxation 1 (remove &ldquo;B is blank&rdquo;):</strong> Tiles can move to any adjacent square → optimal cost = <strong>Manhattan distance</strong>.</li>
+                    <li><strong>Relaxation 2 (remove both conditions):</strong> Tiles can move to any square → optimal cost = <strong>Misplaced tiles (Hamming distance)</strong>.</li>
+                    <li><strong>Relaxation 3 (remove &ldquo;A is adjacent to B&rdquo;):</strong> Tiles can move to the blank → <strong>Gaschnig&rsquo;s heuristic</strong> (counts swaps with blank needed).</li>
+                  </ul>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">GATE Tip: Automatic Generation</div>
+                  <p>The relaxed-problem method can be automated. Given a formal description of the problem constraints, a program can systematically remove constraints and compute the resulting heuristic. This was demonstrated by Prieditis (1993) with the ABSOLVER system.</p>
+                </div>
+              </section>
+
+              <section id="max-heuristics">
+                <h2>2. Max of Multiple Heuristics</h2>
+                <p>Given admissible heuristics h<sub>1</sub>, h<sub>2</sub>, &hellip;, h<sub>k</sub>, define:</p>
+                <pre><code>h(n) = max(h₁(n), h₂(n), …, hₖ(n))</code></pre>
+                <p>This composite heuristic is:</p>
+                <ul>
+                  <li><strong>Admissible</strong>: Since each h<sub>i</sub>(n) &le; h*(n), max of them is also &le; h*(n).</li>
+                  <li><strong>Dominant</strong>: h(n) &ge; h<sub>i</sub>(n) for all i, so it dominates each individual heuristic.</li>
+                  <li><strong>Consistent</strong>: If each h<sub>i</sub> is consistent, then max is also consistent.</li>
+                </ul>
+
+                <div class="example-box">
+                  <div class="box-title">Example: Combining 8-Puzzle Heuristics</div>
+                  <pre><code>State: [1,2,3 | 4,_,5 | 7,8,6]  (goal: [1,2,3 | 4,5,6 | 7,8,_])
+h_misplaced = 3 (tiles 5, 6, blank)
+h_manhattan = 1(5→right) + 2(6→down+right) + 2(blank→down+right) = 5
+h_max = max(3, 5) = 5</code></pre>
+                  <p>The max heuristic gives h=5, which is more informative than either alone.</p>
+                </div>
+              </section>
+
+              <section id="dominance">
+                <h2>3. Heuristic Dominance</h2>
+                <p>h<sub>2</sub> <strong>dominates</strong> h<sub>1</sub> if for every node n: h<sub>2</sub>(n) &ge; h<sub>1</sub>(n), and both are admissible.</p>
+                <p><strong>Theorem:</strong> If h<sub>2</sub> dominates h<sub>1</sub>, then A* with h<sub>2</sub> will never expand more nodes than A* with h<sub>1</sub> (they expand the same set of nodes or fewer).</p>
+                <p>This means a <em>higher</em> admissible heuristic is always better or equal in terms of nodes expanded.</p>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <caption>8-Puzzle: Nodes Expanded (average) at Various Depths</caption>
+                    <thead><tr><th>Depth (d)</th><th>IDS (h=0)</th><th>h = Misplaced Tiles</th><th>h = Manhattan</th></tr></thead>
+                    <tbody>
+                      <tr><td>8</td><td>6,384</td><td>39</td><td>25</td></tr>
+                      <tr><td>14</td><td>3,473,941</td><td>539</td><td>113</td></tr>
+                      <tr><td>20</td><td>&mdash;</td><td>7,276</td><td>676</td></tr>
+                      <tr><td>24</td><td>&mdash;</td><td>39,135</td><td>1,641</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>Manhattan dominates Misplaced Tiles, and the table shows dramatic reductions in nodes expanded.</p>
+              </section>
+
+              <section id="linear-combination">
+                <h2>4. Linear Combination of Features</h2>
+                <p>A heuristic can be defined as a <strong>weighted sum of features</strong>:</p>
+                <pre><code>h(n) = w₁ · f₁(n) + w₂ · f₂(n) + … + wₖ · fₖ(n)</code></pre>
+                <p>Where f<sub>i</sub> are problem features (like number of misplaced tiles, distance metrics, etc.) and w<sub>i</sub> are non-negative weights.</p>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Admissibility Not Guaranteed</div>
+                  <p>A linear combination of admissible heuristics is <strong>not necessarily admissible</strong>! If w<sub>1</sub>·h<sub>1</sub>(n) + w<sub>2</sub>·h<sub>2</sub>(n) > h*(n) for some n, optimality is lost. Only use this when admissibility is not required, or verify the sum is bounded by h*.</p>
+                </div>
+              </section>
+
+              <section id="learning-heuristics">
+                <h2>5. Learning Heuristics from Experience</h2>
+                <p>Heuristic weights can be learned by solving many random instances of a problem optimally, then using <strong>regression</strong> or <strong>neural networks</strong> to predict h*(n) from state features.</p>
+                <ol>
+                  <li>Generate many random problem instances.</li>
+                  <li>Solve each optimally (e.g., with IDA* and a known heuristic).</li>
+                  <li>For each state n on the optimal path, record (features(n), h*(n)).</li>
+                  <li>Train a model to predict h*(n) from features(n).</li>
+                </ol>
+                <p>This approach was used by Samadi et al. (2008) to learn heuristics for Rubik&rsquo;s Cube that outperformed hand-crafted heuristics.</p>
+              </section>
+
+              <section id="worked-examples">
+                <h2>6. Worked Examples</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Example 1: Deriving a Heuristic via Relaxation (Logistics Problem)</div>
+                  <p><strong>Problem:</strong> A robot must pick up 3 packages at different locations and deliver them to a depot. It can carry only 1 package at a time.</p>
+                  <p><strong>Relaxation (remove &ldquo;carry only 1&rdquo;):</strong> The robot can carry all packages simultaneously. Optimal relaxed cost = distance from robot to farthest package + distance from farthest package to depot = <strong>max(d(robot, p<sub>i</sub>) + d(p<sub>i</sub>, depot))</strong>. This is admissible because the real problem requires at least this many moves.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 2: Proving Dominance</div>
+                  <p><strong>Given:</strong> h<sub>1</sub> = number of misplaced tiles. h<sub>2</sub> = sum of Manhattan distances. Prove h<sub>2</sub> dominates h<sub>1</sub>.</p>
+                  <p><strong>Proof:</strong> Each misplaced tile contributes &ge; 1 to Manhattan distance (since it is at least 1 step from its goal position). Tiles already in place contribute 0 to both. So for each tile: Manhattan(tile) &ge; Misplaced(tile). Summing over all tiles: h<sub>2</sub>(n) &ge; h<sub>1</sub>(n) for all n. &#9632;</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 3: Computing max() Heuristic</div>
+                  <p>For a grid pathfinding problem with obstacles, three heuristics are:</p>
+                  <ul>
+                    <li>h<sub>1</sub>(n) = Manhattan distance to goal = 7</li>
+                    <li>h<sub>2</sub>(n) = Euclidean distance to goal = 5.83</li>
+                    <li>h<sub>3</sub>(n) = Chebyshev distance to goal = 5</li>
+                  </ul>
+                  <p>h(n) = max(7, 5.83, 5) = <strong>7</strong>. We use Manhattan as it dominates the other two for this state. Note: the max can vary per state &mdash; different heuristics may &ldquo;win&rdquo; at different nodes.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>Relaxed problems are the primary source of admissible heuristics.</li>
+                    <li>max(h<sub>1</sub>, h<sub>2</sub>, &hellip;) is admissible and dominates each individual h<sub>i</sub>.</li>
+                    <li>Higher (closer to h*) admissible heuristics mean fewer nodes expanded.</li>
+                    <li>Linear combinations of features are useful but may not be admissible.</li>
+                    <li>Heuristics can be learned from solved problem instances.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch03-heuristic-design">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="rbfs.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">RBFS</span></a>
+              <a href="pattern-databases.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Pattern Databases</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#relaxed-problems">1. Relaxed Problems</a></li>
+              <li><a href="#max-heuristics">2. Max of Multiple Heuristics</a></li>
+              <li><a href="#dominance">3. Heuristic Dominance</a></li>
+              <li><a href="#linear-combination">4. Linear Combination</a></li>
+              <li><a href="#learning-heuristics">5. Learning Heuristics</a></li>
+              <li><a href="#worked-examples">6. Worked Examples</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

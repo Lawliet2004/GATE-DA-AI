@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normal Forms (CNF &amp; DNF) - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li class="active"><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>Normal Forms (CNF/DNF)</span>
+        </div>
+
+        <article class="theory-content">
+            <h1>Normal Forms: CNF and DNF</h1>
+
+            <div class="gate-badge">GATE DA — Very High Importance</div>
+
+            <div class="learning-objectives">
+                <h3>🎯 Learning Objectives</h3>
+                <ul>
+                    <li>Define Conjunctive Normal Form (CNF) and Disjunctive Normal Form (DNF)</li>
+                    <li>Convert any propositional formula to CNF and DNF step by step</li>
+                    <li>Understand clausal form and its importance for SAT solving</li>
+                    <li>Apply conversion algorithms efficiently for GATE questions</li>
+                </ul>
+            </div>
+
+            <!-- Section 1: Key Terms -->
+            <section>
+                <h2>1. Terminology</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Literal</div>
+                    <p>A <strong>literal</strong> is a propositional variable or its negation. If P is a variable, then P and ¬P are both literals. P is a <em>positive literal</em> and ¬P is a <em>negative literal</em>.</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Clause</div>
+                    <p>A <strong>clause</strong> is a disjunction of literals: (l₁ ∨ l₂ ∨ ... ∨ lₖ). A clause with a single literal is called a <strong>unit clause</strong>. An empty clause (no literals) is equivalent to ⊥ (False).</p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Term (Minterm-like)</div>
+                    <p>A <strong>term</strong> (or <em>conjunctive clause</em>) is a conjunction of literals: (l₁ ∧ l₂ ∧ ... ∧ lₖ).</p>
+                </div>
+            </section>
+
+            <!-- Section 2: CNF -->
+            <section>
+                <h2>2. Conjunctive Normal Form (CNF)</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: CNF</div>
+                    <p>A formula is in <strong>Conjunctive Normal Form (CNF)</strong> if it is a conjunction of clauses:</p>
+                    <p class="formula">(l₁₁ ∨ l₁₂ ∨ ... ) ∧ (l₂₁ ∨ l₂₂ ∨ ... ) ∧ ... ∧ (lₖ₁ ∨ lₖ₂ ∨ ... )</p>
+                    <p>In other words: <strong>AND of ORs</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>CNF Examples</h4>
+                    <ul>
+                        <li>(P ∨ Q) ∧ (¬P ∨ R) ∧ (¬Q ∨ ¬R) — ✅ CNF (3 clauses)</li>
+                        <li>P ∧ Q ∧ R — ✅ CNF (3 unit clauses)</li>
+                        <li>(P ∨ ¬Q) — ✅ CNF (single clause)</li>
+                        <li>P ∨ (Q ∧ R) — ❌ Not CNF (OR of an AND)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 3: DNF -->
+            <section>
+                <h2>3. Disjunctive Normal Form (DNF)</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: DNF</div>
+                    <p>A formula is in <strong>Disjunctive Normal Form (DNF)</strong> if it is a disjunction of terms:</p>
+                    <p class="formula">(l₁₁ ∧ l₁₂ ∧ ... ) ∨ (l₂₁ ∧ l₂₂ ∧ ... ) ∨ ... ∨ (lₖ₁ ∧ lₖ₂ ∧ ... )</p>
+                    <p>In other words: <strong>OR of ANDs</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>DNF Examples</h4>
+                    <ul>
+                        <li>(P ∧ Q) ∨ (¬P ∧ R) ∨ (Q ∧ ¬R) — ✅ DNF</li>
+                        <li>P ∨ Q ∨ R — ✅ DNF (3 single-literal terms)</li>
+                        <li>(P ∧ ¬Q ∧ R) — ✅ DNF (single term)</li>
+                        <li>P ∧ (Q ∨ R) — ❌ Not DNF (AND of an OR)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Conversion Algorithm -->
+            <section>
+                <h2>4. Conversion to CNF (Step-by-Step Algorithm)</h2>
+
+                <div class="algorithm-block">
+                    <div class="algo-header">Algorithm: Convert Any Formula to CNF</div>
+                    <div class="algo-body">
+                        <ol>
+                            <li><strong>Eliminate biconditionals (↔):</strong><br>
+                                Replace α ↔ β with (α → β) ∧ (β → α)</li>
+                            <li><strong>Eliminate implications (→):</strong><br>
+                                Replace α → β with ¬α ∨ β</li>
+                            <li><strong>Push negations inward (using De Morgan's):</strong><br>
+                                ¬(α ∧ β) → ¬α ∨ ¬β<br>
+                                ¬(α ∨ β) → ¬α ∧ ¬β<br>
+                                ¬¬α → α</li>
+                            <li><strong>Distribute ∨ over ∧:</strong><br>
+                                α ∨ (β ∧ γ) → (α ∨ β) ∧ (α ∨ γ)</li>
+                            <li><strong>Simplify</strong> using idempotent, complement, and identity laws.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Convert (P → Q) ↔ R to CNF</h4>
+                    <ol>
+                        <li><strong>Eliminate ↔:</strong> ((P → Q) → R) ∧ (R → (P → Q))</li>
+                        <li><strong>Eliminate →:</strong>
+                            <ul>
+                                <li>(P → Q) becomes (¬P ∨ Q)</li>
+                                <li>(¬P ∨ Q) → R becomes ¬(¬P ∨ Q) ∨ R</li>
+                                <li>R → (¬P ∨ Q) becomes ¬R ∨ (¬P ∨ Q)</li>
+                            </ul>
+                            Result: (¬(¬P ∨ Q) ∨ R) ∧ (¬R ∨ ¬P ∨ Q)
+                        </li>
+                        <li><strong>Push ¬ inward:</strong> ¬(¬P ∨ Q) = P ∧ ¬Q (De Morgan's + double negation)<br>
+                            Result: ((P ∧ ¬Q) ∨ R) ∧ (¬R ∨ ¬P ∨ Q)
+                        </li>
+                        <li><strong>Distribute ∨ over ∧:</strong> (P ∧ ¬Q) ∨ R = (P ∨ R) ∧ (¬Q ∨ R)<br>
+                            Result: <span class="formula">(P ∨ R) ∧ (¬Q ∨ R) ∧ (¬R ∨ ¬P ∨ Q)</span>
+                        </li>
+                    </ol>
+                    <p>This is in CNF: three clauses joined by ∧.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Convert ¬(P ∨ Q) → (R ∧ S) to CNF</h4>
+                    <ol>
+                        <li><strong>Eliminate →:</strong> ¬¬(P ∨ Q) ∨ (R ∧ S) = (P ∨ Q) ∨ (R ∧ S)</li>
+                        <li><strong>Distribute ∨ over ∧:</strong> (P ∨ Q ∨ R) ∧ (P ∨ Q ∨ S)</li>
+                    </ol>
+                    <p>Final CNF: <span class="formula">(P ∨ Q ∨ R) ∧ (P ∨ Q ∨ S)</span></p>
+                </div>
+            </section>
+
+            <!-- Section 5: Conversion to DNF -->
+            <section>
+                <h2>5. Conversion to DNF</h2>
+
+                <div class="algorithm-block">
+                    <div class="algo-header">Algorithm: Convert Any Formula to DNF</div>
+                    <div class="algo-body">
+                        <ol>
+                            <li><strong>Eliminate ↔ and →</strong> (same as CNF steps 1-2)</li>
+                            <li><strong>Push negations inward</strong> (same as CNF step 3)</li>
+                            <li><strong>Distribute ∧ over ∨:</strong><br>
+                                α ∧ (β ∨ γ) → (α ∧ β) ∨ (α ∧ γ)</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 CNF vs DNF — Distribution Direction</h4>
+                    <p>The <strong>only</strong> difference between CNF and DNF conversion is the distribution step:</p>
+                    <ul>
+                        <li><strong>CNF:</strong> Distribute ∨ over ∧ (push ∨ inside)</li>
+                        <li><strong>DNF:</strong> Distribute ∧ over ∨ (push ∧ inside)</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Convert (P ∨ Q) ∧ (R ∨ S) to DNF</h4>
+                    <p>Distribute ∧ over ∨:</p>
+                    <p>(P ∨ Q) ∧ (R ∨ S) = (P ∧ R) ∨ (P ∧ S) ∨ (Q ∧ R) ∨ (Q ∧ S)</p>
+                    <p>Final DNF: <span class="formula">(P ∧ R) ∨ (P ∧ S) ∨ (Q ∧ R) ∨ (Q ∧ S)</span></p>
+                </div>
+            </section>
+
+            <!-- Section 6: From Truth Table -->
+            <section>
+                <h2>6. Obtaining Normal Forms from Truth Tables</h2>
+
+                <div class="theorem-box">
+                    <h4>DNF from Truth Table (Sum of Minterms)</h4>
+                    <p>For each row where the formula is <strong>True</strong>, construct a term (conjunction) where each variable appears positive if T in that row and negated if F. The DNF is the disjunction of all such terms.</p>
+                </div>
+
+                <div class="theorem-box">
+                    <h4>CNF from Truth Table (Product of Maxterms)</h4>
+                    <p>For each row where the formula is <strong>False</strong>, construct a clause (disjunction) where each variable appears <em>negated</em> if T in that row and <em>positive</em> if F. The CNF is the conjunction of all such clauses.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Build CNF and DNF from truth table</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>P</th><th>Q</th><th>f(P,Q)</th></tr></thead>
+                        <tbody>
+                            <tr><td>T</td><td>T</td><td>T</td></tr>
+                            <tr><td>T</td><td>F</td><td>F</td></tr>
+                            <tr><td>F</td><td>T</td><td>T</td></tr>
+                            <tr><td>F</td><td>F</td><td>F</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>DNF</strong> (from T rows): (P ∧ Q) ∨ (¬P ∧ Q) = <strong>Q</strong></p>
+                    <p><strong>CNF</strong> (from F rows): (¬P ∨ Q) ∧ (P ∨ Q) = <strong>Q</strong></p>
+                    <p>Both simplify to Q, as expected.</p>
+                </div>
+            </section>
+
+            <!-- Section 7: Why CNF Matters -->
+            <section>
+                <h2>7. Why CNF Matters</h2>
+                <div class="note-box">
+                    <h4>📝 Importance of CNF</h4>
+                    <ul>
+                        <li><strong>Resolution method</strong> requires formulas in CNF (clausal form).</li>
+                        <li><strong>SAT solvers</strong> (DPLL, CDCL) operate on CNF formulas.</li>
+                        <li><strong>Clause representation</strong>: A CNF formula can be represented as a set of clauses, which is convenient for automated reasoning.</li>
+                        <li><strong>GATE questions</strong> frequently ask to convert to CNF before applying resolution.</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Exponential Blowup</h4>
+                    <p>Converting from DNF to CNF (or vice versa) can cause an <strong>exponential increase</strong> in the size of the formula. A formula with m terms in DNF, each of size n, can produce up to n<sup>m</sup> clauses in CNF. This is a key theoretical limitation.</p>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="tautology-contradiction-contingency.html" class="nav-btn prev-btn">← Previous: Tautology, Contradiction, Contingency</a>
+            <a href="propositional-inference.html" class="nav-btn next-btn">Next: Propositional Inference →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-normal-forms">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-normal-forms">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

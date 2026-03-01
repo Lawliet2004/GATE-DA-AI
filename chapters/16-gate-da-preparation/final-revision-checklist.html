@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Final revision checklist for GATE DA AI — a comprehensive last-week and last-day checklist covering every topic, exam-day strategy, and key formulas for quick recall.">
+  <title>Final Revision Checklist — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+  <style>
+    .checklist { list-style: none; padding: 0; margin: 1rem 0; }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color, #e0e0e0);
+      background: var(--card-bg, #fafafa);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      user-select: none;
+    }
+    .checklist-item:hover { border-color: var(--accent, #4f46e5); }
+    .checklist-item .check-box {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--border-color, #ccc);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      margin-top: 2px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .checklist-item.checked .check-box {
+      background: var(--accent, #4f46e5);
+      border-color: var(--accent, #4f46e5);
+      color: #fff;
+    }
+    .checklist-item.checked .check-box::after { content: '\2713'; }
+    .checklist-item.checked .check-text { text-decoration: line-through; opacity: 0.65; }
+    .checklist-item .check-text { flex: 1; line-height: 1.5; }
+    .checklist-progress {
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: var(--text-muted, #666);
+    }
+    .formula-quick-list { columns: 2; column-gap: 2rem; }
+    .formula-quick-list li { break-inside: avoid; margin-bottom: 0.5rem; }
+    @media (max-width: 640px) { .formula-quick-list { columns: 1; } }
+    .confidence-box {
+      background: linear-gradient(135deg, #e0f2fe, #dbeafe);
+      border-left: 4px solid #2563eb;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    [data-theme="dark"] .confidence-box {
+      background: linear-gradient(135deg, #1e293b, #1e3a5f);
+      border-left-color: #60a5fa;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="progress-pill overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Toggle theme">&#127763;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a>
+            <a href="topic-wise-weightage.html" class="sidebar-link"><span class="link-check"></span> Topic Weightage<span class="link-type notes">Notes</span></a>
+            <a href="previous-year-compilation.html" class="sidebar-link"><span class="link-check"></span> Previous Year Qs<span class="link-type notes">Notes</span></a>
+            <a href="formula-sheet.html" class="sidebar-link"><span class="link-check"></span> Formula Sheet<span class="link-type notes">Notes</span></a>
+            <a href="common-mistakes.html" class="sidebar-link"><span class="link-check"></span> Common Mistakes<span class="link-type notes">Notes</span></a>
+            <a href="mock-test-1.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 1<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-2.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 2<span class="link-type quiz">Quiz</span></a>
+            <a href="mock-test-3.html" class="sidebar-link"><span class="link-check"></span> &#129514; Mock Test 3<span class="link-type quiz">Quiz</span></a>
+            <a href="final-revision-checklist.html" class="sidebar-link active"><span class="link-check"></span> Final Revision Checklist<span class="link-type notes">Notes</span></a>
+        </div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="exam-pattern-strategy.html">Chapter 16: GATE DA Preparation</a> &raquo;
+          <span class="current">Final Revision Checklist</span>
+        </nav>
+
+        <article class="main-content page-type-notes" data-page-id="ch16-final-revision-checklist">
+
+          <h1>&#9989; Final Revision Checklist</h1>
+          <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+            <span class="gate-badge high">GATE Relevance: Critical</span>
+            <button class="bookmark-btn" data-page="ch16-final-revision-checklist" title="Bookmark this page">&#9733; Bookmark</button>
+          </div>
+
+          <div class="note-box">
+            <div class="box-title">&#128161; How to Use This Checklist</div>
+            <p>Click any item to mark it as done. Your progress is saved automatically in your browser. Use this during your final week and on the day before the exam. Aim to check off every box before you walk into the exam hall.</p>
+          </div>
+
+          <div class="checklist-progress" id="checklistProgress">0 / 0 items completed</div>
+
+          <!-- ============================================================ -->
+          <!--  SECTION 1: ONE WEEK BEFORE EXAM                             -->
+          <!-- ============================================================ -->
+          <section id="one-week-before">
+            <h2>&#128197; One Week Before the Exam</h2>
+
+            <h3>1. Search Algorithms</h3>
+            <ul class="checklist" data-group="search">
+              <li class="checklist-item" data-key="search-1">
+                <span class="check-box"></span>
+                <span class="check-text">Review the BFS / DFS / IDDFS complexity table &mdash; know Time, Space, Completeness, and Optimality for each strategy with branching factor <em>b</em> and depth <em>d</em>.</span>
+              </li>
+              <li class="checklist-item" data-key="search-2">
+                <span class="check-box"></span>
+                <span class="check-text">Practice A* search with two different heuristics on the same graph. Verify f(n) = g(n) + h(n) ordering and confirm the optimal path in both cases.</span>
+              </li>
+              <li class="checklist-item" data-key="search-3">
+                <span class="check-box"></span>
+                <span class="check-text">Trace alpha-beta pruning on a game tree with at least 8 leaf nodes. Identify which branches get pruned and confirm the minimax value at the root.</span>
+              </li>
+            </ul>
+
+            <h3>2. Logic</h3>
+            <ul class="checklist" data-group="logic">
+              <li class="checklist-item" data-key="logic-1">
+                <span class="check-box"></span>
+                <span class="check-text">Revise every step of CNF conversion: eliminate biconditionals, eliminate implications, push negation inward (De Morgan&rsquo;s), distribute OR over AND.</span>
+              </li>
+              <li class="checklist-item" data-key="logic-2">
+                <span class="check-box"></span>
+                <span class="check-text">Practice 3 full resolution proofs from scratch &mdash; convert KB to CNF, negate the query, apply resolution until you derive the empty clause or exhaust clauses.</span>
+              </li>
+              <li class="checklist-item" data-key="logic-3">
+                <span class="check-box"></span>
+                <span class="check-text">Review Skolemization rules: remove existential quantifiers by introducing Skolem constants (no preceding universal) or Skolem functions (with preceding universals).</span>
+              </li>
+              <li class="checklist-item" data-key="logic-4">
+                <span class="check-box"></span>
+                <span class="check-text">Practice unification: solve at least 3 unification problems. Remember the occurs check &mdash; you cannot unify X with f(X).</span>
+              </li>
+            </ul>
+
+            <h3>3. Probability &amp; Bayesian Networks</h3>
+            <ul class="checklist" data-group="prob">
+              <li class="checklist-item" data-key="prob-1">
+                <span class="check-box"></span>
+                <span class="check-text">Solve 5 Bayes&rsquo; theorem problems covering medical diagnosis, spam filtering, and conditional independence scenarios.</span>
+              </li>
+              <li class="checklist-item" data-key="prob-2">
+                <span class="check-box"></span>
+                <span class="check-text">Practice variable elimination on a 4-node Bayesian Network. Write out every factor, perform the summation steps, and normalize the result.</span>
+              </li>
+              <li class="checklist-item" data-key="prob-3">
+                <span class="check-box"></span>
+                <span class="check-text">Review d-separation rules: a path is blocked if (a) a chain/fork node is observed, or (b) a collider node (and all descendants) are NOT observed. Practice on 3 different network topologies.</span>
+              </li>
+            </ul>
+
+            <h3>4. Machine Learning</h3>
+            <ul class="checklist" data-group="ml">
+              <li class="checklist-item" data-key="ml-1">
+                <span class="check-box"></span>
+                <span class="check-text">Know the bias-variance tradeoff diagram cold: high bias = underfitting, high variance = overfitting, sweet spot is in between. Be able to sketch it.</span>
+              </li>
+              <li class="checklist-item" data-key="ml-2">
+                <span class="check-box"></span>
+                <span class="check-text">Memorize evaluation metric formulas: Accuracy, Precision, Recall, F1-score, Specificity, AUC interpretation, MSE, MAE, R&sup2;.</span>
+              </li>
+              <li class="checklist-item" data-key="ml-3">
+                <span class="check-box"></span>
+                <span class="check-text">Review regularization: L1 (Lasso) promotes sparsity, L2 (Ridge) shrinks weights uniformly. Know the cost function form: J(&theta;) + &lambda;&sum;|&theta;| vs J(&theta;) + &lambda;&sum;&theta;&sup2;.</span>
+              </li>
+            </ul>
+
+            <h3>5. Neural Networks</h3>
+            <ul class="checklist" data-group="nn">
+              <li class="checklist-item" data-key="nn-1">
+                <span class="check-box"></span>
+                <span class="check-text">Practice backpropagation by hand on a 2-layer network (input &rarr; hidden &rarr; output). Compute forward pass, loss, then &part;L/&part;w for each weight using the chain rule.</span>
+              </li>
+              <li class="checklist-item" data-key="nn-2">
+                <span class="check-box"></span>
+                <span class="check-text">Know activation functions and their derivatives: Sigmoid &sigma;(x) = 1/(1+e<sup>&minus;x</sup>), &sigma;&prime; = &sigma;(1&minus;&sigma;); Tanh; ReLU max(0,x), ReLU&prime; = 0 or 1; Softmax for multi-class.</span>
+              </li>
+              <li class="checklist-item" data-key="nn-3">
+                <span class="check-box"></span>
+                <span class="check-text">CNN output size formula: O = (W &minus; F + 2P) / S + 1. Practice with at least 2 different configurations of W (input), F (filter), P (padding), S (stride).</span>
+              </li>
+            </ul>
+
+            <h3>6. Reinforcement Learning</h3>
+            <ul class="checklist" data-group="rl">
+              <li class="checklist-item" data-key="rl-1">
+                <span class="check-box"></span>
+                <span class="check-text">Solve 3 Q-learning update problems: Q(s,a) &larr; Q(s,a) + &alpha;[R + &gamma; max<sub>a&prime;</sub> Q(s&prime;,a&prime;) &minus; Q(s,a)]. Do the arithmetic step by step.</span>
+              </li>
+              <li class="checklist-item" data-key="rl-2">
+                <span class="check-box"></span>
+                <span class="check-text">Know Bellman equations cold: V(s) = max<sub>a</sub> &sum;<sub>s&prime;</sub> P(s&prime;|s,a)[R(s,a,s&prime;) + &gamma;V(s&prime;)] and Q(s,a) = &sum;<sub>s&prime;</sub> P(s&prime;|s,a)[R + &gamma; max<sub>a&prime;</sub> Q(s&prime;,a&prime;)].</span>
+              </li>
+              <li class="checklist-item" data-key="rl-3">
+                <span class="check-box"></span>
+                <span class="check-text">Understand policy iteration vs value iteration: Policy iteration alternates evaluation and improvement until stable. Value iteration applies Bellman optimality update until convergence, then extracts policy once.</span>
+              </li>
+            </ul>
+
+            <h3>7. Constraint Satisfaction Problems</h3>
+            <ul class="checklist" data-group="csp">
+              <li class="checklist-item" data-key="csp-1">
+                <span class="check-box"></span>
+                <span class="check-text">Practice arc consistency (AC-3) on a small CSP (&le;4 variables). For each arc (X<sub>i</sub>, X<sub>j</sub>), remove values from D<sub>i</sub> that have no support in D<sub>j</sub>. Re-add affected arcs to the queue.</span>
+              </li>
+              <li class="checklist-item" data-key="csp-2">
+                <span class="check-box"></span>
+                <span class="check-text">Know backtracking search heuristics: MRV (Minimum Remaining Values) for variable selection, LCV (Least Constraining Value) for value ordering, and forward checking for early pruning.</span>
+              </li>
+            </ul>
+
+            <h3>8. Planning</h3>
+            <ul class="checklist" data-group="planning">
+              <li class="checklist-item" data-key="planning-1">
+                <span class="check-box"></span>
+                <span class="check-text">Review STRIPS representation: each action has Preconditions, Add List (positive effects), and Delete List (negative effects). Practice writing STRIPS operators for a blocks-world problem.</span>
+              </li>
+              <li class="checklist-item" data-key="planning-2">
+                <span class="check-box"></span>
+                <span class="check-text">Practice mutex identification in planning graphs: two actions are mutex if they have inconsistent effects, interference, or competing needs. Two literals are mutex if every way to achieve them is pairwise mutex.</span>
+              </li>
+            </ul>
+          </section>
+
+          <!-- ============================================================ -->
+          <!--  SECTION 2: DAY BEFORE EXAM                                  -->
+          <!-- ============================================================ -->
+          <section id="day-before">
+            <h2>&#127769; Day Before the Exam</h2>
+            <ul class="checklist" data-group="day-before">
+              <li class="checklist-item" data-key="day-1">
+                <span class="check-box"></span>
+                <span class="check-text">Review the <a href="formula-sheet.html"><strong>Formula Sheet</strong></a> end to end. Read every formula aloud once and write down the 5 you find hardest to remember.</span>
+              </li>
+              <li class="checklist-item" data-key="day-2">
+                <span class="check-box"></span>
+                <span class="check-text">Go through <a href="common-mistakes.html"><strong>Common Mistakes</strong></a> &mdash; focus on the mistakes you made during practice. Mark any that still feel tricky.</span>
+              </li>
+              <li class="checklist-item" data-key="day-3">
+                <span class="check-box"></span>
+                <span class="check-text">Take <a href="mock-test-3.html"><strong>Mock Test 3</strong></a> under strict timed conditions (25 minutes). Review every wrong answer and understand why you got it wrong.</span>
+              </li>
+              <li class="checklist-item" data-key="day-4">
+                <span class="check-box"></span>
+                <span class="check-text">Prepare your admit card, a valid photo ID (matching the admit card name exactly), and print/save directions to the exam center.</span>
+              </li>
+              <li class="checklist-item" data-key="day-5">
+                <span class="check-box"></span>
+                <span class="check-text">Get a minimum of 7 hours of sleep. Set two alarms. No late-night cramming &mdash; sleep consolidates memory far better than last-minute reading.</span>
+              </li>
+              <li class="checklist-item" data-key="day-6">
+                <span class="check-box"></span>
+                <span class="check-text">Prepare a water bottle and light snacks (energy bar, fruit) for the break. Lay out comfortable clothes and a watch (if allowed).</span>
+              </li>
+            </ul>
+          </section>
+
+          <!-- ============================================================ -->
+          <!--  SECTION 3: EXAM DAY STRATEGY                                -->
+          <!-- ============================================================ -->
+          <section id="exam-day">
+            <h2>&#127947; Exam Day Strategy</h2>
+            <ul class="checklist" data-group="exam-day">
+              <li class="checklist-item" data-key="exam-1">
+                <span class="check-box"></span>
+                <span class="check-text">Arrive at the exam center at least 30 minutes early. Use the extra time to settle in, use the restroom, and calm your nerves.</span>
+              </li>
+              <li class="checklist-item" data-key="exam-2">
+                <span class="check-box"></span>
+                <span class="check-text"><strong>First pass (15&ndash;20 min):</strong> Quickly scan all questions. Attempt every question you are confident about. Mark uncertain ones for later and move on &mdash; do not get stuck.</span>
+              </li>
+              <li class="checklist-item" data-key="exam-3">
+                <span class="check-box"></span>
+                <span class="check-text"><strong>Second pass (40&ndash;50 min):</strong> Tackle medium-difficulty questions. These are the ones where you know the approach but need to work through the computation or reasoning carefully.</span>
+              </li>
+              <li class="checklist-item" data-key="exam-4">
+                <span class="check-box"></span>
+                <span class="check-text"><strong>Third pass (remaining time):</strong> Attempt hard questions and review all marked/flagged answers. Double-check any answer you were unsure about.</span>
+              </li>
+              <li class="checklist-item" data-key="exam-5">
+                <span class="check-box"></span>
+                <span class="check-text"><strong>NAT questions:</strong> Double-check your arithmetic. Re-read the question to confirm units and rounding requirements. A silly calculation error can cost you 2 marks.</span>
+              </li>
+              <li class="checklist-item" data-key="exam-6">
+                <span class="check-box"></span>
+                <span class="check-text"><strong>MSQ questions:</strong> Remember there is partial marking &mdash; only select options you are genuinely sure about. Selecting a wrong option costs you marks, so be conservative.</span>
+              </li>
+              <li class="checklist-item" data-key="exam-7">
+                <span class="check-box"></span>
+                <span class="check-text"><strong>MCQ questions:</strong> Do NOT leave MCQs unanswered. With 1/3 negative marking, if you can eliminate 2 out of 4 options, the expected value of guessing is positive. Always make an educated guess.</span>
+              </li>
+            </ul>
+          </section>
+
+          <!-- ============================================================ -->
+          <!--  SECTION 4: KEY FORMULAS QUICK RECALL                        -->
+          <!-- ============================================================ -->
+          <section id="formulas-quick">
+            <h2>&#9889; Key Formulas &mdash; Quick Recall (5-Minute Revision)</h2>
+            <p>Scan through these 20 essential formulas one last time. No explanations &mdash; you should already know what each one means.</p>
+            <ol class="formula-quick-list">
+              <li><strong>BFS complexity:</strong> O(b<sup>d</sup>) time, O(b<sup>d</sup>) space</li>
+              <li><strong>DFS complexity:</strong> O(b<sup>m</sup>) time, O(bm) space</li>
+              <li><strong>IDDFS complexity:</strong> O(b<sup>d</sup>) time, O(bd) space</li>
+              <li><strong>A* evaluation:</strong> f(n) = g(n) + h(n)</li>
+              <li><strong>Minimax:</strong> V(s) = max<sub>a</sub> min<sub>s&prime;</sub> V(s&prime;)</li>
+              <li><strong>Bayes&rsquo; theorem:</strong> P(A|B) = P(B|A)&middot;P(A) / P(B)</li>
+              <li><strong>Chain rule (probability):</strong> P(A,B,C) = P(A)&middot;P(B|A)&middot;P(C|A,B)</li>
+              <li><strong>Entropy:</strong> H(X) = &minus;&sum; p(x) log&sub;2 p(x)</li>
+              <li><strong>Information gain:</strong> IG(S,A) = H(S) &minus; &sum;<sub>v</sub> (|S<sub>v</sub>|/|S|) &middot; H(S<sub>v</sub>)</li>
+              <li><strong>Linear regression (normal eq.):</strong> &theta; = (X<sup>T</sup>X)<sup>&minus;1</sup>X<sup>T</sup>y</li>
+              <li><strong>Gradient descent:</strong> &theta; &larr; &theta; &minus; &alpha;&nabla;J(&theta;)</li>
+              <li><strong>Sigmoid:</strong> &sigma;(z) = 1 / (1 + e<sup>&minus;z</sup>)</li>
+              <li><strong>Softmax:</strong> P(y=k) = e<sup>z<sub>k</sub></sup> / &sum;<sub>j</sub> e<sup>z<sub>j</sub></sup></li>
+              <li><strong>Cross-entropy loss:</strong> L = &minus;&sum; y<sub>i</sub> log(&ycirc;<sub>i</sub>)</li>
+              <li><strong>CNN output size:</strong> O = (W &minus; F + 2P) / S + 1</li>
+              <li><strong>Q-learning update:</strong> Q(s,a) &larr; Q(s,a) + &alpha;[R + &gamma; max<sub>a&prime;</sub>Q(s&prime;,a&prime;) &minus; Q(s,a)]</li>
+              <li><strong>Bellman equation:</strong> V(s) = max<sub>a</sub> &sum;<sub>s&prime;</sub> P(s&prime;|s,a)[R + &gamma;V(s&prime;)]</li>
+              <li><strong>Precision:</strong> TP / (TP + FP)</li>
+              <li><strong>Recall:</strong> TP / (TP + FN)</li>
+              <li><strong>F1 Score:</strong> 2 &middot; (Precision &middot; Recall) / (Precision + Recall)</li>
+            </ol>
+          </section>
+
+          <!-- ============================================================ -->
+          <!--  SECTION 5: CONFIDENCE BOOSTER                               -->
+          <!-- ============================================================ -->
+          <section id="confidence-booster">
+            <h2>&#128170; Confidence Booster</h2>
+            <div class="confidence-box">
+              <p>You have prepared thoroughly. You have worked through the theory, solved problems, taken mock tests, and reviewed your mistakes. That effort is real, and it matters.</p>
+              <p>When you sit down in the exam hall, trust your preparation. Read each question carefully &mdash; many marks are lost not from lack of knowledge but from misreading the question. Manage your time with the three-pass strategy. If a question feels impossible, move on and come back later with fresh eyes.</p>
+              <p>Remember: GATE is as much about strategy as it is about knowledge. You know the material. You know the common traps. You have a plan.</p>
+              <p><strong>You&rsquo;ve got this. Go show them what you know. &#128640;</strong></p>
+            </div>
+          </section>
+
+          <button class="complete-btn" data-page="ch16-final-revision-checklist">&#10003; Mark Page as Complete</button>
+
+        </article>
+
+        <div class="nav-buttons">
+          <a href="mock-test-3.html" class="btn btn-secondary">&laquo; Mock Test 3</a>
+          <a href="../../index.html" class="btn btn-primary">Back to Dashboard &raquo;</a>
+        </div>
+        <button class="bookmark-btn" title="Bookmark this page">&#128278; Bookmark</button>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+
+  <script>
+  (function() {
+    var STORAGE_KEY = 'ai-revision-checklist';
+    var items = document.querySelectorAll('.checklist-item');
+    var progressEl = document.getElementById('checklistProgress');
+    var saved = {};
+
+    // Load saved state
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) saved = JSON.parse(raw);
+    } catch(e) { saved = {}; }
+
+    // Restore checked state
+    items.forEach(function(item) {
+      var key = item.getAttribute('data-key');
+      if (saved[key]) {
+        item.classList.add('checked');
+      }
+    });
+
+    function updateProgress() {
+      var total = items.length;
+      var done = document.querySelectorAll('.checklist-item.checked').length;
+      if (progressEl) {
+        progressEl.textContent = done + ' / ' + total + ' items completed';
+      }
+    }
+
+    function saveChecklist() {
+      var state = {};
+      items.forEach(function(item) {
+        var key = item.getAttribute('data-key');
+        if (item.classList.contains('checked')) {
+          state[key] = true;
+        }
+      });
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch(e) { /* storage full or unavailable */ }
+      updateProgress();
+    }
+
+    // Attach click handlers
+    items.forEach(function(item) {
+      item.addEventListener('click', function(e) {
+        // Don't toggle if user clicked a link inside the item
+        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+        this.classList.toggle('checked');
+        saveChecklist();
+      });
+    });
+
+    // Initial progress count
+    updateProgress();
+  })();
+  </script>
+</body>
+</html>

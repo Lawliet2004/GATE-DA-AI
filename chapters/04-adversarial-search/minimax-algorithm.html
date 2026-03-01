@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Minimax Algorithm — Complete theory with game tree examples, pseudocode, complexity analysis, worked examples and GATE problems for adversarial search.">
+  <title>Minimax Algorithm — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+            <a href="minimax-algorithm.html" class="sidebar-link active"><span class="link-check"></span> Minimax<span class="link-type theory">Theory</span></a>
+            <a href="alpha-beta-pruning.html" class="sidebar-link"><span class="link-check"></span> Alpha-Beta Pruning<span class="link-type theory">Theory</span></a>
+            <a href="move-ordering.html" class="sidebar-link"><span class="link-check"></span> Move Ordering<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-functions.html" class="sidebar-link"><span class="link-check"></span> Evaluation Functions<span class="link-type theory">Theory</span></a>
+            <a href="stochastic-games.html" class="sidebar-link"><span class="link-check"></span> Stochastic Games<span class="link-type theory">Theory</span></a>
+            <a href="partially-observable-games.html" class="sidebar-link"><span class="link-check"></span> Partially Observable<span class="link-type theory">Theory</span></a>
+            <a href="monte-carlo-tree-search.html" class="sidebar-link"><span class="link-check"></span> MCTS<span class="link-type theory">Theory</span></a>
+            <a href="practical-adversarial.html" class="sidebar-link"><span class="link-check"></span> Tic-Tac-Toe Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-adversarial.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="game-theory-basics.html">Chapter 4: Adversarial Search</a> &raquo;
+          <span class="current">Minimax Algorithm</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch04-minimax">
+            <h1>Minimax Algorithm</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch04-minimax" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="game-theory-basics.html">Game Theory Basics</a> &mdash; Game trees, MAX/MIN players, utility</li>
+                <li><a href="../02-uninformed-search/depth-first-search.html">Depth-First Search</a> &mdash; DFS traversal of trees</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand the minimax decision rule for two-player zero-sum games</li>
+                <li>Trace the backup of values from terminal nodes to the root</li>
+                <li>Write and explain the minimax pseudocode</li>
+                <li>Analyse time and space complexity of the minimax algorithm</li>
+                <li>Apply minimax to game tree problems (GATE style)</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="minimax-idea">
+                <h2>1. The Minimax Idea</h2>
+                <p>In a two-player zero-sum game, <strong>MAX</strong> wants to maximize the utility and <strong>MIN</strong> wants to minimize it. The <strong>minimax algorithm</strong> computes the optimal move for MAX by assuming both players play optimally.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Minimax Value</div>
+                  <p>The <strong>minimax value</strong> of a node n is defined recursively:</p>
+                  <ul>
+                    <li><strong>MINIMAX(n) = UTILITY(n)</strong> &nbsp; if n is a terminal node</li>
+                    <li><strong>MINIMAX(n) = max<sub>c &isin; children(n)</sub> MINIMAX(c)</strong> &nbsp; if n is a MAX node</li>
+                    <li><strong>MINIMAX(n) = min<sub>c &isin; children(n)</sub> MINIMAX(c)</strong> &nbsp; if n is a MIN node</li>
+                  </ul>
+                </div>
+
+                <p>The algorithm performs a complete depth-first exploration of the game tree. At terminal (leaf) nodes, the utility value is known. These values are then <strong>backed up</strong> through the tree: MAX nodes take the maximum of their children; MIN nodes take the minimum.</p>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="full-example">
+                <h2>2. Full Game Tree Example</h2>
+                <p>Consider this depth-3 game tree with branching factor 2&ndash;3. Terminal utilities are shown at the leaves.</p>
+
+                <div class="example-box">
+                  <div class="box-title">Example 1: Depth-3 Game Tree</div>
+                  <pre><code>                         A (MAX)
+                       /        \
+                    B (MIN)       C (MIN)
+                  /    |    \       /     \
+               D(MAX) E(MAX) F(MAX) G(MAX) H(MAX)
+              / \     / \     |     / \      |
+             3   5   6   9    1    2   7     4
+
+Step-by-step backup:
+  D = max(3, 5) = 5       G = max(2, 7) = 7
+  E = max(6, 9) = 9       H = max(4)    = 4
+  F = max(1)    = 1
+  B = min(5, 9, 1) = 1    C = min(7, 4) = 4
+  A = max(1, 4) = <strong>4</strong>
+
+Optimal play: MAX chooses C at root (value 4).
+  MIN at C chooses H (value 4). MAX at H gets 4.</code></pre>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Reading the Backup</div>
+                  <p>Always start from the <strong>leaves</strong> (bottom) and work upward. At each internal node, apply max or min depending on whose turn it is. The value at the root tells MAX the best guaranteed outcome under optimal play.</p>
+                </div>
+              </section>
+
+              <!-- Section 3: Pseudocode -->
+              <section id="pseudocode">
+                <h2>3. Minimax Pseudocode</h2>
+
+                <div class="algorithm-block">
+                  <div class="algo-header">Algorithm: MINIMAX-DECISION(state)</div>
+                  <div class="algo-body">
+<pre>function MINIMAX-DECISION(state):
+    return argmax<sub>a &isin; ACTIONS(state)</sub> MIN-VALUE(RESULT(state, a))
+
+function MAX-VALUE(state):
+    if IS-TERMINAL(state):
+        return UTILITY(state)
+    v &larr; &minus;&infin;
+    for each a in ACTIONS(state):
+        v &larr; max(v, MIN-VALUE(RESULT(state, a)))
+    return v
+
+function MIN-VALUE(state):
+    if IS-TERMINAL(state):
+        return UTILITY(state)
+    v &larr; +&infin;
+    for each a in ACTIONS(state):
+        v &larr; min(v, MAX-VALUE(RESULT(state, a)))
+    return v</pre>
+                  </div>
+                </div>
+
+                <p>The algorithm uses two mutually recursive functions. <code>MINIMAX-DECISION</code> returns the <strong>action</strong> (not just the value) that leads to the state with the highest minimax value.</p>
+              </section>
+
+              <!-- Section 4: Complexity -->
+              <section id="complexity">
+                <h2>4. Complexity Analysis</h2>
+
+                <div class="theorem-box">
+                  <div class="box-title">Minimax Complexity</div>
+                  <p>For a game tree with branching factor <strong>b</strong> and maximum depth <strong>m</strong>:</p>
+                  <ul>
+                    <li><strong>Time Complexity:</strong> O(b<sup>m</sup>) &mdash; must explore every leaf node</li>
+                    <li><strong>Space Complexity:</strong> O(b &middot; m) &mdash; DFS keeps one path in memory plus siblings at each level</li>
+                  </ul>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Complexity for Real Games</div>
+                  <table class="comparison-table">
+                    <thead><tr><th>Game</th><th>b (avg)</th><th>m (avg)</th><th>b<sup>m</sup></th></tr></thead>
+                    <tbody>
+                      <tr><td>Tic-Tac-Toe</td><td>~4</td><td>9</td><td>~2.6 &times; 10<sup>5</sup></td></tr>
+                      <tr><td>Chess</td><td>~35</td><td>~80</td><td>~10<sup>123</sup></td></tr>
+                      <tr><td>Go (19&times;19)</td><td>~250</td><td>~150</td><td>~10<sup>360</sup></td></tr>
+                    </tbody>
+                  </table>
+                  <p>Minimax is feasible for Tic-Tac-Toe but completely impractical for Chess or Go without enhancements like alpha-beta pruning and depth cutoffs.</p>
+                </div>
+              </section>
+
+              <!-- Section 5: Worked Examples -->
+              <section id="worked-examples">
+                <h2>5. Worked Examples</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Example 2: Simple 2-level Tree</div>
+                  <pre><code>         MAX (root)
+        /    |    \
+     MIN    MIN    MIN
+    / \    / \    / \
+   3  12  8   2  4   6
+
+Step 1 (MIN level): 
+  Left MIN  = min(3, 12) = 3
+  Mid  MIN  = min(8, 2)  = 2
+  Right MIN = min(4, 6)  = 4
+
+Step 2 (MAX level):
+  Root MAX = max(3, 2, 4) = <strong>4</strong>
+
+MAX chooses the right branch (value 4).</code></pre>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 3: Asymmetric Tree</div>
+                  <pre><code>              MAX (A)
+            /        \
+        MIN (B)     MIN (C)
+       /   \          |
+    MAX(D) MAX(E)   MAX(F)
+    / \     |       / | \
+   7   2    5      1  8  3
+
+Backup from leaves:
+  D = max(7, 2) = 7
+  E = max(5) = 5
+  F = max(1, 8, 3) = 8
+  B = min(7, 5) = 5
+  C = min(8) = 8
+  A = max(5, 8) = <strong>8</strong>
+
+MAX at root chooses C (value 8).
+MIN at C is forced to pick F (only child).
+MAX at F picks action leading to utility 8.</code></pre>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 4: Three-level Deep Tree</div>
+                  <pre><code>                    MAX (root)
+                  /            \
+             MIN (L)          MIN (R)
+            /      \          /      \
+        MAX(LL)  MAX(LR)  MAX(RL)  MAX(RR)
+        / \       / \       / \       / \
+       5   3     9   1     2   6     4   7
+
+Level 3 (MAX): LL=max(5,3)=5  LR=max(9,1)=9  RL=max(2,6)=6  RR=max(4,7)=7
+Level 2 (MIN): L=min(5,9)=5   R=min(6,7)=6
+Level 1 (MAX): root=max(5,6)=<strong>6</strong>
+
+MAX chooses R at root (value 6).</code></pre>
+                </div>
+              </section>
+
+              <!-- Section 6: Properties -->
+              <section id="properties">
+                <h2>6. Properties of Minimax</h2>
+
+                <div class="theorem-box">
+                  <div class="box-title">Optimality Theorem</div>
+                  <p>In a finite two-player zero-sum game with perfect information, the minimax algorithm computes the <strong>optimal strategy</strong> for MAX. The minimax value at the root equals the game&rsquo;s <strong>value</strong> (the outcome under optimal play by both sides).</p>
+                </div>
+
+                <ul>
+                  <li><strong>Complete:</strong> Yes, for finite game trees</li>
+                  <li><strong>Optimal:</strong> Yes, against an optimal opponent</li>
+                  <li><strong>Against suboptimal opponents:</strong> Minimax may not exploit mistakes (it assumes worst-case). The result can only be as good or better than the minimax value.</li>
+                </ul>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Common GATE Mistake</div>
+                  <p>Students sometimes back up values in the wrong direction &mdash; always remember: start from the <strong>leaves</strong> toward the <strong>root</strong>. Also ensure you apply <strong>max</strong> at MAX nodes and <strong>min</strong> at MIN nodes (not the reverse!).</p>
+                </div>
+              </section>
+
+              <!-- Section 7: GATE Problems -->
+              <section id="gate-problems">
+                <h2>7. GATE-Style Problems</h2>
+
+                <div class="example-box">
+                  <div class="box-title">GATE Problem 1 <span class="gate-tag">GATE CS 2015</span></div>
+                  <p><strong>Q:</strong> Consider the following game tree where MAX moves first. What is the minimax value at the root?</p>
+                  <pre><code>         MAX
+        /    \
+      MIN    MIN
+     / \    / \
+    5   3  8   2</code></pre>
+                  <p><strong>Solution:</strong> Left MIN = min(5,3) = 3. Right MIN = min(8,2) = 2. Root MAX = max(3,2) = <strong>3</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">GATE Problem 2 <span class="gate-tag">GATE DA 2023</span></div>
+                  <p><strong>Q:</strong> In a minimax game tree of depth d and uniform branching factor b, how many leaf nodes are evaluated?</p>
+                  <p><strong>Solution:</strong> All leaf nodes must be evaluated. Number of leaves = b<sup>d</sup>. So <strong>b<sup>d</sup></strong> leaf evaluations are needed. Total nodes visited = (b<sup>d+1</sup> &minus; 1)/(b &minus; 1) for the full tree.</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">GATE Problem 3</div>
+                  <p><strong>Q:</strong> A minimax tree has branching factor 3 and depth 4. What are the time and space complexities?</p>
+                  <p><strong>Solution:</strong> Time = O(b<sup>m</sup>) = O(3<sup>4</sup>) = O(81). Space = O(b &times; m) = O(3 &times; 4) = O(12). In general terms: <strong>Time = O(b<sup>m</sup>), Space = O(bm)</strong>.</p>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>Minimax computes optimal play by backing up values from leaves to the root.</li>
+                    <li>MAX nodes take the maximum; MIN nodes take the minimum of their children.</li>
+                    <li>Time complexity is O(b<sup>m</sup>); space complexity is O(bm) using DFS.</li>
+                    <li>Minimax is optimal against a rational opponent but explores the entire tree.</li>
+                    <li>Alpha-beta pruning (next topic) dramatically reduces the number of nodes explored.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>Artificial Intelligence: A Modern Approach</em>, 4th Ed. &mdash; Chapter 5.2</li>
+                  <li>Knuth, D. &amp; Moore, R. &ldquo;An Analysis of Alpha-Beta Pruning&rdquo;, <em>Artificial Intelligence</em>, 1975</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch04-minimax">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="game-theory-basics.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Game Theory Basics</span></a>
+              <a href="alpha-beta-pruning.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Alpha-Beta Pruning</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#minimax-idea">1. The Minimax Idea</a></li>
+              <li><a href="#full-example">2. Full Game Tree Example</a></li>
+              <li><a href="#pseudocode">3. Pseudocode</a></li>
+              <li><a href="#complexity">4. Complexity Analysis</a></li>
+              <li><a href="#worked-examples">5. Worked Examples</a></li>
+              <li><a href="#properties">6. Properties</a></li>
+              <li><a href="#gate-problems">7. GATE Problems</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rationality in AI — Understand what makes an agent rational, performance measures, information gathering, learning, autonomy, and GATE DA worked examples.">
+  <title>Rationality — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+            <a href="rationality.html" class="sidebar-link active"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a>
+            <a href="task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a>
+            <a href="agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a>
+            <a href="practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a>
+            <a href="notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="agents-and-environments.html">Chapter 1: Intelligent Agents</a> &raquo;
+          <span class="current">Rationality</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch01-rationality">
+
+            <!-- Page Header -->
+            <h1>Rationality</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch01-rationality" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="agents-and-environments.html">Agents &amp; Environments</a> &mdash; Agent definition, percept sequences, agent function</li>
+              </ul>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Distinguish between <strong>rational</strong> and <strong>omniscient</strong> agents</li>
+                <li>Define and apply the concept of a <strong>performance measure</strong></li>
+                <li>State the formal definition of a <strong>rational agent</strong></li>
+                <li>Understand the roles of <strong>information gathering</strong>, <strong>learning</strong>, and <strong>autonomy</strong></li>
+                <li>Identify common GATE pitfalls when reasoning about rationality</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: Rational vs Omniscient -->
+              <section id="rational-vs-omniscient">
+                <h2>1. Rational vs. Omniscient</h2>
+
+                <p>Suppose you are crossing a busy street. You look left and right, see no cars, and decide to cross. Halfway across, a car comes speeding from an alley that was completely hidden from your view and almost hits you. Were you <strong>irrational</strong>?</p>
+
+                <p><strong>No.</strong> You were not irrational&mdash;you made the best decision <em>given what you could perceive at the time</em>. You simply weren&rsquo;t <strong>omniscient</strong>. This distinction is crucial in AI:</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Omniscience</div>
+                  <p>An <strong>omniscient</strong> agent knows the <em>actual outcome</em> of its actions. It can see the future and has complete knowledge of the environment. Omniscience is impossible in reality.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Rationality</div>
+                  <p>A <strong>rational</strong> agent selects the action that <em>maximizes its expected performance</em>, given the evidence provided by the percept sequence and whatever built-in knowledge the agent has. Rationality is achievable; omniscience is not.</p>
+                </div>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Aspect</th>
+                        <th>Rational Agent</th>
+                        <th>Omniscient Agent</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Knowledge</td>
+                        <td>Acts on available percepts</td>
+                        <td>Knows everything (including future)</td>
+                      </tr>
+                      <tr>
+                        <td>Can make mistakes?</td>
+                        <td>Yes, due to incomplete info</td>
+                        <td>No, always correct</td>
+                      </tr>
+                      <tr>
+                        <td>Achievable?</td>
+                        <td>Yes &mdash; this is the goal of AI</td>
+                        <td>No &mdash; impossible in practice</td>
+                      </tr>
+                      <tr>
+                        <td>Standard</td>
+                        <td>Maximizes <em>expected</em> performance</td>
+                        <td>Maximizes <em>actual</em> performance</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">GATE Tip</div>
+                  <p>GATE loves to test the rational &ne; omniscient distinction. If a question says &ldquo;An agent that always makes the correct decision is called ___,&rdquo; the answer is <strong>omniscient</strong>, not rational. A rational agent can make mistakes if it has incomplete information.</p>
+                </div>
+              </section>
+
+              <!-- Section 2: Performance Measure -->
+              <section id="performance-measure">
+                <h2>2. Performance Measure</h2>
+
+                <p>To evaluate whether an agent is rational, we need a criterion of success. That criterion is the <strong>performance measure</strong>.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Performance Measure</div>
+                  <p>A <strong>performance measure</strong> is an objective criterion for evaluating the success of an agent&rsquo;s behavior. It evaluates the sequence of <em>environment states</em> (not agent states) caused by the agent&rsquo;s actions.</p>
+                </div>
+
+                <p><strong>Important:</strong> The performance measure is defined <em>externally</em> by the designer, not by the agent itself. It evaluates what happens in the <em>environment</em>, not what the agent thinks is happening.</p>
+
+                <h3>Examples of Performance Measures</h3>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Agent</th>
+                        <th>Performance Measure</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Vacuum cleaner</td>
+                        <td>Amount of dirt cleaned up, cleanliness of floor over time, energy consumed, noise generated</td>
+                      </tr>
+                      <tr>
+                        <td>Chess player</td>
+                        <td>Win/loss/draw result, Elo rating improvement</td>
+                      </tr>
+                      <tr>
+                        <td>Taxi driver</td>
+                        <td>Reaching destination, minimizing travel time, safety (no accidents), passenger comfort, obeying traffic laws, fare collected</td>
+                      </tr>
+                      <tr>
+                        <td>Medical diagnosis</td>
+                        <td>Correct diagnosis rate, patient health outcomes, cost of tests ordered</td>
+                      </tr>
+                      <tr>
+                        <td>Spam filter</td>
+                        <td>Correctly classified emails (precision &amp; recall), user satisfaction</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Designing Good Performance Measures</div>
+                  <p>A poorly designed performance measure can lead to unintended behavior. For example, if a vacuum cleaner&rsquo;s performance is measured only by &ldquo;amount of dirt cleaned,&rdquo; it might dump its dirt bag and clean it up again to maximize its score! A better measure evaluates the <em>state of the floor</em> (cleanliness) rather than the agent&rsquo;s actions. <strong>Rule of thumb:</strong> Measure what you <em>actually want</em> in the environment, not what you think the agent should do.</p>
+                </div>
+              </section>
+
+              <!-- Section 3: Formal Definition of Rationality -->
+              <section id="formal-rationality">
+                <h2>3. The Formal Definition of a Rational Agent</h2>
+
+                <div class="definition-box">
+                  <div class="box-title">Rational Agent &mdash; Formal Definition (Russell &amp; Norvig)</div>
+                  <p>For each possible percept sequence, a rational agent should select an action that is expected to <strong>maximize its performance measure</strong>, given:</p>
+                  <ol>
+                    <li>The <strong>performance measure</strong> that defines the criterion of success</li>
+                    <li>The agent&rsquo;s <strong>prior knowledge</strong> of the environment</li>
+                    <li>The <strong>actions</strong> that the agent can perform</li>
+                    <li>The agent&rsquo;s <strong>percept sequence</strong> to date</li>
+                  </ol>
+                </div>
+
+                <p>This definition depends on four things (often tested in GATE). Memorize them: <strong>Performance measure, Environment knowledge, Actions, Percept sequence</strong>. Notice the strong connection to the PEAS framework (next topic).</p>
+
+                <div class="note-box">
+                  <div class="box-title">Key Subtlety: &ldquo;Expected&rdquo;</div>
+                  <p>The word <em>expected</em> is crucial. A rational agent doesn&rsquo;t always achieve the best outcome&mdash;it takes the action that is <em>expected</em> to perform best. In uncertain environments, this means maximizing expected utility (the probability-weighted average of outcomes). This connects to decision theory and Bayesian reasoning (Chapters 7 and 12).</p>
+                </div>
+              </section>
+
+              <!-- Section 4: Information Gathering -->
+              <section id="information-gathering">
+                <h2>4. Information Gathering and Exploration</h2>
+
+                <p>A rational agent doesn&rsquo;t just exploit what it already knows&mdash;it actively seeks new information when doing so is expected to improve performance.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Information Gathering</div>
+                  <p><strong>Information gathering</strong> is the process of performing actions that provide useful new percepts, allowing the agent to make better decisions in the future. A rational agent should engage in information gathering when the expected value of the information exceeds the cost of acquiring it.</p>
+                </div>
+
+                <p><strong>Example:</strong> Before crossing a street, you look both ways. Looking is an <em>information-gathering action</em>&mdash;it doesn&rsquo;t directly achieve your goal (getting across the street) but enables you to make a safer decision. A rational agent that crosses without looking would be irrational, even if it happens to survive, because it failed to gather easily available information that would improve its expected performance.</p>
+
+                <p><strong>Exploration vs. Exploitation:</strong> A key tension in rational decision-making is between:</p>
+                <ul>
+                  <li><strong>Exploration:</strong> Taking actions to learn more about the environment (information gathering)</li>
+                  <li><strong>Exploitation:</strong> Taking the best action based on current knowledge</li>
+                </ul>
+                <p>A rational agent balances these. This is formalized in reinforcement learning (Chapter 12) and multi-armed bandit problems.</p>
+              </section>
+
+              <!-- Section 5: Learning and Autonomy -->
+              <section id="learning-autonomy">
+                <h2>5. Learning and Autonomy</h2>
+
+                <h3 id="learning">5.1 Learning</h3>
+                <p>A truly rational agent should be able to <strong>learn</strong> from its percept sequence&mdash;modifying its behavior based on experience to improve future performance. An agent that relies solely on its built-in knowledge (prior knowledge from the designer) and never adapts is fragile: it will fail in environments that differ from what the designer anticipated.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Learning Agent</div>
+                  <p>An agent that modifies its behavior based on experience. A rational agent should learn to compensate for initially incomplete or incorrect knowledge. After sufficient experience, the agent&rsquo;s behavior should become independent of its initial prior knowledge.</p>
+                </div>
+
+                <h3 id="autonomy">5.2 Autonomy</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Autonomy</div>
+                  <p>An agent is <strong>autonomous</strong> to the extent that its behavior is determined by its <em>own experience</em> rather than by the <em>designer&rsquo;s built-in knowledge</em>. A fully autonomous agent relies entirely on its own percepts and learning; a fully &ldquo;manual&rdquo; agent relies entirely on designer knowledge.</p>
+                </div>
+
+                <p>In practice, agents need <em>some</em> built-in knowledge to start with (otherwise they&rsquo;d have to learn everything from scratch, which is impractical). However, as the agent gains experience, its own learning should increasingly dominate its behavior. Consider:</p>
+
+                <ul>
+                  <li>A <strong>new employee</strong> (low autonomy) follows company guidelines and asks colleagues for help. Over time, they learn from experience and make increasingly independent decisions (high autonomy).</li>
+                  <li>A <strong>self-driving car</strong> starts with built-in driving rules but learns from millions of miles of driving data to handle novel situations.</li>
+                </ul>
+              </section>
+
+              <!-- Section 6: Worked Examples -->
+              <section id="worked-examples">
+                <h2>6. Worked Examples</h2>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 1: Is the Vacuum Agent Rational?</div>
+                  <p><strong>Question:</strong> Consider the simple reflex vacuum agent from the previous lesson (if current square is dirty, suck; if in A, move right; if in B, move left). Assume the performance measure is: +1 point for each clean square at each time step. Is this agent rational?</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Identify what the agent knows:</strong> The agent can perceive its current location and whether the square is clean or dirty. It cannot see the other square&rsquo;s status.</li>
+                    <li><strong>Consider the environment:</strong> Assume dirt does not reappear and the environment is deterministic. The geography (A left of B) is known.</li>
+                    <li><strong>Analyze behavior:</strong> If A is dirty, the agent cleans it (gaining points). Then it moves to B and cleans if needed. After both are clean, it oscillates between A and B pointlessly.</li>
+                    <li><strong>Evaluate rationality:</strong> In the simple 2-square world with no dirt reappearing, the agent&rsquo;s oscillation after cleaning is NOT rational&mdash;it should stop (NoOp) once both squares are clean. However, the agent cannot see whether the other square is dirty, so it doesn&rsquo;t know both are clean.</li>
+                    <li><strong>Verdict:</strong> Given that the agent has <em>no memory and cannot see the other square</em>, moving to the other square is actually the rational action&mdash;it might be dirty! The agent <strong>is rational</strong> given its limited sensors and lack of memory. If we gave it memory or the ability to see both squares, then oscillating without stopping would be irrational.</li>
+                  </ol>
+                  <p><strong>Key takeaway:</strong> Rationality depends on the agent&rsquo;s sensors, actions, and knowledge&mdash;not on the actual outcome.</p>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 2: Rational Taxi Driver</div>
+                  <p><strong>Question:</strong> A self-driving taxi&rsquo;s performance measure includes: (1) safely reaching the destination, (2) minimizing travel time, (3) obeying traffic laws, (4) passenger comfort (smooth ride). The taxi is approaching a yellow traffic light. Analyze the rational action.</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Option A &mdash; Accelerate through:</strong> Faster (helps goal 2) but risky&mdash;light may turn red (violates goal 3), sudden acceleration (violates goal 4), potential accident (violates goal 1).</li>
+                    <li><strong>Option B &mdash; Brake smoothly and stop:</strong> Slightly slower (hurts goal 2) but safe (goal 1), legal (goal 3), and comfortable (goal 4).</li>
+                    <li><strong>Expected performance analysis:</strong> Even though Option A <em>might</em> save 30 seconds, the risk of a traffic violation or accident creates a large negative expected outcome. The performance measure heavily weights safety.</li>
+                    <li><strong>Rational action:</strong> <strong>Brake smoothly and stop.</strong> The expected performance is higher because the cost of a potential accident or violation far outweighs the small time savings.</li>
+                  </ol>
+                  <p><strong>Key insight:</strong> Rationality requires weighing all components of the performance measure, not just one. An omniscient agent might accelerate (knowing no accident will happen), but a rational agent with uncertainty should stop.</p>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 3: Information Gathering in Medical Diagnosis</div>
+                  <p><strong>Question:</strong> A medical AI has a patient presenting with fever and cough. It has 60% confidence in pneumonia and 40% confidence in influenza. It can either: (A) immediately diagnose pneumonia, or (B) order a chest X-ray first (takes 1 hour, costs $200). The X-ray would distinguish the two diseases with 95% accuracy. Analyze the rational choice given that incorrect treatment costs $5000 in expected complications.</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Option A (immediate diagnosis):</strong> If the agent diagnoses pneumonia, there&rsquo;s a 40% chance it&rsquo;s wrong (actually influenza). Expected cost of errors: 0.40 &times; $5000 = $2000.</li>
+                    <li><strong>Option B (order X-ray first):</strong> Cost of X-ray: $200. After X-ray, accuracy jumps to 95%, so error probability drops to 5%. Expected cost of errors: 0.05 &times; $5000 = $250. Total expected cost: $200 + $250 = $450.</li>
+                    <li><strong>Comparison:</strong> Option A expected cost = $2000. Option B expected cost = $450.</li>
+                    <li><strong>Rational action:</strong> <strong>Order the X-ray</strong> (Option B). The information-gathering action reduces the expected cost by $1550, far exceeding its $200 cost.</li>
+                  </ol>
+                  <p><strong>Key insight:</strong> Information gathering is rational when the <em>value of information</em> (reduction in expected errors) exceeds the <em>cost of information</em> (time, money, risk of the test).</p>
+                </div>
+              </section>
+
+              <!-- Section 7: Common GATE Pitfalls -->
+              <section id="common-mistakes">
+                <h2>7. Common GATE Pitfalls</h2>
+
+                <div class="warning-box">
+                  <div class="box-title">Pitfall 1: Rational = Perfect / Always Correct</div>
+                  <p>A rational agent is NOT always correct. It makes the best <em>expected</em> decision given available information. If the information is incomplete, the decision may turn out to be wrong in hindsight. <strong>Rationality &ne; perfection.</strong></p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Pitfall 2: Confusing Rationality with Omniscience</div>
+                  <p>An omniscient agent knows the actual outcome of its actions. A rational agent maximizes <em>expected</em> performance based on its percepts. If a GATE question describes an agent that always picks the truly best action regardless of perception, that&rsquo;s omniscience, not rationality.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Pitfall 3: Ignoring Information Gathering</div>
+                  <p>A rational agent that could easily obtain useful information but chooses not to is <strong>not rational</strong>. If looking both ways before crossing a street is costless, a rational agent must look. Failing to gather available information that would improve decisions is irrational.</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Pitfall 4: Performance Measured on Agent States vs Environment States</div>
+                  <p>The performance measure evaluates <em>environment states</em>, not the agent&rsquo;s internal beliefs. An agent that <em>believes</em> it cleaned the floor but actually didn&rsquo;t would score poorly. GATE questions sometimes include distractors where the agent&rsquo;s belief differs from reality.</p>
+                </div>
+              </section>
+
+              <!-- Section 8: Summary -->
+              <section id="summary" class="summary-section">
+                <h2>&#128218; Summary</h2>
+                <ul>
+                  <li><strong>Rational &ne; Omniscient:</strong> Rational means best expected action given available information. Omniscient means knowing everything (impossible).</li>
+                  <li>The <strong>performance measure</strong> is an externally-defined criterion evaluating the agent&rsquo;s effect on the environment.</li>
+                  <li>Rationality depends on four factors: performance measure, prior knowledge, available actions, and percept sequence to date.</li>
+                  <li>A rational agent performs <strong>information gathering</strong> when the expected benefit outweighs the cost.</li>
+                  <li>A rational agent <strong>learns</strong> from experience to improve future performance.</li>
+                  <li><strong>Autonomy</strong> is the degree to which behavior comes from experience vs. designer&rsquo;s built-in knowledge.</li>
+                  <li>Rationality &ne; perfection: a rational agent can make mistakes due to incomplete information.</li>
+                </ul>
+              </section>
+
+              <!-- Section 9: References -->
+              <section id="references" class="references-section">
+                <h2>References</h2>
+                <ol>
+                  <li>Russell, S. &amp; Norvig, P. (2020). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson. &mdash; Chapter 2, Sections 2.2&ndash;2.4.</li>
+                  <li>Kahneman, D. (2011). <em>Thinking, Fast and Slow</em>. Farrar, Straus and Giroux. &mdash; On human rationality and biases.</li>
+                  <li>Savage, L. (1954). <em>The Foundations of Statistics</em>. Wiley. &mdash; Expected utility theory foundations.</li>
+                </ol>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch01-rationality">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="agents-and-environments.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Agents &amp; Environments</span>
+              </a>
+              <a href="task-environment-peas.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">PEAS Framework</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#rational-vs-omniscient">1. Rational vs. Omniscient</a></li>
+              <li><a href="#performance-measure">2. Performance Measure</a></li>
+              <li><a href="#formal-rationality">3. Formal Definition of Rationality</a></li>
+              <li><a href="#information-gathering">4. Information Gathering</a></li>
+              <li><a href="#learning-autonomy">5. Learning &amp; Autonomy</a>
+                <ul>
+                  <li><a href="#learning">5.1 Learning</a></li>
+                  <li><a href="#autonomy">5.2 Autonomy</a></li>
+                </ul>
+              </li>
+              <li><a href="#worked-examples">6. Worked Examples</a></li>
+              <li><a href="#common-mistakes">7. Common GATE Pitfalls</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

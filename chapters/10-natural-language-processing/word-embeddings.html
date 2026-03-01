@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Word Embeddings — Word2Vec (CBOW, Skip-gram), GloVe, vector arithmetic, embedding properties, dimensionality, and training objectives for GATE DA preparation.">
+  <title>Word Embeddings — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a>
+            <a href="word-embeddings.html" class="sidebar-link active"><span class="link-check"></span> Word Embeddings<span class="link-type theory">Theory</span></a>
+            <a href="language-models.html" class="sidebar-link"><span class="link-check"></span> Language Models<span class="link-type theory">Theory</span></a>
+            <a href="large-language-models.html" class="sidebar-link"><span class="link-check"></span> Large Language Models<span class="link-type theory">Theory</span></a>
+            <a href="gpt-architecture.html" class="sidebar-link"><span class="link-check"></span> GPT Architecture<span class="link-type theory">Theory</span></a>
+            <a href="bert-and-variants.html" class="sidebar-link"><span class="link-check"></span> BERT &amp; Variants<span class="link-type theory">Theory</span></a>
+            <a href="prompt-engineering.html" class="sidebar-link"><span class="link-check"></span> Prompt Engineering<span class="link-type theory">Theory</span></a>
+            <a href="notes-nlp.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-nlp.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="text-preprocessing.html">Chapter 10: Natural Language Processing</a> &raquo; <span class="current">Word Embeddings</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch10-word-embeddings">
+
+            <h1>Word Embeddings</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch10-word-embeddings" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="text-preprocessing.html">Text Preprocessing</a> &mdash; tokenization, BoW, TF-IDF</li>
+                <li><a href="../09-neural-networks-deep-learning/neural-network-basics.html">Neural Network Basics</a> &mdash; forward pass, loss functions</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand why dense embeddings are superior to sparse one-hot vectors</li>
+                <li>Explain the Word2Vec CBOW and Skip-gram architectures</li>
+                <li>Describe GloVe&rsquo;s co-occurrence matrix approach</li>
+                <li>Perform vector arithmetic (king &minus; man + woman &approx; queen)</li>
+                <li>Choose appropriate embedding dimensionality for a task</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="motivation">
+              <h2>1. From Sparse to Dense Representations</h2>
+              <p>In Bag of Words and TF-IDF, each word is represented as a sparse vector of dimension |V| (vocabulary size, often 50,000&ndash;100,000+). This has major drawbacks:</p>
+              <ul>
+                <li><strong>High dimensionality:</strong> Vectors are huge and mostly zeros.</li>
+                <li><strong>No semantic similarity:</strong> The cosine similarity between any two one-hot vectors is 0. &ldquo;king&rdquo; and &ldquo;queen&rdquo; are as different as &ldquo;king&rdquo; and &ldquo;pizza&rdquo;.</li>
+                <li><strong>No generalization:</strong> The model cannot leverage similarity between words to generalize.</li>
+              </ul>
+              <div class="definition-box">
+                <strong>Definition &mdash; Word Embedding:</strong> A mapping W: V &rarr; ℝ<sup>d</sup> that assigns each word in vocabulary V a dense, low-dimensional vector (typically d = 50&ndash;300). Semantically similar words have similar embedding vectors.
+              </div>
+              <p>The <strong>distributional hypothesis</strong> (Firth, 1957) underpins all embedding methods: <em>&ldquo;You shall know a word by the company it keeps.&rdquo;</em> Words appearing in similar contexts have similar meanings and should have similar vectors.</p>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="word2vec">
+              <h2>2. Word2Vec</h2>
+              <p>Word2Vec (Mikolov et al., 2013) learns embeddings by training a shallow neural network on a word prediction task. There are two architectures:</p>
+
+              <h3>2.1 Continuous Bag of Words (CBOW)</h3>
+              <div class="definition-box">
+                <strong>CBOW:</strong> Predicts the <em>center word</em> given its surrounding <em>context words</em> within a window of size c.
+              </div>
+              <p><strong>Architecture:</strong></p>
+              <ol>
+                <li>Input: One-hot vectors of context words w<sub>t&minus;c</sub>, &hellip;, w<sub>t&minus;1</sub>, w<sub>t+1</sub>, &hellip;, w<sub>t+c</sub></li>
+                <li>Embedding layer: Look up each context word&rsquo;s embedding and compute their average: <strong>h</strong> = (1/2c) &sum;<sub>i</sub> <strong>v</strong><sub>w<sub>i</sub></sub></li>
+                <li>Output layer: Linear projection + softmax over vocabulary to predict center word w<sub>t</sub></li>
+                <li>Loss: Cross-entropy between predicted distribution and true one-hot target</li>
+              </ol>
+
+              <h3>2.2 Skip-gram</h3>
+              <div class="definition-box">
+                <strong>Skip-gram:</strong> Predicts the <em>context words</em> given the <em>center word</em>. The inverse of CBOW.
+              </div>
+              <p><strong>Architecture:</strong></p>
+              <ol>
+                <li>Input: One-hot vector of center word w<sub>t</sub></li>
+                <li>Embedding layer: Look up the center word&rsquo;s embedding <strong>v</strong><sub>w<sub>t</sub></sub></li>
+                <li>Output layer: For each context position, produce a probability distribution over V</li>
+                <li>Training objective: Maximize &sum;<sub>j</sub> log P(w<sub>t+j</sub> | w<sub>t</sub>) for j in window</li>
+              </ol>
+
+              <div class="example-box">
+                <h4>Example: Skip-gram Training</h4>
+                <p><strong>Sentence:</strong> &ldquo;the quick brown fox jumps&rdquo; with window size c = 2</p>
+                <p><strong>Center word:</strong> &ldquo;brown&rdquo; (position 3)</p>
+                <p><strong>Training pairs:</strong> (brown, the), (brown, quick), (brown, fox), (brown, jumps)</p>
+                <p>The model learns to maximize P(the|brown), P(quick|brown), P(fox|brown), P(jumps|brown).</p>
+              </div>
+
+              <h3>2.3 Training Efficiency: Negative Sampling</h3>
+              <p>Computing the full softmax over a vocabulary of |V| = 100,000 words is expensive. <strong>Negative Sampling</strong> approximates the objective:</p>
+              <p>Instead of computing the full softmax, for each positive pair (w<sub>t</sub>, w<sub>c</sub>), sample k negative words w<sub>neg</sub> that do not appear in the context. The objective becomes:</p>
+              <p style="text-align:center;">L = log σ(<strong>v</strong><sub>w<sub>c</sub></sub> &middot; <strong>v</strong><sub>w<sub>t</sub></sub>) + &sum;<sub>i=1</sub><sup>k</sup> log σ(&minus;<strong>v</strong><sub>w<sub>neg,i</sub></sub> &middot; <strong>v</strong><sub>w<sub>t</sub></sub>)</p>
+              <p>where σ is the sigmoid function. Typically k = 5&ndash;20 for small datasets, k = 2&ndash;5 for large ones.</p>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="glove">
+              <h2>3. GloVe (Global Vectors)</h2>
+              <div class="definition-box">
+                <strong>GloVe:</strong> Learns embeddings from the <em>global word-word co-occurrence matrix</em> X, where X<sub>ij</sub> counts how often word i appears in the context of word j across the entire corpus.
+              </div>
+              <p><strong>Objective function:</strong></p>
+              <p style="text-align:center;">J = &sum;<sub>i,j=1</sub><sup>|V|</sup> f(X<sub>ij</sub>) (<strong>w</strong><sub>i</sub><sup>T</sup><strong>w̃</strong><sub>j</sub> + b<sub>i</sub> + b̃<sub>j</sub> &minus; log X<sub>ij</sub>)²</p>
+              <p>where f(X<sub>ij</sub>) is a weighting function that caps at a maximum value (typically x<sub>max</sub> = 100) to prevent extremely frequent pairs from dominating:</p>
+              <p style="text-align:center;">f(x) = (x / x<sub>max</sub>)<sup>α</sup> if x &lt; x<sub>max</sub>, else 1 &nbsp;&nbsp;(α = 0.75 typically)</p>
+              <p><strong>Key insight:</strong> GloVe combines the benefits of count-based methods (like LSA) with prediction-based methods (like Word2Vec). It leverages global statistics while learning meaningful embeddings.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="vector-arithmetic">
+              <h2>4. Embedding Properties &amp; Vector Arithmetic</h2>
+              <p>Well-trained embeddings capture semantic and syntactic regularities as linear relationships in the vector space:</p>
+              <div class="example-box">
+                <h4>Famous Example: King &minus; Man + Woman &approx; Queen</h4>
+                <p><strong>v</strong>(king) &minus; <strong>v</strong>(man) + <strong>v</strong>(woman) &approx; <strong>v</strong>(queen)</p>
+                <p>The vector difference <strong>v</strong>(king) &minus; <strong>v</strong>(man) captures the concept of &ldquo;royalty&rdquo; independent of gender. Adding <strong>v</strong>(woman) to this &ldquo;royalty&rdquo; vector points near &ldquo;queen&rdquo;.</p>
+              </div>
+              <p><strong>Other learned relationships:</strong></p>
+              <table>
+                <thead><tr><th>Relationship</th><th>Example</th><th>Vector Operation</th></tr></thead>
+                <tbody>
+                  <tr><td>Gender</td><td>man:woman :: king:queen</td><td>king &minus; man + woman &approx; queen</td></tr>
+                  <tr><td>Country &rarr; Capital</td><td>France:Paris :: Japan:Tokyo</td><td>Japan &minus; France + Paris &approx; Tokyo</td></tr>
+                  <tr><td>Tense</td><td>walk:walked :: swim:swam</td><td>swim &minus; walk + walked &approx; swam</td></tr>
+                  <tr><td>Comparative</td><td>big:bigger :: small:smaller</td><td>small &minus; big + bigger &approx; smaller</td></tr>
+                </tbody>
+              </table>
+              <p><strong>Similarity measurement:</strong> Cosine similarity is the standard metric:</p>
+              <p style="text-align:center;">cos(θ) = (<strong>a</strong> &middot; <strong>b</strong>) / (‖<strong>a</strong>‖ &middot; ‖<strong>b</strong>‖)</p>
+              <p>Values range from &minus;1 (opposite) to +1 (identical direction). Words like &ldquo;cat&rdquo; and &ldquo;dog&rdquo; typically have high cosine similarity (~0.7&ndash;0.8).</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="dimensionality">
+              <h2>5. Embedding Dimensionality</h2>
+              <p>The embedding dimension d is a key hyperparameter:</p>
+              <table>
+                <thead><tr><th>Dimension</th><th>Typical Use</th><th>Trade-off</th></tr></thead>
+                <tbody>
+                  <tr><td>50</td><td>Small datasets, quick experiments</td><td>Less capacity but fast training</td></tr>
+                  <tr><td>100&ndash;200</td><td>General NLP tasks</td><td>Good balance</td></tr>
+                  <tr><td>300</td><td>Pre-trained Word2Vec/GloVe standard</td><td>Rich representations</td></tr>
+                  <tr><td>768&ndash;1024</td><td>Contextual embeddings (BERT, GPT)</td><td>Highest capacity but expensive</td></tr>
+                </tbody>
+              </table>
+              <p><strong>Rule of thumb:</strong> Performance typically improves with dimension up to a point, then marginal gains diminish. For most tasks, d = 100&ndash;300 works well.</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="comparison">
+              <h2>6. Word2Vec vs GloVe Comparison</h2>
+              <table>
+                <thead><tr><th>Feature</th><th>Word2Vec</th><th>GloVe</th></tr></thead>
+                <tbody>
+                  <tr><td>Method</td><td>Predictive (neural network)</td><td>Count-based + regression</td></tr>
+                  <tr><td>Training</td><td>Sliding window over corpus</td><td>Global co-occurrence matrix</td></tr>
+                  <tr><td>Objective</td><td>Maximize context word probability</td><td>Minimize weighted least squares</td></tr>
+                  <tr><td>Speed</td><td>Faster for small corpora</td><td>Better for large corpora (one-time matrix)</td></tr>
+                  <tr><td>Performance</td><td>Similar on analogy tasks</td><td>Similar on analogy tasks</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="limitations">
+              <h2>7. Limitations of Static Embeddings</h2>
+              <ul>
+                <li><strong>Polysemy:</strong> Each word gets one vector regardless of context. &ldquo;bank&rdquo; (financial) and &ldquo;bank&rdquo; (river) share the same embedding.</li>
+                <li><strong>Out-of-vocabulary (OOV):</strong> Words not seen during training have no embedding.</li>
+                <li><strong>Bias:</strong> Embeddings encode societal biases present in training data (e.g., gender stereotypes).</li>
+              </ul>
+              <p>These limitations motivated <strong>contextual embeddings</strong> like ELMo, BERT, and GPT, where a word&rsquo;s representation depends on its surrounding context.</p>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="summary">
+              <h2>8. Summary</h2>
+              <div class="summary-section">
+                <ul>
+                  <li><strong>Word embeddings</strong> map words to dense vectors in ℝ<sup>d</sup> where similar words are nearby.</li>
+                  <li><strong>Word2Vec CBOW:</strong> context → center word; <strong>Skip-gram:</strong> center word → context.</li>
+                  <li><strong>GloVe:</strong> factorizes the global co-occurrence matrix.</li>
+                  <li><strong>Vector arithmetic</strong> captures semantic relationships (king &minus; man + woman &approx; queen).</li>
+                  <li><strong>Cosine similarity</strong> measures word similarity: cos(θ) = (a·b)/(‖a‖·‖b‖).</li>
+                  <li>Typical dimension: 100&ndash;300 for static embeddings.</li>
+                  <li>Limitation: static (one vector per word) &mdash; solved by contextual embeddings (BERT, GPT).</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch10-word-embeddings">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="text-preprocessing.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Text Preprocessing</span></a>
+              <a href="language-models.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Language Models</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#motivation">1. Sparse to Dense</a></li>
+            <li><a href="#word2vec">2. Word2Vec</a></li>
+            <li><a href="#glove">3. GloVe</a></li>
+            <li><a href="#vector-arithmetic">4. Vector Arithmetic</a></li>
+            <li><a href="#dimensionality">5. Dimensionality</a></li>
+            <li><a href="#comparison">6. Word2Vec vs GloVe</a></li>
+            <li><a href="#limitations">7. Limitations</a></li>
+            <li><a href="#summary">8. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chapter 0 Quiz — 15 questions covering AI definitions, history, types, AI vs ML vs DL, Turing Test, and GATE DA basics.">
+  <title>Chapter 0 Quiz: Introduction to AI — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-introduction.html" class="sidebar-link active"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="what-is-ai.html">Chapter 0: Introduction</a> &raquo;
+          <span class="current">Chapter Quiz</span>
+        </nav>
+
+        <article class="main-content page-type-quiz" data-page-id="ch00-quiz">
+
+          <!-- Page Header -->
+          <h1>Chapter 0 Quiz: Introduction to AI</h1>
+          <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+            <button class="bookmark-btn" data-page="ch00-quiz" title="Bookmark this page">&#9733; Bookmark</button>
+          </div>
+
+          <!-- Quiz Meta -->
+          <div class="quiz-meta">
+            <div class="quiz-meta-item"><strong>Questions:</strong>&nbsp;15</div>
+            <div class="quiz-meta-item"><strong>Types:</strong>&nbsp;MCQ, True/False, MSQ</div>
+            <div class="quiz-meta-item"><strong>Topics:</strong>&nbsp;All Ch 0</div>
+            <div class="quiz-meta-item"><strong>Difficulty:</strong>&nbsp;Easy&ndash;Medium</div>
+            <div class="quiz-meta-item"><strong>Time:</strong>&nbsp;<span id="quizTimerDisplay">15:00</span></div>
+          </div>
+
+          <!-- Question Palette -->
+          <div class="question-palette" id="questionPalette">
+            <!-- Populated by JS -->
+          </div>
+
+          <!-- Quiz Container -->
+          <div id="quizContainer">
+            <!-- Questions rendered by quiz engine JS from the data below -->
+          </div>
+
+          <!-- Quiz Controls -->
+          <div class="flex gap-1 mt-2" style="justify-content:center; flex-wrap:wrap;">
+            <button class="btn btn-primary" id="submitQuizBtn" style="display:none;">Submit Quiz</button>
+            <button class="btn btn-secondary" id="retryQuizBtn" style="display:none;">Retry Quiz</button>
+          </div>
+
+          <!-- Score Card -->
+          <div id="scoreCard" class="score-card" style="display:none;"></div>
+
+          <!-- Mark as Complete -->
+          <button class="complete-btn" data-page="ch00-quiz">&#9745; Mark as Complete</button>
+
+          <!-- Prev/Next Navigation -->
+          <div class="nav-buttons">
+            <a href="notes-introduction.html" class="nav-btn prev">
+              <span class="nav-label">&larr; Previous</span>
+              <span class="nav-title">Chapter Notes</span>
+            </a>
+            <a href="../01-intelligent-agents/agents-and-environments.html" class="nav-btn next">
+              <span class="nav-label">Next Chapter &rarr;</span>
+              <span class="nav-title">Ch 01: Agents &amp; Environments</span>
+            </a>
+          </div>
+
+        </article>
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+
+  <!-- Quiz Data & Initialization -->
+  <script>
+    // ====================================================================
+    // Chapter 0 Quiz — 15 Questions
+    // ====================================================================
+    const quizData = {
+      id: "ch00-introduction-quiz",
+      title: "Chapter 0: Introduction to AI",
+      timeLimit: 900, // 15 minutes in seconds
+      questions: [
+        // --- Q1: MCQ ---
+        {
+          id: 1,
+          type: "mcq",
+          question: "Which event is widely regarded as the birth of Artificial Intelligence as a formal academic discipline?",
+          options: [
+            "Publication of Turing\u2019s \u201cComputing Machinery and Intelligence\u201d (1950)",
+            "The Dartmouth Conference (1956)",
+            "The creation of the Perceptron (1958)",
+            "The development of MYCIN expert system (1972)"
+          ],
+          correctAnswer: 1,
+          explanation: "The Dartmouth Conference in 1956, organized by John McCarthy, Marvin Minsky, Nathaniel Rochester, and Claude Shannon, is widely regarded as the birth of AI as a formal field. The term \u201cArtificial Intelligence\u201d was coined at this event. While Turing\u2019s 1950 paper was foundational, the Dartmouth Conference formally established AI as a discipline."
+        },
+        // --- Q2: MCQ ---
+        {
+          id: 2,
+          type: "mcq",
+          question: "According to Russell and Norvig, which approach to AI is the dominant modern standard?",
+          options: [
+            "Thinking Humanly (Cognitive Modeling)",
+            "Acting Humanly (Turing Test)",
+            "Thinking Rationally (Laws of Thought)",
+            "Acting Rationally (Rational Agent)"
+          ],
+          correctAnswer: 3,
+          explanation: "The \u201cActing Rationally\u201d or Rational Agent approach is the dominant modern standard in AI, as advocated by Russell and Norvig in AIMA. A rational agent acts to achieve the best expected outcome given its knowledge. This approach is more general than the \u201claws of thought\u201d approach and does not require human-like behavior."
+        },
+        // --- Q3: True/False ---
+        {
+          id: 3,
+          type: "mcq",
+          question: "True or False: All current AI systems, including GPT-4 and other large language models, are classified as Narrow AI (ANI).",
+          options: [
+            "True",
+            "False"
+          ],
+          correctAnswer: 0,
+          explanation: "True. Despite the versatility of LLMs like GPT-4, they are still classified as Narrow AI (ANI). They cannot learn permanently from individual conversations, lack sensory perception, cannot take physical actions, and do not demonstrate true general intelligence. All existing AI systems are Narrow AI; AGI and ASI do not yet exist."
+        },
+        // --- Q4: MCQ ---
+        {
+          id: 4,
+          type: "mcq",
+          question: "The Turing Test primarily evaluates which aspect of AI?",
+          options: [
+            "Whether a machine can think like a human internally",
+            "Whether a machine\u2019s behavior is indistinguishable from a human\u2019s",
+            "Whether a machine uses formal logic correctly",
+            "Whether a machine maximizes expected performance"
+          ],
+          correctAnswer: 1,
+          explanation: "The Turing Test evaluates the \u201cActing Humanly\u201d aspect of AI. It tests whether a human interrogator can distinguish the machine\u2019s responses from a human\u2019s via text-based communication. It is a behavioral (black-box) test that doesn\u2019t care about the machine\u2019s internal processes."
+        },
+        // --- Q5: MCQ ---
+        {
+          id: 5,
+          type: "mcq",
+          question: "Which of the following is the correct subset relationship?",
+          options: [
+            "AI \u2286 ML \u2286 DL",
+            "ML \u2286 DL \u2286 AI",
+            "DL \u2286 ML \u2286 AI",
+            "DL \u2286 AI \u2286 ML"
+          ],
+          correctAnswer: 2,
+          explanation: "The correct relationship is DL \u2286 ML \u2286 AI. Deep Learning is a subset of Machine Learning, which is itself a subset of Artificial Intelligence. All DL is ML, all ML is AI, but not all AI is ML and not all ML is DL."
+        },
+        // --- Q6: MSQ ---
+        {
+          id: 6,
+          type: "msq",
+          question: "Which of the following capabilities are required to pass the Total Turing Test? (Select ALL that apply)",
+          options: [
+            "Natural Language Processing",
+            "Computer Vision",
+            "Quantum Computing",
+            "Robotics (object manipulation)",
+            "Machine Learning"
+          ],
+          correctAnswers: [0, 1, 3, 4],
+          explanation: "The Total Turing Test requires: Natural Language Processing (to communicate), Knowledge Representation, Automated Reasoning, Machine Learning (to adapt), Computer Vision (to perceive objects), and Robotics (to manipulate objects). Quantum Computing is not a requirement for the Total Turing Test."
+        },
+        // --- Q7: True/False ---
+        {
+          id: 7,
+          type: "mcq",
+          question: "True or False: The Chinese Room argument (Searle, 1980) and the Turing Test (Turing, 1950) address the same question about AI.",
+          options: [
+            "True",
+            "False"
+          ],
+          correctAnswer: 1,
+          explanation: "False. They address different questions. The Turing Test asks: \u201cCan a machine behave indistinguishably from a human?\u201d (Acting Humanly). The Chinese Room argument asks: \u201cCan a machine that passes the Turing Test truly understand, or is it merely manipulating symbols?\u201d (against Strong AI). Searle\u2019s argument is a critique of the claim that passing the Turing Test implies genuine understanding."
+        },
+        // --- Q8: MCQ ---
+        {
+          id: 8,
+          type: "mcq",
+          question: "IBM\u2019s Deep Blue, which defeated world chess champion Garry Kasparov in 1997, is best classified as which type of AI by functionality?",
+          options: [
+            "Type I: Reactive Machine",
+            "Type II: Limited Memory",
+            "Type III: Theory of Mind",
+            "Type IV: Self-Aware"
+          ],
+          correctAnswer: 0,
+          explanation: "Deep Blue is a Type I (Reactive Machine). It evaluated the current board position and selected the optimal move using search and evaluation functions. It had no memory of previous games, could not learn from experience, and did not improve over time. Each game was independent."
+        },
+        // --- Q9: MCQ ---
+        {
+          id: 9,
+          type: "mcq",
+          question: "Which of the following is an example of AI that is NOT Machine Learning?",
+          options: [
+            "A spam filter using Naive Bayes classification",
+            "A recommendation system using collaborative filtering",
+            "An A* search algorithm finding the shortest path on a map",
+            "A neural network classifying handwritten digits"
+          ],
+          correctAnswer: 2,
+          explanation: "A* search is an AI technique (informed search algorithm) that solves problems by exploring a state space using a heuristic function. It does NOT learn from data \u2014 it follows an algorithm with a predefined heuristic. The other three options all involve learning from data, making them Machine Learning techniques."
+        },
+        // --- Q10: MCQ ---
+        {
+          id: 10,
+          type: "mcq",
+          question: "Who coined the term \u201cArtificial Intelligence\u201d?",
+          options: [
+            "Alan Turing",
+            "John McCarthy",
+            "Marvin Minsky",
+            "Herbert Simon"
+          ],
+          correctAnswer: 1,
+          explanation: "John McCarthy coined the term \u201cArtificial Intelligence\u201d in the proposal for the 1956 Dartmouth Conference. While Turing laid important groundwork with his 1950 paper, and Minsky and Simon were key early AI researchers, it was McCarthy who proposed and popularized the name for the field."
+        },
+        // --- Q11: True/False ---
+        {
+          id: 11,
+          type: "mcq",
+          question: "True or False: A rational agent must be omniscient (know everything about its environment).",
+          options: [
+            "True",
+            "False"
+          ],
+          correctAnswer: 1,
+          explanation: "False. A rational agent makes the best decision given the information available to it. It does NOT need to be omniscient. It acts optimally based on its percepts (observations) and knowledge. An agent can be rational even with incomplete information, as long as it makes the best possible choice given what it knows."
+        },
+        // --- Q12: MSQ ---
+        {
+          id: 12,
+          type: "msq",
+          question: "Which of the following were causes of the first AI Winter (1974\u20131980)? (Select ALL that apply)",
+          options: [
+            "Over-promising by researchers about AI capabilities",
+            "Computational limitations of hardware at the time",
+            "Minsky & Papert\u2019s critique of perceptrons",
+            "The collapse of the LISP machine market",
+            "The failure of the Japanese Fifth Generation project"
+          ],
+          correctAnswers: [0, 1, 2],
+          explanation: "The first AI Winter (1974\u20131980) was caused by: (A) over-promising by researchers, (B) computational limitations making complex AI intractable, and (C) Minsky & Papert\u2019s 1969 book exposing single-layer perceptron limitations. The LISP machine collapse (D) and the Fifth Generation failure (E) were causes of the SECOND AI Winter (1987\u20131993), not the first."
+        },
+        // --- Q13: MCQ ---
+        {
+          id: 13,
+          type: "mcq",
+          question: "In the GATE DA exam, what is the negative marking scheme for a 2-mark MCQ answered incorrectly?",
+          options: [
+            "No negative marking",
+            "\u22121/3 mark",
+            "\u22122/3 mark",
+            "\u22121 mark"
+          ],
+          correctAnswer: 2,
+          explanation: "For MCQ questions in GATE DA: 1-mark questions have \u22121/3 negative marking, and 2-mark questions have \u22122/3 negative marking. MSQ and NAT questions have no negative marking. This means blind guessing on MCQs is statistically unfavorable, but if you can eliminate 2 options, guessing becomes worthwhile."
+        },
+        // --- Q14: MCQ ---
+        {
+          id: 14,
+          type: "mcq",
+          question: "Which statement correctly describes the difference between Weak AI and Strong AI?",
+          options: [
+            "Weak AI performs one task; Strong AI performs many tasks",
+            "Weak AI simulates intelligence without understanding; Strong AI genuinely possesses understanding",
+            "Weak AI uses simple algorithms; Strong AI uses deep learning",
+            "Weak AI is old technology; Strong AI is modern technology"
+          ],
+          correctAnswer: 1,
+          explanation: "Weak AI vs. Strong AI is a philosophical distinction. Weak AI holds that machines simulate intelligent behavior without truly understanding (they manipulate symbols without comprehension). Strong AI holds that sufficiently advanced machines can genuinely understand and possess consciousness. This is NOT about capability level (that\u2019s Narrow vs. General) or technology age."
+        },
+        // --- Q15: MSQ ---
+        {
+          id: 15,
+          type: "msq",
+          question: "Which of the following are characteristics of Deep Learning that differentiate it from classical Machine Learning? (Select ALL that apply)",
+          options: [
+            "Requires large amounts of training data",
+            "Automatically learns hierarchical feature representations",
+            "Always more accurate than classical ML on any dataset",
+            "Typically requires GPU/TPU hardware for training",
+            "Uses neural networks with multiple hidden layers"
+          ],
+          correctAnswers: [0, 1, 3, 4],
+          explanation: "(A) Correct: DL is data-hungry and requires large datasets. (B) Correct: DL automatically learns features at multiple levels of abstraction. (C) INCORRECT: DL is NOT always more accurate. Classical ML often outperforms DL on small/tabular datasets. (D) Correct: Deep networks require significant compute, typically GPUs/TPUs. (E) Correct: \u201cDeep\u201d refers to multiple hidden layers in neural networks."
+        }
+      ]
+    };
+
+    // ====================================================================
+    // Quiz Rendering & Engine (inline fallback if quiz-engine.js not ready)
+    // ====================================================================
+    document.addEventListener("DOMContentLoaded", function () {
+      // If a global quiz engine exists, use it; otherwise, render inline
+      if (typeof window.initQuiz === "function") {
+        window.initQuiz(quizData);
+        return;
+      }
+
+      // ---- Inline fallback quiz renderer ----
+      const container = document.getElementById("quizContainer");
+      const palette = document.getElementById("questionPalette");
+      const submitBtn = document.getElementById("submitQuizBtn");
+      const retryBtn = document.getElementById("retryQuizBtn");
+      const scoreCard = document.getElementById("scoreCard");
+      const questions = quizData.questions;
+      let submitted = false;
+
+      // Render palette
+      questions.forEach(function (q, i) {
+        const btn = document.createElement("button");
+        btn.className = "palette-btn";
+        btn.textContent = i + 1;
+        btn.title = "Jump to Q" + (i + 1);
+        btn.addEventListener("click", function () {
+          document.getElementById("q-" + q.id).scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        palette.appendChild(btn);
+      });
+
+      // Render questions
+      questions.forEach(function (q, idx) {
+        var qDiv = document.createElement("div");
+        qDiv.className = "quiz-question";
+        qDiv.id = "q-" + q.id;
+        qDiv.style.cssText = "border:1px solid var(--border-color); border-radius:var(--border-radius); padding:var(--spacing-lg); margin-bottom:var(--spacing-lg);";
+
+        var qType = q.type === "msq" ? "MSQ" : (q.options.length === 2 && (q.options[0] === "True" || q.options[0] === "False") ? "True/False" : "MCQ");
+        var header = '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--spacing-md);">';
+        header += '<strong style="color:var(--color-quiz);">Q' + (idx + 1) + '</strong>';
+        header += '<span class="text-xs text-muted">' + qType + '</span></div>';
+        header += '<p style="font-weight:600; margin-bottom:var(--spacing-md);">' + q.question + '</p>';
+
+        var optionsHtml = '<div class="quiz-options">';
+        q.options.forEach(function (opt, oi) {
+          var inputType = q.type === "msq" ? "checkbox" : "radio";
+          var name = "q" + q.id;
+          optionsHtml += '<label style="display:flex; align-items:flex-start; gap:var(--spacing-sm); padding:var(--spacing-sm) var(--spacing-md); border:1px solid var(--border-color); border-radius:var(--border-radius-sm); margin-bottom:var(--spacing-sm); cursor:pointer; transition: background var(--transition-fast);" onmouseover="this.style.backgroundColor=\'var(--bg-secondary)\'" onmouseout="if(!this.classList.contains(\'selected\'))this.style.backgroundColor=\'\'">';
+          optionsHtml += '<input type="' + inputType + '" name="' + name + '" value="' + oi + '" style="margin-top:3px;" />';
+          optionsHtml += '<span>' + String.fromCharCode(65 + oi) + '. ' + opt + '</span>';
+          optionsHtml += '</label>';
+        });
+        optionsHtml += '</div>';
+
+        var explainHtml = '<div class="quiz-explanation" id="expl-' + q.id + '" style="display:none; margin-top:var(--spacing-md); padding:var(--spacing-md); border-radius:var(--border-radius); font-size:var(--font-size-sm);"></div>';
+
+        qDiv.innerHTML = header + optionsHtml + explainHtml;
+        container.appendChild(qDiv);
+      });
+
+      submitBtn.style.display = "inline-flex";
+
+      // Submit handler
+      submitBtn.addEventListener("click", function () {
+        if (submitted) return;
+        submitted = true;
+        submitBtn.style.display = "none";
+        retryBtn.style.display = "inline-flex";
+
+        var correct = 0;
+        var total = questions.length;
+
+        questions.forEach(function (q, idx) {
+          var explDiv = document.getElementById("expl-" + q.id);
+          var qDiv = document.getElementById("q-" + q.id);
+          var inputs = qDiv.querySelectorAll("input");
+          var labels = qDiv.querySelectorAll("label");
+          var isCorrect = false;
+
+          if (q.type === "msq") {
+            var selected = [];
+            inputs.forEach(function (inp, i) {
+              if (inp.checked) selected.push(i);
+              inp.disabled = true;
+            });
+            selected.sort();
+            var correctArr = (q.correctAnswers || []).slice().sort();
+            isCorrect = JSON.stringify(selected) === JSON.stringify(correctArr);
+
+            // Highlight correct/incorrect
+            (q.correctAnswers || []).forEach(function (ci) {
+              labels[ci].style.backgroundColor = "var(--example-bg)";
+              labels[ci].style.borderColor = "var(--example-border)";
+            });
+            selected.forEach(function (si) {
+              if (!(q.correctAnswers || []).includes(si)) {
+                labels[si].style.backgroundColor = "var(--warning-bg)";
+                labels[si].style.borderColor = "var(--warning-border)";
+              }
+            });
+          } else {
+            var selected = -1;
+            inputs.forEach(function (inp, i) {
+              if (inp.checked) selected = i;
+              inp.disabled = true;
+            });
+            isCorrect = selected === q.correctAnswer;
+
+            // Highlight
+            if (q.correctAnswer !== undefined) {
+              labels[q.correctAnswer].style.backgroundColor = "var(--example-bg)";
+              labels[q.correctAnswer].style.borderColor = "var(--example-border)";
+            }
+            if (selected >= 0 && selected !== q.correctAnswer) {
+              labels[selected].style.backgroundColor = "var(--warning-bg)";
+              labels[selected].style.borderColor = "var(--warning-border)";
+            }
+          }
+
+          if (isCorrect) correct++;
+
+          // Show explanation
+          explDiv.style.display = "block";
+          explDiv.style.backgroundColor = isCorrect ? "var(--example-bg)" : "var(--warning-bg)";
+          explDiv.style.borderLeft = "4px solid " + (isCorrect ? "var(--example-border)" : "var(--warning-border)");
+          explDiv.innerHTML = '<strong>' + (isCorrect ? "\u2705 Correct!" : "\u274c Incorrect") + '</strong><br>' + q.explanation;
+
+          // Update palette
+          var palBtns = palette.querySelectorAll(".palette-btn");
+          palBtns[idx].classList.add(isCorrect ? "answered" : "visited");
+        });
+
+        // Show score card
+        var pct = Math.round((correct / total) * 100);
+        scoreCard.style.display = "block";
+        scoreCard.style.cssText = "display:block; text-align:center; padding:var(--spacing-xl); margin:var(--spacing-xl) 0; border-radius:var(--border-radius-lg); background:var(--color-quiz-bg); border:2px solid var(--color-quiz);";
+        scoreCard.innerHTML = '<h2 style="color:var(--color-quiz); margin-top:0;">Quiz Complete!</h2>' +
+          '<div style="font-size:2.5rem; font-weight:700; color:var(--color-quiz); margin:var(--spacing-md) 0;">' + correct + ' / ' + total + '</div>' +
+          '<p style="font-size:var(--font-size-lg); margin-bottom:var(--spacing-sm);">' + pct + '%</p>' +
+          '<p style="color:var(--text-secondary);">' +
+          (pct >= 80 ? "Excellent! You have a strong grasp of the introduction." :
+           pct >= 60 ? "Good job! Review the explanations for questions you missed." :
+           "Keep studying! Re-read the chapter notes and try again.") + '</p>';
+
+        scoreCard.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      // Retry handler
+      retryBtn.addEventListener("click", function () {
+        submitted = false;
+        scoreCard.style.display = "none";
+        retryBtn.style.display = "none";
+        submitBtn.style.display = "inline-flex";
+
+        questions.forEach(function (q, idx) {
+          var qDiv = document.getElementById("q-" + q.id);
+          var inputs = qDiv.querySelectorAll("input");
+          var labels = qDiv.querySelectorAll("label");
+          var explDiv = document.getElementById("expl-" + q.id);
+
+          inputs.forEach(function (inp) {
+            inp.checked = false;
+            inp.disabled = false;
+          });
+          labels.forEach(function (lbl) {
+            lbl.style.backgroundColor = "";
+            lbl.style.borderColor = "";
+          });
+          explDiv.style.display = "none";
+
+          var palBtns = palette.querySelectorAll(".palette-btn");
+          palBtns[idx].classList.remove("answered", "visited");
+        });
+
+        container.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  </script>
+</body>
+</html>

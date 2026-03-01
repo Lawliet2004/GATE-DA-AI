@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive Quiz on Adversarial Search — 15+ questions covering minimax, alpha-beta pruning, MCTS, evaluation functions, expectiminimax for GATE DA.">
+  <title>Quiz: Adversarial Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+            <a href="minimax-algorithm.html" class="sidebar-link"><span class="link-check"></span> Minimax<span class="link-type theory">Theory</span></a>
+            <a href="alpha-beta-pruning.html" class="sidebar-link"><span class="link-check"></span> Alpha-Beta Pruning<span class="link-type theory">Theory</span></a>
+            <a href="move-ordering.html" class="sidebar-link"><span class="link-check"></span> Move Ordering<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-functions.html" class="sidebar-link"><span class="link-check"></span> Evaluation Functions<span class="link-type theory">Theory</span></a>
+            <a href="stochastic-games.html" class="sidebar-link"><span class="link-check"></span> Stochastic Games<span class="link-type theory">Theory</span></a>
+            <a href="partially-observable-games.html" class="sidebar-link"><span class="link-check"></span> Partially Observable<span class="link-type theory">Theory</span></a>
+            <a href="monte-carlo-tree-search.html" class="sidebar-link"><span class="link-check"></span> MCTS<span class="link-type theory">Theory</span></a>
+            <a href="practical-adversarial.html" class="sidebar-link"><span class="link-check"></span> Tic-Tac-Toe Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-adversarial.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-adversarial-search.html" class="sidebar-link active"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="game-theory-basics.html">Chapter 4: Adversarial Search</a> &raquo;
+          <span class="current">Quiz</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-quiz" data-page-id="ch04-quiz">
+            <h1>Quiz: Adversarial Search</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">15 Questions</span>
+              <button class="bookmark-btn" data-page="ch04-quiz" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <p>Test your understanding of minimax, alpha-beta pruning, MCTS, evaluation functions, and game theory. Mix of MCQ, MSQ, NAT, and True/False questions.</p>
+
+            <div class="quiz-container" id="quiz" data-quiz-id="ch04-adversarial-quiz">
+
+              <!-- Q1: MCQ -->
+              <div class="quiz-question" data-type="mcq" data-correct="B">
+                <h3>Q1. (MCQ) What is the time complexity of the minimax algorithm for a game tree with branching factor b and depth m?</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q1" value="A"> O(b + m)</label>
+                  <label><input type="radio" name="q1" value="B"> O(b<sup>m</sup>)</label>
+                  <label><input type="radio" name="q1" value="C"> O(b &times; m)</label>
+                  <label><input type="radio" name="q1" value="D"> O(m<sup>b</sup>)</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: B.</strong> Minimax performs a complete DFS of the game tree. Each of the m levels has branching factor b, so the total number of leaf nodes is b<sup>m</sup>, and all must be visited.
+                </div>
+              </div>
+
+              <!-- Q2: MCQ -->
+              <div class="quiz-question" data-type="mcq" data-correct="C">
+                <h3>Q2. (MCQ) Consider a game tree: MAX at root with two MIN children. Left MIN has leaves {7, 3}. Right MIN has leaves {5, 8}. What is the minimax value at the root?</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q2" value="A"> 3</label>
+                  <label><input type="radio" name="q2" value="B"> 7</label>
+                  <label><input type="radio" name="q2" value="C"> 5</label>
+                  <label><input type="radio" name="q2" value="D"> 8</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: C.</strong> Left MIN = min(7,3) = 3. Right MIN = min(5,8) = 5. Root MAX = max(3,5) = 5.
+                </div>
+              </div>
+
+              <!-- Q3: True/False -->
+              <div class="quiz-question" data-type="mcq" data-correct="A">
+                <h3>Q3. (True/False) Alpha-beta pruning always returns the same result as the full minimax algorithm.</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q3" value="A"> True</label>
+                  <label><input type="radio" name="q3" value="B"> False</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: True.</strong> Alpha-beta pruning only removes branches that provably cannot affect the final minimax value. The root value is always identical to full minimax.
+                </div>
+              </div>
+
+              <!-- Q4: MCQ -->
+              <div class="quiz-question" data-type="mcq" data-correct="B">
+                <h3>Q4. (MCQ) In alpha-beta pruning, &alpha; represents:</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q4" value="A"> The best value MIN can guarantee</label>
+                  <label><input type="radio" name="q4" value="B"> The best value MAX can guarantee along the current path</label>
+                  <label><input type="radio" name="q4" value="C"> The depth of the search tree</label>
+                  <label><input type="radio" name="q4" value="D"> The number of nodes pruned</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: B.</strong> &alpha; is the best (highest) value that MAX can guarantee so far along the path from the root. &beta; is the best (lowest) value MIN can guarantee.
+                </div>
+              </div>
+
+              <!-- Q5: NAT -->
+              <div class="quiz-question" data-type="nat" data-correct="17" data-tolerance="0">
+                <h3>Q5. (NAT) A game tree has branching factor 4 and depth 4. In the best case of alpha-beta pruning, how many leaf nodes are evaluated?</h3>
+                <p>Use the formula: 2b<sup>d/2</sup> &minus; 1 for even d.</p>
+                <div class="quiz-nat-input">
+                  <input type="number" name="q5" placeholder="Enter your answer">
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: 31.</strong> Best case for even d: 2 &times; b<sup>d/2</sup> &minus; 1 = 2 &times; 4<sup>2</sup> &minus; 1 = 2 &times; 16 &minus; 1 = 31. Total without pruning: 4<sup>4</sup> = 256.
+                </div>
+              </div>
+
+              <!-- Q6: MCQ -->
+              <div class="quiz-question" data-type="mcq" data-correct="D">
+                <h3>Q6. (MCQ) Which game is NOT a zero-sum game?</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q6" value="A"> Chess</label>
+                  <label><input type="radio" name="q6" value="B"> Tic-Tac-Toe</label>
+                  <label><input type="radio" name="q6" value="C"> Go</label>
+                  <label><input type="radio" name="q6" value="D"> Prisoner&rsquo;s Dilemma</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: D.</strong> Prisoner&rsquo;s Dilemma is a general-sum game where both players can lose (&minus;2, &minus;2) or gain asymmetrically. The payoffs don&rsquo;t always sum to zero. Chess, Tic-Tac-Toe, and Go are zero-sum.
+                </div>
+              </div>
+
+              <!-- Q7: True/False -->
+              <div class="quiz-question" data-type="mcq" data-correct="B">
+                <h3>Q7. (True/False) The effectiveness of alpha-beta pruning is independent of the order in which moves are examined.</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q7" value="A"> True</label>
+                  <label><input type="radio" name="q7" value="B"> False</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: False.</strong> Move ordering critically affects pruning. With perfect ordering, complexity is O(b<sup>d/2</sup>). With worst ordering, no pruning occurs and complexity is O(b<sup>d</sup>).
+                </div>
+              </div>
+
+              <!-- Q8: MCQ -->
+              <div class="quiz-question" data-type="mcq" data-correct="C">
+                <h3>Q8. (MCQ) In a stochastic game tree, the value at a CHANCE node is computed as:</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q8" value="A"> Maximum of children&rsquo;s values</label>
+                  <label><input type="radio" name="q8" value="B"> Minimum of children&rsquo;s values</label>
+                  <label><input type="radio" name="q8" value="C"> Weighted average of children&rsquo;s values (using probabilities)</label>
+                  <label><input type="radio" name="q8" value="D"> Median of children&rsquo;s values</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: C.</strong> CHANCE node value = &sum; P(outcome) &times; value(outcome). This is the expected value, computed as a probability-weighted average.
+                </div>
+              </div>
+
+              <!-- Q9: NAT -->
+              <div class="quiz-question" data-type="nat" data-correct="3.5" data-tolerance="0.1">
+                <h3>Q9. (NAT) A chance node has two outcomes: outcome A (probability 0.5, value 5) and outcome B (probability 0.5, value 2). What is the value at the chance node?</h3>
+                <div class="quiz-nat-input">
+                  <input type="number" step="0.1" name="q9" placeholder="Enter your answer">
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: 3.5.</strong> Value = 0.5 &times; 5 + 0.5 &times; 2 = 2.5 + 1.0 = 3.5.
+                </div>
+              </div>
+
+              <!-- Q10: MCQ -->
+              <div class="quiz-question" data-type="mcq" data-correct="A">
+                <h3>Q10. (MCQ) The four phases of MCTS in order are:</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q10" value="A"> Selection, Expansion, Simulation, Backpropagation</label>
+                  <label><input type="radio" name="q10" value="B"> Expansion, Selection, Simulation, Backpropagation</label>
+                  <label><input type="radio" name="q10" value="C"> Selection, Simulation, Expansion, Backpropagation</label>
+                  <label><input type="radio" name="q10" value="D"> Simulation, Selection, Expansion, Backpropagation</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: A.</strong> The correct order is: (1) Selection — traverse tree using UCB1, (2) Expansion — add new child node, (3) Simulation — random playout to terminal state, (4) Backpropagation — update stats from leaf to root.
+                </div>
+              </div>
+
+              <!-- Q11: MSQ -->
+              <div class="quiz-question" data-type="msq" data-correct="A,B,D">
+                <h3>Q11. (MSQ) Which of the following are techniques to improve move ordering in alpha-beta search? (Select all that apply)</h3>
+                <div class="quiz-options">
+                  <label><input type="checkbox" name="q11" value="A"> Killer move heuristic</label>
+                  <label><input type="checkbox" name="q11" value="B"> Transposition tables</label>
+                  <label><input type="checkbox" name="q11" value="C"> Increasing the branching factor</label>
+                  <label><input type="checkbox" name="q11" value="D"> Iterative deepening (using shallower results to order deeper search)</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: A, B, D.</strong> Killer moves, transposition tables, and iterative deepening all improve move ordering. Increasing the branching factor would make the problem harder, not improve ordering.
+                </div>
+              </div>
+
+              <!-- Q12: True/False -->
+              <div class="quiz-question" data-type="mcq" data-correct="A">
+                <h3>Q12. (True/False) The minimax value of Tic-Tac-Toe from the initial state is 0 (draw).</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q12" value="A"> True</label>
+                  <label><input type="radio" name="q12" value="B"> False</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: True.</strong> With perfect play by both sides, Tic-Tac-Toe always ends in a draw. The minimax value of the initial position is 0.
+                </div>
+              </div>
+
+              <!-- Q13: MCQ -->
+              <div class="quiz-question" data-type="mcq" data-correct="B">
+                <h3>Q13. (MCQ) The &ldquo;horizon effect&rdquo; in game-playing programs refers to:</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q13" value="A"> The inability to search beyond the game tree root</label>
+                  <label><input type="radio" name="q13" value="B"> Poor decisions caused by critical events occurring just beyond the search depth</label>
+                  <label><input type="radio" name="q13" value="C"> The exponential growth of the game tree</label>
+                  <label><input type="radio" name="q13" value="D"> The use of evaluation functions at terminal states</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: B.</strong> The horizon effect occurs when important events (captures, threats) lie just beyond the search depth cutoff. The engine cannot see them and may make delaying moves that worsen its position. Quiescence search is the standard remedy.
+                </div>
+              </div>
+
+              <!-- Q14: MCQ -->
+              <div class="quiz-question" data-type="mcq" data-correct="C">
+                <h3>Q14. (MCQ) In the UCB1 formula used in MCTS, the exploration constant C controls:</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q14" value="A"> The depth of the game tree</label>
+                  <label><input type="radio" name="q14" value="B"> The number of simulations per node</label>
+                  <label><input type="radio" name="q14" value="C"> The trade-off between exploration of less-visited nodes and exploitation of promising nodes</label>
+                  <label><input type="radio" name="q14" value="D"> The probability of each move being selected</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: C.</strong> UCB1 = w<sub>i</sub>/n<sub>i</sub> + C&radic;(ln N / n<sub>i</sub>). The first term is exploitation (high win rate). The second term, scaled by C, is exploration (less visited). Higher C means more exploration; lower C means more exploitation.
+                </div>
+              </div>
+
+              <!-- Q15: NAT -->
+              <div class="quiz-question" data-type="nat" data-correct="4" data-tolerance="0">
+                <h3>Q15. (NAT) In the following game tree, apply alpha-beta pruning (left-to-right). MAX root with two MIN children. Left MIN has leaves {6, 4, 9}. Right MIN has leaves {2, 8, 5}. What is the minimax value at the root?</h3>
+                <div class="quiz-nat-input">
+                  <input type="number" name="q15" placeholder="Enter your answer">
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: 4.</strong> Left MIN = min(6, 4, 9) = 4. Back at MAX: &alpha; = 4. Right MIN: first child = 2. Since 2 &le; &alpha;(4), &alpha; cutoff! Prune 8 and 5. Root MAX = max(4, 2) = 4.
+                </div>
+              </div>
+
+              <!-- Q16: True/False -->
+              <div class="quiz-question" data-type="mcq" data-correct="B">
+                <h3>Q16. (True/False) MCTS requires a hand-crafted evaluation function to work.</h3>
+                <div class="quiz-options">
+                  <label><input type="radio" name="q16" value="A"> True</label>
+                  <label><input type="radio" name="q16" value="B"> False</label>
+                </div>
+                <div class="quiz-explanation" style="display:none;">
+                  <strong>Answer: False.</strong> One of MCTS&rsquo;s key advantages is that it does NOT require an evaluation function. Instead, it uses random playouts (simulations) to estimate position values. However, adding a learned evaluation (as in AlphaGo) can dramatically improve performance.
+                </div>
+              </div>
+
+              <div class="quiz-actions" style="margin-top:1.5rem;">
+                <button class="quiz-submit-btn" id="submitQuiz">Submit All Answers</button>
+                <button class="quiz-reset-btn" id="resetQuiz" style="display:none;">Retake Quiz</button>
+              </div>
+              <div class="quiz-score" id="quizScore" style="display:none; margin-top:1rem; font-size:1.2rem; font-weight:bold;"></div>
+            </div>
+
+            <button class="complete-btn" data-page="ch04-quiz">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="notes-adversarial-search.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Quick Revision Notes</span></a>
+              <a href="../05-propositional-logic/syntax-and-semantics.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Propositional Logic: Syntax &amp; Semantics</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#">Q1&ndash;Q4: Minimax Basics</a></li>
+              <li><a href="#">Q5&ndash;Q7: Alpha-Beta</a></li>
+              <li><a href="#">Q8&ndash;Q9: Stochastic Games</a></li>
+              <li><a href="#">Q10&ndash;Q11: MCTS &amp; Enhancements</a></li>
+              <li><a href="#">Q12&ndash;Q16: Mixed Topics</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script>
+  // Simple quiz handler for this page
+  (function() {
+    const submitBtn = document.getElementById('submitQuiz');
+    const resetBtn = document.getElementById('resetQuiz');
+    const scoreEl = document.getElementById('quizScore');
+
+    if (!submitBtn) return;
+
+    submitBtn.addEventListener('click', function() {
+      const questions = document.querySelectorAll('.quiz-question');
+      let correct = 0, total = questions.length;
+
+      questions.forEach(q => {
+        const type = q.dataset.type;
+        const correctAnswer = q.dataset.correct;
+        let userAnswer = '';
+        let isCorrect = false;
+
+        if (type === 'mcq') {
+          const checked = q.querySelector('input[type="radio"]:checked');
+          userAnswer = checked ? checked.value : '';
+          isCorrect = userAnswer === correctAnswer;
+        } else if (type === 'msq') {
+          const checked = q.querySelectorAll('input[type="checkbox"]:checked');
+          const selected = Array.from(checked).map(c => c.value).sort().join(',');
+          isCorrect = selected === correctAnswer;
+        } else if (type === 'nat') {
+          const input = q.querySelector('input[type="number"]');
+          userAnswer = parseFloat(input.value);
+          const tolerance = parseFloat(q.dataset.tolerance) || 0;
+          isCorrect = Math.abs(userAnswer - parseFloat(correctAnswer)) <= tolerance;
+        }
+
+        const explanation = q.querySelector('.quiz-explanation');
+        if (explanation) explanation.style.display = 'block';
+
+        if (isCorrect) {
+          correct++;
+          q.style.borderLeft = '4px solid #27ae60';
+        } else {
+          q.style.borderLeft = '4px solid #e74c3c';
+        }
+      });
+
+      scoreEl.textContent = 'Score: ' + correct + ' / ' + total + ' (' + Math.round(100*correct/total) + '%)';
+      scoreEl.style.display = 'block';
+      submitBtn.style.display = 'none';
+      resetBtn.style.display = 'inline-block';
+    });
+
+    resetBtn.addEventListener('click', function() {
+      const questions = document.querySelectorAll('.quiz-question');
+      questions.forEach(q => {
+        q.style.borderLeft = '';
+        const explanation = q.querySelector('.quiz-explanation');
+        if (explanation) explanation.style.display = 'none';
+        q.querySelectorAll('input').forEach(i => {
+          if (i.type === 'radio' || i.type === 'checkbox') i.checked = false;
+          if (i.type === 'number') i.value = '';
+        });
+      });
+      scoreEl.style.display = 'none';
+      submitBtn.style.display = 'inline-block';
+      resetBtn.style.display = 'none';
+    });
+  })();
+  </script>
+</body>
+</html>

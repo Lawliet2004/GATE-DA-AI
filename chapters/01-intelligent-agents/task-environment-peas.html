@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PEAS Framework and Task Environments — Learn Performance, Environment, Actuators, Sensors analysis, environment properties (observable, deterministic, episodic, static, discrete, multi-agent) for GATE DA.">
+  <title>Task Environments &amp; PEAS Framework — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+            <a href="rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a>
+            <a href="task-environment-peas.html" class="sidebar-link active"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a>
+            <a href="agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a>
+            <a href="practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a>
+            <a href="notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="agents-and-environments.html">Chapter 1: Intelligent Agents</a> &raquo;
+          <span class="current">PEAS Framework</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch01-peas">
+
+            <!-- Page Header -->
+            <h1>Task Environments &amp; the PEAS Framework</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch01-peas" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="agents-and-environments.html">Agents &amp; Environments</a> &mdash; Agent definition, sensors, actuators</li>
+                <li><a href="rationality.html">Rationality</a> &mdash; Performance measure concept</li>
+              </ul>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Apply the <strong>PEAS framework</strong> (Performance, Environment, Actuators, Sensors) to any agent</li>
+                <li>Classify environments using <strong>six properties</strong>: Observable, Deterministic, Episodic, Static, Discrete, Single/Multi-agent</li>
+                <li>Analyze real-world systems using PEAS and environment properties</li>
+                <li>Identify how environment properties influence agent design</li>
+                <li>Solve GATE questions on task environment classification</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: PEAS Framework -->
+              <section id="peas-framework">
+                <h2>1. The PEAS Framework</h2>
+
+                <p>Before designing an intelligent agent, we must fully specify its <strong>task environment</strong>. The PEAS framework provides a systematic way to do this.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">PEAS</div>
+                  <p><strong>PEAS</strong> stands for:</p>
+                  <ul>
+                    <li><strong>P</strong>erformance measure &mdash; How success is evaluated</li>
+                    <li><strong>E</strong>nvironment &mdash; The external world the agent operates in</li>
+                    <li><strong>A</strong>ctuators &mdash; How the agent affects the environment</li>
+                    <li><strong>S</strong>ensors &mdash; How the agent perceives the environment</li>
+                  </ul>
+                </div>
+
+                <p>Specifying PEAS completely defines the <strong>task environment</strong>&mdash;the &ldquo;problem&rdquo; to which the agent is the &ldquo;solution.&rdquo; Different task environments require different agent designs.</p>
+
+                <h3 id="peas-taxi">1.1 PEAS Analysis: Automated Taxi Driver</h3>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Component</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>Performance</strong></td><td>Safely reaching the destination, minimizing travel time, obeying traffic laws, passenger comfort, maximizing fare revenue</td></tr>
+                      <tr><td><strong>Environment</strong></td><td>Roads, other vehicles, pedestrians, traffic signals, weather, passengers, road signs, construction zones</td></tr>
+                      <tr><td><strong>Actuators</strong></td><td>Steering wheel, accelerator, brakes, turn signals, horn, display screen (for passenger communication)</td></tr>
+                      <tr><td><strong>Sensors</strong></td><td>Cameras (front, rear, side), LIDAR, radar, GPS, speedometer, odometer, accelerometer, microphone, engine sensors</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3 id="peas-medical">1.2 PEAS Analysis: Medical Diagnosis System</h3>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Component</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>Performance</strong></td><td>Correct diagnosis (accuracy), patient health outcomes, minimizing unnecessary tests, cost-effectiveness</td></tr>
+                      <tr><td><strong>Environment</strong></td><td>Patient population, hospital/clinic, available tests and treatments, disease prevalence, medical knowledge base</td></tr>
+                      <tr><td><strong>Actuators</strong></td><td>Display diagnosis on screen, recommend tests, suggest treatments, generate reports, send alerts</td></tr>
+                      <tr><td><strong>Sensors</strong></td><td>Keyboard/form input (symptoms), electronic health records, lab test results, medical imaging data, patient questionnaires</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3 id="peas-satellite">1.3 PEAS Analysis: Satellite Image Analysis System</h3>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Component</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>Performance</strong></td><td>Classification accuracy, coverage of area, speed of processing, false positive/negative rates</td></tr>
+                      <tr><td><strong>Environment</strong></td><td>Satellite imagery, geographic regions, atmospheric conditions, different land types, time of day/year</td></tr>
+                      <tr><td><strong>Actuators</strong></td><td>Display annotated images, output classification labels, generate maps, send notifications for anomalies</td></tr>
+                      <tr><td><strong>Sensors</strong></td><td>Satellite image feed (multispectral, infrared, optical), metadata (coordinates, timestamp, resolution), weather data</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 2: Environment Properties -->
+              <section id="environment-properties">
+                <h2>2. Properties of Task Environments</h2>
+
+                <p>Russell &amp; Norvig identify <strong>six key properties</strong> that characterize any task environment. These properties are critical for GATE because they determine which agent architecture is appropriate.</p>
+
+                <div class="note-box">
+                  <div class="box-title">Mnemonic: ODESSA</div>
+                  <p>Remember the six properties with <strong>ODESSA</strong>:<br>
+                  <strong>O</strong>bservable &bull; <strong>D</strong>eterministic &bull; <strong>E</strong>pisodic &bull; <strong>S</strong>tatic &bull; di<strong>S</strong>crete &bull; <strong>A</strong>gents (single/multi)</p>
+                </div>
+
+                <!-- 2.1 Observable -->
+                <h3 id="observable">2.1 Fully Observable vs. Partially Observable</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Fully Observable</div>
+                  <p>An environment is <strong>fully observable</strong> if the agent&rsquo;s sensors give it access to the <em>complete state</em> of the environment at each point in time. The agent does not need to maintain any internal state (memory) to keep track of the world.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Partially Observable</div>
+                  <p>An environment is <strong>partially observable</strong> if the agent cannot see the entire state&mdash;due to noisy sensors, inaccurate sensors, or parts of the state that are simply not detectable. The agent needs to maintain <strong>internal state</strong> (a model of the world) to track unobserved aspects.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Unobservable</div>
+                  <p>If the agent has <strong>no sensors at all</strong>, the environment is <strong>unobservable</strong>. The agent must act based solely on prior knowledge.</p>
+                </div>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                  <li><strong>Fully observable:</strong> Chess (both players can see the entire board)</li>
+                  <li><strong>Partially observable:</strong> Poker (you cannot see opponents&rsquo; cards), driving (you cannot see around corners)</li>
+                  <li><strong>Unobservable:</strong> A robot navigating in complete darkness without any sensors</li>
+                </ul>
+
+                <!-- 2.2 Deterministic -->
+                <h3 id="deterministic">2.2 Deterministic vs. Stochastic</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Deterministic</div>
+                  <p>An environment is <strong>deterministic</strong> if the next state is completely determined by the current state and the agent&rsquo;s action. There is no randomness.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Stochastic</div>
+                  <p>An environment is <strong>stochastic</strong> if there is randomness or uncertainty in the outcome of actions. The next state is partly determined by random factors.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Nondeterministic</div>
+                  <p>Sometimes called <strong>nondeterministic</strong> when outcomes are uncertain but not described by explicit probabilities (as opposed to stochastic, which implies probabilistic modeling).</p>
+                </div>
+
+                <p><strong>Note:</strong> If the environment is partially observable, it may <em>appear</em> stochastic to the agent even if it is actually deterministic (because the agent cannot see all the relevant state). This is called being <strong>strategic</strong> in some texts.</p>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                  <li><strong>Deterministic:</strong> Chess, vacuum cleaner world (without random dirt)</li>
+                  <li><strong>Stochastic:</strong> Backgammon (dice rolls), poker, real-world driving (other drivers&rsquo; actions are unpredictable)</li>
+                </ul>
+
+                <!-- 2.3 Episodic -->
+                <h3 id="episodic">2.3 Episodic vs. Sequential</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Episodic</div>
+                  <p>An environment is <strong>episodic</strong> if the agent&rsquo;s experience is divided into independent episodes. Each episode consists of perceiving and then performing a single action. The action in one episode does <em>not</em> affect subsequent episodes. The agent does not need to plan ahead.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Sequential</div>
+                  <p>An environment is <strong>sequential</strong> if the current decision can affect all future decisions. The agent must think ahead because actions have long-term consequences. Sequential environments require planning.</p>
+                </div>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                  <li><strong>Episodic:</strong> Image classification (classifying one image doesn&rsquo;t affect the next), spam detection (each email is independent), quality inspection on an assembly line</li>
+                  <li><strong>Sequential:</strong> Chess (each move affects future moves), driving (steering affects future position), medical treatment (treatment affects future health state)</li>
+                </ul>
+
+                <!-- 2.4 Static -->
+                <h3 id="static">2.4 Static vs. Dynamic</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Static</div>
+                  <p>An environment is <strong>static</strong> if it does not change while the agent is deliberating (deciding what to do). The agent can take as long as it wants to make a decision without the world changing.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Dynamic</div>
+                  <p>An environment is <strong>dynamic</strong> if it can change while the agent is thinking. The agent must decide quickly or accept that the world may have changed by the time it acts.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Semidynamic</div>
+                  <p>An environment is <strong>semidynamic</strong> if the environment itself does not change with time, but the agent&rsquo;s <em>performance score</em> changes. Example: timed chess&mdash;the board doesn&rsquo;t change while you think, but your clock is ticking.</p>
+                </div>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                  <li><strong>Static:</strong> Crossword puzzles, solved-state Rubik&rsquo;s cube analysis</li>
+                  <li><strong>Semidynamic:</strong> Chess with a time clock, timed exams</li>
+                  <li><strong>Dynamic:</strong> Driving (traffic moves), real-time strategy games, stock trading</li>
+                </ul>
+
+                <!-- 2.5 Discrete -->
+                <h3 id="discrete">2.5 Discrete vs. Continuous</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Discrete</div>
+                  <p>An environment is <strong>discrete</strong> if there are a finite (countable) number of distinct states, percepts, and actions. The state space is countable.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Continuous</div>
+                  <p>An environment is <strong>continuous</strong> if states, percepts, or actions vary continuously (e.g., real-valued sensor readings, continuous steering angles).</p>
+                </div>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                  <li><strong>Discrete:</strong> Chess (finite board positions), tic-tac-toe, vacuum world</li>
+                  <li><strong>Continuous:</strong> Driving (continuous steering angle, speed, position), robot navigation in physical space, voice recognition (continuous audio signals)</li>
+                </ul>
+
+                <!-- 2.6 Single vs Multi Agent -->
+                <h3 id="agents-count">2.6 Single-Agent vs. Multi-Agent</h3>
+
+                <div class="definition-box">
+                  <div class="box-title">Single-Agent</div>
+                  <p>An environment with only one agent operating. The agent doesn&rsquo;t need to model other agents&rsquo; behavior.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Multi-Agent</div>
+                  <p>An environment with multiple agents. Multi-agent environments can be:</p>
+                  <ul>
+                    <li><strong>Competitive:</strong> Agents have opposing goals (e.g., chess, Go)</li>
+                    <li><strong>Cooperative:</strong> Agents work toward a shared goal (e.g., robot swarms)</li>
+                    <li><strong>Mixed:</strong> Some competition and some cooperation (e.g., traffic&mdash;everyone wants to reach their destination, but must cooperate to avoid accidents)</li>
+                  </ul>
+                </div>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                  <li><strong>Single-agent:</strong> Crossword puzzle, solo Sudoku</li>
+                  <li><strong>Multi-agent competitive:</strong> Chess, poker, Go</li>
+                  <li><strong>Multi-agent cooperative:</strong> Robot soccer team, warehouse robot fleet</li>
+                  <li><strong>Multi-agent mixed:</strong> Autonomous driving (other cars are agents)</li>
+                </ul>
+              </section>
+
+              <!-- Section 3: Master Comparison Table -->
+              <section id="comparison-table">
+                <h2>3. Environment Properties &mdash; Master Comparison Table</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr>
+                        <th>Task Environment</th>
+                        <th>Observable</th>
+                        <th>Deterministic</th>
+                        <th>Episodic</th>
+                        <th>Static</th>
+                        <th>Discrete</th>
+                        <th>Agents</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Chess (with clock)</td>
+                        <td>Fully</td>
+                        <td>Deterministic</td>
+                        <td>Sequential</td>
+                        <td>Semi</td>
+                        <td>Discrete</td>
+                        <td>Multi</td>
+                      </tr>
+                      <tr>
+                        <td>Chess (no clock)</td>
+                        <td>Fully</td>
+                        <td>Deterministic</td>
+                        <td>Sequential</td>
+                        <td>Static</td>
+                        <td>Discrete</td>
+                        <td>Multi</td>
+                      </tr>
+                      <tr>
+                        <td>Poker</td>
+                        <td>Partially</td>
+                        <td>Stochastic</td>
+                        <td>Sequential</td>
+                        <td>Static</td>
+                        <td>Discrete</td>
+                        <td>Multi</td>
+                      </tr>
+                      <tr>
+                        <td>Backgammon</td>
+                        <td>Fully</td>
+                        <td>Stochastic</td>
+                        <td>Sequential</td>
+                        <td>Static</td>
+                        <td>Discrete</td>
+                        <td>Multi</td>
+                      </tr>
+                      <tr>
+                        <td>Taxi driving</td>
+                        <td>Partially</td>
+                        <td>Stochastic</td>
+                        <td>Sequential</td>
+                        <td>Dynamic</td>
+                        <td>Continuous</td>
+                        <td>Multi</td>
+                      </tr>
+                      <tr>
+                        <td>Medical diagnosis</td>
+                        <td>Partially</td>
+                        <td>Stochastic</td>
+                        <td>Sequential</td>
+                        <td>Dynamic</td>
+                        <td>Continuous</td>
+                        <td>Single</td>
+                      </tr>
+                      <tr>
+                        <td>Image classification</td>
+                        <td>Fully</td>
+                        <td>Deterministic</td>
+                        <td>Episodic</td>
+                        <td>Static</td>
+                        <td>Discrete</td>
+                        <td>Single</td>
+                      </tr>
+                      <tr>
+                        <td>Vacuum cleaner (2 sq)</td>
+                        <td>Fully</td>
+                        <td>Deterministic</td>
+                        <td>Sequential</td>
+                        <td>Static</td>
+                        <td>Discrete</td>
+                        <td>Single</td>
+                      </tr>
+                      <tr>
+                        <td>Assembly-line inspection</td>
+                        <td>Partially</td>
+                        <td>Stochastic</td>
+                        <td>Episodic</td>
+                        <td>Dynamic</td>
+                        <td>Continuous</td>
+                        <td>Single</td>
+                      </tr>
+                      <tr>
+                        <td>Interactive English tutor</td>
+                        <td>Partially</td>
+                        <td>Stochastic</td>
+                        <td>Sequential</td>
+                        <td>Dynamic</td>
+                        <td>Discrete</td>
+                        <td>Multi</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">GATE Tip</div>
+                  <p>The most commonly asked environment properties in GATE are <strong>Observable</strong> and <strong>Deterministic</strong>. Expect questions like: &ldquo;Which of the following environments is partially observable and stochastic?&rdquo; Always justify your classification by identifying what information the agent <em>cannot</em> see (for partial observability) and what randomness exists (for stochasticity).</p>
+                </div>
+              </section>
+
+              <!-- Section 4: How Properties Affect Agent Design -->
+              <section id="properties-affect-design">
+                <h2>4. How Properties Affect Agent Design</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead>
+                      <tr><th>Property</th><th>Easier Setting</th><th>Harder Setting</th><th>Design Implication</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Observable</td><td>Fully</td><td>Partially</td><td>Partial observability requires <strong>internal state / memory</strong></td></tr>
+                      <tr><td>Deterministic</td><td>Deterministic</td><td>Stochastic</td><td>Stochastic environments require <strong>probabilistic reasoning</strong></td></tr>
+                      <tr><td>Episodic</td><td>Episodic</td><td>Sequential</td><td>Sequential environments require <strong>planning and lookahead</strong></td></tr>
+                      <tr><td>Static</td><td>Static</td><td>Dynamic</td><td>Dynamic environments require <strong>fast real-time decisions</strong></td></tr>
+                      <tr><td>Discrete</td><td>Discrete</td><td>Continuous</td><td>Continuous environments often need <strong>approximation / discretization</strong></td></tr>
+                      <tr><td>Agents</td><td>Single</td><td>Multi</td><td>Multi-agent requires <strong>game theory / coordination</strong></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p>The hardest environments (partially observable, stochastic, sequential, dynamic, continuous, multi-agent) require the most complex agent designs. Real-world environments like autonomous driving exhibit all these &ldquo;hard&rdquo; properties simultaneously.</p>
+              </section>
+
+              <!-- Section 5: Worked Examples -->
+              <section id="worked-examples">
+                <h2>5. Worked Examples</h2>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 1: Classifying an Online Shopping Recommendation System</div>
+                  <p><strong>Question:</strong> Perform a complete PEAS analysis and environment classification for an online shopping recommendation system (like Amazon&rsquo;s &ldquo;Customers who bought this also bought&rdquo;).</p>
+                  <p><strong>Solution:</strong></p>
+                  <p><strong>PEAS:</strong></p>
+                  <ul>
+                    <li><strong>Performance:</strong> Click-through rate, purchase conversion rate, customer satisfaction, revenue generated</li>
+                    <li><strong>Environment:</strong> Users, product catalog, purchase history, browsing history, reviews, pricing, competitors</li>
+                    <li><strong>Actuators:</strong> Display recommended products, adjust ranking of suggestions, send notification emails</li>
+                    <li><strong>Sensors:</strong> User click data, purchase logs, browsing history, search queries, ratings/reviews, session duration</li>
+                  </ul>
+                  <p><strong>Environment classification:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Partially observable:</strong> The system cannot see the user&rsquo;s true preferences, mood, or intent&mdash;only their behavior.</li>
+                    <li><strong>Stochastic:</strong> User behavior is unpredictable and influenced by many external factors.</li>
+                    <li><strong>Sequential:</strong> Recommendations affect what the user sees next, which affects future clicks and purchases.</li>
+                    <li><strong>Dynamic:</strong> New products are added, prices change, user preferences evolve.</li>
+                    <li><strong>Discrete:</strong> Products, users, and actions (click/buy/ignore) are countable.</li>
+                    <li><strong>Multi-agent:</strong> Other users influence recommendations (collaborative filtering); competitors offer alternatives.</li>
+                  </ol>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 2: Classifying a Crossword Puzzle Agent</div>
+                  <p><strong>Question:</strong> Classify the environment for an AI that solves crossword puzzles.</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Fully observable:</strong> The agent can see all the clues and the current state of the grid.</li>
+                    <li><strong>Deterministic:</strong> Filling in a letter produces a known, certain result.</li>
+                    <li><strong>Sequential:</strong> Filling one word constrains other words (shared letters).</li>
+                    <li><strong>Static:</strong> The puzzle doesn&rsquo;t change while the agent thinks.</li>
+                    <li><strong>Discrete:</strong> Finite grid cells, finite alphabet of letters.</li>
+                    <li><strong>Single-agent:</strong> Only one solver.</li>
+                  </ol>
+                  <p><strong>Classification:</strong> Fully observable, Deterministic, Sequential, Static, Discrete, Single-agent.</p>
+                </div>
+
+                <div class="example-box worked-example">
+                  <div class="box-title">Worked Example 3: Real-Time Stock Trading Bot</div>
+                  <p><strong>Question:</strong> A high-frequency trading bot buys and sells stocks milliseconds apart. Classify its environment.</p>
+                  <p><strong>Solution:</strong></p>
+                  <ol class="step-list">
+                    <li><strong>Partially observable:</strong> The bot sees market data (prices, volumes) but not other traders&rsquo; strategies, hidden orders, or upcoming news events.</li>
+                    <li><strong>Stochastic:</strong> Market movements are inherently unpredictable and influenced by countless factors.</li>
+                    <li><strong>Sequential:</strong> Each trade affects the portfolio, which influences future trading decisions.</li>
+                    <li><strong>Dynamic:</strong> Prices change continuously, even while the bot is computing.</li>
+                    <li><strong>Continuous:</strong> Prices are real-valued; time is continuous; trade quantities can be fractional.</li>
+                    <li><strong>Multi-agent:</strong> Thousands of other trading bots and human traders operate simultaneously.</li>
+                  </ol>
+                  <p><strong>Classification:</strong> Partially observable, Stochastic, Sequential, Dynamic, Continuous, Multi-agent &mdash; this is one of the <em>hardest</em> possible environment configurations.</p>
+                </div>
+              </section>
+
+              <!-- Section 6: GATE Practice -->
+              <section id="gate-practice">
+                <h2>6. GATE-Style Questions</h2>
+
+                <div class="example-box">
+                  <div class="box-title">GATE Practice Question 1 (1 mark)</div>
+                  <p><strong>Question:</strong> The game of chess (without a clock) is best described as:</p>
+                  <p>(A) Partially observable, stochastic, sequential<br>
+                  (B) Fully observable, deterministic, sequential<br>
+                  (C) Fully observable, stochastic, episodic<br>
+                  (D) Partially observable, deterministic, episodic</p>
+                  <p><strong>Answer:</strong> (B). Both players can see the entire board (fully observable), moves produce deterministic outcomes (deterministic), and each move affects future moves (sequential).</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">GATE Practice Question 2 (2 marks)</div>
+                  <p><strong>Question:</strong> Consider a robot vacuum cleaner operating in a large office building during working hours. People may move furniture, spill coffee, or close doors. Classify this environment on all six PEAS environment properties. Justify each.</p>
+                  <p><strong>Answer:</strong></p>
+                  <ul>
+                    <li><strong>Partially observable:</strong> The robot cannot see all rooms simultaneously; it has limited sensor range.</li>
+                    <li><strong>Stochastic:</strong> People spilling coffee or moving furniture introduces randomness.</li>
+                    <li><strong>Sequential:</strong> Cleaning one room affects where to go next; dirt accumulates over time.</li>
+                    <li><strong>Dynamic:</strong> The environment changes while the robot cleans (people move things, doors open/close).</li>
+                    <li><strong>Continuous:</strong> The robot moves in continuous physical space with continuous sensor readings.</li>
+                    <li><strong>Multi-agent:</strong> People are effectively other agents that modify the environment.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 7: Common Mistakes -->
+              <section id="common-mistakes">
+                <h2>7. Common Mistakes &amp; Misconceptions</h2>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 1: Confusing Stochastic with Partially Observable</div>
+                  <p>These are <strong>different</strong> properties. A partially observable environment means the agent can&rsquo;t see everything. A stochastic environment means actions have random outcomes. Chess is fully observable but deterministic. Poker is partially observable AND stochastic. An environment can be partially observable but deterministic (e.g., a robot in a dark room with no randomness).</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 2: Calling Chess &ldquo;Dynamic&rdquo;</div>
+                  <p>Chess (without a clock) is <strong>static</strong>, not dynamic. The board doesn&rsquo;t change while you&rsquo;re thinking. The opponent waits for your move. With a clock, it&rsquo;s <strong>semidynamic</strong> (the clock ticks, affecting performance, but the board itself doesn&rsquo;t change).</p>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">Mistake 3: Episodic vs. Sequential Confusion</div>
+                  <p>If current actions affect future states, the environment is <strong>sequential</strong>. If each decision is independent, it&rsquo;s <strong>episodic</strong>. In spam detection, classifying one email usually doesn&rsquo;t affect the next (episodic). In chess, each move changes the future (sequential). When in doubt, ask: &ldquo;Does the current action matter for future decisions?&rdquo;</p>
+                </div>
+              </section>
+
+              <!-- Section 8: Summary -->
+              <section id="summary" class="summary-section">
+                <h2>&#128218; Summary</h2>
+                <ul>
+                  <li><strong>PEAS</strong> (Performance, Environment, Actuators, Sensors) fully specifies a task environment.</li>
+                  <li>Six environment properties (<strong>ODESSA</strong>): Observable, Deterministic, Episodic, Static, Discrete, Agents.</li>
+                  <li><strong>Fully observable</strong> = agent sees all state; <strong>partially observable</strong> = agent has incomplete information.</li>
+                  <li><strong>Deterministic</strong> = no randomness; <strong>stochastic</strong> = uncertainty in outcomes.</li>
+                  <li><strong>Episodic</strong> = independent decisions; <strong>sequential</strong> = decisions affect future.</li>
+                  <li><strong>Static</strong> = environment doesn&rsquo;t change during deliberation; <strong>dynamic</strong> = environment changes in real-time.</li>
+                  <li><strong>Discrete</strong> = countable states/actions; <strong>continuous</strong> = real-valued states/actions.</li>
+                  <li><strong>Single-agent</strong> = one agent; <strong>multi-agent</strong> = competitive, cooperative, or mixed.</li>
+                  <li>The hardest environments combine all the &ldquo;difficult&rdquo; properties (partially observable, stochastic, sequential, dynamic, continuous, multi-agent).</li>
+                </ul>
+              </section>
+
+              <!-- Section 9: References -->
+              <section id="references" class="references-section">
+                <h2>References</h2>
+                <ol>
+                  <li>Russell, S. &amp; Norvig, P. (2020). <em>Artificial Intelligence: A Modern Approach</em> (4th ed.). Pearson. &mdash; Chapter 2, Section 2.3.</li>
+                  <li>Poole, D. &amp; Mackworth, A. (2017). <em>Artificial Intelligence: Foundations of Computational Agents</em> (2nd ed.). &mdash; Chapter 2.2.</li>
+                </ol>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch01-peas">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="rationality.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Rationality</span>
+              </a>
+              <a href="agent-types.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Agent Types</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#peas-framework">1. PEAS Framework</a>
+                <ul>
+                  <li><a href="#peas-taxi">1.1 Taxi Driver</a></li>
+                  <li><a href="#peas-medical">1.2 Medical Diagnosis</a></li>
+                  <li><a href="#peas-satellite">1.3 Satellite Analysis</a></li>
+                </ul>
+              </li>
+              <li><a href="#environment-properties">2. Environment Properties</a>
+                <ul>
+                  <li><a href="#observable">2.1 Observable</a></li>
+                  <li><a href="#deterministic">2.2 Deterministic</a></li>
+                  <li><a href="#episodic">2.3 Episodic</a></li>
+                  <li><a href="#static">2.4 Static</a></li>
+                  <li><a href="#discrete">2.5 Discrete</a></li>
+                  <li><a href="#agents-count">2.6 Agents</a></li>
+                </ul>
+              </li>
+              <li><a href="#comparison-table">3. Master Comparison Table</a></li>
+              <li><a href="#properties-affect-design">4. Design Impact</a></li>
+              <li><a href="#worked-examples">5. Worked Examples</a></li>
+              <li><a href="#gate-practice">6. GATE Practice</a></li>
+              <li><a href="#common-mistakes">7. Common Mistakes</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

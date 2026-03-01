@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CNN Architectures — LeNet, AlexNet, VGGNet, GoogLeNet, ResNet, DenseNet, MobileNet, EfficientNet with parameter counting and receptive field calculations for GATE DA.">
+  <title>CNN Architectures | GATE DA AI</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="cnn-architectures.html" class="sidebar-link active"><span class="link-check"></span> CNN Architectures<span class="link-type theory">Theory</span></a>
+            <a href="object-detection.html" class="sidebar-link"><span class="link-check"></span> Object Detection<span class="link-type theory">Theory</span></a>
+            <a href="image-segmentation.html" class="sidebar-link"><span class="link-check"></span> Image Segmentation<span class="link-type theory">Theory</span></a>
+            <a href="generative-models-vision.html" class="sidebar-link"><span class="link-check"></span> Generative Models<span class="link-type theory">Theory</span></a>
+            <a href="notes-cv.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-cv.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="image-fundamentals.html">Chapter 11: Computer Vision</a> &raquo; <span class="current">CNN Architectures</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch11-cnn-architectures">
+
+            <h1>CNN Architectures</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch11-cnn-architectures" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Trace the historical evolution of CNN architectures from LeNet-5 to EfficientNet</li>
+                <li>Understand the key innovation behind each architecture</li>
+                <li>Count parameters in convolutional and fully-connected layers</li>
+                <li>Calculate receptive fields across stacked convolutional layers</li>
+                <li>Explain residual connections and why they solve the vanishing gradient problem</li>
+                <li>Compare architectures by depth, parameter count, and accuracy</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="overview">
+              <h2>1. Evolution of CNN Architectures</h2>
+              <p>CNN architectures have evolved rapidly since the late 1990s. The major trend has been <strong>increasing depth</strong> while adding architectural innovations to make deeper networks trainable. ImageNet Large-Scale Visual Recognition Challenge (ILSVRC) results drove much of this progress.</p>
+
+              <div class="note-box">
+                <strong>Timeline:</strong> LeNet-5 (1998) &rarr; AlexNet (2012) &rarr; VGGNet (2014) &rarr; GoogLeNet (2014) &rarr; ResNet (2015) &rarr; DenseNet (2017) &rarr; MobileNet (2017) &rarr; EfficientNet (2019)
+              </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="parameter-counting">
+              <h2>2. Parameter Counting</h2>
+              <div class="theorem-box">
+                <strong>Conv Layer Parameters:</strong> For a convolutional layer with C<sub>in</sub> input channels, C<sub>out</sub> output channels (filters), and kernel size k &times; k:<br>
+                <strong>Params = C<sub>out</sub> &times; (C<sub>in</sub> &times; k &times; k + 1)</strong><br>
+                The +1 accounts for the bias term per filter.
+              </div>
+
+              <div class="theorem-box">
+                <strong>FC Layer Parameters:</strong> For a fully-connected layer with n<sub>in</sub> input neurons and n<sub>out</sub> output neurons:<br>
+                <strong>Params = n<sub>out</sub> &times; (n<sub>in</sub> + 1)</strong>
+              </div>
+
+              <div class="example-box">
+                <h4>Example &mdash; Parameter Count</h4>
+                <p>Conv layer: 64 filters, 3&times;3 kernel, 3 input channels:</p>
+                <p>Params = 64 &times; (3 &times; 3 &times; 3 + 1) = 64 &times; 28 = <strong>1,792</strong></p>
+                <p>FC layer: 4096 inputs, 1000 outputs:</p>
+                <p>Params = 1000 &times; (4096 + 1) = <strong>4,097,000</strong></p>
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="receptive-field">
+              <h2>3. Receptive Field Calculation</h2>
+              <div class="definition-box">
+                <strong>Definition &mdash; Receptive Field:</strong> The region in the input image that influences a particular neuron in a deeper layer. Larger receptive fields let the network capture more global context.
+              </div>
+
+              <div class="theorem-box">
+                <strong>Receptive Field Formula (layer by layer):</strong> Starting from layer L back to the input, if layer l has kernel k<sub>l</sub> and stride s<sub>l</sub>:<br>
+                r<sub>l&minus;1</sub> = r<sub>l</sub> + (k<sub>l</sub> &minus; 1) &times; &prod;<sub>j=1</sub><sup>l&minus;1</sup> s<sub>j</sub><br>
+                With r<sub>L</sub> = 1 at the deepest layer. For a simpler sequential stack with all strides = 1:<br>
+                <strong>RF = 1 + &sum;<sub>l</sub> (k<sub>l</sub> &minus; 1)</strong>
+              </div>
+
+              <div class="example-box">
+                <h4>Example &mdash; Three stacked 3&times;3 conv layers (stride 1)</h4>
+                <p>RF = 1 + (3&minus;1) + (3&minus;1) + (3&minus;1) = 1 + 2 + 2 + 2 = <strong>7</strong></p>
+                <p>Three 3&times;3 layers have the same receptive field as one 7&times;7 layer but with far fewer parameters: 3 &times; (C &times; 3 &times; 3 &times; C) = 27C&sup2; vs 1 &times; (C &times; 7 &times; 7 &times; C) = 49C&sup2;.</p>
+              </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="lenet">
+              <h2>4. LeNet-5 (1998)</h2>
+              <p>Designed by Yann LeCun for handwritten digit recognition (MNIST). One of the first successful CNNs.</p>
+              <table class="comparison-table">
+                <thead><tr><th>Layer</th><th>Config</th><th>Output</th><th>Params</th></tr></thead>
+                <tbody>
+                  <tr><td>Input</td><td>&mdash;</td><td>32 &times; 32 &times; 1</td><td>&mdash;</td></tr>
+                  <tr><td>Conv1</td><td>6 filters, 5&times;5</td><td>28 &times; 28 &times; 6</td><td>156</td></tr>
+                  <tr><td>AvgPool1</td><td>2&times;2, stride 2</td><td>14 &times; 14 &times; 6</td><td>0</td></tr>
+                  <tr><td>Conv2</td><td>16 filters, 5&times;5</td><td>10 &times; 10 &times; 16</td><td>2,416</td></tr>
+                  <tr><td>AvgPool2</td><td>2&times;2, stride 2</td><td>5 &times; 5 &times; 16</td><td>0</td></tr>
+                  <tr><td>FC1</td><td>120 neurons</td><td>120</td><td>48,120</td></tr>
+                  <tr><td>FC2</td><td>84 neurons</td><td>84</td><td>10,164</td></tr>
+                  <tr><td>Output</td><td>10 neurons</td><td>10</td><td>850</td></tr>
+                </tbody>
+              </table>
+              <p><strong>Total:</strong> ~61,706 parameters. Key features: used average pooling and tanh/sigmoid activations (ReLU was not yet popular).</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="alexnet">
+              <h2>5. AlexNet (2012)</h2>
+              <p>Won ILSVRC 2012 with a dramatic drop in top-5 error (26.2% &rarr; 15.3%). Launched the deep learning revolution in computer vision.</p>
+
+              <div class="note-box">
+                <strong>Key Innovations:</strong>
+                <ul>
+                  <li>ReLU activation instead of sigmoid/tanh &mdash; faster training, reduces vanishing gradients</li>
+                  <li>Dropout (p = 0.5) in FC layers for regularisation</li>
+                  <li>Data augmentation (random crops, horizontal flips, colour jitter)</li>
+                  <li>Trained on 2 GPUs with model parallelism</li>
+                  <li>Local Response Normalisation (LRN) &mdash; later superseded by Batch Norm</li>
+                </ul>
+              </div>
+
+              <p><strong>Architecture:</strong> 5 conv layers + 3 FC layers. Input: 227 &times; 227 &times; 3. ~60 million parameters. Most parameters are in FC layers (FC6 alone has &asymp; 37M parameters).</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="vggnet">
+              <h2>6. VGGNet (2014)</h2>
+              <p>Key idea: use only <strong>3 &times; 3 convolutions</strong> stacked deeply. Simple, uniform architecture.</p>
+
+              <div class="definition-box">
+                <strong>VGG Design Principle:</strong> Replace large filters with stacks of small 3&times;3 filters. Three 3&times;3 conv layers have a 7&times;7 receptive field but only 27C&sup2; parameters vs 49C&sup2; for a single 7&times;7 layer, plus three non-linearities instead of one.
+              </div>
+
+              <table class="comparison-table">
+                <thead><tr><th>Block</th><th>VGG-16 Layers</th><th>VGG-19 Layers</th><th>Filters</th><th>Output</th></tr></thead>
+                <tbody>
+                  <tr><td>Block 1</td><td>2 &times; Conv3-64</td><td>2 &times; Conv3-64</td><td>64</td><td>112 &times; 112</td></tr>
+                  <tr><td>Block 2</td><td>2 &times; Conv3-128</td><td>2 &times; Conv3-128</td><td>128</td><td>56 &times; 56</td></tr>
+                  <tr><td>Block 3</td><td>3 &times; Conv3-256</td><td>4 &times; Conv3-256</td><td>256</td><td>28 &times; 28</td></tr>
+                  <tr><td>Block 4</td><td>3 &times; Conv3-512</td><td>4 &times; Conv3-512</td><td>512</td><td>14 &times; 14</td></tr>
+                  <tr><td>Block 5</td><td>3 &times; Conv3-512</td><td>4 &times; Conv3-512</td><td>512</td><td>7 &times; 7</td></tr>
+                  <tr><td>FC layers</td><td colspan="2">FC-4096, FC-4096, FC-1000</td><td>&mdash;</td><td>1000</td></tr>
+                </tbody>
+              </table>
+              <p><strong>VGG-16:</strong> ~138M parameters. <strong>VGG-19:</strong> ~144M parameters. Most parameters still in FC layers.</p>
+
+              <div class="warning-box">
+                <strong>&#9888; Drawback:</strong> Very memory-intensive due to large feature maps and massive FC layers. Slow to train and deploy.
+              </div>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="googlenet">
+              <h2>7. GoogLeNet / Inception (2014)</h2>
+              <p>Won ILSVRC 2014. Introduced the <strong>Inception module</strong> &mdash; parallel branches with different filter sizes concatenated together.</p>
+
+              <div class="definition-box">
+                <strong>Inception Module:</strong> Four parallel branches in each module:
+                <ol>
+                  <li>1 &times; 1 convolution</li>
+                  <li>1 &times; 1 conv &rarr; 3 &times; 3 conv</li>
+                  <li>1 &times; 1 conv &rarr; 5 &times; 5 conv</li>
+                  <li>3 &times; 3 max pool &rarr; 1 &times; 1 conv</li>
+                </ol>
+                Outputs are concatenated along the channel dimension. The 1 &times; 1 convolutions act as <strong>bottleneck</strong> layers to reduce dimensionality before expensive 3&times;3 and 5&times;5 operations.
+              </div>
+
+              <div class="example-box">
+                <h4>Example &mdash; 1&times;1 Convolution as Bottleneck</h4>
+                <p>Input: 28 &times; 28 &times; 192. Apply 5&times;5 conv with 32 filters directly:</p>
+                <p>Params = 32 &times; (192 &times; 5 &times; 5 + 1) = <strong>153,632</strong></p>
+                <p>With bottleneck: 1&times;1 conv to 16 channels, then 5&times;5 conv with 32 filters:</p>
+                <p>Params = 16 &times; (192 + 1) + 32 &times; (16 &times; 25 + 1) = 3,088 + 12,832 = <strong>15,920</strong></p>
+                <p>Reduction: ~10&times; fewer parameters!</p>
+              </div>
+
+              <p><strong>GoogLeNet:</strong> 22 layers deep, only ~5M parameters (27&times; fewer than AlexNet). Uses <strong>Global Average Pooling</strong> instead of FC layers at the end, drastically reducing parameter count. Also uses auxiliary classifiers during training to combat vanishing gradients.</p>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="resnet">
+              <h2>8. ResNet (2015)</h2>
+              <p>Won ILSVRC 2015. Key breakthrough: <strong>residual connections</strong> (skip connections) that enable training of extremely deep networks (up to 152+ layers).</p>
+
+              <div class="definition-box">
+                <strong>Residual Block:</strong> Instead of learning a mapping H(x), the network learns the <em>residual</em> F(x) = H(x) &minus; x, so the output is:<br>
+                <strong>y = F(x) + x</strong><br>
+                The identity shortcut x is added to the output of stacked layers. If the optimal mapping is close to identity, it is easier to learn F(x) &asymp; 0 than to learn H(x) &asymp; x.
+              </div>
+
+              <div class="note-box">
+                <strong>Why It Works:</strong> Skip connections create &ldquo;gradient highways&rdquo; that allow gradients to flow directly from deep layers to shallow layers during backpropagation. This mitigates the vanishing gradient problem in very deep networks.
+              </div>
+
+              <h3>Bottleneck Block (ResNet-50+)</h3>
+              <p>For deeper variants, a bottleneck design is used: 1&times;1 conv (reduce channels) &rarr; 3&times;3 conv &rarr; 1&times;1 conv (expand channels). This reduces computation while maintaining capacity.</p>
+
+              <table class="comparison-table">
+                <thead><tr><th>Model</th><th>Layers</th><th>Block Type</th><th>Params</th><th>Top-5 Error</th></tr></thead>
+                <tbody>
+                  <tr><td>ResNet-18</td><td>18</td><td>Basic (2-layer)</td><td>11.7M</td><td>10.92%</td></tr>
+                  <tr><td>ResNet-34</td><td>34</td><td>Basic (2-layer)</td><td>21.8M</td><td>10.15%</td></tr>
+                  <tr><td>ResNet-50</td><td>50</td><td>Bottleneck (3-layer)</td><td>25.6M</td><td>7.71%</td></tr>
+                  <tr><td>ResNet-101</td><td>101</td><td>Bottleneck (3-layer)</td><td>44.5M</td><td>7.10%</td></tr>
+                  <tr><td>ResNet-152</td><td>152</td><td>Bottleneck (3-layer)</td><td>60.2M</td><td>6.71%</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 9 -->
+            <section id="densenet">
+              <h2>9. DenseNet (2017)</h2>
+              <p>Takes skip connections to the extreme: every layer is connected to <strong>every subsequent layer</strong> within a dense block.</p>
+
+              <div class="definition-box">
+                <strong>Dense Connectivity:</strong> Layer l receives feature maps from all preceding layers [x<sub>0</sub>, x<sub>1</sub>, &hellip;, x<sub>l&minus;1</sub>] concatenated along the channel dimension. Each layer adds k new feature maps (the <em>growth rate</em> k is typically 12&ndash;32).
+              </div>
+
+              <p><strong>Advantages:</strong> Feature reuse, stronger gradient flow, fewer parameters than ResNet for similar accuracy. <strong>Transition layers</strong> (1&times;1 conv + 2&times;2 avg pool) between dense blocks reduce spatial dimensions and channel count.</p>
+            </section>
+
+            <!-- Section 10 -->
+            <section id="mobilenet">
+              <h2>10. MobileNet (2017)</h2>
+              <p>Designed for <strong>mobile and embedded devices</strong>. Uses <em>depthwise separable convolutions</em> to dramatically reduce computation.</p>
+
+              <div class="definition-box">
+                <strong>Depthwise Separable Convolution:</strong> Factorises a standard convolution into two steps:
+                <ol>
+                  <li><strong>Depthwise convolution:</strong> One k &times; k filter per input channel &mdash; spatial filtering only. Params = C<sub>in</sub> &times; k &times; k.</li>
+                  <li><strong>Pointwise convolution:</strong> 1 &times; 1 conv to combine channels. Params = C<sub>in</sub> &times; C<sub>out</sub>.</li>
+                </ol>
+              </div>
+
+              <div class="example-box">
+                <h4>Example &mdash; Computation Saving</h4>
+                <p>Standard conv: C<sub>in</sub> = 64, C<sub>out</sub> = 128, k = 3.</p>
+                <p>Standard params = 128 &times; 64 &times; 3 &times; 3 = <strong>73,728</strong></p>
+                <p>Depthwise separable params = 64 &times; 9 + 64 &times; 128 = 576 + 8,192 = <strong>8,768</strong></p>
+                <p>Reduction factor &asymp; 73,728 / 8,768 &asymp; <strong>8.4&times;</strong></p>
+                <p>General reduction: 1/C<sub>out</sub> + 1/k&sup2; &asymp; 1/k&sup2; for large C<sub>out</sub> (about 8&ndash;9&times; for 3&times;3 kernels).</p>
+              </div>
+            </section>
+
+            <!-- Section 11 -->
+            <section id="efficientnet">
+              <h2>11. EfficientNet (2019)</h2>
+              <p>Uses <strong>compound scaling</strong> to uniformly scale network depth, width, and resolution with a fixed ratio.</p>
+
+              <div class="definition-box">
+                <strong>Compound Scaling:</strong> Given a coefficient &phi;:<br>
+                Depth: d = &alpha;<sup>&phi;</sup>, &nbsp; Width: w = &beta;<sup>&phi;</sup>, &nbsp; Resolution: r = &gamma;<sup>&phi;</sup><br>
+                Subject to &alpha; &middot; &beta;&sup2; &middot; &gamma;&sup2; &asymp; 2 (to roughly double FLOPs). The base EfficientNet-B0 uses neural architecture search (NAS) for the baseline architecture.
+              </div>
+
+              <p>EfficientNet-B7 achieves state-of-the-art accuracy on ImageNet (84.3% top-1) with 8.4&times; fewer parameters than the best GPipe model at the time.</p>
+            </section>
+
+            <!-- Section 12 -->
+            <section id="comparison">
+              <h2>12. Architecture Comparison</h2>
+              <table class="comparison-table">
+                <thead><tr><th>Architecture</th><th>Year</th><th>Depth</th><th>Params</th><th>Key Innovation</th><th>Top-5 Err.</th></tr></thead>
+                <tbody>
+                  <tr><td>LeNet-5</td><td>1998</td><td>7</td><td>~60K</td><td>First practical CNN</td><td>N/A (MNIST)</td></tr>
+                  <tr><td>AlexNet</td><td>2012</td><td>8</td><td>~60M</td><td>ReLU, Dropout, GPU training</td><td>15.3%</td></tr>
+                  <tr><td>VGG-16</td><td>2014</td><td>16</td><td>138M</td><td>Uniform 3&times;3 filters</td><td>7.3%</td></tr>
+                  <tr><td>GoogLeNet</td><td>2014</td><td>22</td><td>5M</td><td>Inception module, GAP</td><td>6.7%</td></tr>
+                  <tr><td>ResNet-50</td><td>2015</td><td>50</td><td>25.6M</td><td>Skip connections</td><td>7.7%</td></tr>
+                  <tr><td>ResNet-152</td><td>2015</td><td>152</td><td>60.2M</td><td>Deep residual learning</td><td>6.7%</td></tr>
+                  <tr><td>DenseNet-121</td><td>2017</td><td>121</td><td>8M</td><td>Dense connectivity</td><td>~7.0%</td></tr>
+                  <tr><td>MobileNet-v1</td><td>2017</td><td>28</td><td>4.2M</td><td>Depthwise separable conv</td><td>~10.5%</td></tr>
+                  <tr><td>EfficientNet-B0</td><td>2019</td><td>&mdash;</td><td>5.3M</td><td>Compound scaling + NAS</td><td>~6.4%</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 13 -->
+            <section id="summary">
+              <h2>13. Summary</h2>
+              <div class="summary-section">
+                <ul>
+                  <li><strong>LeNet-5</strong> pioneered CNNs for digit recognition.</li>
+                  <li><strong>AlexNet</strong> proved deep CNNs could win large-scale competitions with ReLU, Dropout, and GPU acceleration.</li>
+                  <li><strong>VGGNet</strong> showed that depth with small 3&times;3 filters outperforms shallow networks with large filters.</li>
+                  <li><strong>GoogLeNet</strong> introduced Inception modules and 1&times;1 bottleneck convolutions to reduce parameters.</li>
+                  <li><strong>ResNet</strong> solved the degradation problem with skip connections, enabling 100+ layer networks.</li>
+                  <li><strong>DenseNet</strong> maximises feature reuse with dense connectivity within blocks.</li>
+                  <li><strong>MobileNet</strong> uses depthwise separable convolutions for mobile deployment.</li>
+                  <li><strong>EfficientNet</strong> balances depth, width, and resolution via compound scaling.</li>
+                  <li>Parameter counting: Conv params = C<sub>out</sub> &times; (C<sub>in</sub> &times; k&sup2; + 1); FC params = n<sub>out</sub> &times; (n<sub>in</sub> + 1).</li>
+                  <li>Receptive field (all strides 1): RF = 1 + &sum;(k<sub>l</sub> &minus; 1).</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch11-cnn-architectures">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="image-fundamentals.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Image Fundamentals</span></a>
+              <a href="object-detection.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Object Detection</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#overview">1. Evolution</a></li>
+            <li><a href="#parameter-counting">2. Parameter Counting</a></li>
+            <li><a href="#receptive-field">3. Receptive Field</a></li>
+            <li><a href="#lenet">4. LeNet-5</a></li>
+            <li><a href="#alexnet">5. AlexNet</a></li>
+            <li><a href="#vggnet">6. VGGNet</a></li>
+            <li><a href="#googlenet">7. GoogLeNet</a></li>
+            <li><a href="#resnet">8. ResNet</a></li>
+            <li><a href="#densenet">9. DenseNet</a></li>
+            <li><a href="#mobilenet">10. MobileNet</a></li>
+            <li><a href="#efficientnet">11. EfficientNet</a></li>
+            <li><a href="#comparison">12. Comparison</a></li>
+            <li><a href="#summary">13. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

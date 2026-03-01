@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Depth-Limited Search (DLS) — DFS with depth limit l, pseudocode with cutoff, choosing appropriate depth limit, diameter of state space for GATE DA.">
+  <title>Depth-Limited Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a><a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a><a href="../01-intelligent-agents/notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+            <a href="state-space-representation.html" class="sidebar-link"><span class="link-check"></span> State Space<span class="link-type theory">Theory</span></a>
+            <a href="breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-first-search.html" class="sidebar-link"><span class="link-check"></span> DFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-limited-search.html" class="sidebar-link active"><span class="link-check"></span> Depth-Limited<span class="link-type theory">Theory</span></a>
+            <a href="iterative-deepening-dfs.html" class="sidebar-link"><span class="link-check"></span> IDDFS<span class="link-type theory">Theory</span></a>
+            <a href="uniform-cost-search.html" class="sidebar-link"><span class="link-check"></span> UCS<span class="link-type theory">Theory</span></a>
+            <a href="bidirectional-search.html" class="sidebar-link"><span class="link-check"></span> Bidirectional<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-uninformed-strategies.html" class="sidebar-link"><span class="link-check"></span> Comparison<span class="link-type theory">Theory</span></a>
+            <a href="complexity-analysis.html" class="sidebar-link"><span class="link-check"></span> Complexity<span class="link-type theory">Theory</span></a>
+            <a href="practical-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uninformed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="problem-formulation.html">Chapter 2: Uninformed Search</a> &raquo; <span class="current">Depth-Limited Search</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch02-dls">
+
+            <h1>Depth-Limited Search (DLS)</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch02-dls" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="depth-first-search.html">DFS</a> &mdash; Standard DFS algorithm and its limitations</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Modify DFS to include a <strong>depth limit l</strong></li>
+              <li>Understand the distinction between <strong>failure</strong> and <strong>cutoff</strong> return values</li>
+              <li>Choose an appropriate depth limit using the <strong>diameter</strong> of the state space</li>
+              <li>Analyze DLS properties: completeness, optimality, time, space</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <section id="motivation">
+                <h2>1. Motivation</h2>
+                <p>DFS can go infinitely deep in trees with unbounded depth or cycles. <strong>Depth-Limited Search</strong> solves this by imposing a predetermined depth limit <em>l</em>. Nodes at depth <em>l</em> are treated as if they have no successors&mdash;the search does not expand them.</p>
+                <p>DLS is essentially DFS with an additional &ldquo;depth &ge; l? stop.&rdquo; check. This guarantees termination but introduces a new problem: what if the goal is deeper than <em>l</em>?</p>
+              </section>
+
+              <section id="algorithm">
+                <h2>2. DLS Algorithm</h2>
+                <pre><code>function DEPTH-LIMITED-SEARCH(problem, limit):
+    return RECURSIVE-DLS(Node(problem.INITIAL-STATE), problem, limit)
+
+function RECURSIVE-DLS(node, problem, limit):
+    if problem.GOAL-TEST(node.STATE): return SOLUTION(node)
+    else if limit == 0: return CUTOFF        // depth limit reached
+    else:
+        cutoff_occurred = false
+        for each child in EXPAND(problem, node):
+            result = RECURSIVE-DLS(child, problem, limit - 1)
+            if result == CUTOFF: cutoff_occurred = true
+            else if result ≠ FAILURE: return result    // solution found
+        if cutoff_occurred: return CUTOFF
+        else: return FAILURE</code></pre>
+
+                <div class="note-box">
+                  <div class="box-title">CUTOFF vs. FAILURE</div>
+                  <p><strong>CUTOFF:</strong> No goal found <em>within the depth limit</em>, but there may be solutions at greater depths. The search space was not fully explored.<br>
+                  <strong>FAILURE:</strong> The entire search space (within the limit) was explored and no goal exists. This distinction is critical for Iterative Deepening Search, which uses CUTOFF to decide whether to try a deeper limit.</p>
+                </div>
+              </section>
+
+              <section id="choosing-limit">
+                <h2>3. Choosing the Depth Limit</h2>
+                <p>The depth limit <em>l</em> should be at least as large as the solution depth <em>d</em>. But <em>d</em> is usually unknown! We can use problem-specific knowledge:</p>
+
+                <div class="definition-box">
+                  <div class="box-title">Diameter of the State Space</div>
+                  <p>The <strong>diameter</strong> of a state space is the longest shortest-path between any two states. If we know the diameter, we can use it as <em>l</em> because no solution can be longer than the diameter.</p>
+                </div>
+
+                <p><strong>Examples:</strong></p>
+                <ul>
+                  <li><strong>Romania map:</strong> 20 cities &rArr; diameter = 19 (at most 19 steps from any city to any other). So l = 19 is sufficient, but very loose if the actual solution is at depth 4.</li>
+                  <li><strong>8-puzzle:</strong> Maximum solution depth is 31 moves (from hardest start to goal). So l = 31 guarantees completeness.</li>
+                </ul>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; If l &lt; d</div>
+                  <p>If the depth limit is less than the solution depth, DLS will return CUTOFF and <strong>miss the solution entirely</strong>. There is no way to distinguish &ldquo;no solution exists&rdquo; from &ldquo;solution is deeper than l&rdquo; without trying a larger limit.</p>
+                </div>
+              </section>
+
+              <section id="properties">
+                <h2>4. Properties of DLS</h2>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Property</th><th>Value</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Complete?</strong></td><td>No, if l &lt; d. Yes, if l &ge; d.</td></tr>
+                      <tr><td><strong>Optimal?</strong></td><td>No. May find a deeper solution before a shallower one within the limit.</td></tr>
+                      <tr><td><strong>Time</strong></td><td>O(b<sup>l</sup>)</td></tr>
+                      <tr><td><strong>Space</strong></td><td>O(bl) &mdash; same as DFS but bounded by l instead of m.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section id="worked-examples">
+                <h2>5. Worked Examples</h2>
+
+                <h3>Example 1: DLS with l = 2</h3>
+                <pre><code>        S (depth 0)
+       / \
+      A   B  (depth 1)
+     / \   \
+    C   D   G  (depth 2)
+        |
+        G' (depth 3, another goal)</code></pre>
+                <p>DLS with l=2: Explores S, A, C (depth 2, leaf), D (depth 2, leaf&mdash;D&rsquo;s child G&prime; at depth 3 is NOT expanded). Then B, G (depth 2, GOAL TEST &rarr; <strong>SUCCESS!</strong>).</p>
+                <p>Path found: S &rarr; B &rarr; G. Note that G&prime; at depth 3 was missed because l=2.</p>
+
+                <h3>Example 2: DLS with l = 1</h3>
+                <p>Same tree. DLS with l=1: Explores S (depth 0). Children A, B at depth 1. They are at the limit, so their children are not expanded. Neither A nor B is a goal &rarr; returns <strong>CUTOFF</strong>.</p>
+                <p>The goal at depth 2 was missed. This tells us l=1 is too shallow.</p>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section"><ul>
+                  <li>DLS = DFS with a depth limit <em>l</em>. Nodes at depth <em>l</em> are not expanded.</li>
+                  <li>Returns <strong>CUTOFF</strong> if the limit was reached without finding a goal, or <strong>FAILURE</strong> if no goal exists within the limit.</li>
+                  <li>Choose <em>l</em> based on the <strong>diameter</strong> of the state space or domain knowledge.</li>
+                  <li>Complete only if l &ge; d. Not optimal. Time O(b<sup>l</sup>), space O(bl).</li>
+                  <li>DLS is the building block for <strong>Iterative Deepening Search</strong>.</li>
+                </ul></div>
+              </section>
+
+              <section id="references"><h2>References</h2><ul><li>Russell &amp; Norvig, <em>AIMA</em>, Chapter 3.4.4.</li></ul></section>
+            </div>
+
+            <button class="complete-btn" data-page="ch02-dls">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="depth-first-search.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Depth-First Search</span></a>
+              <a href="iterative-deepening-dfs.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Iterative Deepening DFS</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#motivation">1. Motivation</a></li>
+            <li><a href="#algorithm">2. Algorithm</a></li>
+            <li><a href="#choosing-limit">3. Choosing the Limit</a></li>
+            <li><a href="#properties">4. Properties</a></li>
+            <li><a href="#worked-examples">5. Worked Examples</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

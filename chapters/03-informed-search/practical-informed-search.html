@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive A* and Greedy Best-First Search Grid Visualization — draw walls, generate mazes, step through or auto-play pathfinding with Manhattan and Euclidean heuristics for GATE DA preparation.">
+  <title>A* Search Demo — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA*<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="sma-star.html" class="sidebar-link"><span class="link-check"></span> SMA*<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded<span class="link-type theory">Theory</span></a>
+            <a href="local-search-hill-climbing.html" class="sidebar-link"><span class="link-check"></span> Hill Climbing<span class="link-type theory">Theory</span></a>
+            <a href="simulated-annealing.html" class="sidebar-link"><span class="link-check"></span> Simulated Annealing<span class="link-type theory">Theory</span></a>
+            <a href="genetic-algorithms.html" class="sidebar-link"><span class="link-check"></span> Genetic Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link active"><span class="link-check"></span> A* Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="heuristic-functions.html">Chapter 3: Informed Search</a> &raquo; <span class="current">A* Search Demo</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-practical" data-page-id="ch03-practical">
+
+            <h1>Interactive A* &amp; Greedy Best-First Search Demo</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch03-practical" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="a-star-search.html">A* Search</a> &mdash; Understanding of f(n) = g(n) + h(n) and the priority-queue expansion strategy</li>
+              <li><a href="greedy-best-first-search.html">Greedy Best-First Search</a> &mdash; How f(n) = h(n) selects nodes</li>
+              <li><a href="heuristic-functions.html">Heuristic Functions</a> &mdash; Manhattan and Euclidean distance heuristics</li>
+              <li><a href="admissibility-and-consistency.html">Admissibility &amp; Consistency</a> &mdash; Why A* guarantees optimality</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li><strong>Visualise</strong> how A* and Greedy Best-First Search explore a 2D grid</li>
+              <li>Compare the <strong>number of nodes expanded</strong> and <strong>path optimality</strong> between algorithms</li>
+              <li>Observe the effect of different <strong>heuristics</strong> (Manhattan vs Euclidean) on search behaviour</li>
+              <li>Build intuition for <strong>why A* finds optimal paths</strong> while Greedy does not always</li>
+              <li>Understand how <strong>obstacles and maze structures</strong> affect search performance</li>
+            </ul></div>
+
+            <div class="content-body">
+
+              <!-- Section 1: How to Use -->
+              <section id="how-to-use">
+                <h2>1. How to Use This Demo</h2>
+                <p>The interactive grid visualisation below lets you watch informed search algorithms find a path from a start cell (top-left, green) to a goal cell (bottom-right, red). Here&rsquo;s how to use it:</p>
+                <ol>
+                  <li><strong>Select an algorithm</strong> from the dropdown: A* or Greedy Best-First Search.</li>
+                  <li><strong>Select a heuristic</strong>: Manhattan distance (|&Delta;x| + |&Delta;y|) or Euclidean distance (&radic;(&Delta;x&sup2; + &Delta;y&sup2;)).</li>
+                  <li>Toggle <strong>Draw Walls</strong> to click/drag on the grid and place obstacles, or use <strong>Generate Maze</strong> for a random maze.</li>
+                  <li>Click <strong>Step</strong> to advance one expansion at a time, or <strong>Play</strong> to auto-advance at the selected speed.</li>
+                  <li>Adjust the <strong>Speed</strong> slider to control auto-play speed (slow for learning, fast for comparison).</li>
+                  <li>Click <strong>Reset</strong> to clear the search state (walls are preserved) or <strong>Clear All</strong> to remove walls too.</li>
+                  <li>Watch the <strong>colour coding</strong>:
+                    <ul>
+                      <li><span style="color:#2ecc71; font-weight:bold;">Green</span> = Start cell</li>
+                      <li><span style="color:#e74c3c; font-weight:bold;">Red</span> = Goal cell</li>
+                      <li><span style="color:#3498db; font-weight:bold;">Blue</span> = In open list (frontier)</li>
+                      <li><span style="color:#e67e22; font-weight:bold;">Orange</span> = Currently being expanded</li>
+                      <li><span style="color:#95a5a6; font-weight:bold;">Grey</span> = Closed (already expanded)</li>
+                      <li><span style="color:#2c3e50; font-weight:bold;">Dark</span> = Wall (impassable)</li>
+                      <li><span style="color:#f1c40f; font-weight:bold;">Yellow</span> = Final path found</li>
+                    </ul>
+                  </li>
+                </ol>
+              </section>
+
+              <!-- Section 2: Demo -->
+              <section id="demo">
+                <h2>2. Interactive Grid Visualisation</h2>
+
+                <!-- Controls Panel -->
+                <div class="demo-controls" style="display:flex; flex-wrap:wrap; gap:var(--spacing-md); align-items:center; padding:var(--spacing-md); background:var(--bg-secondary); border-radius:var(--border-radius-lg); margin-bottom:var(--spacing-md); border:1px solid var(--border-color);">
+
+                  <div style="display:flex; flex-direction:column; gap:var(--spacing-xs);">
+                    <label for="algorithmSelect" style="font-weight:600; font-size:0.85rem;">Algorithm</label>
+                    <select id="algorithmSelect" style="padding:var(--spacing-xs) var(--spacing-sm); border:1px solid var(--border-color); border-radius:var(--border-radius); background:var(--bg-primary); color:var(--text-primary); font-size:0.9rem;">
+                      <option value="astar" selected>A* Search</option>
+                      <option value="greedy">Greedy Best-First</option>
+                    </select>
+                  </div>
+
+                  <div style="display:flex; flex-direction:column; gap:var(--spacing-xs);">
+                    <label for="heuristicSelect" style="font-weight:600; font-size:0.85rem;">Heuristic</label>
+                    <select id="heuristicSelect" style="padding:var(--spacing-xs) var(--spacing-sm); border:1px solid var(--border-color); border-radius:var(--border-radius); background:var(--bg-primary); color:var(--text-primary); font-size:0.9rem;">
+                      <option value="manhattan" selected>Manhattan</option>
+                      <option value="euclidean">Euclidean</option>
+                    </select>
+                  </div>
+
+                  <div style="display:flex; gap:var(--spacing-xs); align-items:flex-end;">
+                    <button id="drawWallsBtn" class="btn-secondary" style="padding:var(--spacing-xs) var(--spacing-sm); font-size:0.85rem;" title="Toggle wall drawing mode">&#9999; Draw Walls</button>
+                    <button id="generateMazeBtn" class="btn-secondary" style="padding:var(--spacing-xs) var(--spacing-sm); font-size:0.85rem;" title="Generate a random maze">&#127939; Generate Maze</button>
+                    <button id="clearAllBtn" class="btn-secondary" style="padding:var(--spacing-xs) var(--spacing-sm); font-size:0.85rem;" title="Clear walls and reset">&#128465; Clear All</button>
+                  </div>
+
+                  <div style="display:flex; gap:var(--spacing-xs); align-items:flex-end;">
+                    <button id="stepBtn" class="btn-primary" style="padding:var(--spacing-xs) var(--spacing-sm); font-size:0.85rem;">&#9654;&#124; Step</button>
+                    <button id="playBtn" class="btn-primary" style="padding:var(--spacing-xs) var(--spacing-sm); font-size:0.85rem;">&#9654; Play</button>
+                    <button id="resetBtn" class="btn-secondary" style="padding:var(--spacing-xs) var(--spacing-sm); font-size:0.85rem;">&#8634; Reset</button>
+                  </div>
+
+                  <div style="display:flex; flex-direction:column; gap:var(--spacing-xs);">
+                    <label for="speedSlider" style="font-weight:600; font-size:0.85rem;">Speed</label>
+                    <input id="speedSlider" type="range" min="1" max="10" value="5" style="width:100px;">
+                  </div>
+                </div>
+
+                <!-- Stats Panel -->
+                <div class="demo-stats" style="display:flex; flex-wrap:wrap; gap:var(--spacing-lg); padding:var(--spacing-md); background:var(--bg-secondary); border-radius:var(--border-radius-lg); margin-bottom:var(--spacing-md); border:1px solid var(--border-color);">
+                  <div style="text-align:center;">
+                    <div style="font-size:0.8rem; color:var(--text-secondary);">Nodes Expanded</div>
+                    <div id="statNodesExpanded" style="font-size:1.4rem; font-weight:700; color:var(--color-primary);">0</div>
+                  </div>
+                  <div style="text-align:center;">
+                    <div style="font-size:0.8rem; color:var(--text-secondary);">Open List Size</div>
+                    <div id="statOpenSize" style="font-size:1.4rem; font-weight:700; color:var(--color-primary);">0</div>
+                  </div>
+                  <div style="text-align:center;">
+                    <div style="font-size:0.8rem; color:var(--text-secondary);">Path Cost</div>
+                    <div id="statPathCost" style="font-size:1.4rem; font-weight:700; color:var(--color-primary);">&mdash;</div>
+                  </div>
+                  <div style="text-align:center;">
+                    <div style="font-size:0.8rem; color:var(--text-secondary);">Path Length</div>
+                    <div id="statPathLength" style="font-size:1.4rem; font-weight:700; color:var(--color-primary);">&mdash;</div>
+                  </div>
+                  <div style="text-align:center;">
+                    <div style="font-size:0.8rem; color:var(--text-secondary);">Time (ms)</div>
+                    <div id="statTime" style="font-size:1.4rem; font-weight:700; color:var(--color-primary);">&mdash;</div>
+                  </div>
+                </div>
+
+                <!-- Grid Container -->
+                <div id="astar-grid-container" class="demo-container" style="display:flex; justify-content:center; padding:var(--spacing-md); background:var(--bg-secondary); border-radius:var(--border-radius-lg); border:1px solid var(--border-color); min-height:400px; overflow:auto;">
+                  <p style="color:var(--text-secondary); font-style:italic; align-self:center;">Initialising grid&hellip; (requires JavaScript)</p>
+                </div>
+
+                <!-- Legend -->
+                <div style="display:flex; flex-wrap:wrap; gap:var(--spacing-md); padding:var(--spacing-sm); margin-top:var(--spacing-sm); font-size:0.85rem; color:var(--text-secondary);">
+                  <span>&#9632; <span style="color:#2ecc71;">Start</span></span>
+                  <span>&#9632; <span style="color:#e74c3c;">Goal</span></span>
+                  <span>&#9632; <span style="color:#3498db;">Open (Frontier)</span></span>
+                  <span>&#9632; <span style="color:#95a5a6;">Closed (Explored)</span></span>
+                  <span>&#9632; <span style="color:#2c3e50;">Wall</span></span>
+                  <span>&#9632; <span style="color:#f1c40f;">Path</span></span>
+                </div>
+              </section>
+
+              <!-- Section 3: A* Explanation -->
+              <section id="astar-explanation">
+                <h2>3. A* Search &mdash; How It Works</h2>
+                <p>A* Search evaluates each node using the evaluation function:</p>
+                <div class="definition-box">
+                  <div class="box-title">Evaluation Function</div>
+                  <p style="font-size:1.2rem; text-align:center;"><strong>f(n) = g(n) + h(n)</strong></p>
+                  <ul>
+                    <li><strong>g(n)</strong> = actual cost from the start node to node n (path cost so far)</li>
+                    <li><strong>h(n)</strong> = heuristic estimate of the cost from node n to the goal</li>
+                    <li><strong>f(n)</strong> = estimated total cost of the cheapest solution through n</li>
+                  </ul>
+                </div>
+
+                <p>A* always expands the node in the open list with the <strong>lowest f(n)</strong>. This combines the &ldquo;cheapest path so far&rdquo; (g) with the &ldquo;estimated remaining cost&rdquo; (h), balancing exploration and exploitation.</p>
+
+                <h3>Key Properties</h3>
+                <ul>
+                  <li><strong>Complete:</strong> Yes (if branching factor is finite and step costs &ge; &epsilon; &gt; 0)</li>
+                  <li><strong>Optimal:</strong> Yes, when h(n) is <em>admissible</em> (never overestimates) &mdash; and with graph search, when h(n) is also <em>consistent</em></li>
+                  <li><strong>Time &amp; Space:</strong> O(b<sup>d</sup>) in the worst case, but with a good heuristic, dramatically fewer nodes are expanded</li>
+                </ul>
+
+                <h3>On the Grid</h3>
+                <p>In this demo, each cell is a node and each move to an adjacent cell has cost 1 (horizontal/vertical). The heuristic estimates the distance to the goal cell:</p>
+                <ul>
+                  <li><strong>Manhattan:</strong> h(n) = |x<sub>n</sub> &minus; x<sub>goal</sub>| + |y<sub>n</sub> &minus; y<sub>goal</sub>| &mdash; admissible and consistent for 4-directional movement</li>
+                  <li><strong>Euclidean:</strong> h(n) = &radic;((x<sub>n</sub> &minus; x<sub>goal</sub>)&sup2; + (y<sub>n</sub> &minus; y<sub>goal</sub>)&sup2;) &mdash; admissible and consistent, but less &ldquo;informed&rdquo; than Manhattan for grid movement</li>
+                </ul>
+                <p>Watch how A* opens fewer nodes with Manhattan (a tighter, more informed heuristic) compared to Euclidean.</p>
+              </section>
+
+              <!-- Section 4: Greedy Explanation -->
+              <section id="greedy-explanation">
+                <h2>4. Greedy Best-First Search &mdash; How It Works</h2>
+                <p>Greedy Best-First Search uses only the heuristic for its evaluation:</p>
+                <div class="definition-box">
+                  <div class="box-title">Evaluation Function</div>
+                  <p style="font-size:1.2rem; text-align:center;"><strong>f(n) = h(n)</strong></p>
+                  <p>It always expands the node that <strong>appears closest to the goal</strong>, ignoring the cost already incurred.</p>
+                </div>
+
+                <h3>Key Properties</h3>
+                <ul>
+                  <li><strong>Complete:</strong> No in general (can get stuck in loops without cycle checking); Yes with repeated-state checking in finite spaces</li>
+                  <li><strong>Optimal:</strong> No &mdash; it may find a path that &ldquo;looks close&rdquo; to the goal but is actually longer</li>
+                  <li><strong>Time &amp; Space:</strong> O(b<sup>m</sup>) worst case, but a good heuristic can provide dramatic improvement</li>
+                </ul>
+
+                <h3>Comparison Exercise</h3>
+                <p>Try this experiment with the demo:</p>
+                <ol>
+                  <li>Generate a maze, then run <strong>A*</strong> with Manhattan. Note the nodes expanded and path cost.</li>
+                  <li>Reset the search (keep walls), switch to <strong>Greedy</strong>, and run again.</li>
+                  <li>Compare: Greedy usually expands <em>fewer</em> nodes but may find a <em>longer</em> path. A* expands more nodes but guarantees the <em>shortest</em> path.</li>
+                </ol>
+                <div class="key-insight">
+                  <div class="box-title">&#128161; Key Insight</div>
+                  <p>A* = &ldquo;guaranteed optimal, usually efficient&rdquo;. Greedy = &ldquo;faster on average, but path may be suboptimal.&rdquo; The g(n) component in A* is what ensures optimality &mdash; it prevents the algorithm from being &ldquo;seduced&rdquo; by nodes that are close to the goal but reached via an expensive path.</p>
+                </div>
+              </section>
+
+              <!-- Section 5: Heuristic Comparison -->
+              <section id="heuristic-comparison">
+                <h2>5. Manhattan vs Euclidean Heuristic</h2>
+                <p>Both heuristics are admissible for 4-directional grid movement, but they lead to different search behaviour:</p>
+                <div class="comparison-table" style="overflow-x:auto;">
+                  <table>
+                    <thead>
+                      <tr><th>Property</th><th>Manhattan</th><th>Euclidean</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Formula</td><td>|&Delta;x| + |&Delta;y|</td><td>&radic;(&Delta;x&sup2; + &Delta;y&sup2;)</td></tr>
+                      <tr><td>Admissible?</td><td>Yes (4-dir)</td><td>Yes (4-dir)</td></tr>
+                      <tr><td>Consistent?</td><td>Yes</td><td>Yes</td></tr>
+                      <tr><td>Dominance</td><td>h<sub>M</sub> &ge; h<sub>E</sub> always</td><td>Weaker estimate</td></tr>
+                      <tr><td>Nodes Expanded (A*)</td><td>Fewer</td><td>More</td></tr>
+                      <tr><td>Best for</td><td>4-directional grids</td><td>8-directional or continuous</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>Since Manhattan <strong>dominates</strong> Euclidean (h<sub>M</sub>(n) &ge; h<sub>E</sub>(n) for all n), A* with Manhattan will always expand a subset of the nodes that A* with Euclidean expands. Verify this in the demo!</p>
+              </section>
+
+              <!-- Section 6: Exercises -->
+              <section id="exercises">
+                <h2>6. Guided Exercises</h2>
+                <div class="example-box">
+                  <div class="box-title">&#128221; Exercise 1: Open Space Comparison</div>
+                  <p>Clear all walls. Run A* (Manhattan), then Greedy (Manhattan) on the empty grid. Compare:</p>
+                  <ul>
+                    <li>Does A* expand more or fewer nodes than Greedy?</li>
+                    <li>Are the final paths the same? Why or why not?</li>
+                    <li>Predict: On an open grid with no obstacles, should both algorithms find the same path?</li>
+                  </ul>
+                </div>
+                <div class="example-box">
+                  <div class="box-title">&#128221; Exercise 2: Maze Trap</div>
+                  <p>Generate a maze. Observe whether Greedy gets &ldquo;trapped&rdquo; exploring dead ends that appear close to the goal. Then run A* on the same maze and note how g(n) helps it avoid those traps.</p>
+                </div>
+                <div class="example-box">
+                  <div class="box-title">&#128221; Exercise 3: Heuristic Impact</div>
+                  <p>With the same maze, run A* first with Manhattan, then with Euclidean. Record the nodes expanded for each. Verify that Manhattan always results in fewer or equal node expansions.</p>
+                </div>
+                <div class="example-box">
+                  <div class="box-title">&#128221; Exercise 4: Wall Placement Strategy</div>
+                  <p>Manually draw a &ldquo;U-shape&rdquo; wall around the goal, forcing a long detour. Observe how Greedy expands many nodes inside the U (drawn toward the goal) while A* more quickly finds the route around.</p>
+                </div>
+              </section>
+
+              <!-- Section 7: Interpreting Results -->
+              <section id="interpreting-results">
+                <h2>7. Interpreting the Results</h2>
+                <p>After running multiple experiments, you should observe:</p>
+                <ul>
+                  <li><strong>A* (Manhattan)</strong> consistently finds the shortest path with the fewest expanded nodes among the tested configurations.</li>
+                  <li><strong>A* (Euclidean)</strong> also finds the optimal path but typically expands a few more nodes since the heuristic is less tight.</li>
+                  <li><strong>Greedy (Manhattan or Euclidean)</strong> often runs faster (fewer expansions) but the path it finds can be significantly suboptimal, especially in mazes with many dead ends.</li>
+                  <li>The <strong>stats panel</strong> makes the trade-offs quantifiable: optimal path cost vs. computational effort (nodes expanded).</li>
+                  <li>These observations directly correspond to the theoretical guarantees proved in the <a href="a-star-search.html">A* Search</a> and <a href="admissibility-and-consistency.html">Admissibility &amp; Consistency</a> pages.</li>
+                </ul>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section"><ul>
+                  <li>A* evaluates nodes by <strong>f(n) = g(n) + h(n)</strong>; Greedy uses <strong>f(n) = h(n)</strong>.</li>
+                  <li>A* guarantees an <strong>optimal path</strong> when h is admissible (and consistent for graph search).</li>
+                  <li>Greedy is <strong>faster on average</strong> but provides <strong>no optimality guarantee</strong>.</li>
+                  <li>Manhattan distance <strong>dominates</strong> Euclidean on 4-directional grids, leading to fewer node expansions.</li>
+                  <li>Use this demo to <strong>build visual intuition</strong> before solving GATE problems on paper.</li>
+                  <li>Practice <strong>predicting</strong> which node expands next before clicking Step &mdash; this is the exact skill tested in GATE.</li>
+                </ul></div>
+              </section>
+
+              <section id="references"><h2>References</h2><ul>
+                <li>Russell &amp; Norvig, <em>AIMA</em>, Chapter 3.5 &mdash; Informed (Heuristic) Search Strategies.</li>
+                <li>Hart, P. E., Nilsson, N. J., &amp; Raphael, B. (1968). &ldquo;A Formal Basis for the Heuristic Determination of Minimum Cost Paths.&rdquo; <em>IEEE Transactions on Systems Science and Cybernetics</em>.</li>
+              </ul></section>
+            </div>
+
+            <button class="complete-btn" data-page="ch03-practical">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="heuristic-design-techniques.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Heuristic Design</span></a>
+              <a href="gate-previous-year-informed.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">GATE PYQs</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#how-to-use">1. How to Use</a></li>
+            <li><a href="#demo">2. Visualisation</a></li>
+            <li><a href="#astar-explanation">3. A* Search</a></li>
+            <li><a href="#greedy-explanation">4. Greedy Best-First</a></li>
+            <li><a href="#heuristic-comparison">5. Heuristic Comparison</a></li>
+            <li><a href="#exercises">6. Exercises</a></li>
+            <li><a href="#interpreting-results">7. Interpreting Results</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

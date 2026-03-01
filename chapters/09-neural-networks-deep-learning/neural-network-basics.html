@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Neural Network Basics — Biological vs artificial neurons, McCulloch-Pitts model, weighted sums, threshold logic, universal function approximation, network terminology for GATE DA.">
+  <title>Neural Network Basics — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="neural-network-basics.html" class="sidebar-link active"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a>
+            <a href="perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="multilayer-perceptron.html" class="sidebar-link"><span class="link-check"></span> Multilayer Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="backpropagation.html" class="sidebar-link"><span class="link-check"></span> Backpropagation<span class="link-type theory">Theory</span></a>
+            <a href="activation-functions.html" class="sidebar-link"><span class="link-check"></span> Activation Functions<span class="link-type theory">Theory</span></a>
+            <a href="optimization-algorithms.html" class="sidebar-link"><span class="link-check"></span> Optimization Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="convolutional-neural-networks.html" class="sidebar-link"><span class="link-check"></span> CNNs<span class="link-type theory">Theory</span></a>
+            <a href="recurrent-neural-networks.html" class="sidebar-link"><span class="link-check"></span> RNNs<span class="link-type theory">Theory</span></a>
+            <a href="lstm-gru.html" class="sidebar-link"><span class="link-check"></span> LSTM &amp; GRU<span class="link-type theory">Theory</span></a>
+            <a href="attention-transformers.html" class="sidebar-link"><span class="link-check"></span> Attention &amp; Transformers<span class="link-type theory">Theory</span></a>
+            <a href="regularization-deep-learning.html" class="sidebar-link"><span class="link-check"></span> DL Regularization<span class="link-type theory">Theory</span></a>
+            <a href="practical-neural-network.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="neural-network-basics.html">Chapter 9: Neural Networks &amp; Deep Learning</a> &raquo; <span class="current">Neural Network Basics</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch09-neural-network-basics">
+
+            <h1>Neural Network Basics</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch09-neural-network-basics" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="../08-machine-learning-foundations/ml-fundamentals.html">ML Fundamentals</a> &mdash; Supervised learning, loss functions, gradient concepts</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Understand the <strong>biological inspiration</strong> behind artificial neural networks</li>
+              <li>Describe the <strong>McCulloch-Pitts neuron</strong> model and its limitations</li>
+              <li>Explain <strong>weighted sums</strong>, thresholds, and bias terms</li>
+              <li>Appreciate the <strong>Universal Approximation Theorem</strong></li>
+              <li>Define fundamental terminology: layers, nodes, weights, bias, connections</li>
+              <li>Trace the <strong>historical evolution</strong> from early perceptrons to deep learning</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="biological-neurons">
+                <h2>1. Biological Neurons</h2>
+                <p>The human brain contains roughly <strong>86 billion neurons</strong>, each connected to about 7,000 other neurons through structures called <strong>synapses</strong>. Understanding biological neurons helps motivate the design of artificial neural networks.</p>
+
+                <div class="definition-box">
+                  <h4>Biological Neuron Components</h4>
+                  <ul>
+                    <li><strong>Dendrites:</strong> Branch-like structures that receive electrical signals from other neurons.</li>
+                    <li><strong>Cell Body (Soma):</strong> Integrates (sums) the incoming signals. If the total exceeds a threshold, the neuron &ldquo;fires.&rdquo;</li>
+                    <li><strong>Axon:</strong> A long fibre that transmits the output signal to other neurons.</li>
+                    <li><strong>Synapse:</strong> The junction between the axon of one neuron and the dendrite of another. Each synapse has a <em>strength</em> (analogous to a weight).</li>
+                  </ul>
+                </div>
+
+                <p>A biological neuron operates in a simple, elegant way: it accumulates electrical potentials from many incoming synapses. When the accumulated potential exceeds the <strong>activation threshold</strong>, the neuron fires an electrical pulse (action potential) along its axon. This all-or-nothing behaviour inspired early computational models.</p>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="mcculloch-pitts">
+                <h2>2. McCulloch-Pitts Neuron Model (1943)</h2>
+                <p>Warren McCulloch and Walter Pitts proposed the first mathematical model of a neuron in 1943. Their model is the foundation upon which all neural network research is built.</p>
+
+                <div class="definition-box">
+                  <h4>McCulloch-Pitts (MCP) Neuron</h4>
+                  <p>A binary unit that receives binary inputs x<sub>1</sub>, x<sub>2</sub>, &hellip;, x<sub>n</sub> &isin; {0, 1} and produces a binary output y &isin; {0, 1}:</p>
+                  <pre><code>y = 1  if  &sum; x_i  &ge;  &theta;
+y = 0  otherwise</code></pre>
+                  <p>where &theta; is a fixed <strong>threshold</strong>.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example: AND Gate with MCP Neuron</h4>
+                  <p>Two inputs x<sub>1</sub>, x<sub>2</sub>. Set threshold &theta; = 2.</p>
+                  <table class="comparison-table">
+                    <tr><th>x<sub>1</sub></th><th>x<sub>2</sub></th><th>&sum;</th><th>y (output)</th></tr>
+                    <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                    <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                    <tr><td>1</td><td>1</td><td>2</td><td>1</td></tr>
+                  </table>
+                  <p>The MCP neuron with &theta; = 2 implements the <strong>AND</strong> function.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example: OR Gate with MCP Neuron</h4>
+                  <p>Two inputs x<sub>1</sub>, x<sub>2</sub>. Set threshold &theta; = 1.</p>
+                  <table class="comparison-table">
+                    <tr><th>x<sub>1</sub></th><th>x<sub>2</sub></th><th>&sum;</th><th>y (output)</th></tr>
+                    <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                    <tr><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+                    <tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                    <tr><td>1</td><td>1</td><td>2</td><td>1</td></tr>
+                  </table>
+                </div>
+
+                <div class="warning-box">
+                  <h4>Limitations of the MCP model</h4>
+                  <ul>
+                    <li>All inputs have <strong>equal weight</strong> &mdash; there is no mechanism to learn the relative importance of inputs.</li>
+                    <li>Inputs and outputs are <strong>binary only</strong>.</li>
+                    <li>The threshold &theta; is <strong>hand-set</strong>, not learned from data.</li>
+                    <li>Cannot implement <strong>XOR</strong> (exclusive-or) with a single MCP unit.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="artificial-neuron">
+                <h2>3. The Artificial Neuron</h2>
+                <p>The modern artificial neuron generalises the MCP model by introducing <strong>learnable weights</strong> and a <strong>bias</strong> term, and allowing continuous-valued inputs.</p>
+
+                <div class="definition-box">
+                  <h4>Artificial Neuron (Formal Definition)</h4>
+                  <p>Given an input vector <strong>x</strong> = (x<sub>1</sub>, x<sub>2</sub>, &hellip;, x<sub>n</sub>), weight vector <strong>w</strong> = (w<sub>1</sub>, w<sub>2</sub>, &hellip;, w<sub>n</sub>), and bias b:</p>
+                  <pre><code>z = w<sub>1</sub>x<sub>1</sub> + w<sub>2</sub>x<sub>2</sub> + &hellip; + w<sub>n</sub>x<sub>n</sub> + b  =  <strong>w</strong>&middot;<strong>x</strong> + b
+y = f(z)</code></pre>
+                  <p>where f is an <strong>activation function</strong> (step, sigmoid, ReLU, etc.).</p>
+                </div>
+
+                <p>Key improvements over the MCP model:</p>
+                <ul>
+                  <li><strong>Weights:</strong> Each input has its own weight w<sub>i</sub>, allowing the model to learn the importance of each feature.</li>
+                  <li><strong>Bias:</strong> The bias b shifts the decision boundary, replacing the fixed threshold.</li>
+                  <li><strong>Continuous Activation:</strong> Smooth functions like sigmoid enable gradient-based learning.</li>
+                </ul>
+
+                <div class="note-box">
+                  <h4>Relationship: Threshold &harr; Bias</h4>
+                  <p>The MCP threshold &theta; can be converted to a bias: set b = &minus;&theta;. Then the condition &sum;w<sub>i</sub>x<sub>i</sub> &ge; &theta; becomes &sum;w<sub>i</sub>x<sub>i</sub> + b &ge; 0. This is why the bias is sometimes called the <em>negative threshold</em>.</p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="terminology">
+                <h2>4. Network Terminology</h2>
+                <p>Before diving deeper, let us establish the standard vocabulary used throughout this chapter.</p>
+
+                <div class="definition-box">
+                  <h4>Key Terms</h4>
+                  <table class="comparison-table">
+                    <tr><th>Term</th><th>Definition</th></tr>
+                    <tr><td><span class="key-term">Node / Unit / Neuron</span></td><td>A computational element that computes a weighted sum and applies an activation function.</td></tr>
+                    <tr><td><span class="key-term">Layer</span></td><td>A collection of neurons that operate in parallel at the same depth in the network.</td></tr>
+                    <tr><td><span class="key-term">Input Layer</span></td><td>The first layer; each node corresponds to one input feature. No computation occurs here.</td></tr>
+                    <tr><td><span class="key-term">Hidden Layer</span></td><td>Any layer between input and output. These layers learn internal representations.</td></tr>
+                    <tr><td><span class="key-term">Output Layer</span></td><td>The final layer; produces the network&rsquo;s prediction (regression value, class probabilities, etc.).</td></tr>
+                    <tr><td><span class="key-term">Weight (w)</span></td><td>A learnable parameter on each connection, controlling signal strength.</td></tr>
+                    <tr><td><span class="key-term">Bias (b)</span></td><td>A learnable parameter added to the weighted sum, allowing shifts in the activation.</td></tr>
+                    <tr><td><span class="key-term">Activation Function</span></td><td>A (usually non-linear) function applied to the weighted sum: f(z).</td></tr>
+                    <tr><td><span class="key-term">Feedforward Network</span></td><td>A network where information flows strictly from input to output with no cycles.</td></tr>
+                    <tr><td><span class="key-term">Deep Network</span></td><td>A network with two or more hidden layers.</td></tr>
+                  </table>
+                </div>
+
+                <div class="note-box">
+                  <h4>GATE Tip: Counting Layers</h4>
+                  <p>When a question says &ldquo;a 2-layer neural network,&rdquo; it typically means <strong>2 layers of learnable weights</strong> (i.e., 1 hidden layer + 1 output layer). The input layer is generally <em>not</em> counted because it performs no computation. Always check the context of the question.</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="universal-approximation">
+                <h2>5. Neural Networks as Universal Function Approximators</h2>
+
+                <div class="theorem-box">
+                  <h4>Universal Approximation Theorem (Cybenko, 1989; Hornik, 1991)</h4>
+                  <p>A feedforward neural network with a <strong>single hidden layer</strong> containing a finite number of neurons can approximate any continuous function on compact subsets of &Ropf;<sup>n</sup> to any desired degree of accuracy, provided the activation function is non-constant, bounded, and continuous (e.g., sigmoid).</p>
+                </div>
+
+                <p><strong>What it means:</strong> In theory, a single hidden layer is sufficient to represent any continuous mapping. However, the theorem says nothing about:</p>
+                <ul>
+                  <li>How <strong>many</strong> neurons are needed (could be exponentially many).</li>
+                  <li>Whether gradient descent can <strong>find</strong> the right weights.</li>
+                  <li>How well the network <strong>generalises</strong> to unseen data.</li>
+                </ul>
+
+                <div class="warning-box">
+                  <h4>Why We Still Use Deep Networks</h4>
+                  <p>Although a single hidden layer can approximate any function in theory, <strong>deeper networks</strong> can represent the same functions with <em>exponentially fewer neurons</em>. Depth provides a hierarchical composition of features that is both more efficient and more effective in practice.</p>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="history">
+                <h2>6. Historical Timeline</h2>
+                <p>Understanding the history of neural networks helps contextualise modern deep learning and is occasionally tested in GATE.</p>
+
+                <table class="comparison-table">
+                  <tr><th>Year</th><th>Milestone</th><th>Significance</th></tr>
+                  <tr><td>1943</td><td>McCulloch &amp; Pitts</td><td>First mathematical model of a neuron</td></tr>
+                  <tr><td>1958</td><td>Rosenblatt&rsquo;s Perceptron</td><td>First learning algorithm for a single-layer network</td></tr>
+                  <tr><td>1969</td><td>Minsky &amp; Papert&rsquo;s <em>Perceptrons</em></td><td>Proved XOR limitation; triggered the first &ldquo;AI winter&rdquo; for neural nets</td></tr>
+                  <tr><td>1986</td><td>Backpropagation (Rumelhart, Hinton, Williams)</td><td>Efficient training of multi-layer networks</td></tr>
+                  <tr><td>1989</td><td>Universal Approximation Theorem</td><td>Theoretical justification for neural networks</td></tr>
+                  <tr><td>1998</td><td>LeNet-5 (Yann LeCun)</td><td>First successful CNN for digit recognition</td></tr>
+                  <tr><td>2006</td><td>Deep Belief Networks (Hinton)</td><td>Revived interest in deep learning via unsupervised pre-training</td></tr>
+                  <tr><td>2012</td><td>AlexNet (Krizhevsky)</td><td>Won ImageNet; ignited the modern deep learning era</td></tr>
+                  <tr><td>2014</td><td>GANs (Goodfellow)</td><td>Generative Adversarial Networks introduced</td></tr>
+                  <tr><td>2017</td><td>Transformer (Vaswani et al.)</td><td>&ldquo;Attention Is All You Need&rdquo; &mdash; foundation for GPT, BERT</td></tr>
+                </table>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="gate-examples">
+                <h2>7. GATE-Style Worked Examples</h2>
+
+                <div class="example-box">
+                  <h4>Example 1: MCP Neuron for NOT</h4>
+                  <p><strong>Problem:</strong> Design an MCP neuron that computes the NOT function (single input x, output &not;x).</p>
+                  <p><strong>Solution:</strong> We need an <em>inhibitory</em> input. In the standard MCP model, we can use a negative weight (extended MCP):</p>
+                  <ul>
+                    <li>Set w<sub>1</sub> = &minus;1, bias b = 0.5 (or equivalently threshold &theta; = &minus;0.5 with unit weights).</li>
+                    <li>z = &minus;1 &middot; x + 0.5</li>
+                    <li>When x = 0: z = 0.5 &gt; 0 &rArr; y = 1</li>
+                    <li>When x = 1: z = &minus;0.5 &lt; 0 &rArr; y = 0</li>
+                  </ul>
+                  <p>This correctly implements NOT.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 2: Parameter Counting</h4>
+                  <p><strong>Problem:</strong> A feedforward neural network has an input layer of 4 neurons, one hidden layer of 6 neurons, and an output layer of 3 neurons. All layers are fully connected. How many <strong>learnable parameters</strong> are there?</p>
+                  <p><strong>Solution:</strong></p>
+                  <ul class="step-list">
+                    <li><strong>Step 1:</strong> Weights from input to hidden: 4 &times; 6 = 24</li>
+                    <li><strong>Step 2:</strong> Biases in hidden layer: 6</li>
+                    <li><strong>Step 3:</strong> Weights from hidden to output: 6 &times; 3 = 18</li>
+                    <li><strong>Step 4:</strong> Biases in output layer: 3</li>
+                    <li><strong>Total:</strong> 24 + 6 + 18 + 3 = <strong>51 parameters</strong></li>
+                  </ul>
+                  <div class="note-box">
+                    <h4>General Formula</h4>
+                    <p>For a fully-connected layer with <em>n<sub>in</sub></em> inputs and <em>n<sub>out</sub></em> outputs: <strong>Parameters = n<sub>in</sub> &times; n<sub>out</sub> + n<sub>out</sub></strong></p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 8 -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li>Artificial neural networks are inspired by biological neurons but use a <strong>mathematical abstraction</strong>: weighted sum + activation function.</li>
+                    <li>The <strong>McCulloch-Pitts</strong> model (1943) is the simplest neuron: binary I/O, fixed threshold, equal weights.</li>
+                    <li>Modern artificial neurons add <strong>learnable weights</strong>, <strong>bias</strong>, and <strong>non-linear activation functions</strong>.</li>
+                    <li>The <strong>Universal Approximation Theorem</strong> guarantees that a single hidden layer can approximate any continuous function &mdash; but deep networks are more efficient in practice.</li>
+                    <li>Key terminology: input/hidden/output layers, weights, bias, activation function, feedforward, deep network.</li>
+                    <li>For GATE: know parameter counting formula: <strong>n<sub>in</sub> &times; n<sub>out</sub> + n<sub>out</sub></strong> per fully-connected layer.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch09-neural-network-basics">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="../08-machine-learning-foundations/quiz-ml-foundations.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">ML Foundations Quiz</span></a>
+              <a href="perceptron.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Perceptron</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#biological-neurons">1. Biological Neurons</a></li>
+            <li><a href="#mcculloch-pitts">2. McCulloch-Pitts Model</a></li>
+            <li><a href="#artificial-neuron">3. The Artificial Neuron</a></li>
+            <li><a href="#terminology">4. Network Terminology</a></li>
+            <li><a href="#universal-approximation">5. Universal Approximation</a></li>
+            <li><a href="#history">6. Historical Timeline</a></li>
+            <li><a href="#gate-examples">7. GATE Examples</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

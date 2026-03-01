@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bias-Variance Tradeoff — Mathematical decomposition of prediction error, model complexity curve, and strategies to reduce bias/variance for GATE DA.">
+  <title>Bias-Variance Tradeoff — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="supervised-learning.html" class="sidebar-link"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="unsupervised-learning.html" class="sidebar-link"><span class="link-check"></span> Unsupervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="bias-variance-tradeoff.html" class="sidebar-link active"><span class="link-check"></span> Bias-Variance Tradeoff<span class="link-type theory">Theory</span></a>
+            <a href="overfitting-underfitting.html" class="sidebar-link"><span class="link-check"></span> Overfitting &amp; Underfitting<span class="link-type theory">Theory</span></a>
+            <a href="cross-validation.html" class="sidebar-link"><span class="link-check"></span> Cross-Validation<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-metrics.html" class="sidebar-link"><span class="link-check"></span> Evaluation Metrics<span class="link-type theory">Theory</span></a>
+            <a href="feature-engineering.html" class="sidebar-link"><span class="link-check"></span> Feature Engineering<span class="link-type theory">Theory</span></a>
+            <a href="ml-math-essentials.html" class="sidebar-link"><span class="link-check"></span> ML Math Essentials<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="ml-fundamentals.html">Chapter 8: ML Foundations</a> &raquo; <span class="current">Bias-Variance Tradeoff</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch08-bias-variance-tradeoff">
+
+            <h1>Bias-Variance Tradeoff</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch08-bias-variance-tradeoff" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Define bias and variance in the context of machine learning models</li>
+              <li>Derive the bias-variance decomposition of expected prediction error</li>
+              <li>Understand how model complexity affects bias and variance</li>
+              <li>Apply strategies to reduce bias or variance as needed</li>
+            </ul></div>
+
+            <!-- Section 1 -->
+            <section id="what-is-bias">
+              <h2>1. What is Bias?</h2>
+              <div class="definition-box">
+                <div class="box-title">Bias</div>
+                <p><strong>Bias</strong> measures how far off the model&rsquo;s average prediction is from the true value. It captures the error introduced by approximating a complex real-world problem with a simpler model.</p>
+                <p><strong>Bias = E[f&#770;(x)] &minus; f(x)</strong></p>
+              </div>
+              <ul>
+                <li><strong>High bias</strong> means the model makes strong assumptions about the data (e.g., assuming linearity when the true relationship is quadratic). The model systematically misses the relevant patterns. This leads to <strong>underfitting</strong>.</li>
+                <li><strong>Low bias</strong> means the model&rsquo;s average prediction is close to the true function. The model is flexible enough to capture the underlying pattern.</li>
+              </ul>
+              <div class="example-box">
+                <div class="box-title">Example: Polynomial Regression</div>
+                <p>If the true function is y = x&sup2; + noise, fitting a straight line (degree 1) to the data will always miss the curvature, no matter how much data we have. The straight line has <strong>high bias</strong>.</p>
+              </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="what-is-variance">
+              <h2>2. What is Variance?</h2>
+              <div class="definition-box">
+                <div class="box-title">Variance</div>
+                <p><strong>Variance</strong> measures how much the model&rsquo;s predictions fluctuate across different training sets. It captures the model&rsquo;s sensitivity to the specific data it was trained on.</p>
+                <p><strong>Variance = E[(f&#770;(x) &minus; E[f&#770;(x)])&sup2;]</strong></p>
+              </div>
+              <ul>
+                <li><strong>High variance</strong> means the model fits the training data very closely, including noise. Different training sets produce very different models. This leads to <strong>overfitting</strong>.</li>
+                <li><strong>Low variance</strong> means the model is stable &mdash; similar training sets produce similar models.</li>
+              </ul>
+              <div class="example-box">
+                <div class="box-title">Example: Polynomial Regression</div>
+                <p>Fitting a degree-20 polynomial to 10 data points will produce wildly different curves for different samples of 10 points. The degree-20 polynomial has <strong>high variance</strong>.</p>
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="decomposition">
+              <h2>3. Bias-Variance Decomposition</h2>
+              <p>The expected prediction error for a model at a given point x can be decomposed into three components:</p>
+
+              <div class="theorem-box">
+                <div class="box-title">Bias-Variance Decomposition</div>
+                <p><strong>E[(y &minus; f&#770;(x))&sup2;] = Bias&sup2; + Variance + Irreducible Error</strong></p>
+                <p>Expanding:</p>
+                <p><strong>E[(y &minus; f&#770;(x))&sup2;] = [E[f&#770;(x)] &minus; f(x)]&sup2; + E[(f&#770;(x) &minus; E[f&#770;(x)])&sup2;] + &sigma;&sup2;</strong></p>
+                <p>where &sigma;&sup2; is the variance of the noise in the data (irreducible error).</p>
+              </div>
+
+              <div class="note-box">
+                <div class="box-title">Proof Sketch</div>
+                <p>Let y = f(x) + &epsilon; where E[&epsilon;] = 0 and Var(&epsilon;) = &sigma;&sup2;.</p>
+                <p>E[(y &minus; f&#770;)&sup2;] = E[(f + &epsilon; &minus; f&#770;)&sup2;]</p>
+                <p>= E[(f &minus; f&#770;)&sup2;] + E[&epsilon;&sup2;] + 2E[(f &minus; f&#770;)&epsilon;]</p>
+                <p>Since &epsilon; is independent of f&#770;, the cross term is 0. Thus:</p>
+                <p>= E[(f &minus; f&#770;)&sup2;] + &sigma;&sup2;</p>
+                <p>Now add and subtract E[f&#770;]:</p>
+                <p>E[(f &minus; f&#770;)&sup2;] = E[(f &minus; E[f&#770;] + E[f&#770;] &minus; f&#770;)&sup2;]</p>
+                <p>= (f &minus; E[f&#770;])&sup2; + E[(f&#770; &minus; E[f&#770;])&sup2;] + 2(f &minus; E[f&#770;])E[f&#770; &minus; E[f&#770;]]</p>
+                <p>The last term is 0 (since E[f&#770; &minus; E[f&#770;]] = 0), giving us:</p>
+                <p><strong>= Bias&sup2; + Variance</strong></p>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">The Three Components</div>
+                <ul>
+                  <li><strong>Bias&sup2;:</strong> Systematic error from wrong assumptions. Cannot be reduced by more data alone &mdash; need a more flexible model.</li>
+                  <li><strong>Variance:</strong> Error from sensitivity to training data fluctuations. Can be reduced with more data, regularisation, or simpler models.</li>
+                  <li><strong>Irreducible Error (&sigma;&sup2;):</strong> Inherent noise in the data. Cannot be reduced by any model &mdash; it sets a floor on achievable error.</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="model-complexity">
+              <h2>4. Model Complexity Curve</h2>
+              <p>As model complexity increases (e.g., polynomial degree, tree depth, number of parameters):</p>
+              <ul>
+                <li><strong>Bias decreases:</strong> More complex models can fit more patterns</li>
+                <li><strong>Variance increases:</strong> More complex models are more sensitive to training data</li>
+                <li><strong>Total error:</strong> First decreases (bias drops fast), then increases (variance rises faster)</li>
+              </ul>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Complexity</th><th>Bias</th><th>Variance</th><th>Training Error</th><th>Test Error</th><th>Diagnosis</th></tr></thead>
+                  <tbody>
+                    <tr><td>Too low</td><td>High</td><td>Low</td><td>High</td><td>High</td><td>Underfitting</td></tr>
+                    <tr><td>Optimal</td><td>Moderate</td><td>Moderate</td><td>Moderate</td><td>Lowest</td><td>Good fit</td></tr>
+                    <tr><td>Too high</td><td>Low</td><td>High</td><td>Very low</td><td>High</td><td>Overfitting</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">Polynomial Regression Example</div>
+                <p>True function: y = 3x&sup2; + 2x + 1 + noise</p>
+                <ul>
+                  <li><strong>Degree 1 (linear):</strong> High bias (cannot capture x&sup2; term), low variance &rarr; underfitting</li>
+                  <li><strong>Degree 2 (quadratic):</strong> Low bias (matches true form), moderate variance &rarr; good fit</li>
+                  <li><strong>Degree 15:</strong> Very low bias (can fit anything), very high variance (fits noise) &rarr; overfitting</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="bias-variance-algorithms">
+              <h2>5. Bias-Variance for Common Algorithms</h2>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Algorithm</th><th>Bias</th><th>Variance</th><th>Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Linear Regression</strong></td><td>High (if non-linear)</td><td>Low</td><td>Parametric; limited flexibility</td></tr>
+                    <tr><td><strong>KNN (K=1)</strong></td><td>Low</td><td>Very high</td><td>Memorises training data</td></tr>
+                    <tr><td><strong>KNN (large K)</strong></td><td>High</td><td>Low</td><td>Over-smooths boundaries</td></tr>
+                    <tr><td><strong>Decision Tree (deep)</strong></td><td>Low</td><td>High</td><td>Can fit any training set perfectly</td></tr>
+                    <tr><td><strong>Decision Tree (pruned)</strong></td><td>Moderate</td><td>Moderate</td><td>Pruning reduces variance</td></tr>
+                    <tr><td><strong>Random Forest</strong></td><td>Low</td><td>Moderate</td><td>Ensemble reduces variance</td></tr>
+                    <tr><td><strong>SVM (RBF, small &gamma;)</strong></td><td>High</td><td>Low</td><td>Smooth decision boundary</td></tr>
+                    <tr><td><strong>SVM (RBF, large &gamma;)</strong></td><td>Low</td><td>High</td><td>Complex, jagged boundary</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="strategies">
+              <h2>6. Strategies to Manage Bias and Variance</h2>
+
+              <h3>6.1 Reduce High Bias (Underfitting)</h3>
+              <ul>
+                <li>Increase model complexity (e.g., add polynomial features, more layers)</li>
+                <li>Add more features (feature engineering)</li>
+                <li>Decrease regularisation strength</li>
+                <li>Use a more flexible model family (e.g., switch from linear to tree-based)</li>
+                <li>Train longer (for iterative algorithms)</li>
+              </ul>
+
+              <h3>6.2 Reduce High Variance (Overfitting)</h3>
+              <ul>
+                <li>Increase training data size</li>
+                <li>Reduce model complexity (fewer parameters, shallower trees)</li>
+                <li>Add regularisation (L1, L2, dropout)</li>
+                <li>Use ensemble methods (bagging, Random Forest)</li>
+                <li>Feature selection (remove noisy features)</li>
+                <li>Early stopping</li>
+                <li>Cross-validation for model selection</li>
+              </ul>
+
+              <div class="warning-box">
+                <div class="box-title">GATE Tip</div>
+                <p>A common GATE question pattern: &ldquo;Training accuracy is 98%, test accuracy is 65%. What is the likely issue?&rdquo; Answer: <strong>High variance (overfitting)</strong>. The large gap between training and test error is the hallmark of overfitting.</p>
+              </div>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="gate-practice">
+              <h2>7. GATE-Style Practice</h2>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example 1 (MCQ)</div>
+                <p><strong>Q:</strong> As the number of training examples increases, which component of prediction error decreases?</p>
+                <p>(A) Bias &nbsp; (B) Variance &nbsp; (C) Irreducible error &nbsp; (D) Both bias and variance</p>
+                <p><strong>A:</strong> (B) Variance. More data helps the model generalise better, reducing its sensitivity to any particular training set. Bias is a property of the model family and doesn&rsquo;t change with more data. Irreducible error is inherent.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example 2 (True/False)</div>
+                <p><strong>Q:</strong> A model with zero training error always has low bias.</p>
+                <p><strong>A:</strong> True. If the model perfectly fits the training data, it has captured the patterns (and noise), indicating low bias. However, it likely has high variance if the training data contains noise.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Example 3 (MCQ)</div>
+                <p><strong>Q:</strong> In the bias-variance decomposition, which term represents the inherent noise in the data that cannot be reduced by any model?</p>
+                <p>(A) Bias&sup2; &nbsp; (B) Variance &nbsp; (C) &sigma;&sup2; (irreducible error) &nbsp; (D) Cross-validation error</p>
+                <p><strong>A:</strong> (C) &sigma;&sup2; is the irreducible error &mdash; the minimum possible expected error, caused by noise in the target variable y itself.</p>
+              </div>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="summary">
+              <h2>8. Summary</h2>
+              <div class="note-box">
+                <ul>
+                  <li>Total Error = Bias&sup2; + Variance + Irreducible Error</li>
+                  <li>Bias = systematic error from wrong assumptions (underfitting)</li>
+                  <li>Variance = sensitivity to training data fluctuations (overfitting)</li>
+                  <li>The tradeoff: reducing one often increases the other</li>
+                  <li>Optimal model complexity is at the sweet spot where total error is minimised</li>
+                  <li>Ensemble methods (Random Forests, Bagging) reduce variance without increasing bias</li>
+                </ul>
+              </div>
+            </section>
+
+          </article>
+
+          <aside class="on-this-page"><h4>On This Page</h4><ul>
+            <li><a href="#what-is-bias">1. What is Bias?</a></li>
+            <li><a href="#what-is-variance">2. What is Variance?</a></li>
+            <li><a href="#decomposition">3. Decomposition</a></li>
+            <li><a href="#model-complexity">4. Complexity Curve</a></li>
+            <li><a href="#bias-variance-algorithms">5. Per Algorithm</a></li>
+            <li><a href="#strategies">6. Strategies</a></li>
+            <li><a href="#gate-practice">7. GATE Practice</a></li>
+            <li><a href="#summary">8. Summary</a></li>
+          </ul></aside>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="unsupervised-learning.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Unsupervised Learning</span></a>
+          <a href="overfitting-underfitting.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Overfitting &amp; Underfitting</span></a>
+        </div>
+        <button class="complete-btn" data-page="ch08-bias-variance-tradeoff">&#10003; Mark as Complete</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

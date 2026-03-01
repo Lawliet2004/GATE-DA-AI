@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Federated Learning — privacy-preserving distributed machine learning, federated averaging, differential privacy for GATE DA AI preparation.">
+  <title>Federated Learning — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a>
+            <a href="ai-ethics-fairness.html" class="sidebar-link"><span class="link-check"></span> AI Ethics &amp; Fairness<span class="link-type theory">Theory</span></a>
+            <a href="federated-learning.html" class="sidebar-link active"><span class="link-check"></span> Federated Learning<span class="link-type theory">Theory</span></a>
+            <a href="neuromorphic-computing.html" class="sidebar-link"><span class="link-check"></span> Neuromorphic Computing<span class="link-type theory">Theory</span></a>
+            <a href="quantum-machine-learning.html" class="sidebar-link"><span class="link-check"></span> Quantum ML<span class="link-type theory">Theory</span></a>
+            <a href="ai-safety-alignment.html" class="sidebar-link"><span class="link-check"></span> AI Safety &amp; Alignment<span class="link-type theory">Theory</span></a>
+            <a href="multimodal-ai.html" class="sidebar-link"><span class="link-check"></span> Multimodal AI<span class="link-type theory">Theory</span></a>
+            <a href="autonomous-systems.html" class="sidebar-link"><span class="link-check"></span> Autonomous Systems<span class="link-type theory">Theory</span></a>
+            <a href="recent-breakthroughs.html" class="sidebar-link"><span class="link-check"></span> Recent Breakthroughs<span class="link-type theory">Theory</span></a>
+            <a href="notes-advanced.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-advanced.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="explainable-ai.html">Chapter 15: Advanced Topics</a> &raquo; <span class="current">Federated Learning</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch15-federated-learning">
+
+            <h1>Federated Learning</h1>
+
+            <div class="note-box">
+              <strong>GATE DA Relevance:</strong> Federated learning is a cutting-edge topic combining distributed systems, optimization, and privacy. GATE DA questions may focus on the FedAvg algorithm, the distinction between horizontal and vertical FL, communication efficiency strategies, and the role of differential privacy. Understand the core algorithm and its convergence properties.
+            </div>
+
+            <!-- Section 1 -->
+            <h2>1. Motivation: Why Federated Learning?</h2>
+            <p>Traditional machine learning requires centralizing all training data on a single server. This approach faces several critical challenges in the modern world:</p>
+
+            <ul>
+              <li><strong>Privacy Regulations:</strong> Laws like GDPR, HIPAA, and CCPA restrict how personal data can be collected, stored, and transferred.</li>
+              <li><strong>Data Sensitivity:</strong> Medical records, financial data, and personal communications are too sensitive to centralize.</li>
+              <li><strong>Data Volume:</strong> Edge devices (smartphones, IoT sensors) generate massive data volumes that are expensive to transmit.</li>
+              <li><strong>Data Sovereignty:</strong> Data may be legally required to remain within national borders.</li>
+              <li><strong>Competitive Concerns:</strong> Organizations may want to collaboratively train models without sharing proprietary data.</li>
+            </ul>
+
+            <div class="definition-box">
+              <strong>Federated Learning (FL):</strong> A machine learning paradigm where a model is trained across multiple decentralized devices or servers holding local data samples, without exchanging the raw data. Only model updates (gradients or parameters) are communicated to a central aggregation server.
+            </div>
+
+            <div class="example-box">
+              <strong>Example &mdash; Google Keyboard (Gboard):</strong> Google uses federated learning to improve next-word prediction on mobile keyboards. Each phone trains a local model on the user&rsquo;s typing data, sends only the model update to Google&rsquo;s server, and the server aggregates updates from millions of phones. No user&rsquo;s actual text messages ever leave their device.
+            </div>
+
+            <!-- Section 2 -->
+            <h2>2. Federated Averaging (FedAvg) Algorithm</h2>
+            <p>FedAvg (McMahan et al., 2017) is the foundational algorithm for federated learning. It combines local SGD with periodic model averaging.</p>
+
+            <div class="algorithm-block">
+              <strong>Algorithm: Federated Averaging (FedAvg)</strong>
+              <ol>
+                <li><strong>Server initializes</strong> global model parameters <em>w<sub>0</sub></em>.</li>
+                <li><strong>For each round <em>t = 1, 2, &hellip;, T</em>:</strong>
+                  <ol type="a">
+                    <li>Server selects a random subset <em>S<sub>t</sub></em> of <em>K</em> clients (out of <em>N</em> total).</li>
+                    <li>Server broadcasts current global model <em>w<sub>t</sub></em> to selected clients.</li>
+                    <li><strong>Each client <em>k &isin; S<sub>t</sub></em></strong> performs <em>E</em> epochs of SGD on its local dataset <em>D<sub>k</sub></em>:
+                      <br><em>w<sub>k</sub><sup>t+1</sup> = w<sub>t</sub> &minus; &eta; &middot; &nabla;L(w<sub>t</sub>; D<sub>k</sub>)</em> (repeated for <em>E</em> epochs)</li>
+                    <li>Each client sends updated model <em>w<sub>k</sub><sup>t+1</sup></em> back to the server.</li>
+                    <li><strong>Server aggregates</strong> by weighted averaging:<br>
+                      <em>w<sub>t+1</sub> = &sum;<sub>k &isin; S<sub>t</sub></sub> (n<sub>k</sub> / n) &middot; w<sub>k</sub><sup>t+1</sup></em><br>
+                      where <em>n<sub>k</sub></em> = number of samples on client <em>k</em>, <em>n</em> = total samples across selected clients.</li>
+                  </ol>
+                </li>
+                <li><strong>Return</strong> final global model <em>w<sub>T</sub></em>.</li>
+              </ol>
+            </div>
+
+            <h3>2.1 Key Hyperparameters</h3>
+            <table>
+              <thead>
+                <tr><th>Parameter</th><th>Symbol</th><th>Description</th><th>Effect</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Client Fraction</td><td><em>C</em></td><td>Fraction of clients selected per round</td><td>Higher C &rarr; better convergence, more communication</td></tr>
+                <tr><td>Local Epochs</td><td><em>E</em></td><td>SGD epochs per client per round</td><td>Higher E &rarr; fewer rounds, but risk of client drift</td></tr>
+                <tr><td>Local Batch Size</td><td><em>B</em></td><td>Mini-batch size for local SGD</td><td>Smaller B &rarr; more stochasticity, potentially better generalization</td></tr>
+                <tr><td>Learning Rate</td><td><em>&eta;</em></td><td>Step size for local SGD</td><td>Must be tuned carefully; may need decay</td></tr>
+              </tbody>
+            </table>
+
+            <div class="note-box">
+              <strong>Special Case:</strong> When <em>E = 1</em> and <em>B = &infin;</em> (full batch), FedAvg reduces to <strong>Federated SGD</strong> (FedSGD), where each client performs exactly one gradient computation and sends the gradient (rather than updated weights) to the server.
+            </div>
+
+            <!-- Section 3 -->
+            <h2>3. Communication Efficiency</h2>
+            <p>Communication is the primary bottleneck in federated learning. Transmitting millions of parameters each round over mobile networks is expensive. Several strategies address this.</p>
+
+            <h3>3.1 Compression Techniques</h3>
+            <ul>
+              <li><strong>Gradient Quantization:</strong> Reduce precision of transmitted values (e.g., from 32-bit floats to 8-bit or even 1-bit). SignSGD transmits only the sign of each gradient component.</li>
+              <li><strong>Gradient Sparsification:</strong> Transmit only the top-<em>k</em> largest gradient components (by magnitude). Residuals are accumulated locally for future rounds.</li>
+              <li><strong>Structured Updates:</strong> Restrict model updates to a low-rank subspace, reducing the number of parameters communicated.</li>
+            </ul>
+
+            <h3>3.2 Reducing Communication Rounds</h3>
+            <ul>
+              <li><strong>Increase local computation (E):</strong> More local epochs before communication reduce the total number of rounds needed.</li>
+              <li><strong>Adaptive aggregation:</strong> Only communicate when local models diverge significantly from the global model.</li>
+              <li><strong>Knowledge distillation:</strong> Instead of transmitting model weights, clients send soft predictions on a shared public dataset.</li>
+            </ul>
+
+            <div class="example-box">
+              <strong>Example &mdash; Communication Savings:</strong> A model with 10 million parameters requires ~40 MB per round (32-bit floats). With top-1% sparsification, only 100K parameters (~400 KB) are transmitted&mdash;a 100&times; reduction. With additional 8-bit quantization, this drops to ~100 KB per round.
+            </div>
+
+            <!-- Section 4 -->
+            <h2>4. Non-IID Data Challenges</h2>
+            <p>In real-world FL, data across clients is typically <strong>non-IID</strong> (not independently and identically distributed). This is one of the most significant challenges in federated learning.</p>
+
+            <div class="definition-box">
+              <strong>Non-IID Data:</strong> Data distributions differ across clients. Types of non-IID-ness include:
+              <ul>
+                <li><strong>Label skew:</strong> Different clients have different label distributions (e.g., one hospital mostly sees cardiac cases, another sees respiratory).</li>
+                <li><strong>Feature skew:</strong> Same labels but different feature distributions (e.g., photos from different climates).</li>
+                <li><strong>Quantity skew:</strong> Clients have vastly different amounts of data.</li>
+                <li><strong>Concept drift:</strong> The relationship between features and labels varies across clients.</li>
+              </ul>
+            </div>
+
+            <h3>4.1 Impact of Non-IID Data</h3>
+            <ul>
+              <li><strong>Client drift:</strong> Local models diverge from each other and the optimal global model during local training.</li>
+              <li><strong>Slow convergence:</strong> FedAvg may require many more rounds to converge compared to IID settings.</li>
+              <li><strong>Accuracy degradation:</strong> The global model may perform poorly on individual clients with very different data distributions.</li>
+            </ul>
+
+            <h3>4.2 Solutions for Non-IID Data</h3>
+            <ul>
+              <li><strong>FedProx:</strong> Adds a proximal term to the local objective: <em>L<sub>k</sub>(w) + (&mu;/2) &middot; ||w &minus; w<sub>t</sub>||&sup2;</em>, which prevents local models from drifting too far from the global model.</li>
+              <li><strong>SCAFFOLD:</strong> Uses control variates to correct for client drift in gradient updates.</li>
+              <li><strong>Per-FedAvg:</strong> Combines federated learning with MAML (Model-Agnostic Meta-Learning) for personalization.</li>
+              <li><strong>Data sharing:</strong> Share a small amount of globally representative data with all clients.</li>
+              <li><strong>Clustered FL:</strong> Group clients with similar data distributions and train separate models per cluster.</li>
+            </ul>
+
+            <div class="warning-box">
+              <strong>Key Insight:</strong> The non-IID problem is not just a theoretical concern. In production FL systems (e.g., mobile keyboard prediction), users in different regions, age groups, and professions have vastly different language patterns. Addressing this is essential for practical deployment.
+            </div>
+
+            <!-- Section 5 -->
+            <h2>5. Differential Privacy in Federated Learning</h2>
+            <p>Even though FL avoids sharing raw data, model updates can still leak information about individual training examples. Differential privacy (DP) provides formal privacy guarantees.</p>
+
+            <div class="definition-box">
+              <strong>(&epsilon;, &delta;)-Differential Privacy:</strong> A randomized mechanism <em>M</em> satisfies (&epsilon;, &delta;)-DP if for any two adjacent datasets <em>D</em> and <em>D&prime;</em> differing in one record, and for all measurable sets <em>S</em>:<br><br>
+              <em>P(M(D) &isin; S) &le; e<sup>&epsilon;</sup> &middot; P(M(D&prime;) &isin; S) + &delta;</em><br><br>
+              &epsilon; (privacy budget) controls the privacy-utility trade-off; smaller &epsilon; means stronger privacy.
+            </div>
+
+            <h3>5.1 DP-FedAvg</h3>
+            <p>The standard approach to DP in FL involves two steps applied to each client&rsquo;s update before aggregation:</p>
+            <ol>
+              <li><strong>Clipping:</strong> Bound the L2 norm of each client&rsquo;s model update: <em>&Delta;w<sub>k</sub> &rarr; &Delta;w<sub>k</sub> &middot; min(1, C / ||&Delta;w<sub>k</sub>||)</em>, where <em>C</em> is the clipping threshold.</li>
+              <li><strong>Noise addition:</strong> Add calibrated Gaussian noise to the aggregated update: <em>w<sub>t+1</sub> = w<sub>t</sub> + (1/K)(&sum; &Delta;w<sub>k</sub> + N(0, &sigma;&sup2;C&sup2;I))</em></li>
+            </ol>
+            <p>The noise scale &sigma; is chosen based on the desired (&epsilon;, &delta;) guarantee using the moments accountant or R&eacute;nyi DP composition.</p>
+
+            <div class="example-box">
+              <strong>Example &mdash; Privacy Budget:</strong> With &epsilon; = 1, the probability of any output changes by at most a factor of <em>e<sup>1</sup> &asymp; 2.72</em> when any single user&rsquo;s data is added or removed. With &epsilon; = 0.1, this factor is only <em>e<sup>0.1</sup> &asymp; 1.105</em>, providing much stronger privacy.
+            </div>
+
+            <!-- Section 6 -->
+            <h2>6. Secure Aggregation</h2>
+            <p>Secure aggregation (SecAgg) ensures that the server can only see the <em>aggregate</em> of client updates, not individual updates, even if the server is curious.</p>
+
+            <h3>6.1 How Secure Aggregation Works</h3>
+            <ol>
+              <li>Each pair of clients (i, j) agrees on a random mask <em>p<sub>ij</sub></em> using Diffie-Hellman key exchange.</li>
+              <li>Client <em>i</em> sends masked update: <em>y<sub>i</sub> = w<sub>i</sub> + &sum;<sub>j&gt;i</sub> p<sub>ij</sub> &minus; &sum;<sub>j&lt;i</sub> p<sub>ij</sub></em></li>
+              <li>When the server sums all masked updates, the pairwise masks cancel out: <em>&sum;<sub>i</sub> y<sub>i</sub> = &sum;<sub>i</sub> w<sub>i</sub></em></li>
+            </ol>
+
+            <div class="note-box">
+              <strong>Key Property:</strong> SecAgg is orthogonal to differential privacy. SecAgg hides individual updates from the server; DP protects against inference attacks on the aggregate. In practice, both are often used together for defense in depth.
+            </div>
+
+            <!-- Section 7 -->
+            <h2>7. Horizontal vs Vertical Federated Learning</h2>
+            <p>Federated learning architectures differ based on how data is partitioned across clients.</p>
+
+            <h3>7.1 Horizontal FL (Sample-Partitioned)</h3>
+            <div class="definition-box">
+              <strong>Horizontal FL:</strong> Clients share the same feature space but have different data samples. Example: multiple hospitals with the same set of medical tests/features but different patient populations.
+            </div>
+            <p>This is the most common FL setting. FedAvg is designed for horizontal FL.</p>
+
+            <h3>7.2 Vertical FL (Feature-Partitioned)</h3>
+            <div class="definition-box">
+              <strong>Vertical FL:</strong> Clients have different features for the same set of samples. Example: a bank and an e-commerce company have different data about the same customers. The bank has financial data; the e-commerce platform has shopping behavior.
+            </div>
+            <p>Vertical FL typically requires entity alignment (matching records across datasets) and uses techniques like split learning, where different parts of a model are trained on different clients.</p>
+
+            <h3>7.3 Federated Transfer Learning</h3>
+            <p>When clients differ in both feature space and sample space, <strong>federated transfer learning</strong> bridges the gap by learning shared representations that transfer across domains.</p>
+
+            <table>
+              <thead>
+                <tr><th>Aspect</th><th>Horizontal FL</th><th>Vertical FL</th><th>Federated Transfer Learning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Feature Space</td><td>Same</td><td>Different</td><td>Different</td></tr>
+                <tr><td>Sample Space</td><td>Different</td><td>Same (overlapping)</td><td>Different</td></tr>
+                <tr><td>Algorithm</td><td>FedAvg, FedProx</td><td>Split Learning, SecureBoost</td><td>Transfer + FL</td></tr>
+                <tr><td>Example</td><td>Multiple hospitals</td><td>Bank + retailer</td><td>Cross-lingual NLP</td></tr>
+              </tbody>
+            </table>
+
+            <!-- Section 8 -->
+            <h2>8. Applications of Federated Learning</h2>
+
+            <h3>8.1 Healthcare</h3>
+            <p>FL enables training medical AI models across hospitals without sharing patient records. Applications include:</p>
+            <ul>
+              <li>Tumor segmentation from distributed MRI data (FeTS initiative)</li>
+              <li>Drug discovery across pharmaceutical companies</li>
+              <li>Electronic health record analysis across hospital networks</li>
+              <li>Rare disease detection by pooling data from geographically dispersed institutions</li>
+            </ul>
+
+            <h3>8.2 Mobile Applications</h3>
+            <ul>
+              <li><strong>Next-word prediction:</strong> Google Gboard trains on user typing patterns.</li>
+              <li><strong>Voice recognition:</strong> Apple uses FL for Siri improvements.</li>
+              <li><strong>Auto-complete &amp; ranking:</strong> Personalized search suggestions.</li>
+            </ul>
+
+            <h3>8.3 Finance</h3>
+            <ul>
+              <li>Fraud detection across banks without sharing transaction data.</li>
+              <li>Credit risk modeling with data from multiple financial institutions.</li>
+              <li>Anti-money-laundering systems that pool patterns without exposing customer data.</li>
+            </ul>
+
+            <div class="example-box">
+              <strong>Example &mdash; MELLODDY Project:</strong> Ten pharmaceutical companies (including Amgen, Novartis, and Merck) used federated learning to collaboratively train drug-discovery models. Each company kept its proprietary molecular data local while benefiting from the collective knowledge of all participants. The federated model outperformed individual company models by 5&ndash;15%.
+            </div>
+
+            <!-- Section 9 -->
+            <h2>9. Comparison with Centralized Learning</h2>
+
+            <table>
+              <thead>
+                <tr><th>Aspect</th><th>Centralized Learning</th><th>Federated Learning</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Data Location</td><td>Single server</td><td>Distributed across clients</td></tr>
+                <tr><td>Privacy</td><td>Low (data centralized)</td><td>Higher (data stays local)</td></tr>
+                <tr><td>Communication</td><td>Data upload once</td><td>Multiple rounds of model exchange</td></tr>
+                <tr><td>Convergence</td><td>Standard SGD guarantees</td><td>Slower, especially with non-IID data</td></tr>
+                <tr><td>Model Quality</td><td>Generally optimal</td><td>Can approach centralized with enough rounds</td></tr>
+                <tr><td>Scalability</td><td>Limited by server storage/compute</td><td>Scales to millions of clients</td></tr>
+                <tr><td>Regulatory Compliance</td><td>Challenging</td><td>Easier (data doesn&rsquo;t leave jurisdiction)</td></tr>
+              </tbody>
+            </table>
+
+            <div class="theorem-box">
+              <strong>Convergence Result:</strong> For convex objectives, FedAvg converges to the global optimum at rate <em>O(1/T)</em> under IID data. For non-IID data, convergence is <em>O(1/T) + O(&Gamma;)</em>, where <em>&Gamma;</em> quantifies the degree of data heterogeneity across clients. FedProx and SCAFFOLD reduce the &Gamma; term.
+            </div>
+
+            <!-- Section 10 -->
+            <h2>10. Summary &amp; GATE DA Key Takeaways</h2>
+
+            <div class="note-box">
+              <strong>GATE DA Exam Tips:</strong>
+              <ul>
+                <li>Know the <strong>FedAvg algorithm</strong> steps: broadcast, local training, aggregation by weighted average.</li>
+                <li>Understand the difference between <strong>horizontal</strong> (same features, different samples) and <strong>vertical</strong> (different features, same samples) FL.</li>
+                <li>Know that non-IID data causes <strong>client drift</strong> and slows convergence.</li>
+                <li>Understand <strong>differential privacy</strong>: clipping + noise addition; the role of &epsilon;.</li>
+                <li>Communication efficiency: gradient compression (sparsification, quantization) and increasing local epochs.</li>
+                <li>FedSGD is the special case of FedAvg with E = 1 and full-batch gradient.</li>
+                <li>Secure aggregation hides individual updates; DP protects aggregate statistics.</li>
+              </ul>
+            </div>
+
+            <div class="theorem-box">
+              <strong>Chapter Summary:</strong>
+              <ul>
+                <li>FL trains models without centralizing data, preserving privacy and regulatory compliance.</li>
+                <li>FedAvg: local SGD + weighted averaging; controlled by C, E, B, &eta;.</li>
+                <li>Communication efficiency via compression, sparsification, and more local computation.</li>
+                <li>Non-IID data is the fundamental challenge; addressed by FedProx, SCAFFOLD, clustering.</li>
+                <li>Differential privacy (clip + noise) provides formal privacy guarantees.</li>
+                <li>Horizontal FL (sample split) vs Vertical FL (feature split) vs Federated Transfer Learning.</li>
+                <li>Applications span healthcare, mobile, finance, and cross-organizational collaboration.</li>
+              </ul>
+            </div>
+
+          </article>
+
+          <aside class="page-toc" aria-label="On this page">
+            <div class="toc-header">On This Page</div>
+            <ul id="toc-links"></ul>
+          </aside>
+        </div>
+
+        <nav class="nav-buttons" aria-label="Page navigation">
+          <a href="ai-ethics-fairness.html" class="btn btn-nav btn-prev">&larr; Previous: AI Ethics &amp; Fairness</a>
+          <a href="neuromorphic-computing.html" class="btn btn-nav btn-next">Next: Neuromorphic Computing &rarr;</a>
+        </nav>
+        <div class="page-actions"><button class="btn btn-sm btn-bookmark" data-page="ch15-federated-learning">&#128278; Bookmark</button><button class="btn btn-sm btn-complete" data-page="ch15-federated-learning">&#9989; Mark Complete</button></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

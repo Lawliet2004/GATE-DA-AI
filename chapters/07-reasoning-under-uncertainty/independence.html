@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Independence and Conditional Independence — statistical independence, pairwise vs mutual independence, conditional independence for Bayesian networks, GATE DA.">
+  <title>Independence — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link active"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo;
+          <span class="current">Independence</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch07-independence">
+
+            <h1>Independence and Conditional Independence</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch07-independence" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="probability-basics.html">Probability Basics</a></li>
+              <li><a href="conditional-probability.html">Conditional Probability</a></li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Define statistical independence and verify it mathematically</li>
+              <li>Distinguish pairwise from mutual independence</li>
+              <li>Define conditional independence and its notation</li>
+              <li>Understand why conditional independence is crucial for Bayesian networks</li>
+            </ul></div>
+
+            <div class="content-body">
+
+              <section id="statistical-independence">
+                <h2>1. Statistical Independence</h2>
+
+                <div class="definition-box">
+                  <h4>Independent Events</h4>
+                  <p>Events A and B are <strong>independent</strong> if and only if:</p>
+                  <div class="formula">P(A &cap; B) = P(A) &times; P(B)</div>
+                  <p>Equivalently: P(A|B) = P(A), meaning knowing B gives no information about A.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 1 &mdash; Coin Tosses</h4>
+                  <p>Two fair coins are tossed. Let A = "1st coin is Head", B = "2nd coin is Head".<br>
+                  P(A) = 1/2, P(B) = 1/2, P(A &cap; B) = 1/4 = (1/2)(1/2). &check; Independent.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 2 &mdash; Cards (Not Independent)</h4>
+                  <p>Draw two cards without replacement. A = "1st is Ace", B = "2nd is Ace".<br>
+                  P(A) = 4/52, P(B) = 4/52, P(A &cap; B) = (4/52)(3/51) &ne; (4/52)(4/52). &cross; Not independent.</p>
+                </div>
+              </section>
+
+              <section id="pairwise-vs-mutual">
+                <h2>2. Pairwise vs Mutual Independence</h2>
+
+                <div class="definition-box">
+                  <h4>Pairwise Independence</h4>
+                  <p>Events A, B, C are <strong>pairwise independent</strong> if each pair is independent: P(A &cap; B) = P(A)P(B), P(A &cap; C) = P(A)P(C), P(B &cap; C) = P(B)P(C).</p>
+                </div>
+
+                <div class="definition-box">
+                  <h4>Mutual Independence</h4>
+                  <p>Events A, B, C are <strong>mutually independent</strong> if pairwise independence holds AND:<br>
+                  P(A &cap; B &cap; C) = P(A) &times; P(B) &times; P(C)</p>
+                </div>
+
+                <div class="warning-box">
+                  <h4>GATE Trap</h4>
+                  <p><strong>Pairwise independence does NOT imply mutual independence.</strong> Classic counterexample: Two fair coins. A = "Coin 1 is H", B = "Coin 2 is H", C = "Both same". These are pairwise independent but not mutually independent because P(A &cap; B &cap; C) = 1/4 &ne; P(A)P(B)P(C) = 1/8.</p>
+                </div>
+              </section>
+
+              <section id="conditional-independence">
+                <h2>3. Conditional Independence</h2>
+
+                <div class="definition-box">
+                  <h4>Conditional Independence</h4>
+                  <p>A and B are <strong>conditionally independent given C</strong>, written A &perp; B | C, if:</p>
+                  <div class="formula">P(A &cap; B | C) = P(A|C) &times; P(B|C)</div>
+                  <p>Equivalently: P(A | B, C) = P(A | C)</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>Key Insight</h4>
+                  <p>Conditional independence does <strong>not</strong> imply marginal independence, and vice versa. Two variables can be marginally independent but conditionally dependent (the "explaining away" effect), or marginally dependent but conditionally independent (mediated through a common cause).</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example 3 &mdash; Sprinkler, Rain, Wet Grass</h4>
+                  <p>Let R = Rain, S = Sprinkler, W = Wet grass. Knowing whether the grass is wet (W) makes R and S dependent (if it's not raining, the sprinkler probably caused the wet grass — explaining away). But without knowing W, R and S may be independent.</p>
+                </div>
+              </section>
+
+              <section id="importance-for-bn">
+                <h2>4. Why Conditional Independence Matters for Bayesian Networks</h2>
+
+                <p>A joint distribution over n binary variables requires 2<sup>n</sup> &minus; 1 parameters. Conditional independence assumptions encoded in a Bayesian network reduce this dramatically.</p>
+
+                <div class="example-box">
+                  <h4>Example 4 &mdash; Parameter Savings</h4>
+                  <p>For 10 binary variables with no independence: 2<sup>10</sup> &minus; 1 = 1023 parameters.<br>
+                  With a Bayesian network where each node has at most 2 parents: roughly 10 &times; 2<sup>2</sup> = 40 parameters. A reduction of over 25&times;!</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>The Markov Condition</h4>
+                  <p>In a Bayesian network, each variable is conditionally independent of its non-descendants given its parents. This single assumption, combined with the chain rule, gives the compact factored representation.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>Independence:</strong> P(A &cap; B) = P(A)P(B)</li>
+                    <li><strong>Conditional independence:</strong> P(A &cap; B|C) = P(A|C)P(B|C)</li>
+                    <li>Pairwise independence &ne; mutual independence</li>
+                    <li>Marginal independence &ne; conditional independence (and vice versa)</li>
+                    <li>Conditional independence is the key structural assumption in Bayesian networks</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-independence">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="bayes-theorem.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Bayes' Theorem</span>
+              </a>
+              <a href="random-variables.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Random Variables</span>
+              </a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#statistical-independence">1. Statistical Independence</a></li>
+              <li><a href="#pairwise-vs-mutual">2. Pairwise vs Mutual</a></li>
+              <li><a href="#conditional-independence">3. Conditional Independence</a></li>
+              <li><a href="#importance-for-bn">4. Importance for BNs</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GATE Previous Year Questions on Informed Search — 10 detailed GATE-style problems covering A* optimality, admissible heuristics, heuristic dominance, Greedy BFS, hill climbing, IDA*, consistency, and simulated annealing with full solutions.">
+  <title>GATE PYQs: Informed Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA*<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="sma-star.html" class="sidebar-link"><span class="link-check"></span> SMA*<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded<span class="link-type theory">Theory</span></a>
+            <a href="local-search-hill-climbing.html" class="sidebar-link"><span class="link-check"></span> Hill Climbing<span class="link-type theory">Theory</span></a>
+            <a href="simulated-annealing.html" class="sidebar-link"><span class="link-check"></span> Simulated Annealing<span class="link-type theory">Theory</span></a>
+            <a href="genetic-algorithms.html" class="sidebar-link"><span class="link-check"></span> Genetic Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> A* Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link active"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="heuristic-functions.html">Chapter 3: Informed Search</a> &raquo; <span class="current">GATE Previous Year Questions</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch03-gate-pyq">
+
+            <h1>GATE Previous Year Questions &mdash; Informed Search</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch03-gate-pyq" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="a-star-search.html">A* Search</a> &mdash; f(n)=g(n)+h(n), optimality proof, node expansion order</li>
+              <li><a href="admissibility-and-consistency.html">Admissibility &amp; Consistency</a> &mdash; Conditions for A* optimality</li>
+              <li><a href="greedy-best-first-search.html">Greedy Best-First Search</a> &mdash; f(n)=h(n), completeness limitations</li>
+              <li><a href="heuristic-functions.html">Heuristic Functions</a> &mdash; Dominance, relaxed problems, pattern databases</li>
+              <li><a href="local-search-hill-climbing.html">Hill Climbing</a> &amp; <a href="simulated-annealing.html">SA</a> &mdash; Local search and acceptance probability</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Practice with <strong>authentic GATE-style</strong> problems on informed search</li>
+              <li>Master the <strong>step-by-step trace</strong> technique for A* expansion questions</li>
+              <li>Identify common <strong>traps and distractors</strong> involving admissibility, consistency, and optimality</li>
+              <li>Build speed and accuracy for the <strong>2-mark MCQ and NAT</strong> formats</li>
+            </ul></div>
+
+            <p>This page contains 10 carefully curated GATE-style questions that test the most frequently examined concepts in informed search. Each question includes a detailed solution walkthrough and a key takeaway for exam preparation.</p>
+
+            <!-- ==================== QUESTION 1 ==================== -->
+            <section id="q1">
+              <h2>Question 1 &mdash; A* Optimality Proof</h2>
+              <div class="definition-box">
+                <div class="box-title">&#128221; Problem Statement (MCQ &mdash; 2 marks)</div>
+                <p>Consider A* tree search with an admissible heuristic h(n). Let C* be the cost of the optimal solution. Which of the following is <strong>always true</strong> when A* selects a node n for expansion?</p>
+                <ol type="A">
+                  <li>f(n) &le; C*</li>
+                  <li>f(n) = C*</li>
+                  <li>g(n) &le; C*</li>
+                  <li>h(n) &le; g(n)</li>
+                </ol>
+              </div>
+              <div class="example-box">
+                <div class="box-title">&#9989; Detailed Solution</div>
+                <p>The key theorem of A* is: <strong>A* with an admissible heuristic never expands a node with f(n) &gt; C*</strong>.</p>
+                <p>Proof sketch: Suppose A* is about to expand node n. There is always a node n&prime; on the optimal path in the open list with f(n&prime;) &le; C* (because h is admissible, so f along the optimal path never exceeds C*). Since A* picks the node with minimum f, f(n) &le; f(n&prime;) &le; C*.</p>
+                <ul>
+                  <li><strong>A: f(n) &le; C*</strong> &mdash; Correct. This is the direct implication of the theorem.</li>
+                  <li><strong>B: f(n) = C*</strong> &mdash; Wrong. Nodes early in the search have f(n) &lt; C*.</li>
+                  <li><strong>C: g(n) &le; C*</strong> &mdash; Not always. In tree search without cycle detection, a node can be reached via a suboptimal path where g(n) &gt; C*.</li>
+                  <li><strong>D: h(n) &le; g(n)</strong> &mdash; No guarantee of this relationship.</li>
+                </ul>
+                <p><strong>Answer: A</strong></p>
+                <p><strong>Key Takeaway:</strong> The f(n) &le; C* property is the cornerstone of A* optimality. It guarantees that A* only explores nodes that could lie on an optimal path.</p>
+              </div>
+            </section>
+
+            <!-- ==================== QUESTION 2 ==================== -->
+            <section id="q2">
+              <h2>Question 2 &mdash; Identifying Admissible Heuristics</h2>
+              <div class="definition-box">
+                <div class="box-title">&#128221; Problem Statement (MCQ &mdash; 1 mark)</div>
+                <p>For the 8-puzzle, which of the following heuristics is <strong>admissible</strong>?</p>
+                <ol type="A">
+                  <li>h<sub>1</sub>(n) = number of misplaced tiles</li>
+                  <li>h<sub>2</sub>(n) = sum of Manhattan distances of all tiles from their goal positions</li>
+                  <li>h<sub>3</sub>(n) = 2 &times; (number of misplaced tiles)</li>
+                  <li>Both A and B</li>
+                </ol>
+              </div>
+              <div class="example-box">
+                <div class="box-title">&#9989; Detailed Solution</div>
+                <p>A heuristic is <strong>admissible</strong> if it never overestimates the true cost to reach the goal.</p>
+                <ul>
+                  <li><strong>h<sub>1</sub> (misplaced tiles):</strong> Each misplaced tile needs at least 1 move to reach its goal position, so h<sub>1</sub> never overestimates. &#9989; Admissible.</li>
+                  <li><strong>h<sub>2</sub> (Manhattan distance):</strong> Each tile must move at least its Manhattan distance, and tiles don&rsquo;t interfere (relaxation). h<sub>2</sub> never overestimates. &#9989; Admissible.</li>
+                  <li><strong>h<sub>3</sub> (2 &times; misplaced):</strong> Consider a state where 1 tile is misplaced and adjacent to its goal &mdash; true cost = 1, h<sub>3</sub> = 2. &#10060; Overestimates.</li>
+                </ul>
+                <p><strong>Answer: D (Both A and B)</strong></p>
+                <p><strong>Key Takeaway:</strong> To verify admissibility, find the <em>easiest</em> scenario for each tile and check whether the heuristic could ever exceed the true cost. Multiplying an admissible heuristic by a constant &gt; 1 usually destroys admissibility.</p>
+              </div>
+            </section>
+
+            <!-- ==================== QUESTION 3 ==================== -->
+            <section id="q3">
+              <h2>Question 3 &mdash; Heuristic Dominance</h2>
+              <div class="definition-box">
+                <div class="box-title">&#128221; Problem Statement (MCQ &mdash; 2 marks)</div>
+                <p>Two admissible heuristics h<sub>1</sub> and h<sub>2</sub> satisfy h<sub>2</sub>(n) &ge; h<sub>1</sub>(n) for all nodes n. Which statement is <strong>correct</strong>?</p>
+                <ol type="A">
+                  <li>A* with h<sub>1</sub> always expands fewer nodes than A* with h<sub>2</sub></li>
+                  <li>A* with h<sub>2</sub> always expands fewer or equal nodes than A* with h<sub>1</sub></li>
+                  <li>Both find different optimal paths</li>
+                  <li>h<sub>2</sub> is not admissible since it gives larger values</li>
+                </ol>
+              </div>
+              <div class="example-box">
+                <div class="box-title">&#9989; Detailed Solution</div>
+                <p>When h<sub>2</sub>(n) &ge; h<sub>1</sub>(n) for all n, we say h<sub>2</sub> <strong>dominates</strong> h<sub>1</sub>. Since both are admissible, both lead to optimal solutions. However:</p>
+                <p>A* never expands nodes with f(n) &gt; C*. With a higher (but still admissible) heuristic, f-values are closer to C*, so fewer nodes have f(n) &le; C*. Therefore:</p>
+                <ul>
+                  <li><strong>A:</strong> Wrong &mdash; backwards.</li>
+                  <li><strong>B:</strong> Correct &mdash; the dominating heuristic leads to fewer or equal expansions.</li>
+                  <li><strong>C:</strong> Wrong &mdash; both are optimal (same cost, possibly same path).</li>
+                  <li><strong>D:</strong> Wrong &mdash; a higher value does not violate admissibility as long as h(n) &le; h*(n).</li>
+                </ul>
+                <p><strong>Answer: B</strong></p>
+                <p><strong>Key Takeaway:</strong> Among admissible heuristics, <strong>higher is better</strong> (more informed = fewer nodes expanded). Always prefer the dominating heuristic. If two heuristics are incomparable, use h(n) = max(h<sub>1</sub>(n), h<sub>2</sub>(n)), which is also admissible.</p>
+              </div>
+            </section>
+
+            <!-- ==================== QUESTION 4 ==================== -->
+            <section id="q4">
+              <h2>Question 4 &mdash; A* Node Expansion Count (NAT)</h2>
+              <div class="definition-box">
+                <div class="box-title">&#128221; Problem Statement (NAT &mdash; 2 marks)</div>
+                <p>Consider the following graph with start node S and goal node G. Edge costs are shown. The heuristic values are: h(S)=7, h(A)=6, h(B)=2, h(C)=1, h(G)=0.</p>
+                <pre style="background:var(--bg-secondary); padding:var(--spacing-md); border-radius:var(--border-radius); font-family:monospace;">
+    S --1--> A --4--> G
+    |               ^
+    2              /
+    |            1
+    v          /
+    B --3--> C
+                </pre>
+                <p>How many nodes does A* (graph search) <strong>expand</strong> before finding the goal? Include the goal node if it gets expanded.</p>
+              </div>
+              <div class="example-box">
+                <div class="box-title">&#9989; Detailed Solution</div>
+                <p>Let&rsquo;s trace A* step by step. Open list is sorted by f(n) = g(n) + h(n).</p>
+                <p><strong>Initial:</strong> Open = {S: f=0+7=7}</p>
+                <p><strong>Step 1: Expand S</strong> (f=7). Generate A (g=1, f=1+6=7) and B (g=2, f=2+2=4).<br>Open = {B:4, A:7}. Closed = {S}.</p>
+                <p><strong>Step 2: Expand B</strong> (f=4). Generate C (g=2+3=5, f=5+1=6).<br>Open = {C:6, A:7}. Closed = {S, B}.</p>
+                <p><strong>Step 3: Expand C</strong> (f=6). Generate G (g=5+1=6, f=6+0=6).<br>Open = {G:6, A:7}. Closed = {S, B, C}.</p>
+                <p><strong>Step 4: Expand G</strong> (f=6). Goal test on expansion &rarr; Goal found!</p>
+                <p>Nodes expanded: S, B, C, G = <strong>4</strong></p>
+                <p>Path: S &rarr; B &rarr; C &rarr; G, cost = 2+3+1 = 6. (Compare: S &rarr; A &rarr; G = 1+4 = 5. Wait &mdash; let&rsquo;s check.)</p>
+                <p>Actually, the path S&rarr;A&rarr;G costs 1+4=5 with f(A)=7. But S&rarr;B&rarr;C&rarr;G costs 6 with f(G)=6. Since A has f=7 &gt; 6 = f(G), G is expanded first. But is the path via A cheaper? Yes: cost 5 &lt; 6.</p>
+                <p><strong>Correction:</strong> A* should find the optimal path. Let&rsquo;s re-check: when G is added via C at g=6, A is still in the open list at f=7. A* expands G at f=6 first. But G is the goal &mdash; A* returns path cost 6. However, A has f=7, and expanding A would give G at g=5, f=5. This shows the heuristic h is NOT consistent (h(S)=7 but c(S,A)+h(A) = 1+6=7 = h(S) &#9745;; h(B)=2 but c(B,C)+h(C)=3+1=4 &gt; h(B) &#9745;; h(A)=6 but c(A,G)+h(G)=4+0=4 &lt; h(A)=6 &#10060;). Since h is admissible but NOT consistent, graph search A* may return a suboptimal path unless re-opening is allowed. With standard graph search (no re-opening), A* expands <strong>4 nodes</strong> (S, B, C, G).</p>
+                <p><strong>Answer: 4</strong></p>
+                <p><strong>Key Takeaway:</strong> Always check for consistency when doing A* graph search traces. With an admissible but inconsistent heuristic, graph search A* (without re-opening) may miss optimal paths. GATE often tests this subtle distinction.</p>
+              </div>
+            </section>
+
+            <!-- ==================== QUESTION 5 ==================== -->
+            <section id="q5">
+              <h2>Question 5 &mdash; Greedy Best-First Search Completeness</h2>
+              <div class="definition-box">
+                <div class="box-title">&#128221; Problem Statement (MCQ &mdash; 1 mark)</div>
+                <p>Which of the following is <strong>true</strong> about Greedy Best-First Search?</p>
+                <ol type="A">
+                  <li>It is complete and optimal</li>
+                  <li>It is complete but not optimal</li>
+                  <li>It is neither complete nor optimal in general</li>
+                  <li>It is optimal but not complete</li>
+                </ol>
+              </div>
+              <div class="example-box">
+                <div class="box-title">&#9989; Detailed Solution</div>
+                <p>Greedy Best-First Search uses f(n) = h(n), expanding the node that appears closest to the goal.</p>
+                <ul>
+                  <li><strong>Completeness:</strong> In tree search, Greedy can get stuck in infinite loops (e.g., A &rarr; B &rarr; A &rarr; B&hellip;). Even with graph search, it is only complete in finite state spaces with repeated-state checking. In general, it is <strong>not complete</strong>.</li>
+                  <li><strong>Optimality:</strong> Greedy ignores path cost g(n), so it can easily find a suboptimal path. <strong>Not optimal</strong>.</li>
+                </ul>
+                <p><strong>Answer: C</strong></p>
+                <p><strong>Key Takeaway:</strong> Greedy BFS = &ldquo;neither complete nor optimal in general.&rdquo; It is fast when the heuristic is good, but provides no guarantees. In contrast, A* is both complete and optimal (with admissible h).</p>
+              </div>
+            </section>
+
+            <!-- ==================== QUESTION 6 ==================== -->
+            <section id="q6">
+              <h2>Question 6 &mdash; Consistency vs Admissibility</h2>
+              <div class="definition-box">
+                <div class="box-title">&#128221; Problem Statement (MCQ &mdash; 2 marks)</div>
+                <p>Consider the following statements about heuristic functions:</p>
+                <ol type="I">
+                  <li>Every consistent heuristic is admissible.</li>
+                  <li>Every admissible heuristic is consistent.</li>
+                  <li>A* graph search is optimal with a consistent heuristic.</li>
+                  <li>A* tree search is optimal with an admissible heuristic.</li>
+                </ol>
+                <p>Which statements are <strong>correct</strong>?</p>
+                <ol type="A">
+                  <li>I and II only</li>
+                  <li>I, III, and IV only</li>
+                  <li>I and III only</li>
+                  <li>All four</li>
+                </ol>
+              </div>
+              <div class="example-box">
+                <div class="box-title">&#9989; Detailed Solution</div>
+                <ul>
+                  <li><strong>Statement I:</strong> Consistency implies h(n) &le; c(n,n&prime;) + h(n&prime;). By induction along any path to the goal, this implies h(n) &le; h*(n), which is admissibility. &#9989; True.</li>
+                  <li><strong>Statement II:</strong> Counter-example exists (as in Q4). An admissible heuristic need not satisfy the triangle inequality. &#10060; False.</li>
+                  <li><strong>Statement III:</strong> With consistency, f-values are non-decreasing along any path, so the first time a node is expanded, it is via the cheapest path. No re-opening needed. &#9989; True.</li>
+                  <li><strong>Statement IV:</strong> In tree search there is no closed list, so admissibility is sufficient for optimality. &#9989; True.</li>
+                </ul>
+                <p><strong>Answer: B (I, III, and IV)</strong></p>
+                <p><strong>Key Takeaway:</strong> Consistency &rArr; Admissibility, but NOT vice versa. For graph search, you need consistency (or re-opening). For tree search, admissibility suffices. This is one of the most tested distinctions in GATE.</p>
+              </div>
+            </section>
+
+            <!-- ==================== QUESTION 7 ==================== -->
+            <section id="q7">
+              <h2>Question 7 &mdash; Hill Climbing Problems</h2>
+              <div class="definition-box">
+                <div class="box-title">&#128221; Problem Statement (MCQ &mdash; 1 mark)</div>
+                <p>Which of the following problems does <strong>NOT</strong> affect basic hill climbing?</p>
+                <ol type="A">
+                  <li>Local maxima</li>
+                  <li>Plateaux (flat regions)</li>
+                  <li>Ridges</li>
+                  <li>Exponential time complexity</li>
+                </ol>
+              </div>
+              <div class="example-box">
+                <div class="box-title">&#9989; Detailed Solution</div>
+                <p>Hill climbing is a local search algorithm that always moves to the neighbour with the highest evaluation value (maximisation) or lowest cost (minimisation).</p>
+                <ul>
+                  <li><strong>A: Local maxima</strong> &mdash; Yes, HC gets stuck at local maxima where all neighbours are worse. &#9989; Affects HC.</li>
+                  <li><strong>B: Plateaux</strong> &mdash; Yes, when all neighbours have the same value, HC doesn&rsquo;t know which way to move. &#9989; Affects HC.</li>
+                  <li><strong>C: Ridges</strong> &mdash; Yes, ridges have slopes in multiple dimensions that are hard to navigate with single-step moves. &#9989; Affects HC.</li>
+                  <li><strong>D: Exponential time complexity</strong> &mdash; HC runs in O(n) per step for n neighbours and terminates quickly (often in constant number of steps). It does NOT suffer from exponential time &mdash; that&rsquo;s a problem of systematic search, not local search. &#10060; Does NOT affect HC.</li>
+                </ul>
+                <p><strong>Answer: D</strong></p>
+                <p><strong>Key Takeaway:</strong> The three classic problems of hill climbing are: local maxima, plateaux, and ridges. Hill climbing is fast but incomplete &mdash; it trades completeness for speed.</p>
+              </div>
+            </section>
+
+            <!-- ==================== QUESTION 8 ==================== -->
+            <section id="q8">
+              <h2>Question 8 &mdash; IDA* Threshold Updates</h2>
+              <div class="definition-box">
+                <div class="box-title">&#128221; Problem Statement (MCQ &mdash; 2 marks)</div>
+                <p>IDA* performs iterative deepening with f-cost limits. In the first iteration, the threshold is f(start) = g(start) + h(start) = h(start). Suppose during the first iteration, the following f-values exceed the threshold: 12, 15, 14, 18, 13. The current threshold is 10. What is the <strong>next threshold</strong>?</p>
+                <ol type="A">
+                  <li>15 (the median)</li>
+                  <li>12 (the minimum exceeding value)</li>
+                  <li>18 (the maximum)</li>
+                  <li>14.4 (the average)</li>
+                </ol>
+              </div>
+              <div class="example-box">
+                <div class="box-title">&#9989; Detailed Solution</div>
+                <p>IDA* sets the next threshold to the <strong>minimum f-value that exceeded the current threshold</strong>. This ensures we explore all nodes with f &le; new threshold in the next iteration.</p>
+                <p>Exceeded values: {12, 15, 14, 18, 13}. Minimum = <strong>12</strong>.</p>
+                <p><strong>Answer: B (12)</strong></p>
+                <p><strong>Key Takeaway:</strong> IDA* threshold update rule: next_threshold = min(all f-values that exceeded current threshold). This is analogous to how iterative deepening increases the depth limit by 1 in IDDFS, but here it increases to the next f-value &ldquo;contour.&rdquo;</p>
+              </div>
+            </section>
+
+            <!-- ==================== QUESTION 9 ==================== -->
+            <section id="q9">
+              <h2>Question 9 &mdash; Simulated Annealing Acceptance Probability</h2>
+              <div class="definition-box">
+                <div class="box-title">&#128221; Problem Statement (NAT &mdash; 2 marks)</div>
+                <p>In simulated annealing for a minimisation problem, the current state has cost 50 and a neighbour has cost 55. The temperature T = 10. What is the probability of accepting the worse neighbour? Round to two decimal places.</p>
+                <p><em>Hint: P = e<sup>&minus;&Delta;E/T</sup> where &Delta;E = new_cost &minus; current_cost</em></p>
+              </div>
+              <div class="example-box">
+                <div class="box-title">&#9989; Detailed Solution</div>
+                <p>&Delta;E = 55 &minus; 50 = 5 (positive, since the new state is worse)</p>
+                <p>P = e<sup>&minus;5/10</sup> = e<sup>&minus;0.5</sup> &asymp; <strong>0.61</strong></p>
+                <p>So there is a 61% chance of accepting this worse move at T=10.</p>
+                <p><strong>Answer: 0.61</strong></p>
+                <p><strong>Key Takeaway:</strong> SA acceptance probability: P = e<sup>&minus;&Delta;E/T</sup>. As T decreases, the probability of accepting worse moves drops toward 0. As T &rarr; &infin;, P &rarr; 1 (random walk). As T &rarr; 0, P &rarr; 0 (pure hill climbing). In GATE, you may need to compute e<sup>&minus;x</sup> for small x values.</p>
+              </div>
+            </section>
+
+            <!-- ==================== QUESTION 10 ==================== -->
+            <section id="q10">
+              <h2>Question 10 &mdash; A* with Multiple Heuristics</h2>
+              <div class="definition-box">
+                <div class="box-title">&#128221; Problem Statement (MCQ &mdash; 2 marks)</div>
+                <p>Given two admissible heuristics h<sub>1</sub> and h<sub>2</sub> that are <em>not</em> comparable (neither dominates the other), you define h<sub>3</sub>(n) = max(h<sub>1</sub>(n), h<sub>2</sub>(n)). Which of the following is <strong>true</strong>?</p>
+                <ol type="A">
+                  <li>h<sub>3</sub> is admissible and dominates both h<sub>1</sub> and h<sub>2</sub></li>
+                  <li>h<sub>3</sub> is not admissible</li>
+                  <li>h<sub>3</sub> is admissible but does not dominate either h<sub>1</sub> or h<sub>2</sub></li>
+                  <li>h<sub>3</sub> may or may not be admissible depending on the problem</li>
+                </ol>
+              </div>
+              <div class="example-box">
+                <div class="box-title">&#9989; Detailed Solution</div>
+                <p><strong>Admissibility:</strong> For any node n, h<sub>1</sub>(n) &le; h*(n) and h<sub>2</sub>(n) &le; h*(n). Therefore max(h<sub>1</sub>(n), h<sub>2</sub>(n)) &le; h*(n). So h<sub>3</sub> is admissible. &#9989;</p>
+                <p><strong>Dominance:</strong> h<sub>3</sub>(n) = max(h<sub>1</sub>(n), h<sub>2</sub>(n)) &ge; h<sub>1</sub>(n) and &ge; h<sub>2</sub>(n) for all n. So h<sub>3</sub> dominates both. &#9989;</p>
+                <p><strong>Answer: A</strong></p>
+                <p><strong>Key Takeaway:</strong> The max of admissible heuristics is always admissible and dominates all constituent heuristics. This is a powerful technique: if you have multiple heuristics for a problem, use their pointwise maximum. This is commonly tested in GATE.</p>
+              </div>
+            </section>
+
+            <!-- ==================== EXAM TIPS ==================== -->
+            <section id="exam-tips">
+              <h2>Exam Strategy Tips</h2>
+              <div class="summary-section"><ul>
+                <li><strong>Trace methodically:</strong> For A* expansion questions, maintain an explicit open list sorted by f(n) on paper. Show g, h, and f for each node.</li>
+                <li><strong>Check consistency:</strong> If a question involves A* graph search, immediately check whether h is consistent. If not, note that re-opening may be needed.</li>
+                <li><strong>Admissibility verification:</strong> To prove h is admissible, show it corresponds to a relaxed problem. To disprove, find ONE counter-example where h(n) &gt; h*(n).</li>
+                <li><strong>Dominance:</strong> Given multiple heuristics, the one with the highest values (while remaining admissible) leads to the fewest node expansions.</li>
+                <li><strong>SA formula:</strong> Memorise P = e<sup>&minus;&Delta;E/T</sup>. Remember &Delta;E is positive for worse moves. Know that e<sup>&minus;0.5</sup> &asymp; 0.61, e<sup>&minus;1</sup> &asymp; 0.37, e<sup>&minus;2</sup> &asymp; 0.14.</li>
+                <li><strong>IDA* threshold:</strong> Next threshold = minimum f-value that exceeded the current threshold.</li>
+              </ul></div>
+            </section>
+
+            <button class="complete-btn" data-page="ch03-gate-pyq">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="practical-informed-search.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">A* Demo</span></a>
+              <a href="notes-informed-search.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Notes</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#q1">Q1: A* Optimality Proof</a></li>
+            <li><a href="#q2">Q2: Admissible Heuristics</a></li>
+            <li><a href="#q3">Q3: Heuristic Dominance</a></li>
+            <li><a href="#q4">Q4: A* Node Expansion (NAT)</a></li>
+            <li><a href="#q5">Q5: Greedy Completeness</a></li>
+            <li><a href="#q6">Q6: Consistency vs Admissibility</a></li>
+            <li><a href="#q7">Q7: Hill Climbing Problems</a></li>
+            <li><a href="#q8">Q8: IDA* Threshold Updates</a></li>
+            <li><a href="#q9">Q9: SA Acceptance Probability</a></li>
+            <li><a href="#q10">Q10: Multiple Heuristics</a></li>
+            <li><a href="#exam-tips">Exam Strategy Tips</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

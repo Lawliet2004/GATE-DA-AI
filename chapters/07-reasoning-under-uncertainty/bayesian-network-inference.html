@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inference in Bayesian Networks — enumeration, variable elimination, step-by-step examples, complexity analysis for GATE DA preparation.">
+  <title>Bayesian Network Inference — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+            <a href="conditional-probability.html" class="sidebar-link"><span class="link-check"></span> Conditional Probability<span class="link-type theory">Theory</span></a>
+            <a href="bayes-theorem.html" class="sidebar-link"><span class="link-check"></span> Bayes' Theorem<span class="link-type theory">Theory</span></a>
+            <a href="independence.html" class="sidebar-link"><span class="link-check"></span> Independence<span class="link-type theory">Theory</span></a>
+            <a href="random-variables.html" class="sidebar-link"><span class="link-check"></span> Random Variables<span class="link-type theory">Theory</span></a>
+            <a href="joint-distributions.html" class="sidebar-link"><span class="link-check"></span> Joint Distributions<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-networks-intro.html" class="sidebar-link"><span class="link-check"></span> Bayesian Networks<span class="link-type theory">Theory</span></a>
+            <a href="bayesian-network-inference.html" class="sidebar-link active"><span class="link-check"></span> BN Inference<span class="link-type theory">Theory</span></a>
+            <a href="d-separation.html" class="sidebar-link"><span class="link-check"></span> D-Separation<span class="link-type theory">Theory</span></a>
+            <a href="approximate-inference.html" class="sidebar-link"><span class="link-check"></span> Approximate Inference<span class="link-type theory">Theory</span></a>
+            <a href="naive-bayes.html" class="sidebar-link"><span class="link-check"></span> Naive Bayes<span class="link-type theory">Theory</span></a>
+            <a href="hidden-markov-models.html" class="sidebar-link"><span class="link-check"></span> Hidden Markov Models<span class="link-type theory">Theory</span></a>
+            <a href="markov-decision-processes.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="information-theory.html" class="sidebar-link"><span class="link-check"></span> Information Theory<span class="link-type theory">Theory</span></a>
+            <a href="maximum-likelihood.html" class="sidebar-link"><span class="link-check"></span> MLE &amp; MAP<span class="link-type theory">Theory</span></a>
+            <a href="practical-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uncertainty.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uncertainty.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="probability-basics.html">Chapter 7: Reasoning Under Uncertainty</a> &raquo;
+          <span class="current">BN Inference</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch07-bn-inference">
+
+            <h1>Inference in Bayesian Networks</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch07-bn-inference" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="bayesian-networks-intro.html">Bayesian Networks Introduction</a></li>
+              <li><a href="bayes-theorem.html">Bayes' Theorem</a></li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Perform inference by enumeration in a Bayesian network</li>
+              <li>Understand and apply variable elimination</li>
+              <li>Compute posterior probabilities step by step</li>
+              <li>Appreciate the computational complexity of exact inference</li>
+            </ul></div>
+
+            <div class="content-body">
+
+              <section id="inference-types">
+                <h2>1. Types of Inference</h2>
+                <ul>
+                  <li><strong>Posterior probability:</strong> P(Query | Evidence) — the most common task</li>
+                  <li><strong>Most probable explanation (MPE):</strong> argmax<sub>x</sub> P(X = x | e)</li>
+                  <li><strong>Maximum a posteriori (MAP):</strong> Most probable assignment to a subset of variables</li>
+                </ul>
+              </section>
+
+              <section id="enumeration">
+                <h2>2. Inference by Enumeration</h2>
+                <div class="algorithm-block">
+                  <h4>Algorithm: Enumeration</h4>
+                  <ol>
+                    <li>Express the query P(Q | e) = &alpha; &middot; P(Q, e) where &alpha; is the normalizing constant</li>
+                    <li>Expand P(Q, e) using the BN factorization</li>
+                    <li>Sum out all hidden variables (variables that are neither query nor evidence)</li>
+                    <li>Normalize to obtain proper probabilities</li>
+                  </ol>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example &mdash; Alarm Network <span class="gate-tag">GATE Style</span></h4>
+                  <p>Given: B &rarr; A, E &rarr; A, A &rarr; J, A &rarr; M. Compute P(B | j, m).</p>
+                  <p><strong>Step 1:</strong> P(B | j, m) = &alpha; P(B, j, m) = &alpha; &sum;<sub>e</sub>&sum;<sub>a</sub> P(B)P(e)P(a|B,e)P(j|a)P(m|a)</p>
+                  <p><strong>Step 2:</strong> Factor and push sums inward:<br>
+                  = &alpha; P(B) &sum;<sub>e</sub> P(e) &sum;<sub>a</sub> P(a|B,e) P(j|a) P(m|a)</p>
+                  <p><strong>Step 3:</strong> Compute the innermost sum for each combination of B, e values. Then sum over e. Finally normalize over B.</p>
+                  <p>With specific CPT values: P(B=T | j, m) &asymp; <strong>0.284</strong></p>
+                </div>
+
+                <div class="warning-box">
+                  <h4>Exponential Complexity</h4>
+                  <p>Naive enumeration is O(n &middot; 2<sup>n</sup>) for n binary variables. This is impractical for large networks.</p>
+                </div>
+              </section>
+
+              <section id="variable-elimination">
+                <h2>3. Variable Elimination</h2>
+                <div class="definition-box">
+                  <h4>Key Idea</h4>
+                  <p>Variable elimination avoids redundant computation by <strong>eliminating (summing out) variables one at a time</strong>, storing intermediate results as <strong>factors</strong>.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Variable Elimination Algorithm</h4>
+                  <ol>
+                    <li>Represent each CPT as a <strong>factor</strong> (a table over its variables)</li>
+                    <li>Set evidence variables to their observed values</li>
+                    <li>Choose an <strong>elimination ordering</strong> for hidden variables</li>
+                    <li>For each hidden variable Z in order:
+                      <ul>
+                        <li>Collect all factors that mention Z</li>
+                        <li>Multiply them into a single factor</li>
+                        <li>Sum out Z to produce a new factor</li>
+                      </ul>
+                    </li>
+                    <li>Multiply remaining factors and normalize</li>
+                  </ol>
+                </div>
+
+                <div class="example-box">
+                  <h4>Step-by-Step Variable Elimination</h4>
+                  <p>Computing P(B | j, m) in the alarm network:</p>
+                  <p><strong>Initial factors:</strong> f<sub>1</sub>(B), f<sub>2</sub>(E), f<sub>3</sub>(A,B,E), f<sub>4</sub>(J=t,A), f<sub>5</sub>(M=t,A)</p>
+                  <p><strong>Eliminate E:</strong> Collect f<sub>2</sub>(E) and f<sub>3</sub>(A,B,E). Product: f<sub>6</sub>(A,B,E). Sum out E: f<sub>7</sub>(A,B) = &sum;<sub>E</sub> f<sub>6</sub>.</p>
+                  <p><strong>Eliminate A:</strong> Collect f<sub>7</sub>(A,B), f<sub>4</sub>(A), f<sub>5</sub>(A). Product: f<sub>8</sub>(A,B). Sum out A: f<sub>9</sub>(B) = &sum;<sub>A</sub> f<sub>8</sub>.</p>
+                  <p><strong>Final:</strong> Multiply f<sub>1</sub>(B) &times; f<sub>9</sub>(B), normalize. Done!</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>Elimination Ordering Matters</h4>
+                  <p>The order in which hidden variables are eliminated affects the size of intermediate factors and hence the complexity. Finding the optimal ordering is itself NP-hard, but good heuristics (min-fill, min-degree) exist.</p>
+                </div>
+              </section>
+
+              <section id="complexity">
+                <h2>4. Complexity of Exact Inference</h2>
+                <div class="theorem-box">
+                  <h4>Complexity Result</h4>
+                  <p>Exact inference in Bayesian networks is <strong>#P-hard</strong> in general. For networks with bounded <strong>treewidth</strong> w, variable elimination runs in O(n &middot; d<sup>w+1</sup>) where d is the domain size.</p>
+                </div>
+                <ul>
+                  <li><strong>Polytrees</strong> (singly connected BNs): Exact inference is linear-time</li>
+                  <li><strong>Multiply connected</strong> BNs: Exact inference is #P-hard &mdash; motivates approximate methods</li>
+                </ul>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li>Enumeration: sum out all hidden variables using the BN factorization</li>
+                    <li>Variable elimination: eliminate one variable at a time with intermediate factors</li>
+                    <li>VE avoids redundant computation; ordering affects efficiency</li>
+                    <li>Exact inference is #P-hard in general but tractable for polytrees</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch07-bn-inference">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="bayesian-networks-intro.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Bayesian Networks Intro</span>
+              </a>
+              <a href="d-separation.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">D-Separation</span>
+              </a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#inference-types">1. Types of Inference</a></li>
+              <li><a href="#enumeration">2. Enumeration</a></li>
+              <li><a href="#variable-elimination">3. Variable Elimination</a></li>
+              <li><a href="#complexity">4. Complexity</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arc Consistency — node consistency, AC-3 algorithm, path consistency, k-consistency, generalized arc consistency, worked examples for GATE DA.">
+  <title>Arc Consistency — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a>
+            <a href="backtracking-csp.html" class="sidebar-link"><span class="link-check"></span> Backtracking Search<span class="link-type theory">Theory</span></a>
+            <a href="arc-consistency.html" class="sidebar-link active"><span class="link-check"></span> Arc Consistency<span class="link-type theory">Theory</span></a>
+            <a href="constraint-propagation.html" class="sidebar-link"><span class="link-check"></span> Constraint Propagation<span class="link-type theory">Theory</span></a>
+            <a href="practical-csp.html" class="sidebar-link"><span class="link-check"></span> &#128736; Practical: CSP Solver<span class="link-type practical">Practical</span></a>
+            <a href="notes-csp.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-csp.html" class="sidebar-link"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="csp-formulation.html">Chapter 14: Constraint Satisfaction</a> &raquo; <span class="current">Arc Consistency</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch14-arc-consistency">
+
+            <h1>Arc Consistency</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="chapters/14-constraint-satisfaction/arc-consistency.html" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Define <strong>node consistency</strong> and <strong>arc consistency</strong></li>
+              <li>Describe the <strong>AC-3 algorithm</strong> with its queue-based approach</li>
+              <li>Analyse the <strong>time complexity</strong> O(cd&sup3;) of AC-3</li>
+              <li>Understand <strong>path consistency</strong> and <strong>k-consistency</strong></li>
+              <li>Explain <strong>generalized arc consistency</strong> for non-binary constraints</li>
+              <li>Trace an AC-3 worked example step by step</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <!-- Section 1 -->
+              <section id="node-consistency">
+                <h2>1. Node Consistency</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Node Consistency</h4>
+                  <p>A variable X<sub>i</sub> is <strong>node-consistent</strong> if every value in its domain D<sub>i</sub> satisfies all <em>unary</em> constraints on X<sub>i</sub>. A CSP is node-consistent if every variable is node-consistent.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; Example</h4>
+                  <p>If X<sub>1</sub> has domain {R, G, B} and there is a unary constraint X<sub>1</sub> ≠ G, we achieve node consistency by removing G from D<sub>1</sub>, giving D<sub>1</sub> = {R, B}.</p>
+                </div>
+
+                <p>Node consistency is trivially achieved by pre-processing: scan all unary constraints and remove violating values. After this step, all remaining constraints are binary or higher.</p>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="arc-consistency-def">
+                <h2>2. Arc Consistency Definition</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Arc Consistency</h4>
+                  <p>A variable X<sub>i</sub> is <strong>arc-consistent</strong> with respect to variable X<sub>j</sub> if for <em>every</em> value v ∈ D<sub>i</sub>, there exists <em>some</em> value w ∈ D<sub>j</sub> such that (v, w) satisfies the constraint between X<sub>i</sub> and X<sub>j</sub>.</p>
+                  <p>Formally: ∀ v ∈ D<sub>i</sub>, ∃ w ∈ D<sub>j</sub> : (v, w) ∈ R<sub>ij</sub></p>
+                  <p>A CSP is <strong>arc-consistent</strong> if every variable is arc-consistent with respect to every other variable it shares a constraint with.</p>
+                </div>
+
+                <div class="note-box">
+                  <h4>&#128161; Direction Matters</h4>
+                  <p>Arc consistency is <strong>directional</strong>. The arc (X<sub>i</sub>, X<sub>j</sub>) being consistent means every value in D<sub>i</sub> has a support in D<sub>j</sub>. But (X<sub>j</sub>, X<sub>i</sub>) might not be consistent &mdash; some value in D<sub>j</sub> might lack a support in D<sub>i</sub>. Both directions must be checked.</p>
+                </div>
+
+                <div class="warning-box">
+                  <h4>&#9888; Arc Consistency ≠ Solution</h4>
+                  <p>A CSP can be arc-consistent yet have <strong>no solution</strong>. For example, three variables X, Y, Z each with domain {R, B} and constraints X ≠ Y, Y ≠ Z, X ≠ Z is arc-consistent (each value has support) but has no valid complete assignment with only 2 colours for 3 mutually constrained variables.</p>
+                </div>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="ac3-algorithm">
+                <h2>3. AC-3 Algorithm</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; AC-3 (Arc Consistency Algorithm #3)</h4>
+                  <p>AC-3 maintains a queue of arcs to process. It repeatedly dequeues an arc (X<sub>i</sub>, X<sub>j</sub>), removes unsupported values from D<sub>i</sub>, and if D<sub>i</sub> changed, enqueues all arcs (X<sub>k</sub>, X<sub>i</sub>) for each neighbour X<sub>k</sub> ≠ X<sub>j</sub>.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <h4>Algorithm: AC-3</h4>
+                  <pre>
+function AC-3(csp) returns false if inconsistency found, true otherwise
+    queue &larr; {(X<sub>i</sub>, X<sub>j</sub>) : (X<sub>i</sub>, X<sub>j</sub>) ∈ arcs(csp)}   // all arcs, both directions
+    while queue is not empty do
+        (X<sub>i</sub>, X<sub>j</sub>) &larr; DEQUEUE(queue)
+        if REVISE(csp, X<sub>i</sub>, X<sub>j</sub>) then
+            if |D<sub>i</sub>| = 0 then return false     // domain wipe-out
+            for each X<sub>k</sub> in NEIGHBOURS(X<sub>i</sub>) &minus; {X<sub>j</sub>} do
+                ENQUEUE(queue, (X<sub>k</sub>, X<sub>i</sub>))
+    return true
+
+function REVISE(csp, X<sub>i</sub>, X<sub>j</sub>) returns true iff we revise D<sub>i</sub>
+    revised &larr; false
+    for each v in D<sub>i</sub> do
+        if no w in D<sub>j</sub> satisfies constraint(X<sub>i</sub>, X<sub>j</sub>) then
+            remove v from D<sub>i</sub>
+            revised &larr; true
+    return revised
+                  </pre>
+                </div>
+
+                <div class="theorem-box">
+                  <h4>&#128220; Time Complexity of AC-3</h4>
+                  <p>Let c = number of binary constraints (arcs in both directions = 2c), d = maximum domain size.</p>
+                  <ul>
+                    <li>Each arc (X<sub>i</sub>, X<sub>j</sub>) can be enqueued at most <strong>d</strong> times (once for each value deleted from D<sub>i</sub> or D<sub>j</sub>)</li>
+                    <li>Each call to REVISE checks up to <strong>d &times; d = d&sup2;</strong> value pairs</li>
+                    <li>Total: <strong>O(c &middot; d&sup3;)</strong> &mdash; where c is the number of constraints and d the max domain size</li>
+                  </ul>
+                  <p>This is polynomial in the input size, making AC-3 efficient as a preprocessing step.</p>
+                </div>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="ac3-worked-example">
+                <h2>4. AC-3 Worked Example: Map Coloring</h2>
+
+                <div class="example-box">
+                  <h4>&#9997; Step-by-Step AC-3 on a Small Map</h4>
+                  <p>Consider three regions A, B, C with constraints A ≠ B, B ≠ C, A ≠ C.</p>
+                  <p><strong>Initial domains</strong>: D<sub>A</sub> = {R, G, B}, D<sub>B</sub> = {R, G}, D<sub>C</sub> = {R, G, B}</p>
+
+                  <p><strong>Initial queue</strong>: {(A,B), (B,A), (B,C), (C,B), (A,C), (C,A)}</p>
+
+                  <p><strong>Step 1</strong>: Process (A, B) &mdash; constraint: A ≠ B</p>
+                  <ul>
+                    <li>A=R: support B=G &#10003;</li>
+                    <li>A=G: support B=R &#10003;</li>
+                    <li>A=B: support B=R &#10003;</li>
+                  </ul>
+                  <p>No change to D<sub>A</sub>. Move on.</p>
+
+                  <p><strong>Step 2</strong>: Process (B, A) &mdash; constraint: B ≠ A</p>
+                  <ul>
+                    <li>B=R: support A=G &#10003;</li>
+                    <li>B=G: support A=R &#10003;</li>
+                  </ul>
+                  <p>No change to D<sub>B</sub>. Move on.</p>
+
+                  <p><strong>Step 3</strong>: Process (B, C) &mdash; constraint: B ≠ C</p>
+                  <ul>
+                    <li>B=R: support C=G &#10003;</li>
+                    <li>B=G: support C=R &#10003;</li>
+                  </ul>
+                  <p>No change. Move on.</p>
+
+                  <p><strong>Step 4</strong>: Process (C, B) &mdash; constraint: C ≠ B</p>
+                  <ul>
+                    <li>C=R: support B=G &#10003;</li>
+                    <li>C=G: support B=R &#10003;</li>
+                    <li>C=B: need B ≠ B. B=R &#10003; (R ≠ B)</li>
+                  </ul>
+                  <p>No change. Move on.</p>
+
+                  <p><strong>Steps 5&ndash;6</strong>: Process (A,C) and (C,A) &mdash; similarly no changes.</p>
+                  <p><strong>Queue empty</strong>. Final domains: D<sub>A</sub>={R,G,B}, D<sub>B</sub>={R,G}, D<sub>C</sub>={R,G,B}. CSP is arc-consistent.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>&#9997; AC-3 with Pruning</h4>
+                  <p>Now suppose D<sub>B</sub> = {R} initially (B is pre-assigned to Red).</p>
+                  <p><strong>Step 1</strong>: Process (A, B) &mdash; A ≠ B</p>
+                  <ul><li>A=R: no w in D<sub>B</sub>={R} with R≠R &rarr; <strong>remove R from D<sub>A</sub></strong></li>
+                  <li>A=G: B=R and G≠R &#10003;</li><li>A=B: B=R and B≠R &#10003;</li></ul>
+                  <p>D<sub>A</sub> changed to {G, B}. Enqueue (C, A).</p>
+
+                  <p><strong>Step 2</strong>: Process (C, B) &mdash; C ≠ B</p>
+                  <ul><li>C=R: no support &rarr; <strong>remove R from D<sub>C</sub></strong></li>
+                  <li>C=G: B=R &#10003;</li><li>C=B: B=R &#10003;</li></ul>
+                  <p>D<sub>C</sub> changed to {G, B}. Enqueue (A, C).</p>
+
+                  <p><strong>Steps 3+</strong>: Remaining arcs produce no further changes. Final: D<sub>A</sub>={G,B}, D<sub>B</sub>={R}, D<sub>C</sub>={G,B}.</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="path-consistency">
+                <h2>5. Path Consistency</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Path Consistency</h4>
+                  <p>A pair of variables {X<sub>i</sub>, X<sub>j</sub>} is <strong>path-consistent</strong> with respect to a third variable X<sub>m</sub> if for every assignment (X<sub>i</sub>=a, X<sub>j</sub>=b) that satisfies the constraint between X<sub>i</sub> and X<sub>j</sub>, there exists a value c ∈ D<sub>m</sub> such that (a, c) satisfies the constraint between X<sub>i</sub> and X<sub>m</sub> <strong>and</strong> (b, c) satisfies the constraint between X<sub>j</sub> and X<sub>m</sub>.</p>
+                </div>
+
+                <p>Path consistency is strictly stronger than arc consistency. It considers triples of variables rather than pairs. The <strong>PC-2</strong> algorithm enforces path consistency but is rarely used in practice due to high cost.</p>
+
+                <div class="note-box">
+                  <h4>&#128161; When Path Consistency Helps</h4>
+                  <p>Remember the earlier example: X, Y, Z with domain {R, B} and all-different constraints. This is arc-consistent but has no solution. Path consistency would detect the inconsistency: for (X=R, Y=B), there is no valid Z (Z ≠ R and Z ≠ B is impossible with domain {R, B}).</p>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="k-consistency">
+                <h2>6. k-Consistency</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; k-Consistency</h4>
+                  <p>A CSP is <strong>k-consistent</strong> if for any consistent assignment to k&minus;1 variables, there exists a consistent assignment for any k-th variable. Equivalently:</p>
+                  <ul>
+                    <li><strong>1-consistent</strong> = node consistent</li>
+                    <li><strong>2-consistent</strong> = arc consistent</li>
+                    <li><strong>3-consistent</strong> = path consistent</li>
+                  </ul>
+                  <p>A CSP is <strong>strongly k-consistent</strong> if it is j-consistent for all j ≤ k.</p>
+                </div>
+
+                <div class="theorem-box">
+                  <h4>&#128220; Strong n-Consistency &rArr; Backtrack-Free</h4>
+                  <p>If a CSP with n variables is <strong>strongly n-consistent</strong>, then a solution can be found without any backtracking &mdash; values can be assigned one variable at a time, and a valid value is always available. However, enforcing strong n-consistency can be as expensive as solving the CSP itself.</p>
+                </div>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="generalized-arc-consistency">
+                <h2>7. Generalized Arc Consistency</h2>
+
+                <div class="definition-box">
+                  <h4>&#128218; Generalized Arc Consistency (GAC)</h4>
+                  <p>For a constraint C with scope (X<sub>1</sub>, &hellip;, X<sub>k</sub>), a value v for variable X<sub>i</sub> has <strong>generalized support</strong> if there exists a tuple (d<sub>1</sub>, &hellip;, d<sub>k</sub>) ∈ C such that d<sub>i</sub> = v and d<sub>j</sub> ∈ D<sub>j</sub> for all j. GAC removes all values lacking generalized support.</p>
+                </div>
+
+                <p>GAC is the natural extension of arc consistency to non-binary constraints. For global constraints like <strong>AllDiff</strong>, specialized GAC algorithms exist that are much more efficient than the generic approach. For instance, AllDiff can be made GAC using matching theory in O(n &middot; d) time per invocation.</p>
+
+                <div class="note-box">
+                  <h4>&#128161; GATE Tip</h4>
+                  <p>For GATE, focus on understanding <strong>AC-3</strong> thoroughly: the queue-based algorithm, how REVISE works, and the O(cd&sup3;) complexity. Be able to trace AC-3 on small examples. Path consistency and k-consistency appear less frequently but understanding the hierarchy (1-consistent = node, 2-consistent = arc, 3-consistent = path) is useful.</p>
+                </div>
+              </section>
+
+              <!-- Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <ul>
+                  <li><strong>Node consistency</strong>: every value in D<sub>i</sub> satisfies all unary constraints on X<sub>i</sub>.</li>
+                  <li><strong>Arc consistency</strong>: every value in D<sub>i</sub> has a support in D<sub>j</sub> for each constraint (X<sub>i</sub>, X<sub>j</sub>).</li>
+                  <li><strong>AC-3</strong> uses a queue of arcs; time complexity is <strong>O(cd&sup3;)</strong>.</li>
+                  <li>Arc consistency does <strong>not guarantee</strong> a solution exists &mdash; it is a necessary but not sufficient condition.</li>
+                  <li><strong>Path consistency</strong> (3-consistency) checks triples; <strong>k-consistency</strong> generalizes to k variables.</li>
+                  <li><strong>Strong n-consistency</strong> eliminates backtracking but is expensive to enforce.</li>
+                  <li><strong>GAC</strong> extends arc consistency to higher-arity constraints; specialized algorithms exist for global constraints.</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="bookmark-btn" data-page="chapters/14-constraint-satisfaction/arc-consistency.html" title="Bookmark this page">&#9733; Bookmark</button>
+            <button class="complete-btn" data-page="chapters/14-constraint-satisfaction/arc-consistency.html">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="backtracking-csp.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Backtracking Search</span></a>
+              <a href="constraint-propagation.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Constraint Propagation</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#node-consistency">1. Node Consistency</a></li>
+            <li><a href="#arc-consistency-def">2. Arc Consistency Definition</a></li>
+            <li><a href="#ac3-algorithm">3. AC-3 Algorithm</a></li>
+            <li><a href="#ac3-worked-example">4. AC-3 Worked Example</a></li>
+            <li><a href="#path-consistency">5. Path Consistency</a></li>
+            <li><a href="#k-consistency">6. k-Consistency</a></li>
+            <li><a href="#generalized-arc-consistency">7. Generalized Arc Consistency</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

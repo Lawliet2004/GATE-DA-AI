@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CSP Chapter Quiz — 15 MCQ covering CSP formulation, MRV heuristic, AC-3, forward checking, map coloring, N-Queens, constraint graph for GATE DA.">
+  <title>CSP Quiz — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" id="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">GATE DA &middot; AI</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="progress-pill overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Toggle theme">&#127763;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-intro.html" class="sidebar-link"><span class="link-check"></span> Game Theory Intro<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-paradigms.html" class="sidebar-link"><span class="link-check"></span> ML Paradigms<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="csp-formulation.html" class="sidebar-link"><span class="link-check"></span> CSP Formulation<span class="link-type theory">Theory</span></a>
+            <a href="backtracking-csp.html" class="sidebar-link"><span class="link-check"></span> Backtracking Search<span class="link-type theory">Theory</span></a>
+            <a href="arc-consistency.html" class="sidebar-link"><span class="link-check"></span> Arc Consistency<span class="link-type theory">Theory</span></a>
+            <a href="constraint-propagation.html" class="sidebar-link"><span class="link-check"></span> Constraint Propagation<span class="link-type theory">Theory</span></a>
+            <a href="practical-csp.html" class="sidebar-link"><span class="link-check"></span> &#128736; Practical: CSP Solver<span class="link-type practical">Practical</span></a>
+            <a href="notes-csp.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-csp.html" class="sidebar-link active"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/explainable-ai.html" class="sidebar-link"><span class="link-check"></span> Explainable AI<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/exam-pattern-strategy.html" class="sidebar-link"><span class="link-check"></span> Exam Pattern &amp; Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="csp-formulation.html">Chapter 14: Constraint Satisfaction</a> &raquo; <span class="current">Chapter Quiz</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-quiz" data-page-id="ch14-quiz-csp">
+
+            <h1>&#129514; CSP &mdash; Chapter Quiz</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">Mixed Difficulty</span>
+              <button class="bookmark-btn" data-page="chapters/14-constraint-satisfaction/quiz-csp.html" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="quiz-meta">
+              <span>&#128221; 15 Questions</span>
+              <span>&#9200; 30 Minutes</span>
+              <span>&#127941; Easy / Medium / Hard</span>
+            </div>
+
+            <div id="quiz-container">
+              <!-- Quiz questions rendered by QuizEngine -->
+            </div>
+
+            <button class="complete-btn" data-page="chapters/14-constraint-satisfaction/quiz-csp.html">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="notes-csp.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">CSP Quick Notes</span></a>
+              <a href="../15-advanced-topics/explainable-ai.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Explainable AI</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#quiz-container">Quiz</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+
+  <script>
+  (function(){
+    var questions = [
+      // ===== EASY (5) =====
+      {
+        id: "ch14-q1",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "Which three components define a Constraint Satisfaction Problem (CSP)?",
+        options: [
+          "States, actions, and goal test",
+          "Variables, domains, and constraints",
+          "Nodes, edges, and heuristics",
+          "Predicates, quantifiers, and connectives"
+        ],
+        correct_answer: 1,
+        explanation_html: "A CSP is defined by <strong>variables</strong> (X), <strong>domains</strong> (D &mdash; the allowed values for each variable), and <strong>constraints</strong> (C &mdash; the allowed combinations of values). This distinguishes it from standard search problems that use states, actions, and a goal test."
+      },
+      {
+        id: "ch14-q2",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "In the Australia map coloring problem with 3 colours, how many variables are there?",
+        options: [
+          "3 (one per colour)",
+          "7 (one per region: WA, NT, SA, Q, NSW, V, T)",
+          "9 (one per border)",
+          "21 (7 regions &times; 3 colours)"
+        ],
+        correct_answer: 1,
+        explanation_html: "There is <strong>one variable per region</strong>: WA, NT, SA, Q, NSW, V, T = 7 variables. Each has domain {R, G, B}. The constraints state that neighbouring regions must have different colours."
+      },
+      {
+        id: "ch14-q3",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "What does the <strong>MRV</strong> (Minimum Remaining Values) heuristic do?",
+        options: [
+          "Selects the value that rules out the fewest options for neighbours",
+          "Selects the variable with the most constraints",
+          "Selects the variable with the fewest legal values left in its domain",
+          "Selects the variable that was most recently assigned"
+        ],
+        correct_answer: 2,
+        explanation_html: "MRV chooses the variable with the <strong>fewest legal values remaining</strong> in its domain. It is a <em>fail-first</em> strategy: by picking the most constrained variable, failures are detected earlier, pruning the search tree."
+      },
+      {
+        id: "ch14-q4",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "Which type of constraint involves exactly one variable?",
+        options: [
+          "Binary constraint",
+          "Global constraint",
+          "Unary constraint",
+          "Ternary constraint"
+        ],
+        correct_answer: 2,
+        explanation_html: "A <strong>unary constraint</strong> restricts a single variable, e.g., X<sub>1</sub> &ne; Green. Unary constraints are typically handled during preprocessing by removing disallowed values from the variable's domain."
+      },
+      {
+        id: "ch14-q5",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "In a CSP search tree, why is variable assignment considered <strong>commutative</strong>?",
+        options: [
+          "Because variables can only take one value",
+          "Because the order of assignments doesn't affect the final result",
+          "Because all constraints are symmetric",
+          "Because backtracking reverses assignments"
+        ],
+        correct_answer: 1,
+        explanation_html: "Assigning X<sub>1</sub>=a then X<sub>2</sub>=b gives the same partial assignment as X<sub>2</sub>=b then X<sub>1</sub>=a. This <strong>commutativity</strong> means we only need to branch on one variable at each level, reducing the tree from n! &middot; d<sup>n</sup> to d<sup>n</sup> leaves."
+      },
+
+      // ===== MEDIUM (5) =====
+      {
+        id: "ch14-q6",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "What is the time complexity of the <strong>AC-3</strong> algorithm?",
+        options: [
+          "O(n &middot; d)",
+          "O(n&sup2; &middot; d&sup2;)",
+          "O(c &middot; d&sup3;)",
+          "O(c &middot; d&sup2;)"
+        ],
+        correct_answer: 2,
+        explanation_html: "AC-3 has time complexity <strong>O(c &middot; d&sup3;)</strong>, where c is the number of binary constraints (arcs) and d is the maximum domain size. Each arc can be re-enqueued at most d times, and each REVISE operation checks up to d&sup2; value pairs."
+      },
+      {
+        id: "ch14-q7",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "Forward checking detects a conflict that plain backtracking would miss at the current step. What does forward checking do that plain backtracking does not?",
+        options: [
+          "It uses a different variable ordering",
+          "After assigning a variable, it removes inconsistent values from unassigned neighbours' domains",
+          "It maintains arc consistency between all future variables",
+          "It uses backjumping instead of chronological backtracking"
+        ],
+        correct_answer: 1,
+        explanation_html: "After assigning X<sub>i</sub> = v, <strong>forward checking</strong> examines each unassigned neighbour Y of X<sub>i</sub> and removes values from Y's domain that conflict with v. If any domain becomes empty, the assignment is rejected immediately. Plain backtracking does not perform this look-ahead."
+      },
+      {
+        id: "ch14-q8",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "For the N-Queens CSP formulation with one variable per column, which constraints ensure queens don't attack each other diagonally?",
+        options: [
+          "AllDiff(Q<sub>1</sub>, &hellip;, Q<sub>n</sub>)",
+          "|Q<sub>i</sub> &minus; Q<sub>j</sub>| &ne; |i &minus; j| for all i &ne; j",
+          "Q<sub>i</sub> + Q<sub>j</sub> &ne; i + j for all i &ne; j",
+          "Q<sub>i</sub> &lt; Q<sub>j</sub> for all i &lt; j"
+        ],
+        correct_answer: 1,
+        explanation_html: "The diagonal constraint is <strong>|Q<sub>i</sub> &minus; Q<sub>j</sub>| &ne; |i &minus; j|</strong> for all pairs i &ne; j. This ensures no two queens share a diagonal. The AllDiff constraint handles same-row conflicts (since Q<sub>i</sub> is the row), and same-column is already avoided by the formulation."
+      },
+      {
+        id: "ch14-q9",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "An arc (X<sub>i</sub>, X<sub>j</sub>) is arc-consistent if:",
+        options: [
+          "Every value in D<sub>j</sub> has a supporting value in D<sub>i</sub>",
+          "X<sub>i</sub> and X<sub>j</sub> have the same domain",
+          "Every value in D<sub>i</sub> has at least one supporting value in D<sub>j</sub>",
+          "There exists at least one pair (v, w) that satisfies the constraint"
+        ],
+        correct_answer: 2,
+        explanation_html: "Arc (X<sub>i</sub>, X<sub>j</sub>) is consistent iff <strong>for every value v &isin; D<sub>i</sub></strong>, there exists <strong>at least one value w &isin; D<sub>j</sub></strong> such that the constraint between X<sub>i</sub> and X<sub>j</sub> is satisfied. Note: arc consistency is directional &mdash; (X<sub>j</sub>, X<sub>i</sub>) must be checked separately."
+      },
+      {
+        id: "ch14-q10",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "The <strong>Least Constraining Value (LCV)</strong> heuristic orders values by:",
+        options: [
+          "Choosing the value that appears in the most constraints",
+          "Choosing the value that rules out the fewest values in neighbours' domains",
+          "Choosing the smallest numerical value first",
+          "Choosing the value that rules out the most values in neighbours' domains"
+        ],
+        correct_answer: 1,
+        explanation_html: "LCV selects the value that <strong>rules out the fewest values</strong> in the domains of neighbouring unassigned variables. This fail-last strategy for values maximises flexibility for future assignments. It is complementary to the fail-first MRV strategy for variable selection."
+      },
+
+      // ===== HARD (5) =====
+      {
+        id: "ch14-q11",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "Consider three variables X, Y, Z each with domain {A, B} and constraints X &ne; Y, Y &ne; Z, X &ne; Z. After running AC-3, what happens?",
+        options: [
+          "All domains are reduced to singletons &mdash; solution found",
+          "No values are removed &mdash; the CSP is arc-consistent but has no solution",
+          "AC-3 detects the inconsistency and returns failure",
+          "One domain becomes empty, and AC-3 returns failure"
+        ],
+        correct_answer: 1,
+        explanation_html: "The CSP is <strong>arc-consistent</strong>: for X&ne;Y, X=A has support Y=B and X=B has support Y=A. Same for all other arcs. <strong>No values are removed.</strong> However, no complete assignment satisfies all three constraints with only 2 values (3 mutual &ne; requires 3 distinct values). Arc consistency is <em>necessary</em> but <em>not sufficient</em> for solvability."
+      },
+      {
+        id: "ch14-q12",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "A CSP has a tree-structured constraint graph with 20 variables, each with domain size 5. What is the worst-case time to solve it using the tree CSP algorithm?",
+        options: [
+          "O(20 &times; 5) = O(100)",
+          "O(20 &times; 25) = O(500)",
+          "O(20 &times; 125) = O(2500)",
+          "O(5<sup>20</sup>)"
+        ],
+        correct_answer: 1,
+        explanation_html: "The tree CSP algorithm runs in <strong>O(n &middot; d&sup2;)</strong>. With n=20 and d=5: 20 &times; 25 = <strong>500</strong>. This is the power of exploiting tree structure &mdash; polynomial time instead of exponential."
+      },
+      {
+        id: "ch14-q13",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "In the Australia map CSP, after assigning WA=R and Q=G with forward checking, what is the remaining domain of SA?",
+        options: [
+          "{R, G, B}",
+          "{G, B}",
+          "{B}",
+          "{R, B}"
+        ],
+        correct_answer: 2,
+        explanation_html: "SA is a neighbour of both WA and Q. <strong>WA=R</strong> → remove R from D<sub>SA</sub> → {G, B}. <strong>Q=G</strong> → remove G from D<sub>SA</sub> → {B}. After forward checking from both assignments, D<sub>SA</sub> = <strong>{B}</strong>."
+      },
+      {
+        id: "ch14-q14",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "If a CSP with n variables is made <strong>strongly n-consistent</strong>, what can we conclude?",
+        options: [
+          "The CSP has no solution",
+          "AC-3 is sufficient to find a solution",
+          "A solution can be found without any backtracking",
+          "The constraint graph must be a tree"
+        ],
+        correct_answer: 2,
+        explanation_html: "Strong n-consistency means the CSP is k-consistent for all k from 1 to n. This guarantees that <strong>any consistent assignment to k&minus;1 variables can be extended to any k-th variable</strong>, so values can be chosen sequentially without backtracking. However, enforcing strong n-consistency can be as expensive as solving the CSP."
+      },
+      {
+        id: "ch14-q15",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "For the Australia map CSP with 3 colours, S = {SA} is a cycle cutset of size 1. What is the total number of tree-CSP solves required by cutset conditioning?",
+        options: [
+          "1",
+          "3",
+          "7",
+          "9"
+        ],
+        correct_answer: 1,
+        explanation_html: "With cutset conditioning, we try each value for the cutset variables. SA has domain {R, G, B}, so we try <strong>3 values</strong>. For each value of SA, the remaining constraint graph (WA, NT, Q, NSW, V, T without SA) is a forest (tree), which is solved in O(nd&sup2;). Total: <strong>3 tree-CSP solves</strong>."
+      }
+    ];
+
+    if(typeof QuizEngine !== 'undefined' && QuizEngine.init) {
+      QuizEngine.init({ quizId: 'quiz-ch14', timeLimit: 1800, questions: questions, containerId: 'quiz-container' });
+    } else {
+      // Fallback: render questions statically
+      var container = document.getElementById('quiz-container');
+      if(container) {
+        var html = '';
+        questions.forEach(function(q, idx){
+          html += '<div class="quiz-question" id="'+q.id+'" style="margin-bottom:2rem; padding:1.25rem; border:1px solid var(--border,#ddd); border-radius:8px;">';
+          html += '<h3>Question '+(idx+1)+' <span class="gate-badge '+(q.difficulty==='easy'?'low':q.difficulty==='medium'?'medium':'high')+'">'+q.difficulty.charAt(0).toUpperCase()+q.difficulty.slice(1)+'</span></h3>';
+          html += '<p>'+q.question_html+'</p>';
+          if(q.options){
+            html += '<div class="quiz-options">';
+            q.options.forEach(function(opt, oi){
+              html += '<label class="quiz-option" style="display:block;margin:0.4rem 0;cursor:pointer;"><input type="radio" name="'+q.id+'" value="'+oi+'"> '+opt+'</label>';
+            });
+            html += '</div>';
+          }
+          html += '</div>';
+        });
+        html += '<button id="quizSubmitBtn" style="padding:0.75rem 2rem; background:var(--accent,#3498db); color:#fff; border:none; border-radius:8px; cursor:pointer; font-size:1rem; font-weight:600;">Submit Quiz</button>';
+        html += '<div id="quizResults" style="margin-top:1.5rem;"></div>';
+        container.innerHTML = html;
+
+        // Simple scoring
+        document.getElementById('quizSubmitBtn').addEventListener('click', function(){
+          var score = 0;
+          questions.forEach(function(q){
+            if(q.options){
+              var sel = document.querySelector('input[name="'+q.id+'"]:checked');
+              if(sel && parseInt(sel.value) === q.correct_answer) score++;
+            }
+          });
+          document.getElementById('quizResults').innerHTML = '<div style="padding:1rem; background:var(--bg-secondary,#f0f0f0); border-radius:8px; font-size:1.1rem;"><strong>Score: '+score+' / '+questions.length+'</strong></div>';
+        });
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

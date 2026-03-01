@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logical Equivalence - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="00">📘 Ch 0: Introduction</h3>
+                <ul class="chapter-links collapsed"><li><a href="../00-introduction/what-is-ai.html">What is AI?</a></li></ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li class="active"><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>Logical Equivalence</span>
+        </div>
+
+        <article class="theory-content">
+            <h1>Logical Equivalences and Laws</h1>
+
+            <div class="gate-badge">GATE DA — Very High Importance</div>
+
+            <div class="learning-objectives">
+                <h3>🎯 Learning Objectives</h3>
+                <ul>
+                    <li>State and apply all major logical equivalence laws</li>
+                    <li>Simplify complex formulas using equivalences</li>
+                    <li>Prove equivalences using truth tables</li>
+                    <li>Recognize and apply De Morgan's laws, distribution, and material implication</li>
+                </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section>
+                <h2>1. Definition of Logical Equivalence</h2>
+
+                <div class="definition-box">
+                    <div class="box-title">Definition: Logical Equivalence (≡)</div>
+                    <p>Two propositional formulas α and β are <strong>logically equivalent</strong>, written <strong>α ≡ β</strong>, if and only if they have the same truth value under <em>every</em> possible interpretation. Equivalently, α ↔ β is a tautology.</p>
+                    <p class="formula">α ≡ β ⟺ (α ↔ β) is a tautology</p>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 Notation</h4>
+                    <p>The symbol ≡ denotes <em>meta-logical</em> equivalence (a relationship between formulas), while ↔ is a <em>connective</em> within the logic. In GATE papers, both notations may appear.</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Laws -->
+            <section>
+                <h2>2. Complete List of Equivalence Laws</h2>
+
+                <h3>2.1 Identity Laws</h3>
+                <div class="theorem-box">
+                    <p class="formula">P ∧ ⊤ ≡ P</p>
+                    <p class="formula">P ∨ ⊥ ≡ P</p>
+                </div>
+
+                <h3>2.2 Domination Laws</h3>
+                <div class="theorem-box">
+                    <p class="formula">P ∨ ⊤ ≡ ⊤</p>
+                    <p class="formula">P ∧ ⊥ ≡ ⊥</p>
+                </div>
+
+                <h3>2.3 Idempotent Laws</h3>
+                <div class="theorem-box">
+                    <p class="formula">P ∨ P ≡ P</p>
+                    <p class="formula">P ∧ P ≡ P</p>
+                </div>
+
+                <h3>2.4 Double Negation Law</h3>
+                <div class="theorem-box">
+                    <p class="formula">¬(¬P) ≡ P</p>
+                </div>
+
+                <h3>2.5 Commutative Laws</h3>
+                <div class="theorem-box">
+                    <p class="formula">P ∧ Q ≡ Q ∧ P</p>
+                    <p class="formula">P ∨ Q ≡ Q ∨ P</p>
+                </div>
+
+                <h3>2.6 Associative Laws</h3>
+                <div class="theorem-box">
+                    <p class="formula">(P ∧ Q) ∧ R ≡ P ∧ (Q ∧ R)</p>
+                    <p class="formula">(P ∨ Q) ∨ R ≡ P ∨ (Q ∨ R)</p>
+                </div>
+
+                <h3>2.7 Distributive Laws</h3>
+                <div class="theorem-box">
+                    <p class="formula">P ∧ (Q ∨ R) ≡ (P ∧ Q) ∨ (P ∧ R)</p>
+                    <p class="formula">P ∨ (Q ∧ R) ≡ (P ∨ Q) ∧ (P ∨ R)</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ GATE Alert: Distribution of ∨ over ∧</h4>
+                    <p>Unlike arithmetic (where + does not distribute over ×), in logic <strong>disjunction distributes over conjunction</strong>. This is commonly tested in GATE. Both directions of distribution hold!</p>
+                </div>
+
+                <h3>2.8 De Morgan's Laws</h3>
+                <div class="theorem-box">
+                    <h4>De Morgan's Laws (CRITICAL for GATE)</h4>
+                    <p class="formula">¬(P ∧ Q) ≡ ¬P ∨ ¬Q</p>
+                    <p class="formula">¬(P ∨ Q) ≡ ¬P ∧ ¬Q</p>
+                    <p>In words: The negation of an AND becomes an OR of negations, and vice versa.</p>
+                </div>
+
+                <h3>2.9 Absorption Laws</h3>
+                <div class="theorem-box">
+                    <p class="formula">P ∨ (P ∧ Q) ≡ P</p>
+                    <p class="formula">P ∧ (P ∨ Q) ≡ P</p>
+                </div>
+
+                <h3>2.10 Complement Laws</h3>
+                <div class="theorem-box">
+                    <p class="formula">P ∨ ¬P ≡ ⊤ &nbsp;&nbsp;(Law of Excluded Middle)</p>
+                    <p class="formula">P ∧ ¬P ≡ ⊥ &nbsp;&nbsp;(Law of Contradiction)</p>
+                </div>
+
+                <h3>2.11 Material Implication</h3>
+                <div class="theorem-box">
+                    <h4>Material Implication (Very Important)</h4>
+                    <p class="formula">P → Q ≡ ¬P ∨ Q</p>
+                    <p>This is arguably the most important equivalence for converting implications to a form suitable for CNF conversion and resolution.</p>
+                </div>
+
+                <h3>2.12 Contrapositive</h3>
+                <div class="theorem-box">
+                    <p class="formula">P → Q ≡ ¬Q → ¬P</p>
+                    <p>The contrapositive is logically equivalent to the original implication. However, the <strong>converse</strong> (Q → P) and the <strong>inverse</strong> (¬P → ¬Q) are <em>not</em> equivalent.</p>
+                </div>
+
+                <h3>2.13 Biconditional Equivalences</h3>
+                <div class="theorem-box">
+                    <p class="formula">P ↔ Q ≡ (P → Q) ∧ (Q → P)</p>
+                    <p class="formula">P ↔ Q ≡ (P ∧ Q) ∨ (¬P ∧ ¬Q)</p>
+                    <p class="formula">P ↔ Q ≡ ¬(P ⊕ Q) &nbsp;&nbsp;(complement of XOR)</p>
+                </div>
+
+                <h3>2.14 Exportation</h3>
+                <div class="theorem-box">
+                    <p class="formula">(P ∧ Q) → R ≡ P → (Q → R)</p>
+                </div>
+            </section>
+
+            <!-- Section 3: Proving Equivalence -->
+            <section>
+                <h2>3. Proving Equivalence via Truth Tables</h2>
+
+                <div class="example-box">
+                    <h4>Proof: De Morgan's Law ¬(P ∧ Q) ≡ ¬P ∨ ¬Q</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>P</th><th>Q</th><th>P ∧ Q</th><th>¬(P ∧ Q)</th><th>¬P</th><th>¬Q</th><th>¬P ∨ ¬Q</th></tr></thead>
+                        <tbody>
+                            <tr><td>T</td><td>T</td><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+                            <tr><td>T</td><td>F</td><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td></tr>
+                            <tr><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td></tr>
+                            <tr><td>F</td><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+                        </tbody>
+                    </table>
+                    <p>Columns 4 and 7 are identical in every row. ✅ Therefore ¬(P ∧ Q) ≡ ¬P ∨ ¬Q.</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Proof: Material Implication P → Q ≡ ¬P ∨ Q</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>P</th><th>Q</th><th>P → Q</th><th>¬P</th><th>¬P ∨ Q</th></tr></thead>
+                        <tbody>
+                            <tr><td>T</td><td>T</td><td>T</td><td>F</td><td>T</td></tr>
+                            <tr><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+                            <tr><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+                            <tr><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td></tr>
+                        </tbody>
+                    </table>
+                    <p>Columns 3 and 5 match in all rows. ✅ Therefore P → Q ≡ ¬P ∨ Q.</p>
+                </div>
+            </section>
+
+            <!-- Section 4: Simplification -->
+            <section>
+                <h2>4. Simplification Using Equivalences</h2>
+
+                <div class="example-box">
+                    <h4>Example: Simplify ¬(P → Q) ∨ Q</h4>
+                    <ol>
+                        <li>Apply material implication to inner formula: ¬(¬P ∨ Q) ∨ Q</li>
+                        <li>Apply De Morgan's to ¬(¬P ∨ Q): (¬¬P ∧ ¬Q) ∨ Q</li>
+                        <li>Double negation: (P ∧ ¬Q) ∨ Q</li>
+                        <li>Distribution: (P ∨ Q) ∧ (¬Q ∨ Q)</li>
+                        <li>Complement law: (P ∨ Q) ∧ ⊤</li>
+                        <li>Identity law: <strong>P ∨ Q</strong></li>
+                    </ol>
+                    <p class="formula">¬(P → Q) ∨ Q ≡ P ∨ Q</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Example: Simplify (P ∧ Q) ∨ (P ∧ ¬Q)</h4>
+                    <ol>
+                        <li>Factor out P (distribution in reverse): P ∧ (Q ∨ ¬Q)</li>
+                        <li>Complement law: P ∧ ⊤</li>
+                        <li>Identity law: <strong>P</strong></li>
+                    </ol>
+                    <p class="formula">(P ∧ Q) ∨ (P ∧ ¬Q) ≡ P</p>
+                </div>
+            </section>
+
+            <!-- GATE Tips -->
+            <section>
+                <h2>5. GATE Exam Tips</h2>
+                <div class="warning-box">
+                    <h4>🎯 Most Tested Equivalences in GATE</h4>
+                    <ol>
+                        <li><strong>De Morgan's Laws</strong> — appears in almost every year</li>
+                        <li><strong>Material Implication</strong> P → Q ≡ ¬P ∨ Q — critical for CNF conversion</li>
+                        <li><strong>Contrapositive</strong> P → Q ≡ ¬Q → ¬P — frequently tested</li>
+                        <li><strong>Distributive Laws</strong> — needed for normal form conversions</li>
+                        <li><strong>Absorption Laws</strong> — often used as distractors in simplification questions</li>
+                    </ol>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="truth-tables.html" class="nav-btn prev-btn">← Previous: Truth Tables</a>
+            <a href="tautology-contradiction-contingency.html" class="nav-btn next-btn">Next: Tautology, Contradiction, Contingency →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-logical-equivalence">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-logical-equivalence">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

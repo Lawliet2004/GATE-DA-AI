@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Supervised Learning — Linear Regression, Logistic Regression, Decision Trees, SVM, KNN, Naive Bayes, Random Forests with GATE DA numerical examples.">
+  <title>Supervised Learning — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="supervised-learning.html" class="sidebar-link active"><span class="link-check"></span> Supervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="unsupervised-learning.html" class="sidebar-link"><span class="link-check"></span> Unsupervised Learning<span class="link-type theory">Theory</span></a>
+            <a href="bias-variance-tradeoff.html" class="sidebar-link"><span class="link-check"></span> Bias-Variance Tradeoff<span class="link-type theory">Theory</span></a>
+            <a href="overfitting-underfitting.html" class="sidebar-link"><span class="link-check"></span> Overfitting &amp; Underfitting<span class="link-type theory">Theory</span></a>
+            <a href="cross-validation.html" class="sidebar-link"><span class="link-check"></span> Cross-Validation<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-metrics.html" class="sidebar-link"><span class="link-check"></span> Evaluation Metrics<span class="link-type theory">Theory</span></a>
+            <a href="feature-engineering.html" class="sidebar-link"><span class="link-check"></span> Feature Engineering<span class="link-type theory">Theory</span></a>
+            <a href="ml-math-essentials.html" class="sidebar-link"><span class="link-check"></span> ML Math Essentials<span class="link-type theory">Theory</span></a>
+            <a href="practical-ml.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-ml-foundations.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="ml-fundamentals.html">Chapter 8: ML Foundations</a> &raquo; <span class="current">Supervised Learning</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch08-supervised-learning">
+
+            <h1>Supervised Learning</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: Very High</span>
+              <button class="bookmark-btn" data-page="ch08-supervised-learning" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Distinguish classification from regression</li>
+              <li>Derive and apply Linear Regression (normal equations and gradient descent)</li>
+              <li>Understand Logistic Regression, sigmoid function, and cross-entropy loss</li>
+              <li>Build Decision Trees using entropy, information gain, and Gini impurity</li>
+              <li>Explain SVM, KNN, Naive Bayes, and Random Forests</li>
+            </ul></div>
+
+            <!-- Section 1: Classification vs Regression -->
+            <section id="classification-vs-regression">
+              <h2>1. Classification vs Regression</h2>
+              <p>Supervised learning problems fall into two categories based on the type of output variable:</p>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Aspect</th><th>Classification</th><th>Regression</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Output type</strong></td><td>Discrete (categorical)</td><td>Continuous (numerical)</td></tr>
+                    <tr><td><strong>Goal</strong></td><td>Assign input to a class</td><td>Predict a real-valued output</td></tr>
+                    <tr><td><strong>Examples</strong></td><td>Spam detection, digit recognition</td><td>House price, temperature prediction</td></tr>
+                    <tr><td><strong>Evaluation</strong></td><td>Accuracy, F1, AUC</td><td>MSE, RMSE, R&sup2;</td></tr>
+                    <tr><td><strong>Algorithms</strong></td><td>Logistic Regression, SVM, Decision Trees</td><td>Linear Regression, SVR, Regression Trees</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 2: Linear Regression -->
+            <section id="linear-regression">
+              <h2>2. Linear Regression</h2>
+              <p>Linear Regression models the relationship between a dependent variable y and one or more independent variables x as a linear function.</p>
+
+              <div class="definition-box">
+                <div class="box-title">Model</div>
+                <p>For a single feature: <strong>h(x) = w&#8321;x + w&#8320;</strong> (or &ycirc; = mx + b).<br>
+                For multiple features: <strong>h(x) = w&#7488;x + b = w&#8320; + w&#8321;x&#8321; + w&#8322;x&#8322; + &hellip; + w&#8345;x&#8345;</strong>.<br>
+                In matrix form: <strong>&ycirc; = Xw</strong> where X has a column of 1s for the intercept.</p>
+              </div>
+
+              <h3 id="cost-function-lr">2.1 Cost Function (MSE)</h3>
+              <p>The cost function measures how well the model fits the training data:</p>
+              <div class="theorem-box">
+                <div class="box-title">Mean Squared Error</div>
+                <p><strong>J(w) = (1/2n) &sum;&#7522;&#8321;&#8319; (h(x&#7522;) &minus; y&#7522;)&sup2;</strong></p>
+                <p>The factor of 1/2 is a mathematical convenience that simplifies the gradient. The goal is to find w that minimises J(w).</p>
+              </div>
+
+              <h3 id="normal-equations">2.2 Normal Equations (Closed-Form Solution)</h3>
+              <p>Setting the gradient of J(w) to zero and solving gives the analytical solution:</p>
+              <div class="theorem-box">
+                <div class="box-title">Normal Equation</div>
+                <p><strong>w* = (X&#7488;X)&#8315;&sup1; X&#7488;y</strong></p>
+                <p>This directly computes the optimal weights without iteration. Time complexity: O(n&middot;d&sup2; + d&sup3;) where n = samples and d = features.</p>
+              </div>
+
+              <div class="warning-box">
+                <div class="box-title">When Normal Equations Fail</div>
+                <p>If X&#7488;X is singular (not invertible), the normal equation cannot be applied directly. This happens when features are linearly dependent (multicollinearity) or when d &gt; n. Solutions: use pseudo-inverse, add regularisation, or use gradient descent.</p>
+              </div>
+
+              <h3 id="gradient-descent-lr">2.3 Gradient Descent for Linear Regression</h3>
+              <p>Gradient descent iteratively updates weights in the direction of steepest descent:</p>
+              <div class="algorithm-block">
+                <div class="box-title">Gradient Descent Update Rule</div>
+                <pre>Repeat until convergence:
+  w_j := w_j - &alpha; &middot; (1/n) &sum;_{i=1}^{n} (h(x_i) - y_i) &middot; x_{i,j}
+
+where &alpha; is the learning rate.</pre>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: Linear Regression</div>
+                <p><strong>Q:</strong> Given data points (1, 2), (2, 4), (3, 5), (4, 4), (5, 5), find the best-fit line y = w&#8321;x + w&#8320; using least squares.</p>
+                <p><strong>Solution:</strong></p>
+                <p>n=5, &sum;x=15, &sum;y=20, &sum;xy=67, &sum;x&sup2;=55, x&#772;=3, y&#772;=4</p>
+                <p>w&#8321; = (n&sum;xy &minus; &sum;x&sum;y) / (n&sum;x&sup2; &minus; (&sum;x)&sup2;) = (335 &minus; 300) / (275 &minus; 225) = 35/50 = <strong>0.7</strong></p>
+                <p>w&#8320; = y&#772; &minus; w&#8321;&middot;x&#772; = 4 &minus; 0.7&times;3 = <strong>1.9</strong></p>
+                <p>Best-fit line: <strong>y = 0.7x + 1.9</strong></p>
+              </div>
+            </section>
+
+            <!-- Section 3: Logistic Regression -->
+            <section id="logistic-regression">
+              <h2>3. Logistic Regression</h2>
+              <p>Despite its name, Logistic Regression is a <strong>classification</strong> algorithm used for binary classification. It models the probability that an input belongs to class 1.</p>
+
+              <div class="definition-box">
+                <div class="box-title">Sigmoid (Logistic) Function</div>
+                <p><strong>&sigma;(z) = 1 / (1 + e&#8315;&#7825;)</strong></p>
+                <p>Properties: output range (0, 1), &sigma;(0) = 0.5, monotonically increasing, derivative: &sigma;&prime;(z) = &sigma;(z)(1 &minus; &sigma;(z)).</p>
+              </div>
+
+              <div class="definition-box">
+                <div class="box-title">Model</div>
+                <p><strong>P(y=1|x) = &sigma;(w&#7488;x + b) = 1 / (1 + e&#8315;&#8317;&#695;&#7488;&#739;&#8314;&#7495;&#8318;)</strong></p>
+                <p>Decision boundary: Predict class 1 if P(y=1|x) &ge; 0.5, i.e., if w&#7488;x + b &ge; 0.</p>
+              </div>
+
+              <h3 id="cross-entropy">3.1 Cross-Entropy Loss (Log Loss)</h3>
+              <div class="theorem-box">
+                <div class="box-title">Binary Cross-Entropy Loss</div>
+                <p><strong>J(w) = &minus;(1/n) &sum;&#7522; [y&#7522; log(&ycirc;&#7522;) + (1 &minus; y&#7522;) log(1 &minus; &ycirc;&#7522;)]</strong></p>
+                <p>where &ycirc;&#7522; = &sigma;(w&#7488;x&#7522; + b). This loss is convex, ensuring gradient descent finds the global minimum.</p>
+              </div>
+
+              <div class="note-box">
+                <div class="box-title">Why not MSE for Classification?</div>
+                <p>Using MSE with the sigmoid function creates a non-convex optimisation surface with many local minima. Cross-entropy loss is convex for logistic regression, guaranteeing convergence to the global optimum.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: Logistic Regression</div>
+                <p><strong>Q:</strong> For a logistic regression model with w = [2, -1] and b = 0.5, what is the predicted probability for x = [1, 3]?</p>
+                <p><strong>Solution:</strong> z = w&#7488;x + b = 2(1) + (-1)(3) + 0.5 = 2 - 3 + 0.5 = -0.5</p>
+                <p>P(y=1|x) = &sigma;(-0.5) = 1/(1 + e&#8304;&#183;&#8309;) = 1/(1 + 1.6487) = 1/2.6487 &asymp; <strong>0.3775</strong></p>
+                <p>Since 0.3775 &lt; 0.5, predict class 0.</p>
+              </div>
+            </section>
+
+            <!-- Section 4: Decision Trees -->
+            <section id="decision-trees">
+              <h2>4. Decision Trees</h2>
+              <p>Decision Trees partition the feature space by recursively splitting on feature values. Each internal node represents a test on a feature, each branch represents an outcome, and each leaf node represents a class label (classification) or value (regression).</p>
+
+              <h3 id="entropy">4.1 Entropy</h3>
+              <div class="theorem-box">
+                <div class="box-title">Entropy (Shannon Entropy)</div>
+                <p><strong>H(S) = &minus;&sum;&#7522; p&#7522; log&#8322;(p&#7522;)</strong></p>
+                <p>where p&#7522; is the proportion of class i in dataset S. Entropy measures the impurity or disorder of a set.</p>
+                <ul>
+                  <li>H(S) = 0 when all elements belong to one class (pure)</li>
+                  <li>H(S) = 1 for binary classification with equal proportions (maximum impurity)</li>
+                </ul>
+              </div>
+
+              <h3 id="information-gain">4.2 Information Gain</h3>
+              <div class="theorem-box">
+                <div class="box-title">Information Gain (ID3 Algorithm)</div>
+                <p><strong>IG(S, A) = H(S) &minus; &sum;&#7525; (|S&#7525;|/|S|) &middot; H(S&#7525;)</strong></p>
+                <p>where A is the attribute being tested, and S&#7525; is the subset of S for which attribute A has value v. The attribute with the highest information gain is chosen for splitting.</p>
+              </div>
+
+              <h3 id="gini-impurity">4.3 Gini Impurity</h3>
+              <div class="theorem-box">
+                <div class="box-title">Gini Impurity (CART Algorithm)</div>
+                <p><strong>Gini(S) = 1 &minus; &sum;&#7522; p&#7522;&sup2;</strong></p>
+                <p>Gini impurity ranges from 0 (pure) to 0.5 (for binary classification with equal proportions). CART uses Gini impurity by default.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: Information Gain</div>
+                <p><strong>Q:</strong> A dataset has 14 examples: 9 positive, 5 negative. Attribute A splits them into: A=yes (6+, 2&minus;) and A=no (3+, 3&minus;). Compute Information Gain.</p>
+                <p><strong>Solution:</strong></p>
+                <p>H(S) = &minus;(9/14)log&#8322;(9/14) &minus; (5/14)log&#8322;(5/14) = 0.940 bits</p>
+                <p>H(A=yes) = &minus;(6/8)log&#8322;(6/8) &minus; (2/8)log&#8322;(2/8) = 0.811 bits</p>
+                <p>H(A=no) = &minus;(3/6)log&#8322;(3/6) &minus; (3/6)log&#8322;(3/6) = 1.000 bits</p>
+                <p>IG(S, A) = 0.940 &minus; (8/14)&times;0.811 &minus; (6/14)&times;1.000 = 0.940 &minus; 0.463 &minus; 0.429 = <strong>0.048 bits</strong></p>
+              </div>
+
+              <h3 id="id3-c45-cart">4.4 ID3, C4.5, and CART</h3>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Feature</th><th>ID3</th><th>C4.5</th><th>CART</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Split criterion</strong></td><td>Information Gain</td><td>Gain Ratio</td><td>Gini Impurity</td></tr>
+                    <tr><td><strong>Feature types</strong></td><td>Categorical only</td><td>Categorical + Continuous</td><td>Categorical + Continuous</td></tr>
+                    <tr><td><strong>Tree type</strong></td><td>Multi-way splits</td><td>Multi-way splits</td><td>Binary splits only</td></tr>
+                    <tr><td><strong>Pruning</strong></td><td>No built-in pruning</td><td>Error-based pruning</td><td>Cost-complexity pruning</td></tr>
+                    <tr><td><strong>Missing values</strong></td><td>Cannot handle</td><td>Handles missing values</td><td>Surrogate splits</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 5: Random Forests -->
+            <section id="random-forests">
+              <h2>5. Random Forests</h2>
+              <p>Random Forest is an <strong>ensemble method</strong> that builds multiple decision trees and aggregates their predictions.</p>
+
+              <div class="algorithm-block">
+                <div class="box-title">Random Forest Algorithm</div>
+                <pre>For i = 1 to B (number of trees):
+  1. Draw a bootstrap sample D_i of size n from training data (with replacement)
+  2. Build a decision tree T_i on D_i:
+     - At each node, randomly select m features (m &lt;&lt; d)
+     - Choose the best split among these m features
+     - Grow tree fully (no pruning)
+  3. Add T_i to the forest
+
+Prediction:
+  Classification: Majority vote across all B trees
+  Regression: Average prediction across all B trees</pre>
+              </div>
+
+              <p><strong>Key hyperparameters:</strong> B (number of trees, typically 100&ndash;500), m (features per split, typically &radic;d for classification, d/3 for regression).</p>
+
+              <div class="note-box">
+                <div class="box-title">Why Random Forests Work</div>
+                <p>By introducing randomness (bootstrap sampling + feature subset selection), the individual trees become <strong>decorrelated</strong>. Averaging decorrelated estimators reduces variance without increasing bias, leading to better generalisation than a single tree.</p>
+              </div>
+            </section>
+
+            <!-- Section 6: SVM -->
+            <section id="svm">
+              <h2>6. Support Vector Machines (SVM)</h2>
+              <p>SVM finds the hyperplane that maximally separates the classes. The data points closest to the hyperplane are called <strong>support vectors</strong>.</p>
+
+              <h3 id="hard-margin">6.1 Hard Margin SVM</h3>
+              <div class="theorem-box">
+                <div class="box-title">Optimisation Problem</div>
+                <p><strong>Minimise:</strong> (1/2)||w||&sup2;<br>
+                <strong>Subject to:</strong> y&#7522;(w&#7488;x&#7522; + b) &ge; 1 for all i</p>
+                <p>The margin is 2/||w||. Maximising the margin is equivalent to minimising ||w||&sup2;.</p>
+              </div>
+
+              <h3 id="soft-margin">6.2 Soft Margin SVM</h3>
+              <p>When data is not linearly separable, we introduce slack variables &xi;&#7522; to allow some misclassifications:</p>
+              <div class="theorem-box">
+                <div class="box-title">Soft Margin Formulation</div>
+                <p><strong>Minimise:</strong> (1/2)||w||&sup2; + C &sum;&#7522; &xi;&#7522;<br>
+                <strong>Subject to:</strong> y&#7522;(w&#7488;x&#7522; + b) &ge; 1 &minus; &xi;&#7522;, &xi;&#7522; &ge; 0</p>
+                <p>C is a regularisation parameter: large C &rarr; less tolerance for violations (may overfit), small C &rarr; wider margin with more violations (may underfit).</p>
+              </div>
+
+              <h3 id="kernel-trick">6.3 The Kernel Trick</h3>
+              <p>For non-linearly separable data, SVM maps inputs to a higher-dimensional space using a kernel function, where a linear separator may exist.</p>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Kernel</th><th>Formula K(x, x&prime;)</th><th>Use Case</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Linear</strong></td><td>x&#7488;x&prime;</td><td>Linearly separable data</td></tr>
+                    <tr><td><strong>Polynomial</strong></td><td>(x&#7488;x&prime; + c)&#7496;</td><td>Non-linear boundaries, degree d</td></tr>
+                    <tr><td><strong>RBF (Gaussian)</strong></td><td>exp(&minus;&gamma;||x &minus; x&prime;||&sup2;)</td><td>Most common; works well in practice</td></tr>
+                    <tr><td><strong>Sigmoid</strong></td><td>tanh(&alpha; x&#7488;x&prime; + c)</td><td>Similar to neural network</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 7: KNN -->
+            <section id="knn">
+              <h2>7. K-Nearest Neighbours (KNN)</h2>
+              <p>KNN is a <strong>non-parametric, instance-based</strong> algorithm. It stores all training data and classifies new points by majority vote among the K nearest neighbours.</p>
+
+              <div class="algorithm-block">
+                <div class="box-title">KNN Algorithm</div>
+                <pre>Input: Training set D, query point x, integer K
+1. Compute distance from x to every point in D
+2. Select the K nearest points (neighbours)
+3. Classification: Return the majority class among K neighbours
+   Regression: Return the average value of K neighbours</pre>
+              </div>
+
+              <p><strong>Distance metrics:</strong> Euclidean: &radic;(&sum;(x&#7522; &minus; y&#7522;)&sup2;), Manhattan: &sum;|x&#7522; &minus; y&#7522;|, Minkowski (generalisation).</p>
+
+              <div class="warning-box">
+                <div class="box-title">Choosing K</div>
+                <p>K=1: Highly sensitive to noise (overfitting). Large K: Smooth decision boundary (underfitting). K should be odd for binary classification to avoid ties. Typical choice: K = &radic;n. Always use cross-validation to select K.</p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: KNN</div>
+                <p><strong>Q:</strong> Points: A(1,1) Class+, B(2,2) Class+, C(5,5) Class&minus;, D(6,6) Class&minus;. Classify query point Q(3,3) using K=3 with Euclidean distance.</p>
+                <p><strong>Solution:</strong></p>
+                <p>d(Q,A) = &radic;((3-1)&sup2;+(3-1)&sup2;) = &radic;8 = 2.83</p>
+                <p>d(Q,B) = &radic;((3-2)&sup2;+(3-2)&sup2;) = &radic;2 = 1.41</p>
+                <p>d(Q,C) = &radic;((3-5)&sup2;+(3-5)&sup2;) = &radic;8 = 2.83</p>
+                <p>d(Q,D) = &radic;((3-6)&sup2;+(3-6)&sup2;) = &radic;18 = 4.24</p>
+                <p>3 nearest: B(+), A(+), C(&minus;). Majority: <strong>Class +</strong></p>
+              </div>
+            </section>
+
+            <!-- Section 8: Naive Bayes -->
+            <section id="naive-bayes">
+              <h2>8. Naive Bayes Classifier</h2>
+              <p>Naive Bayes applies Bayes&rsquo; theorem with the &ldquo;naive&rdquo; assumption that features are <strong>conditionally independent</strong> given the class.</p>
+
+              <div class="theorem-box">
+                <div class="box-title">Bayes&rsquo; Theorem for Classification</div>
+                <p><strong>P(C|x) = P(x|C) &middot; P(C) / P(x)</strong></p>
+                <p>With the naive independence assumption:</p>
+                <p><strong>P(x|C) = &prod;&#7524; P(x&#7524;|C)</strong></p>
+                <p>Classify as: <strong>C* = argmax&#8580; P(C) &prod;&#7524; P(x&#7524;|C)</strong></p>
+              </div>
+
+              <div class="example-box">
+                <div class="box-title">GATE Numerical: Naive Bayes</div>
+                <p><strong>Q:</strong> Given: P(Spam)=0.4, P(Ham)=0.6. For the word &ldquo;free&rdquo;: P(free|Spam)=0.8, P(free|Ham)=0.1. For the word &ldquo;meeting&rdquo;: P(meeting|Spam)=0.1, P(meeting|Ham)=0.5. Classify the email containing &ldquo;free meeting&rdquo;.</p>
+                <p><strong>Solution:</strong></p>
+                <p>P(Spam|free, meeting) &prop; P(Spam) &middot; P(free|Spam) &middot; P(meeting|Spam) = 0.4 &times; 0.8 &times; 0.1 = <strong>0.032</strong></p>
+                <p>P(Ham|free, meeting) &prop; P(Ham) &middot; P(free|Ham) &middot; P(meeting|Ham) = 0.6 &times; 0.1 &times; 0.5 = <strong>0.030</strong></p>
+                <p>Since 0.032 &gt; 0.030, classify as <strong>Spam</strong>.</p>
+                <p>Normalised: P(Spam) = 0.032/(0.032+0.030) = 0.032/0.062 &asymp; <strong>0.516</strong></p>
+              </div>
+            </section>
+
+            <!-- Section 9: Summary Comparison -->
+            <section id="algorithm-comparison">
+              <h2>9. Algorithm Comparison Summary</h2>
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead><tr><th>Algorithm</th><th>Type</th><th>Parametric?</th><th>Strengths</th><th>Weaknesses</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Linear Regression</strong></td><td>Regression</td><td>Yes</td><td>Simple, interpretable, fast</td><td>Assumes linearity</td></tr>
+                    <tr><td><strong>Logistic Regression</strong></td><td>Classification</td><td>Yes</td><td>Probabilistic output, convex loss</td><td>Linear boundary only</td></tr>
+                    <tr><td><strong>Decision Tree</strong></td><td>Both</td><td>No</td><td>Interpretable, handles non-linear</td><td>Prone to overfitting</td></tr>
+                    <tr><td><strong>Random Forest</strong></td><td>Both</td><td>No</td><td>Robust, reduced variance</td><td>Less interpretable</td></tr>
+                    <tr><td><strong>SVM</strong></td><td>Both</td><td>Yes*</td><td>Effective in high dimensions</td><td>Slow for large datasets</td></tr>
+                    <tr><td><strong>KNN</strong></td><td>Both</td><td>No</td><td>Simple, no training phase</td><td>Slow prediction, curse of dimensionality</td></tr>
+                    <tr><td><strong>Naive Bayes</strong></td><td>Classification</td><td>Yes</td><td>Fast, works with small data</td><td>Independence assumption</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p><em>*SVM with linear kernel is parametric; with RBF kernel it is non-parametric.</em></p>
+            </section>
+
+          </article>
+
+          <aside class="on-this-page"><h4>On This Page</h4><ul>
+            <li><a href="#classification-vs-regression">1. Classification vs Regression</a></li>
+            <li><a href="#linear-regression">2. Linear Regression</a></li>
+            <li><a href="#logistic-regression">3. Logistic Regression</a></li>
+            <li><a href="#decision-trees">4. Decision Trees</a></li>
+            <li><a href="#random-forests">5. Random Forests</a></li>
+            <li><a href="#svm">6. SVM</a></li>
+            <li><a href="#knn">7. KNN</a></li>
+            <li><a href="#naive-bayes">8. Naive Bayes</a></li>
+            <li><a href="#algorithm-comparison">9. Comparison</a></li>
+          </ul></aside>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="ml-fundamentals.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">ML Fundamentals</span></a>
+          <a href="unsupervised-learning.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Unsupervised Learning</span></a>
+        </div>
+        <button class="complete-btn" data-page="ch08-supervised-learning">&#10003; Mark as Complete</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

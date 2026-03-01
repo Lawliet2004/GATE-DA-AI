@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reinforcement Learning Chapter Quiz — 15 MCQ, NAT, and True/False questions covering MDPs, Bellman equations, Q-Learning, SARSA, DQN for GATE DA.">
+  <title>Reinforcement Learning Quiz — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="mdp.html" class="sidebar-link"><span class="link-check"></span> MDPs<span class="link-type theory">Theory</span></a>
+            <a href="value-iteration.html" class="sidebar-link"><span class="link-check"></span> Value Iteration<span class="link-type theory">Theory</span></a>
+            <a href="policy-iteration.html" class="sidebar-link"><span class="link-check"></span> Policy Iteration<span class="link-type theory">Theory</span></a>
+            <a href="q-learning.html" class="sidebar-link"><span class="link-check"></span> Q-Learning<span class="link-type theory">Theory</span></a>
+            <a href="deep-reinforcement-learning.html" class="sidebar-link"><span class="link-check"></span> Deep RL<span class="link-type theory">Theory</span></a>
+            <a href="practical-rl.html" class="sidebar-link"><span class="link-check"></span> &#128300; Practical<span class="link-type practical">Demo</span></a>
+            <a href="notes-rl.html" class="sidebar-link"><span class="link-check"></span> &#128221; Quick Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-rl.html" class="sidebar-link active"><span class="link-check"></span> &#129514; Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="mdp.html">Chapter 12: Reinforcement Learning</a> &raquo; <span class="current">Chapter Quiz</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-quiz" data-page-id="ch12-quiz-rl">
+
+            <h1>&#129514; Reinforcement Learning &mdash; Chapter Quiz</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">Mixed Difficulty</span>
+              <button class="bookmark-btn" data-page="ch12-quiz-rl" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="quiz-meta">
+              <span>&#128221; 15 Questions</span>
+              <span>&#9200; 30 Minutes</span>
+              <span>&#127941; Easy / Medium / Hard</span>
+            </div>
+
+            <div id="quiz-container">
+              <!-- Quiz questions rendered by QuizEngine -->
+            </div>
+
+            <button class="complete-btn" data-page="ch12-quiz-rl">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="notes-rl.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">RL Quick Notes</span></a>
+              <a href="../13-planning/planning-introduction.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Classical Planning</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#quiz-container">Quiz</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+
+  <script>
+  (function(){
+    var questions = [
+      // ===== EASY (5) =====
+      {
+        id: "ch12-q1",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "Which of the following correctly defines a <strong>Markov Decision Process (MDP)</strong>?",
+        options: [
+          "A tuple (S, A, P, R) without a discount factor",
+          "A tuple (S, A, P, R, &gamma;) where S is the state set, A is the action set, P is the transition function, R is the reward function, and &gamma; is the discount factor",
+          "A tuple (S, A, R) with deterministic transitions only",
+          "A graph with states and edges representing possible transitions"
+        ],
+        correct_answer: 1,
+        explanation_html: "An MDP is formally defined as the 5-tuple <strong>(S, A, P, R, &gamma;)</strong>. S is the state set, A is the action set, P(s&prime;|s,a) is the state-transition probability function, R(s,a,s&prime;) is the reward function, and &gamma; &isin; [0,1) is the discount factor."
+      },
+      {
+        id: "ch12-q2",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "What is the primary purpose of the <strong>discount factor &gamma;</strong> in an MDP?",
+        options: [
+          "To ensure the agent always takes the shortest path",
+          "To trade off immediate vs future rewards and ensure the return is finite for infinite-horizon problems",
+          "To control the learning rate during Q-learning",
+          "To determine the exploration probability in &epsilon;-greedy"
+        ],
+        correct_answer: 1,
+        explanation_html: "The discount factor &gamma; &isin; [0,1) serves two purposes: (1) it models the preference for sooner rewards over later rewards, and (2) it ensures the infinite sum G<sub>t</sub> = &sum; &gamma;<sup>k</sup> R<sub>t+k+1</sub> converges to a finite value when rewards are bounded."
+      },
+      {
+        id: "ch12-q3",
+        type: "tf",
+        difficulty: "easy",
+        question_html: "The <strong>Markov property</strong> states that the future state depends only on the current state and action, not on the history of past states.",
+        options: ["True", "False"],
+        correct_answer: 0,
+        explanation_html: "True. The Markov property means P(S<sub>t+1</sub> | S<sub>t</sub>, A<sub>t</sub>) = P(S<sub>t+1</sub> | S<sub>0</sub>, A<sub>0</sub>, &hellip;, S<sub>t</sub>, A<sub>t</sub>). The current state is a sufficient statistic for predicting the next state."
+      },
+      {
+        id: "ch12-q4",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "In an <strong>&epsilon;-greedy</strong> policy with &epsilon; = 0.1 and 4 possible actions, what is the probability of selecting the greedy (best) action?",
+        options: [
+          "0.1",
+          "0.9",
+          "0.925",
+          "0.25"
+        ],
+        correct_answer: 2,
+        explanation_html: "With &epsilon;-greedy, random exploration happens with probability &epsilon; = 0.1 (each of 4 actions gets 0.1/4 = 0.025). The greedy action is chosen with probability (1 &minus; &epsilon;) + &epsilon;/|A| = 0.9 + 0.025 = <strong>0.925</strong>."
+      },
+      {
+        id: "ch12-q5",
+        type: "mcq",
+        difficulty: "easy",
+        question_html: "What is the difference between <strong>reward</strong> and <strong>return</strong> in RL?",
+        options: [
+          "They are the same thing",
+          "Reward is the immediate signal R<sub>t+1</sub>; return G<sub>t</sub> is the discounted cumulative sum of future rewards",
+          "Return is the immediate signal; reward is the cumulative sum",
+          "Reward is for model-based methods; return is for model-free methods"
+        ],
+        correct_answer: 1,
+        explanation_html: "The <strong>reward</strong> R<sub>t+1</sub> is the immediate scalar feedback received after taking action A<sub>t</sub> in state S<sub>t</sub>. The <strong>return</strong> G<sub>t</sub> = R<sub>t+1</sub> + &gamma;R<sub>t+2</sub> + &gamma;&sup2;R<sub>t+3</sub> + &hellip; is the total discounted reward from time t onwards. The agent&rsquo;s goal is to maximise the expected return, not just immediate reward."
+      },
+
+      // ===== MEDIUM (5) =====
+      {
+        id: "ch12-q6",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "Consider a 2-state MDP with states {A, B}. From state A, action &lsquo;go&rsquo; transitions to B with reward +5. From B, the only action transitions back to A with reward +2. With &gamma; = 0.5, what is <strong>V*(A)</strong>?<br><em>Hint: Set up the Bellman optimality equation and solve the system.</em>",
+        options: [
+          "5.0",
+          "7.0",
+          "8.0",
+          "6.0"
+        ],
+        correct_answer: 2,
+        explanation_html: "Bellman optimality: V*(A) = 5 + 0.5 &middot; V*(B) and V*(B) = 2 + 0.5 &middot; V*(A). Substituting: V*(A) = 5 + 0.5(2 + 0.5 V*(A)) = 5 + 1 + 0.25 V*(A) = 6 + 0.25 V*(A). So 0.75 V*(A) = 6, giving <strong>V*(A) = 8.0</strong>."
+      },
+      {
+        id: "ch12-q7",
+        type: "nat",
+        difficulty: "medium",
+        question_html: "A TD(0) agent has V(S<sub>t</sub>) = 3.0 and V(S<sub>t+1</sub>) = 5.0. It receives reward R<sub>t+1</sub> = 2. With &alpha; = 0.1 and &gamma; = 0.9, what is the <strong>TD error &delta;<sub>t</sub></strong>?<br>Enter your answer as a decimal number.",
+        options: null,
+        correct_answer: "3.5",
+        explanation_html: "&delta;<sub>t</sub> = R<sub>t+1</sub> + &gamma; V(S<sub>t+1</sub>) &minus; V(S<sub>t</sub>) = 2 + 0.9 &times; 5.0 &minus; 3.0 = 2 + 4.5 &minus; 3.0 = <strong>3.5</strong>. The new V(S<sub>t</sub>) would be 3.0 + 0.1 &times; 3.5 = 3.35."
+      },
+      {
+        id: "ch12-q8",
+        type: "mcq",
+        difficulty: "medium",
+        question_html: "In <strong>SARSA</strong>, after observing transition (S<sub>t</sub>=A, A<sub>t</sub>=left, R<sub>t+1</sub>=&minus;1, S<sub>t+1</sub>=B), the agent selects A<sub>t+1</sub>=right using its &epsilon;-greedy policy. Q(A,left)=2.0, Q(B,right)=4.0, Q(B,up)=6.0, &alpha;=0.2, &gamma;=0.9. What is the updated <strong>Q(A, left)</strong>?",
+        options: [
+          "2.52",
+          "2.00",
+          "2.72",
+          "2.88"
+        ],
+        correct_answer: 0,
+        explanation_html: "SARSA update: Q(S,A) &larr; Q(S,A) + &alpha;[R + &gamma;Q(S&prime;,A&prime;) &minus; Q(S,A)]. Here: Q(A,left) &larr; 2.0 + 0.2[&minus;1 + 0.9 &times; <strong>4.0</strong> &minus; 2.0] = 2.0 + 0.2[&minus;1 + 3.6 &minus; 2.0] = 2.0 + 0.2 &times; 0.6 = <strong>2.12</strong>... Wait, let me recalculate: &minus;1 + 3.6 &minus; 2.0 = 0.6. 2.0 + 0.2(0.6) = 2.12. Hmm, but SARSA uses the <em>actual next action</em> A<sub>t+1</sub>=right, so Q(B,right)=4.0 is used. The answer is 2.0 + 0.2(&minus;1 + 0.9&times;4.0 &minus; 2.0) = 2.0 + 0.2(0.6) = 2.12. Note: SARSA uses Q(B,right)=4.0 not Q(B,up)=6.0, because a&prime;=right was the action actually chosen. Answer closest: 2.52 if we reconsider. Let me recheck: 2.0 + 0.2 &times; (&minus;1 + 3.6 &minus; 2.0) = 2.0 + 0.2 &times; 0.6 = 2.12. The correct computed value is 2.12."
+      },
+      {
+        id: "ch12-q9",
+        type: "nat",
+        difficulty: "medium",
+        question_html: "In <strong>value iteration</strong>, a state s has two actions. Action a<sub>1</sub> goes to s<sub>1</sub> (V=10) with reward &minus;1. Action a<sub>2</sub> goes to s<sub>2</sub> (V=8) with reward +3. With &gamma; = 0.9, after one Bellman update, what is V(s)?<br>Enter your answer as a decimal.",
+        options: null,
+        correct_answer: "10.2",
+        explanation_html: "V(s) = max{R(a<sub>1</sub>) + &gamma;V(s<sub>1</sub>), R(a<sub>2</sub>) + &gamma;V(s<sub>2</sub>)} = max{&minus;1 + 0.9&times;10, 3 + 0.9&times;8} = max{8.0, 10.2} = <strong>10.2</strong>. Action a<sub>2</sub> is better despite leading to a lower-valued state, because its immediate reward is much higher."
+      },
+      {
+        id: "ch12-q10",
+        type: "tf",
+        difficulty: "medium",
+        question_html: "The <strong>Policy Improvement Theorem</strong> guarantees that a greedy policy with respect to V<sup>&pi;</sup> is at least as good as &pi; (i.e., V<sup>&pi;&prime;</sup>(s) &ge; V<sup>&pi;</sup>(s) for all s).",
+        options: ["True", "False"],
+        correct_answer: 0,
+        explanation_html: "True. The policy improvement theorem states: if &pi;&prime;(s) = argmax<sub>a</sub> Q<sup>&pi;</sup>(s,a) for all s, then V<sup>&pi;&prime;</sup>(s) &ge; V<sup>&pi;</sup>(s) for all s. This is the theoretical foundation of the policy improvement step in policy iteration."
+      },
+
+      // ===== HARD (5) =====
+      {
+        id: "ch12-q11",
+        type: "nat",
+        difficulty: "hard",
+        question_html: "A Q-learning agent starts with all Q-values = 0. In a 3-state environment {S<sub>1</sub>, S<sub>2</sub>, S<sub>3</sub> (terminal)}, it experiences this sequence of transitions:<br>Step 1: (S<sub>1</sub>, a, r=0, S<sub>2</sub>)<br>Step 2: (S<sub>2</sub>, b, r=10, S<sub>3</sub>)<br>Step 3: (S<sub>1</sub>, a, r=0, S<sub>2</sub>)<br>With &alpha; = 0.5 and &gamma; = 1.0, what is <strong>Q(S<sub>1</sub>, a)</strong> after all 3 steps?",
+        options: null,
+        correct_answer: "2.5",
+        explanation_html: "Step 1: Q(S<sub>1</sub>,a) &larr; 0 + 0.5[0 + 1.0 &times; max Q(S<sub>2</sub>,&middot;) &minus; 0] = 0.5 &times; 0 = 0 (all Q=0).<br>Step 2: Q(S<sub>2</sub>,b) &larr; 0 + 0.5[10 + 1.0 &times; 0 &minus; 0] = 5.0 (S<sub>3</sub> is terminal, V=0).<br>Step 3: Q(S<sub>1</sub>,a) &larr; 0 + 0.5[0 + 1.0 &times; max Q(S<sub>2</sub>,&middot;) &minus; 0] = 0.5 &times; 5.0 = <strong>2.5</strong>. The information from the goal propagates back one step."
+      },
+      {
+        id: "ch12-q12",
+        type: "nat",
+        difficulty: "hard",
+        question_html: "Consider a 2-state MDP (states A, B). From A, the only action goes to B with reward +4. From B, the only action goes to A with reward +2. With &gamma; = 0.8, run <strong>two</strong> iterations of value iteration starting from V<sub>0</sub>(A) = V<sub>0</sub>(B) = 0. What is <strong>V<sub>2</sub>(A)</strong>?<br>Round to 2 decimal places.",
+        options: null,
+        correct_answer: "5.28",
+        explanation_html: "Iteration 1: V<sub>1</sub>(A) = 4 + 0.8 &times; V<sub>0</sub>(B) = 4 + 0 = 4. V<sub>1</sub>(B) = 2 + 0.8 &times; V<sub>0</sub>(A) = 2 + 0 = 2.<br>Iteration 2: V<sub>2</sub>(A) = 4 + 0.8 &times; V<sub>1</sub>(B) = 4 + 0.8 &times; 2 = 4 + 1.6 = <strong>5.60</strong>. Wait &mdash; let me recompute synchronous update. V<sub>2</sub>(A) = 4 + 0.8 &times; V<sub>1</sub>(B) = 4 + 0.8(2) = 5.6. V<sub>2</sub>(B) = 2 + 0.8 &times; V<sub>1</sub>(A) = 2 + 0.8(4) = 5.2. So V<sub>2</sub>(A) = <strong>5.60</strong>."
+      },
+      {
+        id: "ch12-q13",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "What is the primary purpose of <strong>experience replay</strong> in DQN?",
+        options: [
+          "To allow the agent to revisit earlier levels of the game",
+          "To break correlations between consecutive training samples and enable mini-batch SGD",
+          "To speed up the forward pass of the neural network",
+          "To store the optimal policy for later deployment"
+        ],
+        correct_answer: 1,
+        explanation_html: "Experience replay stores transitions (s,a,r,s&prime;) in a buffer and samples random mini-batches for training. This breaks the <strong>temporal correlations</strong> between consecutive samples (which violate the i.i.d. assumption of SGD) and allows each transition to be reused multiple times, improving <strong>sample efficiency</strong>."
+      },
+      {
+        id: "ch12-q14",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "Q-learning is called <strong>off-policy</strong> because:",
+        options: [
+          "It does not use a policy at all",
+          "It learns the value of the optimal policy while following a different (e.g., &epsilon;-greedy) behaviour policy",
+          "It can only be used offline with pre-collected data",
+          "It updates Q-values without using rewards"
+        ],
+        correct_answer: 1,
+        explanation_html: "Q-learning is off-policy because its update target uses max<sub>a&prime;</sub> Q(s&prime;,a&prime;), which corresponds to the <strong>greedy (optimal) policy</strong>, regardless of which action the agent actually took (behaviour policy, typically &epsilon;-greedy). The <em>target policy</em> (greedy) differs from the <em>behaviour policy</em> (&epsilon;-greedy), which is the definition of off-policy learning."
+      },
+      {
+        id: "ch12-q15",
+        type: "mcq",
+        difficulty: "hard",
+        question_html: "Given Q*(s,a) values for a state s: Q*(s, up)=7.2, Q*(s, down)=5.1, Q*(s, left)=7.2, Q*(s, right)=6.8. Under a <strong>deterministic optimal policy</strong>, which statement is correct?",
+        options: [
+          "The optimal policy must choose &lsquo;up&rsquo; only",
+          "The optimal policy must choose &lsquo;left&rsquo; only",
+          "Any policy that chooses either &lsquo;up&rsquo; or &lsquo;left&rsquo; is optimal (both are tied)",
+          "The optimal policy should randomise equally over all four actions"
+        ],
+        correct_answer: 2,
+        explanation_html: "The optimal policy is &pi;*(s) = argmax<sub>a</sub> Q*(s,a). Both &lsquo;up&rsquo; and &lsquo;left&rsquo; achieve the maximum Q-value of 7.2. When there are ties, <strong>any action achieving the maximum</strong> is optimal. A deterministic policy can choose either one; both yield the same optimal value V*(s) = 7.2."
+      }
+    ];
+
+    // Fix Q8 options — recalculate
+    // SARSA: Q(A,left) = 2.0 + 0.2[-1 + 0.9*4.0 - 2.0] = 2.0 + 0.2*(0.6) = 2.12
+    // Update Q8 to have correct answer
+    questions[7].options = ["2.12", "2.88", "2.00", "3.16"];
+    questions[7].correct_answer = 0;
+    questions[7].explanation_html = "SARSA update: Q(S,A) &larr; Q(S,A) + &alpha;[R + &gamma;Q(S&prime;,A&prime;) &minus; Q(S,A)]. SARSA uses the <em>actual next action</em> A&prime;=right (not max). Q(A,left) = 2.0 + 0.2[&minus;1 + 0.9 &times; 4.0 &minus; 2.0] = 2.0 + 0.2(0.6) = <strong>2.12</strong>. Note how SARSA uses Q(B,right)=4.0, not Q(B,up)=6.0.";
+
+    // Fix Q12 answer
+    questions[11].correct_answer = "5.6";
+    questions[11].explanation_html = "Iteration 1: V<sub>1</sub>(A) = 4 + 0.8 &times; 0 = 4, V<sub>1</sub>(B) = 2 + 0.8 &times; 0 = 2.<br>Iteration 2: V<sub>2</sub>(A) = 4 + 0.8 &times; V<sub>1</sub>(B) = 4 + 1.6 = <strong>5.6</strong>, V<sub>2</sub>(B) = 2 + 0.8 &times; V<sub>1</sub>(A) = 2 + 3.2 = 5.2.";
+
+    if(typeof QuizEngine !== 'undefined' && QuizEngine.init) {
+      QuizEngine.init({ quizId: 'quiz-ch12', timeLimit: 1800, questions: questions, containerId: 'quiz-container' });
+    } else {
+      // Fallback: render questions statically
+      var container = document.getElementById('quiz-container');
+      if(container) {
+        var html = '';
+        questions.forEach(function(q, idx){
+          html += '<div class="quiz-question" id="'+q.id+'" style="margin-bottom:2rem; padding:1.25rem; border:1px solid var(--border,#ddd); border-radius:8px;">';
+          html += '<h3>Question '+(idx+1)+' <span class="gate-badge '+(q.difficulty==='easy'?'low':q.difficulty==='medium'?'medium':'high')+'">'+q.difficulty.charAt(0).toUpperCase()+q.difficulty.slice(1)+'</span></h3>';
+          html += '<p>'+q.question_html+'</p>';
+          if(q.options){
+            html += '<div class="quiz-options">';
+            q.options.forEach(function(opt, oi){
+              html += '<label class="quiz-option" style="display:block;margin:0.4rem 0;cursor:pointer;"><input type="radio" name="'+q.id+'" value="'+oi+'"> '+opt+'</label>';
+            });
+            html += '</div>';
+          } else {
+            html += '<input type="text" class="quiz-nat-input" placeholder="Enter numerical answer" style="padding:0.5rem; border:1px solid var(--border,#ccc); border-radius:4px; width:200px;">';
+          }
+          html += '</div>';
+        });
+        html += '<button id="quizSubmitBtn" style="padding:0.75rem 2rem; background:var(--accent,#3498db); color:#fff; border:none; border-radius:8px; cursor:pointer; font-size:1rem; font-weight:600;">Submit Quiz</button>';
+        html += '<div id="quizResults" style="margin-top:1.5rem;"></div>';
+        container.innerHTML = html;
+
+        // Simple scoring
+        document.getElementById('quizSubmitBtn').addEventListener('click', function(){
+          var score = 0;
+          questions.forEach(function(q){
+            if(q.options){
+              var sel = document.querySelector('input[name="'+q.id+'"]:checked');
+              if(sel && parseInt(sel.value) === q.correct_answer) score++;
+            }
+          });
+          document.getElementById('quizResults').innerHTML = '<div style="padding:1rem; background:var(--bg-secondary,#f0f0f0); border-radius:8px; font-size:1.1rem;"><strong>Score: '+score+' / '+questions.length+'</strong></div>';
+        });
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

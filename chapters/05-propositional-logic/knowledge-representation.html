@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Representation - Propositional Logic | Master AI for GATE DA</title>
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="../../css/theory.css">
+    <link rel="stylesheet" href="../../css/quiz.css">
+    <link rel="stylesheet" href="../../css/notes.css">
+    <link rel="stylesheet" href="../../css/practical.css">
+    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="../../index.html" class="logo">&#129504; Master AI for GATE DA</a>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search topics..." aria-label="Search">
+            <button id="search-btn" aria-label="Search">🔍</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <div class="progress-indicator" id="progress-indicator" title="Course progress">
+            <span id="progress-text">0%</span>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="04">📘 Ch 4: Adversarial Search</h3>
+                <ul class="chapter-links collapsed"><li><a href="../04-adversarial-search/minimax-algorithm.html">Minimax</a></li></ul>
+            </div>
+            <div class="chapter-group active">
+                <h3 class="chapter-title" data-chapter="05">📘 Ch 5: Propositional Logic</h3>
+                <ul class="chapter-links">
+                    <li><a href="syntax-and-semantics.html">Syntax &amp; Semantics</a></li>
+                    <li><a href="truth-tables.html">Truth Tables</a></li>
+                    <li><a href="logical-equivalence.html">Logical Equivalence</a></li>
+                    <li><a href="tautology-contradiction-contingency.html">Tautology, Contradiction, Contingency</a></li>
+                    <li><a href="normal-forms.html">Normal Forms (CNF/DNF)</a></li>
+                    <li><a href="propositional-inference.html">Propositional Inference</a></li>
+                    <li><a href="resolution-method.html">Resolution Method</a></li>
+                    <li><a href="horn-clauses.html">Horn Clauses</a></li>
+                    <li><a href="sat-problem.html">SAT Problem</a></li>
+                    <li class="active"><a href="knowledge-representation.html">Knowledge Representation</a></li>
+                    <li><a href="practical-propositional.html">Practical: Interactive Demos</a></li>
+                    <li><a href="gate-previous-year-propositional.html">GATE Previous Year Questions</a></li>
+                    <li><a href="notes-propositional-logic.html">Quick Revision Notes</a></li>
+                    <li><a href="quiz-propositional-logic.html">Chapter Quiz</a></li>
+                </ul>
+            </div>
+            <div class="chapter-group">
+                <h3 class="chapter-title" data-chapter="06">📘 Ch 6: Predicate Logic</h3>
+                <ul class="chapter-links collapsed"><li><a href="../06-predicate-logic/first-order-logic-syntax.html">FOL Syntax</a></li></ul>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> &gt;
+            <a href="syntax-and-semantics.html">Chapter 5: Propositional Logic</a> &gt;
+            <span>Knowledge Representation</span>
+        </div>
+
+        <article class="theory-content">
+            <h1>Knowledge Representation with Propositional Logic</h1>
+
+            <div class="gate-badge">GATE DA — Moderate Importance</div>
+
+            <div class="learning-objectives">
+                <h3>🎯 Learning Objectives</h3>
+                <ul>
+                    <li>Use propositional logic to represent knowledge about the world</li>
+                    <li>Work through the Wumpus World example in detail</li>
+                    <li>Understand the limitations of propositional knowledge representation</li>
+                    <li>See why first-order logic is needed for more expressive representations</li>
+                </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section>
+                <h2>1. Knowledge-Based Agents</h2>
+                <p>A <strong>knowledge-based agent</strong> maintains a <strong>knowledge base (KB)</strong> — a set of sentences in a formal language. The agent can:</p>
+                <ul>
+                    <li><strong>TELL:</strong> Add new sentences to the KB (based on percepts).</li>
+                    <li><strong>ASK:</strong> Query the KB to decide actions (using inference).</li>
+                </ul>
+                <p>Propositional logic provides a simple language for building knowledge bases.</p>
+            </section>
+
+            <!-- Section 2: Wumpus World -->
+            <section>
+                <h2>2. The Wumpus World</h2>
+                <p>The <strong>Wumpus World</strong> is a classic AI example used to illustrate logical reasoning. It's a 4×4 grid cave where an agent hunts for gold while avoiding pits and a Wumpus monster.</p>
+
+                <div class="definition-box">
+                    <div class="box-title">Wumpus World Setup</div>
+                    <ul>
+                        <li><strong>Grid:</strong> 4×4 rooms. Agent starts at [1,1], facing right.</li>
+                        <li><strong>Wumpus:</strong> One room contains the Wumpus. If the agent enters, it dies.</li>
+                        <li><strong>Pits:</strong> Some rooms have bottomless pits. Falling in = death.</li>
+                        <li><strong>Gold:</strong> One room has gold. The agent wins if it grabs the gold and exits.</li>
+                    </ul>
+                    <h4>Percepts</h4>
+                    <ul>
+                        <li><strong>Stench:</strong> Adjacent rooms to the Wumpus smell bad.</li>
+                        <li><strong>Breeze:</strong> Adjacent rooms to a pit have a breeze.</li>
+                        <li><strong>Glitter:</strong> The room with gold glitters.</li>
+                        <li><strong>Bump:</strong> Agent bumps when walking into a wall.</li>
+                        <li><strong>Scream:</strong> Wumpus screams when killed by the agent's arrow.</li>
+                    </ul>
+                </div>
+
+                <h3>2.1 Propositional Variables</h3>
+                <p>We define propositional variables for each cell [i,j]:</p>
+                <table class="styled-table">
+                    <thead><tr><th>Variable</th><th>Meaning</th></tr></thead>
+                    <tbody>
+                        <tr><td>P<sub>i,j</sub></td><td>There is a pit in [i,j]</td></tr>
+                        <tr><td>W<sub>i,j</sub></td><td>The Wumpus is in [i,j]</td></tr>
+                        <tr><td>B<sub>i,j</sub></td><td>There is a breeze in [i,j]</td></tr>
+                        <tr><td>S<sub>i,j</sub></td><td>There is a stench in [i,j]</td></tr>
+                        <tr><td>OK<sub>i,j</sub></td><td>Room [i,j] is safe to enter</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>2.2 Encoding Rules</h3>
+                <div class="example-box">
+                    <h4>Breeze Rules</h4>
+                    <p>"There is a breeze in [1,1] if and only if there is a pit in an adjacent room."</p>
+                    <p class="formula">B<sub>1,1</sub> ↔ (P<sub>1,2</sub> ∨ P<sub>2,1</sub>)</p>
+                    <p>For a room [2,2] (which has 4 neighbors):</p>
+                    <p class="formula">B<sub>2,2</sub> ↔ (P<sub>1,2</sub> ∨ P<sub>2,1</sub> ∨ P<sub>2,3</sub> ∨ P<sub>3,2</sub>)</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Safety Rules</h4>
+                    <p>"Room [i,j] is OK if there is no pit and no Wumpus there."</p>
+                    <p class="formula">OK<sub>i,j</sub> ↔ (¬P<sub>i,j</sub> ∧ ¬W<sub>i,j</sub>)</p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Exactly One Wumpus</h4>
+                    <p>The Wumpus is in exactly one room. This requires:</p>
+                    <p><strong>At least one:</strong> W<sub>1,1</sub> ∨ W<sub>1,2</sub> ∨ ... ∨ W<sub>4,4</sub></p>
+                    <p><strong>At most one:</strong> For every pair (i,j) ≠ (k,l): ¬W<sub>i,j</sub> ∨ ¬W<sub>k,l</sub></p>
+                    <p>This produces 16 + C(16,2) = 16 + 120 = <strong>136 clauses</strong> just for this constraint!</p>
+                </div>
+
+                <h3>2.3 Reasoning Example</h3>
+                <div class="example-box">
+                    <h4>Scenario: Agent is at [1,1], perceives no breeze, no stench.</h4>
+                    <p><strong>Known:</strong> ¬B<sub>1,1</sub> and ¬S<sub>1,1</sub></p>
+                    <p><strong>From breeze rule:</strong> B<sub>1,1</sub> ↔ (P<sub>1,2</sub> ∨ P<sub>2,1</sub>)</p>
+                    <p>Since ¬B<sub>1,1</sub>: ¬(P<sub>1,2</sub> ∨ P<sub>2,1</sub>) → <strong>¬P<sub>1,2</sub> ∧ ¬P<sub>2,1</sub></strong></p>
+                    <p>Similarly, from stench rule: <strong>¬W<sub>1,2</sub> ∧ ¬W<sub>2,1</sub></strong></p>
+                    <p>Conclusion: Both [1,2] and [2,1] are safe! The agent can move to either room.</p>
+                </div>
+            </section>
+
+            <!-- Section 3: Limitations -->
+            <section>
+                <h2>3. Limitations of Propositional Logic</h2>
+
+                <div class="warning-box">
+                    <h4>⚠️ Key Limitations</h4>
+                    <table class="styled-table">
+                        <thead><tr><th>Limitation</th><th>Explanation</th></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>No variables or quantifiers</strong></td>
+                                <td>Cannot say "for all rooms" — must enumerate each room individually. The Wumpus World needs hundreds of ground propositions for a 4×4 grid.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>No objects or relations</strong></td>
+                                <td>Cannot express "Room X is adjacent to Room Y" as a general relation. Must create separate propositions for each pair.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Exponential blowup</strong></td>
+                                <td>Constraints like "exactly one Wumpus" require O(n²) clauses for n rooms. Larger worlds become impractical.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>No functions</strong></td>
+                                <td>Cannot express mathematical relationships or computed values. "The distance from A to B is 3" needs a separate proposition.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>No temporal reasoning</strong></td>
+                                <td>Basic propositional logic does not natively handle time. Need time-stamped variables like P<sub>1,2</sub><sup>t</sup> for each time step.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note-box">
+                    <h4>📝 Why This Matters</h4>
+                    <p>These limitations motivate the move to <strong>first-order predicate logic</strong> (Chapter 6), which adds variables, quantifiers (∀, ∃), relations, and functions. In first-order logic, the breeze rule becomes a single sentence:</p>
+                    <p class="formula">∀x,y [ Breeze(x,y) ↔ ∃a,b (Adjacent(x,y,a,b) ∧ Pit(a,b)) ]</p>
+                    <p>This single sentence replaces 16 separate propositional sentences in the 4×4 grid.</p>
+                </div>
+            </section>
+
+            <!-- Section 4: Other Applications -->
+            <section>
+                <h2>4. Other Applications of Propositional KR</h2>
+                <p>Despite its limitations, propositional logic is practical for:</p>
+                <ul>
+                    <li><strong>Circuit verification:</strong> Hardware circuits are naturally propositional (Boolean).</li>
+                    <li><strong>Planning:</strong> SATPLAN encodes planning problems as SAT instances.</li>
+                    <li><strong>Constraint solving:</strong> Sudoku, scheduling, and combinatorial puzzles can be encoded as SAT.</li>
+                    <li><strong>Software verification:</strong> Model checking and bounded model checking use SAT/SMT solvers.</li>
+                </ul>
+            </section>
+
+            <!-- GATE -->
+            <section>
+                <h2>5. GATE Exam Tips</h2>
+                <div class="warning-box">
+                    <h4>🎯 What to Know</h4>
+                    <ul>
+                        <li>Understand the <strong>Wumpus World</strong> as a standard example — frequently referenced in GATE AI questions.</li>
+                        <li>Know how to <strong>encode rules as propositional sentences</strong>.</li>
+                        <li>Be able to explain <strong>why propositional logic is insufficient</strong> for general knowledge representation.</li>
+                        <li>Understand the difference between <strong>knowledge base</strong> and <strong>inference engine</strong>.</li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="sat-problem.html" class="nav-btn prev-btn">← Previous: SAT Problem</a>
+            <a href="practical-propositional.html" class="nav-btn next-btn">Next: Practical Interactive Demos →</a>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="mark-complete-btn" id="mark-complete-btn" data-page="ch05-knowledge-representation">
+                ✅ Mark as Complete
+            </button>
+            <button class="bookmark-btn" id="bookmark-btn" data-page="ch05-knowledge-representation">
+                🔖 Bookmark
+            </button>
+        </div>
+    </main>
+
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/navigation.js"></script>
+    <script src="../../js/progress-tracker.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/animations.js"></script>
+</body>
+</html>

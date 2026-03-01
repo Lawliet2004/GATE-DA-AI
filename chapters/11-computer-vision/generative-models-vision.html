@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Generative Models for Vision — autoencoders, VAEs, GANs, DC-GAN, Wasserstein GAN, mode collapse, diffusion models, DALL-E, and Stable Diffusion for GATE DA.">
+  <title>Generative Models for Vision | GATE DA AI</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="cnn-architectures.html" class="sidebar-link"><span class="link-check"></span> CNN Architectures<span class="link-type theory">Theory</span></a>
+            <a href="object-detection.html" class="sidebar-link"><span class="link-check"></span> Object Detection<span class="link-type theory">Theory</span></a>
+            <a href="image-segmentation.html" class="sidebar-link"><span class="link-check"></span> Image Segmentation<span class="link-type theory">Theory</span></a>
+            <a href="generative-models-vision.html" class="sidebar-link active"><span class="link-check"></span> Generative Models<span class="link-type theory">Theory</span></a>
+            <a href="notes-cv.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-cv.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="image-fundamentals.html">Chapter 11: Computer Vision</a> &raquo; <span class="current">Generative Models for Vision</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch11-generative-models-vision">
+
+            <h1>Generative Models for Vision</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch11-generative-models-vision" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand autoencoders and their bottleneck design</li>
+                <li>Derive the VAE loss function (reconstruction + KL divergence)</li>
+                <li>Explain GANs: generator, discriminator, and the minimax objective</li>
+                <li>Recognise common GAN variants (DCGAN, CGAN, WGAN)</li>
+                <li>Understand mode collapse and training instability in GANs</li>
+                <li>Describe the forward and reverse processes in diffusion models</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="autoencoders">
+              <h2>1. Autoencoders</h2>
+              <p>An autoencoder learns to compress input x into a low-dimensional latent code z and then reconstruct x from z. The bottleneck forces the network to learn a compact representation.</p>
+
+              <div class="definition-box">
+                <strong>Autoencoder Components:</strong>
+                <ul>
+                  <li><strong>Encoder</strong> f<sub>&theta;</sub>: x &rarr; z (maps input to latent space)</li>
+                  <li><strong>Decoder</strong> g<sub>&phi;</sub>: z &rarr; x&#770; (reconstructs input from latent code)</li>
+                  <li><strong>Loss:</strong> L = &#8214;x &minus; x&#770;&#8214;&sup2; (mean squared error) or binary cross-entropy for pixel values in [0, 1]</li>
+                </ul>
+              </div>
+
+              <p><strong>Applications:</strong> Dimensionality reduction, denoising (denoising autoencoder adds noise to input, trains to recover clean output), anomaly detection (high reconstruction error = anomaly), feature learning.</p>
+
+              <div class="note-box">
+                <strong>Limitation:</strong> Standard autoencoders learn a mapping but their latent space may not be continuous or structured. You cannot easily sample new z values and get meaningful outputs. This motivates Variational Autoencoders.
+              </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="vae">
+              <h2>2. Variational Autoencoders (VAE)</h2>
+              <p>VAEs impose a <strong>probabilistic structure</strong> on the latent space. The encoder outputs parameters of a distribution (not a point), and training regularises the latent space to be smooth and continuous.</p>
+
+              <div class="definition-box">
+                <strong>VAE Encoder Output:</strong> Instead of z = f(x), the encoder outputs &mu; and &sigma; (mean and standard deviation of a Gaussian). The latent code is sampled: z = &mu; + &sigma; &odot; &epsilon;, where &epsilon; &sim; N(0, I). This is the <strong>reparameterisation trick</strong> that allows backpropagation through the sampling operation.
+              </div>
+
+              <div class="theorem-box">
+                <strong>VAE Loss Function (ELBO):</strong><br>
+                L<sub>VAE</sub> = L<sub>recon</sub> + L<sub>KL</sub><br><br>
+                <strong>Reconstruction loss:</strong> &minus;E<sub>z&sim;q(z|x)</sub>[log p(x|z)] &asymp; &#8214;x &minus; x&#770;&#8214;&sup2; (or BCE)<br><br>
+                <strong>KL divergence:</strong> D<sub>KL</sub>(q(z|x) &#8214; p(z)) where p(z) = N(0, I)<br>
+                = &minus;&frac12; &sum;<sub>j=1</sub><sup>d</sup> (1 + log &sigma;<sub>j</sub>&sup2; &minus; &mu;<sub>j</sub>&sup2; &minus; &sigma;<sub>j</sub>&sup2;)<br><br>
+                The KL term regularises the latent space to be close to a standard normal, enabling smooth sampling and interpolation.
+              </div>
+
+              <div class="example-box">
+                <h4>Example &mdash; VAE Latent Interpolation</h4>
+                <p>Given two images x<sub>1</sub> and x<sub>2</sub> with latent codes z<sub>1</sub> and z<sub>2</sub>:</p>
+                <p>Interpolated latent: z<sub>&alpha;</sub> = (1 &minus; &alpha;) &middot; z<sub>1</sub> + &alpha; &middot; z<sub>2</sub>, &nbsp; &alpha; &isin; [0, 1]</p>
+                <p>Decoding z<sub>&alpha;</sub> produces a smooth transition between x<sub>1</sub> and x<sub>2</sub>. This works because the KL regularisation ensures the latent space is continuous.</p>
+              </div>
+
+              <div class="warning-box">
+                <strong>&#9888; VAE Trade-off:</strong> The reconstruction loss and KL divergence are in tension. Too much weight on KL produces blurry outputs (latent space is smooth but limited capacity). Too little KL weight produces sharp images but a poorly structured latent space. The &beta;-VAE framework uses a coefficient &beta; to control this balance.
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="gans">
+              <h2>3. Generative Adversarial Networks (GANs)</h2>
+              <p>Introduced by Goodfellow et al. (2014). Two networks compete in a <strong>minimax game</strong>:</p>
+
+              <div class="definition-box">
+                <strong>GAN Components:</strong>
+                <ul>
+                  <li><strong>Generator G(z):</strong> Takes random noise z &sim; N(0, I) and generates a synthetic sample x&#770; = G(z).</li>
+                  <li><strong>Discriminator D(x):</strong> Outputs the probability that input x is real (from the data) vs. fake (from G).</li>
+                </ul>
+              </div>
+
+              <div class="theorem-box">
+                <strong>GAN Minimax Objective:</strong><br>
+                min<sub>G</sub> max<sub>D</sub> V(D, G) = E<sub>x&sim;p<sub>data</sub></sub>[log D(x)] + E<sub>z&sim;p<sub>z</sub></sub>[log(1 &minus; D(G(z)))]<br><br>
+                <strong>D wants to maximise:</strong> D(real) &rarr; 1, D(fake) &rarr; 0 (high V).<br>
+                <strong>G wants to minimise:</strong> D(G(z)) &rarr; 1 (make fakes indistinguishable from real).<br><br>
+                At Nash equilibrium (in theory): D(x) = &frac12; for all x, and p<sub>G</sub> = p<sub>data</sub>.
+              </div>
+
+              <h3>GAN Training Loop</h3>
+              <div class="algorithm-block">
+                <h4>Algorithm &mdash; GAN Training</h4>
+                <ol>
+                  <li><strong>Train D:</strong> Sample real batch x and fake batch G(z). Update D to maximise log D(x) + log(1 &minus; D(G(z))).</li>
+                  <li><strong>Train G:</strong> Sample noise z. Update G to maximise log D(G(z)) [or equivalently minimise log(1 &minus; D(G(z)))].</li>
+                  <li>Repeat steps 1&ndash;2 (often k = 1 D step per G step).</li>
+                </ol>
+              </div>
+
+              <div class="note-box">
+                <strong>Practical Tip:</strong> In practice, G is trained to maximise log D(G(z)) rather than minimise log(1 &minus; D(G(z))) to avoid vanishing gradients early in training when the generator is poor.
+              </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="dcgan">
+              <h2>4. DCGAN (Deep Convolutional GAN)</h2>
+              <p>Established architectural guidelines for stable GAN training with convolutional networks:</p>
+              <ul>
+                <li>Replace pooling layers with strided convolutions (D) and transposed convolutions (G)</li>
+                <li>Use batch normalisation in both G and D (except D input layer and G output layer)</li>
+                <li>Remove all fully connected layers (fully convolutional)</li>
+                <li>Use ReLU in G (except output: tanh) and LeakyReLU in D</li>
+              </ul>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="cgan">
+              <h2>5. Conditional GAN (cGAN)</h2>
+              <p>Both G and D receive additional conditioning information y (e.g., class label, text description, another image):</p>
+              <ul>
+                <li><strong>Generator:</strong> x&#770; = G(z, y) &mdash; generates images conditioned on y</li>
+                <li><strong>Discriminator:</strong> D(x, y) &mdash; judges if x is real AND matches condition y</li>
+              </ul>
+              <p><strong>Applications:</strong> Image-to-image translation (pix2pix), text-to-image generation, class-conditional image synthesis, super-resolution.</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="wgan">
+              <h2>6. Wasserstein GAN (WGAN)</h2>
+              <p>Addresses training instability by replacing the JS divergence with the <strong>Wasserstein distance</strong> (Earth Mover&rsquo;s Distance).</p>
+
+              <div class="definition-box">
+                <strong>Wasserstein Distance:</strong> W(p<sub>r</sub>, p<sub>g</sub>) = inf<sub>&gamma; &isin; &Pi;(p<sub>r</sub>, p<sub>g</sub>)</sub> E<sub>(x,y)&sim;&gamma;</sub>[&#8214;x &minus; y&#8214;]<br>
+                Intuitively: the minimum cost to transport mass from distribution p<sub>r</sub> to p<sub>g</sub>.
+              </div>
+
+              <div class="theorem-box">
+                <strong>WGAN Objective (using Kantorovich-Rubinstein duality):</strong><br>
+                min<sub>G</sub> max<sub>D&isin;1-Lipschitz</sub> E<sub>x&sim;p<sub>data</sub></sub>[D(x)] &minus; E<sub>z&sim;p<sub>z</sub></sub>[D(G(z))]<br><br>
+                The discriminator (called &ldquo;critic&rdquo; in WGAN) must be 1-Lipschitz continuous. Originally enforced by weight clipping; WGAN-GP uses a <strong>gradient penalty</strong> instead.
+              </div>
+
+              <p><strong>Benefits:</strong> Meaningful loss curves that correlate with image quality, more stable training, reduced mode collapse.</p>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="mode-collapse">
+              <h2>7. Mode Collapse</h2>
+              <div class="definition-box">
+                <strong>Mode Collapse:</strong> The generator learns to produce only a few types of outputs (modes) that fool the discriminator, ignoring the full diversity of the data distribution. For example, a GAN trained on digits might only generate &ldquo;1&rdquo;s and &ldquo;7&rdquo;s while ignoring all other digits.
+              </div>
+
+              <p><strong>Causes:</strong> The generator finds a &ldquo;safe&rdquo; output that consistently fools D, and gradient updates reinforce this narrow strategy.</p>
+
+              <p><strong>Mitigations:</strong></p>
+              <ul>
+                <li><strong>Mini-batch discrimination:</strong> D looks at statistics across a batch, penalising lack of diversity</li>
+                <li><strong>Unrolled GANs:</strong> G optimises against future D states, not just current D</li>
+                <li><strong>Wasserstein loss:</strong> More stable gradients reduce collapse tendency</li>
+                <li><strong>Feature matching:</strong> G minimises difference in intermediate D feature statistics</li>
+              </ul>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="diffusion">
+              <h2>8. Diffusion Models</h2>
+              <p>A class of generative models that learn to reverse a gradual noising process. Currently state-of-the-art for image generation quality.</p>
+
+              <div class="definition-box">
+                <strong>Forward Process (Diffusion):</strong> Gradually add Gaussian noise to data x<sub>0</sub> over T timesteps:<br>
+                q(x<sub>t</sub> | x<sub>t&minus;1</sub>) = N(x<sub>t</sub>; &radic;(1 &minus; &beta;<sub>t</sub>) x<sub>t&minus;1</sub>, &beta;<sub>t</sub> I)<br>
+                where &beta;<sub>t</sub> is a noise schedule. After many steps, x<sub>T</sub> &asymp; N(0, I) (pure noise).
+              </div>
+
+              <div class="definition-box">
+                <strong>Reverse Process (Denoising):</strong> A neural network learns to reverse the forward process step by step:<br>
+                p<sub>&theta;</sub>(x<sub>t&minus;1</sub> | x<sub>t</sub>) = N(x<sub>t&minus;1</sub>; &mu;<sub>&theta;</sub>(x<sub>t</sub>, t), &Sigma;<sub>&theta;</sub>(x<sub>t</sub>, t))<br>
+                The model is trained to predict the noise &epsilon; added at each step. At generation time, start from x<sub>T</sub> &sim; N(0, I) and iteratively denoise.
+              </div>
+
+              <div class="theorem-box">
+                <strong>Diffusion Training Loss (simplified):</strong><br>
+                L = E<sub>t, x<sub>0</sub>, &epsilon;</sub> [&#8214;&epsilon; &minus; &epsilon;<sub>&theta;</sub>(x<sub>t</sub>, t)&#8214;&sup2;]<br><br>
+                The model &epsilon;<sub>&theta;</sub> predicts the noise &epsilon; that was added to create x<sub>t</sub> from x<sub>0</sub>. This is equivalent to a variational bound on the data log-likelihood.
+              </div>
+
+              <div class="note-box">
+                <strong>Key property:</strong> Due to the Gaussian noise schedule, x<sub>t</sub> can be computed directly from x<sub>0</sub> without iterating through all steps:<br>
+                x<sub>t</sub> = &radic;&alpha;&#772;<sub>t</sub> x<sub>0</sub> + &radic;(1 &minus; &alpha;&#772;<sub>t</sub>) &epsilon;, &nbsp; &epsilon; &sim; N(0, I)<br>
+                where &alpha;&#772;<sub>t</sub> = &prod;<sub>s=1</sub><sup>t</sup>(1 &minus; &beta;<sub>s</sub>). This enables efficient training.
+              </div>
+            </section>
+
+            <!-- Section 9 -->
+            <section id="dalle-sd">
+              <h2>9. DALL-E &amp; Stable Diffusion</h2>
+
+              <h3>9.1 DALL-E / DALL-E 2</h3>
+              <p>Text-to-image generation by OpenAI. DALL-E 2 uses a two-stage process: a text encoder (CLIP) produces text embeddings, a prior model maps text embeddings to image embeddings, and a diffusion decoder generates the image from image embeddings.</p>
+
+              <h3>9.2 Stable Diffusion</h3>
+              <p>Performs diffusion in a <strong>compressed latent space</strong> rather than pixel space (Latent Diffusion Model). This dramatically reduces computational cost.</p>
+
+              <div class="definition-box">
+                <strong>Latent Diffusion Model (LDM):</strong>
+                <ol>
+                  <li>A pre-trained autoencoder compresses images x to latent z = E(x)</li>
+                  <li>Diffusion is performed in latent space (much smaller than pixel space)</li>
+                  <li>Text conditioning via cross-attention with CLIP text embeddings</li>
+                  <li>Decoded back to pixel space: x&#770; = D(z&#770;)</li>
+                </ol>
+              </div>
+
+              <table class="comparison-table">
+                <thead><tr><th>Property</th><th>VAE</th><th>GAN</th><th>Diffusion</th></tr></thead>
+                <tbody>
+                  <tr><td>Training stability</td><td>Stable</td><td>Unstable</td><td>Stable</td></tr>
+                  <tr><td>Sample quality</td><td>Blurry</td><td>Sharp</td><td>Very sharp</td></tr>
+                  <tr><td>Diversity</td><td>Good</td><td>Mode collapse risk</td><td>Excellent</td></tr>
+                  <tr><td>Sampling speed</td><td>Fast (1 pass)</td><td>Fast (1 pass)</td><td>Slow (T steps)</td></tr>
+                  <tr><td>Likelihood</td><td>Tractable (ELBO)</td><td>Intractable</td><td>Tractable (VLB)</td></tr>
+                  <tr><td>Latent space</td><td>Smooth, structured</td><td>Unstructured</td><td>N/A (iterative)</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 10 -->
+            <section id="summary">
+              <h2>10. Summary</h2>
+              <div class="summary-section">
+                <ul>
+                  <li><strong>Autoencoders:</strong> Encoder-decoder for reconstruction; bottleneck forces compression.</li>
+                  <li><strong>VAE:</strong> Probabilistic latent space; loss = reconstruction + KL divergence. Enables smooth sampling.</li>
+                  <li><strong>GAN:</strong> Generator vs. discriminator in a minimax game. Produces sharp images but training is unstable.</li>
+                  <li><strong>DCGAN:</strong> Architectural guidelines for convolutional GANs (strided conv, batch norm, no FC).</li>
+                  <li><strong>cGAN:</strong> Conditions generation on auxiliary information (class labels, text, images).</li>
+                  <li><strong>WGAN:</strong> Uses Wasserstein distance for more stable training and meaningful loss.</li>
+                  <li><strong>Mode collapse:</strong> G produces limited variety; mitigated by WGAN, mini-batch discrimination, etc.</li>
+                  <li><strong>Diffusion models:</strong> Forward process adds noise; reverse process denoises. State-of-the-art quality.</li>
+                  <li><strong>Stable Diffusion:</strong> Latent diffusion model for efficient text-to-image generation.</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch11-generative-models-vision">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="image-segmentation.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Image Segmentation</span></a>
+              <a href="notes-cv.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Chapter Notes</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#autoencoders">1. Autoencoders</a></li>
+            <li><a href="#vae">2. VAE</a></li>
+            <li><a href="#gans">3. GANs</a></li>
+            <li><a href="#dcgan">4. DCGAN</a></li>
+            <li><a href="#cgan">5. Conditional GAN</a></li>
+            <li><a href="#wgan">6. WGAN</a></li>
+            <li><a href="#mode-collapse">7. Mode Collapse</a></li>
+            <li><a href="#diffusion">8. Diffusion Models</a></li>
+            <li><a href="#dalle-sd">9. DALL-E &amp; Stable Diffusion</a></li>
+            <li><a href="#summary">10. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

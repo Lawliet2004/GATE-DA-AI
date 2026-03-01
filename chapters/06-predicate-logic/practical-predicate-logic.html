@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Practice Exercises for Predicate Logic — English-to-FOL translation, proof construction, unification drills, and resolution practice for GATE DA.">
+  <title>Practice: Predicate Logic — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a>
+            <a href="fol-semantics.html" class="sidebar-link"><span class="link-check"></span> FOL Semantics<span class="link-type theory">Theory</span></a>
+            <a href="quantifier-rules.html" class="sidebar-link"><span class="link-check"></span> Quantifier Rules<span class="link-type theory">Theory</span></a>
+            <a href="fol-inference-rules.html" class="sidebar-link"><span class="link-check"></span> FOL Inference Rules<span class="link-type theory">Theory</span></a>
+            <a href="unification.html" class="sidebar-link"><span class="link-check"></span> Unification<span class="link-type theory">Theory</span></a>
+            <a href="resolution-in-fol.html" class="sidebar-link"><span class="link-check"></span> Resolution in FOL<span class="link-type theory">Theory</span></a>
+            <a href="forward-and-backward-chaining.html" class="sidebar-link"><span class="link-check"></span> Forward &amp; Backward Chaining<span class="link-type theory">Theory</span></a>
+            <a href="knowledge-engineering.html" class="sidebar-link"><span class="link-check"></span> Knowledge Engineering<span class="link-type theory">Theory</span></a>
+            <a href="limitations-of-fol.html" class="sidebar-link"><span class="link-check"></span> Limitations of FOL<span class="link-type theory">Theory</span></a>
+            <a href="practical-predicate-logic.html" class="sidebar-link active"><span class="link-check"></span> Practice Exercises<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-predicate.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="first-order-logic-syntax.html">Chapter 6: Predicate Logic</a> &raquo; <span class="current">Practice Exercises</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-practical" data-page-id="ch06-practical">
+
+            <h1>&#128187; Practice Exercises &mdash; Predicate Logic</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch06-practical" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <p>Work through these exercises to solidify every aspect of FOL. Solutions are provided &mdash; try each problem yourself first.</p>
+
+            <div class="theory-content">
+
+              <!-- ===== SECTION 1: TRANSLATION ===== -->
+              <section id="translation-exercises">
+                <h2>1. English &rarr; FOL Translation</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 1.1</div>
+                  <p><strong>English:</strong> Every student who studies hard passes the exam.</p>
+                  <p><strong>Predicates:</strong> Student(x), StudiesHard(x), Passes(x, exam)</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <div class="formula">&forall;x (Student(x) &and; StudiesHard(x) &rarr; Passes(x, Exam))</div>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 1.2</div>
+                  <p><strong>English:</strong> There is a barber who shaves everyone who does not shave themselves.</p>
+                  <p><strong>Predicates:</strong> Barber(x), Shaves(x, y)</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <div class="formula">&exist;x (Barber(x) &and; &forall;y (&not;Shaves(y,y) &rarr; Shaves(x,y)))</div>
+                    <p><em>Note:</em> If we also assert &forall;y (Shaves(x,y) &rarr; &not;Shaves(y,y)), we get Russell&rsquo;s Barber Paradox.</p>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 1.3</div>
+                  <p><strong>English:</strong> No dog likes every cat.</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <div class="formula">&not;&exist;x (Dog(x) &and; &forall;y (Cat(y) &rarr; Likes(x,y)))</div>
+                    <p>Equivalently: &forall;x (Dog(x) &rarr; &exist;y (Cat(y) &and; &not;Likes(x,y)))</p>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 1.4</div>
+                  <p><strong>English:</strong> Everyone who loves all animals is loved by someone.</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <div class="formula">&forall;x [(&forall;y (Animal(y) &rarr; Loves(x,y))) &rarr; &exist;z Loves(z,x)]</div>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 1.5</div>
+                  <p><strong>English:</strong> Exactly one person solved the problem.</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <div class="formula">&exist;x (Person(x) &and; Solved(x, Problem) &and; &forall;y (Person(y) &and; Solved(y, Problem) &rarr; y = x))</div>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 1.6</div>
+                  <p><strong>English:</strong> If every bird can fly, then Tweety can fly (given Tweety is a bird).</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <div class="formula">(&forall;x (Bird(x) &rarr; CanFly(x))) &rarr; (Bird(Tweety) &rarr; CanFly(Tweety))</div>
+                    <p>This is actually a tautology by UI &mdash; instantiating x = Tweety.</p>
+                  </details>
+                </div>
+              </section>
+
+              <!-- ===== SECTION 2: UNIFICATION ===== -->
+              <section id="unification-exercises">
+                <h2>2. Unification Drills</h2>
+                <p>Find the most general unifier (MGU) or state that unification fails.</p>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 2.1</div>
+                  <p>Unify: P(x, f(y)) and P(a, f(g(z)))</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <p>&theta; = {x/a, y/g(z)}</p>
+                    <p>Result: P(a, f(g(z)))</p>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 2.2</div>
+                  <p>Unify: Q(x, x) and Q(f(y), f(f(a)))</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <p>x &rarr; f(y) and x &rarr; f(f(a)), so f(y) = f(f(a)), giving y = f(a).</p>
+                    <p>&theta; = {x/f(f(a)), y/f(a)}</p>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 2.3</div>
+                  <p>Unify: R(x, f(x)) and R(f(y), y)</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <p>x = f(y) and f(x) = y &rArr; y = f(f(y)) &mdash; <strong>occur check fails!</strong></p>
+                    <p>Unification <strong>fails</strong>.</p>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 2.4</div>
+                  <p>Unify: Knows(John, x) and Knows(y, Mother(y))</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <p>y = John, x = Mother(y) = Mother(John)</p>
+                    <p>&theta; = {y/John, x/Mother(John)}</p>
+                    <p>Result: Knows(John, Mother(John))</p>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 2.5</div>
+                  <p>Unify: P(g(x), f(a,y)) and P(g(f(b,b)), f(a,g(z)))</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <p>x = f(b,b), y = g(z)</p>
+                    <p>&theta; = {x/f(b,b), y/g(z)}</p>
+                  </details>
+                </div>
+              </section>
+
+              <!-- ===== SECTION 3: RESOLUTION ===== -->
+              <section id="resolution-exercises">
+                <h2>3. Resolution Proofs</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 3.1</div>
+                  <p>Given KB:</p>
+                  <ol>
+                    <li>&forall;x (Dog(x) &rarr; Animal(x))</li>
+                    <li>&forall;x (Animal(x) &rarr; Mortal(x))</li>
+                    <li>Dog(Fido)</li>
+                  </ol>
+                  <p>Prove: Mortal(Fido)</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <p><strong>Clausal form:</strong></p>
+                    <ol>
+                      <li>&not;Dog(x) &or; Animal(x)</li>
+                      <li>&not;Animal(y) &or; Mortal(y)</li>
+                      <li>Dog(Fido)</li>
+                      <li>&not;Mortal(Fido) &emsp; [negated goal]</li>
+                    </ol>
+                    <p><strong>Resolution steps:</strong></p>
+                    <ul>
+                      <li>Resolve (2) &amp; (4): {y/Fido} &rarr; &not;Animal(Fido) &emsp; [clause 5]</li>
+                      <li>Resolve (1) &amp; (5): {x/Fido} &rarr; &not;Dog(Fido) &emsp; [clause 6]</li>
+                      <li>Resolve (3) &amp; (6): &square; (empty clause)</li>
+                    </ul>
+                    <p>&#9989; Proof complete. Mortal(Fido) is entailed.</p>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 3.2</div>
+                  <p>Given KB:</p>
+                  <ol>
+                    <li>&forall;x &forall;y (Parent(x,y) &and; Female(x) &rarr; Mother(x,y))</li>
+                    <li>Parent(Mary, John)</li>
+                    <li>Female(Mary)</li>
+                  </ol>
+                  <p>Prove: Mother(Mary, John)</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <p><strong>Clausal form:</strong></p>
+                    <ol>
+                      <li>&not;Parent(x,y) &or; &not;Female(x) &or; Mother(x,y)</li>
+                      <li>Parent(Mary, John)</li>
+                      <li>Female(Mary)</li>
+                      <li>&not;Mother(Mary, John) &emsp; [negated goal]</li>
+                    </ol>
+                    <p>Resolve (1) &amp; (4): {x/Mary, y/John} &rarr; &not;Parent(Mary, John) &or; &not;Female(Mary) [5]</p>
+                    <p>Resolve (5) &amp; (2): &not;Female(Mary) [6]</p>
+                    <p>Resolve (6) &amp; (3): &square;</p>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 3.3 &mdash; Skolemization Practice</div>
+                  <p>Convert to clausal form: &forall;x &exist;y &forall;z (P(x,y) &or; (Q(y,z) &rarr; R(x,z)))</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <p><strong>Step 1 &mdash; Eliminate &rarr;:</strong> &forall;x &exist;y &forall;z (P(x,y) &or; &not;Q(y,z) &or; R(x,z))</p>
+                    <p><strong>Step 2 &mdash; Skolemize:</strong> y depends on x, so y &rarr; f(x):</p>
+                    <p>&forall;x &forall;z (P(x, f(x)) &or; &not;Q(f(x), z) &or; R(x, z))</p>
+                    <p><strong>Step 3 &mdash; Drop universal quantifiers:</strong></p>
+                    <p>Single clause: {P(x, f(x)), &not;Q(f(x), z), R(x, z)}</p>
+                  </details>
+                </div>
+              </section>
+
+              <!-- ===== SECTION 4: INFERENCE ===== -->
+              <section id="inference-exercises">
+                <h2>4. Natural Deduction Exercises</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 4.1 &mdash; Apply UI and Modus Ponens</div>
+                  <p>Given:</p>
+                  <ol>
+                    <li>&forall;x (Programmer(x) &rarr; UsesFOL(x))</li>
+                    <li>Programmer(Alice)</li>
+                  </ol>
+                  <p>Derive: UsesFOL(Alice)</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <ol>
+                      <li>&forall;x (Programmer(x) &rarr; UsesFOL(x)) &emsp; [premise]</li>
+                      <li>Programmer(Alice) &emsp; [premise]</li>
+                      <li>Programmer(Alice) &rarr; UsesFOL(Alice) &emsp; [UI on 1, x/Alice]</li>
+                      <li>UsesFOL(Alice) &emsp; [MP on 3, 2] &#9989;</li>
+                    </ol>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 4.2 &mdash; Apply EI</div>
+                  <p>Given: &exist;x (Student(x) &and; Passed(x))</p>
+                  <p>Derive: &exist;x Student(x)</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <ol>
+                      <li>&exist;x (Student(x) &and; Passed(x)) &emsp; [premise]</li>
+                      <li>Student(c) &and; Passed(c) &emsp; [EI, c is fresh constant]</li>
+                      <li>Student(c) &emsp; [Simplification on 2]</li>
+                      <li>&exist;x Student(x) &emsp; [EG on 3]</li>
+                    </ol>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 4.3 &mdash; Multi-step Proof</div>
+                  <p>Given:</p>
+                  <ol>
+                    <li>&forall;x (CS_Student(x) &rarr; Knows(x, Logic))</li>
+                    <li>&forall;x (Knows(x, Logic) &rarr; CanProve(x, Theorems))</li>
+                    <li>CS_Student(Bob)</li>
+                  </ol>
+                  <p>Derive: CanProve(Bob, Theorems)</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <ol>
+                      <li>CS_Student(Bob) &rarr; Knows(Bob, Logic) &emsp; [UI on 1]</li>
+                      <li>Knows(Bob, Logic) &emsp; [MP on above + premise 3]</li>
+                      <li>Knows(Bob, Logic) &rarr; CanProve(Bob, Theorems) &emsp; [UI on 2]</li>
+                      <li>CanProve(Bob, Theorems) &emsp; [MP on above + step 2] &#9989;</li>
+                    </ol>
+                  </details>
+                </div>
+              </section>
+
+              <!-- ===== SECTION 5: SEMANTIC EXERCISES ===== -->
+              <section id="semantic-exercises">
+                <h2>5. Interpretation &amp; Model Exercises</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 5.1</div>
+                  <p>Let D = {1, 2, 3}. Under interpretation I where P(x) means &ldquo;x is even&rdquo;, determine:</p>
+                  <ul>
+                    <li>&forall;x P(x) &emsp; = ?</li>
+                    <li>&exist;x P(x) &emsp; = ?</li>
+                    <li>&exist;x &not;P(x) &emsp; = ?</li>
+                  </ul>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <ul>
+                      <li>&forall;x P(x) = P(1) &and; P(2) &and; P(3) = F &and; T &and; F = <strong>False</strong></li>
+                      <li>&exist;x P(x) = P(1) &or; P(2) &or; P(3) = F &or; T &or; F = <strong>True</strong></li>
+                      <li>&exist;x &not;P(x) = &not;P(1) &or; &not;P(2) &or; &not;P(3) = T &or; F &or; T = <strong>True</strong></li>
+                    </ul>
+                  </details>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Exercise 5.2</div>
+                  <p>Is &forall;x (P(x) &rarr; Q(x)) logically equivalent to &forall;x P(x) &rarr; &forall;x Q(x)?</p>
+                  <details>
+                    <summary>Show Solution</summary>
+                    <p><strong>No!</strong> The first entails the second, but not vice versa.</p>
+                    <p><strong>Counterexample:</strong> D = {a, b}, P(a) = T, P(b) = F, Q(a) = T, Q(b) = F.</p>
+                    <ul>
+                      <li>&forall;x P(x) = F, so &forall;x P(x) &rarr; &forall;x Q(x) = T (antecedent false).</li>
+                      <li>&forall;x (P(x) &rarr; Q(x)): P(b) &rarr; Q(b) = F &rarr; F = T; P(a) &rarr; Q(a) = T &rarr; T = T. Also T. Same here, but try:</li>
+                    </ul>
+                    <p>D = {a, b}, P(a) = T, P(b) = F, Q(a) = F, Q(b) = T.</p>
+                    <ul>
+                      <li>&forall;x P(x) = F, so &forall;x P(x) &rarr; &forall;x Q(x) = T.</li>
+                      <li>&forall;x (P(x) &rarr; Q(x)): P(a) &rarr; Q(a) = T &rarr; F = <strong>F</strong>. So overall F.</li>
+                    </ul>
+                    <p>Here second is T but first is F. So NOT equivalent.</p>
+                  </details>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch06-practical">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="limitations-of-fol.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Limitations of FOL</span></a>
+              <a href="gate-previous-year-predicate.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">GATE Previous Year Questions</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#translation-exercises">1. Translation</a></li>
+            <li><a href="#unification-exercises">2. Unification</a></li>
+            <li><a href="#resolution-exercises">3. Resolution</a></li>
+            <li><a href="#inference-exercises">4. Natural Deduction</a></li>
+            <li><a href="#semantic-exercises">5. Models &amp; Interpretation</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

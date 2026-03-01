@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Deep Learning Regularization — Dropout, batch normalization, weight decay, data augmentation, early stopping, and ensemble methods for GATE DA.">
+  <title>DL Regularization — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a>
+            <a href="perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="multilayer-perceptron.html" class="sidebar-link"><span class="link-check"></span> Multilayer Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="backpropagation.html" class="sidebar-link"><span class="link-check"></span> Backpropagation<span class="link-type theory">Theory</span></a>
+            <a href="activation-functions.html" class="sidebar-link"><span class="link-check"></span> Activation Functions<span class="link-type theory">Theory</span></a>
+            <a href="optimization-algorithms.html" class="sidebar-link"><span class="link-check"></span> Optimization Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="convolutional-neural-networks.html" class="sidebar-link"><span class="link-check"></span> CNNs<span class="link-type theory">Theory</span></a>
+            <a href="recurrent-neural-networks.html" class="sidebar-link"><span class="link-check"></span> RNNs<span class="link-type theory">Theory</span></a>
+            <a href="lstm-gru.html" class="sidebar-link"><span class="link-check"></span> LSTM &amp; GRU<span class="link-type theory">Theory</span></a>
+            <a href="attention-transformers.html" class="sidebar-link"><span class="link-check"></span> Attention &amp; Transformers<span class="link-type theory">Theory</span></a>
+            <a href="regularization-deep-learning.html" class="sidebar-link active"><span class="link-check"></span> DL Regularization<span class="link-type theory">Theory</span></a>
+            <a href="practical-neural-network.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="neural-network-basics.html">Chapter 9: Neural Networks &amp; Deep Learning</a> &raquo; <span class="current">DL Regularization</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch09-regularization-deep-learning">
+
+            <h1>Regularization in Deep Learning</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch09-regularization-deep-learning" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Explain <strong>dropout</strong> with its inverted scaling trick</li>
+              <li>Describe <strong>batch normalisation</strong> (forward pass and learnable parameters)</li>
+              <li>Distinguish <strong>L1 vs L2 weight decay</strong></li>
+              <li>Know common <strong>data augmentation</strong> strategies</li>
+              <li>Understand <strong>early stopping</strong> as implicit regularisation</li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <section id="dropout">
+                <h2>1. Dropout</h2>
+                <div class="definition-box">
+                  <h4>Dropout (Srivastava et al., 2014)</h4>
+                  <pre><code>During training:
+  mask<sub>j</sub> ~ Bernoulli(1 &minus; p)   for each neuron j
+  h' = mask &odot; h / (1 &minus; p)      (inverted dropout)
+
+During inference:
+  Use all neurons — no masking, no scaling.</code></pre>
+                </div>
+                <p>With probability p (e.g., p=0.5), each neuron&rsquo;s output is set to 0. The division by (1&minus;p) ensures that expected output magnitude stays the same.</p>
+
+                <div class="note-box">
+                  <h4>Why Dropout Works</h4>
+                  <ul>
+                    <li>Prevents <strong>co-adaptation</strong>: neurons cannot rely on specific other neurons.</li>
+                    <li>Approximates an <strong>ensemble</strong> of 2<sup>n</sup> different thinned networks.</li>
+                    <li>Adds multiplicative noise, acting as a regulariser.</li>
+                  </ul>
+                </div>
+
+                <div class="warning-box">
+                  <h4>GATE Tip</h4>
+                  <p>Dropout is applied <strong>only during training</strong>. At test time, all neurons are active (with inverted dropout, no rescaling is needed at test time).</p>
+                </div>
+              </section>
+
+              <section id="batch-norm">
+                <h2>2. Batch Normalisation</h2>
+                <div class="definition-box">
+                  <h4>Batch Norm (Ioffe &amp; Szegedy, 2015)</h4>
+                  <pre><code>For a mini-batch B = {x<sub>1</sub>, &hellip;, x<sub>B</sub>}:
+
+&mu;<sub>B</sub> = (1/B) &sum; x<sub>i</sub>
+&sigma;<sub>B</sub>&sup2; = (1/B) &sum; (x<sub>i</sub> &minus; &mu;<sub>B</sub>)&sup2;
+
+x&#770;<sub>i</sub> = (x<sub>i</sub> &minus; &mu;<sub>B</sub>) / &radic;(&sigma;<sub>B</sub>&sup2; + &epsilon;)    (normalise)
+
+y<sub>i</sub> = &gamma; &middot; x&#770;<sub>i</sub> + &beta;                    (scale and shift)
+
+Learnable parameters: &gamma; (scale) and &beta; (shift) per feature.
+&epsilon; &asymp; 10<sup>&minus;5</sup> for numerical stability.</code></pre>
+                </div>
+
+                <h3>Benefits of Batch Norm</h3>
+                <ul>
+                  <li>Reduces <strong>internal covariate shift</strong>: each layer&rsquo;s input distribution stays stable.</li>
+                  <li>Allows <strong>higher learning rates</strong> and faster convergence.</li>
+                  <li>Slight <strong>regularisation effect</strong> due to mini-batch noise in &mu; and &sigma;&sup2;.</li>
+                  <li>Reduces sensitivity to weight initialisation.</li>
+                </ul>
+
+                <div class="example-box">
+                  <h4>BatchNorm Parameter Count</h4>
+                  <p>For a layer with C output channels (or features): 2C learnable parameters (&gamma; and &beta;). For a conv layer producing 64 feature maps: <strong>128 parameters</strong> from BatchNorm.</p>
+                </div>
+              </section>
+
+              <section id="weight-decay">
+                <h2>3. Weight Decay (L2 Regularisation)</h2>
+                <div class="definition-box">
+                  <pre><code>J<sub>reg</sub> = J + &lambda;/2 &middot; &#8214;w&#8214;&sup2;
+
+Gradient update:
+  w &larr; w &minus; &eta;(&nabla;J + &lambda;w)
+  w &larr; (1 &minus; &eta;&lambda;)w &minus; &eta;&nabla;J
+
+The factor (1 &minus; &eta;&lambda;) shrinks weights toward zero each step.</code></pre>
+                </div>
+
+                <h3>L1 vs L2</h3>
+                <table class="comparison-table">
+                  <tr><th>Property</th><th>L1 (Lasso)</th><th>L2 (Ridge / Weight Decay)</th></tr>
+                  <tr><td>Penalty</td><td>&lambda; &sum; |w<sub>i</sub>|</td><td>&lambda;/2 &sum; w<sub>i</sub>&sup2;</td></tr>
+                  <tr><td>Effect</td><td>Sparse weights (feature selection)</td><td>Small but non-zero weights</td></tr>
+                  <tr><td>Common in DL?</td><td>Less common</td><td>Very common (default in most frameworks)</td></tr>
+                </table>
+              </section>
+
+              <section id="data-augmentation">
+                <h2>4. Data Augmentation</h2>
+                <p>Artificially increase dataset size by applying <strong>label-preserving transformations</strong>:</p>
+                <table class="comparison-table">
+                  <tr><th>Domain</th><th>Augmentation Techniques</th></tr>
+                  <tr><td>Images</td><td>Random crop, horizontal flip, rotation, colour jitter, cutout, mixup</td></tr>
+                  <tr><td>Text</td><td>Synonym replacement, random insertion, back-translation</td></tr>
+                  <tr><td>Audio</td><td>Time stretching, pitch shifting, noise injection</td></tr>
+                </table>
+                <p>Data augmentation is one of the most effective regularisers in practice, especially for small datasets.</p>
+              </section>
+
+              <section id="early-stopping">
+                <h2>5. Early Stopping</h2>
+                <p>Monitor <strong>validation loss</strong> during training. Stop when the validation loss starts increasing (while training loss continues to decrease).</p>
+                <ul>
+                  <li><strong>Patience:</strong> Number of epochs to wait for improvement before stopping (e.g., patience = 10).</li>
+                  <li>Restore the model weights from the epoch with the <strong>best validation loss</strong>.</li>
+                  <li>Acts as implicit regularisation by <strong>limiting model complexity</strong> (fewer effective training iterations).</li>
+                </ul>
+              </section>
+
+              <section id="label-smoothing">
+                <h2>6. Label Smoothing</h2>
+                <div class="definition-box">
+                  <pre><code>Instead of hard targets y = [0, 0, 1, 0]:
+y<sub>smooth</sub> = (1 &minus; &alpha;) &middot; y + &alpha; / K
+
+With &alpha; = 0.1 and K = 4 classes:
+y<sub>smooth</sub> = [0.025, 0.025, 0.925, 0.025]</code></pre>
+                </div>
+                <p>Prevents the model from becoming overconfident, improving generalisation.</p>
+              </section>
+
+              <section id="comparison">
+                <h2>7. Regularisation Summary</h2>
+                <table class="comparison-table">
+                  <tr><th>Technique</th><th>Where Applied</th><th>Training Only?</th><th>Extra Params?</th></tr>
+                  <tr><td>Dropout</td><td>After activations</td><td>Yes</td><td>No</td></tr>
+                  <tr><td>Batch Norm</td><td>Before/after activation</td><td>No (uses running stats at test)</td><td>Yes (2 per feature)</td></tr>
+                  <tr><td>Weight Decay</td><td>Loss function</td><td>Yes (affects gradients)</td><td>No</td></tr>
+                  <tr><td>Data Augmentation</td><td>Input data</td><td>Yes</td><td>No</td></tr>
+                  <tr><td>Early Stopping</td><td>Training loop</td><td>Yes</td><td>No</td></tr>
+                  <tr><td>Label Smoothing</td><td>Target labels</td><td>Yes</td><td>No</td></tr>
+                </table>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>Dropout</strong> randomly zeroes neurons (train only); division by (1&minus;p) keeps expected values.</li>
+                    <li><strong>Batch Norm</strong> normalises layer inputs; has 2C learnable parameters per layer.</li>
+                    <li><strong>Weight Decay</strong> = L2 penalty; shrinks weights by factor (1&minus;&eta;&lambda;) each step.</li>
+                    <li><strong>Data augmentation</strong> is often the single most impactful regulariser.</li>
+                    <li>For GATE: know dropout mechanics (train vs test), batch norm formula, and L1 vs L2 differences.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch09-regularization-deep-learning">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="attention-transformers.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Attention &amp; Transformers</span></a>
+              <a href="practical-neural-network.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Interactive Demos</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#dropout">1. Dropout</a></li>
+            <li><a href="#batch-norm">2. Batch Norm</a></li>
+            <li><a href="#weight-decay">3. Weight Decay</a></li>
+            <li><a href="#data-augmentation">4. Data Augmentation</a></li>
+            <li><a href="#early-stopping">5. Early Stopping</a></li>
+            <li><a href="#label-smoothing">6. Label Smoothing</a></li>
+            <li><a href="#comparison">7. Comparison</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

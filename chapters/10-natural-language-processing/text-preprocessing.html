@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NLP Text Preprocessing — tokenization, stemming, lemmatization, stop word removal, bag of words, TF-IDF, n-grams, and text normalization for GATE DA preparation.">
+  <title>Text Preprocessing — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="text-preprocessing.html" class="sidebar-link active"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a>
+            <a href="word-embeddings.html" class="sidebar-link"><span class="link-check"></span> Word Embeddings<span class="link-type theory">Theory</span></a>
+            <a href="language-models.html" class="sidebar-link"><span class="link-check"></span> Language Models<span class="link-type theory">Theory</span></a>
+            <a href="large-language-models.html" class="sidebar-link"><span class="link-check"></span> Large Language Models<span class="link-type theory">Theory</span></a>
+            <a href="gpt-architecture.html" class="sidebar-link"><span class="link-check"></span> GPT Architecture<span class="link-type theory">Theory</span></a>
+            <a href="bert-and-variants.html" class="sidebar-link"><span class="link-check"></span> BERT &amp; Variants<span class="link-type theory">Theory</span></a>
+            <a href="prompt-engineering.html" class="sidebar-link"><span class="link-check"></span> Prompt Engineering<span class="link-type theory">Theory</span></a>
+            <a href="notes-nlp.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-nlp.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="text-preprocessing.html">Chapter 10: Natural Language Processing</a> &raquo; <span class="current">Text Preprocessing</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch10-text-preprocessing">
+
+            <h1>Text Preprocessing</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch10-text-preprocessing" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand the standard NLP text preprocessing pipeline</li>
+                <li>Differentiate between stemming and lemmatization</li>
+                <li>Compute Bag of Words and TF-IDF representations by hand</li>
+                <li>Explain n-gram models and their applications</li>
+                <li>Apply text normalization techniques to real text</li>
+              </ul>
+            </div>
+
+            <!-- Section 1: Introduction -->
+            <section id="introduction">
+              <h2>1. Why Text Preprocessing?</h2>
+              <p>Raw text data is noisy, unstructured, and highly variable. Before any NLP model can work effectively, text must be transformed into a clean, consistent, numerical representation. The preprocessing pipeline typically follows this order:</p>
+              <ol>
+                <li><strong>Text normalization</strong> (lowercasing, punctuation removal, special character handling)</li>
+                <li><strong>Tokenization</strong> (splitting text into tokens)</li>
+                <li><strong>Stop word removal</strong> (filtering common, low-information words)</li>
+                <li><strong>Stemming or Lemmatization</strong> (reducing words to their base form)</li>
+                <li><strong>Vectorization</strong> (converting tokens to numerical features: BoW, TF-IDF, n-grams)</li>
+              </ol>
+              <div class="definition-box">
+                <strong>Definition &mdash; Corpus:</strong> A large, structured collection of text documents used for training or analysis. Example: all Wikipedia articles, a collection of news articles.
+              </div>
+              <div class="definition-box">
+                <strong>Definition &mdash; Vocabulary (V):</strong> The set of all unique tokens across the entire corpus. |V| denotes vocabulary size.
+              </div>
+            </section>
+
+            <!-- Section 2: Text Normalization -->
+            <section id="text-normalization">
+              <h2>2. Text Normalization</h2>
+              <p>Text normalization standardizes raw text to reduce variability without losing meaning:</p>
+              <ul>
+                <li><strong>Lowercasing:</strong> Convert all characters to lowercase. &ldquo;The Cat SAT&rdquo; &rarr; &ldquo;the cat sat&rdquo;. Reduces vocabulary size but may lose meaning (&ldquo;Apple&rdquo; the company vs &ldquo;apple&rdquo; the fruit).</li>
+                <li><strong>Punctuation removal:</strong> Strip periods, commas, exclamation marks, etc. Useful for bag-of-words models but may hurt tasks like sentiment analysis where &ldquo;!!!&rdquo; carries emphasis.</li>
+                <li><strong>Number handling:</strong> Replace digits with a token like &lt;NUM&gt; or remove them entirely depending on the task.</li>
+                <li><strong>Unicode normalization:</strong> Convert accented characters (&eacute; &rarr; e), handle ligatures, emoji processing.</li>
+                <li><strong>Whitespace normalization:</strong> Collapse multiple spaces, tabs, and newlines into single spaces.</li>
+              </ul>
+              <div class="example-box">
+                <h4>Example: Normalization Pipeline</h4>
+                <p><strong>Input:</strong> &ldquo;Dr. Smith&rsquo;s 3rd paper (2024) costs $45.99!!!&rdquo;</p>
+                <p><strong>After lowercasing:</strong> &ldquo;dr. smith&rsquo;s 3rd paper (2024) costs $45.99!!!&rdquo;</p>
+                <p><strong>After punctuation removal:</strong> &ldquo;dr smiths 3rd paper 2024 costs 4599&rdquo;</p>
+                <p><strong>After number handling:</strong> &ldquo;dr smiths &lt;NUM&gt; paper &lt;NUM&gt; costs &lt;NUM&gt;&rdquo;</p>
+              </div>
+            </section>
+
+            <!-- Section 3: Tokenization -->
+            <section id="tokenization">
+              <h2>3. Tokenization</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> Tokenization is the process of splitting a text string into a sequence of <em>tokens</em> &mdash; typically words, subwords, or characters.
+              </div>
+              <h3>3.1 Word Tokenization</h3>
+              <p>The simplest approach splits on whitespace and punctuation:</p>
+              <ul>
+                <li>&ldquo;I can't wait!&rdquo; &rarr; [&ldquo;I&rdquo;, &ldquo;can&rdquo;, &ldquo;'t&rdquo;, &ldquo;wait&rdquo;, &ldquo;!&rdquo;] (handling contractions)</li>
+                <li>&ldquo;New York City&rdquo; &rarr; [&ldquo;New&rdquo;, &ldquo;York&rdquo;, &ldquo;City&rdquo;] (loses multi-word entity)</li>
+              </ul>
+              <h3>3.2 Subword Tokenization</h3>
+              <p>Modern NLP models (BERT, GPT) use subword tokenization to handle out-of-vocabulary words:</p>
+              <ul>
+                <li><strong>Byte Pair Encoding (BPE):</strong> Iteratively merges the most frequent pair of adjacent characters/subwords. Vocabulary size is a hyperparameter.</li>
+                <li><strong>WordPiece:</strong> Similar to BPE but uses likelihood-based merging. Used by BERT.</li>
+                <li><strong>SentencePiece:</strong> Language-agnostic, treats the input as raw text (no pre-tokenization needed).</li>
+              </ul>
+              <div class="example-box">
+                <h4>Example: BPE Tokenization</h4>
+                <p>&ldquo;unhappiness&rdquo; &rarr; [&ldquo;un&rdquo;, &ldquo;happiness&rdquo;] or [&ldquo;un&rdquo;, &ldquo;hap&rdquo;, &ldquo;pi&rdquo;, &ldquo;ness&rdquo;] depending on the learned merges.</p>
+                <p>This allows the model to handle rare words by decomposing them into known subwords.</p>
+              </div>
+              <h3>3.3 Character Tokenization</h3>
+              <p>Splits text into individual characters. Very small vocabulary (e.g., 128 for ASCII) but produces very long sequences, making it computationally expensive for most tasks.</p>
+            </section>
+
+            <!-- Section 4: Stop Word Removal -->
+            <section id="stop-word-removal">
+              <h2>4. Stop Word Removal</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> Stop words are high-frequency words that carry little semantic meaning in many contexts &mdash; e.g., &ldquo;the&rdquo;, &ldquo;is&rdquo;, &ldquo;at&rdquo;, &ldquo;which&rdquo;, &ldquo;and&rdquo;, &ldquo;a&rdquo;.
+              </div>
+              <p>Removing stop words reduces the feature space and can improve performance in tasks like document classification and information retrieval. However, stop word removal can hurt tasks that rely on syntax (e.g., machine translation, question answering).</p>
+              <div class="example-box">
+                <h4>Example</h4>
+                <p><strong>Before:</strong> &ldquo;the cat is sitting on the mat&rdquo;</p>
+                <p><strong>After stop word removal:</strong> [&ldquo;cat&rdquo;, &ldquo;sitting&rdquo;, &ldquo;mat&rdquo;]</p>
+                <p>The core meaning is preserved while reducing tokens from 7 to 3.</p>
+              </div>
+            </section>
+
+            <!-- Section 5: Stemming -->
+            <section id="stemming">
+              <h2>5. Stemming</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> Stemming reduces words to their <em>stem</em> (root form) by stripping suffixes using heuristic rules. The result may not be a valid dictionary word.
+              </div>
+              <p><strong>Porter Stemmer</strong> (most widely used) applies a series of rule-based transformations:</p>
+              <ul>
+                <li>&ldquo;running&rdquo; &rarr; &ldquo;run&rdquo;</li>
+                <li>&ldquo;flies&rdquo; &rarr; &ldquo;fli&rdquo; (not a real word!)</li>
+                <li>&ldquo;happiness&rdquo; &rarr; &ldquo;happi&rdquo;</li>
+                <li>&ldquo;computing&rdquo;, &ldquo;computed&rdquo;, &ldquo;computation&rdquo; &rarr; &ldquo;comput&rdquo;</li>
+              </ul>
+              <p><strong>Pros:</strong> Fast, simple, no dictionary required. <strong>Cons:</strong> Over-stemming (&ldquo;university&rdquo; &rarr; &ldquo;univers&rdquo;, &ldquo;universe&rdquo; &rarr; &ldquo;univers&rdquo; &mdash; incorrectly merged) and under-stemming (&ldquo;alumni&rdquo; and &ldquo;alumnus&rdquo; may not reduce to the same stem).</p>
+            </section>
+
+            <!-- Section 6: Lemmatization -->
+            <section id="lemmatization">
+              <h2>6. Lemmatization</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> Lemmatization reduces words to their <em>lemma</em> (dictionary base form) using morphological analysis and a vocabulary lookup. The result is always a valid word.
+              </div>
+              <ul>
+                <li>&ldquo;running&rdquo; &rarr; &ldquo;run&rdquo; (verb)</li>
+                <li>&ldquo;flies&rdquo; &rarr; &ldquo;fly&rdquo; (not &ldquo;fli&rdquo;)</li>
+                <li>&ldquo;better&rdquo; &rarr; &ldquo;good&rdquo; (adjective)</li>
+                <li>&ldquo;went&rdquo; &rarr; &ldquo;go&rdquo; (verb)</li>
+              </ul>
+              <p>Lemmatization requires knowledge of the <strong>part of speech (POS)</strong>: &ldquo;meeting&rdquo; as a noun &rarr; &ldquo;meeting&rdquo;; as a verb &rarr; &ldquo;meet&rdquo;.</p>
+
+              <div class="comparison-table">
+                <h4>Stemming vs Lemmatization</h4>
+                <table>
+                  <thead><tr><th>Feature</th><th>Stemming</th><th>Lemmatization</th></tr></thead>
+                  <tbody>
+                    <tr><td>Method</td><td>Rule-based suffix stripping</td><td>Dictionary + morphological analysis</td></tr>
+                    <tr><td>Output</td><td>May not be a valid word</td><td>Always a valid dictionary word</td></tr>
+                    <tr><td>Speed</td><td>Faster</td><td>Slower (requires POS tagging)</td></tr>
+                    <tr><td>Accuracy</td><td>Lower (over/under-stemming)</td><td>Higher</td></tr>
+                    <tr><td>&ldquo;better&rdquo;</td><td>&ldquo;better&rdquo; (no change)</td><td>&ldquo;good&rdquo;</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 7: Bag of Words -->
+            <section id="bag-of-words">
+              <h2>7. Bag of Words (BoW)</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> The Bag of Words model represents a document as a vector of word counts (or binary presence), ignoring word order and grammar.
+              </div>
+              <p>Given a vocabulary V = {w₁, w₂, &hellip;, w<sub>|V|</sub>}, each document d is represented as a vector <strong>x</strong> ∈ ℝ<sup>|V|</sup> where x<sub>i</sub> = count of word w<sub>i</sub> in d.</p>
+              <div class="example-box">
+                <h4>Worked Example</h4>
+                <p><strong>Documents:</strong></p>
+                <ul>
+                  <li>D1: &ldquo;the cat sat on the mat&rdquo;</li>
+                  <li>D2: &ldquo;the dog sat on the log&rdquo;</li>
+                </ul>
+                <p><strong>Vocabulary:</strong> {cat, dog, log, mat, on, sat, the}</p>
+                <p><strong>BoW vectors:</strong></p>
+                <table>
+                  <thead><tr><th></th><th>cat</th><th>dog</th><th>log</th><th>mat</th><th>on</th><th>sat</th><th>the</th></tr></thead>
+                  <tbody>
+                    <tr><td>D1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>2</td></tr>
+                    <tr><td>D2</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>2</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p><strong>Limitations:</strong> Loses word order (&ldquo;dog bites man&rdquo; = &ldquo;man bites dog&rdquo;); high dimensionality for large vocabularies; no semantic understanding.</p>
+            </section>
+
+            <!-- Section 8: TF-IDF -->
+            <section id="tf-idf">
+              <h2>8. TF-IDF (Term Frequency &ndash; Inverse Document Frequency)</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> TF-IDF weights a term by how often it appears in a document (TF) penalized by how common it is across all documents (IDF). Words that are frequent in a specific document but rare across the corpus get high scores.
+              </div>
+              <p><strong>Term Frequency (TF):</strong></p>
+              <p style="text-align:center; font-size:1.1rem;">TF(t, d) = (count of term t in document d) / (total terms in d)</p>
+              <p><strong>Inverse Document Frequency (IDF):</strong></p>
+              <p style="text-align:center; font-size:1.1rem;">IDF(t, D) = log(N / df(t))</p>
+              <p>where N = total number of documents, df(t) = number of documents containing term t.</p>
+              <p><strong>TF-IDF score:</strong></p>
+              <p style="text-align:center; font-size:1.1rem; font-weight:700;">TF-IDF(t, d, D) = TF(t, d) &times; IDF(t, D)</p>
+
+              <div class="example-box">
+                <h4>Worked Example</h4>
+                <p><strong>Corpus (3 documents):</strong></p>
+                <ul>
+                  <li>D1: &ldquo;machine learning is great&rdquo; (4 terms)</li>
+                  <li>D2: &ldquo;deep learning is powerful&rdquo; (4 terms)</li>
+                  <li>D3: &ldquo;machine learning and deep learning&rdquo; (5 terms)</li>
+                </ul>
+                <p><strong>Compute TF-IDF for &ldquo;machine&rdquo; in D1:</strong></p>
+                <ul>
+                  <li>TF(&ldquo;machine&rdquo;, D1) = 1/4 = 0.25</li>
+                  <li>df(&ldquo;machine&rdquo;) = 2 (appears in D1 and D3)</li>
+                  <li>IDF(&ldquo;machine&rdquo;) = log(3/2) = log(1.5) &approx; 0.176</li>
+                  <li>TF-IDF = 0.25 &times; 0.176 &approx; <strong>0.044</strong></li>
+                </ul>
+                <p><strong>Compute TF-IDF for &ldquo;learning&rdquo; in D1:</strong></p>
+                <ul>
+                  <li>TF(&ldquo;learning&rdquo;, D1) = 1/4 = 0.25</li>
+                  <li>df(&ldquo;learning&rdquo;) = 3 (all documents)</li>
+                  <li>IDF(&ldquo;learning&rdquo;) = log(3/3) = log(1) = 0</li>
+                  <li>TF-IDF = 0.25 &times; 0 = <strong>0</strong> (word appears everywhere &mdash; no discriminative power)</li>
+                </ul>
+              </div>
+
+              <div class="gate-tip">
+                <h4>&#128161; GATE Tip</h4>
+                <p>GATE may ask you to compute TF-IDF values by hand. Always check whether the problem uses natural log (ln) or log base 10. Also note the &ldquo;+1&rdquo; variants: some formulations use IDF = log((N+1)/(df+1)) + 1 to avoid division by zero and zero IDF.</p>
+              </div>
+            </section>
+
+            <!-- Section 9: N-grams -->
+            <section id="n-grams">
+              <h2>9. N-grams</h2>
+              <div class="definition-box">
+                <strong>Definition:</strong> An n-gram is a contiguous sequence of n tokens from a text. Unigrams (n=1) are single words, bigrams (n=2) are pairs, trigrams (n=3) are triples.
+              </div>
+              <div class="example-box">
+                <h4>Example</h4>
+                <p><strong>Sentence:</strong> &ldquo;the cat sat on the mat&rdquo;</p>
+                <ul>
+                  <li><strong>Unigrams:</strong> [the, cat, sat, on, the, mat]</li>
+                  <li><strong>Bigrams:</strong> [(the, cat), (cat, sat), (sat, on), (on, the), (the, mat)]</li>
+                  <li><strong>Trigrams:</strong> [(the, cat, sat), (cat, sat, on), (sat, on, the), (on, the, mat)]</li>
+                </ul>
+                <p><strong>Number of n-grams</strong> from a sequence of length L: L &minus; n + 1</p>
+                <p>For our sentence (L=6): bigrams = 6 &minus; 2 + 1 = 5 &#10004;</p>
+              </div>
+              <p>N-grams capture local word order, partially addressing the limitation of Bag of Words. Bigram features can distinguish &ldquo;not good&rdquo; from &ldquo;good&rdquo; in sentiment analysis.</p>
+              <p><strong>Trade-off:</strong> Larger n captures more context but increases vocabulary size exponentially (|V|<sup>n</sup> possible n-grams) and leads to data sparsity.</p>
+            </section>
+
+            <!-- Section 10: Summary -->
+            <section id="summary">
+              <h2>10. Summary</h2>
+              <div class="summary-section">
+                <table>
+                  <thead><tr><th>Technique</th><th>Purpose</th><th>Key Point</th></tr></thead>
+                  <tbody>
+                    <tr><td>Normalization</td><td>Clean &amp; standardize text</td><td>Lowercasing, punctuation removal</td></tr>
+                    <tr><td>Tokenization</td><td>Split text into tokens</td><td>Word, subword (BPE), or character level</td></tr>
+                    <tr><td>Stop words</td><td>Remove low-information words</td><td>&ldquo;the&rdquo;, &ldquo;is&rdquo;, &ldquo;and&rdquo; etc.</td></tr>
+                    <tr><td>Stemming</td><td>Reduce to root (heuristic)</td><td>Fast but may produce invalid words</td></tr>
+                    <tr><td>Lemmatization</td><td>Reduce to lemma (dictionary)</td><td>Slower but always valid output</td></tr>
+                    <tr><td>Bag of Words</td><td>Count-based vector representation</td><td>Ignores word order</td></tr>
+                    <tr><td>TF-IDF</td><td>Weighted representation</td><td>TF &times; IDF; penalizes common words</td></tr>
+                    <tr><td>N-grams</td><td>Capture local word order</td><td>Bigrams, trigrams; #n-grams = L&minus;n+1</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch10-text-preprocessing">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="../09-neural-networks-deep-learning/quiz-deep-learning.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Deep Learning Quiz</span></a>
+              <a href="word-embeddings.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Word Embeddings</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#introduction">1. Why Preprocessing?</a></li>
+            <li><a href="#text-normalization">2. Text Normalization</a></li>
+            <li><a href="#tokenization">3. Tokenization</a></li>
+            <li><a href="#stop-word-removal">4. Stop Word Removal</a></li>
+            <li><a href="#stemming">5. Stemming</a></li>
+            <li><a href="#lemmatization">6. Lemmatization</a></li>
+            <li><a href="#bag-of-words">7. Bag of Words</a></li>
+            <li><a href="#tf-idf">8. TF-IDF</a></li>
+            <li><a href="#n-grams">9. N-grams</a></li>
+            <li><a href="#summary">10. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

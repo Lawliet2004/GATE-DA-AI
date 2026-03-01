@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Forward and Backward Chaining in FOL — Datalog, definite clauses, data-driven vs goal-driven inference, comparison, Prolog connection for GATE DA.">
+  <title>Forward &amp; Backward Chaining — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a>
+            <a href="fol-semantics.html" class="sidebar-link"><span class="link-check"></span> FOL Semantics<span class="link-type theory">Theory</span></a>
+            <a href="quantifier-rules.html" class="sidebar-link"><span class="link-check"></span> Quantifier Rules<span class="link-type theory">Theory</span></a>
+            <a href="fol-inference-rules.html" class="sidebar-link"><span class="link-check"></span> FOL Inference Rules<span class="link-type theory">Theory</span></a>
+            <a href="unification.html" class="sidebar-link"><span class="link-check"></span> Unification<span class="link-type theory">Theory</span></a>
+            <a href="resolution-in-fol.html" class="sidebar-link"><span class="link-check"></span> Resolution in FOL<span class="link-type theory">Theory</span></a>
+            <a href="forward-and-backward-chaining.html" class="sidebar-link active"><span class="link-check"></span> Forward &amp; Backward Chaining<span class="link-type theory">Theory</span></a>
+            <a href="knowledge-engineering.html" class="sidebar-link"><span class="link-check"></span> Knowledge Engineering<span class="link-type theory">Theory</span></a>
+            <a href="limitations-of-fol.html" class="sidebar-link"><span class="link-check"></span> Limitations of FOL<span class="link-type theory">Theory</span></a>
+            <a href="practical-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Practice Exercises<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-predicate.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-predicate-logic.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="first-order-logic-syntax.html">Chapter 6: Predicate Logic</a> &raquo; <span class="current">Forward &amp; Backward Chaining</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch06-chaining">
+
+            <h1>Forward &amp; Backward Chaining in FOL</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch06-chaining" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="fol-inference-rules.html">FOL Inference Rules</a> &mdash; UI, EI, Modus Ponens</li>
+                <li><a href="unification.html">Unification</a> &mdash; MGU, substitution</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand definite clauses and Datalog in the FOL setting</li>
+                <li>Trace forward chaining (data-driven) inference</li>
+                <li>Trace backward chaining (goal-driven) inference</li>
+                <li>Compare the two strategies and their trade-offs</li>
+                <li>Connect backward chaining to Prolog execution</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="definite-clauses">
+                <h2>1. Definite Clauses and Datalog</h2>
+                <div class="definition-box">
+                  <div class="box-title">Definite Clause</div>
+                  <p>A <strong>definite clause</strong> is a disjunction of literals with <strong>exactly one positive literal</strong>:</p>
+                  <div class="formula">&not;P<sub>1</sub> &or; &not;P<sub>2</sub> &or; &hellip; &or; &not;P<sub>n</sub> &or; Q</div>
+                  <p>Equivalently, in implication form: P<sub>1</sub> &and; P<sub>2</sub> &and; &hellip; &and; P<sub>n</sub> &rarr; Q</p>
+                  <p>A clause with no negative literals (just Q) is a <strong>fact</strong>. A clause with both positive and negative literals is a <strong>rule</strong>.</p>
+                </div>
+
+                <div class="definition-box">
+                  <div class="box-title">Datalog</div>
+                  <p><strong>Datalog</strong> is a restricted subset of FOL: definite clauses with <strong>no function symbols</strong> (only constants, variables, and predicates). This restriction guarantees:</p>
+                  <ul>
+                    <li>Forward chaining <strong>terminates</strong> (finite Herbrand base).</li>
+                    <li>Backward chaining can be made to terminate with loop detection.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="forward-chaining">
+                <h2>2. Forward Chaining (Data-Driven)</h2>
+                <div class="definition-box">
+                  <div class="box-title">Algorithm: FOL Forward Chaining</div>
+                  <p>Start from known facts and repeatedly apply rules to derive new facts until the query is answered or no new facts can be derived.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <div class="box-title">Forward Chaining Pseudocode</div>
+<pre>
+function FOL-FC-ASK(KB, query):
+  repeat until new is empty:
+    new &larr; {}
+    for each rule (P1 &and; ... &and; Pn &rarr; Q) in KB:
+      for each substitution &theta; such that
+        Pi&theta; matches a known fact for all i:
+        q' &larr; Q&theta;
+        if q' is not in KB and q' is not in new:
+          add q' to new
+          if q' unifies with query:
+            return &theta;
+    add new to KB
+  return failure
+</pre>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Forward Chaining Example</div>
+                  <p><strong>KB:</strong></p>
+                  <ol>
+                    <li>American(x) &and; Weapon(y) &and; Sells(x, y, z) &and; Hostile(z) &rarr; Criminal(x)</li>
+                    <li>Owns(Nono, M1)</li>
+                    <li>Missile(M1)</li>
+                    <li>Missile(x) &and; Owns(Nono, x) &rarr; Sells(West, x, Nono)</li>
+                    <li>Missile(x) &rarr; Weapon(x)</li>
+                    <li>Enemy(Nono, America)</li>
+                    <li>Enemy(x, America) &rarr; Hostile(x)</li>
+                    <li>American(West)</li>
+                  </ol>
+                  <p><strong>Query:</strong> Criminal(West)?</p>
+                  <p><strong>Iteration 1:</strong></p>
+                  <ul>
+                    <li>Rule 5 + fact 3: Weapon(M1) &check;</li>
+                    <li>Rule 7 + fact 6: Hostile(Nono) &check;</li>
+                    <li>Rule 4 + facts 3,2: Sells(West, M1, Nono) &check;</li>
+                  </ul>
+                  <p><strong>Iteration 2:</strong></p>
+                  <ul>
+                    <li>Rule 1 + facts 8, Weapon(M1), Sells(West,M1,Nono), Hostile(Nono): &theta;={x/West, y/M1, z/Nono} &rArr; <strong>Criminal(West)</strong> &check;</li>
+                  </ul>
+                  <p>Query matched! &square;</p>
+                </div>
+              </section>
+
+              <section id="backward-chaining">
+                <h2>3. Backward Chaining (Goal-Driven)</h2>
+                <div class="definition-box">
+                  <div class="box-title">Algorithm: FOL Backward Chaining</div>
+                  <p>Start from the query (goal) and work backward: find rules whose head matches the goal, then recursively prove the body literals.</p>
+                </div>
+
+                <div class="algorithm-block">
+                  <div class="box-title">Backward Chaining Pseudocode</div>
+<pre>
+function FOL-BC-ASK(KB, goal, &theta;):
+  for each rule (P1 &and; ... &and; Pn &rarr; Q) in KB:
+    &theta;' &larr; UNIFY(Q, goal, &theta;)
+    if &theta;' &ne; failure:
+      // Prove each body literal
+      answers &larr; FOL-BC-ALL(KB, [P1,...,Pn], &theta;')
+      for each &theta;'' in answers:
+        yield &theta;''
+  for each fact F in KB:
+    &theta;' &larr; UNIFY(F, goal, &theta;)
+    if &theta;' &ne; failure:
+      yield &theta;'
+</pre>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Backward Chaining Trace (same KB)</div>
+                  <p><strong>Goal:</strong> Criminal(West)</p>
+                  <ol>
+                    <li>Match rule 1 head: Criminal(x), &theta;={x/West}</li>
+                    <li>Subgoals: American(West), Weapon(y), Sells(West,y,z), Hostile(z)</li>
+                    <li>American(West) &mdash; fact 8 &check;</li>
+                    <li>Weapon(y) &mdash; match rule 5: Missile(y), try y=M1 &mdash; fact 3 &check; &rArr; Weapon(M1) &check;</li>
+                    <li>Sells(West, M1, z) &mdash; match rule 4: Missile(M1)&check; &and; Owns(Nono,M1)&check; &rArr; z=Nono &check;</li>
+                    <li>Hostile(Nono) &mdash; match rule 7: Enemy(Nono, America) &mdash; fact 6 &check;</li>
+                  </ol>
+                  <p>All subgoals proved &rArr; <strong>Criminal(West)</strong> confirmed. &square;</p>
+                </div>
+              </section>
+
+              <section id="comparison">
+                <h2>4. Comparison Table</h2>
+                <table>
+                  <thead><tr><th>Aspect</th><th>Forward Chaining</th><th>Backward Chaining</th></tr></thead>
+                  <tbody>
+                    <tr><td>Direction</td><td>Data &rarr; Goal</td><td>Goal &rarr; Data</td></tr>
+                    <tr><td>Driven by</td><td>Known facts</td><td>Query/goal</td></tr>
+                    <tr><td>Strategy</td><td>Bottom-up, breadth-first</td><td>Top-down, depth-first</td></tr>
+                    <tr><td>Completeness</td><td>Complete for Datalog</td><td>Complete with loop detection</td></tr>
+                    <tr><td>Efficiency</td><td>May derive irrelevant facts</td><td>Focuses on query-relevant facts</td></tr>
+                    <tr><td>Termination</td><td>Guaranteed for Datalog</td><td>May loop without checks</td></tr>
+                    <tr><td>Use cases</td><td>Production systems, monitoring</td><td>Query answering, Prolog</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <section id="prolog">
+                <h2>5. Connection to Prolog</h2>
+                <p><strong>Prolog</strong> implements backward chaining on definite clauses with depth-first search and unification. Key features:</p>
+                <ul>
+                  <li>Rules written as <code>head :- body1, body2, ...</code> (reads as head if body1 and body2 and &hellip;)</li>
+                  <li>Uses <strong>SLD resolution</strong> (Selective Linear Definite clause resolution).</li>
+                  <li>Prolog typically omits the occur check for efficiency.</li>
+                  <li><strong>Closed-world assumption:</strong> anything not provable is assumed false (negation as failure).</li>
+                </ul>
+
+                <div class="example-box">
+                  <div class="box-title">Prolog Version of the Criminal Example</div>
+<pre>
+criminal(X) :- american(X), weapon(Y),
+               sells(X,Y,Z), hostile(Z).
+sells(west, X, nono) :- missile(X), owns(nono, X).
+weapon(X) :- missile(X).
+hostile(X) :- enemy(X, america).
+american(west).
+missile(m1).
+owns(nono, m1).
+enemy(nono, america).
+
+?- criminal(west).
+% true.
+</pre>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>Forward chaining is data-driven; backward chaining is goal-driven.</li>
+                    <li>Both work on <strong>definite clauses</strong> (Horn clauses with one positive literal).</li>
+                    <li>Datalog (no functions) ensures termination of forward chaining.</li>
+                    <li>Prolog = backward chaining + depth-first search + unification.</li>
+                    <li>Forward chaining is often used for monitoring/alerting; backward for querying.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>AIMA</em>, 4th Ed. &mdash; Sections 9.3&ndash;9.4</li>
+                  <li>Bratko, I. <em>Prolog Programming for Artificial Intelligence</em>, 4th Ed.</li>
+                </ul>
+              </section>
+            </div>
+
+            <button class="complete-btn" data-page="ch06-chaining">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="resolution-in-fol.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Resolution in FOL</span></a>
+              <a href="knowledge-engineering.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Knowledge Engineering</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#definite-clauses">1. Definite Clauses</a></li>
+            <li><a href="#forward-chaining">2. Forward Chaining</a></li>
+            <li><a href="#backward-chaining">3. Backward Chaining</a></li>
+            <li><a href="#comparison">4. Comparison</a></li>
+            <li><a href="#prolog">5. Prolog Connection</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

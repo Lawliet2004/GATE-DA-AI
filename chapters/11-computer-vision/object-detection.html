@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Object Detection — R-CNN family, YOLO, SSD, anchor boxes, IoU, non-maximum suppression, mAP, and one-stage vs two-stage detectors for GATE DA.">
+  <title>Object Detection | GATE DA AI</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a>
+            <a href="cnn-architectures.html" class="sidebar-link"><span class="link-check"></span> CNN Architectures<span class="link-type theory">Theory</span></a>
+            <a href="object-detection.html" class="sidebar-link active"><span class="link-check"></span> Object Detection<span class="link-type theory">Theory</span></a>
+            <a href="image-segmentation.html" class="sidebar-link"><span class="link-check"></span> Image Segmentation<span class="link-type theory">Theory</span></a>
+            <a href="generative-models-vision.html" class="sidebar-link"><span class="link-check"></span> Generative Models<span class="link-type theory">Theory</span></a>
+            <a href="notes-cv.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-cv.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="image-fundamentals.html">Chapter 11: Computer Vision</a> &raquo; <span class="current">Object Detection</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch11-object-detection">
+
+            <h1>Object Detection</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch11-object-detection" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand the difference between image classification and object detection</li>
+                <li>Trace the evolution from R-CNN to Faster R-CNN</li>
+                <li>Calculate IoU (Intersection over Union) for bounding boxes</li>
+                <li>Explain anchor boxes, non-maximum suppression, and region proposal networks</li>
+                <li>Compare one-stage detectors (YOLO, SSD) with two-stage detectors (R-CNN family)</li>
+                <li>Compute and interpret mAP (mean Average Precision)</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="introduction">
+              <h2>1. What Is Object Detection?</h2>
+              <p>Object detection goes beyond image classification: it must <strong>localise</strong> every object of interest in the image with a bounding box and <strong>classify</strong> each detected object.</p>
+
+              <div class="definition-box">
+                <strong>Definition &mdash; Object Detection:</strong> Given an input image, produce a set of bounding boxes {(x, y, w, h, class, confidence)} where (x, y) is the top-left corner, (w, h) is width and height, class is the object category, and confidence is the detection score.
+              </div>
+
+              <table class="comparison-table">
+                <thead><tr><th>Task</th><th>Output</th><th>Example</th></tr></thead>
+                <tbody>
+                  <tr><td>Classification</td><td>Single label</td><td>&ldquo;cat&rdquo;</td></tr>
+                  <tr><td>Localisation</td><td>Single box + label</td><td>One cat at (50, 30, 200, 180)</td></tr>
+                  <tr><td>Detection</td><td>Multiple boxes + labels</td><td>2 cats + 1 dog with boxes</td></tr>
+                  <tr><td>Segmentation</td><td>Pixel-level masks</td><td>Exact shape of each object</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="iou">
+              <h2>2. Intersection over Union (IoU)</h2>
+              <div class="definition-box">
+                <strong>Definition &mdash; IoU:</strong> A measure of overlap between two bounding boxes A and B:<br>
+                <strong>IoU(A, B) = |A &cap; B| / |A &cup; B| = Area of Intersection / Area of Union</strong><br>
+                IoU &isin; [0, 1]. IoU = 1 means perfect overlap; IoU = 0 means no overlap.
+              </div>
+
+              <div class="example-box">
+                <h4>Worked Example &mdash; IoU Calculation</h4>
+                <p>Box A: top-left (10, 20), bottom-right (50, 60) &rArr; width = 40, height = 40, area = 1600</p>
+                <p>Box B: top-left (30, 30), bottom-right (70, 80) &rArr; width = 40, height = 50, area = 2000</p>
+                <p><strong>Intersection:</strong></p>
+                <ul>
+                  <li>x<sub>left</sub> = max(10, 30) = 30</li>
+                  <li>y<sub>top</sub> = max(20, 30) = 30</li>
+                  <li>x<sub>right</sub> = min(50, 70) = 50</li>
+                  <li>y<sub>bottom</sub> = min(60, 80) = 60</li>
+                  <li>Intersection width = 50 &minus; 30 = 20</li>
+                  <li>Intersection height = 60 &minus; 30 = 30</li>
+                  <li>Intersection area = 20 &times; 30 = <strong>600</strong></li>
+                </ul>
+                <p><strong>Union:</strong> 1600 + 2000 &minus; 600 = <strong>3000</strong></p>
+                <p><strong>IoU = 600 / 3000 = 0.20</strong></p>
+                <p>This IoU is below the typical threshold of 0.5, so this detection would be considered a false positive.</p>
+              </div>
+
+              <div class="note-box">
+                <strong>IoU Thresholds:</strong> A detection is a true positive if IoU &ge; threshold (commonly 0.5). COCO benchmarks also report at IoU = 0.75 and averaged over [0.5, 0.95].
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="sliding-window">
+              <h2>3. Early Approaches: Sliding Window &amp; Selective Search</h2>
+
+              <h3>3.1 Sliding Window</h3>
+              <p>Slide a fixed-size window across the image at multiple scales. Classify each window as object / not-object. Extremely slow because of the huge number of candidate windows &mdash; O(width &times; height &times; scales &times; aspect-ratios).</p>
+
+              <h3>3.2 Selective Search</h3>
+              <p>A smarter region proposal method that groups similar pixels using hierarchical segmentation. Produces ~2000 region proposals instead of millions of sliding windows. Used as the first stage in R-CNN.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="rcnn">
+              <h2>4. R-CNN Family</h2>
+
+              <h3>4.1 R-CNN (2014)</h3>
+              <div class="algorithm-block">
+                <h4>R-CNN Pipeline</h4>
+                <ol>
+                  <li><strong>Region proposals:</strong> Use Selective Search to generate ~2000 proposals</li>
+                  <li><strong>Feature extraction:</strong> Warp each proposal to 227&times;227, pass through a CNN (AlexNet/VGG)</li>
+                  <li><strong>Classification:</strong> SVM classifier per class on CNN features</li>
+                  <li><strong>Bounding box regression:</strong> Refine proposal coordinates</li>
+                </ol>
+              </div>
+              <p><strong>Problem:</strong> Very slow (~47 seconds per image on GPU). The CNN runs separately for each of the ~2000 proposals &mdash; massive redundant computation.</p>
+
+              <h3>4.2 Fast R-CNN (2015)</h3>
+              <p>Key improvement: run the CNN <strong>once</strong> on the entire image to produce a feature map. Then use <strong>RoI Pooling</strong> (Region of Interest Pooling) to extract fixed-size features for each proposal from the shared feature map.</p>
+
+              <div class="definition-box">
+                <strong>RoI Pooling:</strong> Given a region proposal mapped onto the feature map, divide it into a fixed H&times;W grid and apply max pooling in each cell. This produces a fixed-size output regardless of the proposal size. Enables end-to-end training of the classifier and regressor.
+              </div>
+
+              <p><strong>Speed:</strong> ~10&times; faster than R-CNN at test time. Still relies on external Selective Search for proposals.</p>
+
+              <h3>4.3 Faster R-CNN (2015)</h3>
+              <p>Replaces Selective Search with a <strong>Region Proposal Network (RPN)</strong> that shares convolutional features with the detection network. Fully end-to-end trainable.</p>
+
+              <div class="definition-box">
+                <strong>Region Proposal Network (RPN):</strong> A small network sliding over the feature map. At each spatial location, it predicts k anchor boxes of various scales and aspect ratios. For each anchor, it outputs:
+                <ul>
+                  <li>2 scores: objectness (object vs background)</li>
+                  <li>4 values: bounding box refinements (&Delta;x, &Delta;y, &Delta;w, &Delta;h)</li>
+                </ul>
+              </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="anchor-boxes">
+              <h2>5. Anchor Boxes</h2>
+              <p>Pre-defined bounding box templates at each spatial location in the feature map. Typically defined by multiple <strong>scales</strong> (e.g., 128&sup2;, 256&sup2;, 512&sup2;) and <strong>aspect ratios</strong> (e.g., 1:1, 1:2, 2:1).</p>
+
+              <div class="example-box">
+                <h4>Example &mdash; Anchor Count</h4>
+                <p>Feature map: 40 &times; 60. Scales: 3. Aspect ratios: 3.</p>
+                <p>Anchors per location: 3 &times; 3 = 9</p>
+                <p>Total anchors: 40 &times; 60 &times; 9 = <strong>21,600</strong></p>
+                <p>Each anchor produces classification + regression outputs, which are filtered by NMS.</p>
+              </div>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="nms">
+              <h2>6. Non-Maximum Suppression (NMS)</h2>
+              <p>After detection, many overlapping boxes may point to the same object. NMS removes redundant detections.</p>
+
+              <div class="algorithm-block">
+                <h4>NMS Algorithm</h4>
+                <ol>
+                  <li>Sort all detections by confidence score (descending)</li>
+                  <li>Select the box with highest score &rarr; add to final list</li>
+                  <li>Remove all remaining boxes with IoU &gt; threshold (e.g., 0.5) with the selected box</li>
+                  <li>Repeat steps 2&ndash;3 until no boxes remain</li>
+                </ol>
+              </div>
+
+              <div class="warning-box">
+                <strong>&#9888; Limitation:</strong> Standard NMS can fail when two objects of the same class overlap significantly (e.g., a crowd of people). Soft-NMS decays scores instead of hard removal, partially addressing this issue.
+              </div>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="yolo">
+              <h2>7. YOLO (You Only Look Once)</h2>
+              <p>A <strong>one-stage detector</strong> that treats detection as a single regression problem. The image is divided into an S &times; S grid. Each grid cell predicts B bounding boxes and C class probabilities simultaneously.</p>
+
+              <div class="definition-box">
+                <strong>YOLO Output Tensor:</strong> The network outputs an S &times; S &times; (B &times; 5 + C) tensor, where each bounding box has 5 values: (x, y, w, h, confidence). Confidence = P(Object) &times; IoU<sub>pred</sub><sup>truth</sup>.
+              </div>
+
+              <div class="example-box">
+                <h4>Example &mdash; YOLO v1 Output Size</h4>
+                <p>S = 7, B = 2 boxes per cell, C = 20 classes (Pascal VOC):</p>
+                <p>Output = 7 &times; 7 &times; (2 &times; 5 + 20) = 7 &times; 7 &times; 30 = <strong>1,470 values</strong></p>
+              </div>
+
+              <p><strong>Advantages:</strong> Extremely fast (45 FPS on GPU for v1, 155+ FPS for Fast YOLO). Sees the entire image during prediction so fewer background errors than R-CNN family.</p>
+              <p><strong>Disadvantages:</strong> Struggles with small objects and multiple objects in the same grid cell. Lower localisation accuracy than two-stage detectors.</p>
+
+              <div class="note-box">
+                <strong>YOLO Versions:</strong> YOLOv1 (2015) &rarr; YOLOv2/YOLO9000 (2016, anchor boxes, batch norm) &rarr; YOLOv3 (2018, multi-scale, FPN) &rarr; YOLOv4 (2020, CSPDarknet, mosaic augmentation) &rarr; YOLOv5&ndash;v8+ (incremental improvements, each by different teams).
+              </div>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="ssd">
+              <h2>8. SSD (Single Shot MultiBox Detector)</h2>
+              <p>Another one-stage detector that makes predictions at <strong>multiple feature map scales</strong>. Earlier (larger) feature maps detect small objects; later (smaller) feature maps detect large objects.</p>
+
+              <div class="note-box">
+                <strong>SSD Key Idea:</strong> Attach detection heads (classification + regression) to multiple layers of the backbone network, not just the final layer. Default boxes of various aspect ratios anchor predictions at each spatial location.
+              </div>
+
+              <p><strong>SSD-300</strong> (input 300&times;300) uses 6 feature maps with scales from 38&times;38 down to 1&times;1, generating ~8,732 default boxes. Speed: ~59 FPS (faster than Faster R-CNN, competitive with YOLO).</p>
+            </section>
+
+            <!-- Section 9 -->
+            <section id="map">
+              <h2>9. mAP (mean Average Precision)</h2>
+              <p>The standard evaluation metric for object detection.</p>
+
+              <div class="definition-box">
+                <strong>Precision</strong> = TP / (TP + FP) &mdash; of all detections, how many are correct?<br>
+                <strong>Recall</strong> = TP / (TP + FN) &mdash; of all ground truth objects, how many are found?
+              </div>
+
+              <div class="algorithm-block">
+                <h4>Computing mAP</h4>
+                <ol>
+                  <li>For each class, sort detections by confidence (descending)</li>
+                  <li>Compute precision and recall at each detection threshold</li>
+                  <li>Plot the Precision-Recall curve</li>
+                  <li>Compute <strong>AP</strong> (Average Precision) = area under the P-R curve (using interpolation)</li>
+                  <li><strong>mAP</strong> = mean of AP across all classes</li>
+                </ol>
+              </div>
+
+              <div class="example-box">
+                <h4>Example &mdash; AP Calculation (simplified)</h4>
+                <p>5 detections for class &ldquo;dog&rdquo; (sorted by confidence), 3 ground-truth dogs:</p>
+                <table>
+                  <thead><tr><th>#</th><th>TP/FP</th><th>Precision</th><th>Recall</th></tr></thead>
+                  <tbody>
+                    <tr><td>1</td><td>TP</td><td>1/1 = 1.00</td><td>1/3 = 0.33</td></tr>
+                    <tr><td>2</td><td>FP</td><td>1/2 = 0.50</td><td>1/3 = 0.33</td></tr>
+                    <tr><td>3</td><td>TP</td><td>2/3 = 0.67</td><td>2/3 = 0.67</td></tr>
+                    <tr><td>4</td><td>FP</td><td>2/4 = 0.50</td><td>2/3 = 0.67</td></tr>
+                    <tr><td>5</td><td>TP</td><td>3/5 = 0.60</td><td>3/3 = 1.00</td></tr>
+                  </tbody>
+                </table>
+                <p>Using 11-point interpolation at recall = {0, 0.1, &hellip;, 1.0}:</p>
+                <p>At each recall level, precision is the max precision at that recall or higher.</p>
+                <p>AP &asymp; (max-p at r&ge;0 + max-p at r&ge;0.1 + &hellip; + max-p at r&ge;1.0) / 11</p>
+                <p>= (1.0 &times; 4 + 0.67 &times; 4 + 0.60 &times; 3) / 11 &asymp; <strong>0.77</strong></p>
+              </div>
+            </section>
+
+            <!-- Section 10 -->
+            <section id="one-vs-two">
+              <h2>10. One-Stage vs Two-Stage Detectors</h2>
+              <table class="comparison-table">
+                <thead><tr><th>Property</th><th>Two-Stage (R-CNN family)</th><th>One-Stage (YOLO, SSD)</th></tr></thead>
+                <tbody>
+                  <tr><td>Pipeline</td><td>Region proposal &rarr; classification</td><td>Single pass detection</td></tr>
+                  <tr><td>Speed</td><td>Slower (~5&ndash;15 FPS)</td><td>Faster (~30&ndash;155 FPS)</td></tr>
+                  <tr><td>Accuracy</td><td>Generally higher mAP</td><td>Competitive, slightly lower</td></tr>
+                  <tr><td>Small objects</td><td>Better (RPN + RoI pooling)</td><td>Can struggle (YOLO v1)</td></tr>
+                  <tr><td>Training</td><td>More complex, multi-stage</td><td>Simpler, end-to-end</td></tr>
+                  <tr><td>Use case</td><td>High-accuracy tasks</td><td>Real-time applications</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 11 -->
+            <section id="summary">
+              <h2>11. Summary</h2>
+              <div class="summary-section">
+                <ul>
+                  <li><strong>IoU</strong> measures bounding box overlap; IoU &ge; 0.5 is a common TP threshold.</li>
+                  <li><strong>R-CNN</strong> &rarr; <strong>Fast R-CNN</strong> (shared features + RoI pooling) &rarr; <strong>Faster R-CNN</strong> (+ RPN).</li>
+                  <li><strong>Anchor boxes</strong> provide multi-scale, multi-aspect-ratio templates at each location.</li>
+                  <li><strong>NMS</strong> eliminates duplicate detections by removing lower-confidence overlapping boxes.</li>
+                  <li><strong>YOLO</strong> frames detection as a single regression, achieving real-time speed.</li>
+                  <li><strong>SSD</strong> detects at multiple feature map scales for better small-object performance.</li>
+                  <li><strong>mAP</strong> = mean of per-class Average Precision (area under P-R curve).</li>
+                  <li>Two-stage detectors are more accurate; one-stage detectors are faster.</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch11-object-detection">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="cnn-architectures.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">CNN Architectures</span></a>
+              <a href="image-segmentation.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Image Segmentation</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#introduction">1. What Is Detection?</a></li>
+            <li><a href="#iou">2. IoU</a></li>
+            <li><a href="#sliding-window">3. Sliding Window</a></li>
+            <li><a href="#rcnn">4. R-CNN Family</a></li>
+            <li><a href="#anchor-boxes">5. Anchor Boxes</a></li>
+            <li><a href="#nms">6. NMS</a></li>
+            <li><a href="#yolo">7. YOLO</a></li>
+            <li><a href="#ssd">8. SSD</a></li>
+            <li><a href="#map">9. mAP Metric</a></li>
+            <li><a href="#one-vs-two">10. Comparison</a></li>
+            <li><a href="#summary">11. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

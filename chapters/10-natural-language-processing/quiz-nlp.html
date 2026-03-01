@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NLP Chapter Quiz — 15 questions on text preprocessing, word embeddings, language models, transformers, BERT, GPT, and prompt engineering for GATE DA.">
+  <title>Quiz: Natural Language Processing — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a>
+            <a href="word-embeddings.html" class="sidebar-link"><span class="link-check"></span> Word Embeddings<span class="link-type theory">Theory</span></a>
+            <a href="language-models.html" class="sidebar-link"><span class="link-check"></span> Language Models<span class="link-type theory">Theory</span></a>
+            <a href="large-language-models.html" class="sidebar-link"><span class="link-check"></span> Large Language Models<span class="link-type theory">Theory</span></a>
+            <a href="gpt-architecture.html" class="sidebar-link"><span class="link-check"></span> GPT Architecture<span class="link-type theory">Theory</span></a>
+            <a href="bert-and-variants.html" class="sidebar-link"><span class="link-check"></span> BERT &amp; Variants<span class="link-type theory">Theory</span></a>
+            <a href="prompt-engineering.html" class="sidebar-link"><span class="link-check"></span> Prompt Engineering<span class="link-type theory">Theory</span></a>
+            <a href="notes-nlp.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-nlp.html" class="sidebar-link active"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="text-preprocessing.html">Chapter 10: Natural Language Processing</a> &raquo; <span class="current">Quiz</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-quiz" data-page-id="ch10-quiz-nlp">
+
+            <h1>&#127919; Quiz: Natural Language Processing</h1>
+            <p>Test your knowledge of NLP concepts &mdash; from text preprocessing and embeddings to transformers and LLMs. 15 questions across three difficulty levels.</p>
+
+            <div class="quiz-meta-bar">
+              <span class="quiz-meta-item">&#128221; 15 Questions</span>
+              <span class="quiz-meta-item">&#9201; 30 Minutes</span>
+              <span class="quiz-meta-item">&#128200; Mixed Difficulty</span>
+            </div>
+
+            <div id="quizTimer" class="quiz-timer">Time Remaining: <span id="timerDisplay">30:00</span></div>
+            <div id="questionPalette" class="question-palette"></div>
+            <div id="quizContainer" class="quiz-container"></div>
+            <div class="quiz-controls">
+              <button id="submitQuizBtn" class="submit-quiz-btn" disabled>Submit Quiz</button>
+            </div>
+            <div id="quizResults" class="quiz-results" style="display:none;"></div>
+            <button id="retryQuizBtn" class="retry-quiz-btn" style="display:none;">&#128260; Retry Quiz</button>
+
+            <div class="nav-buttons" style="margin-top:2rem;">
+              <a href="notes-nlp.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Chapter Notes</span></a>
+              <a href="../11-computer-vision/image-fundamentals.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Image Fundamentals</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>Quiz Navigation</h4><p>Use the question palette above to jump between questions.</p></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+
+  <script>
+    // ── Quiz Data ────────────────────────────────────────────────
+    var quizData_ch10 = {
+      quizId: "quiz-ch10",
+      timeLimit: 1800,
+      questions: [
+        // ========== EASY (1-5) ==========
+        {
+          id: "q1",
+          difficulty: "easy",
+          type: "mcq",
+          text: "Which text preprocessing technique reduces 'running', 'runs', and 'ran' to a common base form using dictionary lookup?",
+          options: [
+            "A) Stemming",
+            "B) Lemmatization",
+            "C) Tokenization",
+            "D) Stop-word removal"
+          ],
+          correct: 1,
+          explanation: "Lemmatization uses a dictionary (lexicon) to map inflected forms to their base form (lemma). Stemming uses crude rules and might produce non-words like 'runn'. Lemmatization correctly maps 'ran' → 'run' using morphological analysis and POS tagging."
+        },
+        {
+          id: "q2",
+          difficulty: "easy",
+          type: "mcq",
+          text: "In the TF-IDF formula TF-IDF(t, d) = TF(t, d) × log(N / DF(t)), what does a high IDF value indicate about term t?",
+          options: [
+            "A) The term appears in almost every document",
+            "B) The term appears in very few documents (rare and informative)",
+            "C) The term has high frequency within document d",
+            "D) The term is a stop word"
+          ],
+          correct: 1,
+          explanation: "IDF = log(N / DF(t)). When DF(t) is small (the term appears in few documents), N/DF(t) is large, making IDF large. This means the term is rare across the corpus and hence more informative for distinguishing documents. Common words like 'the' have high DF and low IDF."
+        },
+        {
+          id: "q3",
+          difficulty: "easy",
+          type: "mcq",
+          text: "What is the key difference between Word2Vec CBOW and Skip-gram?",
+          options: [
+            "A) CBOW predicts context from center word; Skip-gram predicts center from context",
+            "B) CBOW predicts center word from context; Skip-gram predicts context from center word",
+            "C) CBOW uses character n-grams; Skip-gram uses word n-grams",
+            "D) CBOW is count-based; Skip-gram is prediction-based"
+          ],
+          correct: 1,
+          explanation: "CBOW (Continuous Bag of Words) takes the surrounding context words as input and predicts the center word. Skip-gram does the reverse: it takes the center word and predicts each context word. Skip-gram tends to work better for rare words, while CBOW is faster to train."
+        },
+        {
+          id: "q4",
+          difficulty: "easy",
+          type: "mcq",
+          text: "In BERT's pretraining, what percentage of input tokens are randomly selected for the Masked Language Modeling task?",
+          options: [
+            "A) 5%",
+            "B) 10%",
+            "C) 15%",
+            "D) 20%"
+          ],
+          correct: 2,
+          explanation: "BERT randomly selects 15% of tokens for MLM. Of those selected tokens: 80% are replaced with [MASK], 10% are replaced with a random token, and 10% are left unchanged. This mixed strategy helps the model generalize beyond just the [MASK] token."
+        },
+        {
+          id: "q5",
+          difficulty: "easy",
+          type: "tf",
+          text: "True or False: GPT uses the Transformer encoder with bidirectional self-attention, while BERT uses the Transformer decoder with causal (left-to-right) masking.",
+          options: [
+            "True",
+            "False"
+          ],
+          correct: 1,
+          explanation: "False — it's the opposite. GPT uses the Transformer decoder with causal (left-to-right) masking, meaning each token can only attend to previous tokens. BERT uses the Transformer encoder with bidirectional self-attention, meaning each token attends to all other tokens in both directions."
+        },
+        // ========== MEDIUM (6-10) ==========
+        {
+          id: "q6",
+          difficulty: "medium",
+          type: "nat",
+          text: "A sentence has 8 words. How many distinct trigrams (3-grams) can be extracted from this sentence?",
+          correctRange: [6, 6],
+          explanation: "The number of n-grams in a sequence of length L is L − n + 1. For trigrams (n = 3) in a sentence of 8 words: 8 − 3 + 1 = 6 trigrams."
+        },
+        {
+          id: "q7",
+          difficulty: "medium",
+          type: "mcq",
+          text: "Given a corpus with bigram counts: C('the', 'cat') = 20, C('the', 'dog') = 10, C('the') = 100. Using Laplace (add-1) smoothing with vocabulary size V = 1000, what is P('cat' | 'the')?",
+          options: [
+            "A) 20/100 = 0.200",
+            "B) 21/1100 ≈ 0.019",
+            "C) 20/1100 ≈ 0.018",
+            "D) 21/100 = 0.210"
+          ],
+          correct: 1,
+          explanation: "With Laplace smoothing: P(wi | wi-1) = (C(wi-1, wi) + 1) / (C(wi-1) + V). So P('cat'|'the') = (20 + 1) / (100 + 1000) = 21/1100 ≈ 0.0191. The +1 in the numerator and +V in the denominator ensure no zero probabilities."
+        },
+        {
+          id: "q8",
+          difficulty: "medium",
+          type: "mcq",
+          text: "What is the computational complexity of the self-attention mechanism with respect to sequence length n and model dimension d?",
+          options: [
+            "A) O(n × d)",
+            "B) O(n² × d)",
+            "C) O(n × d²)",
+            "D) O(n² × d²)"
+          ],
+          correct: 1,
+          explanation: "Self-attention computes QKᵀ which is an (n × d) times (d × n) matrix multiplication, resulting in an n × n attention matrix — this is O(n² × d). The subsequent multiplication with V is (n × n) × (n × d) = O(n² × d). So the overall complexity is O(n² × d), quadratic in sequence length."
+        },
+        {
+          id: "q9",
+          difficulty: "medium",
+          type: "mcq",
+          text: "Which of the following is NOT a modification that RoBERTa makes over the original BERT?",
+          options: [
+            "A) Removing the Next Sentence Prediction (NSP) task",
+            "B) Using dynamic masking instead of static masking",
+            "C) Replacing the WordPiece tokenizer with a character-level tokenizer",
+            "D) Training with larger batch sizes and more data"
+          ],
+          correct: 2,
+          explanation: "RoBERTa's key changes: (A) removes NSP ✓, (B) uses dynamic masking (different mask pattern each epoch) ✓, (D) trains with larger batches and more data ✓. RoBERTa still uses a BPE tokenizer (not character-level), so C is NOT a RoBERTa modification."
+        },
+        {
+          id: "q10",
+          difficulty: "medium",
+          type: "mcq",
+          text: "A language model assigns probability P(W) = 1/1024 to a test sentence W of 10 words. What is the perplexity?",
+          options: [
+            "A) 1024",
+            "B) 2",
+            "C) 10",
+            "D) 102.4"
+          ],
+          correct: 1,
+          explanation: "Perplexity PP(W) = P(W)^(-1/N) where N = number of words. PP = (1/1024)^(-1/10) = 1024^(1/10). Since 1024 = 2^10, we get (2^10)^(1/10) = 2^1 = 2. A perplexity of 2 means the model is as uncertain as choosing between 2 equally likely words at each step."
+        },
+        // ========== HARD (11-15) ==========
+        {
+          id: "q11",
+          difficulty: "hard",
+          type: "mcq",
+          text: "In the scaled dot-product attention formula Attention(Q,K,V) = softmax(QKᵀ/√dₖ)V, why is the scaling factor √dₖ used?",
+          options: [
+            "A) To normalize the output vectors to unit length",
+            "B) To reduce the variance of dot products, preventing softmax saturation in high dimensions",
+            "C) To make the attention weights sum to exactly 1",
+            "D) To compensate for the increasing number of attention heads"
+          ],
+          correct: 1,
+          explanation: "When dₖ is large, the dot products QKᵀ tend to have large magnitudes (variance grows with dimension). Large values push softmax into regions of very small gradients (saturation), making training difficult. Dividing by √dₖ keeps the variance of the dot products at approximately 1, preventing this saturation. The softmax already ensures weights sum to 1 (option C), so that's not the reason."
+        },
+        {
+          id: "q12",
+          difficulty: "hard",
+          type: "mcq",
+          text: "Consider two documents: D1 = 'the cat sat on the mat' and D2 = 'the dog sat on the log'. Using a vocabulary sorted alphabetically {cat, dog, log, mat, on, sat, the}, what is the cosine similarity between their BoW vectors?",
+          options: [
+            "A) 3/6 = 0.500",
+            "B) 6/√(8 × 8) = 0.750",
+            "C) 6/8 = 0.750",
+            "D) 6/√(42) ≈ 0.926"
+          ],
+          correct: 2,
+          explanation: "BoW vectors: D1 = [1,0,0,1,1,1,2], D2 = [0,1,1,0,1,1,2]. Dot product: (1×0)+(0×1)+(0×1)+(1×0)+(1×1)+(1×1)+(2×2) = 0+0+0+0+1+1+4 = 6. ||D1|| = √(1+0+0+1+1+1+4) = √8. ||D2|| = √(0+1+1+0+1+1+4) = √8. Cosine = 6/(√8 × √8) = 6/8 = 0.750."
+        },
+        {
+          id: "q13",
+          difficulty: "hard",
+          type: "mcq",
+          text: "In BERT's MLM masking strategy for the selected 15% of tokens, 80% are replaced with [MASK], 10% with random tokens, and 10% kept unchanged. What is the primary reason for NOT always using [MASK]?",
+          options: [
+            "A) To reduce training time by processing fewer masked tokens",
+            "B) To create a discrepancy between pretraining and fine-tuning, since [MASK] never appears during fine-tuning",
+            "C) To mitigate the train-test mismatch, since [MASK] tokens never appear during fine-tuning or inference",
+            "D) To increase the effective vocabulary size of the model"
+          ],
+          correct: 2,
+          explanation: "During fine-tuning and inference, the model never sees [MASK] tokens. If the model only learned to predict from [MASK] contexts, there would be a train-test mismatch. By sometimes keeping the original token (10%) or using a random token (10%), the model learns to produce good representations for ALL tokens, not just [MASK] positions. Option B describes the problem; option C correctly describes the solution's purpose."
+        },
+        {
+          id: "q14",
+          difficulty: "hard",
+          type: "mcq",
+          text: "Chain-of-Thought (CoT) prompting significantly improves LLM performance on reasoning tasks. Which of the following best explains why CoT works?",
+          options: [
+            "A) It fine-tunes the model's weights on reasoning examples",
+            "B) It decomposes complex problems into sequential sub-problems, allowing the model to use intermediate computations as context for subsequent steps",
+            "C) It increases the model's context window to handle longer inputs",
+            "D) It activates specialized reasoning modules within the transformer architecture"
+          ],
+          correct: 1,
+          explanation: "CoT prompting works because it breaks down a complex problem into smaller, manageable steps. Each intermediate step's output becomes part of the context for the next step, effectively giving the model 'scratch space' to work through the problem. It does NOT change model weights (A), context window size (C), or activate special modules (D). The model architecture remains unchanged; only the prompt structure changes."
+        },
+        {
+          id: "q15",
+          difficulty: "hard",
+          type: "mcq",
+          text: "ALBERT reduces BERT's parameter count through cross-layer parameter sharing and factorized embedding parameterization. If BERT uses embedding dimension E = hidden dimension H = 768 with vocabulary V = 30,000, and ALBERT sets E = 128 while keeping H = 768 and V = 30,000, by approximately what factor is the embedding matrix size reduced?",
+          options: [
+            "A) 2×",
+            "B) 6×",
+            "C) 4×",
+            "D) 3×"
+          ],
+          correct: 2,
+          explanation: "BERT's embedding matrix: V × H = 30,000 × 768 = 23,040,000 parameters. ALBERT factorizes this into two matrices: V × E + E × H = 30,000 × 128 + 128 × 768 = 3,840,000 + 98,304 = 3,938,304 parameters. Reduction factor ≈ 23,040,000 / 3,938,304 ≈ 5.85 ≈ 6×. ALBERT reduces the embedding parameters by roughly 6× through this factorization."
+        }
+      ]
+    };
+
+    // ── Quiz Engine (self-contained) ─────────────────────────────
+    (function() {
+      var data = quizData_ch10;
+      var questions = data.questions;
+      var userAnswers = new Array(questions.length).fill(null);
+      var submitted = false;
+
+      // Timer
+      var timeLeft = data.timeLimit;
+      var timerEl = document.getElementById("timerDisplay");
+      var timerInterval = setInterval(function() {
+        if (submitted) { clearInterval(timerInterval); return; }
+        timeLeft--;
+        var m = Math.floor(timeLeft / 60);
+        var s = timeLeft % 60;
+        timerEl.textContent = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+        if (timeLeft <= 0) { clearInterval(timerInterval); submitQuiz(); }
+      }, 1000);
+
+      // Build palette
+      var palette = document.getElementById("questionPalette");
+      questions.forEach(function(q, i) {
+        var btn = document.createElement("button");
+        btn.className = "palette-btn";
+        btn.textContent = i + 1;
+        btn.title = "Question " + (i + 1) + " (" + q.difficulty + ")";
+        btn.onclick = function() {
+          document.getElementById("question-" + i).scrollIntoView({ behavior: "smooth" });
+        };
+        palette.appendChild(btn);
+      });
+
+      // Render questions
+      var container = document.getElementById("quizContainer");
+      questions.forEach(function(q, i) {
+        var div = document.createElement("div");
+        div.className = "quiz-question-block";
+        div.id = "question-" + i;
+
+        var badge = '<span class="q-difficulty ' + q.difficulty + '">' + q.difficulty.charAt(0).toUpperCase() + q.difficulty.slice(1) + '</span>';
+        var typeLabel = q.type === "mcq" ? "MCQ" : q.type === "tf" ? "True/False" : "NAT";
+        var header = '<div class="q-header"><span class="q-number">Q' + (i + 1) + '</span>' + badge + '<span class="q-type">' + typeLabel + '</span></div>';
+        var body = '<p class="q-text">' + q.text + '</p>';
+
+        if (q.type === "nat") {
+          body += '<div class="nat-input-group"><label>Your Answer: <input type="number" step="any" class="nat-input" data-index="' + i + '" placeholder="Enter a number"></label></div>';
+        } else {
+          var opts = "";
+          q.options.forEach(function(opt, j) {
+            opts += '<label class="option-label"><input type="radio" name="q' + i + '" value="' + j + '" data-index="' + i + '"> <span class="option-text">' + opt + '</span></label>';
+          });
+          body += '<div class="options-group">' + opts + '</div>';
+        }
+
+        div.innerHTML = header + body;
+        container.appendChild(div);
+      });
+
+      // Listen for answers
+      container.addEventListener("change", function(e) {
+        var idx;
+        if (e.target.classList.contains("nat-input")) {
+          idx = parseInt(e.target.getAttribute("data-index"));
+          userAnswers[idx] = parseFloat(e.target.value);
+        } else if (e.target.type === "radio") {
+          idx = parseInt(e.target.getAttribute("data-index"));
+          userAnswers[idx] = parseInt(e.target.value);
+        }
+        updatePalette();
+        checkAllAnswered();
+      });
+
+      function updatePalette() {
+        var btns = palette.querySelectorAll(".palette-btn");
+        btns.forEach(function(b, i) {
+          b.classList.toggle("answered", userAnswers[i] !== null);
+        });
+      }
+
+      function checkAllAnswered() {
+        var allDone = userAnswers.every(function(a) { return a !== null; });
+        document.getElementById("submitQuizBtn").disabled = !allDone;
+      }
+
+      // Submit
+      document.getElementById("submitQuizBtn").addEventListener("click", submitQuiz);
+
+      function submitQuiz() {
+        if (submitted) return;
+        submitted = true;
+        clearInterval(timerInterval);
+
+        var score = 0;
+        var total = questions.length;
+        var blocks = container.querySelectorAll(".quiz-question-block");
+
+        questions.forEach(function(q, i) {
+          var block = blocks[i];
+          var correct = false;
+
+          if (q.type === "nat") {
+            var val = userAnswers[i];
+            if (val !== null && val >= q.correctRange[0] && val <= q.correctRange[1]) correct = true;
+          } else {
+            if (userAnswers[i] === q.correct) correct = true;
+          }
+
+          if (correct) score++;
+
+          block.classList.add(correct ? "correct-block" : "incorrect-block");
+
+          var expDiv = document.createElement("div");
+          expDiv.className = "explanation " + (correct ? "correct" : "incorrect");
+          expDiv.innerHTML = "<strong>" + (correct ? "&#9989; Correct!" : "&#10060; Incorrect.") + "</strong> " + q.explanation;
+          block.appendChild(expDiv);
+        });
+
+        // Update palette
+        var btns = palette.querySelectorAll(".palette-btn");
+        questions.forEach(function(q, i) {
+          var correct;
+          if (q.type === "nat") {
+            var val = userAnswers[i];
+            correct = val !== null && val >= q.correctRange[0] && val <= q.correctRange[1];
+          } else {
+            correct = userAnswers[i] === q.correct;
+          }
+          btns[i].classList.add(correct ? "palette-correct" : "palette-incorrect");
+        });
+
+        // Results
+        var pct = Math.round(score / total * 100);
+        var resultsEl = document.getElementById("quizResults");
+        resultsEl.style.display = "block";
+        resultsEl.innerHTML = '<h2>Quiz Results</h2>' +
+          '<div class="results-score">' + score + ' / ' + total + ' (' + pct + '%)</div>' +
+          '<div class="results-bar"><div class="results-fill" style="width:' + pct + '%"></div></div>' +
+          '<p>' + (pct >= 80 ? "&#127942; Excellent! You have a strong grasp of NLP concepts." : pct >= 50 ? "&#128170; Good effort! Review the explanations for questions you missed." : "&#128218; Keep studying! Revisit the chapter notes and theory pages.") + '</p>';
+
+        document.getElementById("retryQuizBtn").style.display = "inline-block";
+        document.getElementById("submitQuizBtn").disabled = true;
+      }
+
+      // Retry
+      document.getElementById("retryQuizBtn").addEventListener("click", function() {
+        submitted = false;
+        userAnswers = new Array(questions.length).fill(null);
+        timeLeft = data.timeLimit;
+
+        // Clear explanations and classes
+        var blocks = container.querySelectorAll(".quiz-question-block");
+        blocks.forEach(function(b) {
+          b.classList.remove("correct-block", "incorrect-block");
+          var exp = b.querySelector(".explanation");
+          if (exp) exp.remove();
+        });
+
+        // Reset inputs
+        container.querySelectorAll("input[type=radio]").forEach(function(r) { r.checked = false; });
+        container.querySelectorAll(".nat-input").forEach(function(n) { n.value = ""; });
+
+        // Reset palette
+        palette.querySelectorAll(".palette-btn").forEach(function(b) {
+          b.classList.remove("answered", "palette-correct", "palette-incorrect");
+        });
+
+        document.getElementById("quizResults").style.display = "none";
+        document.getElementById("retryQuizBtn").style.display = "none";
+        document.getElementById("submitQuizBtn").disabled = true;
+
+        timerInterval = setInterval(function() {
+          if (submitted) { clearInterval(timerInterval); return; }
+          timeLeft--;
+          var m = Math.floor(timeLeft / 60);
+          var s = timeLeft % 60;
+          timerEl.textContent = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+          if (timeLeft <= 0) { clearInterval(timerInterval); submitQuiz(); }
+        }, 1000);
+      });
+    })();
+  </script>
+</body>
+</html>

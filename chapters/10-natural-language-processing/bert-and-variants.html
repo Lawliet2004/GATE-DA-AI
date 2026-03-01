@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BERT and Variants — masked language modeling, next sentence prediction, bidirectional context, BERT/RoBERTa/ALBERT/DistilBERT, and fine-tuning for downstream tasks for GATE DA preparation.">
+  <title>BERT and Variants — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="text-preprocessing.html" class="sidebar-link"><span class="link-check"></span> Text Preprocessing<span class="link-type theory">Theory</span></a>
+            <a href="word-embeddings.html" class="sidebar-link"><span class="link-check"></span> Word Embeddings<span class="link-type theory">Theory</span></a>
+            <a href="language-models.html" class="sidebar-link"><span class="link-check"></span> Language Models<span class="link-type theory">Theory</span></a>
+            <a href="large-language-models.html" class="sidebar-link"><span class="link-check"></span> Large Language Models<span class="link-type theory">Theory</span></a>
+            <a href="gpt-architecture.html" class="sidebar-link"><span class="link-check"></span> GPT Architecture<span class="link-type theory">Theory</span></a>
+            <a href="bert-and-variants.html" class="sidebar-link active"><span class="link-check"></span> BERT &amp; Variants<span class="link-type theory">Theory</span></a>
+            <a href="prompt-engineering.html" class="sidebar-link"><span class="link-check"></span> Prompt Engineering<span class="link-type theory">Theory</span></a>
+            <a href="notes-nlp.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-nlp.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/image-fundamentals.html" class="sidebar-link"><span class="link-check"></span> Image Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="text-preprocessing.html">Chapter 10: Natural Language Processing</a> &raquo; <span class="current">BERT and Variants</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch10-bert-and-variants">
+
+            <h1>BERT and Variants</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge low">GATE Relevance: Low</span>
+              <button class="bookmark-btn" data-page="ch10-bert-and-variants" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="word-embeddings.html">Word Embeddings</a> &mdash; static vs contextual representations</li>
+                <li><a href="gpt-architecture.html">GPT Architecture</a> &mdash; transformer basics, attention</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Explain masked language modeling (MLM) and next sentence prediction (NSP)</li>
+                <li>Understand why bidirectional context is advantageous over left-to-right</li>
+                <li>Compare BERT with its variants: RoBERTa, ALBERT, DistilBERT</li>
+                <li>Describe how to fine-tune BERT for classification, NER, and QA tasks</li>
+              </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <section id="overview">
+              <h2>1. BERT Overview</h2>
+              <p><strong>BERT</strong> (Bidirectional Encoder Representations from Transformers, Devlin et al., 2018) uses the <strong>encoder</strong> of the Transformer. Unlike GPT which reads left-to-right, BERT reads the entire sequence at once &mdash; each token can attend to all other tokens, capturing both left and right context simultaneously.</p>
+              <div class="definition-box">
+                <strong>Key Insight:</strong> In the sentence &ldquo;I went to the bank to deposit money&rdquo;, the meaning of &ldquo;bank&rdquo; depends on both the preceding words (&ldquo;went to the&rdquo;) and the following words (&ldquo;to deposit money&rdquo;). Bidirectional attention captures both sides.
+              </div>
+              <p><strong>Architecture:</strong></p>
+              <ul>
+                <li><strong>BERT-Base:</strong> 12 layers, 768 hidden size, 12 attention heads, 110M parameters</li>
+                <li><strong>BERT-Large:</strong> 24 layers, 1024 hidden size, 16 attention heads, 340M parameters</li>
+                <li><strong>Context length:</strong> 512 tokens maximum</li>
+                <li><strong>Tokenizer:</strong> WordPiece with 30,522 vocabulary size</li>
+              </ul>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="mlm">
+              <h2>2. Masked Language Modeling (MLM)</h2>
+              <div class="definition-box">
+                <strong>MLM Objective:</strong> Randomly mask 15% of input tokens and train the model to predict the original token from the surrounding (bidirectional) context.
+              </div>
+              <p><strong>Masking strategy</strong> (for the selected 15% of tokens):</p>
+              <ul>
+                <li>80% of the time: Replace with [MASK] token</li>
+                <li>10% of the time: Replace with a random token from the vocabulary</li>
+                <li>10% of the time: Keep unchanged</li>
+              </ul>
+              <p>This mixed strategy prevents the model from only learning about [MASK] tokens (which don&rsquo;t appear during fine-tuning or inference).</p>
+              <div class="example-box">
+                <h4>Example: MLM Training</h4>
+                <p><strong>Original:</strong> &ldquo;The cat sat on the mat&rdquo;</p>
+                <p><strong>Masked input:</strong> &ldquo;The [MASK] sat on the mat&rdquo;</p>
+                <p><strong>Model predicts:</strong> P(&ldquo;cat&rdquo; | context) should be high</p>
+                <p>The loss is only computed on the masked positions, not the entire sequence.</p>
+              </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="nsp">
+              <h2>3. Next Sentence Prediction (NSP)</h2>
+              <p>BERT&rsquo;s second pretraining task: given two sentences A and B, predict whether B actually follows A in the corpus (IsNext) or is a random sentence (NotNext).</p>
+              <p><strong>Input format:</strong> [CLS] Sentence A [SEP] Sentence B [SEP]</p>
+              <p>The [CLS] token&rsquo;s final hidden state is fed through a binary classifier for NSP.</p>
+              <div class="example-box">
+                <h4>NSP Examples</h4>
+                <p><strong>Positive (IsNext):</strong></p>
+                <p>A: &ldquo;The man went to the store.&rdquo; B: &ldquo;He bought a gallon of milk.&rdquo; &rarr; IsNext</p>
+                <p><strong>Negative (NotNext):</strong></p>
+                <p>A: &ldquo;The man went to the store.&rdquo; B: &ldquo;Penguins are flightless birds.&rdquo; &rarr; NotNext</p>
+              </div>
+              <p><strong>Note:</strong> Later research (RoBERTa) showed that NSP may not be helpful and can be removed.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="input-representation">
+              <h2>4. BERT Input Representation</h2>
+              <p>Each input token is represented as the sum of three embeddings:</p>
+              <ol>
+                <li><strong>Token embedding:</strong> WordPiece token ID &rarr; learned embedding vector</li>
+                <li><strong>Segment embedding:</strong> Indicates whether the token belongs to sentence A or B (E<sub>A</sub> or E<sub>B</sub>)</li>
+                <li><strong>Position embedding:</strong> Learned position embedding (similar to GPT)</li>
+              </ol>
+              <p style="text-align:center;">Input = TokenEmbed(w<sub>i</sub>) + SegmentEmbed(s<sub>i</sub>) + PositionEmbed(i)</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="fine-tuning">
+              <h2>5. Fine-tuning BERT for Downstream Tasks</h2>
+              <p>BERT is fine-tuned by adding a small task-specific head on top of the pretrained encoder:</p>
+
+              <h3>5.1 Text Classification (Sentiment, Topic)</h3>
+              <p>Use the [CLS] token output → linear layer → softmax over classes.</p>
+              <p style="text-align:center;">y = softmax(W &middot; h<sub>[CLS]</sub> + b)</p>
+
+              <h3>5.2 Named Entity Recognition (NER)</h3>
+              <p>Use each token&rsquo;s output → linear layer → softmax over entity tags (B-PER, I-PER, O, etc.).</p>
+              <p style="text-align:center;">y<sub>i</sub> = softmax(W &middot; h<sub>i</sub> + b) for each token i</p>
+
+              <h3>5.3 Question Answering (Extractive)</h3>
+              <p>Input: [CLS] Question [SEP] Passage [SEP]. Predict <strong>start</strong> and <strong>end</strong> positions of the answer span in the passage.</p>
+              <p style="text-align:center;">P(start = i) = softmax(W<sub>s</sub> &middot; h<sub>i</sub>)</p>
+              <p style="text-align:center;">P(end = j) = softmax(W<sub>e</sub> &middot; h<sub>j</sub>)</p>
+
+              <h3>5.4 Sentence Pair Tasks (NLI, Paraphrase)</h3>
+              <p>Input: [CLS] Sentence A [SEP] Sentence B [SEP]. Use [CLS] output for classification (entailment, contradiction, neutral).</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="variants">
+              <h2>6. BERT Variants</h2>
+              <table>
+                <thead><tr><th>Model</th><th>Key Changes from BERT</th><th>Parameters</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><strong>RoBERTa</strong> (Liu et al., 2019)</td>
+                    <td>Removes NSP; trains longer with more data; dynamic masking (different mask each epoch); larger batches</td>
+                    <td>125M&ndash;355M</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ALBERT</strong> (Lan et al., 2019)</td>
+                    <td>Cross-layer parameter sharing (all layers share weights); factorized embedding (E ≪ H); sentence-order prediction (SOP) replaces NSP</td>
+                    <td>12M&ndash;235M</td>
+                  </tr>
+                  <tr>
+                    <td><strong>DistilBERT</strong> (Sanh et al., 2019)</td>
+                    <td>Knowledge distillation: 6-layer student trained to mimic 12-layer BERT teacher. 40% smaller, 60% faster, retains 97% of BERT&rsquo;s performance</td>
+                    <td>66M</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ELECTRA</strong> (Clark et al., 2020)</td>
+                    <td>Replaced token detection instead of masked prediction. A generator replaces tokens; a discriminator identifies which tokens were replaced. More sample-efficient.</td>
+                    <td>14M&ndash;335M</td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="bert-vs-gpt">
+              <h2>7. BERT vs GPT Comparison</h2>
+              <table>
+                <thead><tr><th>Feature</th><th>BERT (Encoder)</th><th>GPT (Decoder)</th></tr></thead>
+                <tbody>
+                  <tr><td>Attention direction</td><td>Bidirectional (full context)</td><td>Unidirectional (left-to-right)</td></tr>
+                  <tr><td>Pretraining task</td><td>MLM + NSP</td><td>Causal LM (next token)</td></tr>
+                  <tr><td>Best for</td><td>Understanding tasks (classification, NER, QA)</td><td>Generation tasks (text completion, dialog)</td></tr>
+                  <tr><td>Fine-tuning</td><td>Task-specific head required</td><td>Can use prompting (zero/few-shot)</td></tr>
+                  <tr><td>Cannot do</td><td>Text generation (no autoregressive capability)</td><td>Efficient bidirectional encoding</td></tr>
+                </tbody>
+              </table>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="summary">
+              <h2>8. Summary</h2>
+              <div class="summary-section">
+                <ul>
+                  <li><strong>BERT</strong> uses the Transformer encoder with bidirectional self-attention.</li>
+                  <li><strong>MLM:</strong> Mask 15% of tokens (80% [MASK], 10% random, 10% unchanged), predict originals.</li>
+                  <li><strong>NSP:</strong> Binary classification &mdash; does sentence B follow A? (Later removed in RoBERTa.)</li>
+                  <li><strong>Input:</strong> Token + Segment + Position embeddings; [CLS] token for classification.</li>
+                  <li><strong>Fine-tuning:</strong> Add a task head on top; fine-tune entire model end-to-end.</li>
+                  <li><strong>RoBERTa:</strong> No NSP, more data, dynamic masking &mdash; consistently outperforms BERT.</li>
+                  <li><strong>ALBERT:</strong> Parameter sharing reduces model size; SOP replaces NSP.</li>
+                  <li><strong>DistilBERT:</strong> Knowledge distillation for 40% smaller, 60% faster model.</li>
+                </ul>
+              </div>
+            </section>
+
+            <button class="complete-btn" data-page="ch10-bert-and-variants">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="gpt-architecture.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">GPT Architecture</span></a>
+              <a href="prompt-engineering.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Prompt Engineering</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#overview">1. BERT Overview</a></li>
+            <li><a href="#mlm">2. Masked Language Modeling</a></li>
+            <li><a href="#nsp">3. Next Sentence Prediction</a></li>
+            <li><a href="#input-representation">4. Input Representation</a></li>
+            <li><a href="#fine-tuning">5. Fine-tuning</a></li>
+            <li><a href="#variants">6. BERT Variants</a></li>
+            <li><a href="#bert-vs-gpt">7. BERT vs GPT</a></li>
+            <li><a href="#summary">8. Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

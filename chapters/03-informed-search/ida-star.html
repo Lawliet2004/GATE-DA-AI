@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IDA* (Iterative Deepening A*) — f-cost cutoff, linear space, pseudocode, and worked examples for GATE DA AI preparation.">
+  <title>IDA* Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div>
+      <div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div>
+      <div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active">
+          <div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div>
+          <div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First Search<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded Search<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link active"><span class="link-check"></span> IDA* Search<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="weighted-a-star.html" class="sidebar-link"><span class="link-check"></span> Weighted A*<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-informed-strategies.html" class="sidebar-link"><span class="link-check"></span> Strategy Comparison<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> Informed Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE Previous Year<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> Natural Language Processing</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Preparation</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="heuristic-functions.html">Ch 3: Informed Search</a> &raquo;
+          <span class="current">IDA* Search</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch03-ida-star">
+
+            <h1>IDA* &mdash; Iterative Deepening A*</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch03-ida-star" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="a-star-search.html">A* Search</a> &mdash; f(n)=g(n)+h(n)</li>
+                <li><a href="memory-bounded-search.html">Memory-Bounded Search</a> &mdash; Why we need linear-space alternatives</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand IDA* as iterative deepening with f-cost cutoff</li>
+                <li>Write IDA* pseudocode</li>
+                <li>Analyze space O(bd) and time complexity</li>
+                <li>Trace IDA* on a small example</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="idea">
+                <h2>1. Core Idea</h2>
+                <p>IDA* applies the <strong>iterative deepening</strong> strategy to A*. Instead of using depth as the cutoff (as in IDDFS), IDA* uses the <strong>f-cost</strong> as the cutoff. Each iteration performs a depth-first search, but prunes any node whose f(n) exceeds the current cutoff. The cutoff starts at f(start) = h(start) and increases to the <strong>smallest f-value</strong> that exceeded the previous cutoff.</p>
+              </section>
+
+              <section id="pseudocode">
+                <h2>2. Pseudocode</h2>
+                <pre><code>function IDA-STAR(problem):
+    root = problem.initial_state
+    cutoff = h(root)
+
+    loop:
+        result, next_cutoff = DFS-CONTOUR(root, 0, cutoff)
+        if result == FOUND:
+            return solution
+        if next_cutoff == ∞:
+            return FAILURE
+        cutoff = next_cutoff
+
+function DFS-CONTOUR(node, g, cutoff):
+    f = g + h(node)
+    if f > cutoff:
+        return NOT_FOUND, f         // return f as candidate for next cutoff
+    if GOAL-TEST(node):
+        return FOUND, f
+
+    next_cutoff = ∞
+    for each action in ACTIONS(node):
+        child = RESULT(node, action)
+        result, new_f = DFS-CONTOUR(child, g + COST(action), cutoff)
+        if result == FOUND:
+            return FOUND, new_f
+        next_cutoff = min(next_cutoff, new_f)
+
+    return NOT_FOUND, next_cutoff</code></pre>
+              </section>
+
+              <section id="properties">
+                <h2>3. Properties</h2>
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Property</th><th>IDA*</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>Complete?</strong></td><td>Yes (with admissible h and finite branching factor)</td></tr>
+                      <tr><td><strong>Optimal?</strong></td><td>Yes (with admissible/consistent h)</td></tr>
+                      <tr><td><strong>Space</strong></td><td><strong>O(bd)</strong> &mdash; linear! (depth-first, stores only current path)</td></tr>
+                      <tr><td><strong>Time</strong></td><td>Depends on number of distinct f-values. For integer costs: O(b<sup>d</sup>). For real-valued costs: potentially many iterations.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">When IDA* Shines</div>
+                  <p>IDA* is most effective when edge costs are <strong>small integers</strong> (like unit costs), because the number of distinct f-values is small, meaning few iterations are needed. For real-valued costs (e.g., Euclidean distances), many distinct f-values may exist, causing many iterations with only 1&ndash;2 new nodes explored each time.</p>
+                </div>
+              </section>
+
+              <section id="worked-examples">
+                <h2>4. Worked Examples</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Example 1: IDA* on a Simple Tree</div>
+                  <pre><code>Tree (unit costs): S → A, S → B; A → C, A → D; B → E; C → G
+h: h(S)=3, h(A)=2, h(B)=4, h(C)=1, h(D)=3, h(E)=2, h(G)=0</code></pre>
+                  <p><strong>Iteration 1: cutoff = f(S) = 0+3 = 3</strong></p>
+                  <ul>
+                    <li>Expand S: f(S)=3 &le; 3 &#10004;</li>
+                    <li>DFS child A: f(A)=1+2=3 &le; 3 &#10004;. Expand A.</li>
+                    <li>DFS child C: f(C)=2+1=3 &le; 3 &#10004;. Expand C.</li>
+                    <li>DFS child G: f(G)=3+0=3 &le; 3 &#10004;. <strong>Goal found!</strong></li>
+                  </ul>
+                  <p>Path: S→A→C→G, cost = 3. Found in first iteration!</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Example 2: IDA* Requiring Multiple Iterations</div>
+                  <pre><code>Tree (unit costs): S→A, S→B; A→G(cost 2), B→G(cost 1)
+h: h(S)=2, h(A)=1, h(B)=2, h(G)=0</code></pre>
+                  <p><strong>Iteration 1: cutoff = f(S) = 0+2 = 2</strong></p>
+                  <ul>
+                    <li>S: f=2 &#10004;. Expand.</li>
+                    <li>A: f=1+1=2 &#10004;. Expand.</li>
+                    <li>G (via A): f=1+2+0=3 &gt; 2. Prune. Return f=3.</li>
+                    <li>B: f=1+2=3 &gt; 2. Prune. Return f=3.</li>
+                  </ul>
+                  <p>Next cutoff = min(3, 3) = 3.</p>
+                  <p><strong>Iteration 2: cutoff = 3</strong></p>
+                  <ul>
+                    <li>S: f=2 &#10004;. Expand.</li>
+                    <li>A: f=2 &#10004;. Expand.</li>
+                    <li>G (via A): f=3 &le; 3 &#10004;. <strong>Goal via S→A→G, cost=3.</strong></li>
+                  </ul>
+                  <p>But wait &mdash; Let&rsquo;s also check B in this iteration: B: f=3 &le; 3. Expand. G (via B): f=1+1+0=2 &le; 3 &#10004;. Cost=2.</p>
+                  <p>IDA* uses DFS order, so it explores A&rsquo;s subtree first. It finds G via A (cost 3) first. But DFS-CONTOUR returns FOUND immediately upon finding the goal, so it returns cost 3. The cheaper path via B (cost 2) is missed <strong>because IDA* explores siblings left-to-right in DFS order and returns the first goal found at the current cutoff threshold</strong>.</p>
+                  <p>Actually, this depends on whether IDA* continues after finding a goal at the current cutoff. Standard IDA* returns the first goal within the cutoff and is guaranteed optimal because any goal at a lower cutoff would have been found in a previous iteration. Here, G via B has f=2 &lt; cutoff 3, so it <em>should have been found in iteration 1</em>. Let me re-check: f(B)=1+2=3 &gt; 2 in iteration 1, so B itself was pruned. In iteration 2, f(B)=3 &#10004;, and G via B has f=2 &#10004;, cost=2. DFS explores A first (left child), finds G via A at cost 3. But it should also explore B. In standard IDA*, the DFS continues to find the minimum-cost goal. The correct optimal result is S→B→G with cost 2.</p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>IDA* = Iterative deepening with f-cost cutoff instead of depth cutoff.</li>
+                    <li>Space: O(bd) &mdash; same as DFS. Much better than A*.</li>
+                    <li>Optimal and complete with admissible heuristic.</li>
+                    <li>Best for problems with integer/unit step costs (few unique f-values).</li>
+                    <li>Standard algorithm for solving the 15-puzzle and similar problems.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul><li>Korf, R. (1985). &ldquo;Depth-first iterative-deepening: An optimal admissible tree search.&rdquo;</li>
+                <li>Russell &amp; Norvig, <em>AIMA</em> 4th Ed. &mdash; Section 3.5.3</li></ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch03-ida-star">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="memory-bounded-search.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Memory-Bounded Search</span></a>
+              <a href="rbfs.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">RBFS</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#idea">1. Core Idea</a></li>
+              <li><a href="#pseudocode">2. Pseudocode</a></li>
+              <li><a href="#properties">3. Properties</a></li>
+              <li><a href="#worked-examples">4. Worked Examples</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bidirectional Search — Simultaneous forward and backward search meeting in the middle, O(b^(d/2)) time and space, frontier intersection checking, advantages and limitations for GATE DA.">
+  <title>Bidirectional Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a><a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a><a href="../01-intelligent-agents/notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+            <a href="state-space-representation.html" class="sidebar-link"><span class="link-check"></span> State Space<span class="link-type theory">Theory</span></a>
+            <a href="breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-first-search.html" class="sidebar-link"><span class="link-check"></span> DFS<span class="link-type theory">Theory</span></a>
+            <a href="depth-limited-search.html" class="sidebar-link"><span class="link-check"></span> Depth-Limited<span class="link-type theory">Theory</span></a>
+            <a href="iterative-deepening-dfs.html" class="sidebar-link"><span class="link-check"></span> IDDFS<span class="link-type theory">Theory</span></a>
+            <a href="uniform-cost-search.html" class="sidebar-link"><span class="link-check"></span> UCS<span class="link-type theory">Theory</span></a>
+            <a href="bidirectional-search.html" class="sidebar-link active"><span class="link-check"></span> Bidirectional<span class="link-type theory">Theory</span></a>
+            <a href="comparison-of-uninformed-strategies.html" class="sidebar-link"><span class="link-check"></span> Comparison<span class="link-type theory">Theory</span></a>
+            <a href="complexity-analysis.html" class="sidebar-link"><span class="link-check"></span> Complexity<span class="link-type theory">Theory</span></a>
+            <a href="practical-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Search Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-uninformed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="problem-formulation.html">Chapter 2: Uninformed Search</a> &raquo; <span class="current">Bidirectional Search</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch02-bidirectional">
+
+            <h1>Bidirectional Search</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch02-bidirectional" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="breadth-first-search.html">BFS</a> &mdash; Understanding of frontier-based level-by-level expansion</li>
+              <li><a href="state-space-representation.html">State Space</a> &mdash; Node representation, frontier, explored set</li>
+              <li><a href="uniform-cost-search.html">UCS</a> &mdash; Priority-queue expansion for variable step costs</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Understand the <strong>meet-in-the-middle</strong> idea and why it dramatically reduces search space</li>
+              <li>Implement bidirectional BFS using <strong>two simultaneous frontiers</strong></li>
+              <li>Analyse time and space complexity: <strong>O(b<sup>d/2</sup>)</strong></li>
+              <li>Identify <strong>prerequisites</strong> for applying bidirectional search (reversible operators, known goal state)</li>
+              <li>Recognise limitations and GATE-style questions involving bidirectional search</li>
+            </ul></div>
+
+            <div class="content-body">
+
+              <!-- Section 1 -->
+              <section id="intuition">
+                <h2>1. Core Intuition: Meet in the Middle</h2>
+                <p>Standard BFS from the start state S explores all nodes up to depth d, generating up to <strong>O(b<sup>d</sup>)</strong> nodes. Bidirectional search runs <em>two</em> simultaneous BFS instances:</p>
+                <ul>
+                  <li><strong>Forward search</strong> &mdash; expands from the start state S.</li>
+                  <li><strong>Backward search</strong> &mdash; expands from the goal state G, following edges in reverse.</li>
+                </ul>
+                <p>Each search only needs to reach depth <strong>d/2</strong> before the two frontiers intersect. Since each half generates O(b<sup>d/2</sup>) nodes, the total work is:</p>
+                <div class="formula-box">
+                  <p>2 &times; O(b<sup>d/2</sup>) = <strong>O(b<sup>d/2</sup>)</strong></p>
+                </div>
+
+                <div class="key-concept">
+                  <h4>&#128161; Why the Savings Are Enormous</h4>
+                  <p>Consider b&nbsp;=&nbsp;10 and d&nbsp;=&nbsp;6. Standard BFS explores up to 10<sup>6</sup>&nbsp;=&nbsp;1,000,000 nodes. Bidirectional search explores 2&nbsp;&times;&nbsp;10<sup>3</sup>&nbsp;=&nbsp;2,000 nodes &mdash; a <strong>500&times; reduction</strong>.</p>
+                </div>
+
+                <p>Visually, imagine two circles expanding from S and G respectively. The area of each circle is proportional to b<sup>d/2</sup>. Instead of one giant circle of area b<sup>d</sup>, we have two small circles whose combined area is far less.</p>
+              </section>
+
+              <!-- Section 2 -->
+              <section id="requirements">
+                <h2>2. Requirements for Bidirectional Search</h2>
+                <p>Bidirectional search is not always applicable. It requires:</p>
+                <table class="styled-table">
+                  <thead><tr><th>Requirement</th><th>Explanation</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Explicit goal state</strong></td><td>The goal must be a specific state (e.g., a city), not just a goal <em>test</em> function (e.g., &ldquo;any state with checkmate&rdquo;). If the goal is described only by a predicate, we cannot start a backward search from it.</td></tr>
+                    <tr><td><strong>Reversible operators</strong></td><td>We must be able to generate <strong>predecessors</strong> of a state, i.e., reverse the actions. In a road map this is trivial (drive both ways). In some problems (e.g., irreversible chemical reactions) predecessors may be hard to compute.</td></tr>
+                    <tr><td><strong>Efficient intersection check</strong></td><td>At every expansion, we must check whether a newly generated node already appears in the <em>other</em> search&rsquo;s frontier or explored set. Using a <strong>hash set</strong>, this is O(1) per check.</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <!-- Section 3 -->
+              <section id="algorithm">
+                <h2>3. Bidirectional BFS Algorithm</h2>
+                <p>The most common variant uses BFS in both directions. We maintain:</p>
+                <ul>
+                  <li><code>frontier_F</code> and <code>explored_F</code> for the forward search.</li>
+                  <li><code>frontier_B</code> and <code>explored_B</code> for the backward search.</li>
+                </ul>
+
+                <div class="pseudocode-block">
+                  <h4>Pseudocode: Bidirectional-BFS</h4>
+<pre>
+function BIDIRECTIONAL-BFS(problem):
+    node_s &larr; MAKE-NODE(problem.initial_state)
+    node_g &larr; MAKE-NODE(problem.goal_state)
+
+    if problem.initial_state = problem.goal_state:
+        return SOLUTION(node_s)
+
+    frontier_F &larr; FIFO-QUEUE(node_s)
+    frontier_B &larr; FIFO-QUEUE(node_g)
+    explored_F &larr; {problem.initial_state}
+    explored_B &larr; {problem.goal_state}
+
+    while frontier_F is not empty AND frontier_B is not empty:
+
+        // ---- Forward step ----
+        node &larr; POP(frontier_F)
+        for each child in EXPAND(node, problem):
+            state &larr; child.state
+            if state in explored_B OR state in frontier_B:
+                return JOIN-SOLUTIONS(child, backward_node(state))
+            if state not in explored_F:
+                explored_F &larr; explored_F &cup; {state}
+                ADD(frontier_F, child)
+
+        // ---- Backward step ----
+        node &larr; POP(frontier_B)
+        for each child in EXPAND-BACKWARD(node, problem):
+            state &larr; child.state
+            if state in explored_F OR state in frontier_F:
+                return JOIN-SOLUTIONS(forward_node(state), child)
+            if state not in explored_B:
+                explored_B &larr; explored_B &cup; {state}
+                ADD(frontier_B, child)
+
+    return FAILURE
+</pre>
+                </div>
+
+                <h3>Key Implementation Details</h3>
+                <ul>
+                  <li><strong>EXPAND-BACKWARD</strong>: generates predecessors by applying <em>inverse</em> operators. For a graph with an adjacency list, this means iterating over incoming edges instead of outgoing edges.</li>
+                  <li><strong>JOIN-SOLUTIONS</strong>: concatenates the path from S to the meeting node (from the forward search) with the <em>reversed</em> path from G to the meeting node (from the backward search).</li>
+                  <li>The intersection check &mdash; <code>state in explored_B</code> &mdash; must be O(1); use a hash table (Python <code>set</code>, Java <code>HashSet</code>).</li>
+                  <li>We alternate one expansion step forward, one backward. Some implementations expand the <strong>smaller frontier</strong> first to balance memory.</li>
+                </ul>
+              </section>
+
+              <!-- Section 4 -->
+              <section id="trace-example">
+                <h2>4. Step-by-Step Trace</h2>
+                <p>Consider the following undirected graph with unit-cost edges:</p>
+                <div class="example-box">
+                  <h4>Example Graph</h4>
+<pre>
+      A --- B --- C
+      |         |
+      D --- E --- F
+</pre>
+                  <p>Start: <strong>A</strong>, Goal: <strong>F</strong>. Solution depth d&nbsp;=&nbsp;3 (A&rarr;B&rarr;C&rarr;F or A&rarr;D&rarr;E&rarr;F).</p>
+                </div>
+
+                <table class="styled-table">
+                  <thead><tr><th>Step</th><th>Action</th><th>Frontier_F</th><th>Frontier_B</th><th>Explored_F</th><th>Explored_B</th><th>Intersection?</th></tr></thead>
+                  <tbody>
+                    <tr><td>Init</td><td>&mdash;</td><td>[A]</td><td>[F]</td><td>{A}</td><td>{F}</td><td>No</td></tr>
+                    <tr><td>1 (Fwd)</td><td>Expand A &rarr; B, D</td><td>[B, D]</td><td>[F]</td><td>{A, B, D}</td><td>{F}</td><td>No</td></tr>
+                    <tr><td>2 (Bwd)</td><td>Expand F &rarr; C, E</td><td>[B, D]</td><td>[C, E]</td><td>{A, B, D}</td><td>{F, C, E}</td><td>No</td></tr>
+                    <tr><td>3 (Fwd)</td><td>Expand B &rarr; A(skip), C</td><td>[D, C]</td><td>[C, E]</td><td>{A, B, D, C}</td><td>{F, C, E}</td><td><strong>Yes! C &isin; explored_B</strong></td></tr>
+                  </tbody>
+                </table>
+
+                <p><strong>Meeting point:</strong> C. Forward path: A&rarr;B&rarr;C. Backward path: F&rarr;C (reversed: C&rarr;F). Joined solution: <strong>A &rarr; B &rarr; C &rarr; F</strong> (cost&nbsp;=&nbsp;3).</p>
+
+                <div class="key-concept">
+                  <h4>&#128161; Nodes Explored</h4>
+                  <p>Bidirectional BFS explored {A, B, D} forward and {F, C, E} backward = <strong>6 nodes total</strong>. Standard BFS from A would explore A, B, D, C, E, F &mdash; also 6 in this small example, but the asymptotic savings are massive for larger graphs.</p>
+                </div>
+              </section>
+
+              <!-- Section 5 -->
+              <section id="properties">
+                <h2>5. Properties of Bidirectional Search</h2>
+
+                <table class="styled-table">
+                  <thead><tr><th>Property</th><th>Value</th><th>Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Complete?</strong></td><td>Yes</td><td>If both directions use BFS (b is finite) and graph search to avoid revisits.</td></tr>
+                    <tr><td><strong>Optimal?</strong></td><td>Yes (with BFS + unit costs)</td><td>Both frontiers expand level by level; the meeting point lies on a shortest path.</td></tr>
+                    <tr><td><strong>Time</strong></td><td>O(b<sup>d/2</sup>)</td><td>Each direction explores at most depth d/2.</td></tr>
+                    <tr><td><strong>Space</strong></td><td>O(b<sup>d/2</sup>)</td><td>Must store both frontiers and explored sets in memory.</td></tr>
+                    <tr><td><strong>Data Structure</strong></td><td>Two FIFO queues + two hash sets</td><td>Hash sets for O(1) intersection checking.</td></tr>
+                  </tbody>
+                </table>
+
+                <h3>5.1 Completeness Proof Sketch</h3>
+                <p>If a solution of depth d exists, the forward BFS will reach depth &lceil;d/2&rceil; and the backward BFS will reach depth &lfloor;d/2&rfloor; (or vice versa). At that point, some node on the optimal path must be in both explored sets, triggering an intersection. Since BFS is complete when b is finite, each direction is guaranteed to reach its half of the path.</p>
+
+                <h3>5.2 Optimality Analysis</h3>
+                <p>When both directions use BFS with <strong>unit step costs</strong>, each direction expands nodes in order of their distance from the respective origin. The first intersection found is at the midpoint of a shortest path, so the total path length is optimal.</p>
+
+                <div class="warning-box">
+                  <h4>&#9888; Non-Unit Costs</h4>
+                  <p>With variable step costs, bidirectional BFS is <strong>not guaranteed to be optimal</strong>. The first meeting point might not lie on the cheapest path. You would need <strong>Bidirectional UCS</strong> with a more careful termination condition (checking that no shorter path can still be discovered).</p>
+                </div>
+              </section>
+
+              <!-- Section 6 -->
+              <section id="complexity-deep-dive">
+                <h2>6. Complexity Deep Dive</h2>
+
+                <h3>6.1 Why O(b<sup>d/2</sup>) Instead of O(b<sup>d</sup>)?</h3>
+                <p>BFS generates all nodes up to depth k, totalling approximately b<sup>k</sup> nodes (dominant term). In bidirectional search, each direction goes to depth d/2:</p>
+                <div class="formula-box">
+                  <p>Total nodes &asymp; b<sup>d/2</sup> (forward) + b<sup>d/2</sup> (backward) = 2 &middot; b<sup>d/2</sup> = O(b<sup>d/2</sup>)</p>
+                </div>
+
+                <h3>6.2 Numerical Comparison</h3>
+                <table class="styled-table">
+                  <thead><tr><th>b</th><th>d</th><th>BFS: b<sup>d</sup></th><th>Bidirectional: 2&middot;b<sup>d/2</sup></th><th>Speedup</th></tr></thead>
+                  <tbody>
+                    <tr><td>2</td><td>20</td><td>1,048,576</td><td>2,048</td><td>512&times;</td></tr>
+                    <tr><td>10</td><td>6</td><td>1,000,000</td><td>2,000</td><td>500&times;</td></tr>
+                    <tr><td>10</td><td>10</td><td>10,000,000,000</td><td>200,000</td><td>50,000&times;</td></tr>
+                    <tr><td>4</td><td>12</td><td>16,777,216</td><td>8,192</td><td>2,048&times;</td></tr>
+                  </tbody>
+                </table>
+                <p>The savings grow <strong>exponentially</strong> with d. This is the primary motivation for bidirectional search.</p>
+
+                <h3>6.3 Space Requirement</h3>
+                <p>Both directions must keep their frontiers and explored sets in memory simultaneously. The total space is O(b<sup>d/2</sup>) &mdash; much better than BFS&rsquo;s O(b<sup>d</sup>), but still exponential. For extremely large state spaces, even bidirectional search may exhaust memory.</p>
+              </section>
+
+              <!-- Section 7 -->
+              <section id="checking-intersection">
+                <h2>7. Checking Frontier Intersection</h2>
+                <p>The critical operation is determining when the two searches have overlapping states. There are two strategies:</p>
+
+                <h3>7.1 Check Against Explored Set</h3>
+                <p>After generating a child node in one direction, check if its state appears in the other direction&rsquo;s <code>explored</code> set. This is O(1) with a hash set. This is the most common approach.</p>
+
+                <h3>7.2 Check Against Frontier</h3>
+                <p>Also check the other direction&rsquo;s <code>frontier</code>. This catches intersections one step earlier but requires the frontier to support O(1) membership testing (e.g., augment the queue with a hash set).</p>
+
+                <div class="key-concept">
+                  <h4>&#128161; Best Practice</h4>
+                  <p>Maintain a hash set <strong>shadow copy</strong> of each frontier for O(1) lookups. When a node is removed from the frontier queue, also remove it from the shadow set. This avoids O(n) scans of the queue.</p>
+                </div>
+
+                <h3>7.3 Handling Multiple Meeting Points</h3>
+                <p>In some graphs, multiple nodes may appear in both explored sets simultaneously (especially if we expand an entire BFS level at once). We must select the meeting point that yields the <strong>shortest total path</strong>. With unit costs and level-by-level expansion, any first meeting point is optimal.</p>
+              </section>
+
+              <!-- Section 8 -->
+              <section id="limitations">
+                <h2>8. Limitations</h2>
+                <ul>
+                  <li><strong>Predecessor generation</strong>: In some domains, computing which states lead <em>to</em> a given state is expensive or impossible (e.g., a puzzle where moves are irreversible).</li>
+                  <li><strong>Multiple goal states</strong>: If there are many possible goal states (e.g., &ldquo;any state where the board is clean&rdquo;), backward search must start from <em>all</em> of them, potentially negating the savings.</li>
+                  <li><strong>Variable costs</strong>: As noted earlier, bidirectional BFS is only optimal with unit costs. Bidirectional UCS exists but is more complex.</li>
+                  <li><strong>Implementation complexity</strong>: Managing two simultaneous searches, intersection detection, and path reconstruction is significantly more complex than a single BFS.</li>
+                  <li><strong>Memory</strong>: Still exponential (O(b<sup>d/2</sup>)), so it does not solve the fundamental memory problem of BFS-based approaches.</li>
+                </ul>
+              </section>
+
+              <!-- Section 9 -->
+              <section id="worked-examples">
+                <h2>9. Worked Examples (GATE-Style)</h2>
+
+                <h3>Example 1: Node Count Calculation</h3>
+                <div class="example-box">
+                  <p><strong>Q:</strong> A search problem has branching factor b&nbsp;=&nbsp;10 and solution depth d&nbsp;=&nbsp;8. How many nodes does bidirectional BFS generate (approximately)?</p>
+                  <p><strong>A:</strong> Each direction searches to depth 4. Nodes per direction &asymp; b<sup>4</sup>&nbsp;=&nbsp;10,000. Total &asymp; 2&nbsp;&times;&nbsp;10,000 = <strong>20,000 nodes</strong>.</p>
+                  <p>Compare with standard BFS: 10<sup>8</sup> = 100,000,000 nodes. Speedup: <strong>5,000&times;</strong>.</p>
+                </div>
+
+                <h3>Example 2: When Bidirectional Search Fails</h3>
+                <div class="example-box">
+                  <p><strong>Q:</strong> Can bidirectional search be used to solve the 8-puzzle?</p>
+                  <p><strong>A:</strong> <strong>Yes.</strong> The 8-puzzle has reversible operators (sliding tiles in any direction) and a specific goal state. Predecessors are easy to compute (just apply the same move operators from the goal).</p>
+                </div>
+
+                <h3>Example 3: Applicable or Not?</h3>
+                <div class="example-box">
+                  <p><strong>Q:</strong> A robot must navigate a grid to reach <em>any</em> cell marked as an &ldquo;exit.&rdquo; There are 50 exit cells. Is bidirectional search a good choice?</p>
+                  <p><strong>A:</strong> It <em>can</em> be applied by starting the backward search from all 50 exit cells simultaneously (add all to the initial backward frontier). However, this increases the backward frontier size and may reduce the efficiency advantage depending on d and b. For small numbers of goals, it is still beneficial.</p>
+                </div>
+
+                <h3>Example 4: Detailed Trace &mdash; Romania Map</h3>
+                <div class="example-box">
+                  <p><strong>Q:</strong> Start: Arad, Goal: Bucharest. Selected edges (unit cost for simplicity): Arad&ndash;Sibiu, Arad&ndash;Timisoara, Sibiu&ndash;Fagaras, Sibiu&ndash;Rimnicu Vilcea, Fagaras&ndash;Bucharest, Rimnicu Vilcea&ndash;Pitesti, Pitesti&ndash;Bucharest, Timisoara&ndash;Lugoj.</p>
+                  <ol>
+                    <li><strong>Init:</strong> F_fwd=[Arad], F_bwd=[Bucharest], E_fwd={Arad}, E_bwd={Bucharest}.</li>
+                    <li><strong>Fwd:</strong> Expand Arad &rarr; Sibiu, Timisoara. E_fwd={Arad, Sibiu, Timisoara}. Check: neither in E_bwd.</li>
+                    <li><strong>Bwd:</strong> Expand Bucharest &rarr; Fagaras, Pitesti. E_bwd={Bucharest, Fagaras, Pitesti}. Check: neither in E_fwd.</li>
+                    <li><strong>Fwd:</strong> Expand Sibiu &rarr; Arad(skip), Fagaras, Rimnicu Vilcea. <strong>Fagaras &isin; E_bwd!</strong> &rarr; Intersection found!</li>
+                  </ol>
+                  <p>Forward path: Arad&rarr;Sibiu&rarr;Fagaras. Backward path: Bucharest&rarr;Fagaras (reversed: Fagaras&rarr;Bucharest). Solution: <strong>Arad&rarr;Sibiu&rarr;Fagaras&rarr;Bucharest</strong>, length 3.</p>
+                </div>
+              </section>
+
+              <!-- Section 10 -->
+              <section id="variants">
+                <h2>10. Variants and Extensions</h2>
+                <ul>
+                  <li><strong>Bidirectional UCS</strong>: Uses priority queues ordered by g(n) in both directions. Requires a more careful stopping criterion to ensure optimality.</li>
+                  <li><strong>Bidirectional A*</strong>: Combines bidirectional search with heuristics. The backward heuristic estimates cost from a node to the start. Requires consistent heuristics.</li>
+                  <li><strong>Front-to-Front vs Front-to-End</strong>: &ldquo;Front-to-Front&rdquo; checks if a new node is in the other&rsquo;s frontier; &ldquo;Front-to-End&rdquo; checks the explored set. Front-to-Front can be more efficient but harder to implement.</li>
+                  <li><strong>MM (Meet in the Middle)</strong>: A modern bidirectional algorithm that guarantees optimality with consistent heuristics and expands the side with the smaller f-value frontier.</li>
+                </ul>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section"><ul>
+                  <li>Bidirectional search runs <strong>two simultaneous BFS</strong> instances from start and goal.</li>
+                  <li>Time and space: <strong>O(b<sup>d/2</sup>)</strong> &mdash; an exponential improvement over standard BFS.</li>
+                  <li>Requires: explicit goal state, reversible operators, efficient intersection checking.</li>
+                  <li><strong>Complete</strong> with BFS in both directions (finite b). <strong>Optimal</strong> with unit step costs.</li>
+                  <li>Limitations: predecessor generation, multiple goals, variable edge costs, implementation complexity.</li>
+                  <li>For GATE: know the complexity formula, when it applies, and its advantages over BFS.</li>
+                </ul></div>
+              </section>
+
+              <section id="references"><h2>References</h2><ul>
+                <li>Russell &amp; Norvig, <em>AIMA</em>, Chapter 3.4.6.</li>
+                <li>Pohl, I. (1971). &ldquo;Bi-directional Search.&rdquo; <em>Machine Intelligence</em>, 6, 127&ndash;140.</li>
+              </ul></section>
+            </div>
+
+            <button class="complete-btn" data-page="ch02-bidirectional">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="uniform-cost-search.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Uniform-Cost Search</span></a>
+              <a href="comparison-of-uninformed-strategies.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Comparison of Strategies</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#intuition">1. Core Intuition</a></li>
+            <li><a href="#requirements">2. Requirements</a></li>
+            <li><a href="#algorithm">3. Algorithm</a></li>
+            <li><a href="#trace-example">4. Step-by-Step Trace</a></li>
+            <li><a href="#properties">5. Properties</a></li>
+            <li><a href="#complexity-deep-dive">6. Complexity Deep Dive</a></li>
+            <li><a href="#checking-intersection">7. Intersection Checking</a></li>
+            <li><a href="#limitations">8. Limitations</a></li>
+            <li><a href="#worked-examples">9. Worked Examples</a></li>
+            <li><a href="#variants">10. Variants</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

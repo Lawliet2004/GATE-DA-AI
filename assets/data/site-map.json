@@ -1,0 +1,315 @@
+{
+  "chapters": [
+    {
+      "id": "ch00",
+      "title": "Introduction to AI",
+      "folder": "00-introduction",
+      "pages": [
+        "what-is-ai.html",
+        "history-of-ai.html",
+        "ai-applications.html",
+        "ai-vs-ml-vs-dl.html",
+        "quiz.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch01",
+      "title": "Intelligent Agents",
+      "folder": "01-intelligent-agents",
+      "pages": [
+        "agents-and-environments.html",
+        "agent-types.html",
+        "rationality.html",
+        "task-environments.html",
+        "quiz.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch02",
+      "title": "Uninformed Search",
+      "folder": "02-uninformed-search",
+      "pages": [
+        "search-problem-formulation.html",
+        "breadth-first-search.html",
+        "depth-first-search.html",
+        "uniform-cost-search.html",
+        "depth-limited-search.html",
+        "iterative-deepening.html",
+        "bidirectional-search.html",
+        "comparison-table.html",
+        "search-tree-visualizer.html",
+        "quiz-easy.html",
+        "quiz-medium.html",
+        "quiz-hard.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch03",
+      "title": "Informed Search",
+      "folder": "03-informed-search",
+      "pages": [
+        "heuristic-functions.html",
+        "greedy-best-first.html",
+        "a-star-search.html",
+        "admissibility-consistency.html",
+        "ida-star.html",
+        "rbfs.html",
+        "local-search.html",
+        "hill-climbing.html",
+        "simulated-annealing.html",
+        "genetic-algorithms.html",
+        "a-star-visualizer.html",
+        "quiz.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch04",
+      "title": "Adversarial Search",
+      "folder": "04-adversarial-search",
+      "pages": [
+        "game-theory-intro.html",
+        "minimax-algorithm.html",
+        "alpha-beta-pruning.html",
+        "move-ordering.html",
+        "expectiminimax.html",
+        "monte-carlo-tree-search.html",
+        "tic-tac-toe-demo.html",
+        "quiz-easy.html",
+        "quiz-medium.html",
+        "quiz-hard.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch05",
+      "title": "Propositional Logic",
+      "folder": "05-propositional-logic",
+      "pages": [
+        "syntax-semantics.html",
+        "connectives-truth-tables.html",
+        "logical-equivalences.html",
+        "normal-forms.html",
+        "inference-rules.html",
+        "resolution.html",
+        "horn-clauses.html",
+        "sat-problem.html",
+        "truth-table-generator.html",
+        "quiz-easy.html",
+        "quiz-medium.html",
+        "quiz-hard.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch06",
+      "title": "Predicate Logic",
+      "folder": "06-predicate-logic",
+      "pages": [
+        "first-order-logic.html",
+        "quantifiers.html",
+        "unification.html",
+        "skolemization.html",
+        "fol-inference.html",
+        "forward-backward-chaining.html",
+        "fol-resolution.html",
+        "knowledge-engineering.html",
+        "quiz-easy.html",
+        "quiz-medium.html",
+        "quiz-hard.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch07",
+      "title": "Reasoning Under Uncertainty",
+      "folder": "07-reasoning-under-uncertainty",
+      "pages": [
+        "probability-basics.html",
+        "conditional-probability.html",
+        "bayes-theorem.html",
+        "bayesian-networks.html",
+        "d-separation.html",
+        "exact-inference.html",
+        "variable-elimination.html",
+        "approximate-inference.html",
+        "hmms.html",
+        "markov-models.html",
+        "decision-networks.html",
+        "naive-bayes.html",
+        "bayesian-network-demo.html",
+        "quiz-easy.html",
+        "quiz-medium.html",
+        "quiz-hard.html",
+        "quiz-nat.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch08",
+      "title": "Machine Learning Foundations",
+      "folder": "08-machine-learning-foundations",
+      "pages": [
+        "ml-paradigms.html",
+        "supervised-learning.html",
+        "unsupervised-learning.html",
+        "bias-variance.html",
+        "evaluation-metrics.html",
+        "quiz.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch09",
+      "title": "Neural Networks & Deep Learning",
+      "folder": "09-neural-networks-deep-learning",
+      "pages": [
+        "perceptron.html",
+        "multilayer-networks.html",
+        "backpropagation.html",
+        "activation-functions.html",
+        "optimization.html",
+        "regularization-dropout.html",
+        "cnns.html",
+        "rnns-lstms.html",
+        "attention-transformers.html",
+        "perceptron-demo.html",
+        "quiz.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch10",
+      "title": "Natural Language Processing",
+      "folder": "10-natural-language-processing",
+      "pages": [
+        "text-preprocessing.html",
+        "bag-of-words-tfidf.html",
+        "word-embeddings.html",
+        "language-models.html",
+        "text-classification.html",
+        "sequence-labeling.html",
+        "quiz.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch11",
+      "title": "Computer Vision",
+      "folder": "11-computer-vision",
+      "pages": [
+        "image-fundamentals.html",
+        "filtering-edge-detection.html",
+        "feature-extraction.html",
+        "object-detection.html",
+        "image-classification.html",
+        "quiz.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch12",
+      "title": "Reinforcement Learning",
+      "folder": "12-reinforcement-learning",
+      "pages": [
+        "mdp.html",
+        "value-iteration.html",
+        "policy-iteration.html",
+        "temporal-difference.html",
+        "q-learning.html",
+        "sarsa.html",
+        "deep-rl.html",
+        "q-learning-demo.html",
+        "quiz.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch13",
+      "title": "Planning",
+      "folder": "13-planning",
+      "pages": [
+        "classical-planning.html",
+        "strips-representation.html",
+        "planning-graphs.html",
+        "partial-order-planning.html",
+        "hierarchical-planning.html",
+        "quiz.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch14",
+      "title": "Constraint Satisfaction",
+      "folder": "14-constraint-satisfaction",
+      "pages": [
+        "csp-formulation.html",
+        "constraint-propagation.html",
+        "backtracking-search.html",
+        "arc-consistency.html",
+        "heuristics-for-csp.html",
+        "quiz.html",
+        "cheatsheet.html",
+        "gate-pyqs.html"
+      ]
+    },
+    {
+      "id": "ch15",
+      "title": "Advanced Topics",
+      "folder": "15-advanced-topics",
+      "pages": [
+        "explainable-ai.html",
+        "ai-ethics-fairness.html",
+        "transfer-learning.html",
+        "generative-models.html",
+        "multimodal-ai.html",
+        "ai-safety.html",
+        "current-trends.html",
+        "quiz.html",
+        "cheatsheet.html",
+        "gate-pyqs.html",
+        "further-reading.html"
+      ]
+    },
+    {
+      "id": "ch16",
+      "title": "GATE DA Preparation",
+      "folder": "16-gate-da-preparation",
+      "pages": [
+        "exam-pattern-strategy.html",
+        "topic-wise-weightage.html",
+        "previous-year-compilation.html",
+        "formula-sheet.html",
+        "common-mistakes.html",
+        "mock-test-1.html",
+        "mock-test-2.html",
+        "mock-test-3.html",
+        "final-revision-checklist.html"
+      ]
+    }
+  ],
+  "mainPages": [
+    "index.html",
+    "syllabus.html",
+    "roadmap.html",
+    "about.html",
+    "glossary.html"
+  ]
+}

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SMA* (Simplified Memory-Bounded A*) — uses all available memory, drops worst leaf when full, backs up f-values, pseudocode, and examples for GATE DA AI preparation.">
+  <title>SMA* Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a><a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a><a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a><a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Overview<span class="link-type notes">Notes</span></a><a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a><a href="../01-intelligent-agents/practical-agent-simulation.html" class="sidebar-link"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a><a href="../01-intelligent-agents/notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a><a href="../01-intelligent-agents/quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/breadth-first-search.html" class="sidebar-link"><span class="link-check"></span> BFS<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/uniform-cost-search.html" class="sidebar-link"><span class="link-check"></span> UCS<span class="link-type theory">Theory</span></a><a href="../02-uninformed-search/quiz-uninformed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+            <a href="greedy-best-first-search.html" class="sidebar-link"><span class="link-check"></span> Greedy Best-First<span class="link-type theory">Theory</span></a>
+            <a href="a-star-search.html" class="sidebar-link"><span class="link-check"></span> A* Search<span class="link-type theory">Theory</span></a>
+            <a href="admissibility-and-consistency.html" class="sidebar-link"><span class="link-check"></span> Admissibility &amp; Consistency<span class="link-type theory">Theory</span></a>
+            <a href="ida-star.html" class="sidebar-link"><span class="link-check"></span> IDA*<span class="link-type theory">Theory</span></a>
+            <a href="rbfs.html" class="sidebar-link"><span class="link-check"></span> RBFS<span class="link-type theory">Theory</span></a>
+            <a href="sma-star.html" class="sidebar-link active"><span class="link-check"></span> SMA*<span class="link-type theory">Theory</span></a>
+            <a href="memory-bounded-search.html" class="sidebar-link"><span class="link-check"></span> Memory-Bounded<span class="link-type theory">Theory</span></a>
+            <a href="local-search-hill-climbing.html" class="sidebar-link"><span class="link-check"></span> Hill Climbing<span class="link-type theory">Theory</span></a>
+            <a href="simulated-annealing.html" class="sidebar-link"><span class="link-check"></span> Simulated Annealing<span class="link-type theory">Theory</span></a>
+            <a href="genetic-algorithms.html" class="sidebar-link"><span class="link-check"></span> Genetic Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="pattern-databases.html" class="sidebar-link"><span class="link-check"></span> Pattern Databases<span class="link-type theory">Theory</span></a>
+            <a href="heuristic-design-techniques.html" class="sidebar-link"><span class="link-check"></span> Heuristic Design<span class="link-type theory">Theory</span></a>
+            <a href="practical-informed-search.html" class="sidebar-link"><span class="link-check"></span> A* Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-informed.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-informed-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-informed-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> FOL Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-introduction.html" class="sidebar-link"><span class="link-check"></span> ML Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../09-neural-networks-deep-learning/neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> NN Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/planning-introduction.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> CSP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-topics-overview.html" class="sidebar-link"><span class="link-check"></span> Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-preparation-overview.html" class="sidebar-link"><span class="link-check"></span> Preparation Guide<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="heuristic-functions.html">Ch 3: Informed Search</a> &raquo;
+          <span class="current">SMA*</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch03-sma-star">
+
+            <h1>SMA* &mdash; Simplified Memory-Bounded A*</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge low">GATE Relevance: Low</span>
+              <button class="bookmark-btn" data-page="ch03-sma-star" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="a-star-search.html">A* Search</a> &mdash; f(n) = g(n) + h(n) and open/closed lists</li>
+                <li><a href="rbfs.html">RBFS</a> &mdash; recursive best-first approach and backed-up f-values</li>
+                <li><a href="ida-star.html">IDA*</a> &mdash; iterative deepening with f-cost cutoff</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand SMA* as a memory-bounded variant of A*</li>
+                <li>Explain the &ldquo;drop worst leaf, back up f-value&rdquo; mechanism</li>
+                <li>Write and trace SMA* pseudocode</li>
+                <li>Compare SMA* with RBFS and IDA*</li>
+                <li>Identify when SMA* is the best choice</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Section 1: Core Idea -->
+              <section id="idea">
+                <h2>1. Core Idea</h2>
+                <p>A* is optimal and complete, but its exponential memory requirement makes it impractical for large state spaces. <strong>SMA*</strong> (Simplified Memory-Bounded A*) addresses this by using <em>all available memory</em> to conduct a best-first search. When memory is full and a new node needs to be added, SMA* <strong>drops the worst leaf node</strong> (the one with the highest f-value) and <strong>backs up its f-value to its parent</strong>, preserving information about the forgotten subtree.</p>
+
+                <div class="key-concept">
+                  <h4>Key Principle</h4>
+                  <p>SMA* behaves exactly like A* when enough memory is available. When memory runs out, it gracefully degrades by forgetting the least promising nodes while remembering how promising they were.</p>
+                </div>
+
+                <p>The algorithm was introduced by Stuart Russell (1992) as a simplification of the earlier MA* algorithm. The key innovation is that SMA* maintains a single data structure (the search queue) and uses a simple drop-and-backup strategy rather than the more complex bookkeeping of MA*.</p>
+
+                <h3>1.1 Why Not Just Use RBFS or IDA*?</h3>
+                <p>Both RBFS and IDA* use only O(bd) memory, which is minimal but wasteful when more memory is available. If a machine has, say, 8 GB of RAM, RBFS and IDA* will only use a tiny fraction of it, discarding information they could profitably retain. SMA* fills this gap: it uses <strong>whatever memory you give it</strong>, trading off between A*&rsquo;s memory-hungry optimality and RBFS&rsquo;s memory thriftiness.</p>
+              </section>
+
+              <!-- Section 2: How SMA* Works -->
+              <section id="mechanism">
+                <h2>2. How SMA* Works</h2>
+                <p>SMA* maintains a priority queue (open list) of nodes, sorted by f-value. The algorithm proceeds as follows:</p>
+
+                <ol>
+                  <li><strong>Expand the best node</strong> (lowest f-value) from the queue.</li>
+                  <li><strong>Generate one successor at a time.</strong> For each successor:
+                    <ul>
+                      <li>Compute f(successor) = max(f(parent), g(successor) + h(successor)). The max ensures f-values are non-decreasing along any path (monotonicity).</li>
+                      <li>If the successor is already in memory with a higher f-value, update it.</li>
+                    </ul>
+                  </li>
+                  <li><strong>If memory is full</strong> and we need to insert a new node:
+                    <ul>
+                      <li>Find the <strong>worst leaf node</strong> &mdash; the leaf with the highest f-value. Break ties by choosing the <em>shallowest</em> such node (to preserve deeper nodes that took more work to reach).</li>
+                      <li><strong>Back up</strong> this node&rsquo;s f-value to its parent. The parent records: &ldquo;my forgotten child had f = X.&rdquo;</li>
+                      <li><strong>Remove</strong> the worst leaf from memory.</li>
+                      <li><strong>Insert</strong> the new successor in its place.</li>
+                    </ul>
+                  </li>
+                  <li><strong>If a node&rsquo;s best forgotten child</strong> becomes more promising than current alternatives, SMA* will regenerate it later (since the parent stores the backed-up f-value).</li>
+                </ol>
+
+                <div class="warning-box">
+                  <h4>&#9888; Important Detail</h4>
+                  <p>When computing f(successor), SMA* uses <code>max(f(parent), g(s)+h(s))</code> rather than simply <code>g(s)+h(s)</code>. This guarantees that f-values never decrease along a path, which is essential for the algorithm&rsquo;s correctness. With a consistent heuristic this max is always equal to g(s)+h(s), but with merely admissible heuristics the parent&rsquo;s f-value may be higher.</p>
+                </div>
+              </section>
+
+              <!-- Section 3: Pseudocode -->
+              <section id="pseudocode">
+                <h2>3. Pseudocode</h2>
+                <pre><code>function SMA-STAR(problem, max_nodes):
+    // max_nodes = maximum number of nodes that fit in memory
+    root = MAKE-NODE(problem.initial_state)
+    root.f = max(g(root) + h(root), 0)  // = h(root)
+    queue = priority queue ordered by f, depth (deeper preferred for ties)
+    INSERT(queue, root)
+
+    loop:
+        if queue is EMPTY:
+            return FAILURE
+
+        node = BEST(queue)           // lowest-f node (deepest if tie)
+
+        if GOAL-TEST(node.state):
+            return SOLUTION(node)
+
+        // Generate the next unexpanded successor of node
+        successor = NEXT-SUCCESSOR(node)
+        successor.f = max(node.f, g(successor) + h(successor))
+
+        if ALL successors of node have been generated:
+            // node is now fully expanded; update its f-value
+            node.f = min(f-values of node's successors in memory)
+
+        if memory is FULL (|queue| == max_nodes):
+            // Drop the worst leaf (highest f, shallowest if tied)
+            worst = WORST-LEAF(queue)
+            // Back up f-value to parent
+            worst.parent.forgotten_f = min(worst.parent.forgotten_f, worst.f)
+            REMOVE(queue, worst)
+
+        INSERT(queue, successor)
+
+    return FAILURE   // unreachable if solvable within memory</code></pre>
+
+                <div class="note-box">
+                  <h4>&#128221; Implementation Notes</h4>
+                  <ul>
+                    <li>Each node tracks which successors have been generated (an index or set).</li>
+                    <li>Each node may store a <code>forgotten_f</code> value representing the best f-value among forgotten children.</li>
+                    <li>When all on-path children are exhausted and <code>forgotten_f</code> is promising, the node may regenerate its forgotten children.</li>
+                    <li>Tie-breaking: among nodes with equal f, prefer the <strong>deeper</strong> node (closer to a goal). Among worst leaves with equal f, prefer the <strong>shallowest</strong> (cheapest to regenerate).</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- Section 4: Properties -->
+              <section id="properties">
+                <h2>4. Properties of SMA*</h2>
+                <div class="table-responsive">
+                  <table class="styled-table">
+                    <thead>
+                      <tr><th>Property</th><th>SMA*</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>Complete?</strong></td><td>Yes, if any reachable solution fits in memory (i.e., the depth of the shallowest solution &le; max_nodes)</td></tr>
+                      <tr><td><strong>Optimal?</strong></td><td>Yes, if the optimal solution is reachable within the memory limit. Otherwise returns the best solution reachable in memory.</td></tr>
+                      <tr><td><strong>Time</strong></td><td>Depends on memory. With ample memory: same as A*. With tight memory: may regenerate nodes many times (pathological thrashing).</td></tr>
+                      <tr><td><strong>Space</strong></td><td>O(max_nodes) &mdash; uses exactly the memory you give it</td></tr>
+                      <tr><td><strong>Heuristic requirement</strong></td><td>Admissible (for optimality); consistent preferred</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3>4.1 Completeness Condition</h3>
+                <p>SMA* is complete if the shallowest goal node is reachable within the memory budget. Formally, if <em>d</em> is the depth of the shallowest optimal solution, then SMA* needs memory for at least <em>d</em> + 1 nodes (the solution path itself plus one working node). If the available memory is less than this, no memory-bounded algorithm can find the solution.</p>
+
+                <h3>4.2 The Thrashing Problem</h3>
+                <p>When memory is very tight, SMA* may repeatedly generate and forget the same nodes. Consider a search tree where many paths have similar f-values: SMA* drops a node, then the backed-up f-value at the parent makes the parent promising again, so SMA* regenerates the same child. This cycle can repeat indefinitely, making SMA* very slow despite being correct.</p>
+
+                <div class="example-box">
+                  <div class="box-title">Thrashing Scenario</div>
+                  <p>Imagine memory for 3 nodes. The search tree has root S with children A (f=5), B (f=5), and A has children C (f=6), D (f=6).</p>
+                  <ol>
+                    <li>Memory: {S, A, B}. Expand A &rarr; need space for C.</li>
+                    <li>Drop B (worst leaf, f=5, but A is being expanded so B is worst). Memory: {S, A, C}.</li>
+                    <li>S.forgotten_f = 5 (backed up from B). C has f=6 &gt; 5.</li>
+                    <li>Regenerate B (f=5 is promising). Drop C. Memory: {S, A, B}. A.forgotten_f = 6.</li>
+                    <li>The cycle can repeat until SMA* resolves the tie.</li>
+                  </ol>
+                  <p>SMA* eventually breaks out by raising backed-up values, but it can take many cycles.</p>
+                </div>
+              </section>
+
+              <!-- Section 5: Worked Example -->
+              <section id="example">
+                <h2>5. Worked Example &mdash; SMA* Trace</h2>
+                <div class="example-box">
+                  <div class="box-title">Example: SMA* with Memory = 4 Nodes</div>
+                  <pre><code>Graph (directed, edge costs shown):
+  S &rarr; A (cost 2), S &rarr; B (cost 3)
+  A &rarr; C (cost 2), A &rarr; D (cost 3)
+  B &rarr; G (cost 2)
+  C &rarr; G (cost 3)
+
+Heuristics: h(S)=4, h(A)=3, h(B)=2, h(C)=2, h(D)=5, h(G)=0
+Memory limit: 4 nodes</code></pre>
+
+                  <p><strong>Step 1:</strong> Insert S. f(S) = 0+4 = 4. Queue: {S(f=4)}.</p>
+                  <p><strong>Step 2:</strong> Expand S &rarr; generate A. f(A) = max(4, 2+3) = 5. Queue: {S(f=4), A(f=5)}.</p>
+                  <p><strong>Step 3:</strong> Generate B (next successor of S). f(B) = max(4, 3+2) = 5. S fully expanded &rarr; S.f = min(5,5) = 5. Queue: {A(f=5), B(f=5), S(f=5)}.</p>
+                  <p><strong>Step 4:</strong> Best node = A (f=5, deeper than S). Expand A &rarr; generate C. f(C) = max(5, 4+2) = 6. Memory: 4 nodes {S, A, B, C} &mdash; exactly at limit. Queue: {B(f=5), S(f=5), A(f=5), C(f=6)}.</p>
+                  <p><strong>Step 5:</strong> Best = B (f=5, deeper). Expand B &rarr; need memory for G. Memory is full! Drop worst leaf = C (f=6, shallowest worst). Back up: A.forgotten_f = 6. Remove C. Insert G(via B): f(G) = max(5, 5+0) = 5. Queue: {G(f=5), B(f=5), A(f=6), S(f=5)}.</p>
+                  <p><strong>Step 6:</strong> Best = G (f=5). GOAL-TEST(G) = true. <strong>Solution: S &rarr; B &rarr; G, cost = 5.</strong> &#10004;</p>
+                </div>
+
+                <p>Note how SMA* found the optimal solution using only 4 node slots. A* would have needed space for all nodes. SMA* dropped C (which led to a longer path) and used the freed memory for the goal node via B.</p>
+              </section>
+
+              <!-- Section 6: Comparison -->
+              <section id="comparison">
+                <h2>6. SMA* vs RBFS vs IDA*</h2>
+                <div class="table-responsive">
+                  <table class="styled-table">
+                    <thead>
+                      <tr><th>Property</th><th>IDA*</th><th>RBFS</th><th>SMA*</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><strong>Space</strong></td><td>O(bd) &mdash; linear</td><td>O(bd) &mdash; linear</td><td>User-specified (up to A*)</td></tr>
+                      <tr><td><strong>Uses extra memory?</strong></td><td>No &mdash; wastes available RAM</td><td>No &mdash; wastes available RAM</td><td>Yes &mdash; fills whatever you give it</td></tr>
+                      <tr><td><strong>Node regeneration</strong></td><td>High (entire iterations repeated)</td><td>Moderate (subtrees repeated)</td><td>Low if memory is ample; can thrash if tight</td></tr>
+                      <tr><td><strong>Real-valued costs</strong></td><td>Poor (too many unique cutoffs)</td><td>Good</td><td>Good</td></tr>
+                      <tr><td><strong>Implementation</strong></td><td>Simple</td><td>Moderate</td><td>Complex</td></tr>
+                      <tr><td><strong>Optimal?</strong></td><td>Yes (admissible h)</td><td>Yes (admissible h)</td><td>Yes (if solution fits in memory)</td></tr>
+                      <tr><td><strong>Best when&hellip;</strong></td><td>Integer costs, many duplicates OK</td><td>Memory scarce, real-valued costs</td><td>Memory available but not unlimited</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <!-- Section 7: When to Use SMA* -->
+              <section id="when-to-use">
+                <h2>7. When to Use SMA*</h2>
+                <ul>
+                  <li><strong>Use SMA*</strong> when you have a known memory budget and want the best possible search within that budget.</li>
+                  <li><strong>Use RBFS</strong> when memory is extremely limited and you want simplicity.</li>
+                  <li><strong>Use IDA*</strong> when step costs are uniform or integer-valued and the problem has many duplicate f-values (so few iterations are needed).</li>
+                  <li><strong>Use A*</strong> when you have enough memory for the entire search (SMA* degrades to A* in this case anyway).</li>
+                </ul>
+
+                <div class="key-concept">
+                  <h4>Rule of Thumb</h4>
+                  <p>SMA* is most beneficial when memory is limited but not <em>severely</em> limited. If memory is so tight that the solution path barely fits, SMA* will thrash excessively and RBFS may be more practical despite using less memory. If memory is abundant, A* is simpler and equally fast.</p>
+                </div>
+              </section>
+
+              <!-- Section 8: Summary -->
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>SMA* is a memory-bounded version of A* that uses <strong>all available memory</strong>.</li>
+                    <li>When memory is full, it drops the <strong>worst leaf</strong> (highest f, shallowest) and <strong>backs up its f-value</strong> to the parent.</li>
+                    <li>Complete if the shallowest solution fits in memory; optimal under the same condition.</li>
+                    <li>Gracefully degrades: with max memory it becomes A*, with minimal memory it resembles RBFS.</li>
+                    <li>Main weakness: can <strong>thrash</strong> (repeatedly forget and regenerate nodes) when memory is tight relative to the search space.</li>
+                    <li>Preferred over RBFS/IDA* when extra memory is available and should be exploited.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <!-- References -->
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. (1992). &ldquo;Efficient memory-bounded search methods.&rdquo; <em>ECAI-92</em>.</li>
+                  <li>Russell &amp; Norvig, <em>Artificial Intelligence: A Modern Approach</em>, 4th Ed. &mdash; Section 3.5.4.</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch03-sma-star">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="rbfs.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">RBFS</span></a>
+              <a href="memory-bounded-search.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Memory-Bounded Search</span></a>
+            </div>
+
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#idea">1. Core Idea</a></li>
+              <li><a href="#mechanism">2. How SMA* Works</a></li>
+              <li><a href="#pseudocode">3. Pseudocode</a></li>
+              <li><a href="#properties">4. Properties</a></li>
+              <li><a href="#example">5. Worked Example</a></li>
+              <li><a href="#comparison">6. SMA* vs RBFS vs IDA*</a></li>
+              <li><a href="#when-to-use">7. When to Use</a></li>
+              <li><a href="#summary">Summary</a></li>
+              <li><a href="#references">References</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+</body>
+</html>

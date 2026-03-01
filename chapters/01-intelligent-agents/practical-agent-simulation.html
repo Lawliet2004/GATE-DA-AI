@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive Vacuum-Cleaner Agent Simulation — Experiment with random, simple reflex, and model-based agents in a 2-square grid world for GATE DA AI learning.">
+  <title>Agent Simulation (Interactive Demo) — Master AI for GATE DA</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- ========== TOPBAR ========== -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo">
+          <span class="logo-icon">&#129504;</span>
+          <span class="logo-text">Master AI for GATE DA</span>
+        </a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <!-- ========== SIDEBAR ========== -->
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/history-of-ai.html" class="sidebar-link"><span class="link-check"></span> History of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/types-of-ai.html" class="sidebar-link"><span class="link-check"></span> Types of AI<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/ai-vs-ml-vs-dl.html" class="sidebar-link"><span class="link-check"></span> AI vs ML vs DL<span class="link-type theory">Theory</span></a>
+            <a href="../00-introduction/gate-da-exam-overview.html" class="sidebar-link"><span class="link-check"></span> GATE DA Exam Overview<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/notes-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="../00-introduction/quiz-introduction.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group active">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a>
+            <a href="rationality.html" class="sidebar-link"><span class="link-check"></span> Rationality<span class="link-type theory">Theory</span></a>
+            <a href="task-environment-peas.html" class="sidebar-link"><span class="link-check"></span> PEAS Framework<span class="link-type theory">Theory</span></a>
+            <a href="agent-types.html" class="sidebar-link"><span class="link-check"></span> Agent Types<span class="link-type theory">Theory</span></a>
+            <a href="practical-agent-simulation.html" class="sidebar-link active"><span class="link-check"></span> Agent Simulation<span class="link-type practical">Demo</span></a>
+            <a href="notes-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-agents.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+        <div class="chapter-group">
+          <div class="chapter-group-header">
+            <div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div>
+            <span class="expand-icon">&#9660;</span>
+          </div>
+          <div class="chapter-subitems">
+            <a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <!-- ========== MAIN CONTENT AREA ========== -->
+    <main class="main-content-area">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="agents-and-environments.html">Chapter 1: Intelligent Agents</a> &raquo;
+          <span class="current">Agent Simulation</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-practical" data-page-id="ch01-agent-sim">
+
+            <!-- Page Header -->
+            <h1>&#128302; Interactive Agent Simulation</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge medium">GATE Relevance: Medium</span>
+              <button class="bookmark-btn" data-page="ch01-agent-sim" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="agents-and-environments.html">Agents &amp; Environments</a> &mdash; Vacuum world, percepts, actions</li>
+                <li><a href="agent-types.html">Agent Types</a> &mdash; Simple reflex, model-based agents</li>
+              </ul>
+            </div>
+
+            <!-- Learning Objectives -->
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Observe how different agent types behave in the vacuum-cleaner world</li>
+                <li>Compare performance of random, simple reflex, and model-based agents</li>
+                <li>Build intuition for percept sequences, actions, and performance scores</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Simulation Section -->
+              <section id="simulation">
+                <h2>1. Vacuum-Cleaner World Simulation</h2>
+
+                <p>This interactive demo simulates the classic 2-square vacuum-cleaner world. Select an agent type, then use <strong>Step</strong> to advance one time step at a time, or <strong>Auto Run</strong> to watch the agent work automatically. Observe how agent percepts, actions, and scores differ across agent types.</p>
+
+                <!-- Demo Container -->
+                <div class="demo-container" style="background:var(--bg-secondary); border:2px solid var(--border-color); border-radius:var(--border-radius-lg); padding:var(--spacing-xl); margin:var(--spacing-lg) 0;">
+
+                  <!-- Controls -->
+                  <div class="demo-controls" style="display:flex; gap:var(--spacing-md); flex-wrap:wrap; align-items:center; margin-bottom:var(--spacing-lg);">
+                    <label style="font-weight:600;">Agent Type:</label>
+                    <select id="agentSelect" style="padding:var(--spacing-sm) var(--spacing-md); border-radius:var(--border-radius); border:1px solid var(--border-color); background:var(--bg-primary); color:var(--text-primary); font-size:var(--font-size-base);">
+                      <option value="random">Random Agent</option>
+                      <option value="reflex" selected>Simple Reflex Agent</option>
+                      <option value="model">Model-Based Agent</option>
+                    </select>
+                    <button class="demo-btn" id="stepBtn" style="padding:var(--spacing-sm) var(--spacing-lg); background:var(--color-primary); color:#fff; border:none; border-radius:var(--border-radius); cursor:pointer; font-weight:600;">&#9654; Step</button>
+                    <button class="demo-btn" id="autoBtn" style="padding:var(--spacing-sm) var(--spacing-lg); background:var(--color-secondary); color:#fff; border:none; border-radius:var(--border-radius); cursor:pointer; font-weight:600;">&#9654;&#9654; Auto Run</button>
+                    <button class="demo-btn" id="resetBtn" style="padding:var(--spacing-sm) var(--spacing-lg); background:var(--text-secondary); color:#fff; border:none; border-radius:var(--border-radius); cursor:pointer; font-weight:600;">&#8635; Reset</button>
+                  </div>
+
+                  <!-- Grid Visualization -->
+                  <div class="grid-viz" id="gridViz" style="display:flex; justify-content:center; gap:var(--spacing-lg); margin-bottom:var(--spacing-lg);">
+                    <div id="squareA" style="width:160px; height:160px; border:3px solid var(--border-color); border-radius:var(--border-radius-lg); display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:1.2rem; position:relative; transition:background 0.3s;">
+                      <div style="font-weight:700; font-size:1rem; margin-bottom:4px;">Square A</div>
+                      <div id="statusA" style="font-size:2.5rem;">&#129529;</div>
+                      <div id="labelA" style="font-size:0.85rem; font-weight:600; margin-top:4px;">Dirty</div>
+                    </div>
+                    <div id="squareB" style="width:160px; height:160px; border:3px solid var(--border-color); border-radius:var(--border-radius-lg); display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:1.2rem; position:relative; transition:background 0.3s;">
+                      <div style="font-weight:700; font-size:1rem; margin-bottom:4px;">Square B</div>
+                      <div id="statusB" style="font-size:2.5rem;">&#129529;</div>
+                      <div id="labelB" style="font-size:0.85rem; font-weight:600; margin-top:4px;">Dirty</div>
+                    </div>
+                  </div>
+
+                  <!-- Agent Position Indicator -->
+                  <div style="text-align:center; margin-bottom:var(--spacing-md);">
+                    <span style="font-size:2rem;" id="agentIcon">&#129302;</span>
+                    <span id="agentPosLabel" style="font-weight:600; font-size:1.1rem; margin-left:var(--spacing-sm);">Agent is at: Square A</span>
+                  </div>
+
+                  <!-- Info Panel -->
+                  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--spacing-md); margin-bottom:var(--spacing-md);">
+                    <div style="text-align:center; padding:var(--spacing-md); background:var(--bg-primary); border-radius:var(--border-radius); border:1px solid var(--border-color);">
+                      <div style="font-size:0.8rem; color:var(--text-secondary);">Step</div>
+                      <div style="font-size:1.5rem; font-weight:700;" id="stepCount">0</div>
+                    </div>
+                    <div style="text-align:center; padding:var(--spacing-md); background:var(--bg-primary); border-radius:var(--border-radius); border:1px solid var(--border-color);">
+                      <div style="font-size:0.8rem; color:var(--text-secondary);">Score</div>
+                      <div style="font-size:1.5rem; font-weight:700; color:var(--color-primary);" id="scoreCount">0</div>
+                    </div>
+                    <div style="text-align:center; padding:var(--spacing-md); background:var(--bg-primary); border-radius:var(--border-radius); border:1px solid var(--border-color);">
+                      <div style="font-size:0.8rem; color:var(--text-secondary);">Last Action</div>
+                      <div style="font-size:1.1rem; font-weight:700;" id="lastAction">&mdash;</div>
+                    </div>
+                  </div>
+
+                  <!-- Log -->
+                  <div style="background:var(--bg-primary); border:1px solid var(--border-color); border-radius:var(--border-radius); padding:var(--spacing-md); max-height:200px; overflow-y:auto; font-family:monospace; font-size:0.85rem;" id="logPanel">
+                    <div style="color:var(--text-secondary);">Simulation log will appear here...</div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Section 2: Agent Pseudocode -->
+              <section id="pseudocode">
+                <h2>2. Agent Pseudocode</h2>
+
+                <h3>Random Agent</h3>
+                <pre><code>function RANDOM-AGENT(percept):
+    return random choice from {Left, Right, Suck, NoOp}</code></pre>
+                <p>The random agent picks an action uniformly at random. It serves as a baseline&mdash;any real agent should outperform it.</p>
+
+                <h3>Simple Reflex Agent</h3>
+                <pre><code>function SIMPLE-REFLEX-AGENT(percept):
+    location, status = percept
+    if status == Dirty:
+        return Suck
+    else if location == A:
+        return Right
+    else:
+        return Left</code></pre>
+                <p>Ignores percept history. Reacts only to current percept. Works well in the simple vacuum world but oscillates forever once both squares are clean.</p>
+
+                <h3>Model-Based Agent</h3>
+                <pre><code>// Internal state: remembers status of both squares
+state = {A: unknown, B: unknown}
+
+function MODEL-BASED-AGENT(percept):
+    location, status = percept
+    state[location] = status     // Update internal model
+    
+    if status == Dirty:
+        return Suck
+    else if state[A] == Clean AND state[B] == Clean:
+        return NoOp              // Both clean → stop!
+    else if location == A:
+        return Right
+    else:
+        return Left</code></pre>
+                <p>Maintains internal state tracking both squares. Once both are confirmed clean, it stops&mdash;unlike the simple reflex agent which oscillates forever. This is <strong>strictly more efficient</strong>.</p>
+              </section>
+
+              <!-- Section 3: Observations -->
+              <section id="observations">
+                <h2>3. What to Observe</h2>
+
+                <ul>
+                  <li><strong>Random agent:</strong> Erratic behavior. Sometimes cleans, sometimes moves uselessly. Low score. May take many steps to clean both squares (or might never clean them efficiently).</li>
+                  <li><strong>Simple reflex agent:</strong> Cleans efficiently at first, then oscillates between A and B forever. Score keeps climbing (1 point per clean square per step) but wastes energy moving.</li>
+                  <li><strong>Model-based agent:</strong> Cleans both squares, then stops (NoOp). Most efficient&mdash;achieves maximum cleanliness in minimum steps and then rests.</li>
+                </ul>
+
+                <div class="note-box">
+                  <div class="box-title">Key Insight</div>
+                  <p>This simulation demonstrates a core GATE concept: <strong>the same task environment can yield different performance depending on the agent architecture</strong>. The model-based agent&rsquo;s internal state allows it to know when to stop, which the simple reflex agent cannot do.</p>
+                </div>
+              </section>
+
+              <!-- Section 4: Exercises -->
+              <section id="exercises">
+                <h2>4. Exercises</h2>
+
+                <ol>
+                  <li>Run each agent type for 20 steps. Record the final score. Which agent has the highest score?</li>
+                  <li>Modify the scenario in your mind: what if dirt randomly reappeared? Would the model-based agent&rsquo;s &ldquo;stop&rdquo; behavior still be rational? (Answer: No, because it would need to keep checking.)</li>
+                  <li>How would you design a <strong>goal-based agent</strong> for this world? What would the goal be? (Answer: &ldquo;Both squares clean.&rdquo; The agent would plan a sequence: clean A, move to B, clean B, stop.)</li>
+                  <li>Could a <strong>utility-based agent</strong> outperform the model-based agent here? (Answer: In this simple world, no. Utility-based agents shine when trade-offs are needed&mdash;e.g., faster cleaning vs. lower energy consumption.)</li>
+                </ol>
+              </section>
+
+            </div><!-- /theory-content -->
+
+            <!-- Mark as Complete -->
+            <button class="complete-btn" data-page="ch01-agent-sim">&#9745; Mark as Complete</button>
+
+            <!-- Prev/Next Navigation -->
+            <div class="nav-buttons">
+              <a href="agent-types.html" class="nav-btn prev">
+                <span class="nav-label">&larr; Previous</span>
+                <span class="nav-title">Agent Types</span>
+              </a>
+              <a href="notes-agents.html" class="nav-btn next">
+                <span class="nav-label">Next &rarr;</span>
+                <span class="nav-title">Chapter Notes</span>
+              </a>
+            </div>
+
+          </article>
+
+          <!-- Page Table of Contents -->
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#simulation">1. Simulation</a></li>
+              <li><a href="#pseudocode">2. Agent Pseudocode</a></li>
+              <li><a href="#observations">3. What to Observe</a></li>
+              <li><a href="#exercises">4. Exercises</a></li>
+            </ul>
+          </aside>
+        </div><!-- /content-with-toc -->
+
+      </div><!-- /content-wrapper -->
+    </main>
+  </div><!-- /page-wrapper -->
+
+  <!-- JS -->
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+
+  <!-- Simulation Script -->
+  <script>
+  (function() {
+    // ===== STATE =====
+    var env = { A: 'Dirty', B: 'Dirty' };
+    var agentPos = 'A';
+    var score = 0;
+    var step = 0;
+    var autoInterval = null;
+    // Model-based internal state
+    var modelState = { A: 'unknown', B: 'unknown' };
+
+    // ===== DOM =====
+    var squareA = document.getElementById('squareA');
+    var squareB = document.getElementById('squareB');
+    var statusA = document.getElementById('statusA');
+    var statusB = document.getElementById('statusB');
+    var labelA = document.getElementById('labelA');
+    var labelB = document.getElementById('labelB');
+    var agentPosLabel = document.getElementById('agentPosLabel');
+    var stepCount = document.getElementById('stepCount');
+    var scoreCount = document.getElementById('scoreCount');
+    var lastAction = document.getElementById('lastAction');
+    var logPanel = document.getElementById('logPanel');
+    var agentSelect = document.getElementById('agentSelect');
+    var stepBtn = document.getElementById('stepBtn');
+    var autoBtn = document.getElementById('autoBtn');
+    var resetBtn = document.getElementById('resetBtn');
+
+    function render() {
+      // Square A
+      if (env.A === 'Dirty') {
+        statusA.innerHTML = '&#129529;';
+        labelA.textContent = 'Dirty';
+        squareA.style.background = 'rgba(230, 126, 34, 0.15)';
+      } else {
+        statusA.innerHTML = '&#10024;';
+        labelA.textContent = 'Clean';
+        squareA.style.background = 'rgba(39, 174, 96, 0.12)';
+      }
+      // Square B
+      if (env.B === 'Dirty') {
+        statusB.innerHTML = '&#129529;';
+        labelB.textContent = 'Dirty';
+        squareB.style.background = 'rgba(230, 126, 34, 0.15)';
+      } else {
+        statusB.innerHTML = '&#10024;';
+        labelB.textContent = 'Clean';
+        squareB.style.background = 'rgba(39, 174, 96, 0.12)';
+      }
+      // Agent position highlight
+      squareA.style.borderColor = agentPos === 'A' ? 'var(--color-primary)' : 'var(--border-color)';
+      squareB.style.borderColor = agentPos === 'B' ? 'var(--color-primary)' : 'var(--border-color)';
+      squareA.style.borderWidth = agentPos === 'A' ? '4px' : '3px';
+      squareB.style.borderWidth = agentPos === 'B' ? '4px' : '3px';
+
+      agentPosLabel.textContent = 'Agent is at: Square ' + agentPos;
+      stepCount.textContent = step;
+      scoreCount.textContent = score;
+    }
+
+    function log(msg) {
+      if (step === 0 && logPanel.children.length === 1 && logPanel.children[0].style) {
+        logPanel.innerHTML = '';
+      }
+      var div = document.createElement('div');
+      div.textContent = msg;
+      logPanel.appendChild(div);
+      logPanel.scrollTop = logPanel.scrollHeight;
+    }
+
+    // ===== AGENT FUNCTIONS =====
+    function randomAgent(location, status) {
+      var actions = ['Left', 'Right', 'Suck', 'NoOp'];
+      return actions[Math.floor(Math.random() * actions.length)];
+    }
+
+    function simpleReflexAgent(location, status) {
+      if (status === 'Dirty') return 'Suck';
+      if (location === 'A') return 'Right';
+      return 'Left';
+    }
+
+    function modelBasedAgent(location, status) {
+      modelState[location] = status;
+      if (status === 'Dirty') return 'Suck';
+      if (modelState.A === 'Clean' && modelState.B === 'Clean') return 'NoOp';
+      if (location === 'A') return 'Right';
+      return 'Left';
+    }
+
+    function getAgent() {
+      var type = agentSelect.value;
+      if (type === 'random') return randomAgent;
+      if (type === 'reflex') return simpleReflexAgent;
+      return modelBasedAgent;
+    }
+
+    // ===== STEP =====
+    function doStep() {
+      step++;
+      var percept = [agentPos, env[agentPos]];
+      var agent = getAgent();
+      var action = agent(percept[0], percept[1]);
+
+      // Execute action
+      if (action === 'Suck') {
+        env[agentPos] = 'Clean';
+      } else if (action === 'Left') {
+        agentPos = 'A';
+      } else if (action === 'Right') {
+        agentPos = 'B';
+      }
+      // NoOp: do nothing
+
+      // Score: +1 per clean square
+      var cleanCount = (env.A === 'Clean' ? 1 : 0) + (env.B === 'Clean' ? 1 : 0);
+      score += cleanCount;
+
+      lastAction.textContent = action;
+      log('Step ' + step + ': Percept=[' + percept[0] + ', ' + percept[1] + ']  Action=' + action + '  Score=+' + cleanCount + ' (total: ' + score + ')');
+      render();
+    }
+
+    // ===== RESET =====
+    function doReset() {
+      if (autoInterval) { clearInterval(autoInterval); autoInterval = null; autoBtn.innerHTML = '&#9654;&#9654; Auto Run'; }
+      env = { A: 'Dirty', B: 'Dirty' };
+      agentPos = 'A';
+      score = 0;
+      step = 0;
+      modelState = { A: 'unknown', B: 'unknown' };
+      lastAction.innerHTML = '&mdash;';
+      logPanel.innerHTML = '<div style="color:var(--text-secondary);">Simulation log will appear here...</div>';
+      render();
+    }
+
+    // ===== AUTO RUN =====
+    function toggleAuto() {
+      if (autoInterval) {
+        clearInterval(autoInterval);
+        autoInterval = null;
+        autoBtn.innerHTML = '&#9654;&#9654; Auto Run';
+      } else {
+        autoInterval = setInterval(function() {
+          doStep();
+          if (step >= 30) { clearInterval(autoInterval); autoInterval = null; autoBtn.innerHTML = '&#9654;&#9654; Auto Run'; log('--- Auto run stopped after 30 steps ---'); }
+        }, 600);
+        autoBtn.innerHTML = '&#9724; Stop';
+      }
+    }
+
+    // ===== EVENT LISTENERS =====
+    stepBtn.addEventListener('click', doStep);
+    resetBtn.addEventListener('click', doReset);
+    autoBtn.addEventListener('click', toggleAuto);
+    agentSelect.addEventListener('change', doReset);
+
+    // Initial render
+    render();
+  })();
+  </script>
+</body>
+</html>

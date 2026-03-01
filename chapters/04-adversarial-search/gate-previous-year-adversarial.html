@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GATE Previous Year Questions on Adversarial Search — Minimax, alpha-beta pruning, game trees, expectiminimax with complete solutions.">
+  <title>GATE PYQs: Adversarial Search — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+            <a href="minimax-algorithm.html" class="sidebar-link"><span class="link-check"></span> Minimax<span class="link-type theory">Theory</span></a>
+            <a href="alpha-beta-pruning.html" class="sidebar-link"><span class="link-check"></span> Alpha-Beta Pruning<span class="link-type theory">Theory</span></a>
+            <a href="move-ordering.html" class="sidebar-link"><span class="link-check"></span> Move Ordering<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-functions.html" class="sidebar-link"><span class="link-check"></span> Evaluation Functions<span class="link-type theory">Theory</span></a>
+            <a href="stochastic-games.html" class="sidebar-link"><span class="link-check"></span> Stochastic Games<span class="link-type theory">Theory</span></a>
+            <a href="partially-observable-games.html" class="sidebar-link"><span class="link-check"></span> Partially Observable<span class="link-type theory">Theory</span></a>
+            <a href="monte-carlo-tree-search.html" class="sidebar-link"><span class="link-check"></span> MCTS<span class="link-type theory">Theory</span></a>
+            <a href="practical-adversarial.html" class="sidebar-link"><span class="link-check"></span> Tic-Tac-Toe Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-adversarial.html" class="sidebar-link active"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="game-theory-basics.html">Chapter 4: Adversarial Search</a> &raquo;
+          <span class="current">GATE Previous Year Questions</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch04-gate-pyq">
+            <h1>GATE Previous Year Questions: Adversarial Search</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch04-gate-pyq" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="theory-content">
+
+              <!-- Q1 -->
+              <section id="q1">
+                <h2>Question 1 <span class="gate-tag">GATE CS 2004</span></h2>
+                <div class="example-box">
+                  <div class="box-title">Minimax Value Calculation</div>
+                  <p><strong>Q:</strong> Consider the following game tree. MAX moves first. What value does the root node get using the minimax algorithm?</p>
+                  <pre><code>           MAX
+          / | \
+       MIN MIN MIN
+       /\   /\   /\
+      5  3  8  2  4  6</code></pre>
+                  <p><strong>Options:</strong> (A) 3 &nbsp; (B) 4 &nbsp; (C) 5 &nbsp; (D) 6</p>
+
+                  <h4>Solution</h4>
+                  <p>Step 1 &mdash; Evaluate MIN nodes:</p>
+                  <ul>
+                    <li>Left MIN = min(5, 3) = 3</li>
+                    <li>Middle MIN = min(8, 2) = 2</li>
+                    <li>Right MIN = min(4, 6) = 4</li>
+                  </ul>
+                  <p>Step 2 &mdash; Evaluate MAX root: max(3, 2, 4) = <strong>4</strong></p>
+                  <p><strong>Answer: (B) 4</strong></p>
+                </div>
+              </section>
+
+              <!-- Q2 -->
+              <section id="q2">
+                <h2>Question 2 <span class="gate-tag">GATE CS 2011</span></h2>
+                <div class="example-box">
+                  <div class="box-title">Alpha-Beta Pruning: Counting Pruned Nodes</div>
+                  <p><strong>Q:</strong> In the following game tree, how many leaf nodes will be pruned by alpha-beta pruning (left-to-right traversal)?</p>
+                  <pre><code>              MAX
+            /      \
+         MIN        MIN
+        / \  \     / \  \
+       5  3  9   2  8  1</code></pre>
+                  <p><strong>Options:</strong> (A) 0 &nbsp; (B) 1 &nbsp; (C) 2 &nbsp; (D) 3</p>
+
+                  <h4>Solution</h4>
+                  <pre><code>Traverse left-to-right:
+Left MIN: Visit 5, then 3 &rarr; min so far = 3. Visit 9 &rarr; min = 3.
+  No pruning here (all children visited).
+  Back at MAX: &alpha; = 3
+
+Right MIN: Visit 2 &rarr; v = 2.
+  v = 2 &le; &alpha; = 3 &rarr; &alpha; cutoff! Prune leaves 8 and 1.
+  
+Pruned nodes: 8, 1
+Back at MAX: v = max(3, 2) = 3.</code></pre>
+                  <p><strong>Answer: (C) 2</strong></p>
+                </div>
+              </section>
+
+              <!-- Q3 -->
+              <section id="q3">
+                <h2>Question 3 <span class="gate-tag">GATE CS 2015</span></h2>
+                <div class="example-box">
+                  <div class="box-title">Complexity of Alpha-Beta</div>
+                  <p><strong>Q:</strong> The best-case time complexity of alpha-beta pruning on a game tree with branching factor b and depth d is:</p>
+                  <p><strong>Options:</strong> (A) O(b<sup>d</sup>) &nbsp; (B) O(b<sup>d/2</sup>) &nbsp; (C) O(b<sup>2d</sup>) &nbsp; (D) O(d &middot; b)</p>
+
+                  <h4>Solution</h4>
+                  <p>With <strong>perfect move ordering</strong> (best moves examined first at every node), alpha-beta pruning achieves optimal pruning. The number of leaf nodes evaluated reduces from b<sup>d</sup> to approximately b<sup>d/2</sup>.</p>
+                  <p>Intuition: At MAX nodes, after finding the best move, subsequent children at sibling MIN nodes can be pruned. This effectively halves the exponent.</p>
+                  <p><strong>Answer: (B) O(b<sup>d/2</sup>)</strong></p>
+                </div>
+              </section>
+
+              <!-- Q4 -->
+              <section id="q4">
+                <h2>Question 4 <span class="gate-tag">GATE DA 2023</span></h2>
+                <div class="example-box">
+                  <div class="box-title">Expectiminimax with Chance Nodes</div>
+                  <p><strong>Q:</strong> In the following game tree with chance nodes (coin flip: H with P=0.5, T with P=0.5), what is the value at the root? MAX moves first.</p>
+                  <pre><code>              MAX
+            /      \
+        CHANCE     CHANCE
+        /   \       /   \
+     (H)    (T)  (H)    (T)
+    P=0.5  P=0.5 P=0.5  P=0.5
+      |      |     |      |
+     MIN    MIN   MIN    MIN
+     /\     /\    /\     /\
+    4  8   6  2  3  9   7  1</code></pre>
+
+                  <h4>Solution</h4>
+                  <pre><code>Step 1 &mdash; MIN nodes:
+  MIN-1 = min(4,8) = 4    MIN-2 = min(6,2) = 2
+  MIN-3 = min(3,9) = 3    MIN-4 = min(7,1) = 1
+
+Step 2 &mdash; CHANCE nodes:
+  Left CHANCE  = 0.5&times;4 + 0.5&times;2 = 2 + 1 = 3.0
+  Right CHANCE = 0.5&times;3 + 0.5&times;1 = 1.5 + 0.5 = 2.0
+
+Step 3 &mdash; MAX root:
+  max(3.0, 2.0) = <strong>3.0</strong></code></pre>
+                  <p><strong>Answer: 3.0</strong></p>
+                </div>
+              </section>
+
+              <!-- Q5 -->
+              <section id="q5">
+                <h2>Question 5 <span class="gate-tag">GATE CS 2019</span></h2>
+                <div class="example-box">
+                  <div class="box-title">Optimal Strategy from Minimax</div>
+                  <p><strong>Q:</strong> Consider the following game tree. What is the optimal move for MAX at the root, and what is the guaranteed payoff?</p>
+                  <pre><code>              MAX (root)
+           /     |     \
+       MIN(A)  MIN(B)  MIN(C)
+       / \      / \      / \
+      7   2    5   8    9   1</code></pre>
+                  <p><strong>Options:</strong></p>
+                  <p>(A) Move to A, payoff 2 &nbsp; (B) Move to B, payoff 5 &nbsp; (C) Move to C, payoff 1 &nbsp; (D) Move to A, payoff 7</p>
+
+                  <h4>Solution</h4>
+                  <ul>
+                    <li>MIN(A) = min(7, 2) = 2</li>
+                    <li>MIN(B) = min(5, 8) = 5</li>
+                    <li>MIN(C) = min(9, 1) = 1</li>
+                  </ul>
+                  <p>MAX chooses: max(2, 5, 1) = 5 &rarr; Move to B.</p>
+                  <p><strong>Answer: (B) Move to B, payoff 5</strong></p>
+                  <p><em>Note: MAX cannot assume the opponent will make mistakes. Even though C contains the highest leaf (9), MIN at C would choose 1.</em></p>
+                </div>
+              </section>
+
+              <!-- Q6 -->
+              <section id="q6">
+                <h2>Question 6 <span class="gate-tag">GATE CS 2017</span></h2>
+                <div class="example-box">
+                  <div class="box-title">Alpha-Beta: Identify All Pruned Subtrees</div>
+                  <p><strong>Q:</strong> Apply alpha-beta pruning (left-to-right) to the following tree. Which leaf values are NOT evaluated?</p>
+                  <pre><code>                   MAX (root)
+                /              \
+           MIN(L)              MIN(R)
+          /      \            /      \
+       MAX(LL) MAX(LR)    MAX(RL) MAX(RR)
+       / \      / \        / \      / \
+      3   5    2   9      8   1    7   4</code></pre>
+
+                  <h4>Solution</h4>
+                  <pre><code>Traverse left-to-right:
+MAX(LL): visit 3, then 5 &rarr; value = 5
+MIN(L): v = 5, &beta; = 5
+
+MAX(LR): visit 2 &rarr; v = 2, &alpha; = 2
+  visit 9 &rarr; v = 9, &alpha; = 9
+  9 &ge; &beta;(5)? Yes! &beta; cutoff.
+  But wait &mdash; 9 is already visited. LR returns 9.
+  
+MIN(L) = min(5, 9) = 5. Returns 5.
+MAX(root): &alpha; = 5.
+
+MIN(R): &alpha; from parent = 5
+MAX(RL): visit 8 &rarr; v = 8, &alpha; = 8.
+  8 &ge; &beta;(+&infin;)? No.
+  visit 1 &rarr; v = max(8,1) = 8.
+  Returns 8.
+MIN(R): v = 8, &beta; = 8.
+
+MAX(RR): visit 7 &rarr; v = 7, &alpha; = 5 (from root).
+  visit 4 &rarr; v = max(7,4) = 7.
+  Returns 7.
+MIN(R): v = min(8,7) = 7. Returns 7.
+MAX(root): max(5,7) = 7.
+
+No leaves are pruned in this tree (no cutoff occurred
+that prevented leaf evaluation). All 8 leaves evaluated.</code></pre>
+                  <p><strong>Answer: No leaf nodes are pruned.</strong> This occurs because the move ordering is not favorable for pruning. If the tree had leaves in a different order, pruning would likely occur.</p>
+                </div>
+              </section>
+
+              <!-- Q7 -->
+              <section id="q7">
+                <h2>Question 7 <span class="gate-tag">GATE DA 2024</span></h2>
+                <div class="example-box">
+                  <div class="box-title">NAT: Leaf Evaluations with Alpha-Beta</div>
+                  <p><strong>Q (Numerical Answer Type):</strong> A game tree has uniform branching factor 2 and depth 4. In the best case, how many leaf nodes does alpha-beta pruning evaluate?</p>
+
+                  <h4>Solution</h4>
+                  <p>Total leaves without pruning: 2<sup>4</sup> = 16</p>
+                  <p>Best-case formula for even depth: 2b<sup>d/2</sup> &minus; 1 = 2 &times; 2<sup>2</sup> &minus; 1 = 2 &times; 4 &minus; 1 = <strong>7</strong></p>
+                  <p>Alternatively: b<sup>&lceil;d/2&rceil;</sup> + b<sup>&lfloor;d/2&rfloor;</sup> &minus; 1 = 2<sup>2</sup> + 2<sup>2</sup> &minus; 1 = 4 + 4 &minus; 1 = <strong>7</strong></p>
+                  <p><strong>Answer: 7</strong></p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Key Takeaways for GATE</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>Minimax backup: max at MAX nodes, min at MIN nodes, starting from leaves.</li>
+                    <li>Alpha-beta: track &alpha; (MAX&rsquo;s best) and &beta; (MIN&rsquo;s best); prune when &alpha; &ge; &beta;.</li>
+                    <li>Best-case alpha-beta: O(b<sup>d/2</sup>) — halves the exponent.</li>
+                    <li>Expectiminimax: weighted average at CHANCE nodes.</li>
+                    <li>Always trace left-to-right unless stated otherwise.</li>
+                    <li>Count pruned nodes carefully — a pruned subtree includes all descendants.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch04-gate-pyq">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="practical-adversarial.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Tic-Tac-Toe Demo</span></a>
+              <a href="notes-adversarial-search.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Quick Revision Notes</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#q1">Q1: Minimax Value (2004)</a></li>
+              <li><a href="#q2">Q2: Pruned Nodes (2011)</a></li>
+              <li><a href="#q3">Q3: AB Complexity (2015)</a></li>
+              <li><a href="#q4">Q4: Expectiminimax (2023)</a></li>
+              <li><a href="#q5">Q5: Optimal Strategy (2019)</a></li>
+              <li><a href="#q6">Q6: AB Trace (2017)</a></li>
+              <li><a href="#q7">Q7: NAT Best-Case (2024)</a></li>
+              <li><a href="#summary">Key Takeaways</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convolutional Neural Networks — Convolution operation, filters, stride, padding, pooling, output size formula, architectures (LeNet, AlexNet, VGG, ResNet) for GATE DA.">
+  <title>Convolutional Neural Networks — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar"><div class="topbar-left"><button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button><a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a></div><div class="topbar-center"><div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div></div><div class="topbar-right"><span class="overall-progress">0% Complete</span><button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button></div></header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../04-adversarial-search/game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">06</span> Predicate Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../06-predicate-logic/first-order-logic-syntax.html" class="sidebar-link"><span class="link-check"></span> First-Order Logic Syntax<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">07</span> Reasoning Under Uncertainty</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../07-reasoning-under-uncertainty/probability-basics.html" class="sidebar-link"><span class="link-check"></span> Probability Basics<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">08</span> ML Foundations</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../08-machine-learning-foundations/ml-fundamentals.html" class="sidebar-link"><span class="link-check"></span> ML Fundamentals<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">09</span> Neural Networks &amp; Deep Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="neural-network-basics.html" class="sidebar-link"><span class="link-check"></span> Neural Network Basics<span class="link-type theory">Theory</span></a>
+            <a href="perceptron.html" class="sidebar-link"><span class="link-check"></span> Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="multilayer-perceptron.html" class="sidebar-link"><span class="link-check"></span> Multilayer Perceptron<span class="link-type theory">Theory</span></a>
+            <a href="backpropagation.html" class="sidebar-link"><span class="link-check"></span> Backpropagation<span class="link-type theory">Theory</span></a>
+            <a href="activation-functions.html" class="sidebar-link"><span class="link-check"></span> Activation Functions<span class="link-type theory">Theory</span></a>
+            <a href="optimization-algorithms.html" class="sidebar-link"><span class="link-check"></span> Optimization Algorithms<span class="link-type theory">Theory</span></a>
+            <a href="convolutional-neural-networks.html" class="sidebar-link active"><span class="link-check"></span> CNNs<span class="link-type theory">Theory</span></a>
+            <a href="recurrent-neural-networks.html" class="sidebar-link"><span class="link-check"></span> RNNs<span class="link-type theory">Theory</span></a>
+            <a href="lstm-gru.html" class="sidebar-link"><span class="link-check"></span> LSTM &amp; GRU<span class="link-type theory">Theory</span></a>
+            <a href="attention-transformers.html" class="sidebar-link"><span class="link-check"></span> Attention &amp; Transformers<span class="link-type theory">Theory</span></a>
+            <a href="regularization-deep-learning.html" class="sidebar-link"><span class="link-check"></span> DL Regularization<span class="link-type theory">Theory</span></a>
+            <a href="practical-neural-network.html" class="sidebar-link"><span class="link-check"></span> Interactive Demos<span class="link-type practical">Demo</span></a>
+            <a href="notes-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-deep-learning.html" class="sidebar-link"><span class="link-check"></span> Chapter Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">10</span> NLP</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../10-natural-language-processing/nlp-introduction.html" class="sidebar-link"><span class="link-check"></span> NLP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">11</span> Computer Vision</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../11-computer-vision/cv-introduction.html" class="sidebar-link"><span class="link-check"></span> CV Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">12</span> Reinforcement Learning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../12-reinforcement-learning/rl-introduction.html" class="sidebar-link"><span class="link-check"></span> RL Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">13</span> Planning</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../13-planning/classical-planning.html" class="sidebar-link"><span class="link-check"></span> Classical Planning<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">14</span> Constraint Satisfaction</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../14-constraint-satisfaction/csp-introduction.html" class="sidebar-link"><span class="link-check"></span> CSP Introduction<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">15</span> Advanced Topics</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../15-advanced-topics/advanced-ai-overview.html" class="sidebar-link"><span class="link-check"></span> Advanced AI Overview<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">16</span> GATE DA Prep</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../16-gate-da-preparation/gate-da-strategy.html" class="sidebar-link"><span class="link-check"></span> GATE DA Strategy<span class="link-type notes">Notes</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../../index.html">Home</a> &raquo; <a href="neural-network-basics.html">Chapter 9: Neural Networks &amp; Deep Learning</a> &raquo; <span class="current">Convolutional Neural Networks</span></nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch09-convolutional-neural-networks">
+
+            <h1>Convolutional Neural Networks (CNNs)</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch09-convolutional-neural-networks" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box"><h4>Prerequisites</h4><ul>
+              <li><a href="multilayer-perceptron.html">MLP</a> &mdash; Fully-connected layers</li>
+              <li><a href="activation-functions.html">Activation Functions</a> &mdash; ReLU family</li>
+            </ul></div>
+
+            <div class="learning-objectives"><h4>&#127919; Learning Objectives</h4><ul>
+              <li>Understand the <strong>convolution operation</strong> on 2-D inputs</li>
+              <li>Compute <strong>output dimensions</strong> using the formula (W&minus;F+2P)/S + 1</li>
+              <li>Distinguish <strong>valid, same, and full</strong> padding</li>
+              <li>Count <strong>parameters</strong> in convolutional and pooling layers</li>
+              <li>Know the key architectures: <strong>LeNet, AlexNet, VGG, ResNet</strong></li>
+            </ul></div>
+
+            <div class="theory-content">
+
+              <section id="motivation">
+                <h2>1. Motivation: Why Not Just Use MLPs?</h2>
+                <p>For a 224&times;224&times;3 colour image, a fully-connected first hidden layer with 1000 neurons would need:</p>
+                <pre><code>224 &times; 224 &times; 3 &times; 1000 = 150,528,000 parameters (just in one layer!)</code></pre>
+                <p>CNNs exploit three key ideas to drastically reduce parameters:</p>
+                <ul>
+                  <li><strong>Local connectivity:</strong> Each neuron connects only to a small spatial region.</li>
+                  <li><strong>Parameter sharing:</strong> The same filter (kernel) slides across the whole input.</li>
+                  <li><strong>Translation equivariance:</strong> A feature detected in one location can be detected everywhere.</li>
+                </ul>
+              </section>
+
+              <section id="convolution-operation">
+                <h2>2. The Convolution Operation</h2>
+                <div class="definition-box">
+                  <h4>2-D Discrete Convolution</h4>
+                  <pre><code>(I * K)[i,j] = &sum;<sub>m</sub> &sum;<sub>n</sub> I[i+m, j+n] &middot; K[m, n]</code></pre>
+                  <p>where I is the input, K is the kernel/filter, and the sums run over the kernel dimensions.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Worked Example: 3&times;3 Kernel on 5&times;5 Input</h4>
+                  <pre><code>Input I (5&times;5):             Kernel K (3&times;3):
+1  0  1  2  1             1   0  -1
+0  1  0  1  0             0   1   0
+1  0  1  0  1            -1   0   1
+0  1  0  1  0
+1  0  1  0  1
+
+Output[0,0] = 1&middot;1 + 0&middot;0 + 1&middot;(-1) + 0&middot;0 + 1&middot;1 + 0&middot;0 + 1&middot;(-1) + 0&middot;0 + 1&middot;1
+            = 1 + 0 - 1 + 0 + 1 + 0 - 1 + 0 + 1 = 1
+
+Output size: (5 - 3 + 0)/1 + 1 = 3 &rarr; 3&times;3 output.</code></pre>
+                </div>
+              </section>
+
+              <section id="output-size">
+                <h2>3. Output Size Formula</h2>
+                <div class="theorem-box">
+                  <h4>Output Dimension Formula</h4>
+                  <pre><code>O = &lfloor;(W &minus; F + 2P) / S&rfloor; + 1
+
+Where:
+  W = input width (or height)
+  F = filter/kernel size
+  P = padding (number of zero-rows/cols added per side)
+  S = stride</code></pre>
+                </div>
+
+                <div class="example-box">
+                  <h4>GATE-Style Calculations</h4>
+                  <table class="comparison-table">
+                    <tr><th>Input W</th><th>Filter F</th><th>Padding P</th><th>Stride S</th><th>Output O</th></tr>
+                    <tr><td>32</td><td>5</td><td>0</td><td>1</td><td>(32&minus;5)/1 + 1 = <strong>28</strong></td></tr>
+                    <tr><td>32</td><td>5</td><td>2</td><td>1</td><td>(32&minus;5+4)/1 + 1 = <strong>32</strong> (same)</td></tr>
+                    <tr><td>28</td><td>3</td><td>0</td><td>2</td><td>(28&minus;3)/2 + 1 = <strong>13</strong></td></tr>
+                    <tr><td>224</td><td>7</td><td>3</td><td>2</td><td>(224&minus;7+6)/2 + 1 = <strong>112</strong></td></tr>
+                  </table>
+                </div>
+
+                <div class="note-box">
+                  <h4>Padding Types</h4>
+                  <ul>
+                    <li><strong>Valid (P=0):</strong> No padding; output shrinks.</li>
+                    <li><strong>Same:</strong> P chosen so output size = input size. For odd F with S=1: P = (F&minus;1)/2.</li>
+                    <li><strong>Full:</strong> P = F&minus;1; output is larger than input.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="parameters">
+                <h2>4. Parameter Counting in Conv Layers</h2>
+                <div class="theorem-box">
+                  <h4>Conv Layer Parameters</h4>
+                  <pre><code>Parameters = K &times; (C<sub>in</sub> &times; F &times; F + 1)
+
+Where:
+  K    = number of filters (output channels)
+  C<sub>in</sub> = input channels
+  F    = filter spatial size
+  +1   = bias per filter</code></pre>
+                </div>
+
+                <div class="example-box">
+                  <h4>Example: First Conv Layer of a Network</h4>
+                  <p>Input: 32&times;32&times;3 (RGB image). Layer: 16 filters of size 5&times;5.</p>
+                  <pre><code>Parameters = 16 &times; (3 &times; 5 &times; 5 + 1) = 16 &times; 76 = 1,216</code></pre>
+                  <p>Compare this to an MLP: 32&times;32&times;3 &times; (output neurons) would be orders of magnitude larger.</p>
+                </div>
+              </section>
+
+              <section id="pooling">
+                <h2>5. Pooling Layers</h2>
+                <p>Pooling <strong>down-samples</strong> spatial dimensions, reducing computation and providing slight translation invariance.</p>
+                <ul>
+                  <li><strong>Max Pooling:</strong> Takes the maximum value in each pooling window.</li>
+                  <li><strong>Average Pooling:</strong> Takes the mean value in each pooling window.</li>
+                  <li><strong>Global Average Pooling (GAP):</strong> Averages the entire feature map to a single value per channel.</li>
+                </ul>
+
+                <div class="warning-box">
+                  <h4>Pooling Has Zero Learnable Parameters</h4>
+                  <p>Pooling layers do not have weights or biases. When asked for parameter counts, pooling always contributes 0.</p>
+                </div>
+
+                <div class="example-box">
+                  <h4>Max Pool 2&times;2 with Stride 2</h4>
+                  <pre><code>Input (4&times;4):        After 2&times;2 max pool:
+ 1  3  2  4            5  8
+ 5  6  7  8    &rarr;      9  7
+ 3  2  1  0
+ 9  8  7  3
+
+Output size: (4 &minus; 2)/2 + 1 = 2 (i.e., 2&times;2)</code></pre>
+                </div>
+              </section>
+
+              <section id="architectures">
+                <h2>6. Landmark CNN Architectures</h2>
+
+                <h3>LeNet-5 (1998, LeCun)</h3>
+                <pre><code>Input 32&times;32 &rarr; Conv 5&times;5 (6 filters) &rarr; Pool 2&times;2 &rarr; Conv 5&times;5 (16 filters) &rarr; Pool 2&times;2 &rarr; FC 120 &rarr; FC 84 &rarr; 10
+&sim;60K parameters. Used for handwritten digit recognition.</code></pre>
+
+                <h3>AlexNet (2012, Krizhevsky)</h3>
+                <ul>
+                  <li>First CNN to win ImageNet (15.3% top-5 error).</li>
+                  <li>Used <strong>ReLU</strong>, dropout, data augmentation, GPU training.</li>
+                  <li>&sim;60M parameters across 5 conv + 3 FC layers.</li>
+                </ul>
+
+                <h3>VGGNet (2014, Simonyan &amp; Zisserman)</h3>
+                <ul>
+                  <li>All 3&times;3 convolutions with stride 1, padding 1 (same padding).</li>
+                  <li>Key insight: Two 3&times;3 layers have the same receptive field as one 5&times;5 layer, but fewer parameters (2&times;9C&sup2; vs 25C&sup2;).</li>
+                  <li>VGG-16: 138M parameters.</li>
+                </ul>
+
+                <h3>ResNet (2015, He et al.)</h3>
+                <div class="definition-box">
+                  <h4>Residual Connection (Skip Connection)</h4>
+                  <pre><code>y = F(x, W) + x
+
+The network learns the residual F(x) = H(x) &minus; x instead of H(x) directly.</code></pre>
+                </div>
+                <ul>
+                  <li>Solved the <strong>degradation problem</strong>: deeper networks paradoxically had higher training error.</li>
+                  <li>Skip connections allow gradient to flow directly through identity mappings.</li>
+                  <li>ResNet-50: 25.6M parameters; won ImageNet 2015 (3.57% top-5 error).</li>
+                </ul>
+              </section>
+
+              <section id="gate-examples">
+                <h2>7. GATE-Style Problems</h2>
+                <div class="example-box">
+                  <h4>Problem 1: Full Pipeline Parameter Count</h4>
+                  <p>A CNN processes 28&times;28&times;1 images with:</p>
+                  <ol class="step-list">
+                    <li>Conv: 8 filters, 3&times;3, stride 1, padding 0 &rarr; Output: 26&times;26&times;8. Params: 8&times;(1&times;3&times;3+1) = <strong>80</strong></li>
+                    <li>MaxPool 2&times;2 stride 2 &rarr; Output: 13&times;13&times;8. Params: <strong>0</strong></li>
+                    <li>Conv: 16 filters, 3&times;3, stride 1, padding 0 &rarr; Output: 11&times;11&times;16. Params: 16&times;(8&times;3&times;3+1) = <strong>1,168</strong></li>
+                    <li>MaxPool 2&times;2 stride 2 &rarr; Output: 5&times;5&times;16. Params: <strong>0</strong></li>
+                    <li>Flatten: 5&times;5&times;16 = 400</li>
+                    <li>FC layer to 10 outputs: Params: 400&times;10 + 10 = <strong>4,010</strong></li>
+                  </ol>
+                  <p><strong>Total parameters = 80 + 0 + 1,168 + 0 + 4,010 = 5,258</strong></p>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="note-box">
+                  <ul>
+                    <li><strong>Output size formula</strong>: O = &lfloor;(W &minus; F + 2P) / S&rfloor; + 1. Memorize this.</li>
+                    <li>Conv layer params: K &times; (C<sub>in</sub> &times; F&sup2; + 1). Pooling has <strong>zero</strong> params.</li>
+                    <li>CNNs exploit local connectivity, weight sharing, and translation equivariance.</li>
+                    <li><strong>ResNet&rsquo;s skip connections</strong> solve the degradation problem and enable very deep networks.</li>
+                    <li>For GATE: practice output-size and parameter-count calculations.</li>
+                  </ul>
+                </div>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch09-convolutional-neural-networks">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="optimization-algorithms.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Optimization Algorithms</span></a>
+              <a href="recurrent-neural-networks.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">RNNs</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc"><h4>On This Page</h4><ul>
+            <li><a href="#motivation">1. Motivation</a></li>
+            <li><a href="#convolution-operation">2. Convolution Op</a></li>
+            <li><a href="#output-size">3. Output Size</a></li>
+            <li><a href="#parameters">4. Param Counting</a></li>
+            <li><a href="#pooling">5. Pooling Layers</a></li>
+            <li><a href="#architectures">6. Architectures</a></li>
+            <li><a href="#gate-examples">7. GATE Problems</a></li>
+            <li><a href="#summary">Summary</a></li>
+          </ul></aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/quiz-engine.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+  <script src="../../js/interactive-demos.js"></script>
+</body>
+</html>

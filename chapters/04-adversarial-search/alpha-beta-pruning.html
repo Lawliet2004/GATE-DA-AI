@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alpha-Beta Pruning — Exhaustive explanation of alpha-beta pruning with tracked alpha/beta values, pruned branches, best-case analysis, and GATE problems.">
+  <title>Alpha-Beta Pruning — Master AI for GATE DA</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/navigation.css">
+  <link rel="stylesheet" href="../../css/theory.css">
+  <link rel="stylesheet" href="../../css/quiz.css">
+  <link rel="stylesheet" href="../../css/notes.css">
+  <link rel="stylesheet" href="../../css/practical.css">
+  <link rel="stylesheet" href="../../css/animations.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger-btn" aria-label="Toggle sidebar">&#9776;</button>
+        <a href="../../index.html" class="site-logo"><span class="logo-icon">&#129504;</span><span class="logo-text">Master AI for GATE DA</span></a>
+      </div>
+      <div class="topbar-center">
+        <div class="search-container"><span class="search-icon">&#128269;</span><input type="text" class="search-input" placeholder="Search topics&hellip; (Ctrl+K)" aria-label="Search topics"><div class="search-results-dropdown" id="searchResults"></div></div>
+      </div>
+      <div class="topbar-right">
+        <span class="overall-progress">0% Complete</span>
+        <button class="theme-toggle" aria-label="Switch to dark mode" title="Switch to Dark Mode">&#127769;</button>
+      </div>
+    </header>
+
+    <nav class="sidebar" aria-label="Chapter navigation">
+      <div class="sidebar-content">
+        <div class="sidebar-section-title">Chapters</div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">00</span> Introduction to AI</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../00-introduction/what-is-ai.html" class="sidebar-link"><span class="link-check"></span> What is AI?<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">01</span> Intelligent Agents</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../01-intelligent-agents/agents-and-environments.html" class="sidebar-link"><span class="link-check"></span> Agents &amp; Environments<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">02</span> Uninformed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../02-uninformed-search/problem-formulation.html" class="sidebar-link"><span class="link-check"></span> Problem Formulation<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">03</span> Informed Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../03-informed-search/heuristic-functions.html" class="sidebar-link"><span class="link-check"></span> Heuristic Functions<span class="link-type theory">Theory</span></a></div></div>
+        <div class="chapter-group active"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">04</span> Adversarial Search</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems">
+            <a href="game-theory-basics.html" class="sidebar-link"><span class="link-check"></span> Game Theory Basics<span class="link-type theory">Theory</span></a>
+            <a href="minimax-algorithm.html" class="sidebar-link"><span class="link-check"></span> Minimax<span class="link-type theory">Theory</span></a>
+            <a href="alpha-beta-pruning.html" class="sidebar-link active"><span class="link-check"></span> Alpha-Beta Pruning<span class="link-type theory">Theory</span></a>
+            <a href="move-ordering.html" class="sidebar-link"><span class="link-check"></span> Move Ordering<span class="link-type theory">Theory</span></a>
+            <a href="evaluation-functions.html" class="sidebar-link"><span class="link-check"></span> Evaluation Functions<span class="link-type theory">Theory</span></a>
+            <a href="stochastic-games.html" class="sidebar-link"><span class="link-check"></span> Stochastic Games<span class="link-type theory">Theory</span></a>
+            <a href="partially-observable-games.html" class="sidebar-link"><span class="link-check"></span> Partially Observable<span class="link-type theory">Theory</span></a>
+            <a href="monte-carlo-tree-search.html" class="sidebar-link"><span class="link-check"></span> MCTS<span class="link-type theory">Theory</span></a>
+            <a href="practical-adversarial.html" class="sidebar-link"><span class="link-check"></span> Tic-Tac-Toe Demo<span class="link-type practical">Demo</span></a>
+            <a href="gate-previous-year-adversarial.html" class="sidebar-link"><span class="link-check"></span> GATE PYQs<span class="link-type theory">Theory</span></a>
+            <a href="notes-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Notes<span class="link-type notes">Notes</span></a>
+            <a href="quiz-adversarial-search.html" class="sidebar-link"><span class="link-check"></span> Quiz<span class="link-type quiz">Quiz</span></a>
+        </div></div>
+        <div class="chapter-group"><div class="chapter-group-header"><div class="chapter-title"><span class="chapter-num">05</span> Propositional Logic</div><span class="expand-icon">&#9660;</span></div><div class="chapter-subitems"><a href="../05-propositional-logic/syntax-and-semantics.html" class="sidebar-link"><span class="link-check"></span> Syntax &amp; Semantics<span class="link-type theory">Theory</span></a></div></div>
+      </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main class="main-content-area">
+      <div class="content-wrapper">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a> &raquo;
+          <a href="game-theory-basics.html">Chapter 4: Adversarial Search</a> &raquo;
+          <span class="current">Alpha-Beta Pruning</span>
+        </nav>
+
+        <div class="content-with-toc">
+          <article class="main-content page-type-theory" data-page-id="ch04-alpha-beta">
+            <h1>Alpha-Beta Pruning</h1>
+            <div class="flex gap-1 mb-1" style="align-items:center; flex-wrap:wrap;">
+              <span class="gate-badge high">GATE Relevance: High</span>
+              <button class="bookmark-btn" data-page="ch04-alpha-beta" title="Bookmark this page">&#9733; Bookmark</button>
+            </div>
+
+            <div class="prerequisites-box">
+              <h4>Prerequisites</h4>
+              <ul>
+                <li><a href="minimax-algorithm.html">Minimax Algorithm</a> &mdash; Minimax value computation, backup process</li>
+                <li><a href="game-theory-basics.html">Game Theory Basics</a> &mdash; Game trees, MAX/MIN players</li>
+              </ul>
+            </div>
+
+            <div class="learning-objectives">
+              <h4>&#127919; Learning Objectives</h4>
+              <ul>
+                <li>Understand why and how branches can be pruned without affecting the minimax value</li>
+                <li>Track &alpha; and &beta; values at every node during traversal</li>
+                <li>Identify exactly which branches get pruned in a given game tree</li>
+                <li>Derive best-case complexity O(b<sup>d/2</sup>) with perfect move ordering</li>
+                <li>Solve GATE problems involving alpha-beta pruning</li>
+              </ul>
+            </div>
+
+            <div class="theory-content">
+
+              <section id="intuition">
+                <h2>1. Intuition Behind Pruning</h2>
+                <p>Minimax explores <strong>every</strong> node in the game tree &mdash; O(b<sup>m</sup>). But many branches are irrelevant because they can <strong>never influence the final decision</strong>. Alpha-beta pruning eliminates these branches while guaranteeing the same result as full minimax.</p>
+
+                <div class="definition-box">
+                  <div class="box-title">&alpha; and &beta; Values</div>
+                  <ul>
+                    <li><strong>&alpha;</strong> = the best (highest) value that MAX can guarantee along the current path. Initialized to &minus;&infin;.</li>
+                    <li><strong>&beta;</strong> = the best (lowest) value that MIN can guarantee along the current path. Initialized to +&infin;.</li>
+                  </ul>
+                  <p><strong>Pruning rule:</strong> At any node, if &alpha; &ge; &beta;, stop evaluating remaining children (prune).</p>
+                </div>
+
+                <div class="note-box">
+                  <div class="box-title">Key Insight</div>
+                  <p>If MAX already knows it can get a value of at least &alpha;, and MIN can force a value of at most &beta;, and &alpha; &ge; &beta;, then the current branch is irrelevant &mdash; MAX will never choose it (or MIN will never allow it).</p>
+                </div>
+              </section>
+
+              <section id="pseudocode">
+                <h2>2. Alpha-Beta Pseudocode</h2>
+                <div class="algorithm-block">
+                  <div class="algo-header">Algorithm: ALPHA-BETA-SEARCH(state)</div>
+                  <div class="algo-body">
+<pre>function ALPHA-BETA-SEARCH(state):
+    v &larr; MAX-VALUE(state, &minus;&infin;, +&infin;)
+    return action in ACTIONS(state) with value v
+
+function MAX-VALUE(state, &alpha;, &beta;):
+    if IS-TERMINAL(state): return UTILITY(state)
+    v &larr; &minus;&infin;
+    for each a in ACTIONS(state):
+        v &larr; max(v, MIN-VALUE(RESULT(state,a), &alpha;, &beta;))
+        if v &ge; &beta;: return v        <em>// &beta; cutoff (prune)</em>
+        &alpha; &larr; max(&alpha;, v)
+    return v
+
+function MIN-VALUE(state, &alpha;, &beta;):
+    if IS-TERMINAL(state): return UTILITY(state)
+    v &larr; +&infin;
+    for each a in ACTIONS(state):
+        v &larr; min(v, MAX-VALUE(RESULT(state,a), &alpha;, &beta;))
+        if v &le; &alpha;: return v        <em>// &alpha; cutoff (prune)</em>
+        &beta; &larr; min(&beta;, v)
+    return v</pre>
+                  </div>
+                </div>
+
+                <p><strong>&beta; cutoff</strong> happens at MAX nodes: if MAX finds a child &ge; &beta;, MIN (the parent) would never allow this path.
+                <br><strong>&alpha; cutoff</strong> happens at MIN nodes: if MIN finds a child &le; &alpha;, MAX (the grandparent) already has a better option.</p>
+              </section>
+
+              <section id="traced-example">
+                <h2>3. Complete Traced Example</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Example 1: Full &alpha;-&beta; Trace</div>
+                  <pre><code>Game tree (same as minimax example):
+                    MAX (A)
+                  /            \
+             MIN (B)          MIN (C)
+            /      \          /      \
+        MAX(D)  MAX(E)    MAX(F)  MAX(G)
+        / \      / \       / \      / \
+       3   5    6   9     1   8    2   7
+
+Traversal (left-to-right DFS) with &alpha;-&beta;:
+
+Node A (MAX): &alpha;=&minus;&infin;, &beta;=+&infin;
+ &rarr; Go to B
+ Node B (MIN): &alpha;=&minus;&infin;, &beta;=+&infin;
+  &rarr; Go to D
+  Node D (MAX): &alpha;=&minus;&infin;, &beta;=+&infin;
+    Visit leaf 3: v=3, &alpha;=3
+    Visit leaf 5: v=5, &alpha;=5
+    Return 5
+  Back at B: v=min(+&infin;,5)=5, &beta;=5
+  &rarr; Go to E
+  Node E (MAX): &alpha;=&minus;&infin;, &beta;=5
+    Visit leaf 6: v=6, &alpha;=6
+    6 &ge; &beta;(5) &rarr; <strong>&beta; CUTOFF!</strong> Prune leaf 9.
+    Return 6
+  Back at B: v=min(5,6)=5
+  Return 5
+ Back at A: v=max(&minus;&infin;,5)=5, &alpha;=5
+ &rarr; Go to C
+ Node C (MIN): &alpha;=5, &beta;=+&infin;
+  &rarr; Go to F
+  Node F (MAX): &alpha;=5, &beta;=+&infin;
+    Visit leaf 1: v=1, &alpha;=5
+    Visit leaf 8: v=8, &alpha;=8
+    Return 8
+  Back at C: v=min(+&infin;,8)=8, &beta;=8
+  &rarr; Go to G
+  Node G (MAX): &alpha;=5, &beta;=8
+    Visit leaf 2: v=2, &alpha;=5
+    Visit leaf 7: v=7, &alpha;=7
+    Return 7
+  Back at C: v=min(8,7)=7
+  Return 7
+ Back at A: v=max(5,7)=7, &alpha;=7
+ Return 7
+
+Result: Minimax value = <strong>7</strong>
+Pruned: leaf 9 (under node E)
+Nodes saved: 1 leaf evaluation</code></pre>
+                </div>
+
+                <div class="warning-box">
+                  <div class="box-title">&#9888; Pruning Depends on Order</div>
+                  <p>Alpha-beta pruning&rsquo;s effectiveness depends heavily on the <strong>order</strong> in which children are examined. In the worst case (reverse-sorted), no pruning occurs and it degenerates to full minimax.</p>
+                </div>
+              </section>
+
+              <section id="best-case">
+                <h2>4. Best-Case Complexity</h2>
+
+                <div class="theorem-box">
+                  <div class="box-title">Alpha-Beta Complexity</div>
+                  <p>With <strong>perfect move ordering</strong> (best moves examined first):</p>
+                  <ul>
+                    <li><strong>Best-case Time:</strong> O(b<sup>d/2</sup>) &mdash; effectively doubles the searchable depth</li>
+                    <li><strong>Worst-case Time:</strong> O(b<sup>d</sup>) &mdash; same as minimax (no pruning)</li>
+                    <li><strong>Average case (random ordering):</strong> O(b<sup>3d/4</sup>)</li>
+                    <li><strong>Space:</strong> O(bd) &mdash; same as minimax (DFS)</li>
+                  </ul>
+                </div>
+
+                <div class="formula">
+                  <p><strong>Best-case leaf nodes evaluated:</strong> 2b<sup>d/2</sup> &minus; 1 (for even d) or b<sup>&lfloor;d/2&rfloor;</sup> + b<sup>&lceil;d/2&rceil;</sup> &minus; 1 (for odd d)</p>
+                </div>
+
+                <p>This means alpha-beta with perfect ordering can search a tree <strong>twice as deep</strong> as minimax in the same time. For chess (b&asymp;35), this means searching to depth 12 instead of 6 in the same time.</p>
+              </section>
+
+              <section id="types-of-cutoffs">
+                <h2>5. Types of Cutoffs</h2>
+
+                <div class="comparison-table-wrapper">
+                  <table class="comparison-table">
+                    <thead><tr><th>Cutoff Type</th><th>Occurs At</th><th>Condition</th><th>Meaning</th></tr></thead>
+                    <tbody>
+                      <tr><td><strong>&alpha; cutoff</strong></td><td>MIN node</td><td>v &le; &alpha;</td><td>MAX ancestor already has a better option</td></tr>
+                      <tr><td><strong>&beta; cutoff</strong></td><td>MAX node</td><td>v &ge; &beta;</td><td>MIN ancestor won&rsquo;t allow this path</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p>Some textbooks call these <strong>shallow cutoffs</strong> (immediate parent causes the prune) and <strong>deep cutoffs</strong> (a grandparent or higher ancestor causes the prune). Deep cutoffs are rarer but save more work.</p>
+              </section>
+
+              <section id="gate-problems">
+                <h2>6. GATE-Style Problems</h2>
+
+                <div class="example-box">
+                  <div class="box-title">Problem 1: Identify Pruned Nodes <span class="gate-tag">GATE CS 2017</span></div>
+                  <pre><code>         MAX
+        / | \
+      MIN MIN MIN
+      /\  /\   /\
+     3 5 2 9  1 6
+
+Left-to-right &alpha;-&beta;:
+MIN-A: min(3,5)=3  &rarr; A=3
+Back at MAX: &alpha;=3
+MIN-B: first child=2. v=2 &le; &alpha;(3) &rarr; <strong>&alpha; cutoff!</strong>
+  Leaf 9 is PRUNED.
+Back at MAX: v still 3
+MIN-C: first child=1. v=1 &le; &alpha;(3) &rarr; <strong>&alpha; cutoff!</strong>
+  Leaf 6 is PRUNED.
+Result: 3. Pruned nodes: 9, 6</code></pre>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Problem 2: Count Evaluated Nodes <span class="gate-tag">GATE DA 2024</span></div>
+                  <p><strong>Q:</strong> In a game tree of depth 4 and branching factor 3, how many leaf nodes does alpha-beta evaluate in the best case?</p>
+                  <p><strong>Solution:</strong> Best case: 2b<sup>d/2</sup> &minus; 1 = 2 &times; 3<sup>2</sup> &minus; 1 = 2 &times; 9 &minus; 1 = <strong>17</strong> leaf nodes (compared to 3<sup>4</sup> = 81 for full minimax).</p>
+                </div>
+
+                <div class="example-box">
+                  <div class="box-title">Problem 3: Left-to-Right vs Right-to-Left</div>
+                  <pre><code>         MAX
+        /    \
+      MIN    MIN
+     / \    / \
+    8   3  1   7
+
+Left-to-right:
+  MIN-L: min(8,3)=3. MAX: &alpha;=3
+  MIN-R: child 1 &le; 3 &rarr; &alpha; cutoff. Prune 7.
+  Result: 3. Evaluated: 3 leaves.
+
+Right-to-left:
+  MIN-R: min(7,1)=1. MAX: &alpha;=1
+  MIN-L: child 8 &rarr; v=8, then child 3 &rarr; v=3
+  Result: 3. Evaluated: 4 leaves (no pruning!)
+
+Move ordering matters: left-to-right saved 1 evaluation.</code></pre>
+                </div>
+              </section>
+
+              <section id="summary">
+                <h2>Summary</h2>
+                <div class="summary-section">
+                  <ul>
+                    <li>&alpha; tracks MAX&rsquo;s best guaranteed value; &beta; tracks MIN&rsquo;s best guaranteed value.</li>
+                    <li>Prune when &alpha; &ge; &beta; — the branch cannot affect the final result.</li>
+                    <li>Best-case complexity: O(b<sup>d/2</sup>) — doubles the searchable depth.</li>
+                    <li>Move ordering is critical; perfect ordering yields maximum pruning.</li>
+                    <li>Alpha-beta returns the <strong>exact same</strong> minimax value — it never changes the result.</li>
+                  </ul>
+                </div>
+              </section>
+
+              <section id="references">
+                <h2>References</h2>
+                <ul>
+                  <li>Russell, S. &amp; Norvig, P. <em>AIMA</em>, 4th Ed. &mdash; Chapter 5.3</li>
+                  <li>Knuth, D. &amp; Moore, R. &ldquo;An Analysis of Alpha-Beta Pruning&rdquo;, <em>Artificial Intelligence</em>, 6(4), 1975</li>
+                </ul>
+              </section>
+
+            </div>
+
+            <button class="complete-btn" data-page="ch04-alpha-beta">&#9745; Mark as Complete</button>
+            <div class="nav-buttons">
+              <a href="minimax-algorithm.html" class="nav-btn prev"><span class="nav-label">&larr; Previous</span><span class="nav-title">Minimax Algorithm</span></a>
+              <a href="move-ordering.html" class="nav-btn next"><span class="nav-label">Next &rarr;</span><span class="nav-title">Move Ordering</span></a>
+            </div>
+          </article>
+
+          <aside class="page-toc">
+            <h4>On This Page</h4>
+            <ul>
+              <li><a href="#intuition">1. Intuition</a></li>
+              <li><a href="#pseudocode">2. Pseudocode</a></li>
+              <li><a href="#traced-example">3. Traced Example</a></li>
+              <li><a href="#best-case">4. Best-Case Complexity</a></li>
+              <li><a href="#types-of-cutoffs">5. Types of Cutoffs</a></li>
+              <li><a href="#gate-problems">6. GATE Problems</a></li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/theme.js"></script>
+  <script src="../../js/navigation.js"></script>
+  <script src="../../js/progress-tracker.js"></script>
+  <script src="../../js/search.js"></script>
+  <script src="../../js/animations.js"></script>
+</body>
+</html>
